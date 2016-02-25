@@ -12,7 +12,14 @@ toc_footers:
 includes:
   - intro
   - authorization
+  - login
+  - ping
   - meta
+  - entity
+  - query
+  - search
+  - find
+  - lookup
   - errors
 
 search: true
