@@ -14,6 +14,8 @@ includes:
   - authorization
   - login
   - ping
+  - settings
+  - entitlements
   - meta
   - entity
   - query
