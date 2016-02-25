@@ -412,6 +412,80 @@
 </tr>
 </tbody></table>
 
+          <h1 id="settings">Settings</h1>
+
+<h2 id="get-settings-settingname1-settingname2">GET /settings/settingName1[,settingName2&hellip;]</h2>
+<pre class="highlight javascript"><code><span class="p">{</span>
+    <span class="s2">"settingName1"</span><span class="err">:</span> <span class="nx">value</span><span class="p">,</span>
+    <span class="s2">"settingName2"</span><span class="err">:</span> <span class="nx">value</span><span class="p">,</span>
+    <span class="s2">"foo"</span><span class="err">:</span> <span class="s2">"some string value"</span><span class="p">,</span>
+    <span class="s2">"bar"</span><span class="err">:</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="s2">"baz"</span><span class="err">:</span> <span class="mf">123.45</span><span class="p">,</span>
+    <span class="s2">"fred"</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"barney"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"kermit"</span><span class="err">:</span> <span class="p">[</span> <span class="s2">"an"</span><span class="p">,</span> <span class="s2">"array"</span><span class="p">,</span> <span class="s2">"of"</span><span class="p">,</span> <span class="s2">"string"</span> <span class="p">],</span>
+    <span class="s2">"fozzie"</span><span class="err">:</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span> <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>value type (integer, boolean, etc) depends on settingName.
+If no settingName is supplied, a list of predefined setting names and their meta data is returned. Return types (string, integer, decimal, boolean, and array of the base type) are defined in the meta data. If conversion fails, for example cannot convert &ldquo;abc&rdquo; to integer, the raw string will be returned.</p>
+
+<h2 id="get-settings">GET /settings</h2>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"data"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"accountLockoutDuration"</span><span class="p">,</span>
+      <span class="s2">"valueUrl"</span><span class="p">:</span> <span class="s2">"http://server:port/rest-services/corpToken/settings/accountLockoutDuration"</span><span class="p">,</span>
+      <span class="s2">"valueType"</span><span class="p">:</span> <span class="s2">"INTEGER"</span><span class="p">,</span>
+      <span class="s2">"isArray"</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"allDeptIds"</span><span class="p">,</span>
+      <span class="s2">"valueUrl"</span><span class="p">:</span> <span class="s2">"http://server:port/rest-services/corpToken/settings/allDeptIds"</span><span class="p">,</span>
+      <span class="s2">"valueType"</span><span class="p">:</span> <span class="s2">"INTEGER"</span><span class="p">,</span>
+      <span class="s2">"isArray"</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"allPrivateLabelIds"</span><span class="p">,</span>
+      <span class="s2">"valueUrl"</span><span class="p">:</span> <span class="s2">"http://server:port/rest-services/corpToken/settings/allPrivateLabelIds"</span><span class="p">,</span>
+      <span class="s2">"valueType"</span><span class="p">:</span> <span class="s2">"INTEGER"</span><span class="p">,</span>
+      <span class="s2">"isArray"</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"commentActionList"</span><span class="p">,</span>
+      <span class="s2">"valueUrl"</span><span class="p">:</span> <span class="s2">"http://server:port/rest-services/corpToken/settings/commentActionList"</span><span class="p">,</span>
+      <span class="s2">"valueType"</span><span class="p">:</span> <span class="s2">"STRING"</span><span class="p">,</span>
+      <span class="s2">"isArray"</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>returns the complete list of settings</p>
+
+          <h1 id="entitlements">Entitlements</h1>
+
+<h2 id="entitlements-entityname">/entitlements/EntityName</h2>
+<pre class="highlight javascript"><code><span class="c1">//returns an array of entitlements</span>
+<span class="p">[</span> <span class="s2">"READ"</span><span class="p">,</span> <span class="s2">"EDIT"</span> <span class="p">]</span>
+</code></pre>
+
+<p>Gets the entity entitlements of an entity for the login user.</p>
+
+<p><code class="prettyprint">Eg:  http://172.27.8.154:8080/rest-services/3lpg/entitlements/Candidate</code></p>
+
+<p>List of Entitlements
+CREATE
+READ
+READ_DEPARTMENT implies READ
+READ_CORPORATE implies READ_DEPARTMENT
+READ_PRIVATE
+UPDATE implies READ
+UPDATE_DEPARTMENT implies UPDATE, READ_DEPARTMENT
+UPDATE_CORPORATE implies UPDATE_DEPARTMENT, READ_CORPORATE
+DELETE implies READ
+DELETE_DEPARTMENT implies DELETE, READ_DEPARTMENT
+DELETE_CORPORATE implies DELETE_DEPARTMENT, READ_CORPORATE</p>
+
           <h1 id="meta">Meta</h1>
 
 <h2 id="get-meta"><span class="tag">GET</span> /meta</h2>
