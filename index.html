@@ -121,47 +121,300 @@
         
           <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<h2 id="background">Background</h2>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>The Bullhorn REST API project (codename Lava) aims to provide general, comprehensive access to all functions of the Bullhorn ATS over a uniform, commonly understood Web transport mechanism (namely, REST).</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>For more information on REST, see the <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">Wikipedia article</a> and <a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">the paper that first codified it</a>.</p>
+
+<p>Some goals of the REST API are:</p>
+
+<ol>
+<li> Ease of use</li>
+<li> Consistency and uniformity</li>
+<li> Very good performance</li>
+<li> Comprehensive coverage of Bullhorn functionality</li>
+</ol>
+
+<h2 id="general-conventions">General Conventions</h2>
+
+<p>Whenever possible, the REST API will follow specifications, conventions and practices of HTTP and the Web in general. This includes things like case sensitivity of URLs, character encodings, HTTP methods, and so forth. Additional recommended practices for REST APIs shall also be observed whenever appropriate.</p>
+
+<h3 id="urls">URLs</h3>
+
+<p>Web URLs are case-sensitive, except for machine names. We shall follow that practice. All REST API URLs should be considered case-sensitive.</p>
+
+<p>All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:</p>
+<pre class="highlight plaintext"><code>https://rest.bullhorn.com/e999/entity/Candidate
+</code></pre>
+
+<p>Where <code class="prettyprint">e999</code> is the corporation identifier.</p>
+
+<h3 id="entities">Entities</h3>
+
+<p>Bullhorn uses the term entity to refer to a type of thing represented in the Bullhorn system. Candidate, ClientContact, JobOrder, and Placement are examples of entities. Entities capture the core concepts within the Bullhorn system and provide an organization for storing staffing data and applying the rules and processing that comprise the Bullhorn system.</p>
+
+<p>The REST API currently supports the following entity types. For information about these entity types,see the  .</p>
+
+<p><strong>Non-list entities</strong></p>
+
+<ul>
+<li>  Appointment</li>
+<li>  AppointmentAttendee</li>
+<li>  Candidate</li>
+<li>  CandidateEducation</li>
+<li>  CandidateReference</li>
+<li>  CandidateSource</li>
+<li>  CandidateWorkHistory</li>
+<li>  ClientContact</li>
+<li>  ClientContactRatios</li>
+<li>  ClientCorporation</li>
+<li>  ClientCorporationRatios</li>
+<li>  CorporateUser</li>
+<li>  CorporationDepartment</li>
+<li>  Lead (CRM USERS ONLY)</li>
+<li>  LeadHistory (CRM USERS ONLY)</li>
+<li>  JobOrder</li>
+<li>  JobSubmission</li>
+<li>  MasterOAuthRegistry (<em>INTERNAL USER ONLY</em>)</li>
+<li>  MasterOAuthRestFeature (<em>INTERNAL USER ONLY</em>)</li>
+<li>  Note</li>
+<li>  NoteEntity</li>
+<li>  NPSResponse(INTERNAL USER ONLY)</li>
+<li>  OAuthConsent (<em>INTERNAL USER ONLY</em>)</li>
+<li>  Opportunity (CRM USERS ONLY)</li>
+<li>  OpportunityHistory (CRM USERS ONLY)</li>
+<li>  Person</li>
+<li>  Placement</li>
+<li>  PlacementChangeRequest</li>
+<li>  PlacementCommission</li>
+<li>  Sendout</li>
+<li>  Shift</li>
+<li>  Task</li>
+</ul>
+
+<p><strong>List entities</strong></p>
+
+<ul>
+<li>  Category</li>
+<li>  Country</li>
+<li>  BusinessSector</li>
+<li>  Skill</li>
+<li>  Specialty</li>
+<li>  State</li>
+<li>  TimeUnit</li>
+</ul>
+
+<h3 id="json">JSON</h3>
+
+<p>As in HTTP, the REST API will follow the specifications and conventions of the JSON data format and any related Javascript syntax specifications. For more information, see the following articles:</p>
+
+<ul>
+<li>  <a href="http://www.json.org">http://www.json.org</a></li>
+<li>  <a href="http://en.wikipedia.org/wiki/JSON">http://en.wikipedia.org/wiki/JSON</a></li>
+</ul>
+
+<h3 id="jsonp">JSONP</h3>
+
+<p>The Bullhorn REST API supports JSONP. To enable JSONP for any request to the API, provide a value for the optional <code class="prettyprint">callback</code> parameter. This changes the API&rsquo;s response as follows:</p>
+
+<ol>
+<li>  The API wraps its response in a Javascript method call. The name of the method is the same as the value of the <code class="prettyprint">callback</code> parameter.</li>
+<li>  The response HTTP <code class="prettyprint">Content-Type</code> is <code class="prettyprint">&quot;text/javascript&quot;</code> instead of <code class="prettyprint">&quot;application/json&quot;</code></li>
+</ol>
+
+<p>For more information about JSONP, see the following article: <a href="http://en.wikipedia.org/wiki/JSONP">http://en.wikipedia.org/wiki/JSONP</a></p>
+
+<h2 id="api-operations">API Operations</h2>
+
+<p>There are several API calls for retrieving data:/entity, /search, /query, and /meta. These calls share some common parameters and behavior:</p>
+
+<h3 id="entity-ids">Entity ids</h3>
+
+<p>All entities have a field named &ldquo;id&rdquo;, which is the primary key of the entity:</p>
+
+<p>When selecting to-one and to-many fields, &ldquo;id&rdquo; is automatically included if no sub-field is specified:</p>
+
+<h3 id="notes">Notes</h3>
+
+<ol>
+<li><p>to-many fields can only appear at the top level (no nesting):</p></li>
+<li><p>to-many fields that are soft-deletable (i.e. deletion is indicated by the isDeleted field) will not be returned.</p></li>
+</ol>
+
+<h3 id="entity-and-property-metadata">Entity and Property Metadata</h3>
+
+<p>Metadata, data describing the structure of returned entity data, can be included in any data set returned by the API. See <code class="prettyprint">Meta</code> for details.</p>
 
           <h1 id="authentication">Authentication</h1>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>User authentication and session management use the following flow:</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<ol>
+<li> A URL with prescribed parameters exists to provide authentication services.</li>
+<li> To authenticate, a client sends a request to that URL with credentials in the appropriate parameters.</li>
+<li> If authentication is successful, the API will send back a session key. This is a token that represents a session established by the login process, and must be sent along with all subsequent requests to the API. The session key can be provided in a URL query string, a cookie or a special HTTP header. See for details on how to provide it.</li>
+<li> For individual user logins, the login call also sends back a URL with which all subsequent API requests must be prefixed.</li>
+</ol>
+
+<h2 id="unauthorized-requests">Unauthorized Requests</h2>
+
+<p>If a client makes a request and does not include a session key, the server will send a response with HTTP status 412 (precondition failed). If a client request contains an invalid session key, the response status will be HTTP 401 (unauthorized). For more information on HTTP status codes see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</a></p>
+
+<h2 id="session-key">Session Key</h2>
+
+<p>The REST API has the concept of a client &ldquo;session&rdquo;. This is essentially a method for allowing clients to authenticate themselves once and then be free of the need to authenticate for subsequent calls to the API.</p>
+
+<p>Since REST is a stateless protocol, there must be a mechanism for clients to identify themselves upon each request, so the requests can be tied to an established session. This is what the session key provides.</p>
+
+<p>Login calls return, as part of their responses, a session key that represents a successful authentication and can be used to make further calls without having to authenticate.</p>
+
+<p>This key must be provided in HTTP requests in at least one of the following places:</p>
+
+<ol>
+<li> A query parameter named <code class="prettyprint">BHRestToken</code> on the request URL.</li>
+<li> An HTTP header named <code class="prettyprint">BHRestToken</code>.</li>
+<li> A cookie named <code class="prettyprint">BHRestToken</code>. This cookie is set by the API at login time as a convenience for browser-based clients.</li>
+</ol>
+
+          <h1 id="login">Login</h1>
+
+<p>There are two ways to login to obtain a bullhorn REST API token (one of them being strictly reserved for internal use):</p>
+
+<h2 id="top-level-login-without-corporation-token">Top-level login (without corporation token)</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/login?username=xxx&amp;password=xxx&amp;version=*</span>
+<span class="p">{</span>
+  <span class="s2">"BhRestToken"</span> <span class="err">:</span> <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span><span class="p">,</span>
+  <span class="s2">"restUrl"</span> <span class="err">:</span> <span class="s2">"https://rest.bullhorn.com/rest-services/[corporation-token]/"</span>
+<span class="p">}</span>
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<aside class="warning">only for testing environment</aside>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>yes</td>
+<td>Name of user logging in.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>yes</td>
+<td>Password of user logging in.</td>
+</tr>
+<tr>
+<td>version</td>
+<td>yes</td>
+<td>Version of the API to use (* is a wildcard for latest version).</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>no</td>
+<td>Session time-to-live in minutes.</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>no</td>
+<td>Pass in an OAuth key here to spoof the features associated.</td>
+</tr>
+</tbody></table>
+
+<h2 id="partner-login-using-oauth-this-is-the-only-supported-login-process-in-a-production-environment">Partner login using OAuth (This is the only supported login process in a production environment)</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/login?access_token=xxx&amp;version=*</span>
+<span class="p">{</span>
+  <span class="s2">"BhRestToken"</span> <span class="err">:</span> <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span><span class="p">,</span>
+  <span class="s2">"restUrl"</span> <span class="err">:</span> <span class="s2">"https://rest.bullhorn.com/rest-services/[corporation-token]/"</span>
+<span class="p">}</span>
 </code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>access_token</td>
+<td>yes</td>
+<td>Access token obtained from OAuth authorization</td>
+</tr>
+<tr>
+<td>version</td>
+<td>yes</td>
+<td>Version of the API to use (* is a wildcard for latest version).</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>no</td>
+<td>Session time-to-live in minutes.</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>no</td>
+<td>Pass in an OAuth key here to spoof the features associated.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning"><strong>Possible Error: </strong>&ldquo;Invalid or expired OAuth access token.&rdquo;</aside>
+
+<h2 id="logout">Logout</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/logout</span>
+<span class="p">{</span>
+    <span class="nl">logout</span><span class="p">:</span> <span class="s2">"OK"</span>
+<span class="p">}</span>
 </code></pre>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>To logout and invalidate your BhRestToken</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>None.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+          <h1 id="ping">Ping</h1>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<h2 id="get-ping"><span class="tag">GET</span> /ping</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/ping</span>
+<span class="p">{</span>
+  <span class="s2">"sessionExpires"</span> <span class="err">:</span> <span class="mi">1323449994922</span>
+<span class="p">}</span>
+</code></pre>
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+<p>Returns the date of the calling client&rsquo;s session expiration. You can use this call to test whether the client&rsquo;s session is valid. If the session is not valid, the response is the standard response for unauthenticated clients. See .</p>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>true</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
 
           <h1 id="meta">Meta</h1>
 
-<h2 id="get-all-meta">Get All Meta</h2>
+<h2 id="get-meta"><span class="tag">GET</span> /meta</h2>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
@@ -172,110 +425,1111 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 </code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta"</span>
+  -H <span class="s2">"Authorization: token {BHRESTTOKEN}"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Appointment?fields=*"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BusinessSector"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/BusinessSector?fields=*"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Candidate"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?fields=*"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Category"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Category?fields=*"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ClientContact"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientContact?fields=*"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ClientCorporation"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientCorporation?fields=*"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrieves all entities available to the authenticated user.</p>
+
+<h2 id="get-specific-meta">Get Specific Meta</h2>
+
+<p>Returns entity and property metadata for the specified entity type.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/api/meta</code></p>
+<p><code class="prettyprint">GET [corporation-token]/meta/[entity-name]/?fields=[field-list]&amp;meta=[ basic or full ]</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Params</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>fields</td>
+<td>yes</td>
+<td>Comma-separated list of field names.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>layout</td>
+<td>yes</td>
+<td>Name of a configured layout. A field list, layout name or both may be specified.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+<p>*<em>Possible Errors *</em></p>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Returns an HTTP 404 error if the requested entity cannot be found.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<p><strong>Sample Request Body</strong>
+<code class="prettyprint">
+// [GET] https://rest.bullhorn.com/e999/meta/Candidate?fields=*
+// returns...
+{
+  &quot;entity&quot; : &quot;Candidate&quot;,
+  &quot;entityMetaUrl&quot; : &quot;https://rest.bullhorn.com/e999/meta/Candidate?fields=*&quot;,
+  &quot;label&quot; : &quot;Candidate&quot;,
+  &quot;fields&quot; : [ {
+    &quot;name&quot; : &quot;id&quot;,
+    &quot;type&quot; : &quot;ID&quot;,
+    &quot;dataType&quot; : &quot;Integer&quot;
+  }, {
+    ...
+  }]
+}
+</code></p>
+
+<p>Calling /meta with no entity name will return the list of available entities and their respective base URLs.<br>
+Read-only system fields (fields with names prefixed with _) are not represented in entity metadata ever, even with * calls.</p>
+
+<ul>
+<li>Fields that are returned only if meta=FULL.</li>
+</ul>
+
+<h5 id="entity-and-property-metadata">Entity and Property Metadata</h5>
+
+<p><strong>entity</strong></p>
+
+<p>Entity name; for example, Candidate, JobOrder.</p>
+
+<p><strong>label</strong></p>
+
+<p>Entity display label from the private label attribute &ldquo;EntityTitleXxx&rdquo;; may be missing.</p>
+
+<p><strong>fields</strong></p>
+
+<p>Array of property metadata (see below.)</p>
+
+<h5 id="property-metadata">Property Metadata</h5>
+
+<p><strong>name</strong></p>
+
+<p>Property name; for example, firstName.</p>
+
+<p><strong>label</strong></p>
+
+<p>Property display label from fieldmap; may be missing.</p>
+
+<p><strong>type</strong></p>
+
+<p>Property type, one of ID, SCALAR, COMPOSITE, TO_ONE, or TO_MANY.</p>
+
+<p><strong>dataType</strong></p>
+
+<p>Property data type: Integer, BigDecimal, Double, String, Boolean, Timestamp, byte[], Address, Address1, AddressWithoutCountry (these are composite types), and<br>
+LoginRestrictions (!! may change).</p>
+
+<p><strong>maxLength</strong></p>
+
+<p>Only present when dataType=&ldquo;String&rdquo;. The maximum authorized length for this String field.</p>
+
+<p><strong>dataSpecialization</strong></p>
+
+<p>Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE,<br>
+PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent. See .</p>
+
+<ul>
+<li><strong>optional</strong></li>
+</ul>
+
+<p>Is the property value optional (specified by Hibernate, typically means database nullability); also see <strong>required</strong>.</p>
+
+<ul>
+<li><strong>required</strong></li>
+</ul>
+
+<p>Is the property value required (specified by fieldmap); also see <strong>optional</strong>.</p>
+
+<ul>
+<li><strong>readonly</strong></li>
+</ul>
+
+<p>Is the property hidden (specified by fieldmap).</p>
+
+<ul>
+<li><strong>multiValue</strong></li>
+</ul>
+
+<p>Is the property multi-valued (specified by fieldmap); dataType must be String.</p>
+
+<ul>
+<li><strong>inputType</strong></li>
+</ul>
+
+<p>Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing. See .</p>
+
+<ul>
+<li><strong>optionsType</strong></li>
+</ul>
+
+<p>For inputType SELECT only; for example, Country. may be missing. See .</p>
+
+<ul>
+<li><strong>optionsUrl</strong></li>
+</ul>
+
+<p>If optionsType is present, where to get the list of options (displays and values).</p>
+
+<p><strong>options</strong></p>
+
+<p>The hard-coded options from fieldMap in an array of value/label pairs; may be missing.</p>
+
+<ul>
+<li><strong>defaultValue</strong></li>
+</ul>
+
+<p>Value type depends on dataType and dataSpecialization: may be missing.<br>
+If the defaultValue is not translatable, For example, cannot parse string to a date; it is ignored. If multiValue, returns as array.</p>
+
+<p><strong>fields</strong></p>
+
+<p>Array of sub-fields property meta for COMPOSITE type.</p>
+
+<p><strong>associatedEntity</strong></p>
+
+<p>Entity metadata for TO_ONE and TO_MANY type.</p>
+
+          <h1 id="entity">Entity</h1>
+
+<h2 id="get-entity"><span class="tag">GET</span> /entity</h2>
+
+<p>Gets one or more entities or to-many associations.</p>
+
+<p>Individual entity records are manifested as resources, where the entity type and ID form the last two parts of the resource path.</p>
+
+<p>See for more detail on the general structure of returned data for <code class="prettyprint">GET</code> requests.</p>
+
+<p>Specify the fields to be included in the response using the <code class="prettyprint">fields</code> request parameters. The <code class="prettyprint">id</code> field is always returned, regardless of the fields requested. See for more detail on specifying fields.</p>
+
+<p>NOTE: At least one of the required parameters(fields and layout) or both must be specified.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]/[entity-id]?fields=[field-list]
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Params</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>fields</td>
+<td>yes</td>
+<td>Comma-separated list of field names.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes</td>
+<td>Name of a configured layout.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+<tr>
+<td>showReadOnly</td>
+<td>no</td>
+<td>(DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
 </tr>
 </tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 error if the requested entity is not found.</p>
+
+<p><strong>Examples</strong>
+<code class="prettyprint">
+// https://rest.bullhorn.com/e999/entity/Candidate/5059165?fields=firstName,lastName,address
+{
+  &quot;id&quot; : 5059165,
+  &quot;firstName&quot; : &quot;Alanzo&quot;,
+  &quot;lastName&quot; : &quot;Smith&quot;,
+  &quot;address&quot; : {
+    &quot;address1&quot; : &quot;&quot;,
+    &quot;address2&quot; : &quot;&quot;,
+    &quot;city&quot; : &quot;Sacramento&quot;,
+    &quot;state&quot; : &quot;ca&quot;,
+    &quot;zip&quot; : &quot;&quot;,
+    &quot;countryID&quot; : 1
+  }
+}
+</code></p>
+
+<h4 id="multiple-entities">Multiple Entities</h4>
+
+<p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:</p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]/[[entity-id],[entity-id],*]?fields=[field-list]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields</td>
+<td>yes</td>
+<td>Comma-separated list of field names.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes</td>
+<td>Name of a configured layout.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+<tr>
+<td>showReadOnly</td>
+<td>no</td>
+<td>(DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+</tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</p>
+
+<p><strong>Examples</strong>
+<code class="prettyprint">
+// https://rest.bullhorn.com/e999/entity/Candidate/5059165,2362648?fields=firstName,lastName,address
+{
+    data: [{
+      &quot;id&quot; : 5059165,
+      &quot;firstName&quot; : &quot;Alanzo&quot;,
+      &quot;lastName&quot; : &quot;Smith&quot;,
+      &quot;address&quot; : {
+        &quot;address1&quot; : &quot;&quot;,
+        &quot;address2&quot; : &quot;&quot;,
+        &quot;city&quot; : &quot;Sacramento&quot;,
+        &quot;state&quot; : &quot;ca&quot;,
+        &quot;zip&quot; : &quot;&quot;,
+        &quot;countryID&quot; : 1
+      }
+    },{
+      &quot;id&quot; : 5059165,
+      &quot;firstName&quot; : &quot;Alanzo&quot;,
+      &quot;lastName&quot; : &quot;Smith&quot;,
+      &quot;address&quot; : {
+        &quot;address1&quot; : &quot;&quot;,
+        &quot;address2&quot; : &quot;&quot;,
+        &quot;city&quot; : &quot;Sacramento&quot;,
+        &quot;state&quot; : &quot;ca&quot;,
+        &quot;zip&quot; : &quot;&quot;,
+        &quot;countryID&quot; : 1
+      }
+    }]
+}
+</code></p>
+
+<h5 id="to-many-associations">To-many Associations</h5>
+
+<p>This is an extension of the single and multiple GETs that returns the to-many associated entities of the specified type for the specified entity ID(s). The call supports the same query parameters as the query call.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]]/[[entity-id],[entity-id],*]/[toManyFieldName]s?fields=[field-list]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields</td>
+<td>yes</td>
+<td>Comma-separated list of field names.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes</td>
+<td>Name of a configured layout.</td>
+</tr>
+<tr>
+<td>where</td>
+<td>no</td>
+<td>(DO NOT USE) SQL-style filter clause see for syntax.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>From the set of matched results, return record numbers start through (start + count).</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>no</td>
+<td>Name of property on which to base the order of returned entities.</td>
+</tr>
+<tr>
+<td>showReadOnly</td>
+<td>no</td>
+<td>(DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 error if none of the requested to-many entities are found. If any of the requested to-many entities are found, returns the found entities and does not throw an error.</p>
+
+<p><strong>Examples</strong>
+<code class="prettyprint">
+// https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&amp;count=2
+{
+    ...
+}
+</code></p>
+
+<h2 id="put-entity"><span class="tag">PUT</span> /entity</h2>
+
+<p>You can use HTTP PUT requests to create new entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body. The structure of the JSON is identical to that returned in HTTP responses to GET requests, with a few additional restrictions:</p>
+
+<ul>
+<li>  You cannot create to-many associations on the entity being inserted. You must create them in a subsequent &ldquo;associate&rdquo; call.</li>
+<li>  You can create to-one associations. The associations can only be to existing entities; You cannot create new associated entities while creating the main entity.</li>
+</ul>
+
+<p>Associations fields are set by giving as their values a JSON object containing one field, named &lsquo;id&rsquo;, and having value the ID of the entity to associate.</p>
+
+<p>If you specify fields that do not exist on the entity being created, returns a 400 error containing messaging about the unknown fields,</p>
+
+<p>Most entities in the Bullhorn data model contains mandatory fields. Some of these mandatory fields have default values. All mandatory fields without default values must have values specified in the JSON body of the PUT request or returns a 400 error.</p>
+
+<p>NOTE: When using an HTTP PUT request to create a Client Corporation entity an archived Client Contact entity, which belongs to this new Client Corporation, will automatically be created. This mirrors what is done through the ATS when creating a Client Corporation and allows the new Client Corporation to correctly follow ownership rules (where the ownership of a Client Corp is based on ownership of its Client Contacts) and belong to the person creating it. </p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
+
+<p><strong>Sample Request Body</strong>
+<code class="prettyprint">
+// [PUT] https://rest.bullhorn.com/e999/entity/Candidate
+{
+  &quot;firstName&quot; : &quot;Alanzo&quot;,
+  &quot;lastName&quot; : &quot;Smith&quot;
+}
+</code></p>
+
+<h5 id="create-to-many-associations">Create To-many Associations</h5>
+
+<p>You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.</p>
+
+<p>NOTE: Certain entities, like Custom Objects, are handled differently.  See .</p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]/[entity-id]/[to-many-association-name]/[entity-id],*]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p><strong>Possible Errors</strong></p>
+
+<p>Returns An HTTP 404 error if the requested entity cannot be found, fields are specified that do not exist on the specified entity, or you specify values for any mandatory fields with no default values.</p>
+
+<p><strong>Examples</strong>
+<code class="prettyprint">
+// [PUT] https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/964,684,253
+</code></p>
+
+<h2 id="post-entity"><span class="tag">POST</span> /entity</h2>
+
+<p>Update entities using HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.</p>
+
+<ul>
+<li>  You cannot create to-many associations on the entity being updated. You must be create to-many associations in a subsequent &ldquo;associate&rdquo; call.</li>
+<li>  You can create to-one associations.</li>
+</ul>
+
+<p>You set association fields by giving as their values a JSON object that contains a field named &#39;id&rsquo;, and providing the value the ID of the entity to associate.</p>
+
+<p>If you provide fields that do not exist on the entity being created, returns a 400 error containing messages about the unknown fields.</p>
+
+<p>Most entities in the Bullhorn data model contain mandatory fields, some of which have default values. Returns a 400 error if you do not specify, in the JSON body of the PUT request, values for all mandatory fields that do not have default values.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
+
+<p><strong>Sample Request Body</strong>
+<code class="prettyprint">
+// [POST] https://rest.bullhorn.com/e999/entity/Candidate/5059165
+{
+  &quot;id&quot; : 5059165,
+  &quot;firstName&quot; : &quot;Alanzo&quot;,
+  &quot;lastName&quot; : &quot;Smith&quot;
+}
+</code></p>
+
+<h5 id="to-many-associations-special">To-many Associations - Special</h5>
+
+<p>For special to-many associations, like Custom Objects, we have the ability to create and associate in a single step.  These is due to the fact that we need to know their context to enforce security and data integrity.  You can add/update to-many associations with a POST request the same as if it was data directly on the parent entity. You can combine standard parent entity updates with special association add and edits.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[parent-entity-name]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
+
+<p><strong>Examples 1</strong></p>
+
+<p>This example will create and associate a new customObject1s record.</p>
+<pre class="highlight plaintext"><code>// https://rest.bullhorn.com/e999/entity/JobOrder/123
+
+</code></pre>
+
+<p><strong>Examples 2</strong></p>
+
+<p>This example will update an existing customObject1s record #1.</p>
+<pre class="highlight plaintext"><code>https://rest.bullhorn.com/e999/entity/JobOrder/123
+</code></pre>
+
+<h2 id="delete-entity"><span class="tag">DELETE</span> /entity</h2>
+
+<p>Deletes an entity or to-many association.</p>
+
+<p>The API supports two types of delete requests: hard delete and soft delete.</p>
+
+<h5 id="hard-delete">Hard delete</h5>
+
+<p>Hard deletes an entity.</p>
+
+<p>The types of entity you can hard-delete are CandidateSource, CorporationDepartment, Placement, NoteEntity and CorporateUser. To hard delete an entity send a HTTP request using the DELETE method.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]/[entity-id]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p><strong>Possible Errors</strong></p>
+
+<p>Returns an HTTP 404 error if the requested entity cannot be found.</p>
+
+<p><strong>Examples</strong>
+<code class="prettyprint">
+https://rest.bullhorn.com/e999/entity/NoteEntity/2552
+</code></p>
+
+<p>To hard delete an entity with children, you explicitly hard delete all the children before attempting to delete the root entity.</p>
+
+<h5 id="soft-delete">Soft delete</h5>
+
+<p>When you soft delete an entity, it is not removed from the data storage. A soft delete operation is actually an update (for example, POST) that sets an &ldquo;isDeleted&rdquo; flag to true.</p>
+
+<p>The types of entity you can soft delete are Candidate, CandidateEducation, CandidateReference, CandidateWorkHistory, ClientContact, JobOrder, JobSubmission, Note and Person.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]/[entity-id]
+</code></pre>
+
+<p><strong>Request Body</strong>
+<code class="prettyprint">
+{
+    &quot;isDeleted&quot; : true
+}
+</code></p>
+
+<p><strong>Possible Errors</strong></p>
+
+<p>Returns an HTTP 404 error if the entity cannot be found.</p>
+
+<p><strong>Examples</strong>
+<code class="prettyprint">
+https://rest.bullhorn.com/e999/entity/ClientContact/1804
+</code></p>
+
+<h5 id="disassociate-to-many-associations">Disassociate To-many Associations</h5>
+
+<p>Removes or &ldquo;disassociates&rdquo; a to-many association relationship on an entity.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]/[entity-id]/[to-many-association-name]/[entity-id],*]
+</code></pre>
+
+<p><strong>Possible Errors</strong></p>
+
+<p>Returns an HTTP 404 error if the requested entity cannot be found.</p>
+
+<p><strong>Examples</strong></p>
+<pre class="highlight plaintext"><code>https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/253
+</code></pre>
+
+<h5 id="immutable-entities">Immutable entities</h5>
+
+<p>You cannot hard delete or soft delete the following types of entities:</p>
+
+<ul>
+<li>  BusinessSector</li>
+<li>  Category</li>
+<li>  Country</li>
+<li>  Skill</li>
+<li>  Specialty</li>
+<li>  State</li>
+<li>  TimeUnit.</li>
+</ul>
+
+          <h1 id="query">Query</h1>
+
+<h2 id="get-query"><span class="tag">GET</span> /query</h2>
+
+<p>NOTE: At least one of the required parameters(fields and layout) or both must be specified.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/query/[entity-name]?where=[query-text]&amp;fields=[field-list]&amp;orderBy=[field-list]&amp;count=[count]&amp;start=[start]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where</td>
+<td>yes</td>
+<td>SQL-style filter clause see for syntax</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>yes*</td>
+<td>Comma-separated list of field names. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes*</td>
+<td>Name of a configured layout. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>showReadOnly</td>
+<td>no</td>
+<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>From the set of matched results, return record numbers start through (start + count)</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>no</td>
+<td>Name of property on which to base the order of returned entities.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
+
+<p><strong>Sample Request Body</strong>
+<code class="prettyprint">
+// [GET] https://rest.bullhorn.com/e999/query/Candidate?fields=firstName,lastName&amp;where=lastName=&#39;smith&#39;&amp;count=3
+// returns...
+{
+    &quot;data&quot;: [{
+      &quot;id&quot; : 5059165,
+      &quot;firstName&quot; : &quot;Alanzo&quot;,
+      &quot;lastName&quot; : &quot;Smith&quot;
+    }]
+}
+</code></p>
+
+          <h1 id="search">Search</h1>
+
+<h2 id="get-search"><span class="tag">GET</span> /search</h2>
+
+<p>NOTE: At least one of the required parameters(fields and layout) or both must be specified.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/search/[entity-name]?query=[lucene-query-string]&amp;fields=[field-list]&amp;orderBy=[field-list]&amp;count=[count]&amp;start=[start]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>query</td>
+<td>yes</td>
+<td>Lucene-Style filter clause see for syntax</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>yes*</td>
+<td>Comma-separated list of field names. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes*</td>
+<td>Name of a configured layout. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>showReadOnly</td>
+<td>no</td>
+<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>From the set of matched results, return record numbers start through (start + count)</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>no</td>
+<td>Field to sort result on. Default sort order is ascending. Precede with minus sign to perform descending sort. </td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
+
+<p><strong>Sample Request Body</strong>
+<code class="prettyprint">
+// [GET] https://rest.bullhorn.com/e999/search/Candidate?query=lastName:Smith&amp;fields=id, firstName,&amp;count=3
+// returns...
+{
+    &quot;data&quot;: [{
+      &quot;_score&quot;: 1.70002,
+      &quot;id&quot; : 5059165,
+      &quot;firstName&quot; : &quot;Alanzo&quot;,
+      &quot;lastName&quot; : &quot;Smith&quot;
+    }]
+}
+</code></p>
+
+<p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.
+For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">http://www.lucenetutorial.com/lucene-query-syntax.html</a></p>
+
+<p>If you provide no request parameters, a list of available search fields are provided. For example:
+<code class="prettyprint">
+https://rest.bullhorn.com/e999/search/Candidate
+</code></p>
+
+<p>If parameter &ldquo;fields&rdquo; or &ldquo;layout&rdquo; is not present, the search will return the list of found entity ids in the returned &ldquo;data&rdquo;. For example:
+<code class="prettyprint">
+//https://rest.bullhorn.com/e999/search/Candidate?query=isDeleted:0
+//returns
+{
+    &quot;data&quot;: [101,102,103,104,...,999]
+}
+</code></p>
+
+          <h1 id="find">Find</h1>
+
+<h2 id="get-find"><span class="tag">GET</span> /find</h2>
+
+<p>(FastFind) Searches the following entity types given a string containing search terms:</p>
+
+<ul>
+<li>  ClientContact</li>
+<li>  JobOrder</li>
+<li>  Candidate</li>
+<li>  ClientCorporation</li>
+<li>  Lead (if leadsAndOpportunitiesEnabled = true)</li>
+<li>  Opportunity (if leadsAndOpportunitiesEnabled = true)</li>
+</ul>
+
+<p>The results are returned in a flat list, with results from each entity type grouped together.</p>
+<pre class="highlight plaintext"><code>[corporation-token]/find?query=[query-text]&amp;countPerEntity=[entity-max-results]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>query</td>
+<td>yes</td>
+<td>Text of search query.</td>
+</tr>
+<tr>
+<td>countPerEntity</td>
+<td>no</td>
+<td>Maximum number of results to return for each entity type</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
+
+<p><strong>Sample Request Body</strong>
+<code class="prettyprint">
+// [GET] https://rest.bullhorn.com/e999/find?query=smith&amp;countPerEntity=3
+// returns...
+{
+    &quot;data&quot;: [{
+      &quot;id&quot; : 5059165,
+      &quot;firstName&quot; : &quot;Alanzo&quot;,
+      &quot;lastName&quot; : &quot;Smith&quot;
+    }]
+}
+</code></p>
+
+<h4 id="about-fastfind-search-queries">About FastFind search queries</h4>
+
+<p>FastFind is a specialized type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.</p>
+
+<h5 id="field-type-detection">Field Type Detection</h5>
+
+<p>FastFind classifies a search query as one of the following types depending of the structure of the text in the query:</p>
+
+<ul>
+<li>  entity ID</li>
+<li>  US or International phone number</li>
+<li>  person or company name</li>
+<li>  email address</li>
+</ul>
+
+<p>FastFind performs classification by checking the query against the following patterns, in the order listed:</p>
+
+<p><strong>Query pattern</strong></p>
+
+<p>Email address</p>
+
+<p>Any combination of a-z,A-Z,0-9,!,#,$,%, &amp;, &rsquo;, *, +, -, /, =, ?, ^, _ or ` but not ., followed by @, followed by any combination of a-z, A-Z, 0-9, _, -, +, ., *</p>
+
+<p>For example:</p>
+
+<p><a href="mailto:joe_smith@something-else.com">joe_smith@something-else.com</a> or <a href="mailto:jon33@foo.bar">jon33@foo.bar</a></p>
+
+<p>U.S. phone number</p>
+
+<p>Three digits followed by any of [-.* or space, optionally followed by three more digits followed by [-.* or space, optionally followed by four digits.</p>
+
+<p>For example, 23- or 123-456 or 123-456-7890</p>
+
+<p>International phone number</p>
+
+<p>Either of the following two patterns will match:</p>
+
+<ul>
+<li>  + followed by any combination of 0-9, -, *, (, ), . or space, followed by *</li>
+</ul>
+
+<p>For example:<br>
+ +1-234-56*</p>
+
+<ul>
+<li>  Exactly 10 digits, separated by any combination of +, -, *, (, ), . or space<br>
+ For example<br>
+ 1-234-567-890)</li>
+</ul>
+
+<p>Entity ID
+Only numeric characters For example:</p>
+<pre class="highlight plaintext"><code>1234567
+</code></pre>
+
+<p>Person or company name
+One or more contiguous words that contain any combination of a-z, A-Z, 0-9, separated by any number of spaces. For multi-word queries, FastFind uses the first word to search the first name of Candidates and ClientContacts, and the remaining words to search the last name. FastFind searches JobOrders using the attached ClientContact names with the same rules.</p>
+
+<h5 id="wildcards">Wildcards</h5>
+
+<p>You can use the * character as a wildcard inside or at the end of any word in a query.  Using a wildcard changes the fields that are searched for some entity types.  See the field type mappings table for details.</p>
+
+          <h1 id="lookup">Lookup</h1>
+
+<h2 id="get-lookup"><span class="tag">GET</span> /lookup</h2>
+
+<p>Searches using FastFind for FastFind-able entities, else uses custom Lucene or Hibernate queries. Returns a standardized set of data per EntityType.</p>
+
+<p>Uses search implementations for:</p>
+
+<ul>
+<li>  Candidate</li>
+<li>  ClientContact</li>
+<li>  JobOrder</li>
+<li>  Lead</li>
+<li>  Opportunity</li>
+<li>  Placement</li>
+</ul>
+
+<p>Uses Hibernate queries for:</p>
+
+<ul>
+<li>  Skill</li>
+<li>  Corporate User</li>
+<li>  Distribution List</li>
+</ul>
+
+<p>A call to search returns an _id, _entityType, and _label specific to each entity.</p>
+
+<p>A details call returns a subset of the entity&rsquo;s data. Each entity has a different set of data returned. This is the equivalent of a call which has had its fields parameter specified.</p>
+<pre class="highlight plaintext"><code>[corp-token]/lookup?filter=[terms]&amp;entity=[comma,separated,entity,names]&amp;count=[num]&amp;start=one,number,per,entity
+
+[corp-token]/lookup/[ENTITY]/[ID]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>filter</td>
+<td>no</td>
+<td>The search terms, such as the name or title.</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>no</td>
+<td>A comma-separated list of entity names to search on using the given filter.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>The total number of results to return.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>A comma-separated list of start values for pagination of given entities. This list&rsquo;s size should be the same as the length of the entity parameter. Defaults to 0.</td>
+</tr>
+<tr>
+<td>privateLabelID</td>
+<td>no</td>
+<td>The private label ID to use.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+</tr>
+</tbody></table>
+
+<p>*<em>Possible Errors *</em></p>
+
+<p>Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
+
+<p><strong>Sample Request Body</strong>
+<a href="https://rest.bullhorn.com/e999/lookup?filter=smith&amp;entity=Candidate,ClientContact&amp;start=0,10&amp;count=10">https://rest.bullhorn.com/e999/lookup?filter=smith&amp;entity=Candidate,ClientContact&amp;start=0,10&amp;count=10</a>
+<code class="prettyprint">
+// [GET] https://rest.bullhorn.com/e999/lookup?filter=smith&amp;entity=Candidate,ClientContact&amp;start=0,10&amp;count=10
+// returns...
+{
+    &quot;data&quot;: [{
+      &quot;_score&quot;: 1.70002,
+      &quot;id&quot; : 5059165,
+      &quot;firstName&quot; : &quot;Alanzo&quot;,
+      &quot;lastName&quot; : &quot;Smith&quot;
+    }]
+}
+</code></p>
+
+<p>Sample Detail URL
+<a href="https://rest.bullhorn.com/e999/lookup/Candidate/12345">https://rest.bullhorn.com/e999/lookup/Candidate/12345</a></p>
 
           <h1 id="errors">Errors</h1>
 
