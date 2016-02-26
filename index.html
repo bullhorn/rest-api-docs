@@ -325,13 +325,15 @@
 </tr>
 </tbody></table>
 
-<h2 id="partner-login-using-oauth-this-is-the-only-supported-login-process-in-a-production-environment">Partner login using OAuth (This is the only supported login process in a production environment)</h2>
+<h2 id="partner-login-using-oauth">Partner login using OAuth</h2>
 <pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/login?access_token=xxx&amp;version=*</span>
 <span class="p">{</span>
   <span class="s2">"BhRestToken"</span> <span class="err">:</span> <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span><span class="p">,</span>
   <span class="s2">"restUrl"</span> <span class="err">:</span> <span class="s2">"https://rest.bullhorn.com/rest-services/[corporation-token]/"</span>
 <span class="p">}</span>
 </code></pre>
+
+<p>This is the only supported login process in a production environment</p>
 
 <table><thead>
 <tr>
@@ -362,7 +364,7 @@
 </tr>
 </tbody></table>
 
-<aside class="warning"><strong>Possible Error: </strong>&ldquo;Invalid or expired OAuth access token.&rdquo;</aside>
+<aside class="warning"><strong>Possible Error: &ldquo;Invalid or expired OAuth access token.&rdquo;</strong></aside>
 
 <h2 id="logout">Logout</h2>
 <pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/logout</span>
@@ -372,20 +374,6 @@
 </code></pre>
 
 <p>To logout and invalidate your BhRestToken</p>
-
-<table><thead>
-<tr>
-<th>Params</th>
-<th>Optional</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>None.</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
 
           <h1 id="ping">Ping</h1>
 
@@ -414,17 +402,11 @@
 
           <h1 id="settings">Settings</h1>
 
-<h2 id="get-settings-settingname1-settingname2">GET /settings/settingName1[,settingName2&hellip;]</h2>
-<pre class="highlight javascript"><code><span class="p">{</span>
-    <span class="s2">"settingName1"</span><span class="err">:</span> <span class="nx">value</span><span class="p">,</span>
-    <span class="s2">"settingName2"</span><span class="err">:</span> <span class="nx">value</span><span class="p">,</span>
-    <span class="s2">"foo"</span><span class="err">:</span> <span class="s2">"some string value"</span><span class="p">,</span>
-    <span class="s2">"bar"</span><span class="err">:</span> <span class="mi">123</span><span class="p">,</span>
-    <span class="s2">"baz"</span><span class="err">:</span> <span class="mf">123.45</span><span class="p">,</span>
-    <span class="s2">"fred"</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"barney"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="s2">"kermit"</span><span class="err">:</span> <span class="p">[</span> <span class="s2">"an"</span><span class="p">,</span> <span class="s2">"array"</span><span class="p">,</span> <span class="s2">"of"</span><span class="p">,</span> <span class="s2">"string"</span> <span class="p">],</span>
-    <span class="s2">"fozzie"</span><span class="err">:</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span> <span class="p">]</span>
+<h2 id="get-settings-setting1-setting2">GET /settings/setting1[,setting2&hellip;]</h2>
+<pre class="highlight javascript"><code><span class="c1">// /settings/allPrivateLabelIds,currencyFormat</span>
+<span class="p">{</span>
+    <span class="s2">"allPrivateLabelIds"</span><span class="err">:</span>  <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s2">"currencyFormat"</span><span class="err">:</span> <span class="s2">"USD"</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -464,88 +446,96 @@ If no settingName is supplied, a list of predefined setting names and their meta
 
           <h1 id="entitlements">Entitlements</h1>
 
-<h2 id="entitlements-entityname">/entitlements/EntityName</h2>
+<h2 id="entitlements-entity">/entitlements/{Entity}</h2>
 <pre class="highlight javascript"><code><span class="c1">//returns an array of entitlements</span>
-<span class="p">[</span> <span class="s2">"READ"</span><span class="p">,</span> <span class="s2">"EDIT"</span> <span class="p">]</span>
+<span class="p">[</span>
+    <span class="s2">"CREATE"</span><span class="p">,</span>
+    <span class="s2">"READ"</span><span class="p">,</span>
+    <span class="s2">"READ_DEPARTMENT"</span>
+    <span class="s2">"UPDATE"</span><span class="p">,</span>
+    <span class="s2">"DELETE"</span>
+<span class="p">]</span>
 </code></pre>
 
 <p>Gets the entity entitlements of an entity for the login user.</p>
 
 <p><code class="prettyprint">Eg:  http://172.27.8.154:8080/rest-services/3lpg/entitlements/Candidate</code></p>
 
-<p>List of Entitlements
-CREATE
-READ
-READ_DEPARTMENT implies READ
-READ_CORPORATE implies READ_DEPARTMENT
-READ_PRIVATE
-UPDATE implies READ
-UPDATE_DEPARTMENT implies UPDATE, READ_DEPARTMENT
-UPDATE_CORPORATE implies UPDATE_DEPARTMENT, READ_CORPORATE
-DELETE implies READ
-DELETE_DEPARTMENT implies DELETE, READ_DEPARTMENT
-DELETE_CORPORATE implies DELETE_DEPARTMENT, READ_CORPORATE</p>
+<p>List of Entitlements</p>
+
+<ul>
+<li>  CREATE</li>
+<li>  READ</li>
+<li>  READ_DEPARTMENT implies READ</li>
+<li>  READ_CORPORATE implies READ_DEPARTMENT</li>
+<li>  READ_PRIVATE</li>
+<li>  UPDATE implies READ</li>
+<li>  UPDATE_DEPARTMENT implies UPDATE, READ_DEPARTMENT</li>
+<li>  UPDATE_CORPORATE implies UPDATE_DEPARTMENT, READ_CORPORATE</li>
+<li>  DELETE implies READ</li>
+<li>  DELETE_DEPARTMENT implies DELETE, READ_DEPARTMENT</li>
+<li>  DELETE_CORPORATE implies DELETE_DEPARTMENT, READ_CORPORATE</li>
+</ul>
 
           <h1 id="meta">Meta</h1>
 
 <h2 id="get-meta"><span class="tag">GET</span> /meta</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+<pre class="highlight javascript"><code><span class="c1">//https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta</span>
+<span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"Appointment"</span><span class="p">,</span>
+        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Appointment?fields=*"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"BusinessSector"</span><span class="p">,</span>
+        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/BusinessSector?fields=*"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"Candidate"</span><span class="p">,</span>
+        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?fields=*"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"Category"</span><span class="p">,</span>
+        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Category?fields=*"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"ClientContact"</span><span class="p">,</span>
+        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientContact?fields=*"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"ClientCorporation"</span><span class="p">,</span>
+        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientCorporation?fields=*"</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+<span class="p">]</span>
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<p>Calling /meta with no entity name will return the list of available entities and their respective base URLs.  </p>
+
+<p>Read-only system fields ( fields with names prefixed with _ ) are not represented in entity metadata ever, even with * calls.</p>
+
+<h2 id="get-meta-entity"><span class="tag">GET</span> /meta/{Entity}</h2>
+<pre class="highlight javascript"><code><span class="c1">// [GET] https://rest.bullhorn.com/e999/meta/Candidate?fields=*</span>
+<span class="c1">// returns...</span>
+<span class="p">{</span>
+  <span class="s2">"entity"</span> <span class="err">:</span> <span class="s2">"Candidate"</span><span class="p">,</span>
+  <span class="s2">"entityMetaUrl"</span> <span class="err">:</span> <span class="s2">"https://rest.bullhorn.com/e999/meta/Candidate?fields=*"</span><span class="p">,</span>
+  <span class="s2">"label"</span> <span class="err">:</span> <span class="s2">"Candidate"</span><span class="p">,</span>
+  <span class="s2">"fields"</span> <span class="err">:</span> <span class="p">[</span> <span class="p">{</span>
+    <span class="s2">"name"</span> <span class="p">:</span> <span class="s2">"id"</span><span class="p">,</span>
+    <span class="s2">"type"</span> <span class="p">:</span> <span class="s2">"ID"</span><span class="p">,</span>
+    <span class="s2">"dataType"</span> <span class="p">:</span> <span class="s2">"Integer"</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
 </code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta"</span>
-  -H <span class="s2">"Authorization: token {BHRESTTOKEN}"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Appointment?fields=*"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BusinessSector"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/BusinessSector?fields=*"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Candidate"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?fields=*"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Category"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Category?fields=*"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ClientContact"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientContact?fields=*"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ClientCorporation"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"metaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientCorporation?fields=*"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all entities available to the authenticated user.</p>
-
-<h2 id="get-specific-meta">Get Specific Meta</h2>
 
 <p>Returns entity and property metadata for the specified entity type.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET [corporation-token]/meta/[entity-name]/?fields=[field-list]&amp;meta=[ basic or full ]</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
 
 <table><thead>
 <tr>
@@ -576,50 +566,9 @@ DELETE_CORPORATE implies DELETE_DEPARTMENT, READ_CORPORATE</p>
 </tr>
 </tbody></table>
 
-<p>*<em>Possible Errors *</em></p>
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
-<p>Returns an HTTP 404 error if the requested entity cannot be found.</p>
-
-<p><strong>Sample Request Body</strong>
-<code class="prettyprint">
-// [GET] https://rest.bullhorn.com/e999/meta/Candidate?fields=*
-// returns...
-{
-  &quot;entity&quot; : &quot;Candidate&quot;,
-  &quot;entityMetaUrl&quot; : &quot;https://rest.bullhorn.com/e999/meta/Candidate?fields=*&quot;,
-  &quot;label&quot; : &quot;Candidate&quot;,
-  &quot;fields&quot; : [ {
-    &quot;name&quot; : &quot;id&quot;,
-    &quot;type&quot; : &quot;ID&quot;,
-    &quot;dataType&quot; : &quot;Integer&quot;
-  }, {
-    ...
-  }]
-}
-</code></p>
-
-<p>Calling /meta with no entity name will return the list of available entities and their respective base URLs.<br>
-Read-only system fields (fields with names prefixed with _) are not represented in entity metadata ever, even with * calls.</p>
-
-<ul>
-<li>Fields that are returned only if meta=FULL.</li>
-</ul>
-
-<h5 id="entity-and-property-metadata">Entity and Property Metadata</h5>
-
-<p><strong>entity</strong></p>
-
-<p>Entity name; for example, Candidate, JobOrder.</p>
-
-<p><strong>label</strong></p>
-
-<p>Entity display label from the private label attribute &ldquo;EntityTitleXxx&rdquo;; may be missing.</p>
-
-<p><strong>fields</strong></p>
-
-<p>Array of property metadata (see below.)</p>
-
-<h5 id="property-metadata">Property Metadata</h5>
+<h3 id="property-metadata">Property Metadata</h3>
 
 <p><strong>name</strong></p>
 
@@ -635,8 +584,7 @@ Read-only system fields (fields with names prefixed with _) are not represented 
 
 <p><strong>dataType</strong></p>
 
-<p>Property data type: Integer, BigDecimal, Double, String, Boolean, Timestamp, byte[], Address, Address1, AddressWithoutCountry (these are composite types), and<br>
-LoginRestrictions (!! may change).</p>
+<p>Property data type: Integer, BigDecimal, Double, String, Boolean, Timestamp, byte[], Address, Address1, AddressWithoutCountry (these are composite types), and LoginRestrictions (!! may change).</p>
 
 <p><strong>maxLength</strong></p>
 
@@ -644,48 +592,33 @@ LoginRestrictions (!! may change).</p>
 
 <p><strong>dataSpecialization</strong></p>
 
-<p>Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE,<br>
-PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent. See .</p>
+<p>Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE, PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent. See .</p>
 
-<ul>
-<li><strong>optional</strong></li>
-</ul>
+<p><strong>optional</strong></p>
 
 <p>Is the property value optional (specified by Hibernate, typically means database nullability); also see <strong>required</strong>.</p>
 
-<ul>
-<li><strong>required</strong></li>
-</ul>
+<p><strong>required</strong></p>
 
 <p>Is the property value required (specified by fieldmap); also see <strong>optional</strong>.</p>
 
-<ul>
-<li><strong>readonly</strong></li>
-</ul>
+<p><strong>readonly</strong></p>
 
 <p>Is the property hidden (specified by fieldmap).</p>
 
-<ul>
-<li><strong>multiValue</strong></li>
-</ul>
+<p><strong>multiValue</strong></p>
 
 <p>Is the property multi-valued (specified by fieldmap); dataType must be String.</p>
 
-<ul>
-<li><strong>inputType</strong></li>
-</ul>
+<p><strong>inputType</strong></p>
 
 <p>Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing. See .</p>
 
-<ul>
-<li><strong>optionsType</strong></li>
-</ul>
+<p><strong>optionsType</strong></p>
 
 <p>For inputType SELECT only; for example, Country. may be missing. See .</p>
 
-<ul>
-<li><strong>optionsUrl</strong></li>
-</ul>
+<p><strong>optionsUrl</strong></p>
 
 <p>If optionsType is present, where to get the list of options (displays and values).</p>
 
@@ -693,9 +626,7 @@ PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent
 
 <p>The hard-coded options from fieldMap in an array of value/label pairs; may be missing.</p>
 
-<ul>
-<li><strong>defaultValue</strong></li>
-</ul>
+<p><strong>defaultValue</strong></p>
 
 <p>Value type depends on dataType and dataSpecialization: may be missing.<br>
 If the defaultValue is not translatable, For example, cannot parse string to a date; it is ignored. If multiValue, returns as array.</p>
@@ -711,6 +642,21 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="entity">Entity</h1>
 
 <h2 id="get-entity"><span class="tag">GET</span> /entity</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/entity/Candidate/5059165?fields=firstName,lastName,address</span>
+<span class="p">{</span>
+  <span class="s2">"id"</span> <span class="err">:</span> <span class="mi">5059165</span><span class="p">,</span>
+  <span class="s2">"firstName"</span> <span class="err">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
+  <span class="s2">"lastName"</span> <span class="err">:</span> <span class="s2">"Smith"</span><span class="p">,</span>
+  <span class="s2">"address"</span> <span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"address1"</span> <span class="err">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"address2"</span> <span class="err">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"city"</span> <span class="err">:</span> <span class="s2">"Sacramento"</span><span class="p">,</span>
+    <span class="s2">"state"</span> <span class="err">:</span> <span class="s2">"ca"</span><span class="p">,</span>
+    <span class="s2">"zip"</span> <span class="err">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"countryID"</span> <span class="err">:</span> <span class="mi">1</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 
 <p>Gets one or more entities or to-many associations.</p>
 
@@ -721,8 +667,10 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <p>Specify the fields to be included in the response using the <code class="prettyprint">fields</code> request parameters. The <code class="prettyprint">id</code> field is always returned, regardless of the fields requested. See for more detail on specifying fields.</p>
 
 <p>NOTE: At least one of the required parameters(fields and layout) or both must be specified.</p>
-<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]/[entity-id]?fields=[field-list]
-</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">[corporation-token]/entity/[entity-name]/[entity-id]?fields=[field-list]</code></p>
 
 <table><thead>
 <tr>
@@ -759,37 +707,34 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>showEditable</td>
 <td>no</td>
-<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+<td>(true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.</td>
 </tr>
 </tbody></table>
 
-<p>*<em>Possible Errors *</em></p>
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
-<p>Returns an HTTP 404 error if the requested entity is not found.</p>
-
-<p><strong>Examples</strong>
-<code class="prettyprint">
-// https://rest.bullhorn.com/e999/entity/Candidate/5059165?fields=firstName,lastName,address
-{
-  &quot;id&quot; : 5059165,
-  &quot;firstName&quot; : &quot;Alanzo&quot;,
-  &quot;lastName&quot; : &quot;Smith&quot;,
-  &quot;address&quot; : {
-    &quot;address1&quot; : &quot;&quot;,
-    &quot;address2&quot; : &quot;&quot;,
-    &quot;city&quot; : &quot;Sacramento&quot;,
-    &quot;state&quot; : &quot;ca&quot;,
-    &quot;zip&quot; : &quot;&quot;,
-    &quot;countryID&quot; : 1
-  }
-}
-</code></p>
-
-<h4 id="multiple-entities">Multiple Entities</h4>
+<h2 id="multiple-entities">Multiple Entities</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
+<span class="p">{</span>
+    <span class="nl">data</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
+          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">456</span><span class="p">,</span>
+          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Janis"</span><span class="p">,</span>
+          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Williams"</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
 
 <p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:</p>
-<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]/[[entity-id],[entity-id],*]?fields=[field-list]
-</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">[corporation-token]/entity/[entity-name]/[[entity-id],[entity-id],*]?fields=[field-list]</code></p>
 
 <table><thead>
 <tr>
@@ -826,51 +771,24 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>showEditable</td>
 <td>no</td>
-<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+<td>(true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.</td>
 </tr>
 </tbody></table>
 
-<p>*<em>Possible Errors *</em></p>
+<aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
-<p>Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</p>
-
-<p><strong>Examples</strong>
-<code class="prettyprint">
-// https://rest.bullhorn.com/e999/entity/Candidate/5059165,2362648?fields=firstName,lastName,address
-{
-    data: [{
-      &quot;id&quot; : 5059165,
-      &quot;firstName&quot; : &quot;Alanzo&quot;,
-      &quot;lastName&quot; : &quot;Smith&quot;,
-      &quot;address&quot; : {
-        &quot;address1&quot; : &quot;&quot;,
-        &quot;address2&quot; : &quot;&quot;,
-        &quot;city&quot; : &quot;Sacramento&quot;,
-        &quot;state&quot; : &quot;ca&quot;,
-        &quot;zip&quot; : &quot;&quot;,
-        &quot;countryID&quot; : 1
-      }
-    },{
-      &quot;id&quot; : 5059165,
-      &quot;firstName&quot; : &quot;Alanzo&quot;,
-      &quot;lastName&quot; : &quot;Smith&quot;,
-      &quot;address&quot; : {
-        &quot;address1&quot; : &quot;&quot;,
-        &quot;address2&quot; : &quot;&quot;,
-        &quot;city&quot; : &quot;Sacramento&quot;,
-        &quot;state&quot; : &quot;ca&quot;,
-        &quot;zip&quot; : &quot;&quot;,
-        &quot;countryID&quot; : 1
-      }
-    }]
-}
-</code></p>
-
-<h5 id="to-many-associations">To-many Associations</h5>
+<h2 id="to-many-associations">To-many Associations</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&amp;count=2</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre>
 
 <p>This is an extension of the single and multiple GETs that returns the to-many associated entities of the specified type for the specified entity ID(s). The call supports the same query parameters as the query call.</p>
-<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]]/[[entity-id],[entity-id],*]/[toManyFieldName]s?fields=[field-list]
-</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">[corporation-token]/entity/{Entity}/{id}/[toManyFieldName]s?fields=[field-list]</code></p>
 
 <table><thead>
 <tr>
@@ -922,7 +840,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>showEditable</td>
 <td>no</td>
-<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+<td>(true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.</td>
 </tr>
 <tr>
 <td>BhRestToken</td>
@@ -931,19 +849,15 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 </tr>
 </tbody></table>
 
-<p>*<em>Possible Errors *</em></p>
-
-<p>Returns an HTTP 404 error if none of the requested to-many entities are found. If any of the requested to-many entities are found, returns the found entities and does not throw an error.</p>
-
-<p><strong>Examples</strong>
-<code class="prettyprint">
-// https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&amp;count=2
-{
-    ...
-}
-</code></p>
+<aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
 <h2 id="put-entity"><span class="tag">PUT</span> /entity</h2>
+<pre class="highlight javascript"><code><span class="c1">// [PUT] https://rest.bullhorn.com/e999/entity/Candidate</span>
+<span class="p">{</span>
+  <span class="s2">"firstName"</span> <span class="err">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
+  <span class="s2">"lastName"</span> <span class="err">:</span> <span class="s2">"Smith"</span>
+<span class="p">}</span>
+</code></pre>
 
 <p>You can use HTTP PUT requests to create new entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body. The structure of the JSON is identical to that returned in HTTP responses to GET requests, with a few additional restrictions:</p>
 
@@ -959,8 +873,10 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <p>Most entities in the Bullhorn data model contains mandatory fields. Some of these mandatory fields have default values. All mandatory fields without default values must have values specified in the JSON body of the PUT request or returns a 400 error.</p>
 
 <p>NOTE: When using an HTTP PUT request to create a Client Corporation entity an archived Client Contact entity, which belongs to this new Client Corporation, will automatically be created. This mirrors what is done through the ATS when creating a Client Corporation and allows the new Client Corporation to correctly follow ownership rules (where the ownership of a Client Corp is based on ownership of its Client Contacts) and belong to the person creating it. </p>
-<pre class="highlight plaintext"><code>[corporation-token]/entity/[entity-name]
-</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">[corporation-token]/entity/[entity-name]</code></p>
 
 <table><thead>
 <tr>
@@ -976,18 +892,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 </tr>
 </tbody></table>
 
-<p>*<em>Possible Errors *</em></p>
-
-<p>Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
-
-<p><strong>Sample Request Body</strong>
-<code class="prettyprint">
-// [PUT] https://rest.bullhorn.com/e999/entity/Candidate
-{
-  &quot;firstName&quot; : &quot;Alanzo&quot;,
-  &quot;lastName&quot; : &quot;Smith&quot;
-}
-</code></p>
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 <h5 id="create-to-many-associations">Create To-many Associations</h5>
 
@@ -1382,6 +1287,18 @@ https://rest.bullhorn.com/e999/search/Candidate
           <h1 id="find">Find</h1>
 
 <h2 id="get-find"><span class="tag">GET</span> /find</h2>
+<pre class="highlight javascript"><code><span class="c1">// [GET] https://rest.bullhorn.com/e999/find?query=smith&amp;countPerEntity=3</span>
+<span class="c1">// returns...</span>
+<span class="p">{</span>
+    <span class="s2">"data"</span><span class="err">:</span> <span class="p">[{</span>
+      <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">5059165</span><span class="p">,</span>
+      <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
+      <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>FastFind is a specialized type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.</p>
 
 <p>(FastFind) Searches the following entity types given a string containing search terms:</p>
 
@@ -1395,8 +1312,10 @@ https://rest.bullhorn.com/e999/search/Candidate
 </ul>
 
 <p>The results are returned in a flat list, with results from each entity type grouped together.</p>
-<pre class="highlight plaintext"><code>[corporation-token]/find?query=[query-text]&amp;countPerEntity=[entity-max-results]
-</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">[corporation-token]/find?query=[query-text]&amp;countPerEntity=[entity-max-results]</code></p>
 
 <table><thead>
 <tr>
@@ -1423,7 +1342,7 @@ https://rest.bullhorn.com/e999/search/Candidate
 <tr>
 <td>showEditable</td>
 <td>no</td>
-<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+<td>(true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.</td>
 </tr>
 <tr>
 <td>BhRestToken</td>
@@ -1432,28 +1351,9 @@ https://rest.bullhorn.com/e999/search/Candidate
 </tr>
 </tbody></table>
 
-<p>*<em>Possible Errors *</em></p>
+<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
-<p>Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
-
-<p><strong>Sample Request Body</strong>
-<code class="prettyprint">
-// [GET] https://rest.bullhorn.com/e999/find?query=smith&amp;countPerEntity=3
-// returns...
-{
-    &quot;data&quot;: [{
-      &quot;id&quot; : 5059165,
-      &quot;firstName&quot; : &quot;Alanzo&quot;,
-      &quot;lastName&quot; : &quot;Smith&quot;
-    }]
-}
-</code></p>
-
-<h4 id="about-fastfind-search-queries">About FastFind search queries</h4>
-
-<p>FastFind is a specialized type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.</p>
-
-<h5 id="field-type-detection">Field Type Detection</h5>
+<h3 id="field-type-detection">Field Type Detection</h3>
 
 <p>FastFind classifies a search query as one of the following types depending of the structure of the text in the query:</p>
 
@@ -1466,9 +1366,9 @@ https://rest.bullhorn.com/e999/search/Candidate
 
 <p>FastFind performs classification by checking the query against the following patterns, in the order listed:</p>
 
-<p><strong>Query pattern</strong></p>
+<h3 id="query-patterns">Query patterns</h3>
 
-<p>Email address</p>
+<p><strong>Email address</strong></p>
 
 <p>Any combination of a-z,A-Z,0-9,!,#,$,%, &amp;, &rsquo;, *, +, -, /, =, ?, ^, _ or ` but not ., followed by @, followed by any combination of a-z, A-Z, 0-9, _, -, +, ., *</p>
 
@@ -1476,13 +1376,13 @@ https://rest.bullhorn.com/e999/search/Candidate
 
 <p><a href="mailto:joe_smith@something-else.com">joe_smith@something-else.com</a> or <a href="mailto:jon33@foo.bar">jon33@foo.bar</a></p>
 
-<p>U.S. phone number</p>
+<p><strong>U.S. phone number</strong></p>
 
 <p>Three digits followed by any of [-.* or space, optionally followed by three more digits followed by [-.* or space, optionally followed by four digits.</p>
 
 <p>For example, 23- or 123-456 or 123-456-7890</p>
 
-<p>International phone number</p>
+<p><strong>International phone number</strong></p>
 
 <p>Either of the following two patterns will match:</p>
 
@@ -1490,30 +1390,39 @@ https://rest.bullhorn.com/e999/search/Candidate
 <li>  + followed by any combination of 0-9, -, *, (, ), . or space, followed by *</li>
 </ul>
 
-<p>For example:<br>
- +1-234-56*</p>
+<p>For example: +1-234-56*</p>
 
 <ul>
-<li>  Exactly 10 digits, separated by any combination of +, -, *, (, ), . or space<br>
- For example<br>
- 1-234-567-890)</li>
+<li>  Exactly 10 digits, separated by any combination of +, -, *, (, ), . or space<br></li>
 </ul>
 
-<p>Entity ID
-Only numeric characters For example:</p>
-<pre class="highlight plaintext"><code>1234567
-</code></pre>
+<p>For example: 1-234-567-8901</p>
 
-<p>Person or company name
-One or more contiguous words that contain any combination of a-z, A-Z, 0-9, separated by any number of spaces. For multi-word queries, FastFind uses the first word to search the first name of Candidates and ClientContacts, and the remaining words to search the last name. FastFind searches JobOrders using the attached ClientContact names with the same rules.</p>
+<p><strong>Entity ID</strong></p>
 
-<h5 id="wildcards">Wildcards</h5>
+<p>Only numeric characters For example: <code class="prettyprint">1234567</code></p>
+
+<p><strong>Person or company name</strong></p>
+
+<p>One or more contiguous words that contain any combination of a-z, A-Z, 0-9, separated by any number of spaces. For multi-word queries, FastFind uses the first word to search the first name of Candidates and ClientContacts, and the remaining words to search the last name. FastFind searches JobOrders using the attached ClientContact names with the same rules.</p>
+
+<h3 id="wildcards">Wildcards</h3>
 
 <p>You can use the * character as a wildcard inside or at the end of any word in a query.  Using a wildcard changes the fields that are searched for some entity types.  See the field type mappings table for details.</p>
 
           <h1 id="lookup">Lookup</h1>
 
 <h2 id="get-lookup"><span class="tag">GET</span> /lookup</h2>
+<pre class="highlight javascript"><code><span class="c1">// ../lookup?filter=[terms]&amp;entity=[comma,separated,entity,names]&amp;count=[num]&amp;start=one,number,per,entity</span>
+<span class="p">{</span>
+    <span class="nl">sample</span><span class="p">:</span> <span class="s2">"data"</span>
+<span class="p">}</span>
+
+<span class="c1">// ../lookup/[ENTITY]/[ID]</span>
+<span class="p">{</span>
+    <span class="nl">sample</span><span class="p">:</span> <span class="s2">"data"</span>
+<span class="p">}</span>
+</code></pre>
 
 <p>Searches using FastFind for FastFind-able entities, else uses custom Lucene or Hibernate queries. Returns a standardized set of data per EntityType.</p>
 
@@ -1539,10 +1448,6 @@ One or more contiguous words that contain any combination of a-z, A-Z, 0-9, sepa
 <p>A call to search returns an _id, _entityType, and _label specific to each entity.</p>
 
 <p>A details call returns a subset of the entity&rsquo;s data. Each entity has a different set of data returned. This is the equivalent of a call which has had its fields parameter specified.</p>
-<pre class="highlight plaintext"><code>[corp-token]/lookup?filter=[terms]&amp;entity=[comma,separated,entity,names]&amp;count=[num]&amp;start=one,number,per,entity
-
-[corp-token]/lookup/[ENTITY]/[ID]
-</code></pre>
 
 <table><thead>
 <tr>
@@ -1583,7 +1488,7 @@ One or more contiguous words that contain any combination of a-z, A-Z, 0-9, sepa
 </tr>
 </tbody></table>
 
-<p>*<em>Possible Errors *</em></p>
+<p><strong>Possible Errors</strong></p>
 
 <p>Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</p>
 
@@ -1623,19 +1528,19 @@ One or more contiguous words that contain any combination of a-z, A-Z, 0-9, sepa
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Unauthorized &ndash; Your API key is wrong or expired</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; The entity requested is hidden for administrators only</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; The specified entity could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access a entity with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
@@ -1643,7 +1548,7 @@ One or more contiguous words that contain any combination of a-z, A-Z, 0-9, sepa
 </tr>
 <tr>
 <td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>Gone &ndash; The entity requested has been removed from our servers</td>
 </tr>
 <tr>
 <td>418</td>
@@ -1651,7 +1556,7 @@ One or more contiguous words that contain any combination of a-z, A-Z, 0-9, sepa
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too much! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>
@@ -1659,7 +1564,7 @@ One or more contiguous words that contain any combination of a-z, A-Z, 0-9, sepa
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 
