@@ -2,28 +2,8 @@
 
 ## <span class="tag">GET</span> /meta
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta"
-  -H "Authorization: token {BHRESTTOKEN}"
-```
-
-> The above command returns JSON structured like this:
-
-```json
+``` javascript
+//https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta
 [
     {
         "entity": "Appointment",
@@ -53,32 +33,13 @@ curl "https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta"
 ]
 ```
 
-This endpoint retrieves all entities available to the authenticated user.
+Calling /meta with no entity name will return the list of available entities and their respective base URLs.  
 
-##  Get Specific Meta
+Read-only system fields ( fields with names prefixed with _ ) are not represented in entity metadata ever, even with * calls.
 
-Returns entity and property metadata for the specified entity type.
+##  <span class="tag">GET</span> /meta/{Entity}
 
-### HTTP Request
-
-`GET [corporation-token]/meta/[entity-name]/?fields=[field-list]&meta=[ basic or full ]`
-
-### Query Parameters
-
-Params | Required | Description
------- | -------- | -----
-fields | yes | Comma-separated list of field names.
-layout | yes | Name of a configured layout. A field list, layout name or both may be specified.
-meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
-
-
-**Possible Errors **
-
-Returns an HTTP 404 error if the requested entity cannot be found.
-
-**Sample Request Body**
-```
+``` javascript
 // [GET] https://rest.bullhorn.com/e999/meta/Candidate?fields=*
 // returns...
 {
@@ -95,28 +56,22 @@ Returns an HTTP 404 error if the requested entity cannot be found.
 }
 ```
 
-Calling /meta with no entity name will return the list of available entities and their respective base URLs.  
-Read-only system fields (fields with names prefixed with _) are not represented in entity metadata ever, even with * calls.
+Returns entity and property metadata for the specified entity type.
 
-* Fields that are returned only if meta=FULL.
+### HTTP Request
 
+`GET [corporation-token]/meta/[entity-name]/?fields=[field-list]&meta=[ basic or full ]`
 
-##### Entity and Property Metadata
+Params | Required | Description
+------ | -------- | -----
+fields | yes | Comma-separated list of field names.
+layout | yes | Name of a configured layout. A field list, layout name or both may be specified.
+meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 
-**entity**
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
-Entity name; for example, Candidate, JobOrder.
-
-**label**
-
-Entity display label from the private label attribute "EntityTitleXxx"; may be missing.
-
-**fields**
-
-Array of property metadata (see below.)
-
-
-##### Property Metadata
+### Property Metadata
 
 **name**
 
@@ -132,8 +87,7 @@ Property type, one of ID, SCALAR, COMPOSITE, TO_ONE, or TO_MANY.
 
 **dataType**
 
-Property data type: Integer, BigDecimal, Double, String, Boolean, Timestamp, byte[], Address, Address1, AddressWithoutCountry (these are composite types), and   
-LoginRestrictions (!! may change).
+Property data type: Integer, BigDecimal, Double, String, Boolean, Timestamp, byte[], Address, Address1, AddressWithoutCountry (these are composite types), and LoginRestrictions (!! may change).
 
 **maxLength**
 
@@ -141,34 +95,33 @@ Only present when dataType="String". The maximum authorized length for this Stri
 
 **dataSpecialization**
 
-Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE,   
-PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent. See .
+Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE, PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent. See .
 
-* **optional**
+**optional**
 
 Is the property value optional (specified by Hibernate, typically means database nullability); also see **required**.
 
-* **required**
+**required**
 
 Is the property value required (specified by fieldmap); also see **optional**.
 
-* **readonly**
+**readonly**
 
 Is the property hidden (specified by fieldmap).
 
-* **multiValue**
+**multiValue**
 
 Is the property multi-valued (specified by fieldmap); dataType must be String.
 
-* **inputType**
+**inputType**
 
 Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing. See .
 
-* **optionsType**
+**optionsType**
 
 For inputType SELECT only; for example, Country. may be missing. See .
 
-* **optionsUrl**
+**optionsUrl**
 
 If optionsType is present, where to get the list of options (displays and values).
 
@@ -176,7 +129,7 @@ If optionsType is present, where to get the list of options (displays and values
 
 The hard-coded options from fieldMap in an array of value/label pairs; may be missing.
 
-* **defaultValue**
+**defaultValue**
 
 Value type depends on dataType and dataSpecialization: may be missing.   
 If the defaultValue is not translatable, For example, cannot parse string to a date; it is ignored. If multiValue, returns as array.

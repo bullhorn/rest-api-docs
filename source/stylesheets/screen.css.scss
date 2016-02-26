@@ -82,7 +82,9 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 100%;
+    max-width: 80%;
+    text-align: center;
+    margin: 0 auto;
   }
 
   &>.search {
@@ -283,7 +285,8 @@ html, body {
   .lang-selector {
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
+    bottom: 0;
+    border-top: 5px solid #393939;
   }
 }
 
@@ -526,7 +529,7 @@ html, body {
     color: #fff;
 
     padding: 2em $main-padding;
-    margin: 0;
+    margin: -75px 0 0 0;
     width: $examples-width;
 
     float:right;

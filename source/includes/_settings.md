@@ -1,18 +1,12 @@
 # Settings
 
-## GET /settings/settingName1[,settingName2...]
+## GET /settings/setting1[,setting2...]
 
 ``` javascript
+// /settings/allPrivateLabelIds,currencyFormat
 {
-    "settingName1": value,
-    "settingName2": value,
-    "foo": "some string value",
-    "bar": 123,
-    "baz": 123.45,
-    "fred": true,
-    "barney": null,
-    "kermit": [ "an", "array", "of", "string" ],
-    "fozzie": [ 1, 2, 3, 4, 5 ]
+    "allPrivateLabelIds":  [ 1, 2, 3],
+    "currencyFormat": "USD"
 }
 ```
 

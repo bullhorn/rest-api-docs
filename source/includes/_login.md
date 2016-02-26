@@ -23,7 +23,7 @@ ttl          | no  | Session time-to-live in minutes. |
 clientId     | no  | Pass in an OAuth key here to spoof the features associated. |
 
 
-## Partner login using OAuth (This is the only supported login process in a production environment)
+## Partner login using OAuth
 
 ``` javascript
 // https://rest.bullhorn.com/login?access_token=xxx&version=*
@@ -33,6 +33,8 @@ clientId     | no  | Pass in an OAuth key here to spoof the features associated.
 }
 ```
 
+This is the only supported login process in a production environment
+
 Params | Required | Description
 ------ | -------- | -----
 access_token | yes | Access token obtained from OAuth authorization |
@@ -40,7 +42,7 @@ version      | yes | Version of the API to use (\* is a wildcard for latest vers
 ttl          | no  | Session time-to-live in minutes. |
 clientId     | no  |  Pass in an OAuth key here to spoof the features associated. |
 
-<aside class="warning"><strong>Possible Error: </strong>"Invalid or expired OAuth access token."</aside>
+<aside class="warning"><strong>Possible Error: "Invalid or expired OAuth access token."</strong></aside>
 
 ## Logout
 
@@ -52,7 +54,3 @@ clientId     | no  |  Pass in an OAuth key here to spoof the features associated
 ```
 
 To logout and invalidate your BhRestToken
-
-Params | Optional | Description
------- | -------- | -----
-None.  ||

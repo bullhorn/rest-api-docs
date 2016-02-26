@@ -2,35 +2,7 @@
 
 ## <span class="tag">GET</span> /entity
 
-Gets one or more entities or to-many associations.
-
-Individual entity records are manifested as resources, where the entity type and ID form the last two parts of the resource path.
-
-See for more detail on the general structure of returned data for `GET` requests.
-
-Specify the fields to be included in the response using the `fields` request parameters. The `id` field is always returned, regardless of the fields requested. See for more detail on specifying fields.
-
-NOTE: At least one of the required parameters(fields and layout) or both must be specified.
-
-```
-[corporation-token]/entity/[entity-name]/[entity-id]?fields=[field-list]
-```
-
-Params | Required | Description
------- | -------- | -----
-fields | yes | Comma-separated list of field names.
-layout | yes | Name of a configured layout.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
-showReadOnly | no | (DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}
-meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .
-showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
-
-**Possible Errors **
-
-Returns an HTTP 404 error if the requested entity is not found.
-
-**Examples**
-```
+``` javascript
 // https://rest.bullhorn.com/e999/entity/Candidate/5059165?fields=firstName,lastName,address
 {
   "id" : 5059165,
@@ -47,13 +19,19 @@ Returns an HTTP 404 error if the requested entity is not found.
 }
 ```
 
-#### Multiple Entities
+Gets one or more entities or to-many associations.
 
-This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:
+Individual entity records are manifested as resources, where the entity type and ID form the last two parts of the resource path.
 
-```
-[corporation-token]/entity/[entity-name]/[[entity-id],[entity-id],*]?fields=[field-list]
-```
+See for more detail on the general structure of returned data for `GET` requests.
+
+Specify the fields to be included in the response using the `fields` request parameters. The `id` field is always returned, regardless of the fields requested. See for more detail on specifying fields.
+
+NOTE: At least one of the required parameters(fields and layout) or both must be specified.
+
+### HTTP Request
+
+`[corporation-token]/entity/[entity-name]/[entity-id]?fields=[field-list]`
 
 Params | Required | Description
 ------ | -------- | -----
@@ -62,52 +40,60 @@ layout | yes | Name of a configured layout.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 showReadOnly | no | (DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .
-showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
+showEditable | no | (true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.
 
-**Possible Errors **
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
-Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.
+## Multiple Entities
 
-**Examples**
-```
-// https://rest.bullhorn.com/e999/entity/Candidate/5059165,2362648?fields=firstName,lastName,address
+``` javascript
+// https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName
 {
-    data: [{
-      "id" : 5059165,
-      "firstName" : "Alanzo",
-      "lastName" : "Smith",
-      "address" : {
-        "address1" : "",
-        "address2" : "",
-        "city" : "Sacramento",
-        "state" : "ca",
-        "zip" : "",
-        "countryID" : 1
-      }
-    },{
-      "id" : 5059165,
-      "firstName" : "Alanzo",
-      "lastName" : "Smith",
-      "address" : {
-        "address1" : "",
-        "address2" : "",
-        "city" : "Sacramento",
-        "state" : "ca",
-        "zip" : "",
-        "countryID" : 1
-      }
-    }]
+    data: [
+        {
+          "id" : 123,
+          "firstName" : "Alanzo",
+          "lastName" : "Smith"
+        }, {
+          "id" : 456,
+          "firstName" : "Janis",
+          "lastName" : "Williams"
+        }
+    ]
 }
 ```
 
+This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:
 
-##### To-many Associations
+### HTTP Request
+
+`[corporation-token]/entity/[entity-name]/[[entity-id],[entity-id],*]?fields=[field-list]`
+
+Params | Required | Description
+------ | -------- | -----
+fields | yes | Comma-separated list of field names.
+layout | yes | Name of a configured layout.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+showReadOnly | no | (DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}
+meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .
+showEditable | no | (true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.
+
+<aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
+
+## To-many Associations
+
+``` javascript
+// https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&count=2
+{
+    ...
+}
+```
 
 This is an extension of the single and multiple GETs that returns the to-many associated entities of the specified type for the specified entity ID(s). The call supports the same query parameters as the query call.
 
-```
-[corporation-token]/entity/[entity-name]]/[[entity-id],[entity-id],*]/[toManyFieldName]s?fields=[field-list]
-```
+### HTTP Request
+
+`[corporation-token]/entity/{Entity}/{id}/[toManyFieldName]s?fields=[field-list]`
 
 Params | Required | Description
 ------ | -------- | -----
@@ -119,22 +105,20 @@ count  | no  | Limit on the number of records to return. If the set of matched r
 orderBy | no | Name of property on which to base the order of returned entities.
 showReadOnly | no | (DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .
-showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
+showEditable | no | (true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 
-**Possible Errors **
-
-Returns an HTTP 404 error if none of the requested to-many entities are found. If any of the requested to-many entities are found, returns the found entities and does not throw an error.
-
-**Examples**
-```
-// https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&count=2
-{
-    ...
-}
-```
+<aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
 ## <span class="tag">PUT</span> /entity
+
+``` javascript
+// [PUT] https://rest.bullhorn.com/e999/entity/Candidate
+{
+  "firstName" : "Alanzo",
+  "lastName" : "Smith"
+}
+```
 
 You can use HTTP PUT requests to create new entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body. The structure of the JSON is identical to that returned in HTTP responses to GET requests, with a few additional restrictions:
 
@@ -149,26 +133,16 @@ Most entities in the Bullhorn data model contains mandatory fields. Some of thes
 
 NOTE: When using an HTTP PUT request to create a Client Corporation entity an archived Client Contact entity, which belongs to this new Client Corporation, will automatically be created. This mirrors what is done through the ATS when creating a Client Corporation and allows the new Client Corporation to correctly follow ownership rules (where the ownership of a Client Corp is based on ownership of its Client Contacts) and belong to the person creating it. 
 
-```
-[corporation-token]/entity/[entity-name]
-```
+### HTTP Request
+
+`[corporation-token]/entity/[entity-name]`
 
 Params | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 
-**Possible Errors **
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
-Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.
-
-**Sample Request Body**
-```
-// [PUT] https://rest.bullhorn.com/e999/entity/Candidate
-{
-  "firstName" : "Alanzo",
-  "lastName" : "Smith"
-}
-```
 
 ##### Create To-many Associations
 
