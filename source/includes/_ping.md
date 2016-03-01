@@ -2,8 +2,8 @@
 
 ## <span class="tag">GET</span> /ping
 
-``` javascript
-// https://rest.bullhorn.com/e999/ping
+``` shell
+curl https://rest.bullhorn.com/e999/ping
 {
   "sessionExpires" : 1323449994922
 }
