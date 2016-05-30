@@ -1,0 +1,335 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Example Reference</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="guide" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="introduction">Introduction</h1>
+
+<p>The Bullhorn REST API is difficult to fully grasp with just reviewing the technical documentation.  This reference guide is the counterpart to the <a href="/">Api Reference</a> and is intended to walk you through examples to accomplish a goal while using the REST Api.</p>
+
+          <h1 id="company">Company</h1>
+
+<h2 id="getting-a-company-39-s-notes">Getting a Company&rsquo;s notes</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165/clientContactNotes?fields=id,action,comments</span>
+<span class="p">{</span>
+  <span class="s2">"total"</span> <span class="err">:</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="s2">"data"</span> <span class="err">:</span> <span class="p">[{</span>
+    <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
+    <span class="s2">"action"</span> <span class="p">:</span> <span class="s2">"Inbound Call"</span><span class="p">,</span>
+    <span class="s2">"comments"</span> <span class="p">:</span> <span class="s2">"Got a call from johnny about new opportunity"</span>
+  <span class="p">},</span>
+  <span class="p">...]</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The <code class="prettyprint">ClientCorporation</code> or <code class="prettyprint">Company</code> record can not have <code class="prettyprint">Notes</code> associated with them.  A Company&rsquo;s notes will be inferred through the notes associated with the <code class="prettyprint">ClientContacts</code> or <code class="prettyprint">Contacts</code> associated with the company.  The REST API has a field <code class="prettyprint">clientContactNotes</code> that automatically rolls up the Contacts notes as a <code class="prettyprint">TO_MANY</code> field.</p>
+
+<p>The API also offers a way to query directly against the <code class="prettyprint">TO_MANY</code> field as we do in the example.  This will return a list of Note entities, you may apply additional filters to the query.  The syntax should be similar to that of a <code class="prettyprint">query</code> call.</p>
+
+<p>NOTE: At least one of the required parameters(fields and layout) or both must be specified.</p>
+
+<h2 id="multiple-entities">Multiple Entities</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
+<span class="p">{</span>
+    <span class="nl">data</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
+          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">456</span><span class="p">,</span>
+          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Janis"</span><span class="p">,</span>
+          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Williams"</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:</p>
+
+          <h1 id="candidate">Candidate</h1>
+
+<h2 id="parsing-a-resume">Parsing a Resume</h2>
+<pre class="highlight javascript"><code><span class="c1">// POST https://rest.bullhornstaffing.com/rest-services/{corpToken}/resume/parseToCandidate?format=DOC</span>
+<span class="p">{</span>
+    <span class="s2">"candidate"</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s2">"address"</span><span class="err">:</span> <span class="p">{</span>
+            <span class="s2">"address1"</span><span class="err">:</span> <span class="s2">"123 Osoite Katu"</span><span class="p">,</span>
+            <span class="s2">"address2"</span><span class="err">:</span> <span class="s2">"Apartment 1"</span><span class="p">,</span>
+            <span class="s2">"city"</span><span class="err">:</span> <span class="s2">"Kaupunki"</span><span class="p">,</span>
+            <span class="s2">"state"</span><span class="err">:</span> <span class="s2">"MA"</span><span class="p">,</span>
+            <span class="s2">"zip"</span><span class="err">:</span> <span class="s2">"02210"</span><span class="p">,</span>
+            <span class="s2">"countryID"</span><span class="err">:</span> <span class="mi">1</span>
+        <span class="p">},</span>
+        <span class="s2">"phone"</span><span class="err">:</span> <span class="s2">"+1 4663464663"</span><span class="p">,</span>
+        <span class="s2">"fax"</span><span class="err">:</span> <span class="s2">"+1 3293293290"</span><span class="p">,</span>
+        <span class="s2">"pager"</span><span class="err">:</span> <span class="s2">"+1 724 7727247"</span><span class="p">,</span>
+        <span class="s2">"mobile"</span><span class="err">:</span> <span class="s2">"+1 662 4666624"</span><span class="p">,</span>
+        <span class="s2">"firstName"</span><span class="err">:</span> <span class="s2">"Minun"</span><span class="p">,</span>
+        <span class="s2">"lastName"</span><span class="err">:</span> <span class="s2">"Nimi"</span><span class="p">,</span>
+        <span class="s2">"nameSuffix"</span><span class="err">:</span> <span class="s2">"DR."</span><span class="p">,</span>
+        <span class="s2">"email"</span><span class="err">:</span> <span class="s2">"minun.nimi@finland.com"</span><span class="p">,</span>
+        <span class="s2">"phone2"</span><span class="err">:</span> <span class="s2">"+1 835 3838353x90"</span><span class="p">,</span>
+        <span class="s2">"phone3"</span><span class="err">:</span> <span class="s2">"+1 864 3868643"</span><span class="p">,</span>
+        <span class="s2">"email2"</span><span class="err">:</span> <span class="s2">"mnimi2@finland2.com"</span><span class="p">,</span>
+        <span class="s2">"email3"</span><span class="err">:</span> <span class="s2">"minumn3@finland3.com"</span><span class="p">,</span>
+        <span class="s2">"workPhone"</span><span class="err">:</span> <span class="s2">"+1 3874383874x89"</span>
+    <span class="p">},</span>
+   <span class="s2">"candidateEducation"</span><span class="err">:</span>    <span class="p">[</span>
+            <span class="p">{</span>
+         <span class="s2">"startDate"</span><span class="p">:</span> <span class="mi">1007226000000</span><span class="p">,</span>
+         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">1117641600000</span><span class="p">,</span>
+         <span class="s2">"graduationDate"</span><span class="p">:</span> <span class="mi">1117641600000</span><span class="p">,</span>
+         <span class="s2">"school"</span><span class="p">:</span> <span class="s2">"Berkeley State University"</span><span class="p">,</span>
+         <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Santa Cruz"</span><span class="p">,</span>
+         <span class="s2">"state"</span><span class="p">:</span> <span class="s2">"CA"</span><span class="p">,</span>
+         <span class="s2">"degree"</span><span class="p">:</span> <span class="s2">"B.Sc"</span><span class="p">,</span>
+         <span class="s2">"major"</span><span class="p">:</span> <span class="s2">"COMPUTER SCIENCE"</span><span class="p">,</span>
+         <span class="s2">"gpa"</span><span class="p">:</span> <span class="mi">4</span>
+      <span class="p">},</span>
+            <span class="p">{</span>
+         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">1241193600000</span><span class="p">,</span>
+         <span class="s2">"graduationDate"</span><span class="p">:</span> <span class="mi">1241193600000</span><span class="p">,</span>
+         <span class="s2">"school"</span><span class="p">:</span> <span class="s2">"Boston University School of Music"</span><span class="p">,</span>
+         <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Boston"</span><span class="p">,</span>
+         <span class="s2">"state"</span><span class="p">:</span> <span class="s2">"MA"</span><span class="p">,</span>
+         <span class="s2">"degree"</span><span class="p">:</span> <span class="s2">"B.A"</span><span class="p">,</span>
+         <span class="s2">"major"</span><span class="p">:</span> <span class="s2">"ADMINISTRATION International Management"</span><span class="p">,</span>
+         <span class="s2">"gpa"</span><span class="p">:</span> <span class="mf">3.87</span>
+      <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="s2">"candidateWorkHistory"</span><span class="err">:</span>    <span class="p">[</span>
+            <span class="p">{</span>
+         <span class="s2">"startDate"</span><span class="p">:</span> <span class="mi">1015002000000</span><span class="p">,</span>
+         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">1188662400000</span><span class="p">,</span>
+         <span class="s2">"companyName"</span><span class="p">:</span> <span class="s2">"Teen Pop"</span><span class="p">,</span>
+         <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Pop Software Engineer"</span><span class="p">,</span>
+         <span class="s2">"comments"</span><span class="p">:</span> <span class="s2">"New Millennium Music Corp. Really  How  What"</span>
+      <span class="p">},</span>
+            <span class="p">{</span>
+         <span class="s2">"startDate"</span><span class="p">:</span> <span class="mi">665427600000</span><span class="p">,</span>
+         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">909939600000</span><span class="p">,</span>
+         <span class="s2">"companyName"</span><span class="p">:</span> <span class="s2">"Nineties Bank of Music Concord"</span><span class="p">,</span>
+         <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Hip Hop Software Engineer"</span><span class="p">,</span>
+         <span class="s2">"comments"</span><span class="p">:</span> <span class="s2">"MA    Bop  Hop  Hip"</span>
+      <span class="p">},</span>
+            <span class="p">{</span>
+         <span class="s2">"startDate"</span><span class="p">:</span> <span class="mi">315594000000</span><span class="p">,</span>
+         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">628534800000</span><span class="p">,</span>
+         <span class="s2">"companyName"</span><span class="p">:</span> <span class="s2">"Eighties National"</span><span class="p">,</span>
+         <span class="s2">"comments"</span><span class="p">:</span> <span class="s2">"New Wave Musak  Listen  Like  Learn"</span>
+      <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="s2">"skillList"</span><span class="err">:</span>    <span class="p">[</span>
+      <span class="s2">"Blowout preventer"</span><span class="p">,</span>
+      <span class="s2">"FINANCE"</span><span class="p">,</span>
+      <span class="s2">"MA"</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The Bullhorn REST API provides a set of operations that parse a resume to Candidate-related data or HRXML. The API also provides operations that convert a resume to HTML or plain text.</p>
+
+<aside class="notice">Before using the REST API, you must perform authorization and authentication. See Getting Started with the Bullhorn REST API for information about obtaining an OAuth 2.0 access token and logging in to the REST API.
+</aside>
+
+<p>To return candidate-related data from a parsed resume, we make a <code class="prettyprint">POST</code> /resume/parseToCandidate REST call.</p>
+
+<p>We attach a .doc resume file named candidate.doc to the request as a multipart/form attachment; in a browser form, this is <code class="prettyprint">&lt;input type=&quot;file&quot;/&gt;</code>. The call returns candidate, candidate education, candidate work history, and skills data.</p>
+
+<h2 id="multiple-entities">Multiple Entities</h2>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
+<span class="p">{</span>
+    <span class="nl">data</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
+          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">456</span><span class="p">,</span>
+          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Janis"</span><span class="p">,</span>
+          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Williams"</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:</p>
+
+          <h1 id="lead">Lead</h1>
+
+<h2 id="convert-a-lead-to-a-contact">Convert a Lead to a Contact</h2>
+<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhorn.com/e999/entity/Lead/5059165?fields=id,firstName,lastName</span>
+<span class="p">{</span>
+    <span class="nl">data</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
+        <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>
+        <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Jameson'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// POST https://rest.bullhorn.com/e999/entity/ClientContact</span>
+<span class="p">{</span>
+    <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
+    <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>
+    <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Jameson'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The process is simple for converting <code class="prettyprint">Leads</code> to <code class="prettyprint">Contacts</code>. First retrieve the data for the Lead.</p>
+
+<p>Then <code class="prettyprint">POST</code> the data back to the ClientContact url.</p>
+
+<aside class="notice">Don&rsquo;t forget to add the lead.id to payload so the Contact will be associated with the lead that generated it. ClientContact.clientCorporation is a required field, so make sure the lead has that filled our or add it to the payload yourself.
+</aside>
+
+<p>Then change the status of the Lead and POST Back to the original url.</p>
+
+<h2 id="convert-a-lead-to-a-candidate">Convert a Lead to a Candidate</h2>
+<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhorn.com/e999/entity/Lead/5059165?fields=id,firstName,lastName</span>
+<span class="p">{</span>
+    <span class="nl">data</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
+        <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>
+        <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Jameson'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// POST https://rest.bullhorn.com/e999/entity/Candiate</span>
+<span class="p">{</span>
+    <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
+    <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>
+    <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Jameson'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The process for converting a <code class="prettyprint">Lead</code> or <code class="prettyprint">Candidate</code> is nearly identical.</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
