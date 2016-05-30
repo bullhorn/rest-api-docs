@@ -144,32 +144,34 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 
-##### Create To-many Associations
+### Create To-many Associations
+
+``` javascript
+// [PUT] https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/964,684,253
+```
 
 You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.
 
 NOTE: Certain entities, like Custom Objects, are handled differently.  See .
 
-```
-[corporation-token]/entity/[entity-name]/[entity-id]/[to-many-association-name]/[entity-id],*]
-```
+`[corporation-token]/entity/[entity-name]/[entity-id]/[to-many-association-name]/[entity-id],*]`
 
 Params | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 
-**Possible Errors**
-
-Returns An HTTP 404 error if the requested entity cannot be found, fields are specified that do not exist on the specified entity, or you specify values for any mandatory fields with no default values.
-
-
-**Examples**
-```
-// [PUT] https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/964,684,253
-```
-
+<aside class="warning">Returns An HTTP 404 error if the requested entity cannot be found, fields are specified that do not exist on the specified entity, or you specify values for any mandatory fields with no default values.</aside>
 
 ## <span class="tag">POST</span> /entity
+
+``` javascript
+// [POST] https://rest.bullhorn.com/e999/entity/Candidate/5059165
+{
+  "id" : 5059165,
+  "firstName" : "Alanzo",
+  "lastName" : "Smith"
+}
+```
 
 Update entities using HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.
 
@@ -182,60 +184,38 @@ If you provide fields that do not exist on the entity being created, returns a 4
 
 Most entities in the Bullhorn data model contain mandatory fields, some of which have default values. Returns a 400 error if you do not specify, in the JSON body of the PUT request, values for all mandatory fields that do not have default values.
 
-```
-[corporation-token]/entity/[entity-name]
-```
+### HTTP Request
+
+`[corporation-token]/entity/[entity-name]`
 
 Params | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 
-**Possible Errors **
+<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
-Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.
 
-**Sample Request Body**
+### To-many Associations - Special
+
+``` javascript
+// This example will create and associate a new customObject1s record.
+// https://rest.bullhorn.com/e999/entity/JobOrder/123
+
+// This example will update an existing customObject1s record #1.
+// https://rest.bullhorn.com/e999/entity/JobOrder/123
 ```
-// [POST] https://rest.bullhorn.com/e999/entity/Candidate/5059165
-{
-  "id" : 5059165,
-  "firstName" : "Alanzo",
-  "lastName" : "Smith"
-}
-```
-
-##### To-many Associations - Special
 
 For special to-many associations, like Custom Objects, we have the ability to create and associate in a single step.  These is due to the fact that we need to know their context to enforce security and data integrity.  You can add/update to-many associations with a POST request the same as if it was data directly on the parent entity. You can combine standard parent entity updates with special association add and edits.
 
-```
-[corporation-token]/entity/[parent-entity-name]
-```
+### HTTP Request
+
+`[corporation-token]/entity/[parent-entity-name]`
 
 Params | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 
-**Possible Errors **
-
-Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.
-
-**Examples 1**
-
-This example will create and associate a new customObject1s record.
-
-```
-// https://rest.bullhorn.com/e999/entity/JobOrder/123
-
-```
-
-**Examples 2**
-
-This example will update an existing customObject1s record #1.
-
-```
-https://rest.bullhorn.com/e999/entity/JobOrder/123
-```
+<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 ## <span class="tag">DELETE</span> /entity
 
@@ -243,77 +223,60 @@ Deletes an entity or to-many association.
 
 The API supports two types of delete requests: hard delete and soft delete.
 
-##### Hard delete
+### Hard delete
+
+``` javascript
+// [DELETE] https://rest.bullhorn.com/e999/entity/NoteEntity/2552
+```
 
 Hard deletes an entity.
 
 The types of entity you can hard-delete are CandidateSource, CorporationDepartment, Placement, NoteEntity and CorporateUser. To hard delete an entity send a HTTP request using the DELETE method.
 
-```
-[corporation-token]/entity/[entity-name]/[entity-id]
-```
+### HTTP Request
+
+`[corporation-token]/entity/[entity-name]/[entity-id]`
 
 Params | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 
-**Possible Errors**
-
-Returns an HTTP 404 error if the requested entity cannot be found.
-
-**Examples**
-```
-https://rest.bullhorn.com/e999/entity/NoteEntity/2552
-```
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 To hard delete an entity with children, you explicitly hard delete all the children before attempting to delete the root entity.
 
-##### Soft delete
+### Soft delete
 
-When you soft delete an entity, it is not removed from the data storage. A soft delete operation is actually an update (for example, POST) that sets an "isDeleted" flag to true.
-
-The types of entity you can soft delete are Candidate, CandidateEducation, CandidateReference, CandidateWorkHistory, ClientContact, JobOrder, JobSubmission, Note and Person.
-
-```
-[corporation-token]/entity/[entity-name]/[entity-id]
-```
-
-**Request Body**
-```
+``` javascript
+// POST https://rest.bullhorn.com/e999/entity/ClientContact/1804
 {
     "isDeleted" : true
 }
 ```
 
-**Possible Errors**
+When you soft delete an entity, it is not removed from the data storage. A soft delete operation is actually an update (for example, POST) that sets an "isDeleted" flag to true.
 
-Returns an HTTP 404 error if the entity cannot be found.
+The types of entity you can soft delete are Candidate, CandidateEducation, CandidateReference, CandidateWorkHistory, ClientContact, JobOrder, JobSubmission, Note and Person.
 
+### HTTP Request
 
-**Examples**
+`[corporation-token]/entity/[entity-name]/[entity-id]`
+
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
+
+### Disassociate To-many Associations
+
+``` javascript
+// DELETE https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/253
 ```
-https://rest.bullhorn.com/e999/entity/ClientContact/1804
-```
-
-##### Disassociate To-many Associations
 
 Removes or "disassociates" a to-many association relationship on an entity.
 
-```
-[corporation-token]/entity/[entity-name]/[entity-id]/[to-many-association-name]/[entity-id],*]
-```
+`[corporation-token]/entity/[entity-name]/[entity-id]/[to-many-association-name]/[entity-id],*]`
 
-**Possible Errors**
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
-Returns an HTTP 404 error if the requested entity cannot be found.
-
-**Examples**
-
-```
-https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/253
-```
-
-##### Immutable entities
+### Immutable entities
 
 You cannot hard delete or soft delete the following types of entities:
 

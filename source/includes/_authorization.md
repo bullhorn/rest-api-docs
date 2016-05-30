@@ -9,7 +9,7 @@ User authentication and session management use the following flow:
 
 ## Unauthorized Requests
 
-If a client makes a request and does not include a session key, the server will send a response with HTTP status 412 (precondition failed). If a client request contains an invalid session key, the response status will be HTTP 401 (unauthorized). For more information on HTTP status codes see [http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
+If a client makes a request and does not include a session key, the server will send a response with HTTP status `412` (precondition failed). If a client request contains an invalid session key, the response status will be HTTP `401` (unauthorized). For more information on HTTP status codes see [Errors.](/#errors).
 
 ## Session Key
 

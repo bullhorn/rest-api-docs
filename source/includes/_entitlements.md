@@ -1,9 +1,26 @@
 # Entitlements
 
+## /entitlements
+
+``` javascript
+//returns an array of available entitlements
+[
+    {
+        "entity": "Candidate",
+        "entitlementURL": "https://rest.bullhornstaffing.com/rest-services/{corpToken}/entitlements/Candidate"
+    }, ...
+]
+```
+
+Gets the list of entitlements calls that are available for each entity for the current user.
+
+`Eg:  http://172.27.8.154:8080/rest-services/3lpg/entitlements`
+
+
 ## /entitlements/{Entity}
 
 ``` javascript
-//returns an array of entitlements
+// GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entitlements/Candidate
 [
     "CREATE",
     "READ",
@@ -13,9 +30,7 @@
 ]
 ```
 
-Gets the entity entitlements of an entity for the login user.
-
-`Eg:  http://172.27.8.154:8080/rest-services/3lpg/entitlements/Candidate`
+Gets the entity entitlements of an `entity` for the current user.
 
 List of Entitlements
 

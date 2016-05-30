@@ -3,14 +3,25 @@
 ## <span class="tag">GET</span> /lookup
 
 ``` javascript
-// ../lookup?filter=[terms]&entity=[comma,separated,entity,names]&count=[num]&start=one,number,per,entity
+// [GET] https://rest.bullhorn.com/e999/lookup?filter=smith&entity=Candidate,ClientContact&start=0,10&count=10
+// returns...
 {
-    sample: "data"
+    "data": [{
+      "_score": 1.70002,
+      "id" : 5059165,
+      "firstName" : "Alanzo",
+      "lastName" : "Smith"
+    }]
 }
 
-// ../lookup/[ENTITY]/[ID]
+// [GET] https://rest.bullhorn.com/e999/lookup/Candidate/12345
+// returns...
 {
-    sample: "data"
+    "data": [{
+      "id" : 5059165,
+      "firstName" : "Alanzo",
+      "lastName" : "Smith"
+    }]
 }
 ```
 
@@ -35,6 +46,16 @@ A call to search returns an _id, _entityType, and _label specific to each entity
 
 A details call returns a subset of the entity's data. Each entity has a different set of data returned. This is the equivalent of a call which has had its fields parameter specified.
 
+### HTTP Requests
+
+#### Lookup
+
+`../lookup?filter=[terms]&entity=[comma,separated,entity,names]&count=[num]&start=one,number,per,entity`
+
+#### Lookup Details
+
+`../lookup/{entity}/{id}`
+
 Params | Required | Description
 ------ | -------- | -----
 filter | no | The search terms, such as the name or title.
@@ -44,24 +65,4 @@ start | no | A comma-separated list of start values for pagination of given enti
 privateLabelID | no | The private label ID to use.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 
-**Possible Errors**
-
-Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.
-
-**Sample Request Body**
-[https://rest.bullhorn.com/e999/lookup?filter=smith&entity=Candidate,ClientContact&start=0,10&count=10](https://rest.bullhorn.com/e999/lookup?filter=smith&entity=Candidate,ClientContact&start=0,10&count=10)
-```
-// [GET] https://rest.bullhorn.com/e999/lookup?filter=smith&entity=Candidate,ClientContact&start=0,10&count=10
-// returns...
-{
-    "data": [{
-      "_score": 1.70002,
-      "id" : 5059165,
-      "firstName" : "Alanzo",
-      "lastName" : "Smith"
-    }]
-}
-```
-
-Sample Detail URL
-[https://rest.bullhorn.com/e999/lookup/Candidate/12345](https://rest.bullhorn.com/e999/lookup/Candidate/12345)
+<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>

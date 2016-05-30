@@ -2,11 +2,24 @@
 
 ## <span class="tag">GET</span> /query
 
-NOTE: At least one of the required parameters(fields and layout) or both must be specified.
+The `Query` call retrieves a list of entitys. The query is performed against the database, therefore the `where` parameter should reflect SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the [Search](/#search) call.
 
+<aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
+
+``` javascript
+// [GET] https://rest.bullhorn.com/e999/query/Candidate?fields=firstName,lastName&where=lastName='smith'&count=3
+{
+    "data": [{
+        "id" : 5059165,
+        "firstName" : "Alanzo",
+        "lastName" : "Smith"
+    }]
+}
 ```
-[corporation-token]/query/[entity-name]?where=[query-text]&fields=[field-list]&orderBy=[field-list]&count=[count]&start=[start]
-```
+
+### HTTP Request
+
+`[corpToken]/query/[entity]?where=[query-text]&fields=[fields]&orderBy=[fields]&count=[count]&start=[start]`
 
 Params | Required | Description
 ------ | -------- | -----
@@ -21,19 +34,4 @@ meta | no | off, basic, or full. Default is off (no meta). Returns metadata that
 showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
 
-**Possible Errors **
-
-Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.
-
-**Sample Request Body**
-```
-// [GET] https://rest.bullhorn.com/e999/query/Candidate?fields=firstName,lastName&where=lastName='smith'&count=3
-// returns...
-{
-    "data": [{
-      "id" : 5059165,
-      "firstName" : "Alanzo",
-      "lastName" : "Smith"
-    }]
-}
-```
+<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
