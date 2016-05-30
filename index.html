@@ -92,7 +92,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -103,7 +103,6 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -145,8 +144,8 @@
 <p>Web URLs are case-sensitive, except for machine names. We shall follow that practice. All REST API URLs should be considered case-sensitive.</p>
 
 <p>All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:</p>
-<pre class="highlight plaintext"><code>https://rest.bullhorn.com/e999/entity/Candidate
-</code></pre>
+
+<p><code class="prettyprint">https://rest.bullhorn.com/e999/entity/Candidate</code></p>
 
 <p>Where <code class="prettyprint">e999</code> is the corporation identifier.</p>
 
@@ -156,54 +155,127 @@
 
 <p>The REST API currently supports the following entity types. For information about these entity types,see the  .</p>
 
-<p><strong>Non-list entities</strong></p>
+<table><thead>
+<tr>
+<th><strong>Non-list entities</strong></th>
+<th><strong>List entities</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Appointment</td>
+<td>Category</td>
+</tr>
+<tr>
+<td>AppointmentAttendee</td>
+<td>Country</td>
+</tr>
+<tr>
+<td>Candidate</td>
+<td>BusinessSector</td>
+</tr>
+<tr>
+<td>CandidateEducation</td>
+<td>Skill</td>
+</tr>
+<tr>
+<td>CandidateReference</td>
+<td>Specialty</td>
+</tr>
+<tr>
+<td>CandidateSource</td>
+<td>State</td>
+</tr>
+<tr>
+<td>CandidateWorkHistory</td>
+<td></td>
+</tr>
+<tr>
+<td>ClientContact</td>
+<td></td>
+</tr>
+<tr>
+<td>ClientContactRatios</td>
+<td></td>
+</tr>
+<tr>
+<td>ClientCorporation</td>
+<td></td>
+</tr>
+<tr>
+<td>ClientCorporationRatios</td>
+<td></td>
+</tr>
+<tr>
+<td>CorporateUser</td>
+<td></td>
+</tr>
+<tr>
+<td>CorporationDepartment</td>
+<td></td>
+</tr>
+<tr>
+<td>Lead**</td>
+<td></td>
+</tr>
+<tr>
+<td>LeadHistory**</td>
+<td></td>
+</tr>
+<tr>
+<td>JobOrder</td>
+<td></td>
+</tr>
+<tr>
+<td>JobSubmission</td>
+<td></td>
+</tr>
+<tr>
+<td>Note</td>
+<td></td>
+</tr>
+<tr>
+<td>NoteEntity</td>
+<td></td>
+</tr>
+<tr>
+<td>Opportunity**</td>
+<td></td>
+</tr>
+<tr>
+<td>OpportunityHistory**</td>
+<td></td>
+</tr>
+<tr>
+<td>Person</td>
+<td></td>
+</tr>
+<tr>
+<td>Placement</td>
+<td></td>
+</tr>
+<tr>
+<td>PlacementChangeRequest</td>
+<td></td>
+</tr>
+<tr>
+<td>PlacementCommission</td>
+<td></td>
+</tr>
+<tr>
+<td>Sendout</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift</td>
+<td></td>
+</tr>
+<tr>
+<td>Task</td>
+<td></td>
+</tr>
+</tbody></table>
 
-<ul>
-<li>  Appointment</li>
-<li>  AppointmentAttendee</li>
-<li>  Candidate</li>
-<li>  CandidateEducation</li>
-<li>  CandidateReference</li>
-<li>  CandidateSource</li>
-<li>  CandidateWorkHistory</li>
-<li>  ClientContact</li>
-<li>  ClientContactRatios</li>
-<li>  ClientCorporation</li>
-<li>  ClientCorporationRatios</li>
-<li>  CorporateUser</li>
-<li>  CorporationDepartment</li>
-<li>  Lead (CRM USERS ONLY)</li>
-<li>  LeadHistory (CRM USERS ONLY)</li>
-<li>  JobOrder</li>
-<li>  JobSubmission</li>
-<li>  MasterOAuthRegistry (<em>INTERNAL USER ONLY</em>)</li>
-<li>  MasterOAuthRestFeature (<em>INTERNAL USER ONLY</em>)</li>
-<li>  Note</li>
-<li>  NoteEntity</li>
-<li>  NPSResponse(INTERNAL USER ONLY)</li>
-<li>  OAuthConsent (<em>INTERNAL USER ONLY</em>)</li>
-<li>  Opportunity (CRM USERS ONLY)</li>
-<li>  OpportunityHistory (CRM USERS ONLY)</li>
-<li>  Person</li>
-<li>  Placement</li>
-<li>  PlacementChangeRequest</li>
-<li>  PlacementCommission</li>
-<li>  Sendout</li>
-<li>  Shift</li>
-<li>  Task</li>
-</ul>
-
-<p><strong>List entities</strong></p>
-
-<ul>
-<li>  Category</li>
-<li>  Country</li>
-<li>  BusinessSector</li>
-<li>  Skill</li>
-<li>  Specialty</li>
-<li>  State</li>
-<li>  TimeUnit</li>
-</ul>
+<aside class="notice">** CRM Only Entities</aside>
 
 <h3 id="json">JSON</h3>
 
@@ -246,14 +318,14 @@
 
 <p>Metadata, data describing the structure of returned entity data, can be included in any data set returned by the API. See <code class="prettyprint">Meta</code> for details.</p>
 
-          <h1 id="authentication">Authentication</h1>
+          <h1 id="authorization">Authorization</h1>
 
-<p>User authentication and session management use the following flow:</p>
+<p>User authorization and session management use the following flow:</p>
 
 <ol>
-<li> A URL with prescribed parameters exists to provide authentication services.</li>
+<li> A URL with prescribed parameters exists to provide authorization services.</li>
 <li> To authenticate, a client sends a request to that URL with credentials in the appropriate parameters.</li>
-<li> If authentication is successful, the API will send back a session key. This is a token that represents a session established by the login process, and must be sent along with all subsequent requests to the API. The session key can be provided in a URL query string, a cookie or a special HTTP header. See for details on how to provide it.</li>
+<li> If authorization is successful, the API will send back a session key. This is a token that represents a session established by the login process, and must be sent along with all subsequent requests to the API. The session key can be provided in a URL query string, a cookie or a special HTTP header. See for details on how to provide it.</li>
 <li> For individual user logins, the login call also sends back a URL with which all subsequent API requests must be prefixed.</li>
 </ol>
 
@@ -267,7 +339,7 @@
 
 <p>Since REST is a stateless protocol, there must be a mechanism for clients to identify themselves upon each request, so the requests can be tied to an established session. This is what the session key provides.</p>
 
-<p>Login calls return, as part of their responses, a session key that represents a successful authentication and can be used to make further calls without having to authenticate.</p>
+<p>Login calls return, as part of their responses, a session key that represents a successful authorization and can be used to make further calls without having to authenticate.</p>
 
 <p>This key must be provided in HTTP requests in at least one of the following places:</p>
 
@@ -279,58 +351,14 @@
 
           <h1 id="login">Login</h1>
 
-<p>There are two ways to login to obtain a bullhorn REST API token (one of them being strictly reserved for internal use):</p>
-
-<h2 id="top-level-login-without-corporation-token">Top-level login (without corporation token)</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/login?username=xxx&amp;password=xxx&amp;version=*</span>
-<span class="p">{</span>
-  <span class="s2">"BhRestToken"</span> <span class="err">:</span> <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span><span class="p">,</span>
-  <span class="s2">"restUrl"</span> <span class="err">:</span> <span class="s2">"https://rest.bullhorn.com/rest-services/[corporation-token]/"</span>
-<span class="p">}</span>
-</code></pre>
-
-<aside class="warning">only for testing environment</aside>
-
-<table><thead>
-<tr>
-<th>Params</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>username</td>
-<td>yes</td>
-<td>Name of user logging in.</td>
-</tr>
-<tr>
-<td>password</td>
-<td>yes</td>
-<td>Password of user logging in.</td>
-</tr>
-<tr>
-<td>version</td>
-<td>yes</td>
-<td>Version of the API to use (* is a wildcard for latest version).</td>
-</tr>
-<tr>
-<td>ttl</td>
-<td>no</td>
-<td>Session time-to-live in minutes.</td>
-</tr>
-<tr>
-<td>clientId</td>
-<td>no</td>
-<td>Pass in an OAuth key here to spoof the features associated.</td>
-</tr>
-</tbody></table>
-
 <h2 id="partner-login-using-oauth">Partner login using OAuth</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/login?access_token=xxx&amp;version=*</span>
-<span class="p">{</span>
-  <span class="s2">"BhRestToken"</span> <span class="err">:</span> <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span><span class="p">,</span>
-  <span class="s2">"restUrl"</span> <span class="err">:</span> <span class="s2">"https://rest.bullhorn.com/rest-services/[corporation-token]/"</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/login?access_token<span class="o">=</span>xxx&amp;version<span class="o">=</span><span class="k">*</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"BhRestToken"</span> : <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>,
+  <span class="s2">"restUrl"</span> : <span class="s2">"https://rest.bullhorn.com/rest-services/[corporation-token]/"</span>
+<span class="o">}</span>
 </code></pre>
 
 <p>This is the only supported login process in a production environment</p>
@@ -367,10 +395,12 @@
 <aside class="warning"><strong>Possible Error: &ldquo;Invalid or expired OAuth access token.&rdquo;</strong></aside>
 
 <h2 id="logout">Logout</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/logout</span>
-<span class="p">{</span>
-    <span class="nl">logout</span><span class="p">:</span> <span class="s2">"OK"</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/logout
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="nb">logout</span>: <span class="s2">"OK"</span>
+<span class="o">}</span>
 </code></pre>
 
 <p>To logout and invalidate your BhRestToken</p>
@@ -379,6 +409,8 @@
 
 <h2 id="get-ping"><span class="tag">GET</span> /ping</h2>
 <pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/ping
+
+<span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"sessionExpires"</span> : 1323449994922
 <span class="o">}</span>
@@ -403,28 +435,29 @@
           <h1 id="settings">Settings</h1>
 
 <h2 id="get-settings">GET /settings</h2>
-<pre class="highlight shell"><code>curl -X GET <span class="s2">"http://server:port/rest-services/1hs/settings"</span>
-/<span class="k">*</span> Sample Response <span class="k">*</span>/
+<pre class="highlight shell"><code>curl -X GET <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings"</span>
+
+<span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"data"</span>: <span class="o">[</span>
     <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"accountLockoutDuration"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://server:port/rest-services/corpToken/settings/accountLockoutDuration"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings/accountLockoutDuration"</span>,
       <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
       <span class="s2">"isArray"</span>: <span class="nb">false</span>
     <span class="o">}</span>, <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"allDeptIds"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://server:port/rest-services/corpToken/settings/allDeptIds"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings/allDeptIds"</span>,
       <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
       <span class="s2">"isArray"</span>: <span class="nb">true</span>
     <span class="o">}</span>, <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"allPrivateLabelIds"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://server:port/rest-services/corpToken/settings/allPrivateLabelIds"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings/allPrivateLabelIds"</span>,
       <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
       <span class="s2">"isArray"</span>: <span class="nb">true</span>
     <span class="o">}</span>, <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"commentActionList"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://server:port/rest-services/corpToken/settings/commentActionList"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings/commentActionList"</span>,
       <span class="s2">"valueType"</span>: <span class="s2">"STRING"</span>,
       <span class="s2">"isArray"</span>: <span class="nb">true</span>
     <span class="o">}</span>
@@ -432,74 +465,49 @@
   <span class="o">]</span>
 <span class="o">}</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s2">"http://server:port/rest-services/1hs/settings"</span><span class="p">);</span>
-<span class="cm">/* Sample Response */</span>
-<span class="p">{</span>
-  <span class="s2">"data"</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"accountLockoutDuration"</span><span class="p">,</span>
-      <span class="s2">"valueUrl"</span><span class="p">:</span> <span class="s2">"http://server:port/rest-services/corpToken/settings/accountLockoutDuration"</span><span class="p">,</span>
-      <span class="s2">"valueType"</span><span class="p">:</span> <span class="s2">"INTEGER"</span><span class="p">,</span>
-      <span class="s2">"isArray"</span><span class="p">:</span> <span class="kc">false</span>
-    <span class="p">},</span> <span class="p">{</span>
-      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"allDeptIds"</span><span class="p">,</span>
-      <span class="s2">"valueUrl"</span><span class="p">:</span> <span class="s2">"http://server:port/rest-services/corpToken/settings/allDeptIds"</span><span class="p">,</span>
-      <span class="s2">"valueType"</span><span class="p">:</span> <span class="s2">"INTEGER"</span><span class="p">,</span>
-      <span class="s2">"isArray"</span><span class="p">:</span> <span class="kc">true</span>
-    <span class="p">},</span> <span class="p">{</span>
-      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"allPrivateLabelIds"</span><span class="p">,</span>
-      <span class="s2">"valueUrl"</span><span class="p">:</span> <span class="s2">"http://server:port/rest-services/corpToken/settings/allPrivateLabelIds"</span><span class="p">,</span>
-      <span class="s2">"valueType"</span><span class="p">:</span> <span class="s2">"INTEGER"</span><span class="p">,</span>
-      <span class="s2">"isArray"</span><span class="p">:</span> <span class="kc">true</span>
-    <span class="p">},</span> <span class="p">{</span>
-      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"commentActionList"</span><span class="p">,</span>
-      <span class="s2">"valueUrl"</span><span class="p">:</span> <span class="s2">"http://server:port/rest-services/corpToken/settings/commentActionList"</span><span class="p">,</span>
-      <span class="s2">"valueType"</span><span class="p">:</span> <span class="s2">"STRING"</span><span class="p">,</span>
-      <span class="s2">"isArray"</span><span class="p">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-    <span class="p">...</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
 
 <p>returns the complete list of settings.</p>
 
 <h2 id="get-settings-setting1-setting2">GET /settings/setting1[,setting2&hellip;]</h2>
-<pre class="highlight javascript"><code><span class="c1">// /settings/allPrivateLabelIds,currencyFormat</span>
-<span class="p">{</span>
-    <span class="s2">"allPrivateLabelIds"</span><span class="err">:</span>  <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-    <span class="s2">"currencyFormat"</span><span class="err">:</span> <span class="s2">"USD"</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"allPrivateLabelIds"</span>:  <span class="o">[</span> 1, 2, 3],
+    <span class="s2">"currencyFormat"</span>: <span class="s2">"USD"</span>
+<span class="o">}</span>
 </code></pre>
 
-<p>value type (integer, boolean, etc) depends on settingName.
+<p>Value type (integer, boolean, etc) depends on settingName.
 If no settingName is supplied, a list of predefined setting names and their meta data is returned. Return types (string, integer, decimal, boolean, and array of the base type) are defined in the meta data. If conversion fails, for example cannot convert &ldquo;abc&rdquo; to integer, the raw string will be returned.</p>
 
           <h1 id="entitlements">Entitlements</h1>
 
 <h2 id="entitlements">/entitlements</h2>
-<pre class="highlight javascript"><code><span class="c1">//returns an array of available entitlements</span>
-<span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"Candidate"</span><span class="p">,</span>
-        <span class="s2">"entitlementURL"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/entitlements/Candidate"</span>
-    <span class="p">},</span> <span class="p">...</span>
-<span class="p">]</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/entitlements
+
+<span class="c"># Example Response</span>
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"Candidate"</span>,
+        <span class="s2">"entitlementURL"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/{corpToken}/entitlements/Candidate"</span>
+    <span class="o">}</span>, ...
+<span class="o">]</span>
 </code></pre>
 
-<p>Gets the list of entitlements calls that are available for each entity for the current user.</p>
-
-<p><code class="prettyprint">Eg:  http://172.27.8.154:8080/rest-services/3lpg/entitlements</code></p>
+<p>Gets the list of entitlements calls that are available for each entity for the current user. The request returns an array of available entitlements calls.</p>
 
 <h2 id="entitlements-entity">/entitlements/{Entity}</h2>
-<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entitlements/Candidate</span>
-<span class="p">[</span>
-    <span class="s2">"CREATE"</span><span class="p">,</span>
-    <span class="s2">"READ"</span><span class="p">,</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/entitlements/Candidate
+
+<span class="c"># Example Response</span>
+<span class="o">[</span>
+    <span class="s2">"CREATE"</span>,
+    <span class="s2">"READ"</span>,
     <span class="s2">"READ_DEPARTMENT"</span>
-    <span class="s2">"UPDATE"</span><span class="p">,</span>
+    <span class="s2">"UPDATE"</span>,
     <span class="s2">"DELETE"</span>
-<span class="p">]</span>
+<span class="o">]</span>
 </code></pre>
 
 <p>Gets the entity entitlements of an <code class="prettyprint">entity</code> for the current user.</p>
@@ -523,34 +531,36 @@ If no settingName is supplied, a list of predefined setting names and their meta
           <h1 id="meta">Meta</h1>
 
 <h2 id="get-meta"><span class="tag">GET</span> /meta</h2>
-<pre class="highlight javascript"><code><span class="c1">//https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta</span>
-<span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"Appointment"</span><span class="p">,</span>
-        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Appointment?fields=*"</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"BusinessSector"</span><span class="p">,</span>
-        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/BusinessSector?fields=*"</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"Candidate"</span><span class="p">,</span>
-        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?fields=*"</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"Category"</span><span class="p">,</span>
-        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Category?fields=*"</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"ClientContact"</span><span class="p">,</span>
-        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientContact?fields=*"</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">"entity"</span><span class="p">:</span> <span class="s2">"ClientCorporation"</span><span class="p">,</span>
-        <span class="s2">"metaUrl"</span><span class="p">:</span> <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientCorporation?fields=*"</span>
-    <span class="p">},</span>
-    <span class="p">...</span>
-<span class="p">]</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/meta
+
+<span class="c"># Example Response</span>
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"Appointment"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/Appointment?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"BusinessSector"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/BusinessSector?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"Candidate"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/Candidate?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"Category"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/Category?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"ClientContact"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/ClientContact?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"ClientCorporation"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/ClientCorporation?fields=*"</span>
+    <span class="o">}</span>,
+    ...
+<span class="o">]</span>
 </code></pre>
 
 <p>Calling /meta with no entity name will return the list of available entities and their respective base URLs.  </p>
@@ -558,20 +568,20 @@ If no settingName is supplied, a list of predefined setting names and their meta
 <p>Read-only system fields ( fields with names prefixed with _ ) are not represented in entity metadata ever, even with * calls.</p>
 
 <h2 id="get-meta-entity"><span class="tag">GET</span> /meta/{Entity}</h2>
-<pre class="highlight javascript"><code><span class="c1">// [GET] https://rest.bullhorn.com/e999/meta/Candidate?fields=*</span>
-<span class="c1">// returns...</span>
-<span class="p">{</span>
-  <span class="s2">"entity"</span> <span class="err">:</span> <span class="s2">"Candidate"</span><span class="p">,</span>
-  <span class="s2">"entityMetaUrl"</span> <span class="err">:</span> <span class="s2">"https://rest.bullhorn.com/e999/meta/Candidate?fields=*"</span><span class="p">,</span>
-  <span class="s2">"label"</span> <span class="err">:</span> <span class="s2">"Candidate"</span><span class="p">,</span>
-  <span class="s2">"fields"</span> <span class="err">:</span> <span class="p">[</span> <span class="p">{</span>
-    <span class="s2">"name"</span> <span class="p">:</span> <span class="s2">"id"</span><span class="p">,</span>
-    <span class="s2">"type"</span> <span class="p">:</span> <span class="s2">"ID"</span><span class="p">,</span>
-    <span class="s2">"dataType"</span> <span class="p">:</span> <span class="s2">"Integer"</span>
-  <span class="p">},</span> <span class="p">{</span>
-    <span class="p">...</span>
-  <span class="p">}]</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/meta/Candidate?fields<span class="o">=</span><span class="k">*</span>
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"entity"</span> : <span class="s2">"Candidate"</span>,
+  <span class="s2">"entityMetaUrl"</span> : <span class="s2">"https://rest.bullhorn.com/e999/meta/Candidate?fields=*"</span>,
+  <span class="s2">"label"</span> : <span class="s2">"Candidate"</span>,
+  <span class="s2">"fields"</span> : <span class="o">[</span> <span class="o">{</span>
+    <span class="s2">"name"</span> : <span class="s2">"id"</span>,
+    <span class="s2">"type"</span> : <span class="s2">"ID"</span>,
+    <span class="s2">"dataType"</span> : <span class="s2">"Integer"</span>
+  <span class="o">}</span>, <span class="o">{</span>
+    ...
+  <span class="o">}]</span>
+<span class="o">}</span>
 </code></pre>
 
 <p>Returns entity and property metadata for the specified entity type.</p>
@@ -685,21 +695,25 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="entity">Entity</h1>
 
 <h2 id="get-entity"><span class="tag">GET</span> /entity</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/entity/Candidate/5059165?fields=firstName,lastName,address</span>
-<span class="p">{</span>
-  <span class="s2">"id"</span> <span class="err">:</span> <span class="mi">5059165</span><span class="p">,</span>
-  <span class="s2">"firstName"</span> <span class="err">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-  <span class="s2">"lastName"</span> <span class="err">:</span> <span class="s2">"Smith"</span><span class="p">,</span>
-  <span class="s2">"address"</span> <span class="err">:</span> <span class="p">{</span>
-    <span class="s2">"address1"</span> <span class="err">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"address2"</span> <span class="err">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"city"</span> <span class="err">:</span> <span class="s2">"Sacramento"</span><span class="p">,</span>
-    <span class="s2">"state"</span> <span class="err">:</span> <span class="s2">"ca"</span><span class="p">,</span>
-    <span class="s2">"zip"</span> <span class="err">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"countryID"</span> <span class="err">:</span> <span class="mi">1</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/entity/Candidate/5059165?fields<span class="o">=</span>firstName,lastName,address
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span> : 5059165,
+  <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+  <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>,
+  <span class="s2">"address"</span> : <span class="o">{</span>
+    <span class="s2">"address1"</span> : <span class="s2">""</span>,
+    <span class="s2">"address2"</span> : <span class="s2">""</span>,
+    <span class="s2">"city"</span> : <span class="s2">"Sacramento"</span>,
+    <span class="s2">"state"</span> : <span class="s2">"ca"</span>,
+    <span class="s2">"zip"</span> : <span class="s2">""</span>,
+    <span class="s2">"countryID"</span> : 1
+  <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+
+<p><a href="https://app.getpostman.com/run-collection/80f333ee09c6763dad68#?env%5BDefault%5D=W3sia2V5Ijoic2VydmVyIiwidmFsdWUiOiJyb2hpdC1iYWNrZW5kIiwidHlwZSI6InRleHQiLCJuYW1lIjoic2VydmVyIiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoidG9rZW4iLCJ0eXBlIjoidGV4dCIsInZhbHVlIjoiODQwMWRhZmMtN2U5OS00M2E1LTgyYzEtMTdkYWY2YWRlZTNjIiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoicmVzdHVybCIsInR5cGUiOiJ0ZXh0IiwidmFsdWUiOiJyb2hpdC1iYWNrZW5kOjgxODEvcmVzdC1zZXJ2aWNlcy8xaHMvIiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoiQ0FORElEQVRFX0lEIiwidHlwZSI6InRleHQiLCJ2YWx1ZSI6IjU0NjgyMzgiLCJlbmFibGVkIjp0cnVlLCJob3ZlcmVkIjpmYWxzZX1d"><img alt="Run in Postman" src="https://run.pstmn.io/button.svg" /></a></p>
 
 <p>Gets one or more entities or to-many associations.</p>
 
@@ -757,20 +771,22 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h2 id="multiple-entities">Multiple Entities</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
-<span class="p">{</span>
-    <span class="nl">data</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
-          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
-        <span class="p">},</span> <span class="p">{</span>
-          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">456</span><span class="p">,</span>
-          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Janis"</span><span class="p">,</span>
-          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Williams"</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields<span class="o">=</span>id,firstName,lastName
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    data: <span class="o">[</span>
+        <span class="o">{</span>
+          <span class="s2">"id"</span> : 123,
+          <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+          <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+        <span class="o">}</span>, <span class="o">{</span>
+          <span class="s2">"id"</span> : 456,
+          <span class="s2">"firstName"</span> : <span class="s2">"Janis"</span>,
+          <span class="s2">"lastName"</span> : <span class="s2">"Williams"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
 </code></pre>
 
 <p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:</p>
@@ -821,10 +837,12 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
 <h2 id="to-many-associations">To-many Associations</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&amp;count=2</span>
-<span class="p">{</span>
-    <span class="p">...</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;count<span class="o">=</span>2
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    ...
+<span class="o">}</span>
 </code></pre>
 
 <p>This is an extension of the single and multiple GETs that returns the to-many associated entities of the specified type for the specified entity ID(s). The call supports the same query parameters as the query call.</p>
@@ -895,11 +913,10 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
 <h2 id="put-entity"><span class="tag">PUT</span> /entity</h2>
-<pre class="highlight javascript"><code><span class="c1">// [PUT] https://rest.bullhorn.com/e999/entity/Candidate</span>
-<span class="p">{</span>
-  <span class="s2">"firstName"</span> <span class="err">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-  <span class="s2">"lastName"</span> <span class="err">:</span> <span class="s2">"Smith"</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"firstName" : "Alanzo", "lastName" : "Smith"}'</span> <span class="se">\</span>
+     https://rest.bullhorn.com/e999/entity/Candidate
 </code></pre>
 
 <p>You can use HTTP PUT requests to create new entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body. The structure of the JSON is identical to that returned in HTTP responses to GET requests, with a few additional restrictions:</p>
@@ -938,7 +955,8 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 <h3 id="create-to-many-associations">Create To-many Associations</h3>
-<pre class="highlight javascript"><code><span class="c1">// [PUT] https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/964,684,253</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/964,684,253
 </code></pre>
 
 <p>You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.</p>
@@ -964,12 +982,10 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <aside class="warning">Returns An HTTP 404 error if the requested entity cannot be found, fields are specified that do not exist on the specified entity, or you specify values for any mandatory fields with no default values.</aside>
 
 <h2 id="post-entity"><span class="tag">POST</span> /entity</h2>
-<pre class="highlight javascript"><code><span class="c1">// [POST] https://rest.bullhorn.com/e999/entity/Candidate/5059165</span>
-<span class="p">{</span>
-  <span class="s2">"id"</span> <span class="err">:</span> <span class="mi">5059165</span><span class="p">,</span>
-  <span class="s2">"firstName"</span> <span class="err">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-  <span class="s2">"lastName"</span> <span class="err">:</span> <span class="s2">"Smith"</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{ "id" : 5059165, "firstName" : "Alanzo","lastName" : "Smith" }'</span> <span class="se">\</span>
+     https://rest.bullhorn.com/e999/entity/Candidate/5059165
 </code></pre>
 
 <p>Update entities using HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.</p>
@@ -1006,11 +1022,11 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 <h3 id="to-many-associations-special">To-many Associations - Special</h3>
-<pre class="highlight javascript"><code><span class="c1">// This example will create and associate a new customObject1s record.</span>
-<span class="c1">// https://rest.bullhorn.com/e999/entity/JobOrder/123</span>
+<pre class="highlight shell"><code><span class="c"># This example will create and associate a new customObject1s record.</span>
+curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 
-<span class="c1">// This example will update an existing customObject1s record #1.</span>
-<span class="c1">// https://rest.bullhorn.com/e999/entity/JobOrder/123</span>
+<span class="c"># This example will update an existing customObject1s record #1.</span>
+curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 </code></pre>
 
 <p>For special to-many associations, like Custom Objects, we have the ability to create and associate in a single step.  These is due to the fact that we need to know their context to enforce security and data integrity.  You can add/update to-many associations with a POST request the same as if it was data directly on the parent entity. You can combine standard parent entity updates with special association add and edits.</p>
@@ -1042,7 +1058,8 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <p>The API supports two types of delete requests: hard delete and soft delete.</p>
 
 <h3 id="hard-delete">Hard delete</h3>
-<pre class="highlight javascript"><code><span class="c1">// [DELETE] https://rest.bullhorn.com/e999/entity/NoteEntity/2552</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+     https://rest.bullhorn.com/e999/entity/NoteEntity/2552
 </code></pre>
 
 <p>Hard deletes an entity.</p>
@@ -1072,10 +1089,11 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <p>To hard delete an entity with children, you explicitly hard delete all the children before attempting to delete the root entity.</p>
 
 <h3 id="soft-delete">Soft delete</h3>
-<pre class="highlight javascript"><code><span class="c1">// POST https://rest.bullhorn.com/e999/entity/ClientContact/1804</span>
-<span class="p">{</span>
-    <span class="s2">"isDeleted"</span> <span class="err">:</span> <span class="kc">true</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{ "isDeleted" : true }'</span> <span class="se">\</span>
+     https://rest.bullhorn.com/e999/entity/ClientContact/1804
+
 </code></pre>
 
 <p>When you soft delete an entity, it is not removed from the data storage. A soft delete operation is actually an update (for example, POST) that sets an &ldquo;isDeleted&rdquo; flag to true.</p>
@@ -1089,7 +1107,8 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h3 id="disassociate-to-many-associations">Disassociate To-many Associations</h3>
-<pre class="highlight javascript"><code><span class="c1">// DELETE https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/253</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+     https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/253
 </code></pre>
 
 <p>Removes or &ldquo;disassociates&rdquo; a to-many association relationship on an entity.</p>
@@ -1115,19 +1134,21 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="query">Query</h1>
 
 <h2 id="get-query"><span class="tag">GET</span> /query</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/query/Candidate?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[{</span>
+        <span class="s2">"id"</span> : 5059165,
+        <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+        <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+    <span class="o">}]</span>
+<span class="o">}</span>
+</code></pre>
 
 <p>The <code class="prettyprint">Query</code> call retrieves a list of entitys. The query is performed against the database, therefore the <code class="prettyprint">where</code> parameter should reflect SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the <a href="/#search">Search</a> call.</p>
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
-<pre class="highlight javascript"><code><span class="c1">// [GET] https://rest.bullhorn.com/e999/query/Candidate?fields=firstName,lastName&amp;where=lastName='smith'&amp;count=3</span>
-<span class="p">{</span>
-    <span class="s2">"data"</span><span class="err">:</span> <span class="p">[{</span>
-        <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">5059165</span><span class="p">,</span>
-        <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-        <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
-    <span class="p">}]</span>
-<span class="p">}</span>
-</code></pre>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1197,15 +1218,32 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="search">Search</h1>
 
 <h2 id="get-search"><span class="tag">GET</span> /search</h2>
-<pre class="highlight javascript"><code><span class="c1">// [GET] https://rest.bullhorn.com/e999/search/Candidate?query=lastName:Smith&amp;fields=id, firstName,&amp;count=3</span>
-<span class="p">{</span>
-    <span class="s2">"data"</span><span class="err">:</span> <span class="p">[{</span>
-      <span class="s2">"_score"</span><span class="p">:</span> <span class="mf">1.70002</span><span class="p">,</span>
-      <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">5059165</span><span class="p">,</span>
-      <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-      <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
-    <span class="p">}]</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/search/Candidate?query<span class="o">=</span>lastName:Smith&amp;fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[{</span>
+      <span class="s2">"_score"</span>: 1.70002,
+      <span class="s2">"id"</span> : 5059165,
+      <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+    <span class="o">}]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>The Search call retrieves a list of entities. The search call is performed against a optimized index, therefore the query parameter should reflect Lucene Query Syntax. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
+
+<aside class="notice">If you provide no request parameters, a list of available search fields are provided.</aside>
+
+<p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.</p>
+
+<aside class="notice">If parameter &ldquo;fields&rdquo; or &ldquo;layout&rdquo; is not present, the search will return the list of found entity ids in the returned &ldquo;data&rdquo;.</aside>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/search/Candidate?query<span class="o">=</span>isDeleted:0
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[</span>101,102,103,104,...,999]
+<span class="o">}</span>
 </code></pre>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1273,32 +1311,19 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
-<p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.
-For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
-
-<aside class="notice">If you provide no request parameters, a list of available search fields are provided.</aside>
-<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhorn.com/e999/search/Candidate</span>
-</code></pre>
-
-<aside class="notice">If parameter &ldquo;fields&rdquo; or &ldquo;layout&rdquo; is not present, the search will return the list of found entity ids in the returned &ldquo;data&rdquo;.</aside>
-<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhorn.com/e999/search/Candidate?query=isDeleted:0</span>
-<span class="p">{</span>
-    <span class="s2">"data"</span><span class="err">:</span> <span class="p">[</span><span class="mi">101</span><span class="p">,</span><span class="mi">102</span><span class="p">,</span><span class="mi">103</span><span class="p">,</span><span class="mi">104</span><span class="p">,...,</span><span class="mi">999</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
-
           <h1 id="find">Find</h1>
 
 <h2 id="get-find"><span class="tag">GET</span> /find</h2>
-<pre class="highlight javascript"><code><span class="c1">// [GET] https://rest.bullhorn.com/e999/find?query=smith&amp;countPerEntity=3</span>
-<span class="c1">// returns...</span>
-<span class="p">{</span>
-    <span class="s2">"data"</span><span class="err">:</span> <span class="p">[{</span>
-      <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">5059165</span><span class="p">,</span>
-      <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-      <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
-    <span class="p">}]</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/find?query<span class="o">=</span>smith&amp;countPerEntity<span class="o">=</span>3
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[{</span>
+      <span class="s2">"id"</span> : 5059165,
+      <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+    <span class="o">}]</span>
+<span class="o">}</span>
 </code></pre>
 
 <p>FastFind is a specialized type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.</p>
@@ -1416,26 +1441,28 @@ For information about the Lucene query syntax, see: <a href="http://www.lucenetu
           <h1 id="lookup">Lookup</h1>
 
 <h2 id="get-lookup"><span class="tag">GET</span> /lookup</h2>
-<pre class="highlight javascript"><code><span class="c1">// [GET] https://rest.bullhorn.com/e999/lookup?filter=smith&amp;entity=Candidate,ClientContact&amp;start=0,10&amp;count=10</span>
-<span class="c1">// returns...</span>
-<span class="p">{</span>
-    <span class="s2">"data"</span><span class="err">:</span> <span class="p">[{</span>
-      <span class="s2">"_score"</span><span class="p">:</span> <span class="mf">1.70002</span><span class="p">,</span>
-      <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">5059165</span><span class="p">,</span>
-      <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-      <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
-    <span class="p">}]</span>
-<span class="p">}</span>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/lookup?filter<span class="o">=</span>smith&amp;entity<span class="o">=</span>Candidate,ClientContact&amp;start<span class="o">=</span>0,10&amp;count<span class="o">=</span>10
 
-<span class="c1">// [GET] https://rest.bullhorn.com/e999/lookup/Candidate/12345</span>
-<span class="c1">// returns...</span>
-<span class="p">{</span>
-    <span class="s2">"data"</span><span class="err">:</span> <span class="p">[{</span>
-      <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">5059165</span><span class="p">,</span>
-      <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-      <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
-    <span class="p">}]</span>
-<span class="p">}</span>
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[{</span>
+      <span class="s2">"_score"</span>: 1.70002,
+      <span class="s2">"id"</span> : 5059165,
+      <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+    <span class="o">}]</span>
+<span class="o">}</span>
+
+curl https://rest.bullhorn.com/e999/lookup/Candidate/12345
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[{</span>
+      <span class="s2">"id"</span> : 5059165,
+      <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+    <span class="o">}]</span>
+<span class="o">}</span>
 </code></pre>
 
 <p>Searches using FastFind for FastFind-able entities, else uses custom Lucene or Hibernate queries. Returns a standardized set of data per EntityType.</p>
@@ -1516,8 +1543,6 @@ For information about the Lucene query syntax, see: <a href="http://www.lucenetu
 
           <h1 id="errors">Errors</h1>
 
-<aside class="notice">TBW.</aside>
-
 <p>The REST API uses the following error codes:</p>
 
 <table><thead>
@@ -1528,7 +1553,7 @@ For information about the Lucene query syntax, see: <a href="http://www.lucenetu
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request &ndash; Your request is no good</td>
 </tr>
 <tr>
 <td>401</td>
@@ -1555,10 +1580,6 @@ For information about the Lucene query syntax, see: <a href="http://www.lucenetu
 <td>Gone &ndash; The entity requested has been removed from our servers</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
 <td>429</td>
 <td>Too Many Requests &ndash; You&rsquo;re requesting too much! Slow down!</td>
 </tr>
@@ -1576,7 +1597,6 @@ For information about the Lucene query syntax, see: <a href="http://www.lucenetu
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
