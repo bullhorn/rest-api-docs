@@ -2,32 +2,34 @@
 
 ## <span class="tag">GET</span> /meta
 
-``` javascript
-//https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta
+``` shell
+curl https://rest.bullhorn.com/rest-services/e999/meta
+
+# Example Response
 [
     {
         "entity": "Appointment",
-        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Appointment?fields=*"
+        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/Appointment?fields=*"
     },
     {
         "entity": "BusinessSector",
-        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/BusinessSector?fields=*"
+        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/BusinessSector?fields=*"
     },
     {
         "entity": "Candidate",
-        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?fields=*"
+        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/Candidate?fields=*"
     },
     {
         "entity": "Category",
-        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Category?fields=*"
+        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/Category?fields=*"
     },
     {
         "entity": "ClientContact",
-        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientContact?fields=*"
+        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/ClientContact?fields=*"
     },
     {
         "entity": "ClientCorporation",
-        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/ClientCorporation?fields=*"
+        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/ClientCorporation?fields=*"
     },
     ...
 ]
@@ -39,9 +41,9 @@ Read-only system fields ( fields with names prefixed with _ ) are not represente
 
 ##  <span class="tag">GET</span> /meta/{Entity}
 
-``` javascript
-// [GET] https://rest.bullhorn.com/e999/meta/Candidate?fields=*
-// returns...
+``` shell
+curl https://rest.bullhorn.com/e999/meta/Candidate?fields=*
+# Example Response
 {
   "entity" : "Candidate",
   "entityMetaUrl" : "https://rest.bullhorn.com/e999/meta/Candidate?fields=*",

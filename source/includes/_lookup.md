@@ -2,9 +2,10 @@
 
 ## <span class="tag">GET</span> /lookup
 
-``` javascript
-// [GET] https://rest.bullhorn.com/e999/lookup?filter=smith&entity=Candidate,ClientContact&start=0,10&count=10
-// returns...
+``` shell
+curl https://rest.bullhorn.com/e999/lookup?filter=smith&entity=Candidate,ClientContact&start=0,10&count=10
+
+# Example Response
 {
     "data": [{
       "_score": 1.70002,
@@ -14,8 +15,9 @@
     }]
 }
 
-// [GET] https://rest.bullhorn.com/e999/lookup/Candidate/12345
-// returns...
+curl https://rest.bullhorn.com/e999/lookup/Candidate/12345
+
+# Example Response
 {
     "data": [{
       "id" : 5059165,

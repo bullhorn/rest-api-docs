@@ -4,6 +4,8 @@
 
 ``` shell
 curl https://rest.bullhorn.com/e999/ping
+
+# Example Response
 {
   "sessionExpires" : 1323449994922
 }

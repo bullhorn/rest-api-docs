@@ -2,12 +2,10 @@
 
 ## <span class="tag">GET</span> /query
 
-The `Query` call retrieves a list of entitys. The query is performed against the database, therefore the `where` parameter should reflect SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the [Search](/#search) call.
+``` shell
+curl https://rest.bullhorn.com/e999/query/Candidate?fields=firstName,lastName&where=lastName='smith'&count=3
 
-<aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
-
-``` javascript
-// [GET] https://rest.bullhorn.com/e999/query/Candidate?fields=firstName,lastName&where=lastName='smith'&count=3
+# Example Response
 {
     "data": [{
         "id" : 5059165,
@@ -16,6 +14,10 @@ The `Query` call retrieves a list of entitys. The query is performed against the
     }]
 }
 ```
+
+The `Query` call retrieves a list of entitys. The query is performed against the database, therefore the `where` parameter should reflect SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the [Search](/#search) call.
+
+<aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 
 ### HTTP Request
 

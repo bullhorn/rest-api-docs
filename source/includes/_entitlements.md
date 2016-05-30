@@ -2,25 +2,26 @@
 
 ## /entitlements
 
-``` javascript
-//returns an array of available entitlements
+``` shell
+curl https://rest.bullhorn.com/rest-services/e999/entitlements
+
+# Example Response
 [
     {
         "entity": "Candidate",
-        "entitlementURL": "https://rest.bullhornstaffing.com/rest-services/{corpToken}/entitlements/Candidate"
+        "entitlementURL": "https://rest.bullhorn.com/rest-services/{corpToken}/entitlements/Candidate"
     }, ...
 ]
 ```
 
-Gets the list of entitlements calls that are available for each entity for the current user.
-
-`Eg:  http://172.27.8.154:8080/rest-services/3lpg/entitlements`
-
+Gets the list of entitlements calls that are available for each entity for the current user. The request returns an array of available entitlements calls.
 
 ## /entitlements/{Entity}
 
-``` javascript
-// GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entitlements/Candidate
+``` shell
+curl https://rest.bullhorn.com/rest-services/e999/entitlements/Candidate
+
+# Example Response
 [
     "CREATE",
     "READ",

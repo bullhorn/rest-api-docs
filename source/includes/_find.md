@@ -3,9 +3,10 @@
 
 ## <span class="tag">GET</span> /find
 
-``` javascript
-// [GET] https://rest.bullhorn.com/e999/find?query=smith&countPerEntity=3
-// returns...
+``` shell
+curl https://rest.bullhorn.com/e999/find?query=smith&countPerEntity=3
+
+# Example Response
 {
     "data": [{
       "id" : 5059165,

@@ -2,8 +2,10 @@
 
 ## <span class="tag">GET</span> /entity
 
-``` javascript
-// https://rest.bullhorn.com/e999/entity/Candidate/5059165?fields=firstName,lastName,address
+``` shell
+curl https://rest.bullhorn.com/e999/entity/Candidate/5059165?fields=firstName,lastName,address
+
+# Example Response
 {
   "id" : 5059165,
   "firstName" : "Alanzo",
@@ -18,6 +20,8 @@
   }
 }
 ```
+
+ [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/80f333ee09c6763dad68#?env%5BDefault%5D=W3sia2V5Ijoic2VydmVyIiwidmFsdWUiOiJyb2hpdC1iYWNrZW5kIiwidHlwZSI6InRleHQiLCJuYW1lIjoic2VydmVyIiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoidG9rZW4iLCJ0eXBlIjoidGV4dCIsInZhbHVlIjoiODQwMWRhZmMtN2U5OS00M2E1LTgyYzEtMTdkYWY2YWRlZTNjIiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoicmVzdHVybCIsInR5cGUiOiJ0ZXh0IiwidmFsdWUiOiJyb2hpdC1iYWNrZW5kOjgxODEvcmVzdC1zZXJ2aWNlcy8xaHMvIiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoiQ0FORElEQVRFX0lEIiwidHlwZSI6InRleHQiLCJ2YWx1ZSI6IjU0NjgyMzgiLCJlbmFibGVkIjp0cnVlLCJob3ZlcmVkIjpmYWxzZX1d)
 
 Gets one or more entities or to-many associations.
 
@@ -46,8 +50,10 @@ showEditable | no | (true/false) Whether to show the editable field in responses
 
 ## Multiple Entities
 
-``` javascript
-// https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName
+``` shell
+curl https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName
+
+# Example Response
 {
     data: [
         {
@@ -82,8 +88,10 @@ showEditable | no | (true/false) Whether to show the editable field in responses
 
 ## To-many Associations
 
-``` javascript
-// https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&count=2
+``` shell
+curl https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&count=2
+
+# Example Response
 {
     ...
 }
@@ -112,12 +120,11 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ## <span class="tag">PUT</span> /entity
 
-``` javascript
-// [PUT] https://rest.bullhorn.com/e999/entity/Candidate
-{
-  "firstName" : "Alanzo",
-  "lastName" : "Smith"
-}
+``` shell
+curl -X PUT \
+     -H "Content-Type: application/json" \
+     -d '{"firstName" : "Alanzo", "lastName" : "Smith"}' \
+     https://rest.bullhorn.com/e999/entity/Candidate
 ```
 
 You can use HTTP PUT requests to create new entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body. The structure of the JSON is identical to that returned in HTTP responses to GET requests, with a few additional restrictions:
@@ -146,8 +153,9 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ### Create To-many Associations
 
-``` javascript
-// [PUT] https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/964,684,253
+``` shell
+curl -X PUT \
+     https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/964,684,253
 ```
 
 You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.
@@ -164,13 +172,11 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ## <span class="tag">POST</span> /entity
 
-``` javascript
-// [POST] https://rest.bullhorn.com/e999/entity/Candidate/5059165
-{
-  "id" : 5059165,
-  "firstName" : "Alanzo",
-  "lastName" : "Smith"
-}
+``` shell
+curl -X POST \
+     -H "Content-Type: application/json" \
+     -d '{ "id" : 5059165, "firstName" : "Alanzo","lastName" : "Smith" }' \
+     https://rest.bullhorn.com/e999/entity/Candidate/5059165
 ```
 
 Update entities using HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.
@@ -197,12 +203,12 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ### To-many Associations - Special
 
-``` javascript
-// This example will create and associate a new customObject1s record.
-// https://rest.bullhorn.com/e999/entity/JobOrder/123
+``` shell
+# This example will create and associate a new customObject1s record.
+curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 
-// This example will update an existing customObject1s record #1.
-// https://rest.bullhorn.com/e999/entity/JobOrder/123
+# This example will update an existing customObject1s record #1.
+curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 ```
 
 For special to-many associations, like Custom Objects, we have the ability to create and associate in a single step.  These is due to the fact that we need to know their context to enforce security and data integrity.  You can add/update to-many associations with a POST request the same as if it was data directly on the parent entity. You can combine standard parent entity updates with special association add and edits.
@@ -225,8 +231,9 @@ The API supports two types of delete requests: hard delete and soft delete.
 
 ### Hard delete
 
-``` javascript
-// [DELETE] https://rest.bullhorn.com/e999/entity/NoteEntity/2552
+``` shell
+curl -X DELETE \
+     https://rest.bullhorn.com/e999/entity/NoteEntity/2552
 ```
 
 Hard deletes an entity.
@@ -247,11 +254,12 @@ To hard delete an entity with children, you explicitly hard delete all the child
 
 ### Soft delete
 
-``` javascript
-// POST https://rest.bullhorn.com/e999/entity/ClientContact/1804
-{
-    "isDeleted" : true
-}
+``` shell
+curl -X POST \
+     -H "Content-Type: application/json" \
+     -d '{ "isDeleted" : true }' \
+     https://rest.bullhorn.com/e999/entity/ClientContact/1804
+
 ```
 
 When you soft delete an entity, it is not removed from the data storage. A soft delete operation is actually an update (for example, POST) that sets an "isDeleted" flag to true.
@@ -266,8 +274,9 @@ The types of entity you can soft delete are Candidate, CandidateEducation, Candi
 
 ### Disassociate To-many Associations
 
-``` javascript
-// DELETE https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/253
+``` shell
+curl -X DELETE \
+     https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/253
 ```
 
 Removes or "disassociates" a to-many association relationship on an entity.

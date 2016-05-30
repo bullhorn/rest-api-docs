@@ -23,9 +23,7 @@ Web URLs are case-sensitive, except for machine names. We shall follow that prac
 
 All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:
 
-```
-https://rest.bullhorn.com/e999/entity/Candidate
-```
+`https://rest.bullhorn.com/e999/entity/Candidate`
 
 Where `e999` is the corporation identifier.
 
@@ -35,50 +33,38 @@ Bullhorn uses the term entity to refer to a type of thing represented in the Bul
 
 The REST API currently supports the following entity types. For information about these entity types,see the  .
 
-**Non-list entities**
+**Non-list entities** | **List entities**
+--------------------- | ---------------------
+Appointment           | Category
+AppointmentAttendee   | Country
+Candidate             | BusinessSector
+CandidateEducation    | Skill
+CandidateReference    | Specialty
+CandidateSource       | State
+CandidateWorkHistory  |
+ClientContact         |
+ClientContactRatios   |
+ClientCorporation     |
+ClientCorporationRatios |
+CorporateUser         |
+CorporationDepartment |
+Lead**                |
+LeadHistory**         |
+JobOrder              |
+JobSubmission         |
+Note                  |
+NoteEntity            |
+Opportunity**         |
+OpportunityHistory**  |
+Person                |
+Placement             |
+PlacementChangeRequest |
+PlacementCommission   |
+Sendout               |
+Shift                 |
+Task                  |
 
-*   Appointment
-*   AppointmentAttendee
-*   Candidate
-*   CandidateEducation
-*   CandidateReference
-*   CandidateSource
-*   CandidateWorkHistory
-*   ClientContact
-*   ClientContactRatios
-*   ClientCorporation
-*   ClientCorporationRatios
-*   CorporateUser
-*   CorporationDepartment
-*   Lead (CRM USERS ONLY)
-*   LeadHistory (CRM USERS ONLY)
-*   JobOrder
-*   JobSubmission
-*   MasterOAuthRegistry (_INTERNAL USER ONLY_)
-*   MasterOAuthRestFeature (_INTERNAL USER ONLY_)
-*   Note
-*   NoteEntity
-*   NPSResponse(INTERNAL USER ONLY)
-*   OAuthConsent (_INTERNAL USER ONLY_)
-*   Opportunity (CRM USERS ONLY)
-*   OpportunityHistory (CRM USERS ONLY)
-*   Person
-*   Placement
-*   PlacementChangeRequest
-*   PlacementCommission
-*   Sendout
-*   Shift
-*   Task
-
-**List entities**
-
-*   Category
-*   Country
-*   BusinessSector
-*   Skill
-*   Specialty
-*   State
-*   TimeUnit
+<aside class="notice">** CRM Only Entities</aside>
 
 ### JSON
 
