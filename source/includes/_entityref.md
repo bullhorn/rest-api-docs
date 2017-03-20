@@ -15,47 +15,35 @@ set of entity meta data for any given entity.
 isDeleted value to true. A hard delete is a DELETE operation.
 
 +-----------------------+-----------------------+-----------------------+
-| #### Entity name      | #### Allowed CRUD ope | #### Delete type      |
-|                       | rations               |                       |
+| #### Entity name      | #### Allowed CRUD operations | #### Delete type|
 +=======================+=======================+=======================+
 | ActivityGoal          | READ                  |                       |
 +-----------------------+-----------------------+-----------------------+
-| ActivityGoalConfigura | READ, CREATE, UPDATE, | Soft                  |
-| tion                  | DELETE                |                       |
+| ActivityGoalConfiguration | READ, CREATE, UPDATE, DELETE | Soft       |
 +-----------------------+-----------------------+-----------------------+
-| ActivityGoalTarget    | READ, CREATE, UPDATE, | Hard                  |
-|                       | DELETE                |                       |
+| ActivityGoalTarget    | READ, CREATE, UPDATE, DELETE | Hard           |
 +-----------------------+-----------------------+-----------------------+
-| Appointment           | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| Appointment           | READ, CREATE, UPDATE, DELETE | Soft           |
 +-----------------------+-----------------------+-----------------------+
-| AppointmentAttendee   | READ, CREATE, UPDATE, | Hard                  |
-|                       | DELETE                |                       |
+| AppointmentAttendee   | READ, CREATE, UPDATE,  DELETE | Hard          |
 +-----------------------+-----------------------+-----------------------+
 | BusinessSector        | READ                  | N/A                   |
 +-----------------------+-----------------------+-----------------------+
-| Candidate             | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| Candidate             | READ, CREATE, UPDATE, DELETE | Soft           |
 +-----------------------+-----------------------+-----------------------+
-| CandidateCertificatio | READ, CREATE, UPDATE, | Soft                  |
-| n                     | DELETE                |                       |
+| CandidateCertificatio | READ, CREATE, UPDATE, DELETE | Soft           |
 +-----------------------+-----------------------+-----------------------+
-| CandidateEducation    | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| CandidateEducation    | READ, CREATE, UPDATE,  DELETE | Soft          |
 +-----------------------+-----------------------+-----------------------+
-| CandidateReference    | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| CandidateReference    | READ, CREATE, UPDATE DELETE, | Soft           |
 +-----------------------+-----------------------+-----------------------+
-| CandidateSource       | READ, CREATE, UPDATE, | Hard                  |
-|                       | DELETE                |                       |
+| CandidateSource       | READ, CREATE, UPDATE, DELETE | Hard           |
 +-----------------------+-----------------------+-----------------------+
-| CandidateWorkHistory  | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| CandidateWorkHistory  | READ, CREATE, UPDATE, DELETE | Soft           |
 +-----------------------+-----------------------+-----------------------+
 | Category              | READ                  | N/A                   |
 +-----------------------+-----------------------+-----------------------+
-| ClientContact         | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| ClientContact         | READ, CREATE, UPDATE, DELETE | Soft           |
 +-----------------------+-----------------------+-----------------------+
 | ClientCorporation     | READ, CREATE, UPDATE  | N/A                   |
 +-----------------------+-----------------------+-----------------------+
@@ -69,41 +57,29 @@ isDeleted value to true. A hard delete is a DELETE operation.
 +-----------------------+-----------------------+-----------------------+
 | Department            | READ, CREATE, UPDATE  | N/A                   |
 +-----------------------+-----------------------+-----------------------+
-| JobOrder              | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| JobOrder              | READ, CREATE, UPDATE, DELETE | Soft           |
 +-----------------------+-----------------------+-----------------------+
-| JobSubmission         | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| JobSubmission         | READ, CREATE, UPDATE, DELETE | Soft           |
 +-----------------------+-----------------------+-----------------------+
-| Lead\                 | READ, CREATE, UPDATE, | Soft                  |
-| (CRM only)            | DELETE                |                       |
+| Lead\(CRM only)                 | READ, CREATE, UPDATE, DELETE | Soft |
 +-----------------------+-----------------------+-----------------------+
-| LeadHistory\          | READ                  | N/A                   |
-| (CRM only)            |                       |                       |
+| LeadHistory\(CRM only)          | READ                  | N/A         |
 +-----------------------+-----------------------+-----------------------+
-| Note                  | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| Note                  | READ, CREATE, UPDATE, DELETE | Soft           |
 +-----------------------+-----------------------+-----------------------+
-| NoteEntity            | READ, CREATE, UPDATE, | Hard                  |
-|                       | DELETE                |                       |
+| NoteEntity            | READ, CREATE, UPDATE, DELETE | Hard           |
 +-----------------------+-----------------------+-----------------------+
-| Opportunity\          | READ, CREATE, UPDATE, | Soft                  |
-| (CRM only)            | DELETE                |                       |
+| Opportunity\(CRM only)          | READ, CREATE, UPDATE, DELETE | Soft |
 +-----------------------+-----------------------+-----------------------+
-| OpportunityHistory\   | READ                  | N/A                   |
-| (CRM only)            |                       |                       |
+| OpportunityHistory\ (CRM only)  | READ                  | N/A         |
 +-----------------------+-----------------------+-----------------------+
-| Placement             | READ, CREATE, UPDATE, | Hard                  |
-|                       | DELETE                |                       |
+| Placement             | READ, CREATE, UPDATE, DELETE | Hard           |
 +-----------------------+-----------------------+-----------------------+
-| PlacementChangeReques | READ                  | N/A                   |
-| t                     |                       |                       |
+| PlacementChangeRequest | READ                  | N/A                   |
 +-----------------------+-----------------------+-----------------------+
-| PlacementCommission   | READ, CREATE, UPDATE, | Hard                  |
-|                       | DELETE                |                       |
+| PlacementCommission   | READ, CREATE, UPDATE, DELETE | Hard           |
 +-----------------------+-----------------------+-----------------------+
-| Sendout               | READ, CREATE, UPDATE, | Hard                  |
-|                       | DELETE                |                       |
+| Sendout               | READ, CREATE, UPDATE, DELETE | Hard           |
 +-----------------------+-----------------------+-----------------------+
 | Skill                 | READ                  | N/A                   |
 +-----------------------+-----------------------+-----------------------+
@@ -111,14 +87,11 @@ isDeleted value to true. A hard delete is a DELETE operation.
 +-----------------------+-----------------------+-----------------------+
 | State                 | READ                  | N/A                   |
 +-----------------------+-----------------------+-----------------------+
-| Task                  | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
+| Task                  | READ, CREATE, UPDATE, DELETE | Soft           |
 +-----------------------+-----------------------+-----------------------+
 | Tearsheet             | READ, CREATE, UPDATE, | Soft                  |
-|                       | DELETE                |                       |
 +-----------------------+-----------------------+-----------------------+
-| TearsheetRecipient    | READ, CREATE, UPDATE, | Hard                  |
-|                       | DELETE                |                       |
+| TearsheetRecipient    | READ, CREATE, UPDATE, DELETE | Hard           |
 +-----------------------+-----------------------+-----------------------+
 | TimeUnit              | READ                  | N/A                   |
 +-----------------------+-----------------------+-----------------------+
