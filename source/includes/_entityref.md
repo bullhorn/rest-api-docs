@@ -35,55 +35,13 @@ AppointmentAttendee | READ, CREATE, UPDATE,  DELETE | Hard |
 BusinessSector | READ | N/A |
 Candidate | READ, CREATE, UPDATE, DELETE | Soft |
 
-
-
-CandidateCertificatio | READ, CREATE, UPDATE, DELETE | Soft|
-CandidateEducation    | READ, CREATE, UPDATE,  DELETE | Soft|
-CandidateReference    | READ, CREATE, UPDATE DELETE, | Soft|
-CandidateSource       | READ, CREATE, UPDATE, DELETE | Hard|
-CandidateWorkHistory  | READ, CREATE, UPDATE, DELETE | Soft|
-
-
---------------
-
-
-
-ClientContact         | READ, CREATE, UPDATE, DELETE | Soft           |
-ClientCorporation     | READ, CREATE, UPDATE  | N/A                   |
-CorporationDepartment | READ                  | N/A                   |
-CorporateUser         | READ                  | N/A                   |
-Country               | READ                  | N/A                   |
-CustomAction          | READ                  | N/A                   |
-Department            | READ, CREATE, UPDATE  | N/A                   |
-JobOrder              | READ, CREATE, UPDATE, DELETE | Soft           |
-JobSubmission         | READ, CREATE, UPDATE, DELETE | Soft           |
-Lead\(CRM only)                 | READ, CREATE, UPDATE, DELETE | Soft |
-LeadHistory\(CRM only)          | READ                  | N/A         |
-Note                  | READ, CREATE, UPDATE, DELETE | Soft           |
-NoteEntity            | READ, CREATE, UPDATE, DELETE | Hard           |
-Opportunity\(CRM only)          | READ, CREATE, UPDATE, DELETE | Soft |
-OpportunityHistory\ (CRM only)  | READ                  | N/A         |
-Placement             | READ, CREATE, UPDATE, DELETE | Hard           |
-PlacementChangeRequest | READ                  | N/A                   |
-PlacementCommission   | READ, CREATE, UPDATE, DELETE | Hard           |
-Sendout               | READ, CREATE, UPDATE, DELETE | Hard           |
-Skill                 | READ                  | N/A                   |
-Specialty             | READ                  | N/A                   |
-State                 | READ                  | N/A                   |
-Task                  | READ, CREATE, UPDATE, DELETE | Soft           |
-Tearsheet             | READ, CREATE, UPDATE, | Soft                  |
-TearsheetRecipient    | READ, CREATE, UPDATE, DELETE | Hard           |
-TimeUnit              | READ                  | N/A                   |
-
 ### ActivityGoal
 
 Read-only view of activity goals established for sales personnel in the
 organization.
 
-ActivityGoal field |   Type |              Description |     Not null |   Read-only
-id |                       Integer |              Unique identifier for this entity.|                                                                                X |              X |
-
-user |                    To-many association |  User for whom this activity goal was created. |                                                                     X |              X |
+ActivityGoal field | Type | Description | Not null | Read-only
+id | Integer | Unique identifier for this entity.| X | X |
 
 
                                                                                                                                                                                   
