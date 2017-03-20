@@ -15,6 +15,7 @@ set of entity meta data for any given entity.
 isDeleted value to true. A hard delete is a DELETE operation.
 
 Valid table as template:
+
 Params | Required | Description
 ------ | -------- | -----
 access_token | yes | Access token obtained from OAuth authorization |
@@ -22,16 +23,20 @@ version      | yes | Version of the API to use (\* is a wildcard for latest vers
 ttl          | no  | Session time-to-live in minutes. |
 clientId     | no  |  Pass in an OAuth key here to spoof the features associated. |
 
+Attempt at a table from converted source:
 
-
-#### Entity name      | #### Allowed CRUD operations | #### Delete type|
-ActivityGoal          | READ                  |N/A             |       
+Entity name      | Allowed CRUD operations | Delete type
+------ | -------- | -----
+ActivityGoal | READ | N/A             |       
 ActivityGoalConfiguration | READ, CREATE, UPDATE, DELETE | Soft|
-ActivityGoalTarget    | READ, CREATE, UPDATE, DELETE | Hard|
-Appointment           | READ, CREATE, UPDATE, DELETE | Soft|
-AppointmentAttendee   | READ, CREATE, UPDATE,  DELETE | Hard|
-BusinessSector        | READ                  | N/A|
-Candidate             | READ, CREATE, UPDATE, DELETE | Soft|
+ActivityGoalTarget    | READ, CREATE, UPDATE, DELETE | Hard |
+Appointment | READ, CREATE, UPDATE, DELETE | Soft |
+AppointmentAttendee | READ, CREATE, UPDATE,  DELETE | Hard |
+BusinessSector | READ | N/A |
+Candidate | READ, CREATE, UPDATE, DELETE | Soft |
+
+
+
 CandidateCertificatio | READ, CREATE, UPDATE, DELETE | Soft|
 CandidateEducation    | READ, CREATE, UPDATE,  DELETE | Soft|
 CandidateReference    | READ, CREATE, UPDATE DELETE, | Soft|
