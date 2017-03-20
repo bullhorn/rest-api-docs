@@ -14,6 +14,16 @@ set of entity meta data for any given entity.
 **Note:** A soft delete is a POST operation in which you change the
 isDeleted value to true. A hard delete is a DELETE operation.
 
+Valid table as template:
+Params | Required | Description
+------ | -------- | -----
+access_token | yes | Access token obtained from OAuth authorization |
+version      | yes | Version of the API to use (\* is a wildcard for latest version). |
+ttl          | no  | Session time-to-live in minutes. |
+clientId     | no  |  Pass in an OAuth key here to spoof the features associated. |
+
+
+
 #### Entity name      | #### Allowed CRUD operations | #### Delete type|
 ActivityGoal          | READ                  |N/A             |       
 ActivityGoalConfiguration | READ, CREATE, UPDATE, DELETE | Soft|
