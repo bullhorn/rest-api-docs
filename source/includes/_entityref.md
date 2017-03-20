@@ -35,6 +35,749 @@ AppointmentAttendee | READ, CREATE, UPDATE,  DELETE | Hard |
 BusinessSector | READ | N/A |
 Candidate | READ, CREATE, UPDATE, DELETE | Soft |
 
+
+
+
++-------------+-------------+-------------+-------------+-------------+
+| **ClientCon | **Type**    | **Descripti | **Not       | **Read-only |
+| tact**      |             | on**        | null**      | **          |
+|             |             |             |             |             |
+| **field**   |             |             |             |             |
++=============+=============+=============+=============+=============+
+| id          | Integer     | Unique      | X           | X           |
+|             |             | identifier  |             |             |
+|             |             | for this    |             |             |
+|             |             | entity.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| address     | Address     | Contact's   |             |             |
+|             |             | address:    |             |             |
+|             |             |             |             |             |
+|             |             | -   address |             |             |
+|             |             | 1           |             |             |
+|             |             |             |             |             |
+|             |             | -   address |             |             |
+|             |             | 2           |             |             |
+|             |             |             |             |             |
+|             |             | -   city    |             |             |
+|             |             |             |             |             |
+|             |             | -   state   |             |             |
+|             |             |             |             |             |
+|             |             | -   zip     |             |             |
+|             |             |             |             |             |
+|             |             | -   country |             |             |
+|             |             | ID:         |             |             |
+|             |             |             |             |             |
+|             |             | > options:\ |             |             |
+|             |             | > value: 1\ |             |             |
+|             |             | > value: 2  |             |             |
+|             |             |             |             |             |
+|             |             | Use the     |             |             |
+|             |             | following   |             |             |
+|             |             | REST call   |             |             |
+|             |             | to get the  |             |             |
+|             |             | list of     |             |             |
+|             |             | countryIDs  |             |             |
+|             |             | and labels: |             |             |
+|             |             |             |             |             |
+|             |             | /meta/Clien |             |             |
+|             |             | tContact?\  |             |             |
+|             |             | fields=addr |             |             |
+|             |             | ess(country |             |             |
+|             |             | ID)         |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| businessSec | To-many     | Ids of      |             |             |
+| tors        | association | BusinessSec |             |             |
+|             |             | tors        |             |             |
+|             |             | in which    |             |             |
+|             |             | the Contact |             |             |
+|             |             | operates.   |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| category    | To-one      | Contact's   | X           |             |
+|             | association | primary     |             |             |
+|             |             | Category.   |             |             |
+|             |             |             |             |             |
+|             |             | The default |             |             |
+|             |             | value is    |             |             |
+|             |             | the Other   |             |             |
+|             |             | Area(s)     |             |             |
+|             |             | category    |             |             |
+|             |             | for the     |             |             |
+|             |             | user’s      |             |             |
+|             |             | private     |             |             |
+|             |             | label or    |             |             |
+|             |             | the first   |             |             |
+|             |             | Category.   |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| categories  | To-many     | Ids of the  |             |             |
+|             | association | Categories  |             |             |
+|             |             | associated  |             |             |
+|             |             | with the    |             |             |
+|             |             | Contact.    |             |             |
+|             |             | Note that   |             |             |
+|             |             | the         |             |             |
+|             |             | categoryId  |             |             |
+|             |             | property is |             |             |
+|             |             | used to     |             |             |
+|             |             | store the   |             |             |
+|             |             | contact's   |             |             |
+|             |             | primary     |             |             |
+|             |             | Category,   |             |             |
+|             |             | while this  |             |             |
+|             |             | association |             |             |
+|             |             | hold that   |             |             |
+|             |             | Category    |             |             |
+|             |             | and any     |             |             |
+|             |             | other       |             |             |
+|             |             | Categories  |             |             |
+|             |             | to which    |             |             |
+|             |             | the Contact |             |             |
+|             |             | belongs.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| certificati | String      | Contact's   |             |             |
+| ons         |             | certificati |             |             |
+|             |             | ons.        |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| clientCorpo | To-one      | ClientCorpo | X           |             |
+| ration      | association | ration      |             |             |
+|             |             | for which   |             |             |
+|             |             | the Contact |             |             |
+|             |             | works.      |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| comments    | String      | Free-text   |             |             |
+|             |             | comments on |             |             |
+|             |             | this        |             |             |
+|             |             | Contact.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| customDate1 | Timestamp   | Configurabl |             |             |
+| -3          |             | e           |             |             |
+|             |             | date fields |             |             |
+|             |             | that can be |             |             |
+|             |             | used to     |             |             |
+|             |             | store       |             |             |
+|             |             | custom data |             |             |
+|             |             | depending   |             |             |
+|             |             | on the      |             |             |
+|             |             | needs of a  |             |             |
+|             |             | particular  |             |             |
+|             |             | deployment. |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| customFloat | Double      | Configurabl |             |             |
+| 1-3         |             | e           |             |             |
+|             |             | numeric     |             |             |
+|             |             | fields that |             |             |
+|             |             | can be used |             |             |
+|             |             | to store    |             |             |
+|             |             | custom data |             |             |
+|             |             | depending   |             |             |
+|             |             | on the      |             |             |
+|             |             | needs of a  |             |             |
+|             |             | particular  |             |             |
+|             |             | deployment. |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| customInt1- | Integer     | Configurabl |             |             |
+| 3           |             | e           |             |             |
+|             |             | numeric     |             |             |
+|             |             | fields that |             |             |
+|             |             | can be used |             |             |
+|             |             | to store    |             |             |
+|             |             | custom data |             |             |
+|             |             | depending   |             |             |
+|             |             | on the      |             |             |
+|             |             | needs of a  |             |             |
+|             |             | particular  |             |             |
+|             |             | deployment. |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| customObjec | CustomObjec | Fields to   |             |             |
+| t1s         | t           | which       |             |             |
+| to 10s      |             | custom      |             |             |
+|             |             | objects can |             |             |
+|             |             | be          |             |             |
+|             |             | assigned.   |             |             |
+|             |             | For more    |             |             |
+|             |             | information |             |             |
+|             |             | about       |             |             |
+|             |             | custom      |             |             |
+|             |             | objects,    |             |             |
+|             |             | see the     |             |             |
+|             |             | Bullhorn    |             |             |
+|             |             | Resource    |             |             |
+|             |             | Center and  |             |             |
+|             |             | the         |             |             |
+|             |             | following   |             |             |
+|             |             | article on  |             |             |
+|             |             | using the   |             |             |
+|             |             | REST API    |             |             |
+|             |             | with custom |             |             |
+|             |             | objects:\   |             |             |
+|             |             | <http://dev |             |             |
+|             |             | eloper.bull |             |             |
+|             |             | horn.com/ar |             |             |
+|             |             | ticles/cust |             |             |
+|             |             | omobjects>  |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| customText1 | String      | Configurabl |             |             |
+| -20         | (100)       | e           |             |             |
+|             |             | text fields |             |             |
+|             |             | that can be |             |             |
+|             |             | used to     |             |             |
+|             |             | store       |             |             |
+|             |             | custom data |             |             |
+|             |             | depending   |             |             |
+|             |             | on the      |             |             |
+|             |             | needs of a  |             |             |
+|             |             | particular  |             |             |
+|             |             | deployment. |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| customTextB | String      | Configurabl |             |             |
+| lock1-5     |             | e           |             |             |
+|             |             | text fields |             |             |
+|             |             | that can be |             |             |
+|             |             | used to     |             |             |
+|             |             | store       |             |             |
+|             |             | custom data |             |             |
+|             |             | depending   |             |             |
+|             |             | on the      |             |             |
+|             |             | needs of a  |             |             |
+|             |             | particular  |             |             |
+|             |             | deployment. |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| dateAdded   | Timestamp   | Date on     | X           |             |
+|             |             | which this  |             |             |
+|             |             | record was  |             |             |
+|             |             | created in  |             |             |
+|             |             | the         |             |             |
+|             |             | Bullhorn    |             |             |
+|             |             | system.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| dateLastMod | Timestamp   | Date on     |             |             |
+| ified       |             | which the   |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | was last    |             |             |
+|             |             | modified.   |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| dateLastVis | Timestamp   | Date of     |             |             |
+| it          |             | ClientConta |             |             |
+|             |             | ct’s        |             |             |
+|             |             | last visit. |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| description | String      | Large text  |             |             |
+|             |             | field for   |             |             |
+|             |             | additional  |             |             |
+|             |             | information |             |             |
+|             |             | about the   |             |             |
+|             |             | contact.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| desiredCate | String      | Categories  |             |             |
+| gories      |             | that the    |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | wants       |             |             |
+|             |             | Candidates  |             |             |
+|             |             | to belong   |             |             |
+|             |             | to.         |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| desiredSkil | String      | Skills that |             |             |
+| ls          |             | the         |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | wants his   |             |             |
+|             |             | or her      |             |             |
+|             |             | Candidates  |             |             |
+|             |             | to have.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| desiredSpec | String      | Specialties |             |             |
+| ialties     |             | that the    |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | wants his   |             |             |
+|             |             | or her      |             |             |
+|             |             | Candidates  |             |             |
+|             |             | to have.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| division    | String (40) | Department  |             |             |
+|             |             | that the    |             |             |
+|             |             | Contact is  |             |             |
+|             |             | associated  |             |             |
+|             |             | with.       |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| email       | String (60) | ClientConta | X           |             |
+|             |             | ct's        |             |             |
+|             |             | primary     |             |             |
+|             |             | (work)      |             |             |
+|             |             | email       |             |             |
+|             |             | address.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| email2      | String      | Additional  |             |             |
+|             | (100)       | email       |             |             |
+|             |             | address.    |             |             |
+|             |             | Typically   |             |             |
+|             |             | used for    |             |             |
+|             |             | the         |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct’s        |             |             |
+|             |             | home or     |             |             |
+|             |             | personal    |             |             |
+|             |             | email.      |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| email3      | String      | Additional  |             |             |
+|             | (100)       | email       |             |             |
+|             |             | address.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| externalID  | String (30) | External    |             |             |
+|             |             | identifier  |             |             |
+|             |             | for the     |             |             |
+|             |             | record,     |             |             |
+|             |             | used for    |             |             |
+|             |             | migrations  |             |             |
+|             |             | and         |             |             |
+|             |             | back-office |             |             |
+|             |             | Integration |             |             |
+|             |             | .           |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| fax         | String (20) | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | primary     |             |             |
+|             |             | (work) fax  |             |             |
+|             |             | number.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| fax2        | String (20) | Additional  |             |             |
+|             |             | fax number. |             |             |
+|             |             | Typically   |             |             |
+|             |             | used for    |             |             |
+|             |             | the         |             |             |
+|             |             | contact's   |             |             |
+|             |             | home or     |             |             |
+|             |             | personal    |             |             |
+|             |             | fax.        |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| fax3        | String (20) | Additional  |             |             |
+|             |             | fax number. |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| firstName   | String (50) | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | first name. |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| isDayLightS | Boolean     | Indicates   |             |             |
+| avings      |             | whether the |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | location is |             |             |
+|             |             | using       |             |             |
+|             |             | Daylight    |             |             |
+|             |             | Saving      |             |             |
+|             |             | Time.       |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| isDeleted   | Boolean     | Indicates   | X           |             |
+|             |             | whether     |             |             |
+|             |             | this record |             |             |
+|             |             | has been    |             |             |
+|             |             | marked as   |             |             |
+|             |             | deleted in  |             |             |
+|             |             | the         |             |             |
+|             |             | Bullhorn    |             |             |
+|             |             | system.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| lastName    | String (50) | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | last name.  |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| leads       | To-many     | Leads       |             |             |
+|             | association | associated  |             |             |
+|             |             | with this   |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct.         |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| linkedPerso | Person      | If the      |             |             |
+| n           |             | person      |             |             |
+|             | (superclass | represented |             |             |
+|             | of          | by this     |             |             |
+|             | Candidate   | ClientConta |             |             |
+|             | and         | ct          |             |             |
+|             | ClientConta | is also a   |             |             |
+|             | ct)         | Candidate,  |             |             |
+|             |             | this field  |             |             |
+|             |             | includes    |             |             |
+|             |             | the         |             |             |
+|             |             | following   |             |             |
+|             |             | Candidate   |             |             |
+|             |             | fields:     |             |             |
+|             |             |             |             |             |
+|             |             | id          |             |             |
+|             |             |             |             |             |
+|             |             | \_subtype   |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| massMailOpt | Boolean     | Indicates   |             | X           |
+| Out         |             | whether the |             |             |
+|             |             | Contact has |             |             |
+|             |             | chosen not  |             |             |
+|             |             | to be       |             |             |
+|             |             | included in |             |             |
+|             |             | mass emails |             |             |
+|             |             | through the |             |             |
+|             |             | Bullhorn    |             |             |
+|             |             | system.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| middleName  | String (50) | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | middle      |             |             |
+|             |             | name.       |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| mobile      | String (20) | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | mobile      |             |             |
+|             |             | (cellular)  |             |             |
+|             |             | telephone   |             |             |
+|             |             | number.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| name        | String      | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | full name.  |             |             |
+|             |             | Should be a |             |             |
+|             |             | combination |             |             |
+|             |             | of the      |             |             |
+|             |             | firstName   |             |             |
+|             |             | and         |             |             |
+|             |             | lastName    |             |             |
+|             |             | fields      |             |             |
+|             |             | separated   |             |             |
+|             |             | by a space. |             |             |
+|             |             |             |             |             |
+|             |             | **Notes:**  |             |             |
+|             |             | If you      |             |             |
+|             |             | create a    |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | with no     |             |             |
+|             |             | value in    |             |             |
+|             |             | the name    |             |             |
+|             |             | field,      |             |             |
+|             |             | users will  |             |             |
+|             |             | have no way |             |             |
+|             |             | to select   |             |             |
+|             |             | that        |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | in the      |             |             |
+|             |             | Bullhorn    |             |             |
+|             |             | staffing    |             |             |
+|             |             | application |             |             |
+|             |             | .           |             |             |
+|             |             |             |             |             |
+|             |             | If you      |             |             |
+|             |             | create or   |             |             |
+|             |             | modify a    |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | name that   |             |             |
+|             |             | is not a    |             |             |
+|             |             | combination |             |             |
+|             |             | of the      |             |             |
+|             |             | firstName   |             |             |
+|             |             | and         |             |             |
+|             |             | lastName    |             |             |
+|             |             | fields, the |             |             |
+|             |             | name will   |             |             |
+|             |             | be          |             |             |
+|             |             | overwritten |             |             |
+|             |             | when a user |             |             |
+|             |             | saves the   |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | in the      |             |             |
+|             |             | Bullhorn    |             |             |
+|             |             | staffing    |             |             |
+|             |             | application |             |             |
+|             |             | .           |             |             |
+|             |             | The name    |             |             |
+|             |             | will change |             |             |
+|             |             | to a        |             |             |
+|             |             | combination |             |             |
+|             |             | of the      |             |             |
+|             |             | firstName   |             |             |
+|             |             | and         |             |             |
+|             |             | lastName    |             |             |
+|             |             | fields.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| namePrefix  | String (5)  | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | name        |             |             |
+|             |             | prefix, for |             |             |
+|             |             | example     |             |             |
+|             |             | Dr., Ms,    |             |             |
+|             |             | Mr., and so |             |             |
+|             |             | forth.      |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| nameSuffix  | String (5)  | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | name        |             |             |
+|             |             | suffix, for |             |             |
+|             |             | example Jr. |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| nickName    | String      | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | nickname.   |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| numEmployee | Integer     | Number of   | X           |             |
+| s           |             | employees   |             |             |
+|             |             | who report  |             |             |
+|             |             | to this     |             |             |
+|             |             | Contact.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| occupation  | String (50) | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | job title.  |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| office      | String (40) | For         |             |             |
+|             |             | companies   |             |             |
+|             |             | with        |             |             |
+|             |             | multiple    |             |             |
+|             |             | locations,  |             |             |
+|             |             | this field  |             |             |
+|             |             | can be used |             |             |
+|             |             | to indicate |             |             |
+|             |             | which       |             |             |
+|             |             | office this |             |             |
+|             |             | contact     |             |             |
+|             |             | works out   |             |             |
+|             |             | of.         |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| owner       | To-one      | CorporateUs | X           |             |
+|             | association | er          |             |             |
+|             |             | who is the  |             |             |
+|             |             | owner of    |             |             |
+|             |             | this        |             |             |
+|             |             | Contact     |             |             |
+|             |             | record.     |             |             |
+|             |             |             |             |             |
+|             |             | The default |             |             |
+|             |             | value is    |             |             |
+|             |             | user who    |             |             |
+|             |             | creates the |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct.         |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| pager       | String (20) | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | pager       |             |             |
+|             |             | number.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| password    | String      | ClientConta | X           |             |
+|             |             | ct's        |             |             |
+|             |             | password    |             |             |
+|             |             | for logging |             |             |
+|             |             | in to       |             |             |
+|             |             | Bullhorn.   |             |             |
+|             |             |             |             |             |
+|             |             | The default |             |             |
+|             |             | value is a  |             |             |
+|             |             | randomly    |             |             |
+|             |             | generated   |             |             |
+|             |             | string.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| phone       | String (20) | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | primary     |             |             |
+|             |             | (work)      |             |             |
+|             |             | telephone   |             |             |
+|             |             | number.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| phone2      | String (20) | Alternate   |             |             |
+|             |             | phone       |             |             |
+|             |             | number.     |             |             |
+|             |             | Typically   |             |             |
+|             |             | used for    |             |             |
+|             |             | the         |             |             |
+|             |             | contact's   |             |             |
+|             |             | home phone  |             |             |
+|             |             | number.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| phone3      | String (20) | Alternate   |             |             |
+|             |             | phone       |             |             |
+|             |             | number.     |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| preferredCo | String (15) | Contact's   | X           |             |
+| ntact       |             | preferred   |             |             |
+|             |             | method of   |             |             |
+|             |             | contact     |             |             |
+|             |             | (For        |             |             |
+|             |             | example,    |             |             |
+|             |             | phone,      |             |             |
+|             |             | email, and  |             |             |
+|             |             | so forth.)  |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| referredByP | Person      | Person who  |             |             |
+| erson       |             | referred    |             |             |
+|             |             | this        |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct.         |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| reportToPer | Person      | Person to   |             |             |
+| son         |             | whom this   |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | reports.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| secondaryAd | Address     | ClientConta |             |             |
+| dress       |             | ct's        |             |             |
+|             |             | secondary   |             |             |
+|             |             | (home)      |             |             |
+|             |             | address:    |             |             |
+|             |             |             |             |             |
+|             |             | -   address |             |             |
+|             |             | 1           |             |             |
+|             |             |             |             |             |
+|             |             | -   address |             |             |
+|             |             | 2           |             |             |
+|             |             |             |             |             |
+|             |             | -   city    |             |             |
+|             |             |             |             |             |
+|             |             | -   state   |             |             |
+|             |             |             |             |             |
+|             |             | -   zip     |             |             |
+|             |             |             |             |             |
+|             |             | -   country |             |             |
+|             |             | ID:         |             |             |
+|             |             |             |             |             |
+|             |             | > options:\ |             |             |
+|             |             | > value: 1\ |             |             |
+|             |             | > value: 2  |             |             |
+|             |             |             |             |             |
+|             |             | Use the     |             |             |
+|             |             | following   |             |             |
+|             |             | REST call   |             |             |
+|             |             | to get the  |             |             |
+|             |             | list of     |             |             |
+|             |             | countryIDs  |             |             |
+|             |             | and labels: |             |             |
+|             |             |             |             |             |
+|             |             | /meta/Clien |             |             |
+|             |             | tContact?\  |             |             |
+|             |             | fields=addr |             |             |
+|             |             | ess(country |             |             |
+|             |             | ID)         |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| secondaryOw | To-many     | Ids of      |             |             |
+| ners        | association | internal    |             |             |
+|             |             | users who   |             |             |
+|             |             | are         |             |             |
+|             |             | secondary   |             |             |
+|             |             | owners of   |             |             |
+|             |             | this        |             |             |
+|             |             | Contact.    |             |             |
+|             |             | Note that   |             |             |
+|             |             | the owner   |             |             |
+|             |             | property is |             |             |
+|             |             | used to     |             |             |
+|             |             | store the   |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct’s        |             |             |
+|             |             | primary     |             |             |
+|             |             | owner,      |             |             |
+|             |             | while this  |             |             |
+|             |             | association |             |             |
+|             |             | hold that   |             |             |
+|             |             | person and  |             |             |
+|             |             | any other   |             |             |
+|             |             | owners of   |             |             |
+|             |             | the         |             |             |
+|             |             | Contact.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| skills      | To-many     | Ids of      |             |             |
+|             | association | Skills that |             |             |
+|             |             | the         |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | wants       |             |             |
+|             |             | Candidates  |             |             |
+|             |             | to have.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| smsOptIn    | Boolean     | Indicates   |             |             |
+|             |             | whether the |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | has granted |             |             |
+|             |             | permission  |             |             |
+|             |             | to be sent  |             |             |
+|             |             | messages    |             |             |
+|             |             | via SMS.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| source      | String      | Source from |             |             |
+|             | (200)       | which this  |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | was found.  |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| status      | String (30) | Status of   | X           |             |
+|             |             | the         |             |             |
+|             |             | contact;    |             |             |
+|             |             | for         |             |             |
+|             |             | example,    |             |             |
+|             |             | New Lead,   |             |             |
+|             |             | Active,     |             |             |
+|             |             | Prospect,   |             |             |
+|             |             | and so      |             |             |
+|             |             | forth.      |             |             |
+|             |             | Possible    |             |             |
+|             |             | values can  |             |             |
+|             |             | be          |             |             |
+|             |             | configured  |             |             |
+|             |             | using field |             |             |
+|             |             | maps.       |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| timeZoneOff | Integer     | Indicates   |             |             |
+| setEST      |             | the number  |             |             |
+|             |             | of hours by |             |             |
+|             |             | which the   |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct's        |             |             |
+|             |             | time zone   |             |             |
+|             |             | differs     |             |             |
+|             |             | from        |             |             |
+|             |             | Eastern     |             |             |
+|             |             | Standard    |             |             |
+|             |             | Time. For   |             |             |
+|             |             | example,    |             |             |
+|             |             | Pacific     |             |             |
+|             |             | Standard    |             |             |
+|             |             | Time is -3, |             |             |
+|             |             | three hours |             |             |
+|             |             | earlier     |             |             |
+|             |             | than        |             |             |
+|             |             | Eastern.    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| type        | String (30) | Describes   | X           |             |
+|             |             | the type of |             |             |
+|             |             | ClientConta |             |             |
+|             |             | ct          |             |             |
+|             |             | (for        |             |             |
+|             |             | example,    |             |             |
+|             |             | Primary,    |             |             |
+|             |             | Secondary,  |             |             |
+|             |             | Target,     |             |             |
+|             |             | Gatekeeper) |             |             |
+|             |             | .           |             |             |
+|             |             | Possible    |             |             |
+|             |             | values can  |             |             |
+|             |             | be          |             |             |
+|             |             | configured  |             |             |
+|             |             | using field |             |             |
+|             |             | maps.       |             |             |
++-------------+-------------+-------------+-------------+-------------+
+| username    | String      | ClientConta | X           |             |
+|             |             | ct's        |             |             |
+|             |             | username    |             |             |
+|             |             | for logging |             |             |
+|             |             | in to       |             |             |
+|             |             | Bullhorn.   |             |             |
+|             |             |             |             |             |
+|             |             | The default |             |             |
+|             |             | value is    |             |             |
+|             |             | \_\[random  |             |             |
+|             |             | number\]    |             |             |
++-------------+-------------+-------------+-------------+-------------+
+
+
 ### ActivityGoal
 
 Read-only view of activity goals established for sales personnel in the
