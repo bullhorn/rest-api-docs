@@ -21,6 +21,7 @@ includes:
   - find
   - lookup
   - errors
+  - entityref
 
 search: true
 ---
