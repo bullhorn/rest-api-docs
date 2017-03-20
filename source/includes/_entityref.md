@@ -80,14 +80,12 @@ TimeUnit              | READ                  | N/A                   |
 Read-only view of activity goals established for sales personnel in the
 organization.
 
- 
+ActivityGoal field |   Type |              Description |     Not null |   Read-only
+id |                       Integer |              Unique identifier for this entity.|                                                                                X |              X |
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **ActivityGoal field**   **Type**              **Description**                                                                                                   **Not null**   **Read-only**
-  ------------------------ --------------------- ----------------------------------------------------------------------------------------------------------------- -------------- ---------------
-  id                       Integer               Unique identifier for this entity.                                                                                X              X
+user |                    To-many association |  User for whom this activity goal was created. |                                                                     X |              X |
 
-  user                     To-many association   User for whom this activity goal was created.                                                                     X              X
+
                                                                                                                                                                                   
                                                  Entity - CorporateUser; id - Integer; firstName - String; lastName - String;                                                     
 
