@@ -14,20 +14,22 @@ set of entity meta data for any given entity.
 **Note:** A soft delete is a POST operation in which you change the
 isDeleted value to true. A hard delete is a DELETE operation.
 
-#### Entity name      | #### Allowed CRUD operations | #### Delete type
-ActivityGoal          | READ                  |                       
-ActivityGoalConfiguration | READ, CREATE, UPDATE, DELETE | Soft
-ActivityGoalTarget    | READ, CREATE, UPDATE, DELETE | Hard
-Appointment           | READ, CREATE, UPDATE, DELETE | Soft
-AppointmentAttendee   | READ, CREATE, UPDATE,  DELETE | Hard
-BusinessSector        | READ                  | N/A
-Candidate             | READ, CREATE, UPDATE, DELETE | Soft
-CandidateCertificatio | READ, CREATE, UPDATE, DELETE | Soft
-CandidateEducation    | READ, CREATE, UPDATE,  DELETE | Soft
-CandidateReference    | READ, CREATE, UPDATE DELETE, | Soft
-CandidateSource       | READ, CREATE, UPDATE, DELETE | Hard
-CandidateWorkHistory  | READ, CREATE, UPDATE, DELETE | Soft
+#### Entity name      | #### Allowed CRUD operations | #### Delete type|
+ActivityGoal          | READ                  |N/A             |       
+ActivityGoalConfiguration | READ, CREATE, UPDATE, DELETE | Soft|
+ActivityGoalTarget    | READ, CREATE, UPDATE, DELETE | Hard|
+Appointment           | READ, CREATE, UPDATE, DELETE | Soft|
+AppointmentAttendee   | READ, CREATE, UPDATE,  DELETE | Hard|
+BusinessSector        | READ                  | N/A|
+Candidate             | READ, CREATE, UPDATE, DELETE | Soft|
+CandidateCertificatio | READ, CREATE, UPDATE, DELETE | Soft|
+CandidateEducation    | READ, CREATE, UPDATE,  DELETE | Soft|
+CandidateReference    | READ, CREATE, UPDATE DELETE, | Soft|
+CandidateSource       | READ, CREATE, UPDATE, DELETE | Hard|
+CandidateWorkHistory  | READ, CREATE, UPDATE, DELETE | Soft|
 
+
+--------------
 
 
 
