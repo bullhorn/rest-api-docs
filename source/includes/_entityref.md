@@ -41,6 +41,7 @@ Read-only view of activity goals established for sales personnel in the
 organization.
 
 ActivityGoal field | Type | Description | Not null | Read-only
+------ | -------- | ----- | ----- | -----
 id | Integer | Unique identifier for this entity.| X | X |
 
 
