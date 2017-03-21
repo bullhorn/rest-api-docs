@@ -80,7 +80,7 @@ id</p>
 <td> </td>
 <td> </td>
 </tr>
-<tr class="odd"  align="right" style="vertical-align: top;">
+<tr class="odd"  align="left" valign="top">
 <td><p>backupApproving-</p>
 <p>ClientContact</p></td>
 <td>To-one association</td>
