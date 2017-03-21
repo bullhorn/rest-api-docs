@@ -37,7 +37,7 @@ Candidate | READ, CREATE, UPDATE, DELETE | Soft |
 
 
 A table as HTML code:
-<table align="right" style="vertical-align: top;">
+<table>
 <thead>
 <tr class="header">
 <th><p><strong>Placement</strong></p>
@@ -80,7 +80,7 @@ id</p>
 <td> </td>
 <td> </td>
 </tr>
-<tr class="odd">
+<tr class="odd"  align="right" style="vertical-align: top;">
 <td><p>backupApproving-</p>
 <p>ClientContact</p></td>
 <td>To-one association</td>
