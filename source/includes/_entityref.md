@@ -37,7 +37,7 @@ Candidate | READ, CREATE, UPDATE, DELETE | Soft |
 
 
 A table as HTML code:
-<table>
+<table align="left">
 <thead>
 <tr class="header">
 <th><p><strong>Placement</strong></p>
