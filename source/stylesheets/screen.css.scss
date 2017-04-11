@@ -24,6 +24,7 @@ under the License.
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
 
+
 html,
 body {
     color: $main-text;
@@ -289,6 +290,10 @@ body {
         right: 0;
         top: 0;
         bottom: 0;
+    }
+
+    .no-langs .dark-box {
+        width: 0%;
     }
 
     .lang-selector {
@@ -660,4 +665,26 @@ body {
 .highlight,
 .highlight .w {
     background-color: $code-bg;
+}
+
+.no-langs .content {
+    &>h1,
+    &>h2,
+    &>h3,
+    &>h4,
+    &>h5,
+    &>h6,
+    &>p,
+    &>table,
+    &>ul,
+    &>ol,
+    &>aside,
+    &>dl {
+        margin-right: 0;
+    }
+
+    pre,
+    blockquote {
+        width: 100%;
+    }
 }
