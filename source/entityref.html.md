@@ -10,11 +10,14 @@ toc_footers:
 
 includes:
   - entityref/activitygoal
+  - entityref/activitygoalconfiguration
   - entityref/activitygoaltarget
   - entityref/appointment
   - entityref/appointmentattendee
   - entityref/businesssector
   - entityref/candidate
+  - entityref/candidatecertification
+  - entityref/candidatereference
   - entityref/candidatecertification
   - entityref/candidateworkhistory
   - entityref/category
