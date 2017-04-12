@@ -2,171 +2,26 @@
 
 Read-only entity that represents a file associated with an entity. The GET /entity/{EntityType}\]/{entityID}/fileAttachments call returns a list of files associated with that entity. Entity can be ClientCorporation, JobOrder, Candidate, ClientContact, Opportunity, or Placement.
 
-<table>
-<thead>
-<tr class="header">
-<th><p><strong>{Entity}FileAttachement</strong></p>
-<p><strong>field</strong></p></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Not null</strong></th>
-<th><strong>Read-only</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td>Integer</td>
-<td>Unique identifier for the entity.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>contentSubType</td>
-<td>String</td>
-<td>Content subtype for the file.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>contentType</td>
-<td>String</td>
-<td>Content type for the file.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>dateAdded</td>
-<td>Timestamp</td>
-<td>When the file was added.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>description</td>
-<td>String</td>
-<td>Description for the file.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>directory</td>
-<td>String</td>
-<td>Location of the file on server.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>distribution</td>
-<td>String</td>
-<td>Distribution type for the file.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>externalID</td>
-<td>String</td>
-<td>Third-party ID of the file.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>fileExtension</td>
-<td>String</td>
-<td>Extension type of the file.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>fileSize</td>
-<td>Integer</td>
-<td>Size on disk of the file.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>fileType</td>
-<td>String</td>
-<td>Type of the file; for example, SAMPLE.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>isCopied</td>
-<td>Boolean</td>
-<td>Whether the file was copied from another entity.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>isDeleted</td>
-<td>Boolean</td>
-<td>Whether file is deleted</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>isOpen</td>
-<td>Boolean</td>
-<td>Whether file is open.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>isPrivate</td>
-<td>Boolean</td>
-<td>Whether the file is private.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>isSendOut</td>
-<td>Boolean</td>
-<td>Whether the file is from a sendout.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>{entity}</td>
-<td>To-one association</td>
-<td>Entity associated with the file.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>name</td>
-<td>String</td>
-<td>Name of the file.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>type</td>
-<td>String</td>
-<td>Type of the file; for example, Resume.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>usersSharedWith</td>
-<td>To-many association</td>
-<td>Users with whom the file is shared.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>uuid</td>
-<td>String</td>
-<td>Globally unique random ID.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+| **{Entity}FileAttachement field** | **Type** | **Description** | **Not null** | **Read-only** |
+| --- | --- | --- | --- | --- |
+| id | Integer | Unique identifier for the entity. | X | X |
+| contentSubType | String | Content subtype for the file. | X | |
+| contentType | String | Content type for the file. | X | |
+| dateAdded | Timestamp | When the file was added. | X | X |
+| description | String | Description for the file. | X | |
+| directory | String | Location of the file on server. | X | |
+| distribution | String | Distribution type for the file. | X | |
+| externalID | String | Third-party ID of the file. | X | |
+| fileExtension | String | Extension type of the file. | X | X |
+| fileSize | Integer | Size on disk of the file. | X | X |
+| fileType | String | Type of the file; for example, SAMPLE. | X | |
+| isCopied | Boolean | Whether the file was copied from another entity. | X | |
+| isDeleted | Boolean | Whether file is deleted | X | X |
+| isOpen | Boolean | Whether file is open. | X | X |
+| isPrivate | Boolean | Whether the file is private. | X | X |
+| isSendOut | Boolean | Whether the file is from a sendout. | X | X |
+| {entity} | To-one association | Entity associated with the file. | X | X |
+| name | String | Name of the file. | X | X |
+| type | String | Type of the file; for example, Resume. | X | |
+| usersSharedWith | To-many association | Users with whom the file is shared. | X | |
+| uuid | String | Globally unique random ID. | X | X |
