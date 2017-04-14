@@ -7,7 +7,7 @@ The ClientContact entity supports the massUpdate operations.
 | **ClientContact field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| address | Address | Contact's address:  address1, address2, city, state, zip, countryID: options: value: 1, value: 2. Use the following REST call to get the list of countryIDs and labels:/meta/ClientContact?fields=address(countryID) | | |
+| address | Address | Contact's  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:/meta/ClientContact?fields=address(countryID) | | |
 | businessSectors | To-many association | Ids of BusinessSectors in which the Contact operates. | | |
 | category | To-one association | Contact's primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category. | X | |
 | categories | To-many association | Ids of the Categories associated with the Contact. Note that the categoryId property is used to store the contact's primary Category, while this association hold that Category and any other Categories to which the Contact belongs. | | |
@@ -60,7 +60,7 @@ The ClientContact entity supports the massUpdate operations.
 | preferredContact | String (15) | Contact's preferred method of contact (For example, phone, email, and so forth.) | X | |
 | referredByPerson | Person | Person who referred this ClientContact. | | |
 | reportToPerson | Person | Person to whom this ClientContact reports. | | |
-| secondaryAddress | Address | ClientContact's secondary (home) address:address1, address2, city, state, zip, countryID: options: value: 1, value: 2. Use the following REST call to get the list of countryIDs and labels: /meta/ClientContact?fields=address(countryID). | | |
+| secondaryAddress | Address | ClientContact's secondary (home)  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/ClientContact?fields=address(countryID). | | |
 | secondaryOwners | To-many association | Ids of internal users who are secondary owners of this Contact. Note that the owner property is used to store the ClientContact’s primary owner, while this association hold that person and any other owners of the Contact. | | |
 | skills | To-many association | Ids of Skills that the ClientContact wants Candidates to have. | | |
 | smsOptIn | Boolean | Indicates whether the ClientContact has granted permission to be sent messages via SMS. | | |

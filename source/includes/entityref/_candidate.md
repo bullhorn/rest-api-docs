@@ -7,7 +7,7 @@ The Candidate entity supports the [massUpdate](#get-massupdate) operations.
 | **Candidate field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| address | Address | Candidate address: address1, address2, city, state, zip, countryID: options: value: 1, value: 2. Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID) | | |
+| address | Address | Candidate address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID) | | |
 | businessSectors | To-many association | Ids of BusinessSectors with which Candidate is associated. | | |
 | candidateSource | To-one association | Source of the Candidate. |   X | |
 | category | To-one association | Candidate's primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category. **Note:** This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below). | X | |
@@ -91,7 +91,7 @@ The Candidate entity supports the [massUpdate](#get-massupdate) operations.
 | referredByPerson | To-one association | Person who referred Candidate, if applicable. | | |
 | salary | BigDecimal | Candidate's desired yearly salary. | | |
 | salaryLow | BigDecimal | Lowest yearly salary the Candidate will accept. | | |
-| secondaryAddress | Address | Candidate's work address: address1, address2, city, state, zip, countryID: options: value: 1, value: 2. Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID) | | |
+| secondaryAddress | Address | Candidate's work address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID) | | |
 | secondaryOwners | To-many association | CorporateUsers who are additional owners of Candidate. | | |
 | secondarySkills | Skill | Skills that are listed as secondary skills for Candidate. | | |
 | sendouts | To-many association | Sendouts for Candidate. This field is populated when you create Sendouts where the Sendout.candidate is this Candidate. | | |

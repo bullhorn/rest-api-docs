@@ -7,7 +7,7 @@ The ClientCorporation entity supports the massUpdate operations.
 | **ClientCorporation field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| address | Address | ClientCorporation's main address: address:  address1, address2, city, state, zip, countryID: options: value: 1, value: 2. Use the following REST call to get the list of countryIDs and labels:/meta/ClientContact?fields=address(countryID)  | X | |
+| address | Address | ClientCorporation's main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:/meta/ClientContact?fields=address(countryID)  | X | |
 | annualRevenue | BigDecimal | ClientCorporation's annual revenue in millions of U.S. dollars. | X | |
 | billingAddress | AddressWithout-Country | Address that contains the address to which bills should be sent for this ClientCorporation. address1, address2, city, state, zip | | |
 | billingContact | String (100) | Name of the person to whom bills should be sent. | | |
