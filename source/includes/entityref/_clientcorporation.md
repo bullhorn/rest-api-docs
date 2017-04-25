@@ -14,9 +14,9 @@ The ClientCorporation entity supports the massUpdate operations.
 | billingFrequency | String (20) | Frequency with which bills should be sent to the ClientCorporation: for example, Weekly, Bi-Weekly, Semi-Monthly, Monthly. | | |
 | billingPhone | String (20) | Phone number of the billing contact person. | | |
 | businessSectorList | String | Comma-separated list of BusinessSectors in which the ClientCorporation operates. See field map data for a list of possible values. | | |
-| childClientCorporations | To-many association | ClientCorporations that are children of this one. Included ClientCorporation fields are: id, name | | |
+| childClientCorporations | To-many association | ClientCorporations that are children of this one. | | |
 | clientCorporationCertifications | To-many association | **Not supported in this release.** ClientCorporationCertifications associated with this corporation. | | |
-| clientContacts | To-many association | ClientContacts who work at this ClientCorporation. Included ClientContact fields are: id, firstName, lastName | | |
+| clientContacts | To-many association | ClientContacts who work at this ClientCorporation. | | |
 | companyDescription | String | Text description of the company. | | |
 | companyURL | String (100) | Company's website URL. May use http:// but not required. | | |
 | competitors | String | Company's major competitors. | | |
@@ -44,7 +44,7 @@ The ClientCorporation entity supports the massUpdate operations.
 | numOffices | Integer | Total number of offices for the ClientCorporation. | X | |
 | owners | To-many association | Owners of the ClientContacts for this ClientCorporation. | | |
 | ownerShip | String (30) | Status of the ClientCorporation's current ownership (for example, Public, Private). | | |
-| parentClientCorporation | To-one association | ClientCorporation that is a parent of this one. Included ClientCorporation fields are: id, name | | |
+| parentClientCorporation | To-one association | ClientCorporation that is a parent of this one. | | |
 | phone | String (20) | Main phone number for the ClientCorporation. | | |
 | rateCards | To-many association | **Not supported in this release.** Rate cards associated with this ClientCorporation. | | |
 | revenue | String | Estimated annual revenue in millions for the company. | | |

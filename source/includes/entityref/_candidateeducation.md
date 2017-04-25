@@ -6,7 +6,7 @@ Represents an educational degree or course of study that a Candidate lists on hi
 | **CandidateEducation field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | |
-| candidate | To-one association | Candidate with whom this entity is associated. Included Candidate fields are: id, firstName, lastName | | |
+| candidate | To-one association | Candidate with whom this entity is associated. | | |
 | certification | String | Certification received with this education, if applicable. | | |
 | city | String (40) | Name of the city where the education took place. | | |
 | comments | String | Free-text comments on this record. | | |

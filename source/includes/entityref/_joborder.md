@@ -69,7 +69,7 @@ The JobOrder entity supports the massUpdate operations.
 | publishedZip | String (18) | Published Zip Code of the job location. | | |
 | reasonClosed | String | Text description of the reason this job was closed, if applicable. | | |
 | reportTo | String (100) | Name and/or title of the person this job will report to. | | |
-| reportToClientContact | To-one association | ClientContact this job reports to. Included ClientContact fields are id,firstName, lastName | | |
+| reportToClientContact | To-one association | ClientContact this job reports to. | | |
 | responseUser | To-one association | CorporateUser to whom submissions should be sent. |
 | salary | BigDecimal | Salary offered for this job. | | |
 | salaryUnit | String (12) | Salary unit represented by the range (for example, per hour, yearly). | | |

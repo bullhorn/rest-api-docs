@@ -17,7 +17,7 @@ Represents a view into a JobOrder entity with information typically used in publ
 | isOpen | Boolean | Indicates whether the job is open. | X  | |
 | payRate | BigDecimal | Pay rate offered with this job. |  X | |
 | publicDescription | String (200000) | Description of this job for use on public job boards. | X | |
-| publishedCategory | To-one association | The category that was last selected when publishing the job. Included Category fields are: id, name |  X | |
+| publishedCategory | To-one association | The category that was last selected when publishing the job. |  X | |
 | publishedZip | String (18) | Published Zip Code of the job location. | X  | |
 | responseUser | To-one association | ID of CorporateUser to whom submissions should be sent. |  X | |
 | salary | BigDecimal | Salary offered for this job. |  X | |

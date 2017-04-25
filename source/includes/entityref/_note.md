@@ -10,8 +10,8 @@ If you include a commentingPerson value and a personReference value when you cre
 | action | String (30) | Action type associated with Note. The list of values is configured in the private label attribute called commentActionList. | | |
 | bHTimestamp | byte[] | Timestamp for this Note. | | |
 | commentingPerson | To-one association | Person who created the Note. The default value is user who creates the Note. | X | |
-| candidates | To-many association | Candidates associated with this Note. Included fields are id, firstName, lastName | | |
-| clientContacts | To-many association | ClientContacts associated with this Note. Included fields are id, firstName, lastName. | | |
+| candidates | To-many association | Candidates associated with this Note. | | |
+| clientContacts | To-many association | ClientContacts associated with this Note. | | |
 | comments | String | Text of this Note. | X | |
 | corporateUsers | To-many association | Ids of CorporateUsers associated with this Note. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
@@ -19,9 +19,9 @@ If you include a commentingPerson value and a personReference value when you cre
 | externalID | String (50) | External identifier for the record, used for integrations with external datasources or custom imports. | | | 
 | entities | To-many association | Ids of NoteEntities associated with this Note. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as Deleted in the Bullhorn system. | X | |
-| jobOrder | To-one association | Primary JobOrder associated with this Note. Included fields are id, title. | | |
-| jobOrders | To-many association | JobOrders associated with this Note. Included fields are id, title. | | |
-| leads | To-many association | Leads associated with this Note. Included lead field is id. | | |
+| jobOrder | To-one association | Primary JobOrder associated with this Note. | | |
+| jobOrders | To-many association | JobOrders associated with this Note. | | |
+| leads | To-many association | Leads associated with this Note. | | |
 | minutesSpent | Integer | Number of minutes spent on actions associated with this note, if applicable. | | |
-| personReference | To-one association | Person with whom this Note is associated. Included fields are id, _subtype. | X | |
+| personReference | To-one association | Person with whom this Note is associated. | X | |
 | placements | To-many association | Ids of Placements associated with this Note. | | |

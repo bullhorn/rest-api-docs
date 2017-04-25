@@ -11,7 +11,7 @@ The JobSubmission entity supports the massUpdate operations.
 | id | Integer | Unique identifier for this entity. | X | X |
 | appointments | To-many association | Ids of Appointments associated with this JobSubmission. | | |
 | billRate | BigDecimal | Bill rate for this JobSubmission. | | |
-| candidate | To-one association | Candidate submitted for this job. Included Candidate fields are id, firstName, lastName | X | | 
+| candidate | To-one association | Candidate submitted for this job. | X | | 
 | comments | String | Free-text comments on this JobSubmission. | | |
 | dateAdded | Timestamp | Date on which this JobSubmission record was created in the Bullhorn system. | X | X |
 | dateLastModified | Timestamp | Date on which the JobSubmission was last modified. | | |

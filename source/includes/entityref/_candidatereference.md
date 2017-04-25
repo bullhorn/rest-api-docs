@@ -5,7 +5,7 @@ Represents a person who serves as a reference for a Candidate.
 | **CandidateReference field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| candidate | To-one association | Candidate for whom this person is a reference. Included Candidate fields are: id, firstName, lastName | X | |
+| candidate | To-one association | Candidate for whom this person is a reference. | X | |
 | candidateTitle | String (50) | Candidate's title when he or she worked with or for the reference. | | |
 | clientCorporation | To-one association | ClientCorporation where the CandidateReference works. | | |
 | companyName | String (50) | Name of the company where reference works, if it does not have a ClientCorporation record in Bullhorn. | | |

@@ -25,7 +25,7 @@ Represents an Internal user at your organization. CorporateUser is read-only. 
 | isDeleted | Boolean | Indicates whether CorporateUser is deleted. | | |
 | isLockedOut | Boolean | Indicates whether the CorporateUser is locked out. | | |
 | isOutboundFaxEnabled | Boolean | Indicates whether the user has permission to send faxes. | X | |
-| jobAssignments | To-many association | JobOrders that have been assigned to this CorporateUser. Included JobOrder fields are: id, title | | |
+| jobAssignments | To-many association | JobOrders that have been assigned to this CorporateUser. | | |
 | loginRestrictions | LoginRestrictions | A group of available login restrictions, including time, date, and IP address. | | |
 | massMailOptOut | Boolean | Indicates whether the CorporateUser opted out of mass mailings. | | |
 | middleName | String (50) | Middle name of the CorporateUser. | | |
