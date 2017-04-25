@@ -41,7 +41,8 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | dateLastModified | Timestamp | Date on which the Placement was last modified. | | |
 | daysProRated | Integer | Indicates how many days the Candidate must work before the Client Corporation will be expected to pay a pro-rated portion of the fee. Used for Permanent placements. For example, if daysGuaranteed = 90 and daysProRated = 30, then if the Candidate works 29 days no fee is due, but if the Candidate works 30-89 days the Client Corporation must pay a percentage of the fee, and if the Candidate works 90 days or more, the full fee is due. | X | |
 | durationWeeks | Double | Duration of the job in weeks. You can use this property in addition to dateEnd. | X | |
-| employeeType | String (30) | Type of employee. For example, W2, 1099, Employee, Contractor, and so forth. |
+| employeeType | String (30) | Type of employee. For example, W2, 1099, Employee, Contractor, and so forth. | | |
+| expiringCredentials | Integer | Number of credentials on requirements of this placement that are expiring within the next 30 days or already expired. | | |
 | employmentType | String (30) | Employment Type, initially copied from the associated JobOrder but can be modified on the Placement record. | X | |
 | fee | Double | Fee (expressed as a decimal) that the company will receive for this placement. | X | |
 | hoursOfOperation | String (100) | Hours during which the employee will work. | | |
@@ -49,6 +50,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | housingAmenities | To-many association | **Not supported in this release.** Amenities available as part of the housing arrangement for this Placement, if applicable. | | |
 | housingManagerID | Integer | Id of the corporate user serving as manager of the housing arrangements, if applicable. | | |
 | housingStatus | String | Status of the Placement Housing, if applicable. | | |
+| incompleteRequirements | Integer | Number of requirements on this placements that are incomplete. | | |
 | invoiceGroupID | Integer | **Not supported in this release.** Id of the InvoiceGroup object associated with this Placement. | | |
 | invoiceGroupName | String (100) | Name of the invoice group associated with this Placement. | | |
 | invoiceID | Integer | **Not supported in this release.** Id of the Invoice object associated with this Placement. This field is used for Permanent placements since only a single invoice is needed. | | |
@@ -65,6 +67,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | overtimeRate | Double | Hourly rate at which the employee will be paid for overtime work. | | |
 | payRate | BigDecimal | Rate at which the employee will be paid during regular business hours. This may or may not be used depending on the job type. | X | |
 | pendingChangeRequests | Integer | Number of change requests with a status of submitted. | | |
+| placementCertifications | To-many association | PlacementCertifications associated with this Placement. | | |
 | recruitingManagerPercentGrossMargin | Double | Percentage of the total gross margin that the recruiting manager will receive. | X | |
 | referralFee | BigDecimal | Referral fee associated with this Placement, if any. Only used with external Candidate source. | X | |
 | referralFeeType | String | Configurable list of fee types associated with the referralFee. Only used with external Candidate source. | X | |
