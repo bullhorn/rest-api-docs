@@ -3,33 +3,33 @@
 ## <span class="tag">GET</span> /meta
 
 ``` shell
-curl https://rest.bullhorn.com/rest-services/e999/meta
+curl https://rest.bullhornstaffing.com/rest-services/e999/meta
 
 # Example Response
 [
     {
         "entity": "Appointment",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/Appointment?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/Appointment?fields=*"
     },
     {
         "entity": "BusinessSector",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/BusinessSector?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/BusinessSector?fields=*"
     },
     {
         "entity": "Candidate",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/Candidate?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*"
     },
     {
         "entity": "Category",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/Category?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/Category?fields=*"
     },
     {
         "entity": "ClientContact",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/ClientContact?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientContact?fields=*"
     },
     {
         "entity": "ClientCorporation",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/ClientCorporation?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientCorporation?fields=*"
     },
     ...
 ]
@@ -42,13 +42,13 @@ Read-only system fields ( fields with names prefixed with _ ) are not represente
 ##  <span class="tag">GET</span> /meta/{Entity}
 
 ``` shell
-curl https://rest.bullhorn.com/e999/meta/Candidate?fields=*
+curl https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*
 # Example Response
 {
   "entity" : "Candidate",
-  "entityMetaUrl" : "https://rest.bullhorn.com/e999/meta/Candidate?fields=*",
+  "entityMetaUrl" : "https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*",
   "label" : "Candidate",
-  "fields" : [ {
+  "fields" : { {
     "name" : "id",
     "type" : "ID",
     "dataType" : "Integer"
@@ -62,9 +62,9 @@ Returns entity and property metadata for the specified entity type.
 
 ### HTTP Request
 
-`GET [corporation-token]/meta/[entity-name]/?fields=[field-list]&meta=[ basic or full ]`
+`GET {corporation-token}/meta/{entity-name}/?fields={field-list}&meta={ basic or full }`
 
-Params | Required | Description
+Parameter | Required | Description
 ------ | -------- | -----
 fields | yes | Comma-separated list of field names.
 layout | yes | Name of a configured layout. A field list, layout name or both may be specified.

@@ -3,7 +3,7 @@
 ## Getting a Company's notes
 
 ``` javascript
-// https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165/clientContactNotes?fields=id,action,comments
+// https://rest.bullhornstaffing.com/e999/entity/ClientCorporation/5059165/clientContactNotes?fields=id,action,comments
 {
   "total" : 3,
   "data" : [{
@@ -24,7 +24,7 @@ NOTE: At least one of the required parameters(fields and layout) or both must be
 ## Multiple Entities
 
 ``` javascript
-// https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName
+// https://rest.bullhornstaffing.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName
 {
     data: [
         {

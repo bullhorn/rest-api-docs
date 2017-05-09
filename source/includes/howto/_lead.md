@@ -3,7 +3,7 @@
 ## Convert a Lead to a Contact
 
 ``` javascript
-// GET https://rest.bullhorn.com/e999/entity/Lead/5059165?fields=id,firstName,lastName
+// GET https://rest.bullhornstaffing.com/e999/entity/Lead/5059165?fields=id,firstName,lastName
 {
     data: {
         id : 3212,
@@ -12,7 +12,7 @@
     }
 }
 
-// POST https://rest.bullhorn.com/e999/entity/ClientContact
+// POST https://rest.bullhornstaffing.com/e999/entity/ClientContact
 {
     id : 3212,
     firstName : 'John',
@@ -32,7 +32,7 @@ Then change the status of the Lead and POST Back to the original url.
 ## Convert a Lead to a Candidate
 
 ``` javascript
-// GET https://rest.bullhorn.com/e999/entity/Lead/5059165?fields=id,firstName,lastName
+// GET https://rest.bullhornstaffing.com/e999/entity/Lead/5059165?fields=id,firstName,lastName
 {
     data: {
         id : 3212,
@@ -41,7 +41,7 @@ Then change the status of the Lead and POST Back to the original url.
     }
 }
 
-// POST https://rest.bullhorn.com/e999/entity/Candiate
+// POST https://rest.bullhornstaffing.com/e999/entity/Candiate
 {
     id : 3212,
     firstName : 'John',

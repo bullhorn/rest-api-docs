@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /lookup
 
 ``` shell
-curl https://rest.bullhorn.com/e999/lookup?filter=smith&entity=Candidate,ClientContact&start=0,10&count=10
+curl https://rest.bullhornstaffing.com/e999/lookup?filter=smith&entity=Candidate,ClientContact&start=0,10&count=10
 
 # Example Response
 {
@@ -15,7 +15,7 @@ curl https://rest.bullhorn.com/e999/lookup?filter=smith&entity=Candidate,ClientC
     }]
 }
 
-curl https://rest.bullhorn.com/e999/lookup/Candidate/12345
+curl https://rest.bullhornstaffing.com/e999/lookup/Candidate/12345
 
 # Example Response
 {
@@ -41,8 +41,8 @@ Uses search implementations for:
 Uses Hibernate queries for:
 
 *   Skill
-*   Corporate User
-*   Distribution List
+*   CorporateUser
+*   DistributionList
 
 A call to search returns an _id, _entityType, and _label specific to each entity.
 
@@ -52,13 +52,13 @@ A details call returns a subset of the entity's data. Each entity has a differen
 
 #### Lookup
 
-`../lookup?filter=[terms]&entity=[comma,separated,entity,names]&count=[num]&start=one,number,per,entity`
+`../lookup?filter={terms}&entity={comma,separated,entity,names}&count={num}&start=one,number,per,entity`
 
 #### Lookup Details
 
 `../lookup/{entity}/{id}`
 
-Params | Required | Description
+Parameter | Required | Description
 ------ | -------- | -----
 filter | no | The search terms, such as the name or title.
 entity | no | A comma-separated list of entity names to search on using the given filter.

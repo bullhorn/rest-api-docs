@@ -93,7 +93,7 @@ We attach a .doc resume file named candidate.doc to the request as a multipart/f
 ## Multiple Entities
 
 ``` javascript
-// https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName
+// https://rest.bullhornstaffing.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName
 {
     data: [
         {
