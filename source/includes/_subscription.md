@@ -52,7 +52,9 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">PUT</span> /event/subscription
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type=entity&names=Candidate
+curl -X PUT \
+     -H "Content-Type: application/json" \
+     https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type=entity&names=Candidate
 &eventTypes=INSERTED,UPDATED,DELETED
 
 # Example Response

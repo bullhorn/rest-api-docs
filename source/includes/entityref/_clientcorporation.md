@@ -30,7 +30,8 @@ The ClientCorporation entity supports the massUpdate operations.
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | X |
 | dateFounded | Timestamp | Date on which the ClientCorporation was founded. | | |
 | dateLastModified | Timestamp | Date on which the ClientCorporation was last modified. | | |
-| department | To-one association | Department in the ClientCorporation that has primary responsibility for this client (for example, a regional office). Default value is primary department of user who adds the record. | | |
+| department | To-one association | Department in the ClientCorporation that has primary responsibility for this client (for example, a regional office). Default value is primary department of user who adds the | externalID | String (30) | External identifier for the record, used for migrations and back-office Integration. | | |
+record. | | |
 | feeArrangement | Double | Fee, expressed as a percentage, that this ClientCorporation will pay for each Placement. | X | |
 | funding | String | Current funding status of the ClientCorporation. | | |
 | industryList | String | Comma-separated list of industries in which the company operates. See field map data for the list used by a particular company. | | |
