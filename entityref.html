@@ -1,0 +1,8237 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Entity Reference</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="no-langs" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+        <div class="guide-link">
+          <a href="/index.html">API Reference Guide</a>
+        </div>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="content">
+        
+          <h1 id="activitygoal">ActivityGoal</h1>
+
+<p>Read-only view of activity goals established for sales personnel in the organization.</p>
+
+<table><thead>
+<tr>
+<th><strong>ActivityGoal field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>user</td>
+<td>To-many association</td>
+<td>CorporateUser for whom this activity goal was created.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>department</td>
+<td>To-one association</td>
+<td>Department of user for whom this activity goal was created. Entity: CorporationDepartment; id - Integer</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>activityType</td>
+<td>String</td>
+<td>Type of goal for record.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>String</td>
+<td>The first day of the time period in which this activity goal is in effect, in the format: &ldquo;YYYY-MM-DD&rdquo;.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>String</td>
+<td>The last day of time period in which this activity goal is in effect, in the format: &ldquo;YYYY-MM-DD&rdquo;.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>goal</td>
+<td>Integer</td>
+<td>Target goal for activity type.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>actual</td>
+<td>Integer</td>
+<td>Current count of activity type data for goal.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>periodName</td>
+<td>String</td>
+<td>Time period for activity goal. (Weekly/Monthly).</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>percentAttained</td>
+<td>Integer</td>
+<td>The whole percentage attained to date, equal to the attained value divided by the goal value multiplied by 100.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="activitygoalconfiguration">ActivityGoalConfiguration</h1>
+
+<p>Lets a user configure an activity goal for use in conjunction with the activity goals feature.</p>
+
+<table><thead>
+<tr>
+<th><strong>ActivityGoalConfiguration field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>codeIdentifier</td>
+<td>String</td>
+<td>Field that determines if a goal is an ActivityGoal or RecordBasedGoal.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>The last time record was modified.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>String</td>
+<td>Goal description.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>goalPeriodId</td>
+<td>Integer</td>
+<td>Id of goal time period.</td>
+<td>X </td>
+<td></td>
+</tr>
+<tr>
+<td>goalTypeId</td>
+<td>Integer</td>
+<td>Id of goal type.</td>
+<td>X </td>
+<td>X</td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Whether or not activity goal is deleted.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of goal.</td>
+<td>X </td>
+<td></td>
+</tr>
+<tr>
+<td>pulseConfigurationValues</td>
+<td>To-many association</td>
+<td>Values against which goal is tracked.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="activitygoaltarget">ActivityGoalTarget</h1>
+
+<p>Lets a user assign an activity goal to a user.</p>
+
+<table><thead>
+<tr>
+<th><strong>ActivityGoalTarget field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>activityGoalConfiguration</td>
+<td>To-one association</td>
+<td>The activity goal configuration assigned to user.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>goal</td>
+<td>Integer</td>
+<td>The amount of activity that user is trying to hit.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>periodName</td>
+<td>String</td>
+<td>Time period for activity goal. (Weekly/Monthly).</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>user</td>
+<td>To-one association</td>
+<td>User to which activity goal is assigned.</td>
+<td>X </td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="appointment">Appointment</h1>
+
+<p>Represents an appointment on a Bullhorn user&rsquo;s calendar. A separate Appointment instance is created for each user who is invited to the appointment; the instance belonging to the Appointment owner (the person who created it) is the parent, and has a null value for the parentAppointment property. The Appointment instances belonging to the invitees are the child instances; these refer to the parent in their parentAppointment properties, and are associated with the parent through its childAppointments association. Each user who is invited to the appointment is represented by an AppointmentAttendee instance.</p>
+
+<table><thead>
+<tr>
+<th><strong>Appointment field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity. </td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>attendees</td>
+<td>To-many association</td>
+<td>Ids of the AppointmentAttendees for this Appointment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>appointmentUUID</td>
+<td>String</td>
+<td>A secondary unique identifier for this entity. Used to identify the record when it is synchronized to external systems. Format is 8-4-4-16 where all characters are A-Z or 0-9.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>candidateReference</td>
+<td>To-one association</td>
+<td>The Candidate with whom this Appointment is associated, if any.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientContactReference</td>
+<td>To-one association</td>
+<td>The ClientContact with whom this Appointment is associated, if any.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>childAppointments</td>
+<td>To-many association</td>
+<td>Child Appointments associated with this Appointment. The ownerID of any child Appointment represents a user who has been invited to this Appointment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>communicationMethod</td>
+<td>String (30)</td>
+<td>Indicates how the appointment will be conducted: phone, on-site, off-site, and so forth.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateBegin</td>
+<td>Timestamp</td>
+<td>The date on which the appointment began/will begin.<br>The default value is current time rounded up to next half hour, or 15 minutes before dateEnd if it is provided.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateEnd</td>
+<td>Timestamp</td>
+<td>The date on which the appointment ended/will end.<br>The default value is 15 minutes after dateBegin.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>The date on which this record was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Free-text description of the appointment.<br>The default value is “”.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isAllDay</td>
+<td>Boolean</td>
+<td>Indicates whether the appointment will last all day.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isPrivate</td>
+<td>Boolean</td>
+<td>Indicates whether the appointment is viewable by others. If set to private, only the appointment owner and attendees may view the appointment details.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrder</td>
+<td>To-one association</td>
+<td>JobOrder associated with the appointment, if any.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lead</td>
+<td>To-one association</td>
+<td>Lead, if any, associated with the appointment. Included Lead field is id.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>location</td>
+<td>String (100)</td>
+<td>Indicates where the appointment will take place (conference room name, and so forth).<br>The default value is “”.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>notificationMinutes</td>
+<td>Integer</td>
+<td>Indicates when the Bullhorn application should remind the user of the appointment. May be zero for no reminder.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>opportunity</td>
+<td>To-one association</td>
+<td>Opportunity, if any, associated with the appointment. Included Opportunity field is id.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>To-one association</td>
+<td>Bullhorn user (Person) who owns the appointment. The default value is user who creates the Appointment.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>parentAppointment</td>
+<td>To-one association</td>
+<td>Appointment that is the parent of this one, if any. Included Appointment field is id.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>placement</td>
+<td>To-one association</td>
+<td>Placement associated with the appointment, if any. Included Placement field is id.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recurrenceDayBits</td>
+<td>Integer</td>
+<td>Indicates which days are part of the recurrence pattern, if the appointment is a recurring one. The value of this field is the sum of the days included in the series: Sun = 2, Mon = 4, Tue = 8, Wed = 16, Thur = 32, Fri = 64, Sat = 128. For example, a meeting that occurs on Monday and Friday would have a recurrenceDayBits value of 68 (4+64).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recurrenceFrequency</td>
+<td>Integer</td>
+<td>The frequency with which the appointment recurs: e.g., a recurrenceFrequency of 2 for a weekly meeting would imply the meeting occurs every 2 weeks. Null for a one-time appointment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recurrenceStyle</td>
+<td>String (10)</td>
+<td>A=absolute, R=relative: e.g., an absolute would be the third week of every month, whereas a relative would be every third week.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recurrenceType</td>
+<td>String (1)</td>
+<td>The type of recurrence. D=daily, W=weekly, M=monthly, A=annually.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>String (100)</td>
+<td>Subject header of the appointment.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>String (30)</td>
+<td>Used to distinguish appointments by an identifiable class or kind, for example Interview, Call, Personal, and so forth.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="appointmentattendee">AppointmentAttendee</h1>
+
+<p>Represents a person who has been invited to an appointment.</p>
+
+<table><thead>
+<tr>
+<th><strong>AppointmentAttendee field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>To-one association</td>
+<td>Appointment to which this AppointmentAttendee corresponds.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>attendee</td>
+<td>To-one association</td>
+<td>The ClientContact, Candidate, or CorporateUser id for this person.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>acceptanceStatus</td>
+<td>Integer</td>
+<td>Indicates whether attendee has accepted, accepted tentatively, declined, or not responded to this invitation. (-1 = declined, 0 or null = has not responded, 1 = accepted, and 2 = tentative.)</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="businesssector">BusinessSector</h1>
+
+<p>Represents a business sector, which can be associated with Candidates, ClientCorporations, and JobOrders for classification purposes.</p>
+
+<table><thead>
+<tr>
+<th><strong>BusinessSector field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>When the entity was created.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of this business sector.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody></table>
+
+          <h1 id="candidate">Candidate</h1>
+
+<p>Represents a person seeking a job.</p>
+
+<p>The Candidate entity supports the <a href="#get-massupdate">massUpdate</a> operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>Candidate field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>Candidate address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>businessSectors</td>
+<td>To-many association</td>
+<td>Ids of BusinessSectors with which Candidate is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>candidateSource</td>
+<td>To-one association</td>
+<td>Source of the Candidate.</td>
+<td>  X</td>
+<td></td>
+</tr>
+<tr>
+<td>category</td>
+<td>To-one association</td>
+<td>Candidate&rsquo;s primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category. <strong>Note:</strong> This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below).</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>categories</td>
+<td>To-many association</td>
+<td>Categories assigned to Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>certifications</td>
+<td>String</td>
+<td>Candidate&rsquo;s certifications.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free-text comments on Candidate.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>companyName</td>
+<td>String (100)</td>
+<td>Name of company where the Candidate currently works.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>companyURL</td>
+<td>String (100)</td>
+<td>Candidate&rsquo;s personal URL.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1 to 3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customObject1s to 10s</td>
+<td>CustomObject</td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 20</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1 to 5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateAvailable</td>
+<td>Timestamp</td>
+<td>Date on which Candidate will be available to begin work.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAvailableEnd</td>
+<td>Timestamp</td>
+<td>Date on which Candidate&rsquo;s availability will end, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateI9Expiration</td>
+<td>Timestamp</td>
+<td>Date on which the Candidate&rsquo;s I9 form will expire.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastComment</td>
+<td>Timestamp</td>
+<td>Date of the most recent Note referencing Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date the Candidate was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateNextCall</td>
+<td>Timestamp</td>
+<td>Date when the Candidate should next be called.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateOfBirth</td>
+<td>Timestamp</td>
+<td>Candidate&rsquo;s date of birth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dayRate</td>
+<td>BigDecimal</td>
+<td>Candidate&rsquo;s desired per-day pay rate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dayRateLow</td>
+<td>BigDecimal</td>
+<td>Lowest per-day rate the Candidate will accept.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>degreeList</td>
+<td>String</td>
+<td>List of Candidate&rsquo;s educational degrees. Field on the edit screen, not the field in People Template.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Text field, usually used to contain the Candidate&rsquo;s resume.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>desiredLocations</td>
+<td>String</td>
+<td>Locations where Candidate would like to work.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>disability</td>
+<td>String (1)</td>
+<td>Indicates whether Candidate has a disability. Allowable values can be configured using field maps. Default values are U (Unknown), Y (Yes), and N (No).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>educationDegree</td>
+<td>String</td>
+<td>Candidate&rsquo;s highest level of education.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>String (100)</td>
+<td>Candidate&rsquo;s email address.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email2</td>
+<td>String (100)</td>
+<td>Additional email address.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email3</td>
+<td>String (100)</td>
+<td>Additional email address.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>employeeType</td>
+<td>String (30)</td>
+<td>Candidate&rsquo;s employee type: for example 1099 or W2.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>employmentPreference</td>
+<td>String (200)</td>
+<td>Indicates type of employment the Candidate would prefer: for example, permanent, part-time, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ethnicity</td>
+<td>String (50)</td>
+<td>Candidate&rsquo;s ethnicity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>experience</td>
+<td>Integer</td>
+<td>Number of years of experience that the Candidate has.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalID</td>
+<td>String (50)</td>
+<td>Used for records migrated in from other systems; often used for the Candidate&rsquo;s external/backoffice Id.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax</td>
+<td>String (20)</td>
+<td>Candidate&rsquo;s fax number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax2</td>
+<td>String (20)</td>
+<td>Additional fax number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax3</td>
+<td>String (20)</td>
+<td>Additional fax number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>federalAdditionalWitholdingsAmount</td>
+<td>BigDecimal</td>
+<td>Number of federal withholdings the Candidate has selected on his or her W-2 tax form.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>federalExemptions</td>
+<td>Integer</td>
+<td>Number of federal exemptions the Candidate has indicated on his or her W-2 tax form.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>federalFilingStatus</td>
+<td>String</td>
+<td>Candidate&rsquo;s federal tax filing status.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>String (50)</td>
+<td>Candidate&rsquo;s first name.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>gender</td>
+<td>String (6)</td>
+<td>Candidate&rsquo;s gender.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hourlyRate</td>
+<td>BigDecimal</td>
+<td>Candidate&rsquo;s desired hourly pay rate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hourlyRateLow</td>
+<td>BigDecimal</td>
+<td>Lowest hourly pay rate the Candidate will accept.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>i9OnFile</td>
+<td>Integer</td>
+<td>Indicates whether Candidate&rsquo;s I-9 form has already been filled out and is on file.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>interviews</td>
+<td>To-many association</td>
+<td>Interviews for Candidate. This field is populated when you create Appointments where Appointment.candidate is this Candidate and Appointment.type is “Interview”.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isEditable</td>
+<td>Boolean</td>
+<td>Indicates whether Candidate can edit his or her profile information; applicable to Candidate/Client login.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>String (50)</td>
+<td>Candidate&rsquo;s last name.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>leads</td>
+<td>To-many association</td>
+<td>Leads associated with this Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>linkedPerson</td>
+<td>To-one association</td>
+<td>If person represented by Candidate is also a ClientContact, this field includes the following ClientContact fields: id, _subtype</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>localAddtionalWitholdingsAmount</td>
+<td>BigDecimal</td>
+<td>Number of local withholdings the Candidate has selected on his or her W-2 tax form.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>localExemptions</td>
+<td>Integer</td>
+<td>Number of local exemptions Candidate has indicated on his or her W-2 tax form.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>localFilingStatus</td>
+<td>String</td>
+<td>Candidate&rsquo;s local tax filing status.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>localTaxCode</td>
+<td>String</td>
+<td>Candidate&rsquo;s local tax code (if local taxes apply); not required.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>massMailOptOut</td>
+<td>Boolean</td>
+<td>Indicates whether Candidate has chosen not to be included in mass emails through the Bullhorn system.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>middleName</td>
+<td>String (50)</td>
+<td>Candidate&rsquo;s middle name.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mobile</td>
+<td>String (20)</td>
+<td>Candidate&rsquo;s mobile (cell) telephone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Candidate&rsquo;s full name. If setting firstname or lastname, you must also set this field; it does not populate automatically.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>namePrefix</td>
+<td>String (5)</td>
+<td>Candidate&rsquo;s name prefix, for example Dr., Ms., Mr., and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nameSuffix</td>
+<td>String (5)</td>
+<td>Candidate&rsquo;s name suffix, for example Jr.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nickName</td>
+<td>String</td>
+<td>Candidate&rsquo;s nickname.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>numCategories</td>
+<td>Integer</td>
+<td>Number of Category objects associated with Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>numOwners</td>
+<td>Integer</td>
+<td>Number of CorporateUsers that are listed as owner of Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>occupation</td>
+<td>String (50)</td>
+<td>Candidate&rsquo;s current occupation or job title.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>To-one association</td>
+<td>CorporateUser who is the primary owner of Candidate. The default value is user who creates the Candidate.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>pager</td>
+<td>String (20)</td>
+<td>Candidate&rsquo;s pager number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>paperWorkOnFile</td>
+<td>String</td>
+<td>Configurable field that tracks whether the Candidate&rsquo;s tax paperwork has been received.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td>Candidate’s password. The default value is a randomly generated string.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String (20)</td>
+<td>Candidate&rsquo;s home telephone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone2</td>
+<td>String (20)</td>
+<td>Candidate&rsquo;s telephone number at work.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone3</td>
+<td>String (20)</td>
+<td>Alternate telephone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>placements</td>
+<td>To-many association</td>
+<td>Placements for Candidate. This field is populated when you create Placements where Placement.candidate is this Candidate.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>preferredContact</td>
+<td>String (15)</td>
+<td>Candidate&rsquo;s preferred method of contact (for example, phone, email, and so forth.)</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>primarySkills</td>
+<td>To-many association</td>
+<td>Skills that are listed as primary Skills for Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recentClientList</td>
+<td>String</td>
+<td>List of ClientCorporations for which Candidate has worked.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referredBy</td>
+<td>String (50)</td>
+<td>Name of person who referred Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referredByPerson</td>
+<td>To-one association</td>
+<td>Person who referred Candidate, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salary</td>
+<td>BigDecimal</td>
+<td>Candidate&rsquo;s desired yearly salary.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salaryLow</td>
+<td>BigDecimal</td>
+<td>Lowest yearly salary the Candidate will accept.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>secondaryAddress</td>
+<td>Address</td>
+<td>Candidate&rsquo;s work address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>secondaryOwners</td>
+<td>To-many association</td>
+<td>CorporateUsers who are additional owners of Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>secondarySkills</td>
+<td>Skill</td>
+<td>Skills that are listed as secondary skills for Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sendouts</td>
+<td>To-many association</td>
+<td>Sendouts for Candidate. This field is populated when you create Sendouts where the Sendout.candidate is this Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>skillSet</td>
+<td>String</td>
+<td>Text description of Candidate&rsquo;s skills.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>smsOptIn</td>
+<td>Boolean</td>
+<td>Indicates whether Candidate has granted permission to be sent messages via SMS.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>String (200)</td>
+<td>Candidate source: for example, Advertisement, Client Referral, LinkedIn, Monster.com, and so forth. Allowable values can be configured using field maps.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>specialties</td>
+<td>To-many association</td>
+<td>Candidate’s specialty skills. This field is populated when you associate a Specialty with this Candidate in <a href="#create-to-many-associations">a to-many association</a> operation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ssn</td>
+<td>String (18)</td>
+<td>Candidate&rsquo;s Social Security Number. Check field map for proper format.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>stateAddtionalWitholdingsAmount</td>
+<td>BigDecimal</td>
+<td>Number of state withholdings Candidate has selected on his or her W-2 tax form.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>stateExemptions</td>
+<td>Integer</td>
+<td>Number of state exemptions Candidate has indicated on W-2 tax form.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>stateFilingStatus</td>
+<td>String</td>
+<td>Candidate&rsquo;s state tax filing status.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (100)</td>
+<td>Candidate status with company: for example, New Lead, Active, Offer Pending, Placed, and so forth. Allowable values can be configured using field maps.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>submissions</td>
+<td>To-many association</td>
+<td>JobSubmissions for Candidate. This field is populated when you create JobSubmissions where JobSubmission.candidate is this Candidate.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>tasks</td>
+<td>To-many association</td>
+<td>Tasks associated with Candidate. This field is populated when you create Tasks where Task.candidate is this Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taxID</td>
+<td>String (18)</td>
+<td>Id that Candidate uses for tax purposes if not SSN.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taxState</td>
+<td>String</td>
+<td>State in which Candidate pays taxes.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeZoneOffsetEST</td>
+<td>Integer</td>
+<td>Indicates the number of hours by which the Candidate&rsquo;s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>travelLimit</td>
+<td>Integer</td>
+<td>Maximum distance Candidate is willing to travel.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>String (100)</td>
+<td>Candidate type: for example, Active, Passive, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>userDateAdded</td>
+<td>Timestamp</td>
+<td>Date the record was added to the system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>username</td>
+<td>String</td>
+<td>Candidate’s username for logging in to Bullhorn. The default value is _[random number]</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>veteran</td>
+<td>String (1)</td>
+<td>Indicates whether Candidate is a veteran: Y for yes, N for no, or U for unknown.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>webResponse</td>
+<td>To-many association</td>
+<td>Web responses for Candidate. This field is populated when you create JobSubmissions where JobSubmission.candidate is this Candidate and JobSubmission.status is “New Lead”.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>willRelocate</td>
+<td>Boolean</td>
+<td>Indicates whether Candidate is willing to relocate for a position.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>workAuthorized</td>
+<td>Boolean</td>
+<td>Indicates whether Candidate is authorized to work in the U.S.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>workPhone</td>
+<td>String (20)</td>
+<td>Candidate&rsquo;s telephone number at work.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="candidate-confidential-fields">Candidate confidential fields</h2>
+
+<p>By default, candidate fields listed in the ‘Confidential Fields’ private label attribute are returned with the value “**CONFIDENTIAL**”. However, confidential fields can also be included in the ‘Candidate Viewable Confidential Fields’ private label attribute. Only users with the ‘View Candidate Viewable Confidential Fields’ user action entitlement can view candidate viewable confidential fields.</p>
+
+<p>User who have both the ‘View Candidate Viewable Confidential Fields’ and ‘Edit Confidential Fields’ user action entitlements can edit candidate viewable confidential fields.</p>
+
+          <h1 id="candidatecertification">CandidateCertification</h1>
+
+<p>This entity represents a certification that a Candidate may have.</p>
+
+<table><thead>
+<tr>
+<th><strong>CandidateCertification field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>boardCertification</td>
+<td>String (100)</td>
+<td>Set by certificationBoardCertificationList private label attribute</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate linked to CandidateCertification.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>certification</td>
+<td>To-one association</td>
+<td>Certification linked to CandidateCertification.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free-text comments on this record.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>compact</td>
+<td>Integer</td>
+<td>yes/no (1/0) Whether compact or not.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>copyOnFile</td>
+<td>Integer</td>
+<td>yes/no (1/0) Whether on file.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateCertified</td>
+<td>Timestamp</td>
+<td>Date candidate obtained certification.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateExpiration</td>
+<td>Timestamp</td>
+<td>Date certification expires.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date the CandidateCertification was last updated.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>issuedBy</td>
+<td>String (100)</td>
+<td>Entity that issued certification to candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>licenseNumber</td>
+<td>String (100)</td>
+<td>License number of the certification.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>licenseType</td>
+<td>String (30)</td>
+<td>License Type of the certification.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>location</td>
+<td>String (100)</td>
+<td>Location where certification is valid.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>modifyingUser</td>
+<td>To-one association</td>
+<td>Creator of CandidateCertification.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of CandidateCertification.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>results</td>
+<td>String (255)</td>
+<td>Free text of certification results.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (30)</td>
+<td>Status of CandidateCertification.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="candidatereference">CandidateReference</h1>
+
+<p>Represents a person who serves as a reference for a Candidate.</p>
+
+<table><thead>
+<tr>
+<th><strong>CandidateReference field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate for whom this person is a reference.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>candidateTitle</td>
+<td>String (50)</td>
+<td>Candidate&rsquo;s title when he or she worked with or for the reference.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>ClientCorporation where the CandidateReference works.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>companyName</td>
+<td>String (50)</td>
+<td>Name of the company where reference works, if it does not have a ClientCorporation record in Bullhorn.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1 to 5</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 5</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 5</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1 to 3</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>employmentEnd</td>
+<td>Timestamp</td>
+<td>End date of Candidate&rsquo;s employment with the reference.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>employmentStart</td>
+<td>Timestamp</td>
+<td>Start of the period during which the Candidate worked with the reference.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrder</td>
+<td>Integer</td>
+<td>JobOrder for which Candidate is being considered.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referenceClientContact</td>
+<td>To-one association</td>
+<td>Bullhorn ClientContact for this reference, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referenceEmail</td>
+<td>String (50)</td>
+<td>Email address for reference; not used if the CandidateReference is a client contact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referenceFirstName</td>
+<td>String (50)</td>
+<td>Reference&rsquo;s first name; not used if reference is a ClientContact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referenceLastName</td>
+<td>String (50)</td>
+<td>Reference&rsquo;s last name; not used if the CandidateReference is a ClientContact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referencePhone</td>
+<td>String (20)</td>
+<td>Phone number for the CandidateReference; not used if the reference is a ClientContact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referenceTitle</td>
+<td>String (50)</td>
+<td>Reference&rsquo;s job title; not used if the reference is a ClientContact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (20)</td>
+<td>Status of this reference request.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yearsKnown</td>
+<td>Integer</td>
+<td>Indicates how long reference has known the Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="candidatecertification">CandidateCertification</h1>
+
+<p>This entity represents a certification that a Candidate may have.</p>
+
+<table><thead>
+<tr>
+<th><strong>CandidateCertification field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>boardCertification</td>
+<td>String (100)</td>
+<td>Set by certificationBoardCertificationList private label attribute</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate linked to CandidateCertification.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>certification</td>
+<td>To-one association</td>
+<td>Certification linked to CandidateCertification.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free-text comments on this record.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>compact</td>
+<td>Integer</td>
+<td>yes/no (1/0) Whether compact or not.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>copyOnFile</td>
+<td>Integer</td>
+<td>yes/no (1/0) Whether on file.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateCertified</td>
+<td>Timestamp</td>
+<td>Date candidate obtained certification.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateExpiration</td>
+<td>Timestamp</td>
+<td>Date certification expires.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date the CandidateCertification was last updated.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>issuedBy</td>
+<td>String (100)</td>
+<td>Entity that issued certification to candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>licenseNumber</td>
+<td>String (100)</td>
+<td>License number of the certification.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>licenseType</td>
+<td>String (30)</td>
+<td>License Type of the certification.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>location</td>
+<td>String (100)</td>
+<td>Location where certification is valid.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>modifyingUser</td>
+<td>To-one association</td>
+<td>Creator of CandidateCertification.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of CandidateCertification.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>results</td>
+<td>String (255)</td>
+<td>Free text of certification results.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (30)</td>
+<td>Status of CandidateCertification.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="candidateworkhistory">CandidateWorkHistory</h1>
+
+<p>Represents a single entry in the &ldquo;Work History&rdquo; section of a Candidate&rsquo;s resume: that is, a job the Candidate has had. For each current or former position the Candidate has held, there is a unique CandidateWorkHistory instance associated with that Candidate. Each CandidateWorkHistory instance corresponds to a line item on the &ldquo;Work History&rdquo; tab of a Candidate record in the Bullhorn application.</p>
+
+<table><thead>
+<tr>
+<th><strong>CandidateWorkHistory field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>bonus</td>
+<td>Double</td>
+<td>Amount of the bonus paid to Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate with whom CandidateWorkHistory is associated.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>ClientCorporation associated with Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free-text comments on CandidateWorkHistory.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>commission</td>
+<td>Double</td>
+<td>Amount of commission earned by Candidate at this position.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>companyName</td>
+<td>String (100)</td>
+<td>Name of the company where the Candidate worked.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1 to 5</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 5</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 5</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1 to 3</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>Timestamp</td>
+<td>Date on which job ended, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isLastJob</td>
+<td>Boolean</td>
+<td>Indicates whether this was the Candidate&rsquo;s most recent job.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrder</td>
+<td>To-one association</td>
+<td>JobOrder associated with the CandidateWorkHistory, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>placement</td>
+<td>To-one association</td>
+<td>Placement representing the Candidate&rsquo;s placement in a job, if applicable. </td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salary1</td>
+<td>BigDecimal</td>
+<td>Candidate&rsquo;s starting salary at this position.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salary2</td>
+<td>BigDecimal</td>
+<td>Candidate&rsquo;s final salary at this position.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salaryType</td>
+<td>String (20)</td>
+<td>Indicates how the Candidate was paid: Hourly, Yearly, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>Timestamp</td>
+<td>Date on which Candidate began working at this position.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>terminationReason</td>
+<td>String (100)</td>
+<td>Reason for the Candidate&rsquo;s termination from this position, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>String (50)</td>
+<td>Candidate&rsquo;s job title in this position.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="category">Category</h1>
+
+<p>This entity represents a category in which a Candidate or JobOrder can be placed. A category that has a value for parentCategoryId greater than zero is anty.</p>
+
+<table><thead>
+<tr>
+<th><strong>Category field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String (255)</td>
+<td>Free-text description of this category.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Indicates whether category is available for use in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of the category + PLId (for categories)</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>occupation</td>
+<td>String (50)</td>
+<td>Occupation.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>skills</td>
+<td>To-many association</td>
+<td>Ids of the Skills associated with this Category.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>specialties</td>
+<td>To-many association</td>
+<td>Ids of the Specialties that are children of this Category.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>String (20)</td>
+<td>Bill Rate Category, Skills Checklist Category, and so forth.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="certification">Certification</h1>
+
+<p>This entity represents a certification that a Candidate has.</p>
+
+<table><thead>
+<tr>
+<th><strong>Certification field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Free-text description of this certification.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of this certification.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="clientcontact">ClientContact</h1>
+
+<p>Represents a contact person who works at a ClientCorporation. A ClientContact can be any person at the ClientCorporation whom you wish to track in the Bullhorn system: a hiring manager, HR staffer, executive, or other employee. Note that a Candidate may become a Client Contact after being placed in a job; or a ClientContact may become a Candidate after deciding to look for another position.</p>
+
+<p>The ClientContact entity supports the massUpdate operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>ClientContact field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>Contact&rsquo;s  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:/meta/ClientContact?fields=address(countryID)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>businessSectors</td>
+<td>To-many association</td>
+<td>Ids of BusinessSectors in which the Contact operates.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>category</td>
+<td>To-one association</td>
+<td>Contact&rsquo;s primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>categories</td>
+<td>To-many association</td>
+<td>Ids of the Categories associated with the Contact. Note that the categoryId property is used to store the contact&rsquo;s primary Category, while this association hold that Category and any other Categories to which the Contact belongs.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>certifications</td>
+<td>String</td>
+<td>Contact&rsquo;s certifications.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>ClientCorporation for which the Contact works.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free-text comments on this Contact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1-3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customObject1s to 10s</td>
+<td>CustomObject</td>
+<td>Fields to which custom objects can be assigned.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1-20</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1-5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the ClientContact was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastVisit</td>
+<td>Timestamp</td>
+<td>Date of ClientContact’s last visit.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Large text field for additional information about the contact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>desiredCategories</td>
+<td>String</td>
+<td>Categories that the ClientContact wants Candidates to belong to.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>desiredSkills</td>
+<td>String</td>
+<td>Skills that the ClientContact wants his or her Candidates to have.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>desiredSpecialties</td>
+<td>String</td>
+<td>Specialties that the ClientContact wants his or her Candidates to have.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>division</td>
+<td>String (40)</td>
+<td>Department that the Contact is associated with.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>String (60)</td>
+<td>ClientContact&rsquo;s primary (work) email address.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>email2</td>
+<td>String (100)</td>
+<td>Additional email address. Typically used for the ClientContact’s home or personal email.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email3</td>
+<td>String (100)</td>
+<td>Additional email address.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalID</td>
+<td>String (30)</td>
+<td>External identifier for the record, used for migrations and back-office Integration.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax</td>
+<td>String (20)</td>
+<td>ClientContact&rsquo;s primary (work) fax number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax2</td>
+<td>String (20)</td>
+<td>Additional fax number. Typically used for the contact&rsquo;s home or personal fax.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax3</td>
+<td>String (20)</td>
+<td>Additional fax number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>String (50)</td>
+<td>ClientContact&rsquo;s first name.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDayLightSavings</td>
+<td>Boolean</td>
+<td>Indicates whether the ClientContact&rsquo;s location is using Daylight Saving Time.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>String (50)</td>
+<td>ClientContact&rsquo;s last name.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>leads</td>
+<td>To-many association</td>
+<td>Leads associated with this ClientContact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>linkedPerson</td>
+<td>Person (superclass of Candidate and ClientContact)</td>
+<td>If the person represented by this ClientContact is also a Candidate, this field includes the following Candidate fields: id, _subtype</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>massMailOptOut</td>
+<td>Boolean</td>
+<td>Indicates whether the Contact has chosen not to be included in mass emails through the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>middleName</td>
+<td>String (50)</td>
+<td>ClientContact&rsquo;s middle name.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mobile</td>
+<td>String (20)</td>
+<td>ClientContact&rsquo;s mobile (cellular) telephone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>ClientContact&rsquo;s full name. Should be a combination of the firstName and lastName fields separated by a space. <strong>Notes:</strong> If you create a ClientContact with no value in the name field, users will have no way to select that ClientContact in the Bullhorn staffing application. If you create or modify a ClientContact name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the ClientContact in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>namePrefix</td>
+<td>String (5)</td>
+<td>ClientContact&rsquo;s name prefix, for example Dr., Ms, Mr., and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nameSuffix</td>
+<td>String (5)</td>
+<td>ClientContact&rsquo;s name suffix, for example Jr.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nickName</td>
+<td>String</td>
+<td>ClientContact&rsquo;s nickname.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>numEmployees</td>
+<td>Integer</td>
+<td>Number of employees who report to this Contact.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>occupation</td>
+<td>String (50)</td>
+<td>ClientContact&rsquo;s job title.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>office</td>
+<td>String (40)</td>
+<td>For companies with multiple locations, this field can be used to indicate which office this contact works out of.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>To-one association</td>
+<td>CorporateUser who is the owner of this Contact record. The default value is user who creates the ClientContact.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>pager</td>
+<td>String (20)</td>
+<td>ClientContact&rsquo;s pager number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td>ClientContact&rsquo;s password for logging in to Bullhorn. The default value is a randomly generated string.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String (20)</td>
+<td>ClientContact&rsquo;s primary (work) telephone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone2</td>
+<td>String (20)</td>
+<td>Alternate phone number. Typically used for the contact&rsquo;s home phone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone3</td>
+<td>String (20)</td>
+<td>Alternate phone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>preferredContact</td>
+<td>String (15)</td>
+<td>Contact&rsquo;s preferred method of contact (For example, phone, email, and so forth.)</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>referredByPerson</td>
+<td>Person</td>
+<td>Person who referred this ClientContact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reportToPerson</td>
+<td>Person</td>
+<td>Person to whom this ClientContact reports.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>secondaryAddress</td>
+<td>Address</td>
+<td>ClientContact&rsquo;s secondary (home)  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/ClientContact?fields=address(countryID).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>secondaryOwners</td>
+<td>To-many association</td>
+<td>Ids of internal users who are secondary owners of this Contact. Note that the owner property is used to store the ClientContact’s primary owner, while this association hold that person and any other owners of the Contact.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>skills</td>
+<td>To-many association</td>
+<td>Ids of Skills that the ClientContact wants Candidates to have.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>smsOptIn</td>
+<td>Boolean</td>
+<td>Indicates whether the ClientContact has granted permission to be sent messages via SMS.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>String (200)</td>
+<td>Source from which this ClientContact was found.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (30)</td>
+<td>Status of the contact; for example, New Lead, Active, Prospect, and so forth. Possible values can be configured using field maps.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>timeZoneOffsetEST</td>
+<td>Integer</td>
+<td>Indicates the number of hours by which the ClientContact&rsquo;s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>String (30)</td>
+<td>Describes the type of ClientContact (for example, Primary, Secondary, Target, Gatekeeper). Possible values can be configured using field maps.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>username</td>
+<td>String</td>
+<td>ClientContact&rsquo;s username for logging in to Bullhorn. The default value is _[random number]</td>
+<td>X </td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="clientcorporation">ClientCorporation</h1>
+
+<p>Represents a company that is a client of a company; for example, a company with jobs to fill.</p>
+
+<p>The ClientCorporation entity supports the massUpdate operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>ClientCorporation field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>ClientCorporation&rsquo;s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:/meta/ClientContact?fields=address(countryID)</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>annualRevenue</td>
+<td>BigDecimal</td>
+<td>ClientCorporation&rsquo;s annual revenue in millions of U.S. dollars.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>billingAddress</td>
+<td>AddressWithout-Country</td>
+<td>Address that contains the address to which bills should be sent for this ClientCorporation. address1, address2, city, state, zip</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingContact</td>
+<td>String (100)</td>
+<td>Name of the person to whom bills should be sent.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingFrequency</td>
+<td>String (20)</td>
+<td>Frequency with which bills should be sent to the ClientCorporation: for example, Weekly, Bi-Weekly, Semi-Monthly, Monthly.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingPhone</td>
+<td>String (20)</td>
+<td>Phone number of the billing contact person.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>businessSectorList</td>
+<td>String</td>
+<td>Comma-separated list of BusinessSectors in which the ClientCorporation operates. See field map data for a list of possible values.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>childClientCorporations</td>
+<td>To-many association</td>
+<td>ClientCorporations that are children of this one.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientCorporationCertifications</td>
+<td>To-many association</td>
+<td><strong>Not supported in this release.</strong> ClientCorporationCertifications associated with this corporation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientContacts</td>
+<td>To-many association</td>
+<td>ClientContacts who work at this ClientCorporation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>companyDescription</td>
+<td>String</td>
+<td>Text description of the company.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>companyURL</td>
+<td>String (100)</td>
+<td>Company&rsquo;s website URL. May use http:// but not required.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>competitors</td>
+<td>String</td>
+<td>Company&rsquo;s major competitors.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>culture</td>
+<td>String</td>
+<td>Text description of the corporate culture.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1-3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customObject1s to 10s</td>
+<td>CustomObject</td>
+<td>Fields to which custom objects can be assigned.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1-20</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1-5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateFounded</td>
+<td>Timestamp</td>
+<td>Date on which the ClientCorporation was founded.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the ClientCorporation was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>department</td>
+<td>To-one association</td>
+<td>Department in the ClientCorporation that has primary responsibility for this client (for example, a regional office). Default value is primary department of user who adds the</td>
+<td>externalID</td>
+<td>String (30)</td>
+</tr>
+<tr>
+<td>record.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>feeArrangement</td>
+<td>Double</td>
+<td>Fee, expressed as a percentage, that this ClientCorporation will pay for each Placement.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>funding</td>
+<td>String</td>
+<td>Current funding status of the ClientCorporation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>industryList</td>
+<td>String</td>
+<td>Comma-separated list of industries in which the company operates. See field map data for the list used by a particular company.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>invoiceFormat</td>
+<td>String</td>
+<td>Configurable field to be passed to a back-office system to indicate how to group invoices for this company (Per Placement, Per Billing Contact, and so forth.)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>invoiceGroups</td>
+<td>To-many association</td>
+<td><strong>Not supported in this release.</strong> Invoice groups associated with this ClientCorporation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>invoices</td>
+<td>To-many association</td>
+<td><strong>Not supported in this release.</strong> Invoices associated with this corporation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>leads</td>
+<td>To-many association</td>
+<td>Leads associated with this ClientCorporation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of the company.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>notes</td>
+<td>String</td>
+<td>Free text field for entering any comments or notes about the company.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>numEmployees</td>
+<td>Integer</td>
+<td>Total number of people employed by the company.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>numOffices</td>
+<td>Integer</td>
+<td>Total number of offices for the ClientCorporation.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>owners</td>
+<td>To-many association</td>
+<td>Owners of the ClientContacts for this ClientCorporation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ownerShip</td>
+<td>String (30)</td>
+<td>Status of the ClientCorporation&rsquo;s current ownership (for example, Public, Private).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>parentClientCorporation</td>
+<td>To-one association</td>
+<td>ClientCorporation that is a parent of this one.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String (20)</td>
+<td>Main phone number for the ClientCorporation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rateCards</td>
+<td>To-many association</td>
+<td><strong>Not supported in this release.</strong> Rate cards associated with this ClientCorporation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>revenue</td>
+<td>String</td>
+<td>Estimated annual revenue in millions for the company.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (30)</td>
+<td>Status of the business relationship with this company; for example, Prospect, Active, and so forth.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>taxRate</td>
+<td>Double</td>
+<td>Tax rate for the company expressed in percentage: for example, 28%. Passed to a back-office system if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tickerSymbol</td>
+<td>String (20)</td>
+<td>Stock market ticker symbol for the company.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>workWeekStart</td>
+<td>Integer</td>
+<td>Day of the week on which the work week starts for this company. 1=Sunday, 2=Monday, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="clientcorporationappointment">ClientCorporationAppointment</h1>
+
+<p>Association entity between ClientCorporation, ClientContact, and Appointment entities. This entity is read-only and is only created when the companyStampOnActivitiesEnabled corporation setting is enabled.</p>
+
+<table><thead>
+<tr>
+<th><strong>ClientCorporationAppointment field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-Only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>Associated ClientCorporation.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>clientContact</td>
+<td>To-one association</td>
+<td>Associated ClientContact.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>To-one association</td>
+<td>Associated Appointment.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="clientcorporationnote">ClientCorporationNote</h1>
+
+<p>Association entity between ClientCorporation, ClientContact, and Note entities. This entity is read-only and is only created when the companyStampOnActivitiesEnabled corporation setting is enabled.</p>
+
+<table><thead>
+<tr>
+<th><strong>ClientCorporationNote field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-Only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>Associated ClientCorporation.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>clientContact</td>
+<td>To-one association</td>
+<td>Associated ClientContact.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>note</td>
+<td>To-one association</td>
+<td>Associated Note.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="clientcorporationtask">ClientCorporationTask</h1>
+
+<p>Association entity between ClientCorporation, ClientContact, and Task entities. This entity is read-only and is only created when the companyStampOnActivitiesEnabled corporation setting is enabled.</p>
+
+<table><thead>
+<tr>
+<th><strong>ClientCorporationAppointment field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-Only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>Associated ClientCorporation.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>clientContact</td>
+<td>To-one association</td>
+<td>Associated ClientContact.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>task</td>
+<td>To-one association</td>
+<td>Associated Task.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="corporateuser">CorporateUser</h1>
+
+<p>Represents an Internal user at your organization. CorporateUser is read-only. </p>
+
+<table><thead>
+<tr>
+<th><strong>CorporateUser field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>customDate1 to 3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 20</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastComment</td>
+<td>Timestamp</td>
+<td>Date on which CorporateUser’s last comment was made.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>departments</td>
+<td>To-many association</td>
+<td>Ids of departments to which the CorporateUser belongs.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>CorporateUser’s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use th. e following REST call to get the list of countryIDs and labels: /meta/CorporateUser?fields=address(countryID)</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>String (100)</td>
+<td>Primary email address.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email2</td>
+<td>String (100)</td>
+<td>Additional email address 2.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email3</td>
+<td>String (100)</td>
+<td>Additional email address 3.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>emailNotify</td>
+<td>Boolean</td>
+<td>Indicates whether the user has chosen to be notified via pop-up in the Bullhorn application when a new email message arrives.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>emailSignature</td>
+<td>String</td>
+<td>Contents of the user&rsquo;s email signature.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Indicates whether the user may log in to the Bullhorn application.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>externalEmail</td>
+<td>String</td>
+<td>User’s external (non-Bullhorn) email address. Used for forwarding</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>String</td>
+<td>First name of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>inboundEmailEnabled</td>
+<td>Boolean</td>
+<td>Indicates whether the user can receive email through the Bullhorn application.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isDayLightSavingsTime</td>
+<td>Boolean</td>
+<td>Indicates whether it is daylight savings time.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether CorporateUser is deleted.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isLockedOut</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser is locked out.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isOutboundFaxEnabled</td>
+<td>Boolean</td>
+<td>Indicates whether the user has permission to send faxes.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobAssignments</td>
+<td>To-many association</td>
+<td>JobOrders that have been assigned to this CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>loginRestrictions</td>
+<td>LoginRestrictions</td>
+<td>A group of available login restrictions, including time, date, and IP address.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>massMailOptOut</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser opted out of mass mailings.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>middleName</td>
+<td>String (50)</td>
+<td>Middle name of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mobile</td>
+<td>String (20)</td>
+<td>Mobile phone number of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>namePrefix</td>
+<td>String (5)</td>
+<td>Name prefix of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nameSuffix</td>
+<td>String (5)</td>
+<td>Name suffix of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nickName</td>
+<td>String (50)</td>
+<td>Nickname of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>occupation</td>
+<td>String (50)</td>
+<td>Occupation of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pager</td>
+<td>String (20)</td>
+<td>Pager number of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td>CorporateUser’s password for logging in to Bullhorn.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>phone to phone3</td>
+<td>String (20)</td>
+<td>Phone number of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>smsOptIn</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser has granted permission to be sent messages via SMS.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taskAssignments</td>
+<td>Task</td>
+<td>Not supported in this release. Tasks that have been assigned to this CorporateUser, including those owned by the user.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeZoneOffsetEST</td>
+<td>Integer</td>
+<td>Indicates the number of hours by which the CorporateUser’s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>username</td>
+<td>String (100)</td>
+<td>CorporateUser’s username for logging in to Bullhorn.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="corporationdepartment">CorporationDepartment</h1>
+
+<p>Represents a department in a corporation.</p>
+
+<table><thead>
+<tr>
+<th><strong>CorporationDepartment field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-Only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date when this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String (255)</td>
+<td>Text description of the CorporationDepartment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Indicates whether this CorporationDepartment is enabled for use in the system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of the CorporationDepartment.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody></table>
+
+          <h1 id="country">Country</h1>
+
+<p>Represents a country.</p>
+
+<table><thead>
+<tr>
+<th><strong>Country field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>Code associated with this Country.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of the Country.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>states</td>
+<td>To-many association</td>
+<td>Ids of States that are associated with this Country.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="customaction">CustomAction</h1>
+
+<p>Represents a Bullhorn custom action. For more information about custom actions, see:
+<a href="http://developer.bullhorn.com/doc/version_2-0/understanding_custom_components.htm">http://developer.bullhorn.com/doc/version_2-0/understanding_custom_components.htm</a></p>
+
+<table><thead>
+<tr>
+<th><strong>CustomAction field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>actionOrder</td>
+<td>Integer</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>apiKeyID</td>
+<td>Integer</td>
+<td>Bullhorn API key id.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>componentURL</td>
+<td>String</td>
+<td>URL of CustomAction.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Indicates whether CustomAction is enabled.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>entity</td>
+<td>String</td>
+<td>Entity to which CustomAction applies.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of CustomAction.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="department">Department</h1>
+
+<p>Represents a department for a user&rsquo;s corporation. Users can create, read, and update departments. Only users with the  Account Administration entitlement can create and update departments.</p>
+
+<table><thead>
+<tr>
+<th><strong>Department field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String (255)</td>
+<td>Department description.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Indicates whether department is enabled.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String(100)</td>
+<td>Department name.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="entity-fileattachment">{Entity}FileAttachment</h1>
+
+<p>Read-only entity that represents a file associated with an entity. The GET /entity/{EntityType}]/{entityID}/fileAttachments call returns a list of files associated with that entity. Entity can be ClientCorporation, JobOrder, Candidate, ClientContact, Opportunity, or Placement.</p>
+
+<table><thead>
+<tr>
+<th><strong>{Entity}FileAttachement field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for the entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>contentSubType</td>
+<td>String</td>
+<td>Content subtype for the file.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>String</td>
+<td>Content type for the file.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>When the file was added.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Description for the file.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>directory</td>
+<td>String</td>
+<td>Location of the file on server.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>distribution</td>
+<td>String</td>
+<td>Distribution type for the file.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>externalID</td>
+<td>String</td>
+<td>Third-party ID of the file.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>fileExtension</td>
+<td>String</td>
+<td>Extension type of the file.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>fileSize</td>
+<td>Integer</td>
+<td>Size on disk of the file.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>fileType</td>
+<td>String</td>
+<td>Type of the file; for example, SAMPLE.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isCopied</td>
+<td>Boolean</td>
+<td>Whether the file was copied from another entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Whether file is deleted</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>isOpen</td>
+<td>Boolean</td>
+<td>Whether file is open.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>isPrivate</td>
+<td>Boolean</td>
+<td>Whether the file is private.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>isSendOut</td>
+<td>Boolean</td>
+<td>Whether the file is from a sendout.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>{entity}</td>
+<td>To-one association</td>
+<td>Entity associated with the file.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of the file.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the file; for example, Resume.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>usersSharedWith</td>
+<td>To-many association</td>
+<td>Users with whom the file is shared.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>uuid</td>
+<td>String</td>
+<td>Globally unique random ID.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody></table>
+
+          <h1 id="housingcomplex">HousingComplex</h1>
+
+<p>Represents a housing complex that a ClientCorporation uses when providing housing for certain types of employees. </p>
+
+<table><thead>
+<tr>
+<th><strong>HousingComplex field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>HousingComplex address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/HousingComplex?fields=address(countryID)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingContactID</td>
+<td>Integer</td>
+<td>The Bullhorn ClientContact ID of the billing contact person for this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free-text comments about this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>complexManagerID</td>
+<td>Integer</td>
+<td>The Bullhorn ClientContact ID of the housing complex manager.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>complexOwnerID</td>
+<td>Integer</td>
+<td>The Bullhorn ClientContact ID of the housing complex owner. </td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contactName</td>
+<td>String (100)</td>
+<td>Name of the contact person for the housing complex, generally a facilities manager or superintendent.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customContactID1 to 3</td>
+<td>Integer</td>
+<td>Configurable fields for identifying additional ClientContacts who have roles related to this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1 to 3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 3</td>
+<td>Double</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 5</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1 to 5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>fax</td>
+<td>String (20)</td>
+<td>Fax number for the housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of the housing complex.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>Integer</td>
+<td>CorporateUser who is the owner of this housing complex.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String (20)</td>
+<td>Primary phone number of the housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>whitelistClientCorporations</td>
+<td>To-many association</td>
+<td>Set of ClientCorporations to use this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="jobboardpost">JobBoardPost</h1>
+
+<p>Represents a view into a JobOrder entity with information typically used in public job boards. JobBoardPost is a read-only entity.</p>
+
+<table><thead>
+<tr>
+<th><strong>JobBoardPost field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>benefits</td>
+<td>String</td>
+<td>Text description of benefits offered with this job.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>bonusPackage</td>
+<td>String</td>
+<td>Text description of the bonus package offered with this job.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>categories</td>
+<td>To-many association</td>
+<td>IDs of Categories associated with this job.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date when this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateEnd</td>
+<td>Timestamp</td>
+<td>Date when the job will end (if applicable).</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastPublished</td>
+<td>Timestamp</td>
+<td>Date when this record was last published to the &lsquo;Corporate&rsquo; Job Board.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>employmentType</td>
+<td>String (200)</td>
+<td>Type of employment offered: for example, contract, permanent, and so forth. Determines which of the five job types are used.</td>
+<td>X</td>
+<td> X</td>
+</tr>
+<tr>
+<td>isPublic</td>
+<td>Boolean</td>
+<td>Controls whether a job appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>isOpen</td>
+<td>Boolean</td>
+<td>Indicates whether the job is open.</td>
+<td>X </td>
+<td></td>
+</tr>
+<tr>
+<td>payRate</td>
+<td>BigDecimal</td>
+<td>Pay rate offered with this job.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>publicDescription</td>
+<td>String (200000)</td>
+<td>Description of this job for use on public job boards.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>publishedCategory</td>
+<td>To-one association</td>
+<td>The category that was last selected when publishing the job.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>publishedZip</td>
+<td>String (18)</td>
+<td>Published Zip Code of the job location.</td>
+<td>X </td>
+<td></td>
+</tr>
+<tr>
+<td>responseUser</td>
+<td>To-one association</td>
+<td>ID of CorporateUser to whom submissions should be sent.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>salary</td>
+<td>BigDecimal</td>
+<td>Salary offered for this job.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>salaryUnit</td>
+<td>String (12)</td>
+<td>Salary unit represented by the range (e.g. per hour, yearly).</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>Timestamp</td>
+<td>Desired start date for the position.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String (100)</td>
+<td>Job title.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>travelRequirements</td>
+<td>String (50)</td>
+<td>Text description of the amount of travel required for this job.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>willRelocate</td>
+<td>Boolean</td>
+<td>Indicates whether the hiring company will provide relocation assistance.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>willSponsor</td>
+<td>Boolean</td>
+<td>Indicates whether the hiring company is willing to sponsor an employee on a work visa.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>yearsRequired</td>
+<td>Integer</td>
+<td>Number of years of experience required for the job.</td>
+<td> X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="joborder">JobOrder</h1>
+
+<p>Represents an open job to be filled.</p>
+
+<p>The JobOrder entity supports the massUpdate operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>JobOrder field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address1</td>
+<td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/JobOrder?felds=address(countryID)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>appointments</td>
+<td>To-many association</td>
+<td>Ids of Appointments associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>approvedPlacements</td>
+<td>To-many association</td>
+<td>Ids of the approved Placements associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assignedUsers</td>
+<td>To-many association</td>
+<td>Internal users assigned to this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>benefits</td>
+<td>String</td>
+<td>Text description of benefits offered with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billRateCategoryID</td>
+<td>Integer</td>
+<td>Id of the client bill rate category.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bonusPackage</td>
+<td>String</td>
+<td>Text description of the bonus package offered with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>branchCode</td>
+<td>String (100)</td>
+<td>Code representing the corporate branch where the job is located.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>businessSectors</td>
+<td>To-many association</td>
+<td>Ids of BusinessSectors associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>categories</td>
+<td>To-many association</td>
+<td>Ids of Categories associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>certificationList</td>
+<td>String</td>
+<td>List of Certifications that an applicant should have.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>certifications</td>
+<td>To-many association</td>
+<td>Certifications that applicants should have.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientBillRate</td>
+<td>BigDecimal</td>
+<td>Amount to be billed to the client for this job when it is filled.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientContact</td>
+<td>To-one association</td>
+<td>ClientContact associated with this job.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>Hiring company.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustom-Date1-3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustom-Float1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomText1-10</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustom-TextBlock1-3</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>costCenter</td>
+<td>String (30)</td>
+<td>Name of the cost center associated with this job. This cost center flows to the placement record and drives invoice grouping (placements with the same cost center for the same client will be grouped together)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1-3</td>
+<td>BigDecimal</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customObject1s to 10s</td>
+<td>CustomObject</td>
+<td>Fields to which custom objects can be assigned.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1-20</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1-5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date when this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateClosed</td>
+<td>Timestamp</td>
+<td>Date when the job was marked as closed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateEnd</td>
+<td>Timestamp</td>
+<td>Date when the job will end (if applicable).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastExported</td>
+<td>Timestamp</td>
+<td>Date when the job was last exported.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the job was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>degreeList</td>
+<td>String</td>
+<td>List of educational degrees required for this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String (200000)</td>
+<td>Text description of the job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>durationWeeks</td>
+<td>Double</td>
+<td>Expected duration the job. For a permanent position, this is null.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>educationDegree</td>
+<td>String (50)</td>
+<td>Required degree for the job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>employmentType</td>
+<td>String (200)</td>
+<td>Type of employment offered: for example, contract, permanent, and so forth. Determines which of the five job types are used.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>externalCategoryID</td>
+<td>Integer</td>
+<td>Category exposed on public job postings to the web.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalID</td>
+<td>String (30)</td>
+<td>Used for migrations or for the job&rsquo;s external/back-office identification number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>feeArrangement</td>
+<td>Double</td>
+<td>Fee, expressed as a percentage, that will be paid by the ClientCorporation when the job is filled.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hoursOfOperation</td>
+<td>String (30)</td>
+<td>Hiring company&rsquo;s hours of operation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hoursPerWeek</td>
+<td>Double</td>
+<td>Number of hours per week that the employee will work.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Interviews</td>
+<td>To-many association</td>
+<td>Ids of interview Appointments associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isClientEditable</td>
+<td>Boolean</td>
+<td>Indicates whether a ClientContact can modify the job via the Bullhorn system.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isInterviewRequired</td>
+<td>Boolean</td>
+<td>Indicates whether applicants are required to Interview for the job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isJobcastPublished</td>
+<td>Boolean</td>
+<td>Indicates whether the job was published through Jobcast.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isOpen</td>
+<td>Boolean</td>
+<td>Indicates whether the job is open.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isPublic</td>
+<td>Boolean</td>
+<td>Controls whether a job appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>jobBoardList</td>
+<td>String</td>
+<td>List of job boards on which this job has been posted.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>notes</td>
+<td>To-many association</td>
+<td>Ids of Notes associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>numOpenings</td>
+<td>Integer</td>
+<td>Number of openings to be filled for this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>onSite</td>
+<td>String (20)</td>
+<td>Location requirements; for example, on-site, off-site, no preference.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Opportunity</td>
+<td>To-one association</td>
+<td>Opportunity with which this JobOrder is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>optionsPackage</td>
+<td>String</td>
+<td>Text description of the stock options package offered with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>To-one association</td>
+<td>CorporateUser who owns this job. The default value is user who creates the JobOrder.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>payRate</td>
+<td>BigDecimal</td>
+<td>Pay rate offered with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>placements</td>
+<td>To-many association</td>
+<td>Ids of Placements associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>publicDescription</td>
+<td>String (200000)</td>
+<td>Description of this job for use on public job boards.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>publishedZip</td>
+<td>String (18)</td>
+<td>Published Zip Code of the job location.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reasonClosed</td>
+<td>String</td>
+<td>Text description of the reason this job was closed, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reportTo</td>
+<td>String (100)</td>
+<td>Name and/or title of the person this job will report to.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reportToClientContact</td>
+<td>To-one association</td>
+<td>ClientContact this job reports to.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>responseUser</td>
+<td>To-one association</td>
+<td>CorporateUser to whom submissions should be sent.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salary</td>
+<td>BigDecimal</td>
+<td>Salary offered for this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salaryUnit</td>
+<td>String (12)</td>
+<td>Salary unit represented by the range (for example, per hour, yearly).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sendouts</td>
+<td>To-many association</td>
+<td>Ids of Sendouts associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>skillList</td>
+<td>String</td>
+<td>Comma-separated list of skills the applicants should have.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>skills</td>
+<td>To-many association</td>
+<td>Ids of Skills associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>String (100)</td>
+<td>Source of the job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>Timestamp</td>
+<td>Desired start date for the position. The default value is 12 AM on day record is added.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (200)</td>
+<td>Current status of the Job Order. Examples: Accepting Candidates, Currently Interviewing, Covered, Offer Out, Placed</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>submissions</td>
+<td>To-many association</td>
+<td>Ids of JobSubmissions associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tasks</td>
+<td>Task</td>
+<td>Tasks associated with this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taxRate</td>
+<td>Double</td>
+<td>Rate (percentage) at which the person hired for this job will be taxed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taxStatus</td>
+<td>String (20)</td>
+<td>Tax Status, for example, 1099, W-2, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tearsheets</td>
+<td>To-many association</td>
+<td>Ids of Tearsheets with which this JobOrder is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>String (100)</td>
+<td>Job title.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>travelRequirements</td>
+<td>String (50)</td>
+<td>Text description of the amount of travel required for this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>Integer</td>
+<td>Job type, for example, Cold, Cool, Medium, Warm, Hot. Stored in DB as Integer with display values configured in field maps.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>usersAssigned</td>
+<td>String()</td>
+<td>Comma-separated list of user IDs that represent a horizontal view of the assignedUsers list.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>willRelocate</td>
+<td>Boolean</td>
+<td>Indicates whether the hiring company will provide relocation assistance.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>willSponsor</td>
+<td>Boolean</td>
+<td>Indicates whether the hiring company is willing to sponsor an employee on a work visa.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yearsRequired</td>
+<td>Integer</td>
+<td>Number of years of experience required for the job.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="jobsubmission">JobSubmission</h1>
+
+<p>Represents a formal submission of a Candidate for a particular job. A job submission occurs after the Candidate has been evaluated, interviewed, and otherwise assessed, and the parties involved have agreed that the Candidate may be suitable. The JobSubmission entity is then created with references to the Candidate and the JobOrder representing the position. If the JobSubmission is approved, a Placement entity is created.</p>
+
+<p>The JobSubmission entity supports the massUpdate operations.</p>
+
+<p><strong>Note:</strong> When you set the status field of a JobSubmission to “New Lead”, it becomes a web response, which is an informal job submission. When you update another status, it becomes a formal job submission. When you create a web response, set the dateWebResponse field to the current date. When you update a web response to make it a formal job submission, set the dateAdded field to the current date.</p>
+
+<table><thead>
+<tr>
+<th><strong>JobSubmission field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>appointments</td>
+<td>To-many association</td>
+<td>Ids of Appointments associated with this JobSubmission.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billRate</td>
+<td>BigDecimal</td>
+<td>Bill rate for this JobSubmission.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate submitted for this job.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free-text comments on this JobSubmission.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this JobSubmission record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the JobSubmission was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateWebResponse</td>
+<td>Timestamp</td>
+<td>When a new web response is added, set the dateWebResponse field to the current timestamp. When a web response is promoted to a submission, update the dateAdded property to the current timestamp.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isHidden</td>
+<td>Boolean</td>
+<td>Indicates whether web responses are hidden. If you do not plan to promote a web response to a submission, set the isHidden field to true.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrder</td>
+<td>Integer</td>
+<td>JobOrder to which this JobSubmission corresponds.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>owners</td>
+<td>To-many association</td>
+<td>Primary (first) and secondary (all but first) corporateUsers considered owners of this JobSubmission.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>payRate</td>
+<td>BigDecimal</td>
+<td>Pay rate for this JobSubmission.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salary</td>
+<td>BigDecimal</td>
+<td>Salary for this JobSubmission.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sendingUser</td>
+<td>To-one association</td>
+<td>CorporateUser credited with making the submission. The default value is user who created the JobSubmission.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>String (100)</td>
+<td>Source of the JobSubmission (for example, web, Integer, and so forth.)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (30)</td>
+<td>Status of the JobSubmission (for example, reviewed, accepted, and so forth.). Allowable values are configured in field maps.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="jobsubmissionhistory">JobSubmissionHistory</h1>
+
+<p>Read-only entity that represents the transaction history of a JobSubmission. The GET /query/JobSubmissionHistory call returns a list of JobSubmissionHistory entities for one or more JobSubmission entities. The GET /entity/JobSubmissionHistory/{entityId} call returns a single JobSubmissionHistory entity that represents one JobSubmission change. Supports create and delete operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>JobSubmissionHistory field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Value of the JobSubmission comments fields for this transaction.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which the JobSubmission record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>jobSubmission</td>
+<td>To-one association</td>
+<td>JobSubmission associated with this JobSubmissionHistory.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>sendingUser</td>
+<td>To-one association</td>
+<td>CorporateUser credited with making the JobSubmission. The default value is user who created the JobSubmission.</td>
+<td>X</td>
+<td> X</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (30)</td>
+<td>Status of the JobSubmission (for example, reviewed, accepted, and so forth.). Allowable values are configured in field maps.</td>
+<td>X</td>
+<td> X</td>
+</tr>
+<tr>
+<td>transactionID</td>
+<td>String (36)</td>
+<td>Unique transaction id for this JobSubmissionHistory.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="lead">Lead</h1>
+
+<p>Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation. A Lead can be converted into a Candidate, ClientContact, or ClientCorporation.</p>
+
+<table><thead>
+<tr>
+<th><strong>Lead field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>Lead&rsquo;s address. This is an address object containing Street Address, City, State, Zip, and CountryID.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assignedTo</td>
+<td>To-many association</td>
+<td>CorporateUser(s) this Lead is assigned to.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>businessSectors</td>
+<td>To-many association</td>
+<td>IDs of BusinessSectors in which the Lead operates.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>campaignSource</td>
+<td>String</td>
+<td>Campaign source of the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>candidates</td>
+<td>To-many association</td>
+<td>Candidates associated with this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>category</td>
+<td>To-one association</td>
+<td>Lead&rsquo;s primary Category.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>categories</td>
+<td>To-many association</td>
+<td>IDs of the Categories associated with the Lead. Note that the categoryId property is used to store the Lead&rsquo;s primary Category, while this association hold that Category and any other Categories to which the Lead belongs.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientContacts</td>
+<td>To-many association</td>
+<td>ClientContacts associated with this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>ClientCorporation associated with this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free-text comments on this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>companyName</td>
+<td>String(100)</td>
+<td>Name of the Lead&rsquo;s company (can be used if there is no ClientCorporation entity for this Lead&rsquo;s company).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>companyURL</td>
+<td>String(100)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>conversionSource</td>
+<td>String(200)</td>
+<td>Source of the Lead&rsquo;s conversion. For example, Cold Call, Monster, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1-3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1-20</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1-5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastComment</td>
+<td>Timestamp</td>
+<td>Date on which the last comment referencing this Lead was made.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the Lead was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastVisited</td>
+<td>Timestamp</td>
+<td>Date on which the Lead was last visited.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Description of the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>distributionLists</td>
+<td>To-many association</td>
+<td>IDs of DistributionLists associated with this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>division</td>
+<td>String (40)</td>
+<td>Department that the Lead is associated with.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>String (100)</td>
+<td>Lead&rsquo;s primary email address.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>email2</td>
+<td>String (100)</td>
+<td>Additional email address. Typically used for the Lead&rsquo;s home or personal email.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email3</td>
+<td>String(100)</td>
+<td>Additional email address. Typically used for the Lead&rsquo;s home or personal email.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax</td>
+<td>String(20)</td>
+<td>The primary fax number for the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax2</td>
+<td>String(20)</td>
+<td>An additional fax number for the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax3</td>
+<td>String(20)</td>
+<td>An additional fax number for the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>String (50)</td>
+<td>Lead&rsquo;s first name.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>history</td>
+<td>To-many association</td>
+<td>IDs of LeadHistory entities associated with this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDayLightSavingsTime</td>
+<td>Boolean</td>
+<td>Indicates whether the Lead&rsquo;s location is using Daylight Saving Time.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as Deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>String (50)</td>
+<td>Lead&rsquo;s last name</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>leadSource</td>
+<td>String (15)</td>
+<td>Source of the Lead. For example, LinkedIn, Facebook, Marketing, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>massMailOptOut</td>
+<td>Boolean</td>
+<td>Indicates whether the Lead has chosen not to be included in mass emails through the Bullhorn system</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>middleName</td>
+<td>String (50)</td>
+<td>Lead&rsquo;s middle name.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mobile</td>
+<td>String (20)</td>
+<td>Lead&rsquo;s mobile (cellular) telephone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Lead&rsquo;s full name. Should be a combination of the firstName and lastName fields separated by a space. <br><strong>Notes:</strong> If you create a Lead with no value in the name field, users have no way to select that Lead in the Bullhorn staffing application. If you create or modify a Lead name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the Lead in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>namePrefix</td>
+<td>String (5)</td>
+<td>Lead&rsquo;s name prefix. For example Dr., Ms, Mr., and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nameSuffix</td>
+<td>String (5)</td>
+<td>Lead&rsquo;s name suffix. For example Jr.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nickName</td>
+<td>String(50)</td>
+<td>Lead&rsquo;s nickname.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>notes</td>
+<td>To-many association</td>
+<td>IDs of Note entities associated with this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>numEmployees</td>
+<td>Integer</td>
+<td>The number of employees associated with the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>occupation</td>
+<td>String(50)</td>
+<td>Occupation of the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>To-one association</td>
+<td>ID of the CorporateUser who is the owner of this Lead record.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>ownerCorporation</td>
+<td>To-one association</td>
+<td>Corporation ID of the Lead&rsquo;s owner.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pager</td>
+<td>String(20)</td>
+<td>Lead&rsquo;s pager number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String (20)</td>
+<td>Lead&rsquo;s primary telephone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone2</td>
+<td>String(20)</td>
+<td>Additional phone number for the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone3</td>
+<td>String(20)</td>
+<td>Additional phone number for the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>preferredContact</td>
+<td>String(15)</td>
+<td>Preferred contact method of the Lead.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>primarySkills</td>
+<td>To-many association</td>
+<td>Skills that are listed as the primary skills for this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>priority</td>
+<td>String(15)</td>
+<td>Priority of the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referredByPerson</td>
+<td>To-one association</td>
+<td>Person who referred this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reportToPerson</td>
+<td>To-one association</td>
+<td>Person to whom this Lead reports.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>role</td>
+<td>String (255)</td>
+<td>Role of the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salary</td>
+<td>BigDecimal</td>
+<td>The desired salary of the Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salaryLow</td>
+<td>BigDecimal</td>
+<td>The lowest yearly salary the Lead would accept.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>secondarySkills</td>
+<td>To-many association</td>
+<td>Skills that are listed as secondary skills for this Lead</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>skillSet</td>
+<td>String</td>
+<td>Text description of the Lead&rsquo;s skills.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>smsOptIn</td>
+<td>Boolean</td>
+<td>Indicates whether the Lead has granted permission to be sent messages via SMS.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>specialties</td>
+<td>To-many association</td>
+<td>IDs of the Specialties are associated with this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (100)</td>
+<td>Status of the lead; for example, New Lead, Active, Prospect, and so forth. Possible values can be configured using field maps.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>tearsheets</td>
+<td>To-many association</td>
+<td>IDs of Tearsheets associated with this Lead.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeZoneOffsetEST</td>
+<td>Integer</td>
+<td>Indicates the number of hours by which the Lead&rsquo;s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern Standard Time.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>String(30)</td>
+<td>Describes the type of Lead. For example, Staffing, RFP/VOR, etc. Possible values can be configured using the field maps.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>willRelocate</td>
+<td>Boolean</td>
+<td>Indicates whether or not a Lead is willing to relocate.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="leadhistory">LeadHistory</h1>
+
+<p>Read-only entity that represents the status and ClientCorporation history of a Lead.</p>
+
+<table><thead>
+<tr>
+<th><strong>LeadHistory field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>ClientCorporation of the associated Lead at the time this LeadHistory was created.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date this LeadHistory was added.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>lead</td>
+<td>To-one association</td>
+<td>Lead associated with this LeadHistory.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>modifyingUser</td>
+<td>To-one association</td>
+<td>CorporateUser who modified the Lead associated with this LeadHistory.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String(30)</td>
+<td>Status of the associated Lead at the time this LeadHistory was created.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody></table>
+
+          <h1 id="note">Note</h1>
+
+<p>Represents a note (comment) associated with a Candidate, ClientContact, CorporateUser, JobOrder, Lead, or Opportunity. Notes can be accessed via the &ldquo;Notes&rdquo; tab on the person&rsquo;s record in the Bullhorn application.</p>
+
+<p>If you include a commentingPerson value and a personReference value when you create a Note, the association to an entity is made automatically and you do not need to make a separate call to create a NoteEntity.</p>
+
+<table><thead>
+<tr>
+<th><strong>Note field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Id of this Note.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>action</td>
+<td>String (30)</td>
+<td>Action type associated with Note. The list of values is configured in the private label attribute called commentActionList.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bHTimestamp</td>
+<td>byte[]</td>
+<td>Timestamp for this Note.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>commentingPerson</td>
+<td>To-one association</td>
+<td>Person who created the Note. The default value is user who creates the Note.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>candidates</td>
+<td>To-many association</td>
+<td>Candidates associated with this Note.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientContacts</td>
+<td>To-many association</td>
+<td>ClientContacts associated with this Note.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Text of this Note.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>corporateUsers</td>
+<td>To-many association</td>
+<td>Ids of CorporateUsers associated with this Note.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the Note was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalID</td>
+<td>String (50)</td>
+<td>External identifier for the record, used for integrations with external datasources or custom imports.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>entities</td>
+<td>To-many association</td>
+<td>Ids of NoteEntities associated with this Note.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as Deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrder</td>
+<td>To-one association</td>
+<td>Primary JobOrder associated with this Note.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrders</td>
+<td>To-many association</td>
+<td>JobOrders associated with this Note.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>leads</td>
+<td>To-many association</td>
+<td>Leads associated with this Note.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>minutesSpent</td>
+<td>Integer</td>
+<td>Number of minutes spent on actions associated with this note, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>personReference</td>
+<td>To-one association</td>
+<td>Person with whom this Note is associated.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>placements</td>
+<td>To-many association</td>
+<td>Ids of Placements associated with this Note.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          
+          <h1 id="opportunity">Opportunity</h1>
+
+<p>Represents a possible Opportunity which can be converted to a JobOrder.</p>
+
+<table><thead>
+<tr>
+<th><strong>Opportunity field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-Only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>actualCloseDate</td>
+<td>Timestamp</td>
+<td>Actual close date of the Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>Address of the hiring company; when the Opportunity is created in the Bullhorn application, this data is pulled from the ClientContact record that is associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>appointments</td>
+<td>To-many association</td>
+<td>IDs of Appointments associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assignedDate</td>
+<td>Timestamp</td>
+<td>Date the Opportunity was assigned to a CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assignedUsers</td>
+<td>To-many association</td>
+<td>CorporateUsers assigned to this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>benefits</td>
+<td>String</td>
+<td>Text description of benefits offered with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billRateCategoryID</td>
+<td>Integer</td>
+<td>ID of the client bill rate category.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bonusPackage</td>
+<td>String</td>
+<td>Text description of the bonus package offered with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>branchCode</td>
+<td>String(100)</td>
+<td>Code representing the corporate branch where this Opportunity is located.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>businessSector</td>
+<td>Integer</td>
+<td>ID of the primary BusinessSector associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>businessSectors</td>
+<td>To-many association</td>
+<td>IDs of BusinessSectors associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>campaignSource</td>
+<td>String(100)</td>
+<td>Campaign source of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>category</td>
+<td>Integer</td>
+<td>ID of the primary Category associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>categories</td>
+<td>To-many association</td>
+<td>IDs of Categories associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>certifications</td>
+<td>To-many association</td>
+<td>Certifications needed for this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientContact</td>
+<td>To-one association</td>
+<td>ClientContact associated with this Opportunity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>ClientCorporation the ClientContact associated with this Opportunity is employed by.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>committed</td>
+<td>Boolean</td>
+<td>Indicates whether the Opportunity has been committed to.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1-3</td>
+<td>BigDecimal</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1-20</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1-5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customObject1s to 10s</td>
+<td>CustomObject</td>
+<td>Fields to which custom objects can be assigned.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date when this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date this record was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dealValue</td>
+<td>BigDecimal</td>
+<td>Deal value for this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>degreeList</td>
+<td>String</td>
+<td>Degree requirements for this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Text description of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>educationDegree</td>
+<td>String(50)</td>
+<td>Education requirements for this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>effectiveDate</td>
+<td>Timestamp</td>
+<td>Effective date of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>estimatedDuration</td>
+<td>Double</td>
+<td>Estimated duration of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>estimatedEndDate</td>
+<td>Timestamp</td>
+<td>Estimated date when this Opportunity will end (if applicable).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>estimatedHoursPerWeek</td>
+<td>Double</td>
+<td>The estimated hours per week of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>estimatedStartDate</td>
+<td>Timestamp</td>
+<td>The estimated start date for this Opportunity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>estimatedBillRate</td>
+<td>BigDecimal</td>
+<td>Estimated bill rate of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expectedCloseDate</td>
+<td>Timestamp</td>
+<td>Expected close date of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expectedFee</td>
+<td>Double</td>
+<td>Fee, expressed as a percentage, that will be paid by the ClientCorporation when the potential JobOrder is filled.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expectedParRate</td>
+<td>BigDecimal</td>
+<td>The expected pay rate of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalCategoryID</td>
+<td>Integer</td>
+<td>ID of the external category of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalID</td>
+<td>String(30)</td>
+<td>External identifier for the record, used for migrations and back-office integration.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>history</td>
+<td>To-many association</td>
+<td>IDs of OpportunityHistory entities associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ignoreUntilDate</td>
+<td>Timestamp</td>
+<td>The date, if any, until which to ignore this Opportunity. Allows you to ignore an Opportunity until a certain day/time.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as Deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isOpen</td>
+<td>Boolean</td>
+<td>Indicates whether this Opportunity is Open or Closed.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrders</td>
+<td>To-many association</td>
+<td>JobOrders that have been converted from this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lead</td>
+<td>To-one association</td>
+<td>Lead, if any, that is associated to this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>markUpPercentage</td>
+<td>Double</td>
+<td>Percent of mark up for this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>notes</td>
+<td>To-many association</td>
+<td>Notes associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>numOpenings</td>
+<td>Integer</td>
+<td>Number of openings of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>onSite</td>
+<td>String(20)</td>
+<td>Location requirements of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>optionsPackage</td>
+<td>String</td>
+<td>Options package of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>To-one association</td>
+<td>ID of CorporateUser who owns this Opportunity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>priority</td>
+<td>Integer</td>
+<td>Priority of this Opportunity, for example, Cold, Cool, Medium, Warm, Hot. Stored in DB as Integer with display values configured in field maps.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>publicDescription</td>
+<td>String</td>
+<td>Public description of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>publishedZip</td>
+<td>String(18)</td>
+<td>Published zip code of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reasonClosed</td>
+<td>String(255)</td>
+<td>Text description of the reason this Opportunity was closed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salary</td>
+<td>BigDecimal</td>
+<td>Salary offered for this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salaryUnit</td>
+<td>String(12)</td>
+<td>Salary unit represented by the range. For example, per hour, yearly, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>skillList</td>
+<td>String</td>
+<td>Comma-separated list of skills the applicants should have.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>skills</td>
+<td>To-many association</td>
+<td>IDs of Skills associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>String (100)</td>
+<td>Source of this Opportunity. For example, Existing Client, Internet Search, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>specialties</td>
+<td>To-many association</td>
+<td>IDs of Specialties associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (200)</td>
+<td>Current status of this Opportunity. i.e. Prospective, Active, Lost to Competition, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tasks</td>
+<td>To-many association</td>
+<td>Tasks associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tearsheets</td>
+<td>To-many association</td>
+<td>Tearsheets associated with this Opportunity</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>String (100)</td>
+<td>Opportunity title.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>String (200)</td>
+<td>Type of employment offered: for example, contract, permanent, and so forth. Determines which of the five Opportunity tracks are used.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>weightedDealValue</td>
+<td>BigDecimal</td>
+<td>Weighted deal value of this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>willRelocate</td>
+<td>Boolean</td>
+<td>Indicates whether or not the company will provide relocation assistance for this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>winProbabilityPercent</td>
+<td>Double</td>
+<td>Probability of winning this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yearsRequired</td>
+<td>Integer</td>
+<td>Minimum experience required for this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="opportunityhistory">OpportunityHistory</h1>
+
+<p>Read-only entity that represents the history of certain fields of an Opportunity.</p>
+
+<table><thead>
+<tr>
+<th><strong>OpportunityHistory field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date this OpportunityHistory was added.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dealValue</td>
+<td>BigDecimal</td>
+<td>Deal value of the associated Opportunity at the time this OpportunityHistory was created.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>effectiveDate</td>
+<td>Timestamp</td>
+<td>Date the status change comes into effect for the associated Opportunity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>modifyingUser</td>
+<td>To-one association</td>
+<td>CorporateUser who modified the Opportunity associated with this OpportunityHistory.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>opportunity</td>
+<td>To-one association</td>
+<td>Opportunity associated with this OpportunityHistory.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>Status of the associated Opportunity at the time this OpportunityHistory was created.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>weightedDealValue</td>
+<td>BigDecimal</td>
+<td>Weighted deal value of the associated Opportunity at the time this OpportunityHistory was created.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>winProbabilityPercent</td>
+<td>Double</td>
+<td>Probability of winning the associated Opportunity at the time this OpportunityHistory was created.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="placement">Placement</h1>
+
+<p>Represents a successfully filled job; for example, a placement of a candidate in a job. Each Placement record corresponds to a single JobOrder and a single Candidate, although a JobOrder may have multiple Placements associated with it. For example, a company could hire several people for the same position. The Placement entity supports the massupdate operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>Placement field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>appointments</td>
+<td>To-many association</td>
+<td>Appointments associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>approvedChangeRequests</td>
+<td>Integer</td>
+<td>Number of change requests with a status of approved.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>approvingClientContact</td>
+<td>To-one association</td>
+<td>ClientContact who can approve the timecard, if used. Included fields are id, firstName, lastName.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>backupApprovingClientContact</td>
+<td>To-one association</td>
+<td>Another ClientContact who can approve the timecard, if used. Included fields are: id, firstName, lastName</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingClientContact</td>
+<td>To-one association</td>
+<td>ClientContact in charge of processing bills for this Placement. </td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingFrequency</td>
+<td>String (20)</td>
+<td>Frequency with which the client company will be billed for this position, initially copied from the associated ClientCorporation record but can be modified on the Placement record.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bonusPackage</td>
+<td>String</td>
+<td>Text description of the bonus package for this placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate who was placed. Cannot be changed after this record is created. Included fields are id, firstName, lastName.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>changeRequests</td>
+<td>To-many association</td>
+<td>PlacementChangeRequests for this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientBillRate</td>
+<td>Double</td>
+<td>Hourly rate at which the client company will be billed for work done during regular business hours.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientOvertimeRate</td>
+<td>Double</td>
+<td>Hourly rate at which the client company will be billed for overtime.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Text field for entering any comments about the Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>commissions</td>
+<td>To-many association</td>
+<td>Ids of PlacementCommissions associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomDate1-3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomText1-10</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomTextBlock1-3</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>costCenter</td>
+<td>String (100)</td>
+<td>Text field for Client Cost Center. Drives invoice grouping (placements with the same cost center for the same client will be grouped together).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customBillRate1-10</td>
+<td>BigDecimal</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1-3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customObject1s to 10s</td>
+<td>CustomObject</td>
+<td>Fields to which custom objects can be assigned.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customPayRate1-10</td>
+<td>BigDecimal</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1-40</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1-5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp (5)</td>
+<td>Indicates when this Placement was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateBegin</td>
+<td>Timestamp</td>
+<td>Date when the Candidate will begin work.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateClientEffective</td>
+<td>Timestamp</td>
+<td>Date when a pending change to the client bill rate will take effect.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateEffective</td>
+<td>Timestamp</td>
+<td>Date when a pending change to the Candidate&rsquo;s pay rate will take effect.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateEnd</td>
+<td>Timestamp</td>
+<td>Date when the job will end. For a permanent placement, this is null.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>daysGuaranteed</td>
+<td>Integer</td>
+<td>Number of days the Candidate is guaranteed for this job. If the Candidate leaves the job before working this many days, the ClientCompany may not have to pay its fee; see daysProRated. Used for Permanent placements.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the Placement was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>daysProRated</td>
+<td>Integer</td>
+<td>Indicates how many days the Candidate must work before the Client Corporation will be expected to pay a pro-rated portion of the fee. Used for Permanent placements. For example, if daysGuaranteed = 90 and daysProRated = 30, then if the Candidate works 29 days no fee is due, but if the Candidate works 30-89 days the Client Corporation must pay a percentage of the fee, and if the Candidate works 90 days or more, the full fee is due.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>durationWeeks</td>
+<td>Double</td>
+<td>Duration of the job in weeks. You can use this property in addition to dateEnd.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>employeeType</td>
+<td>String (30)</td>
+<td>Type of employee. For example, W2, 1099, Employee, Contractor, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expiringCredentials</td>
+<td>Integer</td>
+<td>Number of credentials on requirements of this placement that are expiring within the next 30 days or already expired.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>employmentType</td>
+<td>String (30)</td>
+<td>Employment Type, initially copied from the associated JobOrder but can be modified on the Placement record.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>fee</td>
+<td>Double</td>
+<td>Fee (expressed as a decimal) that the company will receive for this placement.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>hoursOfOperation</td>
+<td>String (100)</td>
+<td>Hours during which the employee will work.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hoursPerDay</td>
+<td>Double</td>
+<td>Number of hours per day that the employee will work.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>housingAmenities</td>
+<td>To-many association</td>
+<td><strong>Not supported in this release.</strong> Amenities available as part of the housing arrangement for this Placement, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>housingManagerID</td>
+<td>Integer</td>
+<td>Id of the corporate user serving as manager of the housing arrangements, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>housingStatus</td>
+<td>String</td>
+<td>Status of the Placement Housing, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>incompleteRequirements</td>
+<td>Integer</td>
+<td>Number of requirements on this placements that are incomplete.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>invoiceGroupID</td>
+<td>Integer</td>
+<td><strong>Not supported in this release.</strong> Id of the InvoiceGroup object associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>invoiceGroupName</td>
+<td>String (100)</td>
+<td>Name of the invoice group associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>invoiceID</td>
+<td>Integer</td>
+<td><strong>Not supported in this release.</strong> Id of the Invoice object associated with this Placement. This field is used for Permanent placements since only a single invoice is needed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>invoiceItems</td>
+<td>To-many association</td>
+<td><strong>Not supported in this release.</strong> Invoice Items associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrder</td>
+<td>To-one association</td>
+<td>JobOrder associated with this Placement. Cannot be changed after this record is created.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobSubmission</td>
+<td>To-one association</td>
+<td>JobSubmission associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>markupPercentage</td>
+<td>Double</td>
+<td>markupPercentage = (clientBillRate - payRate) / payRate. Multiply by 100 to get actual percentage.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>notes</td>
+<td>To-many association</td>
+<td>Notes associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>optionsPackage</td>
+<td>String</td>
+<td>Text description of the stock options package associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>otExemption</td>
+<td>Boolean</td>
+<td>Indicates whether the employee is eligible for hours over 40 to automatically be classified as Overtime. Boolean: 0 = Eligible, 1 = Exempt.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>otherHourlyFee</td>
+<td>Double</td>
+<td>Additional hourly fees, if any.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>otherHourlyFeeComments</td>
+<td>String</td>
+<td>Free text field for comments on additional hourly fees.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>overtimeMarkupPercentage</td>
+<td>Double</td>
+<td>overtimeMarkupPercentage = (clientOvertimeRate - overtimeRate) / overtimeRate. Multiply by 100 to get actual percentage.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>overtimeRate</td>
+<td>Double</td>
+<td>Hourly rate at which the employee will be paid for overtime work.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>payRate</td>
+<td>BigDecimal</td>
+<td>Rate at which the employee will be paid during regular business hours. This may or may not be used depending on the job type.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>pendingChangeRequests</td>
+<td>Integer</td>
+<td>Number of change requests with a status of submitted.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>placementCertifications</td>
+<td>To-many association</td>
+<td>PlacementCertifications associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recruitingManagerPercentGrossMargin</td>
+<td>Double</td>
+<td>Percentage of the total gross margin that the recruiting manager will receive.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>referralFee</td>
+<td>BigDecimal</td>
+<td>Referral fee associated with this Placement, if any. Only used with external Candidate source.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>referralFeeType</td>
+<td>String</td>
+<td>Configurable list of fee types associated with the referralFee. Only used with external Candidate source.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>reportedMargin</td>
+<td>Double</td>
+<td>Hourly margin in dollars, calculated using burden and other costs.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reportTo</td>
+<td>String (100)</td>
+<td>Name/title of the person to whom this position will report.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>salary</td>
+<td>BigDecimal</td>
+<td>Salary that the employee will receive. This may be either a yearly or hourly salary. See salaryUnit. The default value is 0.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>salaryUnit</td>
+<td>String (20)</td>
+<td>Indicates whether the salary is per year or per hour.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>salesManagerPercentGrossMargin</td>
+<td>Double</td>
+<td>Percentage of the total gross margin that the sales manager will receive.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>shiftID</td>
+<td>Integer</td>
+<td><strong>Not supported in this release.</strong> Id of the Shift object associated with this Placement, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>statementClientContact</td>
+<td>To-one association</td>
+<td>ClientContact who should receive statements associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (30)</td>
+<td>Status of the Placement. For example, Approved, Completed, Terminated, and so forth. The default value is “Placed”.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>surveys</td>
+<td>Survey</td>
+<td><strong>Not supported in this release.</strong> Surveys associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tasks</td>
+<td>To-many association</td>
+<td>Tasks associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taxRate</td>
+<td>Double</td>
+<td>Percentage at which this Placement will be taxed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taxState</td>
+<td>String</td>
+<td>Name of the US State that is the tax state for this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>terminationReason</td>
+<td>String</td>
+<td>If the Placement has a status of &ldquo;Terminated,&rdquo; this field indicates the reason for termination.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeUnits</td>
+<td>TimeUnit</td>
+<td>TimeUnit associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeCard</td>
+<td>TimeCard</td>
+<td><strong>Not supported in this release.</strong> Timecards associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timecardExpenses</td>
+<td>TimecardExpense</td>
+<td><strong>Not supported in this release.</strong> Expenses incurred in relation to this Placement, for which the employee wishes to be reimbursed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timecardTimes</td>
+<td>TimecardTime</td>
+<td><strong>Not supported in this release.</strong> Timecard entries associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>workersCompensationRateID</td>
+<td>Integer (100)</td>
+<td><strong>Not supported in this release.</strong> Id of the WorkersCompensationRate associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>workWeekStart</td>
+<td>Integer</td>
+<td>Day of the week on which the work week begins for this Placement. 1 = Sunday, 2 = Monday, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>venderClientCorporation</td>
+<td>To-one association</td>
+<td>Umbrella company associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="placementcertification">PlacementCertification</h1>
+
+<p>This entity represents the required certification for a Placement.</p>
+
+<table><thead>
+<tr>
+<th><strong>PlacementCertification field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>CandidateCertification</td>
+<td>To-one association</td>
+<td>CandidateCertification that fulfills this PlacementCertification.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>certification</td>
+<td>To-one association</td>
+<td>The certification that is required.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>placement</td>
+<td>To-one association</td>
+<td>Placement that this PlacementCertification is for.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="placementchangerequest">PlacementChangeRequest</h1>
+
+<p>Represents a change request that is submitted for a particular Placement. Placements cannot be directly modified; a user must submit a PlacementChangeRequest for approval. Supports create, update, and delete operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>PlacementChangeRequest field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>approvingUser</td>
+<td>To-one association</td>
+<td>Id of user who approved the change.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingClientContact</td>
+<td>To-one association</td>
+<td>ClientContact in charge of processing bills for this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingFrequency</td>
+<td>String (20)</td>
+<td>Frequency with which the client company will be billed for this position, initially copied from the associated ClientCorporation but can be modified on the Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bonusPackage</td>
+<td>String</td>
+<td>Text description of the bonus package for this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientBillRate</td>
+<td>Double</td>
+<td>Hourly rate at which the client company will be billed for work done during regular business hours.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientOvertimeRate</td>
+<td>Double</td>
+<td>Hourly rate at which the client company will be billed for overtime.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free text field for any comments on this record.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomDate1-3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomText1-10</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>correlatedCustomTextBlock1-3</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>costCenter</td>
+<td>String</td>
+<td>Text field for Client Cost Center. Drives invoice grouping (placements with the same cost center for the same client will be grouped together).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customBillRate1-10</td>
+<td>BigDecimal</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1-3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customPayRate1-10</td>
+<td>BigDecimal</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1-40</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1-5</td>
+<td>String</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this entity was created.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateApproved</td>
+<td>Timestamp</td>
+<td>Date on which this change was approved.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateBegin</td>
+<td>Timestamp</td>
+<td>Date on which Candidate will begin work.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateClientEffective</td>
+<td>Timestamp</td>
+<td>Date on which a pending change to the ClientCorporation bill rate will take effect.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateEffective</td>
+<td>Timestamp</td>
+<td>Date on which a pending change to the Candidate&rsquo;s pay rate will take effect.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateEnd</td>
+<td>Timestamp</td>
+<td>Date on which the job will end. For a permanent placement, this will be null.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the PlacementChangeRequest was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>daysGuaranteed</td>
+<td>Integer</td>
+<td>Number of days Candidate is guaranteed for this job. If Candidate leaves the job before working this many days, the ClientCorporation may not have to pay its fee; see daysProRated. Used for Permanent placements.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>daysProRated</td>
+<td>Integer</td>
+<td>Indicates how many days the Candidate must work before the ClientCorporation will be expected to pay a pro-rated portion of the fee. Used for Permanent placements. For example, if daysGuaranteed = 90 and daysProRated = 30, then if the Candidate works 29 days no fee is due, but if the Candidate works 30-89 days the ClientCorporation must pay a percentage of the fee, and if the Candidate works 90 days or more, the full fee is due.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>durationWeeks</td>
+<td>Double</td>
+<td>Duration of the job in weeks. This field can be used in addition to dateEnd.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>employeeType</td>
+<td>String (30)</td>
+<td>Type of employee: for example W2, 1099, Employee, Contractor, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>employmentType</td>
+<td>String (30)</td>
+<td>Employment type, initially copied from the associated JobOrder but can be modified on the Placement.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>fee</td>
+<td>Double</td>
+<td>Fee (expressed as a decimal) that the company will receive for this placement.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>hoursOfOperation</td>
+<td>String (100)</td>
+<td>Hours during which the employee will work.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hoursPerDay</td>
+<td>Double</td>
+<td>Number of hours per day that the employee will work.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>housingManagerID</td>
+<td>Integer</td>
+<td>Id of CorporateUser serving as manager of the housing arrangements, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>housingStatus</td>
+<td>String (30)</td>
+<td>Status of the Placement Housing, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>optionsPackage</td>
+<td>String</td>
+<td>Text description of the stock options package associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>otExemption</td>
+<td>Integer</td>
+<td>Indicates whether the employee is eligible for hours over 40 to automatically be classified as Overtime. Boolean 0 = Eligible, 1 = Exempt.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>otherHourlyFee</td>
+<td>Double</td>
+<td>Additional hourly fees, if any.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>otherHourlyFeeComments</td>
+<td>String</td>
+<td>Free text field for comments on additional hourly fees.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>overtimeRate</td>
+<td>Double</td>
+<td>Hourly rate at which the employee will be paid for overtime work.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>payRate</td>
+<td>BigDecimal</td>
+<td>Rate at which the employee will be paid during regular business hours. This may or may not be used depending on the job type.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>placement</td>
+<td>To-one association</td>
+<td>Placement to which this change request applies.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>recruitingManagerPercentGrossMargin</td>
+<td>Double</td>
+<td>Percentage of total gross margin that the recruiting manager will receive.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>referralFee</td>
+<td>BigDecimal</td>
+<td>Referral fee associated with this Placement, if any. Only used with external Candidate source.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referralFeeType</td>
+<td>String</td>
+<td>Configurable list of fee types associated with referralFee. Only used with external Candidate source.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reportTo</td>
+<td>String</td>
+<td>Name/title of the person to whom this position will report.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>requestCustomDate1-3</td>
+<td>Timestamp</td>
+<td>Configurable date fields.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>requestCustomFloat1-3</td>
+<td>Double</td>
+<td>Configurable numeric fields.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>requestCustomInt1-3</td>
+<td>Integer</td>
+<td>Configurable numeric fields.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>requestCustomText1-20</td>
+<td>String (30)</td>
+<td>Configurable text fields.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>requestCustomTextBlock1-5</td>
+<td>String</td>
+<td>Configurable text fields.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>requestingUser</td>
+<td>To-one association</td>
+<td>CorporateUser who initiated this change request.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>requestStatus</td>
+<td>String (40)</td>
+<td>Status of change request.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>requestType</td>
+<td>String (50)</td>
+<td>Configurable. Type of request.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>salary</td>
+<td>BigDecimal</td>
+<td>Salary that employee will receive. This may be either a yearly or hourly salary. See salaryUnit.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>salaryUnit</td>
+<td>String</td>
+<td>Indicates whether the salary is per year or per hour.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>salesManager-PercentGrossMargin</td>
+<td>Double</td>
+<td>Percentage of the total gross margin that the sales manager will receive.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>statementClientContact</td>
+<td>To-one association</td>
+<td>ClientContact who should receive statements associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (100)</td>
+<td>Status of Placement: for example, Approved, Completed, Terminated, and so forth.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>terminationReason</td>
+<td>String (100)</td>
+<td>Status of Placement: for example, Approved, Completed, Terminated, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vendorClientCorporation</td>
+<td>To-one association</td>
+<td>Vendor ClientCorporation associated with change request.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>workersCompRateID</td>
+<td>Integer</td>
+<td><strong>Not supported in this release.</strong> Id of the WorkersCompensationRate object associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>workWeekStart</td>
+<td>Integer</td>
+<td>Day of the week on which the work week begins for this Placement. 1 = Sunday, 2 = Monday, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="placementcommission">PlacementCommission</h1>
+
+<p>Represents a commission payment that is paid upon successful placement of a Candidate in a job. Each PlacementCommission instance is associated with exactly one Placement instance; a Placement may have multiple PlacementCommissions associated with it.</p>
+
+<table><thead>
+<tr>
+<th><strong>PlacementCommission field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Free-text comments on this commission.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>commissionPercentage</td>
+<td>Double</td>
+<td>The commission amount, expressed as a percentage: for example, 0.05 = 5%. Saved as decimal.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the PlacementCommission was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalRecipient</td>
+<td>String (100)</td>
+<td>If the person who should receive the commission does not have a Bullhorn id, this field indicates that person&rsquo;s name.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>flatPayout</td>
+<td>Double</td>
+<td>The commission expressed as a flat sum.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>grossMarginPercentage</td>
+<td>Double</td>
+<td>The percentage of the total gross margin for the Placement that the commission recipient will receive.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>hourlyPayout</td>
+<td>Double</td>
+<td>The commission expressed as an hourly rate (e.g., $1.00 for each hour worked by the employee).</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>placement</td>
+<td>To-one association</td>
+<td>Placement to which this commission pertains.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>role</td>
+<td>String (50)</td>
+<td>The commission recipient&rsquo;s role for the Placement (Sales, Recruiting, and so forth).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (30)</td>
+<td>Status of this commission.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>user</td>
+<td>To-one association</td>
+<td>User who will receive the commission, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="sendout">Sendout</h1>
+
+<p>Represents a sendout, which occurs when a Candidate&rsquo;s information is sent to a ClientCorporation to be evaluated for a particular job.</p>
+
+<table><thead>
+<tr>
+<th><strong>Sendout field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate being sent out.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>clientContact</td>
+<td>To-one association</td>
+<td>ClientContact receiving the Sendout.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientCorporation</td>
+<td>To-one association</td>
+<td>Hiring company.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this entity was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>String (100)</td>
+<td>Email address to which the Sendout is sent.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isRead</td>
+<td>Boolean</td>
+<td>Indicates whether the email has been opened.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrder</td>
+<td>To-one association</td>
+<td>JobOrder for which the Candidate is being considered.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>user</td>
+<td>To-one association</td>
+<td>CorporateUser who initiated this Sendout. The default value is user who creates the Sendout.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="skill">Skill</h1>
+
+<p>Represents a skill that a candidate may have. You can use the Skill entity in a Candidate entity to indicate that the candidate has that skill, or in a JobOrder entity to indicate that applicants for that job should have that skill.</p>
+
+<table><thead>
+<tr>
+<th><strong>Skill field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-Only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Indicates whether Skill is enabled.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>categories</td>
+<td>To-many association</td>
+<td>Categories with which this Skill is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td><strong>Not supported in this release.</strong> Text description of this Skill.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of this Skill.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody></table>
+
+          <h1 id="specialty">Specialty</h1>
+
+<p>Represents anty that can be associated with a job or held by a candidate. Specialties are associated with a parent Category entity.</p>
+
+<table><thead>
+<tr>
+<th><strong>Specialty field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Indicates whether category is available for use in the Bullhorn application.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of Specialty.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>parentCategory</td>
+<td>Integer</td>
+<td>Category that is parent of this Specialty.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="state">State</h1>
+
+<p>Represents a state or province within a nation. </p>
+
+<table><thead>
+<tr>
+<th><strong>State field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>Postal abbreviation of the state.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>country</td>
+<td>To-one association</td>
+<td>Nation that contains this state.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of the state.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="task">Task</h1>
+
+<p>Represents a task that a user has created in the Bullhorn system using the Tasks feature.</p>
+
+<p>The Task entity supports the massUpdate operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>Task field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>assignees</td>
+<td>To-many association</td>
+<td>Associates CorporateUsers with a Task. Can only be accessed from the user interface when the multipleAssigneesAndContactsOnTasks corporation setting is enabled, in which case childTasks are neither shown nor created.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate associated with this task, if any.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>childTaskOwners</td>
+<td>To-many association</td>
+<td>Users assigned to childTasks.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>childTasks</td>
+<td>To-many association</td>
+<td>Assignments. You populate this field by creating Tasks where Task.parentTask is this Task.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientContact</td>
+<td>To-one association</td>
+<td>ClientContact associated with this task, if any.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientContactReferences</td>
+<td>To-many association</td>
+<td>Associates Tasks to multiple ClientContacts. Can only be accessed from the user interface when the multipleAssigneesAndContactsOnTasks corporation setting is enabled, in which case this field is populated instead of the clientContact field.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this record was created.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateBegin</td>
+<td>Timestamp</td>
+<td>The date when the task is due to begin. The default value is current time rounded up to next 15 minutes, or dateEnd if it is provided.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateCompleted</td>
+<td>Timestamp</td>
+<td>The date when the task was completed, if applicable. The default value is current time rounded up to next 15 minutes, or dateBegin if it is provided.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateEnd</td>
+<td>Timestamp</td>
+<td>The date when the task was scheduled to end. Used for recurring tasks.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date when the Task was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Free-text description of the task. The default value is “”.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isCompleted</td>
+<td>Boolean</td>
+<td>Indicates whether the task has been completed.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isPrivate</td>
+<td>Boolean</td>
+<td>Indicates whether this is a private task. A private task is not visible to users other than the user who created the task.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrder</td>
+<td>To-one association</td>
+<td>JobOrder associated with this task, if any.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lead</td>
+<td>To-one association</td>
+<td>Lead, if any, associated with this task.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>notificationMinutes</td>
+<td>Integer</td>
+<td>Indicates how many minutes in advance the user has chosen to be reminded of this task.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>opportunity</td>
+<td>To-one association</td>
+<td>Opportunity, if any, associated with this task.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>To-one association</td>
+<td>User who created the task. The default value is user who creates the Task.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>parentTask</td>
+<td>To-one association</td>
+<td>Task that is parent of this one, if any. Used when the task is assigned to someone other than the owner. The childTask is a copy of the parentTask managed by the assignee.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>placement</td>
+<td>To-one association</td>
+<td>Placement associated with this Task.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>priority</td>
+<td>Integer</td>
+<td>Priority level of a task.Value is 1, 2, or 3, where 1 is Low, 2 is Normal, and 3 is High.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recurrenceDayBits</td>
+<td>Integer</td>
+<td>Indicates which days are part of the recurrence pattern, if the task is a recurring one. The value of this field is the sum of the days included in the series: Sun = 2, Mon = 4, Tue = 8, Wed = 16, Thur = 32, Fri = 64, Sat = 128. For example, a meeting that occurs on Monday and Friday would have a recurrenceDayBits value of 68 (4+64).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recurrenceFrequency</td>
+<td>Integer</td>
+<td>Frequency with which the task recurs: for example, a recurrenceFrequency of 2 for a weekly meeting would imply the meeting occurs every 2 weeks. Null for a one-time task.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recurrenceStyle</td>
+<td>String (10)</td>
+<td>A=absolute, R=relative: e.g., an absolute would be the third week of every month, whereas a relative would be every third week.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recurrenceType</td>
+<td>String (1)</td>
+<td>Type of recurrence. D=daily, W=weekly, M=monthly, A=annually.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>String (100)</td>
+<td>Subject header for the task.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>taskUUID</td>
+<td>String (35)</td>
+<td>Secondary unique identifier for this entity. Used to identify the record when it is synchronized to external systems. Format is 8-4-4-16 where all characters are A-Z or 0-9.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeZoneID</td>
+<td>String (50)</td>
+<td>Id of time zone.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>String (30)</td>
+<td>Type of task. For example, Follow-Up, Email, Personal, and so forth.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="tearsheet">Tearsheet</h1>
+
+<p>Represents a tearsheet. The Tearsheet entity supports the massUpdate operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>Tearsheet field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>candidates</td>
+<td>To-many association</td>
+<td>Candidates with which this Tearsheet is associated. The default fields</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientContacts</td>
+<td>To-many association</td>
+<td>ClientContacts with which this Tearsheet is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which the Tearsheet was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the Tearsheet was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Free-text description.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isPrivate</td>
+<td>Boolean</td>
+<td>Indicates whether this is a private Tearsheet. A private Tearsheet is not visible to users other than the user who created the tearsheet.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrders</td>
+<td>To-many association</td>
+<td>JobOrders with which this Tearsheet is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of this Tearsheet.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>To-one association</td>
+<td>CorporateUser who is the primary owner of this Tearsheet. The default value is user who created the tearsheet.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recipients</td>
+<td>To-many association</td>
+<td>Ids of TearsheetRecipients with which this Tearsheet is associated.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="tearsheetmember">TearsheetMember</h1>
+
+<p>Represents a tearsheet member. </p>
+
+<table><thead>
+<tr>
+<th><strong>TearsheetMember field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>candidateRestrictionBits</td>
+<td>Integer</td>
+<td>Candidate restriction bits.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>person</td>
+<td>To-one association</td>
+<td>Person with whom this TearsheetMember is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tearsheet</td>
+<td>To-one association</td>
+<td>Tearsheet with which this TearsheetMember is associated.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="tearsheetrecipient">TearsheetRecipient</h1>
+
+<p>Represents a tearsheet recipient. </p>
+
+<table><thead>
+<tr>
+<th><strong>TearsheetRecipient field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>candidateRestrictionBits</td>
+<td>Integer</td>
+<td>Candidate restriction bits.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Free-text description.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isSent</td>
+<td>Boolean</td>
+<td>Indicates whether</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>jobOrder</td>
+<td>To-one association</td>
+<td>JobOrder with which this TearsheetRecipient is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>person</td>
+<td>To-one association</td>
+<td>Person with whom this TearsheetRecipient is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tearsheet</td>
+<td>To-one association</td>
+<td>Tearsheet with which this TearsheetRecipient is associated.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="timeunit">TimeUnit</h1>
+
+<p>Represents a time unit. </p>
+
+<table><thead>
+<tr>
+<th><strong>TimeUnit field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of this TimeUnit.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>timeMarker</td>
+<td>Integer</td>
+<td>Time marker, such as AM or PM.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>weekDay</td>
+<td>Integer</td>
+<td>Day of the week.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+      </div>
+    </div>
+  </body>
+</html>

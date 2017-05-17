@@ -92,7 +92,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -108,6 +108,9 @@
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
+        <div class="guide-link">
+          <a href="/entityref.html">Entity Reference Guide</a>
+        </div>
       <div id="toc">
       </div>
         <ul class="toc-footer">
@@ -120,24 +123,14 @@
         
           <h1 id="introduction">Introduction</h1>
 
-<h2 id="background">Background</h2>
+<p>This reference guide provides general information about the Bullhorn REST API and specific information about each API operation and supported entity type.</p>
 
-<p>The Bullhorn REST API project (codename Lava) aims to provide general, comprehensive access to all functions of the Bullhorn ATS over a uniform, commonly understood Web transport mechanism (namely, REST).</p>
-
-<p>For more information on REST, see the <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">Wikipedia article</a> and <a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">the paper that first codified it</a>.</p>
-
-<p>Some goals of the REST API are:</p>
-
-<ol>
-<li> Ease of use</li>
-<li> Consistency and uniformity</li>
-<li> Very good performance</li>
-<li> Comprehensive coverage of Bullhorn functionality</li>
-</ol>
+<p>Other Guides: 
+- Entity Reference Guide available: <a href="entityref.html">here</a></p>
 
 <h2 id="general-conventions">General Conventions</h2>
 
-<p>Whenever possible, the REST API will follow specifications, conventions and practices of HTTP and the Web in general. This includes things like case sensitivity of URLs, character encodings, HTTP methods, and so forth. Additional recommended practices for REST APIs shall also be observed whenever appropriate.</p>
+<p>Whenever possible, the REST API will follow specifications, conventions and practices of HTTP and the web in general. This includes things like case sensitivity of URLs, character encodings, HTTP methods, and so forth. Additional recommended practices for REST APIs are also observed whenever appropriate.</p>
 
 <h3 id="urls">URLs</h3>
 
@@ -145,141 +138,36 @@
 
 <p>All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:</p>
 
-<p><code class="prettyprint">https://rest.bullhorn.com/e999/entity/Candidate</code></p>
+<p><code class="prettyprint">https://rest.bullhornstaffing.com/e999/entity/Candidate</code></p>
 
 <p>Where <code class="prettyprint">e999</code> is the corporation identifier.</p>
 
+<h5 id="data-center-specific-base-urls">Data-center-specific base URLs</h5>
+
+<p>Use the following base URL that applies to your geographic location and swimlane.</p>
+
+<h6 id="u-s-east-coast-data-center">U.S. East Coast Data Center</h6>
+
+<p>(CLS4, CLS5, CLS2, CLS20, CLS6, CLS7)
+https://rest.bullhornstaffing.com</p>
+
+<h6 id="u-s-west-coast-data-center">U.S. West Coast Data Center</h6>
+
+<p>(CLS30, CLS31, CLS32, CLS33)
+https://rest-west.bullhornstaffing.com</p>
+
+<h6 id="uk-data-center">UK Data Center</h6>
+
+<p>(CLS21, CLS22)
+https://rest-emea.bullhornstaffing.com</p>
+
 <h3 id="entities">Entities</h3>
 
-<p>Bullhorn uses the term entity to refer to a type of thing represented in the Bullhorn system. Candidate, ClientContact, JobOrder, and Placement are examples of entities. Entities capture the core concepts within the Bullhorn system and provide an organization for storing staffing data and applying the rules and processing that comprise the Bullhorn system.</p>
-
-<p>The REST API currently supports the following entity types. For information about these entity types,see the  .</p>
-
-<table><thead>
-<tr>
-<th><strong>Non-list entities</strong></th>
-<th><strong>List entities</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Appointment</td>
-<td>Category</td>
-</tr>
-<tr>
-<td>AppointmentAttendee</td>
-<td>Country</td>
-</tr>
-<tr>
-<td>Candidate</td>
-<td>BusinessSector</td>
-</tr>
-<tr>
-<td>CandidateEducation</td>
-<td>Skill</td>
-</tr>
-<tr>
-<td>CandidateReference</td>
-<td>Specialty</td>
-</tr>
-<tr>
-<td>CandidateSource</td>
-<td>State</td>
-</tr>
-<tr>
-<td>CandidateWorkHistory</td>
-<td></td>
-</tr>
-<tr>
-<td>ClientContact</td>
-<td></td>
-</tr>
-<tr>
-<td>ClientContactRatios</td>
-<td></td>
-</tr>
-<tr>
-<td>ClientCorporation</td>
-<td></td>
-</tr>
-<tr>
-<td>ClientCorporationRatios</td>
-<td></td>
-</tr>
-<tr>
-<td>CorporateUser</td>
-<td></td>
-</tr>
-<tr>
-<td>CorporationDepartment</td>
-<td></td>
-</tr>
-<tr>
-<td>Lead**</td>
-<td></td>
-</tr>
-<tr>
-<td>LeadHistory**</td>
-<td></td>
-</tr>
-<tr>
-<td>JobOrder</td>
-<td></td>
-</tr>
-<tr>
-<td>JobSubmission</td>
-<td></td>
-</tr>
-<tr>
-<td>Note</td>
-<td></td>
-</tr>
-<tr>
-<td>NoteEntity</td>
-<td></td>
-</tr>
-<tr>
-<td>Opportunity**</td>
-<td></td>
-</tr>
-<tr>
-<td>OpportunityHistory**</td>
-<td></td>
-</tr>
-<tr>
-<td>Person</td>
-<td></td>
-</tr>
-<tr>
-<td>Placement</td>
-<td></td>
-</tr>
-<tr>
-<td>PlacementChangeRequest</td>
-<td></td>
-</tr>
-<tr>
-<td>PlacementCommission</td>
-<td></td>
-</tr>
-<tr>
-<td>Sendout</td>
-<td></td>
-</tr>
-<tr>
-<td>Shift</td>
-<td></td>
-</tr>
-<tr>
-<td>Task</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<aside class="notice">** CRM Only Entities</aside>
+<p>Bullhorn uses the term entity to refer to a type represented in the Bullhorn system. Candidate, ClientContact, JobOrder, and Placement are examples of entities. Entities capture the core concepts within the Bullhorn system and provide an organization for storing staffing data and applying the rules and processing that comprise the Bullhorn system.</p>
 
 <h3 id="json">JSON</h3>
 
-<p>As in HTTP, the REST API will follow the specifications and conventions of the JSON data format and any related Javascript syntax specifications. For more information, see the following articles:</p>
+<p>The REST API f the specifications and conventions of the JavaScript Object Notation (JSON) data format and any related Javascript syntax specifications. For more information, see the following articles:</p>
 
 <ul>
 <li>  <a href="http://www.json.org">http://www.json.org</a></li>
@@ -288,76 +176,69 @@
 
 <h3 id="jsonp">JSONP</h3>
 
-<p>The Bullhorn REST API supports JSONP. To enable JSONP for any request to the API, provide a value for the optional <code class="prettyprint">callback</code> parameter. This changes the API&rsquo;s response as follows:</p>
+<p>The REST API supports JSONP. To enable JSONP for any request to the API, provide a value for the optional <code class="prettyprint">callback</code> parameter. This changes the API&rsquo;s response as follows:</p>
 
 <ol>
 <li>  The API wraps its response in a Javascript method call. The name of the method is the same as the value of the <code class="prettyprint">callback</code> parameter.</li>
-<li>  The response HTTP <code class="prettyprint">Content-Type</code> is <code class="prettyprint">&quot;text/javascript&quot;</code> instead of <code class="prettyprint">&quot;application/json&quot;</code></li>
+<li>  The response HTTP <code class="prettyprint">Content-Type</code> is <code class="prettyprint">&quot;text/javascript&quot;</code> instead of <code class="prettyprint">&quot;application/json&quot;</code>.</li>
 </ol>
 
 <p>For more information about JSONP, see the following article: <a href="http://en.wikipedia.org/wiki/JSONP">http://en.wikipedia.org/wiki/JSONP</a></p>
 
 <h2 id="api-operations">API Operations</h2>
 
-<p>There are several API calls for retrieving data:/entity, /search, /query, and /meta. These calls share some common parameters and behavior:</p>
+<p>There are several API operations for retrieving entity data: entity, search, query, and meta. These calls share some common parameters and behavior.
+* Use the entity operation to create, update, and get entities by id; use the PUT, POST, and GET HTTP verbs to create, update and get entities, respectively.
+* Use the search operation to search for entities in a Lucene search index, and return them by id. Use the search operation with search/{EntityType} and no query parameters to return data that describes the structure of the Lucene index fields for the entity.
+* Use the query operation to query for entities with the Java Persistence Query Language (JPQL), and return them by id.
+* Use the meta operation to return entity metadata data that describes the structure of returned entity data. You can also return entity metadata on any entity, search, or query call by including the meta query parameter on the call; See <code class="prettyprint">Meta</code> for details.</p>
 
 <h3 id="entity-ids">Entity ids</h3>
 
-<p>All entities have a field named &ldquo;id&rdquo;, which is the primary key of the entity:</p>
-
-<p>When selecting to-one and to-many fields, &ldquo;id&rdquo; is automatically included if no sub-field is specified:</p>
+<p>All entities have a field named id that is the primary key of the entity. When selecting to-one and to-many association fields on an  entity, id is automatically included if no sub-fields are specified.</p>
 
 <h3 id="notes">Notes</h3>
 
-<ol>
-<li><p>to-many fields can only appear at the top level (no nesting):</p></li>
-<li><p>to-many fields that are soft-deletable (i.e. deletion is indicated by the isDeleted field) will not be returned.</p></li>
-</ol>
-
-<h3 id="entity-and-property-metadata">Entity and Property Metadata</h3>
-
-<p>Metadata, data describing the structure of returned entity data, can be included in any data set returned by the API. See <code class="prettyprint">Meta</code> for details.</p>
+<ul>
+<li>to-many association fields only appear at the top level (no nesting).</li>
+<li>to-many associated entities that are soft-deleted (deletion is indicated by the isDeleted field) are not returned.</li>
+</ul>
 
           <h1 id="authorization">Authorization</h1>
 
 <p>User authorization and session management use the following flow:</p>
 
 <ol>
-<li> A URL with prescribed parameters exists to provide authorization services.</li>
-<li> To authenticate, a client sends a request to that URL with credentials in the appropriate parameters.</li>
-<li> If authorization is successful, the API will send back a session key. This is a token that represents a session established by the login process, and must be sent along with all subsequent requests to the API. The session key can be provided in a URL query string, a cookie or a special HTTP header. See for details on how to provide it.</li>
-<li> For individual user logins, the login call also sends back a URL with which all subsequent API requests must be prefixed.</li>
+<li>An OAuth 2.0 access token is returned though the OAuth 2.0 authorization flow. For more information about the OAuth flow, see <a href="/Getting-Started-with-REST">Getting Started with REST</a></li>
+<li>A REST API login call that contains the access token as a query parameter is made. If this call is sucessful, a token named BHRestToken is returned. This token represents a session established by the login process; it must be sent along with all subsequent requests to the REST API. The BhRestToken can be provided in a URL query string, a cookie, or an HTTP header.</li>
+<li>The login call also returns a base URL with which all subsequent API requests must be prefixed.</li>
 </ol>
 
-<h2 id="unauthorized-requests">Unauthorized Requests</h2>
+<h2 id="unauthorized-requests">Unauthorized requests</h2>
 
-<p>If a client makes a request and does not include a session key, the server will send a response with HTTP status <code class="prettyprint">412</code> (precondition failed). If a client request contains an invalid session key, the response status will be HTTP <code class="prettyprint">401</code> (unauthorized). For more information on HTTP status codes see <a href="/#errors">Errors.</a>.</p>
+<p>If a client makes a request and does not include a BhRestToken, the server sends a response with HTTP status <code class="prettyprint">412</code> (precondition failed). If a client request contains an invalid session key, the server returns response status <code class="prettyprint">401</code> (unauthorized). For more information on HTTP status codes see <a href="/#errors">Errors.</a>.</p>
 
-<h2 id="session-key">Session Key</h2>
+<h2 id="session-key">Session key</h2>
 
-<p>The REST API has the concept of a client &ldquo;session&rdquo;. This is essentially a method for allowing clients to authenticate themselves once and then be free of the need to authenticate for subsequent calls to the API.</p>
-
-<p>Since REST is a stateless protocol, there must be a mechanism for clients to identify themselves upon each request, so the requests can be tied to an established session. This is what the session key provides.</p>
-
-<p>Login calls return, as part of their responses, a session key that represents a successful authorization and can be used to make further calls without having to authenticate.</p>
+<p>The REST API has the concept of a client &ldquo;session&rdquo;. This is essentially a method for allowing clients to authenticate themselves once and then be free of the need to authenticate for subsequent calls to the API. Since REST is a stateless protocol, there must be a mechanism for clients to identify themselves upon each request, so the requests can be tied to an established session. This is what the session key provides. Login calls return, as part of their responses, a session key that represents a successful authorization and can be used to make further calls without having to authenticate.</p>
 
 <p>This key must be provided in HTTP requests in at least one of the following places:</p>
 
 <ol>
-<li> A query parameter named <code class="prettyprint">BHRestToken</code> on the request URL.</li>
-<li> An HTTP header named <code class="prettyprint">BHRestToken</code>.</li>
-<li> A cookie named <code class="prettyprint">BHRestToken</code>. This cookie is set by the API at login time as a convenience for browser-based clients.</li>
+<li>A query parameter named <code class="prettyprint">BHRestToken</code> on the request URL.</li>
+<li>An HTTP header named <code class="prettyprint">BHRestToken</code>.</li>
+<li>A cookie named <code class="prettyprint">BHRestToken</code>. This cookie is set by the API at login time as a convenience for browser-based clients.</li>
 </ol>
 
           <h1 id="login">Login</h1>
 
 <h2 id="partner-login-using-oauth">Partner login using OAuth</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/login?access_token<span class="o">=</span>xxx&amp;version<span class="o">=</span><span class="k">*</span>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/login?access_token<span class="o">=</span>xxx&amp;version<span class="o">=</span><span class="k">*</span>
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"BhRestToken"</span> : <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>,
-  <span class="s2">"restUrl"</span> : <span class="s2">"https://rest.bullhorn.com/rest-services/[corporation-token]/"</span>
+  <span class="s2">"restUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/rest-services/[corporation-token]/"</span>
 <span class="o">}</span>
 </code></pre>
 
@@ -365,7 +246,7 @@
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -395,7 +276,7 @@
 <aside class="warning"><strong>Possible Error: &ldquo;Invalid or expired OAuth access token.&rdquo;</strong></aside>
 
 <h2 id="logout">Logout</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/logout
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/logout
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -408,7 +289,7 @@
           <h1 id="ping">Ping</h1>
 
 <h2 id="get-ping"><span class="tag">GET</span> /ping</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/ping
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/ping
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -416,11 +297,11 @@
 <span class="o">}</span>
 </code></pre>
 
-<p>Returns the date of the calling client&rsquo;s session expiration. You can use this call to test whether the client&rsquo;s session is valid. If the session is not valid, the response is the standard response for unauthenticated clients. See .</p>
+<p>Returns the date of the calling client&rsquo;s session expiration. You can use this call to test whether the client&rsquo;s session is valid. If the session is not valid, the response is the standard response for unauthenticated clients.</p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -428,36 +309,36 @@
 <tr>
 <td>BhRestToken</td>
 <td>true</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
           <h1 id="settings">Settings</h1>
 
 <h2 id="get-settings">GET /settings</h2>
-<pre class="highlight shell"><code>curl -X GET <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings"</span>
+<pre class="highlight shell"><code>curl -X GET <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings"</span>
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"data"</span>: <span class="o">[</span>
     <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"accountLockoutDuration"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings/accountLockoutDuration"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/accountLockoutDuration"</span>,
       <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
       <span class="s2">"isArray"</span>: <span class="nb">false</span>
     <span class="o">}</span>, <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"allDeptIds"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings/allDeptIds"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/allDeptIds"</span>,
       <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
       <span class="s2">"isArray"</span>: <span class="nb">true</span>
     <span class="o">}</span>, <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"allPrivateLabelIds"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings/allPrivateLabelIds"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds"</span>,
       <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
       <span class="s2">"isArray"</span>: <span class="nb">true</span>
     <span class="o">}</span>, <span class="o">{</span>
       <span class="s2">"name"</span>: <span class="s2">"commentActionList"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhorn.com/rest-services/e999/settings/commentActionList"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/commentActionList"</span>,
       <span class="s2">"valueType"</span>: <span class="s2">"STRING"</span>,
       <span class="s2">"isArray"</span>: <span class="nb">true</span>
     <span class="o">}</span>
@@ -469,7 +350,7 @@
 <p>returns the complete list of settings.</p>
 
 <h2 id="get-settings-setting1-setting2">GET /settings/setting1[,setting2&hellip;]</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -483,22 +364,8 @@ If no settingName is supplied, a list of predefined setting names and their meta
 
           <h1 id="entitlements">Entitlements</h1>
 
-<h2 id="entitlements">/entitlements</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/entitlements
-
-<span class="c"># Example Response</span>
-<span class="o">[</span>
-    <span class="o">{</span>
-        <span class="s2">"entity"</span>: <span class="s2">"Candidate"</span>,
-        <span class="s2">"entitlementURL"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/{corpToken}/entitlements/Candidate"</span>
-    <span class="o">}</span>, ...
-<span class="o">]</span>
-</code></pre>
-
-<p>Gets the list of entitlements calls that are available for each entity for the current user. The request returns an array of available entitlements calls.</p>
-
-<h2 id="entitlements-entity">/entitlements/{Entity}</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/entitlements/Candidate
+<h2 id="get-entitlements"><span class="tag">GET</span> /entitlements</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/entitlements/Candidate
 
 <span class="c"># Example Response</span>
 <span class="o">[</span>
@@ -510,54 +377,93 @@ If no settingName is supplied, a list of predefined setting names and their meta
 <span class="o">]</span>
 </code></pre>
 
-<p>Gets the entity entitlements of an <code class="prettyprint">entity</code> for the current user.</p>
+<p>Gets the entity entitlements of an entity for the current user. For GET, PUT, POST, and DELETE requests on entities, the user must have the appropriate entitlements for the action to succeed. PUT requests (adding records) require create entitlements. Read, update, and delete entitlements are divided into owned, department, and corporate entitlements. If a user tries to perform an action without the required entitlements, the call fails and an error is thrown.
+A user’s ability to perform file attachment GET, PUT, POST, and DELETE operations is based on the user’s entitlements for the entity to which the file attachment operation applies</p>
 
-<p>List of Entitlements</p>
+<h3 id="list-of-entitlements">List of Entitlements</h3>
 
-<ul>
-<li>  CREATE</li>
-<li>  READ</li>
-<li>  READ_DEPARTMENT implies READ</li>
-<li>  READ_CORPORATE implies READ_DEPARTMENT</li>
-<li>  READ_PRIVATE</li>
-<li>  UPDATE implies READ</li>
-<li>  UPDATE_DEPARTMENT implies UPDATE, READ_DEPARTMENT</li>
-<li>  UPDATE_CORPORATE implies UPDATE_DEPARTMENT, READ_CORPORATE</li>
-<li>  DELETE implies READ</li>
-<li>  DELETE_DEPARTMENT implies DELETE, READ_DEPARTMENT</li>
-<li>  DELETE_CORPORATE implies DELETE_DEPARTMENT, READ_CORPORATE</li>
-</ul>
+<table><thead>
+<tr>
+<th><strong>Entitlement</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CREATE</td>
+<td>User can create entities.</td>
+</tr>
+<tr>
+<td>READ_CORPORATE</td>
+<td>Generally, user can read all entities. If the entity can be categorized into private and non-private, the user cannot read private entities owned by other users unless the user has the READ_PRIVATE entitlement.</td>
+</tr>
+<tr>
+<td>READ_DEPARTMENT</td>
+<td>User can read entities owned by the current user AND owned by users from the same department(s).</td>
+</tr>
+<tr>
+<td>READ</td>
+<td>User can read entities owned by the user only.</td>
+</tr>
+<tr>
+<td>UPDATE_CORPORATE</td>
+<td>Generally, user can edit all entities. User must also have READ CORPORATE access level.</td>
+</tr>
+<tr>
+<td>UPDATE_DEPARTMENT</td>
+<td>User can edit entities owned by the user AND owned by users from the same department(s). User must also have READ DEPARTMENT or READ CORPORATE access level.</td>
+</tr>
+<tr>
+<td>UPDATE</td>
+<td>User can edit entities owned by the user only.</td>
+</tr>
+<tr>
+<td>UPDATE_OWNER</td>
+<td>Applies to the following entities: Candidate, ClientContact, JobOrder, JobSubmission, Lead,and Opportunity. Without the UPDATE_OWNER entitlement, the user is not allowed to change the owner of an entity even if the user has update entitlements to the entity. If a user has the UPDATE_OWNER entitlement, but only has department-level edit access, the user is able to edit the owners of entities belonging to users in his or her department, but not those belonging to users in other departments.</td>
+</tr>
+<tr>
+<td>DELETE_CORPORATE</td>
+<td>Generally, user can delete any entity. User must also have READ_CORPORATE access level.</td>
+</tr>
+<tr>
+<td>DELETE_DEPARTMENT</td>
+<td>User can delete entities owned by the user AND owned by users from the same department(s). User must also have READ DEPARTMENT or READ CORPORATE access level.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>User can delete entities owned by the user only.</td>
+</tr>
+</tbody></table>
 
           <h1 id="meta">Meta</h1>
 
 <h2 id="get-meta"><span class="tag">GET</span> /meta</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/meta
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/meta
 
 <span class="c"># Example Response</span>
 <span class="o">[</span>
     <span class="o">{</span>
         <span class="s2">"entity"</span>: <span class="s2">"Appointment"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/Appointment?fields=*"</span>
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Appointment?fields=*"</span>
     <span class="o">}</span>,
     <span class="o">{</span>
         <span class="s2">"entity"</span>: <span class="s2">"BusinessSector"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/BusinessSector?fields=*"</span>
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/BusinessSector?fields=*"</span>
     <span class="o">}</span>,
     <span class="o">{</span>
         <span class="s2">"entity"</span>: <span class="s2">"Candidate"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/Candidate?fields=*"</span>
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*"</span>
     <span class="o">}</span>,
     <span class="o">{</span>
         <span class="s2">"entity"</span>: <span class="s2">"Category"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/Category?fields=*"</span>
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Category?fields=*"</span>
     <span class="o">}</span>,
     <span class="o">{</span>
         <span class="s2">"entity"</span>: <span class="s2">"ClientContact"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/ClientContact?fields=*"</span>
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientContact?fields=*"</span>
     <span class="o">}</span>,
     <span class="o">{</span>
         <span class="s2">"entity"</span>: <span class="s2">"ClientCorporation"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhorn.com/rest-services/e999/meta/ClientCorporation?fields=*"</span>
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientCorporation?fields=*"</span>
     <span class="o">}</span>,
     ...
 <span class="o">]</span>
@@ -568,13 +474,13 @@ If no settingName is supplied, a list of predefined setting names and their meta
 <p>Read-only system fields ( fields with names prefixed with _ ) are not represented in entity metadata ever, even with * calls.</p>
 
 <h2 id="get-meta-entity"><span class="tag">GET</span> /meta/{Entity}</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/meta/Candidate?fields<span class="o">=</span><span class="k">*</span>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/meta/Candidate?fields<span class="o">=</span><span class="k">*</span>
 <span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"entity"</span> : <span class="s2">"Candidate"</span>,
-  <span class="s2">"entityMetaUrl"</span> : <span class="s2">"https://rest.bullhorn.com/e999/meta/Candidate?fields=*"</span>,
+  <span class="s2">"entityMetaUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*"</span>,
   <span class="s2">"label"</span> : <span class="s2">"Candidate"</span>,
-  <span class="s2">"fields"</span> : <span class="o">[</span> <span class="o">{</span>
+  <span class="s2">"fields"</span> : <span class="o">{</span> <span class="o">{</span>
     <span class="s2">"name"</span> : <span class="s2">"id"</span>,
     <span class="s2">"type"</span> : <span class="s2">"ID"</span>,
     <span class="s2">"dataType"</span> : <span class="s2">"Integer"</span>
@@ -588,11 +494,11 @@ If no settingName is supplied, a list of predefined setting names and their meta
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET [corporation-token]/meta/[entity-name]/?fields=[field-list]&amp;meta=[ basic or full ]</code></p>
+<p><code class="prettyprint">GET {corporation-token}/meta/{entity-name}/?fields={field-list}&amp;meta={ basic or full }</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -615,7 +521,7 @@ If no settingName is supplied, a list of predefined setting names and their meta
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
@@ -645,7 +551,7 @@ If no settingName is supplied, a list of predefined setting names and their meta
 
 <p><strong>dataSpecialization</strong></p>
 
-<p>Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE, PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent. See .</p>
+<p>Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE, PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent.</p>
 
 <p><strong>optional</strong></p>
 
@@ -665,11 +571,11 @@ If no settingName is supplied, a list of predefined setting names and their meta
 
 <p><strong>inputType</strong></p>
 
-<p>Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing. See .</p>
+<p>Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing.</p>
 
 <p><strong>optionsType</strong></p>
 
-<p>For inputType SELECT only; for example, Country. may be missing. See .</p>
+<p>For inputType SELECT only; for example, Country. may be missing.</p>
 
 <p><strong>optionsUrl</strong></p>
 
@@ -695,7 +601,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="entity">Entity</h1>
 
 <h2 id="get-entity"><span class="tag">GET</span> /entity</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/entity/Candidate/5059165?fields<span class="o">=</span>firstName,lastName,address
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/entity/Candidate/5059165?fields<span class="o">=</span>firstName,lastName,address
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -719,19 +625,17 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 
 <p>Individual entity records are manifested as resources, where the entity type and ID form the last two parts of the resource path.</p>
 
-<p>See for more detail on the general structure of returned data for <code class="prettyprint">GET</code> requests.</p>
-
 <p>Specify the fields to be included in the response using the <code class="prettyprint">fields</code> request parameters. The <code class="prettyprint">id</code> field is always returned, regardless of the fields requested. See for more detail on specifying fields.</p>
 
 <p>NOTE: At least one of the required parameters(fields and layout) or both must be specified.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corporation-token]/entity/[entity-name]/[entity-id]?fields=[field-list]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entityType}/{entityId}?fields={fieldList}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Param</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -739,22 +643,17 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>fields</td>
 <td>yes</td>
-<td>Comma-separated list of field names.</td>
+<td>Comma-separated list of field names. fields or layout is required.</td>
 </tr>
 <tr>
 <td>layout</td>
 <td>yes</td>
-<td>Name of a configured layout.</td>
+<td>Name of a configured layout. fields or layout is required.</td>
 </tr>
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
-</tr>
-<tr>
-<td>showReadOnly</td>
-<td>no</td>
-<td>(DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 <tr>
 <td>meta</td>
@@ -764,14 +663,14 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>showEditable</td>
 <td>no</td>
-<td>(true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.</td>
+<td>(true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed.</td>
 </tr>
 </tbody></table>
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h2 id="multiple-entities">Multiple Entities</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/entity/Candidate/123,456?fields<span class="o">=</span>id,firstName,lastName
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/entity/Candidate/123,456?fields<span class="o">=</span>id,firstName,lastName
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -793,11 +692,11 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corporation-token]/entity/[entity-name]/[[entity-id],[entity-id],*]?fields=[field-list]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{{entity-id},{entity-id},*}?fields={field-list}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -815,7 +714,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 <tr>
 <td>showReadOnly</td>
@@ -837,7 +736,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
 <h2 id="to-many-associations">To-many Associations</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;count<span class="o">=</span>2
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;count<span class="o">=</span>2
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -849,11 +748,11 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corporation-token]/entity/{Entity}/{id}/[toManyFieldName]s?fields=[field-list]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{Entity}/{id}/{toManyFieldName}s?fields={field-list}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -867,11 +766,6 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <td>layout</td>
 <td>yes</td>
 <td>Name of a configured layout.</td>
-</tr>
-<tr>
-<td>where</td>
-<td>no</td>
-<td>(DO NOT USE) SQL-style filter clause see for syntax.</td>
 </tr>
 <tr>
 <td>start</td>
@@ -891,7 +785,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>showReadOnly</td>
 <td>no</td>
-<td>(DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}</td>
+<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}</td>
 </tr>
 <tr>
 <td>meta</td>
@@ -906,7 +800,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
@@ -916,7 +810,14 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
      -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
      -d <span class="s1">'{"firstName" : "Alanzo", "lastName" : "Smith"}'</span> <span class="se">\</span>
-     https://rest.bullhorn.com/e999/entity/Candidate
+     https://rest.bullhornstaffing.com/e999/entity/Candidate
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"changedEntityId"</span>: 1489,
+  <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>
+<span class="o">}</span>
+
 </code></pre>
 
 <p>You can use HTTP PUT requests to create new entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body. The structure of the JSON is identical to that returned in HTTP responses to GET requests, with a few additional restrictions:</p>
@@ -936,11 +837,11 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corporation-token]/entity/[entity-name]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entity-name}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -948,7 +849,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
@@ -956,18 +857,16 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 
 <h3 id="create-to-many-associations">Create To-many Associations</h3>
 <pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
-     https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/964,684,253
+     https://rest.bullhornstaffing.com/e999/entity/Candidate/3084/primarySkills/964,684,253
 </code></pre>
 
 <p>You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.</p>
 
-<p>NOTE: Certain entities, like Custom Objects, are handled differently.  See .</p>
-
-<p><code class="prettyprint">[corporation-token]/entity/[entity-name]/[entity-id]/[to-many-association-name]/[entity-id],*]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{entity-id}/{to-many-association-name}/{entity-id},*}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -975,7 +874,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
@@ -985,13 +884,21 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
      -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
      -d <span class="s1">'{ "id" : 5059165, "firstName" : "Alanzo","lastName" : "Smith" }'</span> <span class="se">\</span>
-     https://rest.bullhorn.com/e999/entity/Candidate/5059165
+     https://rest.bullhornstaffing.com/e999/entity/Candidate/5059165
+
+     <span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"changedEntityId"</span>: 1489,
+  <span class="s2">"changeType"</span>: <span class="s2">"UPDATE"</span>
+<span class="o">}</span>
 </code></pre>
 
-<p>Update entities using HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.</p>
+<p>You can update entities with HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.</p>
+
+<aside class="warning">To update confidential fields as part of a POST /entity call, the user must have the Edit Confidential Data user action entitlement. The confidentialFieldList private label attribute contains the list of fields that are considered confidential.</aside>
 
 <ul>
-<li>  You cannot create to-many associations on the entity being updated. You must be create to-many associations in a subsequent &ldquo;associate&rdquo; call.</li>
+<li>  You cannot create to-many associations on the entity being updated. You must create to-many associations in a subsequent &ldquo;associate&rdquo; call.</li>
 <li>  You can create to-one associations.</li>
 </ul>
 
@@ -1003,11 +910,11 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corporation-token]/entity/[entity-name]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entity-name}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -1015,29 +922,29 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
-<h3 id="to-many-associations-special">To-many Associations - Special</h3>
+<h3 id="to-many-associations-special-case">To-many Associations - Special Case</h3>
 <pre class="highlight shell"><code><span class="c"># This example will create and associate a new customObject1s record.</span>
-curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
+curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 
 <span class="c"># This example will update an existing customObject1s record #1.</span>
-curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
+curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 </code></pre>
 
 <p>For special to-many associations, like Custom Objects, we have the ability to create and associate in a single step.  These is due to the fact that we need to know their context to enforce security and data integrity.  You can add/update to-many associations with a POST request the same as if it was data directly on the parent entity. You can combine standard parent entity updates with special association add and edits.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corporation-token]/entity/[parent-entity-name]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{parent-entity-name}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -1045,7 +952,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
@@ -1055,24 +962,33 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 
 <p>Deletes an entity or to-many association.</p>
 
-<p>The API supports two types of delete requests: hard delete and soft delete.</p>
+<p>The API supports two types of delete requests:
+* Hard or soft delete using the DELETE verb
+* Soft delete using the POST verb.</p>
 
-<h3 id="hard-delete">Hard delete</h3>
+<h3 id="hard-or-soft-delete-via-delete-call">Hard or Soft Delete via DELETE call</h3>
 <pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
-     https://rest.bullhorn.com/e999/entity/NoteEntity/2552
+     https://rest.bullhornstaffing.com/e999/entity/NoteEntity/2552
 </code></pre>
 
-<p>Hard deletes an entity.</p>
+<p>Hard deletes a hard-deletable entity, which removes it from the database. Soft deletes a soft-deletable entity, which sets the isDeleted property of the entity to true.</p>
 
-<p>The types of entity you can hard-delete are CandidateSource, CorporationDepartment, Placement, NoteEntity and CorporateUser. To hard delete an entity send a HTTP request using the DELETE method.</p>
+<p>This operation is available for all entity types except immutable entities, which are neither hard-deletable or soft-deletable. Immutable entities include the following:
+*   BusinessSector
+*   Category
+*   Country
+*   Skill
+*   Specialty
+*   State
+*   TimeUnit</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corporation-token]/entity/[entity-name]/[entity-id]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{entity-id}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -1080,61 +996,45 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
-<p>To hard delete an entity with children, you explicitly hard delete all the children before attempting to delete the root entity.</p>
+<p>To delete an entity with children, explicitly delete all the children before attempting to delete the root entity.</p>
 
-<h3 id="soft-delete">Soft delete</h3>
+<h3 id="soft-delete-via-post-update-call">Soft delete via POST (update) call</h3>
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
      -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
      -d <span class="s1">'{ "isDeleted" : true }'</span> <span class="se">\</span>
-     https://rest.bullhorn.com/e999/entity/ClientContact/1804
+     https://rest.bullhornstaffing.com/e999/entity/ClientContact/1804
 
 </code></pre>
 
-<p>When you soft delete an entity, it is not removed from the data storage. A soft delete operation is actually an update (for example, POST) that sets an &ldquo;isDeleted&rdquo; flag to true.</p>
-
-<p>The types of entity you can soft delete are Candidate, CandidateEducation, CandidateReference, CandidateWorkHistory, ClientContact, JobOrder, JobSubmission, Note and Person.</p>
+<p>When you soft delete an entity, it is not removed from the database. A soft delete operation is actually an update (for example, POST) that sets the isDeleted property of the entity to true.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corporation-token]/entity/[entity-name]/[entity-id]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{entity-id}</code></p>
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h3 id="disassociate-to-many-associations">Disassociate To-many Associations</h3>
 <pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
-     https://rest.bullhorn.com/e999/entity/Candidate/3084/primarySkills/253
+     https://rest.bullhornstaffing.com/e999/entity/Candidate/3084/primarySkills/253
 </code></pre>
 
 <p>Removes or &ldquo;disassociates&rdquo; a to-many association relationship on an entity.</p>
 
-<p><code class="prettyprint">[corporation-token]/entity/[entity-name]/[entity-id]/[to-many-association-name]/[entity-id],*]</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{entity-id}/{to-many-association-name}/{entity-id},*}</code></p>
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
-
-<h3 id="immutable-entities">Immutable entities</h3>
-
-<p>You cannot hard delete or soft delete the following types of entities:</p>
-
-<ul>
-<li>  BusinessSector</li>
-<li>  Category</li>
-<li>  Country</li>
-<li>  Skill</li>
-<li>  Specialty</li>
-<li>  State</li>
-<li>  TimeUnit.</li>
-</ul>
 
           <h1 id="query">Query</h1>
 
 <h2 id="get-query"><span class="tag">GET</span> /query</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/query/Candidate?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/query/Candidate?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1146,17 +1046,17 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <span class="o">}</span>
 </code></pre>
 
-<p>The <code class="prettyprint">Query</code> call retrieves a list of entitys. The query is performed against the database, therefore the <code class="prettyprint">where</code> parameter should reflect SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the <a href="/#search">Search</a> call.</p>
+<p>The <code class="prettyprint">Query</code> call retrieves a list of entities. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Perstance Language (JPQL) syntax, which is similar SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the <a href="/#search">Search</a> call.</p>
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corpToken]/query/[entity]?where=[query-text]&amp;fields=[fields]&amp;orderBy=[fields]&amp;count=[count]&amp;start=[start]</code></p>
+<p><code class="prettyprint">{corpToken}/query/{entity}?where={query-text}&amp;fields={fields}&amp;orderBy={fields}&amp;count={count}&amp;start={start}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -1164,7 +1064,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <tr>
 <td>where</td>
 <td>yes</td>
-<td>SQL-style filter clause see for syntax</td>
+<td>SQL-style filter clause</td>
 </tr>
 <tr>
 <td>fields</td>
@@ -1199,7 +1099,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <tr>
 <td>meta</td>
 <td>no</td>
-<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.</td>
 </tr>
 <tr>
 <td>showEditable</td>
@@ -1209,7 +1109,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
@@ -1218,7 +1118,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
           <h1 id="search">Search</h1>
 
 <h2 id="get-search"><span class="tag">GET</span> /search</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/search/Candidate?query<span class="o">=</span>lastName:Smith&amp;fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/search/Candidate?query<span class="o">=</span>lastName:Smith&amp;fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1238,7 +1138,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.</p>
 
 <aside class="notice">If parameter &ldquo;fields&rdquo; or &ldquo;layout&rdquo; is not present, the search will return the list of found entity ids in the returned &ldquo;data&rdquo;.</aside>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/search/Candidate?query<span class="o">=</span>isDeleted:0
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/search/Candidate?query<span class="o">=</span>isDeleted:0
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1248,11 +1148,11 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corpToken]/search/[entity]?query=[lucene]&amp;fields=[fields]&amp;orderBy=[fields]&amp;count=[count]&amp;start=[start]</code></p>
+<p><code class="prettyprint">{corpToken}/search/{entity}?query={lucene}&amp;fields={fields}&amp;orderBy={fields}&amp;count={count}&amp;start={start}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -1260,7 +1160,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <tr>
 <td>query</td>
 <td>yes</td>
-<td>Lucene-Style filter clause see for syntax</td>
+<td>Lucene-Style filter clause.</td>
 </tr>
 <tr>
 <td>fields</td>
@@ -1305,7 +1205,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
@@ -1314,7 +1214,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
           <h1 id="find">Find</h1>
 
 <h2 id="get-find"><span class="tag">GET</span> /find</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/find?query<span class="o">=</span>smith&amp;countPerEntity<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/find?query<span class="o">=</span>smith&amp;countPerEntity<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1326,7 +1226,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <span class="o">}</span>
 </code></pre>
 
-<p>FastFind is a specialized type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.</p>
+<p>FastFind is anized type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.</p>
 
 <p>(FastFind) Searches the following entity types given a string containing search terms:</p>
 
@@ -1343,11 +1243,11 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">[corporation-token]/find?query=[query-text]&amp;countPerEntity=[entity-max-results]</code></p>
+<p><code class="prettyprint">{corpToken}/find?query={query-text}&amp;countPerEntity={entity-max-results}</code></p>
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -1375,13 +1275,13 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
-<h3 id="field-type-detection">Field Type Detection</h3>
+<h3 id="field-type-detection">Field type detection</h3>
 
 <p>FastFind classifies a search query as one of the following types depending of the structure of the text in the query:</p>
 
@@ -1408,23 +1308,27 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 
 <p>Three digits followed by any of [-.* or space, optionally followed by three more digits followed by [-.* or space, optionally followed by four digits.</p>
 
-<p>For example, 23- or 123-456 or 123-456-7890</p>
+<p>For example:</p>
+
+<p>23- or 123-456 or 123-456-7890</p>
 
 <p><strong>International phone number</strong></p>
 
 <p>Either of the following two patterns will match:</p>
 
 <ul>
-<li>  + followed by any combination of 0-9, -, *, (, ), . or space, followed by *</li>
+<li>followed by any combination of 0-9, -, *, (, ), . or space, followed by *</li>
 </ul>
 
 <p>For example: +1-234-56*</p>
 
 <ul>
-<li>  Exactly 10 digits, separated by any combination of +, -, *, (, ), . or space<br></li>
+<li>Exactly 10 digits, separated by any combination of +, -, *, (, ), . or space<br></li>
 </ul>
 
-<p>For example: 1-234-567-8901</p>
+<p>For example:</p>
+
+<p>1-234-567-8901</p>
 
 <p><strong>Entity ID</strong></p>
 
@@ -1438,10 +1342,129 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
 
 <p>You can use the * character as a wildcard inside or at the end of any word in a query.  Using a wildcard changes the fields that are searched for some entity types.  See the field type mappings table for details.</p>
 
+<h3 id="query-logic">Query logic</h3>
+
+<p>The following table plots the fields that are searched for a given query classification and entity type: </p>
+
+<p><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<table>
+<tr class="header">
+<th><strong>Detected type</strong></th>
+<th><strong>Candidate</strong></th>
+<th><strong>Contact</strong></th>
+<th><strong>Corporation</strong></th>
+<th><strong>JobOrder</strong></th>
+<th><strong>Lead</strong></th>
+<th><strong>Opportunity</strong></th>
+</tr>
+</thead>
+<tr class="odd">
+<td><strong>email</strong></td>
+<td>email1<br />
+email2<br />
+email3</td>
+<td>email1<br />
+email2<br />
+email3</td>
+<td> </td>
+<td>clientContact.email1<br />
+clientContact.email2<br />
+clientContact.email2</td>
+<td><p>email1</p>
+<p>email2</p>
+<p>email3</p></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td><strong>phone</strong></td>
+<td>phone<br />
+phone2<br />
+phone3<br />
+mobile</td>
+<td>phone<br />
+phone2<br />
+phone3<br />
+mobile</td>
+<td>phone<br />
+billingPhone</td>
+<td>clientContact.phone<br />
+clientContact.phone2<br />
+clientContact.phone3<br />
+clientContact.mobile</td>
+<td><p> phone</p>
+<p>phone2</p>
+<p>phone3</p>
+<p>mobile</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>ID</strong></td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+</tr>
+<tr class="even">
+<td><strong>multi-word<br />
+name</strong></td>
+<td>firstName (first word)<br />
+lastName (remaining words)</td>
+<td>firstName (first word)<br />
+lastName (remaining words)</td>
+<td>name</td>
+<td>title (all words)<br />
+clientContact.firstName (first word)<br />
+clientContact.lastName (remaining words)<br />
+clientCorporation.name (all words)</td>
+<td><p>firstName (first word)</p>
+<p>middleName(second word, if 3 words)</p>
+<p>lastName(second word, 3rd word if 3 words)</p></td>
+<td><p>title (all words)</p>
+<p>clientContact.firstName (first word)</p>
+<p>clientContact.lastName (remaining words)</p>
+<p>clientCoporation.name (all words)</p></td>
+</tr>
+<tr class="odd">
+<td><strong>single-word<br />
+name</strong></td>
+<td>lastName</td>
+<td>lastName</td>
+<td>name</td>
+<td>title<br />
+clientContact.lastName<br />
+clientCorporation.name</td>
+<td>lastName</td>
+<td><p>title</p>
+<p>clientContact.lastName</p>
+<p>clientCorporation.name</p></td>
+</tr>
+<tr class="even">
+<td><strong>single-word<br />
+name with wildcard</strong></td>
+<td>firstName</td>
+<td>firstName</td>
+<td>name</td>
+<td>title<br />
+clientContact.firstName<br />
+clientCorporation.name</td>
+<td>firstName</td>
+<td><p>title</p>
+<p>clientContact.firstName</p>
+<p>clientCorporation.name</p></td>
+</tr>
+</table>
+</body>
+</html></p>
+
           <h1 id="lookup">Lookup</h1>
 
 <h2 id="get-lookup"><span class="tag">GET</span> /lookup</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhorn.com/e999/lookup?filter<span class="o">=</span>smith&amp;entity<span class="o">=</span>Candidate,ClientContact&amp;start<span class="o">=</span>0,10&amp;count<span class="o">=</span>10
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/lookup?filter<span class="o">=</span>smith&amp;entity<span class="o">=</span>Candidate,ClientContact&amp;start<span class="o">=</span>0,10&amp;count<span class="o">=</span>10
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1453,7 +1476,7 @@ curl -X PUT https://rest.bullhorn.com/e999/entity/JobOrder/123
     <span class="o">}]</span>
 <span class="o">}</span>
 
-curl https://rest.bullhorn.com/e999/lookup/Candidate/12345
+curl https://rest.bullhornstaffing.com/e999/lookup/Candidate/12345
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1482,8 +1505,8 @@ curl https://rest.bullhorn.com/e999/lookup/Candidate/12345
 
 <ul>
 <li>  Skill</li>
-<li>  Corporate User</li>
-<li>  Distribution List</li>
+<li>  CorporateUser</li>
+<li>  DistributionList</li>
 </ul>
 
 <p>A call to search returns an _id, _entityType, and _label specific to each entity.</p>
@@ -1494,7 +1517,7 @@ curl https://rest.bullhorn.com/e999/lookup/Candidate/12345
 
 <h4 id="lookup">Lookup</h4>
 
-<p><code class="prettyprint">../lookup?filter=[terms]&amp;entity=[comma,separated,entity,names]&amp;count=[num]&amp;start=one,number,per,entity</code></p>
+<p><code class="prettyprint">../lookup?filter={terms}&amp;entity={comma,separated,entity,names}&amp;count={num}&amp;start=one,number,per,entity</code></p>
 
 <h4 id="lookup-details">Lookup Details</h4>
 
@@ -1502,7 +1525,7 @@ curl https://rest.bullhorn.com/e999/lookup/Candidate/12345
 
 <table><thead>
 <tr>
-<th>Params</th>
+<th>Parameter</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
@@ -1535,7 +1558,7 @@ curl https://rest.bullhorn.com/e999/lookup/Candidate/12345
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 
@@ -1594,7 +1617,7 @@ curl https://rest.bullhorn.com/e999/lookup/Candidate/12345
 </tbody></table>
 
       </div>
-      <div class="dark-box">
+        <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
           </div>
