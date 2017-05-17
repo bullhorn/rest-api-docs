@@ -24,6 +24,7 @@ under the License.
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
 
+
 html,
 body {
     color: $main-text;
@@ -42,6 +43,29 @@ body {
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
+
+.guide-link { 
+    color: #616161;
+    transition-property: background;
+    transition-timing-function: linear;
+    transition-duration: 230ms;
+    margin: 2px;
+    padding: 0;
+    line-height: 35px;
+    border: 1px solid #ddd;
+
+    a {
+        padding: 0 15px;
+        display: block;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-decoration: none;
+        text-align: center;
+        color: #509DF4;
+        font-weight: 500;
+    }
+}
 
 #toc > ul > li > a > span {
     float: right;
@@ -289,6 +313,10 @@ body {
         right: 0;
         top: 0;
         bottom: 0;
+    }
+
+    .no-langs .dark-box {
+        width: 0%;
     }
 
     .lang-selector {
@@ -660,4 +688,26 @@ body {
 .highlight,
 .highlight .w {
     background-color: $code-bg;
+}
+
+.no-langs .content {
+    &>h1,
+    &>h2,
+    &>h3,
+    &>h4,
+    &>h5,
+    &>h6,
+    &>p,
+    &>table,
+    &>ul,
+    &>ol,
+    &>aside,
+    &>dl {
+        margin-right: 0;
+    }
+
+    pre,
+    blockquote {
+        width: 100%;
+    }
 }

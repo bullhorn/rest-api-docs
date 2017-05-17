@@ -3,33 +3,33 @@
 ## <span class="tag">GET</span> /meta
 
 ``` shell
-curl https://rest.bullhorn.com/rest-services/e999/meta
+curl https://rest.bullhornstaffing.com/rest-services/e999/meta
 
 # Example Response
 [
     {
         "entity": "Appointment",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/Appointment?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/Appointment?fields=*"
     },
     {
         "entity": "BusinessSector",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/BusinessSector?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/BusinessSector?fields=*"
     },
     {
         "entity": "Candidate",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/Candidate?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*"
     },
     {
         "entity": "Category",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/Category?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/Category?fields=*"
     },
     {
         "entity": "ClientContact",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/ClientContact?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientContact?fields=*"
     },
     {
         "entity": "ClientCorporation",
-        "metaUrl": "https://rest.bullhorn.com/rest-services/e999/meta/ClientCorporation?fields=*"
+        "metaUrl": "https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientCorporation?fields=*"
     },
     ...
 ]
@@ -42,13 +42,13 @@ Read-only system fields ( fields with names prefixed with _ ) are not represente
 ##  <span class="tag">GET</span> /meta/{Entity}
 
 ``` shell
-curl https://rest.bullhorn.com/e999/meta/Candidate?fields=*
+curl https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*
 # Example Response
 {
   "entity" : "Candidate",
-  "entityMetaUrl" : "https://rest.bullhorn.com/e999/meta/Candidate?fields=*",
+  "entityMetaUrl" : "https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*",
   "label" : "Candidate",
-  "fields" : [ {
+  "fields" : { {
     "name" : "id",
     "type" : "ID",
     "dataType" : "Integer"
@@ -62,14 +62,14 @@ Returns entity and property metadata for the specified entity type.
 
 ### HTTP Request
 
-`GET [corporation-token]/meta/[entity-name]/?fields=[field-list]&meta=[ basic or full ]`
+`GET {corporation-token}/meta/{entity-name}/?fields={field-list}&meta={ basic or full }`
 
-Params | Required | Description
+Parameter | Required | Description
 ------ | -------- | -----
 fields | yes | Comma-separated list of field names.
 layout | yes | Name of a configured layout. A field list, layout name or both may be specified.
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
@@ -97,7 +97,7 @@ Only present when dataType="String". The maximum authorized length for this Stri
 
 **dataSpecialization**
 
-Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE, PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent. See .
+Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE, PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent.
 
 **optional**
 
@@ -117,11 +117,11 @@ Is the property multi-valued (specified by fieldmap); dataType must be String.
 
 **inputType**
 
-Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing. See .
+Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing.
 
 **optionsType**
 
-For inputType SELECT only; for example, Country. may be missing. See .
+For inputType SELECT only; for example, Country. may be missing.
 
 **optionsUrl**
 

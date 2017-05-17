@@ -3,29 +3,29 @@
 ## GET /settings
 
 ``` shell
-curl -X GET "http://rest.bullhorn.com/rest-services/e999/settings"
+curl -X GET "http://rest.bullhornstaffing.com/rest-services/e999/settings"
 
 # Example Response
 {
   "data": [
     {
       "name": "accountLockoutDuration",
-      "valueUrl": "http://rest.bullhorn.com/rest-services/e999/settings/accountLockoutDuration",
+      "valueUrl": "http://rest.bullhornstaffing.com/rest-services/e999/settings/accountLockoutDuration",
       "valueType": "INTEGER",
       "isArray": false
     }, {
       "name": "allDeptIds",
-      "valueUrl": "http://rest.bullhorn.com/rest-services/e999/settings/allDeptIds",
+      "valueUrl": "http://rest.bullhornstaffing.com/rest-services/e999/settings/allDeptIds",
       "valueType": "INTEGER",
       "isArray": true
     }, {
       "name": "allPrivateLabelIds",
-      "valueUrl": "http://rest.bullhorn.com/rest-services/e999/settings/allPrivateLabelIds",
+      "valueUrl": "http://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds",
       "valueType": "INTEGER",
       "isArray": true
     }, {
       "name": "commentActionList",
-      "valueUrl": "http://rest.bullhorn.com/rest-services/e999/settings/commentActionList",
+      "valueUrl": "http://rest.bullhornstaffing.com/rest-services/e999/settings/commentActionList",
       "valueType": "STRING",
       "isArray": true
     }
@@ -39,7 +39,7 @@ returns the complete list of settings.
 ## GET /settings/setting1[,setting2...]
 
 ``` shell
-curl https://rest.bullhorn.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
+curl https://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
 
 # Example Response
 {
