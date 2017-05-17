@@ -3,7 +3,7 @@
 This reference guide provides general information about the Bullhorn REST API and specific information about each API operation and supported entity type.
 
 Other Guides: 
-- Entity Reference Guide available: [here](/entityref.html)
+- Entity Reference Guide available: [here](./entityref.html)
 
 ## General Conventions
 
