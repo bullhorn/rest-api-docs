@@ -10,16 +10,22 @@ toc_footers:
 includes:
   - intro
   - authorization
-  - login
-  - ping
-  - settings
+  - allcorpnotes
   - entitlements
-  - meta
   - entity
+  - myentities
+  - departmententities
+  - subscription
+  - find
+  - file
+  - lookup
+  - login
+  - massupdate
+  - meta
+  - options
+  - ping
   - query
   - search
-  - find
-  - lookup
   - errors
 
 search: true
