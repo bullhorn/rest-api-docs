@@ -1,6 +1,6 @@
 # Specialty
 
-Represents a specialty that can be associated with a job or held by a candidate. Specialties are associated with a parent Category entity.
+Represents anty that can be associated with a job or held by a candidate. Specialties are associated with a parent Category entity.
 
 | **Specialty field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |

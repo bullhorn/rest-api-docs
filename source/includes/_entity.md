@@ -27,8 +27,6 @@ Gets one or more entities or to-many associations.
 
 Individual entity records are manifested as resources, where the entity type and ID form the last two parts of the resource path.
 
-See for more detail on the general structure of returned data for `GET` requests.
-
 Specify the fields to be included in the response using the `fields` request parameters. The `id` field is always returned, regardless of the fields requested. See for more detail on specifying fields.
 
 NOTE: At least one of the required parameters(fields and layout) or both must be specified.
@@ -78,7 +76,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 fields | yes | Comma-separated list of field names.
 layout | yes | Name of a configured layout.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 showReadOnly | no | (DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .
 showEditable | no | (true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.
@@ -95,7 +93,6 @@ curl https://rest.bullhornstaffing.com/e999/entity/ClientCorporation/5059165,236
     ...
 }
 ```
-
 This is an extension of the single and multiple GETs that returns the to-many associated entities of the specified type for the specified entity ID(s). The call supports the same query parameters as the query call.
 
 ### HTTP Request
@@ -106,14 +103,13 @@ Parameter | Required | Description
 ------ | -------- | -----
 fields | yes | Comma-separated list of field names.
 layout | yes | Name of a configured layout.
-where  | no  | (DO NOT USE) SQL-style filter clause see for syntax.
 start  | no  | From the set of matched results, return record numbers start through (start + count).
 count  | no  | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.
 orderBy | no | Name of property on which to base the order of returned entities.
-showReadOnly | no | (DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}
+showReadOnly | no | (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .
 showEditable | no | (true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
@@ -124,6 +120,13 @@ curl -X PUT \
      -H "Content-Type: application/json" \
      -d '{"firstName" : "Alanzo", "lastName" : "Smith"}' \
      https://rest.bullhornstaffing.com/e999/entity/Candidate
+
+# Example Response
+{
+  "changedEntityId": 1489,
+  "changeType": "INSERT"
+}
+
 ```
 
 You can use HTTP PUT requests to create new entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body. The structure of the JSON is identical to that returned in HTTP responses to GET requests, with a few additional restrictions:
@@ -145,7 +148,7 @@ NOTE: When using an HTTP PUT request to create a Client Corporation entity an ar
 
 Parameter | Required | Description
 ------ | -------- | -----
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
@@ -159,13 +162,11 @@ curl -X PUT \
 
 You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.
 
-NOTE: Certain entities, like Custom Objects, are handled differently.  See .
-
 `{corpToken}/entity/{entity-name}/{entity-id}/{to-many-association-name}/{entity-id},*}`
 
 Parameter | Required | Description
 ------ | -------- | -----
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns An HTTP 404 error if the requested entity cannot be found, fields are specified that do not exist on the specified entity, or you specify values for any mandatory fields with no default values.</aside>
 
@@ -176,11 +177,18 @@ curl -X POST \
      -H "Content-Type: application/json" \
      -d '{ "id" : 5059165, "firstName" : "Alanzo","lastName" : "Smith" }' \
      https://rest.bullhornstaffing.com/e999/entity/Candidate/5059165
+
+     # Example Response
+{
+  "changedEntityId": 1489,
+  "changeType": "UPDATE"
+}
 ```
+You can update entities with HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.
 
-Update entities using HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.
+<aside class="warning">To update confidential fields as part of a POST /entity call, the user must have the Edit Confidential Data user action entitlement. The confidentialFieldList private label attribute contains the list of fields that are considered confidential.</aside>
 
-*   You cannot create to-many associations on the entity being updated. You must be create to-many associations in a subsequent "associate" call.
+*   You cannot create to-many associations on the entity being updated. You must create to-many associations in a subsequent "associate" call.
 *   You can create to-one associations.
 
 You set association fields by giving as their values a JSON object that contains a field named 'id', and providing the value the ID of the entity to associate.
@@ -195,12 +203,12 @@ Most entities in the Bullhorn data model contain mandatory fields, some of which
 
 Parameter | Required | Description
 ------ | -------- | -----
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 
-### To-many Associations - Special
+### To-many Associations - Special Case
 
 ``` shell
 # This example will create and associate a new customObject1s record.
@@ -218,7 +226,7 @@ For special to-many associations, like Custom Objects, we have the ability to cr
 
 Parameter | Required | Description
 ------ | -------- | -----
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
@@ -255,7 +263,7 @@ This operation is available for all entity types except immutable entities, whic
 
 Parameter | Required | Description
 ------ | -------- | -----
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 

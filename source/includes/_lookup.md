@@ -65,6 +65,6 @@ entity | no | A comma-separated list of entity names to search on using the give
 count | no | The total number of results to return.
 start | no | A comma-separated list of start values for pagination of given entities. This list's size should be the same as the length of the entity parameter. Defaults to 0.
 privateLabelID | no | The private label ID to use.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>

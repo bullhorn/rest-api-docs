@@ -28,7 +28,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 maxEvents | yes | Integer specifying the maximum number of events to be returned.
 requestId | no | Integer specifying an event requestId. Lets you reget events.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ## <span class="tag">GET</span> /event/subscription/lastRequestId
 
@@ -76,7 +76,7 @@ Parameter | Required | Description
 type | yes | entity | fieldMapChange | jobMatchSearch.
 names | yes | Required with "entity" type. A comma-separated list of entity names.
 eventTypes | yes | RRequired with "entity" type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ## <span class="tag">DELETE</span> /event/subscription
 
@@ -97,4 +97,4 @@ Lets you unsubscribe from event types.
 
 Parameter | Required | Description
 ------ | -------- | -----
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.

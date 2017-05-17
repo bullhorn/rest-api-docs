@@ -34,7 +34,6 @@ https://rest-emea.bullhornstaffing.com
 
 ### Entities
 Bullhorn uses the term entity to refer to a type represented in the Bullhorn system. Candidate, ClientContact, JobOrder, and Placement are examples of entities. Entities capture the core concepts within the Bullhorn system and provide an organization for storing staffing data and applying the rules and processing that comprise the Bullhorn system.
-For more information about these entity types, see [Entity reference](LINK TO ENTITY REF HERE).
 
 ### JSON
 

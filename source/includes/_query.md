@@ -25,15 +25,15 @@ The `Query` call retrieves a list of entities. The query is performed against th
 
 Parameter | Required | Description
 ------ | -------- | -----
-where | yes | SQL-style filter clause see for syntax
+where | yes | SQL-style filter clause
 fields | yes* | Comma-separated list of field names. Use fields or layout, but not both.
 layout | yes* | Name of a configured layout. Use fields or layout, but not both.
 showReadOnly | no | (true/false) Whether to show read-only fields. Only applies when the layout parameter is used.
 count | no | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.
 start | no | From the set of matched results, return record numbers start through (start + count)
 orderBy | no | Name of property on which to base the order of returned entities.
-meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see
+meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.
 showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>

@@ -15,4 +15,4 @@ Returns the date of the calling client's session expiration. You can use this ca
 
 Parameter | Required | Description
 ------ | -------- | -----
-BhRestToken | true | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it. |
+BhRestToken | true | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.

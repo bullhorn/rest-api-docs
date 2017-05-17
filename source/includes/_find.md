@@ -16,7 +16,7 @@ curl https://rest.bullhornstaffing.com/e999/find?query=smith&countPerEntity=3
 }
 ```
 
-FastFind is a specialized type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.
+FastFind is anized type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.
 
 (FastFind) Searches the following entity types given a string containing search terms:
 
@@ -39,7 +39,7 @@ query | yes | Text of search query.
 countPerEntity | no | Maximum number of results to return for each entity type
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see
 showEditable | no | (true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 

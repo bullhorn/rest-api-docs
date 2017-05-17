@@ -39,7 +39,7 @@ curl https://rest.bullhornstaffing.com/e999/search/Candidate?query=isDeleted:0
 
 Parameter | Required | Description
 ------ | -------- | -----
-query | yes | Lucene-Style filter clause see for syntax
+query | yes | Lucene-Style filter clause.
 fields | yes* | Comma-separated list of field names. Use fields or layout, but not both.
 layout | yes* | Name of a configured layout. Use fields or layout, but not both.
 showReadOnly | no | (true/false) Whether to show read-only fields. Only applies when the layout parameter is used.
@@ -48,6 +48,6 @@ start | no | From the set of matched results, return record numbers start throug
 sort | no | Field to sort result on. Default sort order is ascending. Precede with minus sign to perform descending sort. 
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see
 showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or a special HTTP header. See for details on how to provide it.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>

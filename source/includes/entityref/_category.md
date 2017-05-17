@@ -1,6 +1,6 @@
 # Category
 
-This entity represents a category in which a Candidate or JobOrder can be placed. A category that has a value for parentCategoryId greater than zero is a specialty.
+This entity represents a category in which a Candidate or JobOrder can be placed. A category that has a value for parentCategoryId greater than zero is anty.
 
 | **Category field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
