@@ -48,6 +48,16 @@
         </div>
         <ul class="search-results"></ul>
       <% end %>
+      <% if current_page.data.title == "API Reference" %>
+        <div class="guide-link">
+          <a href="/entityref.html">Entity Reference Guide</a>
+        </div>
+      <% end %>
+      <% if current_page.data.title == "Entity Reference" %>
+        <div class="guide-link">
+          <a href="/index.html">API Reference Guide</a>
+        </div>
+      <% end %>
       <div id="toc">
       </div>
       <% if current_page.data.toc_footers %>

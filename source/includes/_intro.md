@@ -2,6 +2,9 @@
 
 This reference guide provides general information about the Bullhorn REST API and specific information about each API operation and supported entity type.
 
+Other Guides: 
+- Entity Reference Guide available: [here](/entityref.html)
+
 ## General Conventions
 
 Whenever possible, the REST API will follow specifications, conventions and practices of HTTP and the web in general. This includes things like case sensitivity of URLs, character encodings, HTTP methods, and so forth. Additional recommended practices for REST APIs are also observed whenever appropriate.

@@ -44,6 +44,29 @@ body {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
+.guide-link { 
+    color: #616161;
+    transition-property: background;
+    transition-timing-function: linear;
+    transition-duration: 230ms;
+    margin: 2px;
+    padding: 0;
+    line-height: 35px;
+    border: 1px solid #ddd;
+
+    a {
+        padding: 0 15px;
+        display: block;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-decoration: none;
+        text-align: center;
+        color: #509DF4;
+        font-weight: 500;
+    }
+}
+
 #toc > ul > li > a > span {
     float: right;
     background-color: #2484FF;
