@@ -91,11 +91,8 @@ curl -X PUT \
 # Multipart/form (raw) file request
 
 curl -X PUT \
-     -H "Content-Type: application/json" \
-     -d '{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
-        "fileType" : "SAMPLE", "name" : "TestResumeFile.txt", "contentType" : "text/plain",\
-        "description" : "Resume file for candidate.", "type" : "cover"}' \
-     https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/raw?filetype=SAMPLE&externalID=portfolio
+    -F "file=@samplefile.txt" \
+    https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/raw?filetype=SAMPLE&externalID=portfolio
 
 # Example Response
 {"fileId": 178}
