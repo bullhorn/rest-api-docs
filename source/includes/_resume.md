@@ -146,7 +146,6 @@ curl -X POST \
  <MiddleName>Keskimmäinen<\/MiddleName>\n <FamilyName>Nimi<\/FamilyName>\n  \
  <Affix type=\"formOfAddress\">DR.<\/Affix>\n  <\/PersonName>\n <ContactMethod>\n  \
  /UserArea>\n<\/Resume>"}
-
 ```
 
 The parseToHrXml operation sends a resume as a file attached as multipart/form-data. The attached file must be a non-base64-encoded file. Takes one file per request.
@@ -164,7 +163,11 @@ BhRestToken | no | Token that represents a session established by the login proc
 ``` shell
 curl -X POST \
      -H "Content-Type: application/json" \
-     -d '{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}' \
+     -d '{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 \
+     Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \
+     \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\n \
+     Telephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\n \
+     Fax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}' \
      \
      https://rest.bullhorn.com/rest-services/e999/resume/parseToHrXmlViaJson?format=text&format=html
 
@@ -192,8 +195,79 @@ Parameter | Required | Description
 format | yes | Input format for the resume. Value can be html or text.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
+## <span class="tag">POST</span> /resume/convertToText|Html
 
-TBD:
-resume/convertTo(Text|Html)
-resume/convertToTextViaJson
+``` shell
+curl -X POST \
+     -F "file=@sampleresume.pdf" \
+     https://rest.bullhornstaffing.com/rest-services/e999/resume/convertToHtml?format=pdf
 
+# Example Response
+{
+  "html" : "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\">\r\n<html>\r\n<head>\r\n\
+     <title></title>\r\n    <meta name=\"Author\" content=\"RB\" />\r\n    \
+     <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-16\" />\r\n \
+     </head>\r\n<body>\r\n<div align=\"center\"><br /> \
+     <font face=\"Times New Roman\" size=\"3\"> \
+     Dr. Minun KeskimmÃ¤inen Nimi</font>\n<br /><font face=\"Times New Roman\" \
+     size=\"3\">123 Osoite&nbsp;Katu</font>\n \
+     <br /><font face=\"Times New Roman\" size=\"3\">Apartment 1</font>\n \
+     <br /><font face=\"Times New Roman\" size=\"3\"> \
+     Kaupunki, MA 02210</font>\n<br /><font face=\"Times New Roman\" size=\"3\"> \
+     Home: 466-346-4663  Business: 387-438-3874 ext. 89  Mobile: \
+      662-466-6624 </font>\n<br />
+...
+<font face=\"Times New Roman\" size=\"3\"> \
+Dean s List: Fall 2005 and Spring 2006</font>\n<br /> \
+&nbsp;<br />&nbsp;</body>\r\n</html>"
+}
+```
+
+The convertToText|Html operations converts a resume to JSON-encoded plain text or HTML text. A typical use case for this operation is to use the converted resume in the body of a call to update a Candidate description. 
+
+When the resume text in the response is used in a request body of another call, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the resume as JSON before using it in the request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.
+
+`{corpToken}/resume/convertToText|Html`
+
+Parameter | Required | Description
+------ | -------- | -----
+format | yes | Input format for the resume. Value can be text, html, pdf, doc, docx, rtf, or odt.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+
+## <span class="tag">POST</span> /resume/convertToText|HtmlViaJson
+
+The value of the “resume” field must be JSON-encoded text. Most programming languages provide utility classes for generating JSON-encoded text.
+
+
+``` shell
+curl -X POST \
+     -H "Content-Type: application/json" \
+     -d '{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}' \
+     \
+     https://rest.bullhorn.com/rest-services/e999/resume/convertToTextViaJson?format=html
+
+# Example Response
+{"text": "\r\n\r\nDr. Minun Keskimmäinen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, \
+ MA 02210\r\nHome: 466-346-4663  Business: 387-438-3874 ext. 89  Mobile: 662-466-6624\r\n \
+ Telephone: 835-383-8353 ext. 90  VoiceNumber: 864-386-8643\r\nFax: 329-329-3290  \
+ Pager: 724-772-7247\r\nMinun.Nimi@finland.com            \
+ mnimi2@finland2.com\r\n\r\nEmployment History\r\n\r\n  Eighties National Music Bank \
+ Lexington, MA Jan. 1, 1980 - Dec. 31, 1989 \r\n  New Wave Musak Software Engineer\r\n\r\n \
+ Listen\r\nLike\r\nLearn\r\n\r\n \r\n  Nineties Bank of Music  \
+ Concord, MA  February 1991 - November 1998 \r\n Hip Hop 
+...
+"}
+
+```
+The convertToText|HtmlViaJson operations convert a resume to JSON-encoded plain text or HTML text. A typical use case for this operation is to use the converted resume in the body of a call to update a Candidate description. 
+When the resume text in the response is used in a request body of another call, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the resume as JSON before using it in the request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.
+
+When the resume text in the response is used in a request body of another call, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the resume as JSON before using it in the request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.
+
+`{corpToken}/resume/convertToText|HtmlViaJson`
+
+Parameter | Required | Description
+------ | -------- | -----
+format | yes | Input format for the resume. Value can be text or html.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.

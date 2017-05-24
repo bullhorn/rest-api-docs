@@ -13,19 +13,22 @@ includes:
   - allcorpnotes
   - entitlements
   - entity
-  - myentities
   - departmententities
-  - subscription
-  - find
+  - myentities
   - file
-  - lookup
+  - find
   - login
+  - lookup
   - massupdate
   - meta
   - options
   - ping
   - query
+  - resume
+  - savedsearch
   - search
+  - subscription
+  - userheadshot
   - errors
 
 search: true

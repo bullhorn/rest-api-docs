@@ -139,7 +139,7 @@ description | no | Comment that describes the file.
 type | no | Type of file that is attached.BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 
-## <span class="tag">DELETE</span> /entity
+## <span class="tag">DELETE</span> /file
 
 ``` shell
 curl -X DELETE \
