@@ -230,19 +230,43 @@ https://rest-emea.bullhornstaffing.com</p>
 <li>A cookie named <code class="prettyprint">BHRestToken</code>. This cookie is set by the API at login time as a convenience for browser-based clients.</li>
 </ol>
 
-          <h1 id="login">Login</h1>
+          <h1 id="allcorpnotes">allCorpNotes</h1>
 
-<h2 id="partner-login-using-oauth">Partner login using OAuth</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/login?access_token<span class="o">=</span>xxx&amp;version<span class="o">=</span><span class="k">*</span>
+<h2 id="get-allcorpnotes"><span class="tag">GET</span> /allCorpNotes</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffingcom/rest-services/e999/allCorpNotes?clientCorpId<span class="o">=</span>4&amp;fields<span class="o">=</span><span class="nv">start</span><span class="o">=</span>0&amp;count<span class="o">=</span>5
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
-  <span class="s2">"BhRestToken"</span> : <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>,
-  <span class="s2">"restUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/rest-services/[corporation-token]/"</span>
+   <span class="s2">"total"</span>: 9,
+   <span class="s2">"start"</span>: 3,
+   <span class="s2">"count"</span>: 4,
+   <span class="s2">"data"</span>:    <span class="o">[</span>
+            <span class="o">{</span>
+         <span class="s2">"_score"</span>: 0.3471885,
+         <span class="s2">"id"</span>: 515,
+         <span class="s2">"action"</span>: <span class="s2">"Outbound Call"</span>
+      <span class="o">}</span>,
+            <span class="o">{</span>
+         <span class="s2">"_score"</span>: 0.3091938,
+         <span class="s2">"id"</span>: 25,
+         <span class="s2">"action"</span>: <span class="s2">"Outbound Call"</span>
+      <span class="o">}</span>,
+            <span class="o">{</span>
+         <span class="s2">"_score"</span>: 0.3091938,
+         <span class="s2">"id"</span>: 48,
+         <span class="s2">"action"</span>: <span class="s2">"Outbound Call"</span>
+      <span class="o">}</span>,
+...
+   <span class="o">]</span>
 <span class="o">}</span>
+
 </code></pre>
 
-<p>This is the only supported login process in a production environment</p>
+<p>Returns all Notes in the specified ClientCorporation. Specify the fields to be included in the response in the fields request parameter.  </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/allCorpNotes/?fields={fieldList}</code></p>
 
 <table><thead>
 <tr>
@@ -252,115 +276,26 @@ https://rest-emea.bullhornstaffing.com</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>access_token</td>
+<td>fields</td>
 <td>yes</td>
-<td>Access token obtained from OAuth authorization</td>
+<td>Comma-separated list of field names. fields or layout is required.</td>
 </tr>
 <tr>
-<td>version</td>
+<td>layout</td>
 <td>yes</td>
-<td>Version of the API to use (* is a wildcard for latest version).</td>
+<td>Name of a configured layout. fields or layout is required.</td>
 </tr>
-<tr>
-<td>ttl</td>
-<td>no</td>
-<td>Session time-to-live in minutes.</td>
-</tr>
-<tr>
-<td>clientId</td>
-<td>no</td>
-<td>Pass in an OAuth key here to spoof the features associated.</td>
-</tr>
-</tbody></table>
-
-<aside class="warning"><strong>Possible Error: &ldquo;Invalid or expired OAuth access token.&rdquo;</strong></aside>
-
-<h2 id="logout">Logout</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/logout
-
-<span class="c"># Example Response</span>
-<span class="o">{</span>
-    <span class="nb">logout</span>: <span class="s2">"OK"</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>To logout and invalidate your BhRestToken</p>
-
-          <h1 id="ping">Ping</h1>
-
-<h2 id="get-ping"><span class="tag">GET</span> /ping</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/ping
-
-<span class="c"># Example Response</span>
-<span class="o">{</span>
-  <span class="s2">"sessionExpires"</span> : 1323449994922
-<span class="o">}</span>
-</code></pre>
-
-<p>Returns the date of the calling client&rsquo;s session expiration. You can use this call to test whether the client&rsquo;s session is valid. If the session is not valid, the response is the standard response for unauthenticated clients.</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
 <tr>
 <td>BhRestToken</td>
-<td>true</td>
+<td>no</td>
 <td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
+<tr>
+<td>clientCorpId</td>
+<td>yes</td>
+<td>id of a ClientCorporation entity.</td>
+</tr>
 </tbody></table>
-
-          <h1 id="settings">Settings</h1>
-
-<h2 id="get-settings">GET /settings</h2>
-<pre class="highlight shell"><code>curl -X GET <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings"</span>
-
-<span class="c"># Example Response</span>
-<span class="o">{</span>
-  <span class="s2">"data"</span>: <span class="o">[</span>
-    <span class="o">{</span>
-      <span class="s2">"name"</span>: <span class="s2">"accountLockoutDuration"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/accountLockoutDuration"</span>,
-      <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
-      <span class="s2">"isArray"</span>: <span class="nb">false</span>
-    <span class="o">}</span>, <span class="o">{</span>
-      <span class="s2">"name"</span>: <span class="s2">"allDeptIds"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/allDeptIds"</span>,
-      <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
-      <span class="s2">"isArray"</span>: <span class="nb">true</span>
-    <span class="o">}</span>, <span class="o">{</span>
-      <span class="s2">"name"</span>: <span class="s2">"allPrivateLabelIds"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds"</span>,
-      <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
-      <span class="s2">"isArray"</span>: <span class="nb">true</span>
-    <span class="o">}</span>, <span class="o">{</span>
-      <span class="s2">"name"</span>: <span class="s2">"commentActionList"</span>,
-      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/commentActionList"</span>,
-      <span class="s2">"valueType"</span>: <span class="s2">"STRING"</span>,
-      <span class="s2">"isArray"</span>: <span class="nb">true</span>
-    <span class="o">}</span>
-    ...
-  <span class="o">]</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>returns the complete list of settings.</p>
-
-<h2 id="get-settings-setting1-setting2">GET /settings/setting1[,setting2&hellip;]</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
-
-<span class="c"># Example Response</span>
-<span class="o">{</span>
-    <span class="s2">"allPrivateLabelIds"</span>:  <span class="o">[</span> 1, 2, 3],
-    <span class="s2">"currencyFormat"</span>: <span class="s2">"USD"</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>Value type (integer, boolean, etc) depends on settingName.
-If no settingName is supplied, a list of predefined setting names and their meta data is returned. Return types (string, integer, decimal, boolean, and array of the base type) are defined in the meta data. If conversion fails, for example cannot convert &ldquo;abc&rdquo; to integer, the raw string will be returned.</p>
 
           <h1 id="entitlements">Entitlements</h1>
 
@@ -433,170 +368,6 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <td>User can delete entities owned by the user only.</td>
 </tr>
 </tbody></table>
-
-          <h1 id="meta">Meta</h1>
-
-<h2 id="get-meta"><span class="tag">GET</span> /meta</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/meta
-
-<span class="c"># Example Response</span>
-<span class="o">[</span>
-    <span class="o">{</span>
-        <span class="s2">"entity"</span>: <span class="s2">"Appointment"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Appointment?fields=*"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-        <span class="s2">"entity"</span>: <span class="s2">"BusinessSector"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/BusinessSector?fields=*"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-        <span class="s2">"entity"</span>: <span class="s2">"Candidate"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-        <span class="s2">"entity"</span>: <span class="s2">"Category"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Category?fields=*"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-        <span class="s2">"entity"</span>: <span class="s2">"ClientContact"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientContact?fields=*"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-        <span class="s2">"entity"</span>: <span class="s2">"ClientCorporation"</span>,
-        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientCorporation?fields=*"</span>
-    <span class="o">}</span>,
-    ...
-<span class="o">]</span>
-</code></pre>
-
-<p>Calling /meta with no entity name will return the list of available entities and their respective base URLs.  </p>
-
-<p>Read-only system fields ( fields with names prefixed with _ ) are not represented in entity metadata ever, even with * calls.</p>
-
-<h2 id="get-meta-entity"><span class="tag">GET</span> /meta/{Entity}</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/meta/Candidate?fields<span class="o">=</span><span class="k">*</span>
-<span class="c"># Example Response</span>
-<span class="o">{</span>
-  <span class="s2">"entity"</span> : <span class="s2">"Candidate"</span>,
-  <span class="s2">"entityMetaUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*"</span>,
-  <span class="s2">"label"</span> : <span class="s2">"Candidate"</span>,
-  <span class="s2">"fields"</span> : <span class="o">{</span> <span class="o">{</span>
-    <span class="s2">"name"</span> : <span class="s2">"id"</span>,
-    <span class="s2">"type"</span> : <span class="s2">"ID"</span>,
-    <span class="s2">"dataType"</span> : <span class="s2">"Integer"</span>
-  <span class="o">}</span>, <span class="o">{</span>
-    ...
-  <span class="o">}]</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>Returns entity and property metadata for the specified entity type.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET {corporation-token}/meta/{entity-name}/?fields={field-list}&amp;meta={ basic or full }</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>fields</td>
-<td>yes</td>
-<td>Comma-separated list of field names.</td>
-</tr>
-<tr>
-<td>layout</td>
-<td>yes</td>
-<td>Name of a configured layout. A field list, layout name or both may be specified.</td>
-</tr>
-<tr>
-<td>meta</td>
-<td>no</td>
-<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
-</tr>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
-<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
-
-<h3 id="property-metadata">Property Metadata</h3>
-
-<p><strong>name</strong></p>
-
-<p>Property name; for example, firstName.</p>
-
-<p><strong>label</strong></p>
-
-<p>Property display label from fieldmap; may be missing.</p>
-
-<p><strong>type</strong></p>
-
-<p>Property type, one of ID, SCALAR, COMPOSITE, TO_ONE, or TO_MANY.</p>
-
-<p><strong>dataType</strong></p>
-
-<p>Property data type: Integer, BigDecimal, Double, String, Boolean, Timestamp, byte[], Address, Address1, AddressWithoutCountry (these are composite types), and LoginRestrictions (!! may change).</p>
-
-<p><strong>maxLength</strong></p>
-
-<p>Only present when dataType=&ldquo;String&rdquo;. The maximum authorized length for this String field.</p>
-
-<p><strong>dataSpecialization</strong></p>
-
-<p>Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE, PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent.</p>
-
-<p><strong>optional</strong></p>
-
-<p>Is the property value optional (specified by Hibernate, typically means database nullability); also see <strong>required</strong>.</p>
-
-<p><strong>required</strong></p>
-
-<p>Is the property value required (specified by fieldmap); also see <strong>optional</strong>.</p>
-
-<p><strong>readonly</strong></p>
-
-<p>Is the property hidden (specified by fieldmap).</p>
-
-<p><strong>multiValue</strong></p>
-
-<p>Is the property multi-valued (specified by fieldmap); dataType must be String.</p>
-
-<p><strong>inputType</strong></p>
-
-<p>Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing.</p>
-
-<p><strong>optionsType</strong></p>
-
-<p>For inputType SELECT only; for example, Country. may be missing.</p>
-
-<p><strong>optionsUrl</strong></p>
-
-<p>If optionsType is present, where to get the list of options (displays and values).</p>
-
-<p><strong>options</strong></p>
-
-<p>The hard-coded options from fieldMap in an array of value/label pairs; may be missing.</p>
-
-<p><strong>defaultValue</strong></p>
-
-<p>Value type depends on dataType and dataSpecialization: may be missing.<br>
-If the defaultValue is not translatable, For example, cannot parse string to a date; it is ignored. If multiValue, returns as array.</p>
-
-<p><strong>fields</strong></p>
-
-<p>Array of sub-fields property meta for COMPOSITE type.</p>
-
-<p><strong>associatedEntity</strong></p>
-
-<p>Entity metadata for TO_ONE and TO_MANY type.</p>
 
           <h1 id="entity">Entity</h1>
 
@@ -719,7 +490,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <tr>
 <td>showReadOnly</td>
 <td>no</td>
-<td>(DO NOT USE) (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}</td>
+<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}</td>
 </tr>
 <tr>
 <td>meta</td>
@@ -1031,28 +802,71 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
-          <h1 id="query">Query</h1>
+          <h1 id="department-entity-s">department{Entity}s</h1>
 
-<h2 id="get-query"><span class="tag">GET</span> /query</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/query/Candidate?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
+<h2 id="get-department-entity-s"><span class="tag">GET</span> /department{Entity}s</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/departmentClientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;start<span class="o">=</span>0&amp;count<span class="o">=</span>5
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
-    <span class="s2">"data"</span>: <span class="o">[{</span>
-        <span class="s2">"id"</span> : 5059165,
-        <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
-        <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
-    <span class="o">}]</span>
+   <span class="s2">"data"</span>:    <span class="o">[</span>
+            <span class="o">{</span>
+         <span class="s2">"lastName"</span>: <span class="s2">"Burns"</span>,
+         <span class="s2">"address"</span>:          <span class="o">{</span>
+            <span class="s2">"address1"</span>: <span class="s2">"2 Olive Lane"</span>,
+            <span class="s2">"address2"</span>: <span class="s2">""</span>,
+            <span class="s2">"city"</span>: <span class="s2">"Ridgefield"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"CT"</span>,
+            <span class="s2">"zip"</span>: <span class="s2">"06877"</span>,
+            <span class="s2">"countryID"</span>: 1
+         <span class="o">}</span>
+      <span class="o">}</span>,
+            <span class="o">{</span>
+         <span class="s2">"lastName"</span>: <span class="s2">"Rackley"</span>,
+         <span class="s2">"address"</span>:          <span class="o">{</span>
+            <span class="s2">"address1"</span>: <span class="s2">"00 Jeffrey Way, Suite 400 |"</span>,
+            <span class="s2">"address2"</span>: <span class="s2">""</span>,
+            <span class="s2">"city"</span>: <span class="s2">"Round Rock"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"TX"</span>,
+            <span class="s2">"zip"</span>: <span class="s2">"78665"</span>,
+            <span class="s2">"countryID"</span>: 1
+         <span class="o">}</span>
+      <span class="o">}</span>,
+            <span class="o">{</span>
+         <span class="s2">"lastName"</span>: <span class="s2">"Smith"</span>,
+         <span class="s2">"address"</span>:          <span class="o">{</span>
+            <span class="s2">"address1"</span>: <span class="s2">"700 Jeffrey Way, Suite 400"</span>,
+            <span class="s2">"address2"</span>: <span class="s2">""</span>,
+            <span class="s2">"city"</span>: <span class="s2">"Round Rock"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"TX"</span>,
+            <span class="s2">"zip"</span>: <span class="s2">"78664"</span>,
+            <span class="s2">"countryID"</span>: 1
+         <span class="o">}</span>
+      <span class="o">}</span>,
+            <span class="o">{</span>
+         <span class="s2">"lastName"</span>: <span class="s2">"Lemon"</span>,
+         <span class="s2">"address"</span>:          <span class="o">{</span>
+            <span class="s2">"address1"</span>: <span class="s2">"700 Jeffrey Way, Suite 400"</span>,
+            <span class="s2">"address2"</span>: <span class="s2">""</span>,
+            <span class="s2">"city"</span>: <span class="s2">"Round Rock"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"TX"</span>,
+            <span class="s2">"zip"</span>: <span class="s2">"78665"</span>,
+            <span class="s2">"countryID"</span>: 1
+         <span class="o">}</span>
+      <span class="o">}</span>
+   <span class="o">]</span>,
+   <span class="s2">"count"</span>: 4,
+   <span class="s2">"start"</span>: 0
 <span class="o">}</span>
+
+
 </code></pre>
 
-<p>The <code class="prettyprint">Query</code> call retrieves a list of entities. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Perstance Language (JPQL) syntax, which is similar SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the <a href="/#search">Search</a> call.</p>
-
-<aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
+<p>Returns the entities for the departments to which the current user belongs, for the following entity types: Candidate, ClientContact, ClientCorporation, JobOrder, Placement, and Note. For Candidate and Note requests, an _score field is included in each item returned; this is the Lucene search score.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/query/{entity}?where={query-text}&amp;fields={fields}&amp;orderBy={fields}&amp;count={count}&amp;start={start}</code></p>
+<p><code class="prettyprint">{corpToken}/department{Entity}s/?fields={fieldList}</code></p>
 
 <table><thead>
 <tr>
@@ -1062,93 +876,106 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 </tr>
 </thead><tbody>
 <tr>
-<td>where</td>
-<td>yes</td>
-<td>SQL-style filter clause</td>
-</tr>
-<tr>
 <td>fields</td>
-<td>yes*</td>
-<td>Comma-separated list of field names. Use fields or layout, but not both.</td>
+<td>yes</td>
+<td>Comma-separated list of field names. fields or layout is required.</td>
 </tr>
 <tr>
 <td>layout</td>
-<td>yes*</td>
-<td>Name of a configured layout. Use fields or layout, but not both.</td>
-</tr>
-<tr>
-<td>showReadOnly</td>
-<td>no</td>
-<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used.</td>
-</tr>
-<tr>
-<td>count</td>
-<td>no</td>
-<td>Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.</td>
-</tr>
-<tr>
-<td>start</td>
-<td>no</td>
-<td>From the set of matched results, return record numbers start through (start + count)</td>
-</tr>
-<tr>
-<td>orderBy</td>
-<td>no</td>
-<td>Name of property on which to base the order of returned entities.</td>
-</tr>
-<tr>
-<td>meta</td>
-<td>no</td>
-<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.</td>
-</tr>
-<tr>
-<td>showEditable</td>
-<td>no</td>
-<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+<td>yes</td>
+<td>Name of a configured layout. fields or layout is required.</td>
 </tr>
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
 <td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
+<tr>
+<td>departmentIds</td>
+<td>no</td>
+<td>iComma-separated list of department ids. When not specified, the call returns entities from all of the user&rsquo;s departments.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>Limit on the number of entities to return. If the set of matched results is larger than the count value, the returned results is capped at the count value.</td>
+</tr>
 </tbody></table>
 
-<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+<p>The default count is 20. The maximum count is 500; if you specify a count greater than 500, a message at the end of the response indicates you have specified too many items.
+The response also includes the actual number of items returned and the start value of the request. This is useful when you want to make calls to page additional sets of data. 
+start | no | FFrom the set of matched results, returns item numbers start through (start + count).
+sort | no | Field to sort result on. Precede with minus sign to perform ascending search. Applies to Candidate and Note entities only. 
+query | no | Lucene query string. Applies to Candidate and Note entities only.
+where | no | JPQL query string. Does not apply to Candidate or Note entities.
+meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. 
+showEditable | no | (true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed. </p>
 
-          <h1 id="search">Search</h1>
+          <h1 id="department-entity-s">department{Entity}s</h1>
 
-<h2 id="get-search"><span class="tag">GET</span> /search</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/search/Candidate?query<span class="o">=</span>lastName:Smith&amp;fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
-
-<span class="c"># Example Response</span>
-<span class="o">{</span>
-    <span class="s2">"data"</span>: <span class="o">[{</span>
-      <span class="s2">"_score"</span>: 1.70002,
-      <span class="s2">"id"</span> : 5059165,
-      <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
-      <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
-    <span class="o">}]</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>The Search call retrieves a list of entities. The search call is performed against a optimized index, therefore the query parameter should reflect Lucene Query Syntax. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
-
-<aside class="notice">If you provide no request parameters, a list of available search fields are provided.</aside>
-
-<p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.</p>
-
-<aside class="notice">If parameter &ldquo;fields&rdquo; or &ldquo;layout&rdquo; is not present, the search will return the list of found entity ids in the returned &ldquo;data&rdquo;.</aside>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/search/Candidate?query<span class="o">=</span>isDeleted:0
+<h2 id="get-department-entity-s"><span class="tag">GET</span> /department{Entity}s</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/myClientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;start<span class="o">=</span>0&amp;count<span class="o">=</span>5
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
-    <span class="s2">"data"</span>: <span class="o">[</span>101,102,103,104,...,999]
+   <span class="s2">"data"</span>:    <span class="o">[</span>
+            <span class="o">{</span>
+         <span class="s2">"lastName"</span>: <span class="s2">"Burns"</span>,
+         <span class="s2">"address"</span>:          <span class="o">{</span>
+            <span class="s2">"address1"</span>: <span class="s2">"2 Olive Lane"</span>,
+            <span class="s2">"address2"</span>: <span class="s2">""</span>,
+            <span class="s2">"city"</span>: <span class="s2">"Ridgefield"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"CT"</span>,
+            <span class="s2">"zip"</span>: <span class="s2">"06877"</span>,
+            <span class="s2">"countryID"</span>: 1
+         <span class="o">}</span>
+      <span class="o">}</span>,
+            <span class="o">{</span>
+         <span class="s2">"lastName"</span>: <span class="s2">"Rackley"</span>,
+         <span class="s2">"address"</span>:          <span class="o">{</span>
+            <span class="s2">"address1"</span>: <span class="s2">"00 Jeffrey Way, Suite 400 |"</span>,
+            <span class="s2">"address2"</span>: <span class="s2">""</span>,
+            <span class="s2">"city"</span>: <span class="s2">"Round Rock"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"TX"</span>,
+            <span class="s2">"zip"</span>: <span class="s2">"78665"</span>,
+            <span class="s2">"countryID"</span>: 1
+         <span class="o">}</span>
+      <span class="o">}</span>,
+            <span class="o">{</span>
+         <span class="s2">"lastName"</span>: <span class="s2">"Smith"</span>,
+         <span class="s2">"address"</span>:          <span class="o">{</span>
+            <span class="s2">"address1"</span>: <span class="s2">"700 Jeffrey Way, Suite 400"</span>,
+            <span class="s2">"address2"</span>: <span class="s2">""</span>,
+            <span class="s2">"city"</span>: <span class="s2">"Round Rock"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"TX"</span>,
+            <span class="s2">"zip"</span>: <span class="s2">"78664"</span>,
+            <span class="s2">"countryID"</span>: 1
+         <span class="o">}</span>
+      <span class="o">}</span>,
+            <span class="o">{</span>
+         <span class="s2">"lastName"</span>: <span class="s2">"Lemon"</span>,
+         <span class="s2">"address"</span>:          <span class="o">{</span>
+            <span class="s2">"address1"</span>: <span class="s2">"700 Jeffrey Way, Suite 400"</span>,
+            <span class="s2">"address2"</span>: <span class="s2">""</span>,
+            <span class="s2">"city"</span>: <span class="s2">"Round Rock"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"TX"</span>,
+            <span class="s2">"zip"</span>: <span class="s2">"78665"</span>,
+            <span class="s2">"countryID"</span>: 1
+         <span class="o">}</span>
+      <span class="o">}</span>
+   <span class="o">]</span>,
+   <span class="s2">"count"</span>: 4,
+   <span class="s2">"start"</span>: 0
 <span class="o">}</span>
+
+
 </code></pre>
+
+<p>Returns the entities for which the current user is the owner, for the following entity types: Candidate, ClientContact, ClientCorporation, JobOrder, Placement, and Note. For Candidate and Note requests, an _score field is included in each item returned; this is the Lucene search score.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/search/{entity}?query={lucene}&amp;fields={fields}&amp;orderBy={fields}&amp;count={count}&amp;start={start}</code></p>
+<p><code class="prettyprint">{corpToken}/my{Entity}s/?fields={fieldList}</code></p>
 
 <table><thead>
 <tr>
@@ -1158,50 +985,74 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 </tr>
 </thead><tbody>
 <tr>
-<td>query</td>
-<td>yes</td>
-<td>Lucene-Style filter clause.</td>
-</tr>
-<tr>
 <td>fields</td>
-<td>yes*</td>
-<td>Comma-separated list of field names. Use fields or layout, but not both.</td>
+<td>yes</td>
+<td>Comma-separated list of field names. fields or layout is required.</td>
 </tr>
 <tr>
 <td>layout</td>
-<td>yes*</td>
-<td>Name of a configured layout. Use fields or layout, but not both.</td>
+<td>yes</td>
+<td>Name of a configured layout. fields or layout is required.</td>
 </tr>
 <tr>
-<td>showReadOnly</td>
+<td>BhRestToken</td>
 <td>no</td>
-<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+<tr>
+<td>departmentIds</td>
+<td>no</td>
+<td>iComma-separated list of department ids. When not specified, the call returns entities from all of the user&rsquo;s departments.</td>
 </tr>
 <tr>
 <td>count</td>
 <td>no</td>
-<td>Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.</td>
+<td>Limit on the number of entities to return. If the set of matched results is larger than the count value, the returned results is capped at the count value.</td>
 </tr>
+</tbody></table>
+
+<p>The default count is 20. The maximum count is 500; if you specify a count greater than 500, a message at the end of the response indicates you have specified too many items.
+The response also includes the actual number of items returned and the start value of the request. This is useful when you want to make calls to page additional sets of data. 
+start | no | FFrom the set of matched results, returns item numbers start through (start + count).
+sort | no | Field to sort result on. Precede with minus sign to perform ascending search. Applies to Candidate and Note entities only. 
+query | no | Lucene query string. Applies to Candidate and Note entities only.
+where | no | JPQL query string. Does not apply to Candidate or Note entities.
+meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. 
+showEditable | no | (true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed. </p>
+
+          <h1 id="file">File</h1>
+
+<h2 id="get-file"><span class="tag">GET</span> /file</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/file/Candidate/3835/231
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s2">"File"</span>: <span class="o">{</span>
+   <span class="s2">"contentType"</span>: <span class="s2">"text/plain"</span>,
+   <span class="s2">"fileContent"</span>: <span class="s2">"VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl"</span>,
+   <span class="s2">"name"</span>: <span class="s2">"SmallFile.txt"</span>
+<span class="o">}}</span>
+</code></pre>
+
+<p>Returns an attached file as base64-encoded text.
+Files can be attached to the following types of entities:
+* Candidate
+* ClientContact
+* ClientCorporation
+* JobOrder
+* Opportunity
+* Placement</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/file/{entityType}/{entityId}/{fileId}</code></p>
+
+<table><thead>
 <tr>
-<td>start</td>
-<td>no</td>
-<td>From the set of matched results, return record numbers start through (start + count)</td>
+<th>Param</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
-<tr>
-<td>sort</td>
-<td>no</td>
-<td>Field to sort result on. Default sort order is ascending. Precede with minus sign to perform descending sort. </td>
-</tr>
-<tr>
-<td>meta</td>
-<td>no</td>
-<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
-</tr>
-<tr>
-<td>showEditable</td>
-<td>no</td>
-<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
-</tr>
+</thead><tbody>
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
@@ -1209,7 +1060,227 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 </tr>
 </tbody></table>
 
-<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
+
+<h2 id="get-entityfiles"><span class="tag">GET</span> /entityFiles</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/entityFiles/Candidate/203866
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s2">"EntityFiles"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+      <span class="s2">"id"</span>: 201,
+      <span class="s2">"type"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"File1.txt"</span>,
+      <span class="s2">"description"</span> : <span class="s2">"Resume file for candidate."</span>,
+      <span class="s2">"contentType"</span>: <span class="s2">"text"</span>,
+      <span class="s2">"contentSubType"</span>: <span class="s2">"plain"</span>
+   <span class="o">}</span>,
+      <span class="o">{</span>
+      <span class="s2">"id"</span>: 202,
+      <span class="s2">"type"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"File2.txt"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"contentType"</span>: <span class="s2">"text"</span>,
+      <span class="s2">"contentSubType"</span>: <span class="s2">"plain"</span>
+   <span class="o">}</span>
+<span class="o">]}</span>
+</code></pre>
+
+<p>Returns metadata for attached files.
+Files can be attached to the following types of entities:
+* Candidate
+* ClientContact
+* ClientCorporation
+* JobOrder
+* Opportunity
+* Placement</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/entityFiles/{entityType}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Param</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-file"><span class="tag">PUT</span> /file</h2>
+<pre class="highlight shell"><code>
+<span class="c"># Base64-encoded file request</span>
+
+curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
+        "fileType" : "SAMPLE", "name" : "TestResumeFile.txt", "contentType" : "text/plain",\
+        "description" : "Resume file for candidate.", "type" : "cover"}'</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909
+
+<span class="c"># Multipart/form (raw) file request</span>
+
+curl -X PUT <span class="se">\</span>
+    -F <span class="s2">"file=@samplefile.txt"</span> <span class="se">\</span>
+    https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/raw?filetype<span class="o">=</span>SAMPLE&amp;externalID<span class="o">=</span>portfolio
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s2">"fileId"</span>: 178<span class="o">}</span>
+</code></pre>
+
+<p>Attaches a file to an entity. You can send a file as base64-encoded text or multipart/form data (raw). 
+Files can be attached to the following types of entities:
+* Candidate
+* ClientContact
+* ClientCorporation
+* JobOrder
+* Opportunity
+* Placement</p>
+
+<h3 id="http-request-for-base64-encoded-file">HTTP Request for base64-encoded file</h3>
+
+<p><code class="prettyprint">{corpToken}/file/{entityType}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Request body field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalID</td>
+<td>yes</td>
+<td>External identifier for the file.</td>
+</tr>
+<tr>
+<td>fileContent</td>
+<td>yes</td>
+<td>Base64-encoded string of the file content.</td>
+</tr>
+<tr>
+<td>fileType</td>
+<td>yes</td>
+<td>Always use the value “SAMPLE”.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>File name.</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>no</td>
+<td>Type/subtype of the file content.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>no</td>
+<td>Comment that describes the file.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>no</td>
+<td>Type of file that is attached.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-request-for-multipart-form-raw-file">HTTP Request for multipart/form (raw) file</h3>
+
+<p><code class="prettyprint">{corpToken}/file/{entityType}/{entityId}/raw</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalID</td>
+<td>yes</td>
+<td>External identifier for the file.</td>
+</tr>
+<tr>
+<td>fileType</td>
+<td>yes</td>
+<td>Always use the value “SAMPLE”.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>File name.</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>no</td>
+<td>Type/subtype of the file content.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>no</td>
+<td>Comment that describes the file.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>no</td>
+<td>Type of file that is attached.BhRestToken</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-file"><span class="tag">DELETE</span> /file</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/3835/231
+
+     <span class="c"># Example Response</span>
+<span class="o">{</span>
+   <span class="s2">"fileId"</span>: 178,
+   <span class="s2">"changeType"</span>: <span class="s2">"DELETED"</span>
+<span class="o">}</span>
+
+</code></pre>
+
+<p>Soft deletes a file attachment. The actual file remains on the server.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/file/{entityType}/{entityId}/{fileId}}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
           <h1 id="find">Find</h1>
 
@@ -1461,6 +1532,62 @@ clientCorporation.name</td>
 </body>
 </html></p>
 
+          <h1 id="login">Login</h1>
+
+<h2 id="partner-login-using-oauth">Partner login using OAuth</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/login?access_token<span class="o">=</span>xxx&amp;version<span class="o">=</span><span class="k">*</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"BhRestToken"</span> : <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>,
+  <span class="s2">"restUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/rest-services/[corporation-token]/"</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>This is the only supported login process in a production environment</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>access_token</td>
+<td>yes</td>
+<td>Access token obtained from OAuth authorization</td>
+</tr>
+<tr>
+<td>version</td>
+<td>yes</td>
+<td>Version of the API to use (* is a wildcard for latest version).</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>no</td>
+<td>Session time-to-live in minutes.</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>no</td>
+<td>Pass in an OAuth key here to spoof the features associated.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning"><strong>Possible Error: &ldquo;Invalid or expired OAuth access token.&rdquo;</strong></aside>
+
+<h2 id="logout">Logout</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/logout
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="nb">logout</span>: <span class="s2">"OK"</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>To logout and invalidate your BhRestToken</p>
+
           <h1 id="lookup">Lookup</h1>
 
 <h2 id="get-lookup"><span class="tag">GET</span> /lookup</h2>
@@ -1563,6 +1690,2094 @@ curl https://rest.bullhornstaffing.com/e999/lookup/Candidate/12345
 </tbody></table>
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+
+          <h1 id="mass-update">Mass Update</h1>
+
+<h2 id="get-massupdate"><span class="tag">GET</span> /massUpdate</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/massUpdate
+
+<span class="c"># Example Response</span>
+<span class="o">[</span>
+<span class="s2">"Candidate"</span>,
+<span class="s2">"ClientContact"</span>,
+<span class="s2">"ClientCorporation"</span>,
+<span class="s2">"JobOrder"</span>,
+<span class="s2">"JobSubmission"</span>,
+<span class="s2">"Lead"</span>,
+<span class="s2">"NPSUserInfo"</span>,
+<span class="s2">"Opportunity"</span>,
+<span class="s2">"Placement"</span>,
+<span class="s2">"Task"</span>,
+<span class="s2">"Tearsheet"</span>
+<span class="o">]</span>
+</code></pre>
+
+<p>Returns the list of entity types that support mass update.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/massUpdate/{entityType}</code></p>
+
+<table><thead>
+<tr>
+<th>Param</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-massupdate-entitytype"><span class="tag">GET</span> /massUpdate/{entityType}</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/massUpdate/entity
+
+<span class="c"># Example Response</span>
+<span class="o">[</span> <span class="o">{</span>
+  <span class="s2">"propertyName"</span> : <span class="s2">"assignedUsers"</span>,
+  <span class="s2">"entitlementRequired"</span> : <span class="s2">"Mass Update Job Assignment"</span>
+<span class="o">}</span>, <span class="o">{</span>
+  <span class="s2">"propertyName"</span> : <span class="s2">"isDeleted"</span>,
+  <span class="s2">"entitlementRequired"</span> : <span class="s2">"Mass Delete Job"</span>
+<span class="o">}</span>, <span class="o">{</span>
+  <span class="s2">"propertyName"</span> : <span class="s2">"isOpen"</span>,
+  <span class="s2">"entitlementRequired"</span> : <span class="s2">"Mass Open/Close Job"</span>
+<span class="o">}</span>, <span class="o">{</span>
+  <span class="s2">"propertyName"</span> : <span class="s2">"owner"</span>,
+  <span class="s2">"entitlementRequired"</span> : <span class="s2">"Mass Update Job Owner"</span>
+<span class="o">}</span>, <span class="o">{</span>
+  <span class="s2">"propertyName"</span> : <span class="s2">"status"</span>,
+  <span class="s2">"entitlementRequired"</span> : <span class="s2">"Mass Update Job Status"</span>
+<span class="o">}</span> <span class="o">]</span>
+
+</code></pre>
+
+<p>Returns the list of entity properties for which mass update is supported on the specified entity type. Also returns the entitlement required for updating each property.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/massUpdate/{entityType}</code></p>
+
+<table><thead>
+<tr>
+<th>Param</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-massupdate-entitytype"><span class="tag">POST</span> /massUpdate/{entityType}</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"ids": [789,790], "status": "active"}'</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/e999/massUpdate/JobOrder
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"count"</span>: 2
+<span class="o">}</span>
+</code></pre>
+
+<p>Performs a massUpdate on all entities of the specified type for which the entity id is included in the request body.
+The request body uses the following syntax:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"ids"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"{property}"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">value</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"toOneProperty"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"{toManyProperty}"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"{toManyProperty}"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                       </span><span class="nt">"add"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">],</span><span class="w">
+                       </span><span class="nt">"remove"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">]</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<ul>
+<li>&ldquo;ids&rdquo; is a list of entity ids to mass update. (mandatory, 10000 limit)</li>
+<li>For to-one properties, supply the associated entity id as value. For example, &ldquo;owner&rdquo; : 123</li>
+<li>For to-many properties:
+
+<ul>
+<li>Use the first form to replace the entire association. For example:
+&ldquo;assignedUsers&rdquo;: [123, 456]</li>
+<li>Use the second form to add or remove associations. For example:
+&ldquo;assignedUsers&rdquo;: { &ldquo;add&rdquo; : [123], &ldquo;remove&rdquo; : [456] }</li>
+<li>You must specify &ldquo;add&rdquo; or &ldquo;remove&rdquo; or both.</li>
+</ul></li>
+</ul>
+
+<p>The response contains the count of updated entities:
+<code class="prettyprint">
+{
+  &quot;count&quot; : n
+}
+</code></p>
+
+          <h1 id="meta">Meta</h1>
+
+<h2 id="get-meta"><span class="tag">GET</span> /meta</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/meta
+
+<span class="c"># Example Response</span>
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"Appointment"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Appointment?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"BusinessSector"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/BusinessSector?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"Candidate"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"Category"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Category?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"ClientContact"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientContact?fields=*"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"entity"</span>: <span class="s2">"ClientCorporation"</span>,
+        <span class="s2">"metaUrl"</span>: <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/ClientCorporation?fields=*"</span>
+    <span class="o">}</span>,
+    ...
+<span class="o">]</span>
+</code></pre>
+
+<p>Calling /meta with no entity name will return the list of available entities and their respective base URLs.  </p>
+
+<p>Read-only system fields ( fields with names prefixed with _ ) are not represented in entity metadata ever, even with * calls.</p>
+
+<h2 id="get-meta-entity"><span class="tag">GET</span> /meta/{Entity}</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/meta/Candidate?fields<span class="o">=</span><span class="k">*</span>
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"entity"</span> : <span class="s2">"Candidate"</span>,
+  <span class="s2">"entityMetaUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*"</span>,
+  <span class="s2">"label"</span> : <span class="s2">"Candidate"</span>,
+  <span class="s2">"fields"</span> : <span class="o">{</span> <span class="o">{</span>
+    <span class="s2">"name"</span> : <span class="s2">"id"</span>,
+    <span class="s2">"type"</span> : <span class="s2">"ID"</span>,
+    <span class="s2">"dataType"</span> : <span class="s2">"Integer"</span>
+  <span class="o">}</span>, <span class="o">{</span>
+    ...
+  <span class="o">}]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Returns entity and property metadata for the specified entity type.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET {corporation-token}/meta/{entity-name}/?fields={field-list}&amp;meta={ basic or full }</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fields</td>
+<td>yes</td>
+<td>Comma-separated list of field names.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes</td>
+<td>Name of a configured layout. A field list, layout name or both may be specified.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
+
+<h3 id="property-metadata">Property Metadata</h3>
+
+<p><strong>name</strong></p>
+
+<p>Property name; for example, firstName.</p>
+
+<p><strong>label</strong></p>
+
+<p>Property display label from fieldmap; may be missing.</p>
+
+<p><strong>type</strong></p>
+
+<p>Property type, one of ID, SCALAR, COMPOSITE, TO_ONE, or TO_MANY.</p>
+
+<p><strong>dataType</strong></p>
+
+<p>Property data type: Integer, BigDecimal, Double, String, Boolean, Timestamp, byte[], Address, Address1, AddressWithoutCountry (these are composite types), and LoginRestrictions (!! may change).</p>
+
+<p><strong>maxLength</strong></p>
+
+<p>Only present when dataType=&ldquo;String&rdquo;. The maximum authorized length for this String field.</p>
+
+<p><strong>dataSpecialization</strong></p>
+
+<p>Finer definition of dataType, e.g. dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE, PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL: may be absent.</p>
+
+<p><strong>optional</strong></p>
+
+<p>Is the property value optional (specified by Hibernate, typically means database nullability); also see <strong>required</strong>.</p>
+
+<p><strong>required</strong></p>
+
+<p>Is the property value required (specified by fieldmap); also see <strong>optional</strong>.</p>
+
+<p><strong>readonly</strong></p>
+
+<p>Is the property hidden (specified by fieldmap).</p>
+
+<p><strong>multiValue</strong></p>
+
+<p>Is the property multi-valued (specified by fieldmap); dataType must be String.</p>
+
+<p><strong>inputType</strong></p>
+
+<p>Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing.</p>
+
+<p><strong>optionsType</strong></p>
+
+<p>For inputType SELECT only; for example, Country. may be missing.</p>
+
+<p><strong>optionsUrl</strong></p>
+
+<p>If optionsType is present, where to get the list of options (displays and values).</p>
+
+<p><strong>options</strong></p>
+
+<p>The hard-coded options from fieldMap in an array of value/label pairs; may be missing.</p>
+
+<p><strong>defaultValue</strong></p>
+
+<p>Value type depends on dataType and dataSpecialization: may be missing.<br>
+If the defaultValue is not translatable, For example, cannot parse string to a date; it is ignored. If multiValue, returns as array.</p>
+
+<p><strong>fields</strong></p>
+
+<p>Array of sub-fields property meta for COMPOSITE type.</p>
+
+<p><strong>associatedEntity</strong></p>
+
+<p>Entity metadata for TO_ONE and TO_MANY type.</p>
+
+          <h1 id="options">Options</h1>
+
+<h2 id="get-options"><span class="tag">GET</span> /options</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/options
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"data"</span> : <span class="o">[</span> <span class="o">{</span>
+    <span class="s2">"optionsType"</span> : <span class="s2">"BillRateCategory"</span>,
+    <span class="s2">"optionsUrl"</span> : <span class="s2">"https://rest.bullhorn.com/rest-services/e999/options/BillRateCategory"</span>
+  <span class="o">}</span>, <span class="o">{</span>
+    <span class="s2">"optionsType"</span> : <span class="s2">"BusinessSector"</span>,
+    <span class="s2">"optionsUrl"</span> : <span class="s2">"https://rest.bullhorn.com/rest-services/e999/options/BusinessSector"</span>
+  <span class="o">}</span>, <span class="o">{</span>
+    <span class="s2">"optionsType"</span> : <span class="s2">"BusinessSectorText"</span>,
+    <span class="s2">"optionsUrl"</span> : <span class="s2">"https://rest.bullhorn.com/rest-services/e999/options/BusinessSectorText"</span>
+  <span class="o">}</span>, <span class="o">{</span>
+    <span class="s2">"optionsType"</span> : <span class="s2">"Candidate"</span>,
+    <span class="s2">"optionsUrl"</span> : <span class="s2">"https://rest.bullhorn.com/rest-services/e999/options/Candidate"</span>
+  <span class="o">}</span>, <span class="o">{</span>
+    <span class="s2">"optionsType"</span> : <span class="s2">"CandidateText"</span>,
+    <span class="s2">"optionsUrl"</span> : <span class="s2">"https://rest.bullhorn.com/rest-services/e999/options/CandidateText"</span>
+  <span class="o">}</span>,
+...
+<span class="o">]</span>
+</code></pre>
+
+<p>Gets the list of supported option types (value/label pairs) for list-based entities. </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/options</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-options-optionstype"><span class="tag">GET</span> /options/{optionsType}</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/options/Country
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+<span class="o">{</span><span class="s2">"data"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+      <span class="s2">"value"</span>: 2378,
+      <span class="s2">"label"</span>: <span class="s2">"- None Specified -"</span>
+   <span class="o">}</span>,
+      <span class="o">{</span>
+      <span class="s2">"value"</span>: 2185,
+      <span class="s2">"label"</span>: <span class="s2">"Afghanistan"</span>
+   <span class="o">}</span>,
+...
+          <span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Gets the list of value/label pairs (options) for a list-based entity. If the option is of type text, a list of input value/label pairs is returned where the label is set to the input value.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/options//{optionType}</code></p>
+
+<p>or:</p>
+
+<p><code class="prettyprint">{corpToken}/options//{optionType}/value1,*}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>filter</td>
+<td>no</td>
+<td>Filter on the label, prefix with an asterisk (*)  to find word begins. For example, filter=foo returns all options where label starts with &ldquo;foo&rdquo;, such as &ldquo;Fool&rdquo;. filter=*foo returns all options where any word in the label starts with &ldquo;foo&rdquo;, such as &ldquo;A Fool&rdquo;. Some labels are composed of two or more parts. For example, a name is composed of firstname and lastname separated by a space. In these cases, filtering is based on each part of the label. For example, filter=Ba, will find any part of a label that starts with Ba. Therefore, the results could include &ldquo;Bailey Hutchinson&rdquo; as well as &ldquo;Sam Bailey&rdquo;.</td>
+</tr>
+<tr>
+<td>type-specific parameters</td>
+<td>no</td>
+<td>Some option types accept additional parameters. For example, State has an optional &ldquo;country&rdquo; parameter.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>Limit on the number of entities to return. If the set of matched results is larger than count, caps the returned results at size count. The default count is 20. The maximum count is 300; if you specify a count greater than 300, a message at the end of the response indicates you have specified too many items.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>From the set of matched results, return item numbers start through (start + count).</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="option-types-list">Option Types List</h3>
+
+<table><thead>
+<tr>
+<th>Option type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BillRateCategory</td>
+<td>Same as Category where type = &lsquo;Bill Rate&rsquo;</td>
+</tr>
+<tr>
+<td>BusinessSector / BusinessSectorText</td>
+<td>BusinessSector id and name / name and name</td>
+</tr>
+<tr>
+<td>Candidate / CandidateText</td>
+<td>Candidate id and firstName + lastName / firstName + lastName, and firstName + lastName</td>
+</tr>
+<tr>
+<td>Category / CategoryText</td>
+<td>Category id and name / name and name; Extra params: optional &ldquo;type&rdquo; to restrict categories of type</td>
+</tr>
+<tr>
+<td>Certification / CertificationText</td>
+<td>Certification id and name / name and name</td>
+</tr>
+<tr>
+<td>Client / ClientText (alias ClientContact / ClientContactText)</td>
+<td>ClientContact id and firstName + lastName / firstName + lastName and firstName + lastName</td>
+</tr>
+<tr>
+<td>ClientCorporation / ClientCorporationText</td>
+<td>ClientCorporation id and name / name and name</td>
+</tr>
+<tr>
+<td>CorporateUser / CorporateUserText</td>
+<td>CorporateUser id and firstName + lastName / firstName + lastName and firstName + lastName</td>
+</tr>
+<tr>
+<td>CorporationDepartment</td>
+<td>CorporationDepartment id and name</td>
+</tr>
+<tr>
+<td>Country</td>
+<td>Country id and name</td>
+</tr>
+<tr>
+<td>HousingAmenity</td>
+<td>HousingComplexAmenity id and amenityName / amenityName and amenityName</td>
+</tr>
+<tr>
+<td>HousingComplex /HousingComplexText</td>
+<td>HousingComplex id and name / name and name</td>
+</tr>
+<tr>
+<td>HousingComplexUnit /HousingComplexUnitText</td>
+<td>HousingComplexUnit id and name / name and name</td>
+</tr>
+<tr>
+<td>JobOrder / JobOrderText</td>
+<td>JobOrder id and title / title and title</td>
+</tr>
+<tr>
+<td>Lead</td>
+<td>Lead id and firstName + lastName</td>
+</tr>
+<tr>
+<td>Opportunity</td>
+<td>Opportunity id and title</td>
+</tr>
+<tr>
+<td>Placement</td>
+<td>Placement id and candidate.firstName candidate.lastName - jobOrder.title</td>
+</tr>
+<tr>
+<td>Person / PersonText</td>
+<td>Person id and firstName + lastName / firstName + lastName and firstName + lastName</td>
+</tr>
+<tr>
+<td>Shift / ShiftText</td>
+<td>Shift id and name / name and name</td>
+</tr>
+<tr>
+<td>Skill / SkillText</td>
+<td>Skill id and name / name, and name</td>
+</tr>
+<tr>
+<td>Specialty / SpecialtyText</td>
+<td>Specialty id and name / name, and name</td>
+</tr>
+<tr>
+<td>State / StateText</td>
+<td>State id and name / name and name; extra parameters: optional &ldquo;country&rdquo; to restrict to states within that country, two-character ISO country code.</td>
+</tr>
+<tr>
+<td>NorthAmericaState</td>
+<td>State id and name (hard-coded)</td>
+</tr>
+<tr>
+<td>WorkersComp</td>
+<td>WorkersCompensation id and name / name and name</td>
+</tr>
+</tbody></table>
+
+          <h1 id="ping">Ping</h1>
+
+<h2 id="get-ping"><span class="tag">GET</span> /ping</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/ping
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"sessionExpires"</span> : 1323449994922
+<span class="o">}</span>
+</code></pre>
+
+<p>Returns the date of the calling client&rsquo;s session expiration. You can use this call to test whether the client&rsquo;s session is valid. If the session is not valid, the response is the standard response for unauthenticated clients.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>true</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="query">Query</h1>
+
+<h2 id="get-query"><span class="tag">GET</span> /query</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/query/Candidate?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[{</span>
+        <span class="s2">"id"</span> : 5059165,
+        <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+        <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+    <span class="o">}]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>The <code class="prettyprint">Query</code> call retrieves a list of entities. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Perstance Language (JPQL) syntax, which is similar SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the <a href="/#search">Search</a> call.</p>
+
+<aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/query/{entity}?where={query-text}&amp;fields={fields}&amp;orderBy={fields}&amp;count={count}&amp;start={start}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where</td>
+<td>yes</td>
+<td>SQL-style filter clause</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>yes*</td>
+<td>Comma-separated list of field names. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes*</td>
+<td>Name of a configured layout. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>showReadOnly</td>
+<td>no</td>
+<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>From the set of matched results, return record numbers start through (start + count)</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>no</td>
+<td>Name of property on which to base the order of returned entities.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+
+          <h1 id="resume">Resume</h1>
+
+<h2 id="post-resume-parsetocandidate"><span class="tag">POST</span> /resume/parseToCandidate</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -F <span class="s2">"file=@sampleresume.html"</span> <span class="se">\</span>
+     https://rest.bullhorn.com/rest-services/e999/resume/parseToCandidate?format<span class="o">=</span>text&amp;populateDescription<span class="o">=</span>html
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+   <span class="s2">"candidate"</span>:    <span class="o">{</span>
+      <span class="s2">"address"</span>:       <span class="o">{</span>
+         <span class="s2">"address1"</span>: <span class="s2">"123 Osoite Katu"</span>,
+         <span class="s2">"address2"</span>: <span class="s2">"Apartment 1"</span>,
+         <span class="s2">"city"</span>: <span class="s2">"Kaupunki"</span>,
+         <span class="s2">"state"</span>: <span class="s2">"MA"</span>,
+         <span class="s2">"zip"</span>: <span class="s2">"02210"</span>,
+         <span class="s2">"countryID"</span>: 1
+      <span class="o">}</span>,
+        <span class="s2">"description"</span>: <span class="s2">"&lt;html xmlns=</span><span class="se">\"</span><span class="s2">http://www.w3.org/1999/xhtml</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\r\n\t</span><span class="s2">&lt;head&gt;</span><span class="se">\r\n\t\t</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+        &lt;meta http-equiv=</span><span class="se">\"</span><span class="s2">Content-Type</span><span class="se">\"</span><span class="s2"> content=</span><span class="se">\"</span><span class="s2">text/html; charset=utf-8</span><span class="se">\"</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+         /&gt;</span><span class="se">\r\n\t\t</span><span class="s2">&lt;meta http-equiv=</span><span class="se">\"</span><span class="s2">Content-Style-Type</span><span class="se">\"</span><span class="s2"> content=</span><span class="se">\"</span><span class="s2">text/css</span><span class="se">\"</span><span class="s2"> /&gt; </span><span class="se">\</span><span class="s2">
+         </span><span class="se">\r\n\t\t\r\n\t</span><span class="s2">&lt;/head&gt;</span><span class="se">\r\n\t</span><span class="s2">&lt;body&gt;</span><span class="se">\r\n\t\t</span><span class="s2">&lt;div&gt;</span><span class="se">\r\n\t\t\t</span><span class="s2">&lt;p style=</span><span class="se">\"</span><span class="s2">margin-top:0pt; </span><span class="se">\</span><span class="s2">
+         margin-bottom:0pt; text-indent:36pt; text-align:center; font-size:11pt</span><span class="se">\"</span><span class="s2">&gt; </span><span class="se">\</span><span class="s2">
+         </span><span class="se">\r\n\t\t\t\t</span><span class="s2">&lt;span style=</span><span class="se">\"</span><span class="s2">font-family:Calibri</span><span class="se">\"</span><span class="s2">&gt;Dr. Minun Keskimm</span><span class="se">\u</span><span class="s2">00e4inen Nimi&lt;/span&gt;&lt;/p&gt;"</span>
+   ...
+   <span class="o">}</span>,
+   <span class="s2">"candidateEducation"</span>:    <span class="o">[</span>
+            <span class="o">{</span>
+         <span class="s2">"startDate"</span>: 978368400000,
+         <span class="s2">"endDate"</span>: 1104598800000,
+         <span class="s2">"graduationDate"</span>: 1104598800000,
+         <span class="s2">"school"</span>: <span class="s2">"Berkeley State University"</span>,
+         <span class="s2">"city"</span>: <span class="s2">"Santa Cruz"</span>,
+         <span class="s2">"state"</span>: <span class="s2">"CA"</span>,
+         <span class="s2">"degree"</span>: <span class="s2">"B.Sc"</span>,
+         <span class="s2">"major"</span>: <span class="s2">"COMPUTER SCIENCE"</span>,
+         <span class="s2">"gpa"</span>: 4
+      <span class="o">}</span>
+   <span class="o">]</span>,
+   <span class="s2">"candidateWorkHistory"</span>:    <span class="o">[</span>
+            <span class="o">{</span>
+         <span class="s2">"startDate"</span>: 1015002000000,
+         <span class="s2">"endDate"</span>: 1188662400000,
+         <span class="s2">"comments"</span>: <span class="s2">"MA    Bop  Hop  Hip"</span>
+      <span class="o">}</span>
+      <span class="o">}</span>
+   <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>The parseToCandidate operation parses a resume to unsaved Candidate data. A typical use case for this operation is to use parts of the response in the bodies of calls to create new Candidate, CandidateWorkHistory, and CandidateEducation entities. The parseToCandidate operation lets you send a resume as a file attached as multipart/form-data. The parseToHrXml operation sends a resume as a file attached as multipart/form-data. The attached file must be a non-base64-encoded file. Takes one file per request.
+To send a block of text rather than a file, use the parseToCandidateViaJson operation.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/resume/parseToCandidate</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>yes</td>
+<td>Input format for the resume. Value can be html or text.</td>
+</tr>
+<tr>
+<td>populateDescription</td>
+<td>no</td>
+<td>Including this parameter fills the Candidate description field with the text or html format of the resume. Value must be text or html. The primary use case for this parameter is to send the resume in the description field for a new Candidate in a PUT /entity/Candidate call. The text or HTML content returned in the description field of the response is JSON-encoded. When the resume is used in a request body, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the value of the &ldquo;description&rdquo; as JSON before using it in a request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-resume-parsetocandidateviajson"><span class="tag">POST</span> /resume/parseToCandidateViaJson</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}'</span> <span class="se">\</span>
+     <span class="se">\</span>
+     https://rest.bullhorn.com/rest-services/e999/resume/parseToCandidateViaJson?format<span class="o">=</span>text&amp;populateDescription<span class="o">=</span>html
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+   <span class="s2">"candidate"</span>:    <span class="o">{</span>
+      <span class="s2">"address"</span>:       <span class="o">{</span>
+         <span class="s2">"address1"</span>: <span class="s2">"123 Osoite Katu"</span>,
+         <span class="s2">"address2"</span>: <span class="s2">"Apartment 1"</span>,
+         <span class="s2">"city"</span>: <span class="s2">"Kaupunki"</span>,
+         <span class="s2">"state"</span>: <span class="s2">"MA"</span>,
+         <span class="s2">"zip"</span>: <span class="s2">"02210"</span>,
+         <span class="s2">"countryID"</span>: 1
+      <span class="o">}</span>,
+        <span class="s2">"description"</span>: <span class="s2">"&lt;html xmlns=</span><span class="se">\"</span><span class="s2">http://www.w3.org/1999/xhtml</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\r\n\t</span><span class="s2">&lt;head&gt;</span><span class="se">\r\n\t\t</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+        &lt;meta http-equiv=</span><span class="se">\"</span><span class="s2">Content-Type</span><span class="se">\"</span><span class="s2"> content=</span><span class="se">\"</span><span class="s2">text/html; charset=utf-8</span><span class="se">\"</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+         /&gt;</span><span class="se">\r\n\t\t</span><span class="s2">&lt;meta http-equiv=</span><span class="se">\"</span><span class="s2">Content-Style-Type</span><span class="se">\"</span><span class="s2"> content=</span><span class="se">\"</span><span class="s2">text/css</span><span class="se">\"</span><span class="s2"> /&gt; </span><span class="se">\</span><span class="s2">
+         </span><span class="se">\r\n\t\t\r\n\t</span><span class="s2">&lt;/head&gt;</span><span class="se">\r\n\t</span><span class="s2">&lt;body&gt;</span><span class="se">\r\n\t\t</span><span class="s2">&lt;div&gt;</span><span class="se">\r\n\t\t\t</span><span class="s2">&lt;p style=</span><span class="se">\"</span><span class="s2">margin-top:0pt; </span><span class="se">\</span><span class="s2">
+         margin-bottom:0pt; text-indent:36pt; text-align:center; font-size:11pt</span><span class="se">\"</span><span class="s2">&gt; </span><span class="se">\</span><span class="s2">
+         </span><span class="se">\r\n\t\t\t\t</span><span class="s2">&lt;span style=</span><span class="se">\"</span><span class="s2">font-family:Calibri</span><span class="se">\"</span><span class="s2">&gt;Dr. Minun Keskimm</span><span class="se">\u</span><span class="s2">00e4inen Nimi&lt;/span&gt;&lt;/p&gt;"</span>
+   ...
+   <span class="o">}</span>,
+   <span class="s2">"candidateEducation"</span>:    <span class="o">[</span>
+            <span class="o">{</span>
+         <span class="s2">"startDate"</span>: 978368400000,
+         <span class="s2">"endDate"</span>: 1104598800000,
+         <span class="s2">"graduationDate"</span>: 1104598800000,
+         <span class="s2">"school"</span>: <span class="s2">"Berkeley State University"</span>,
+         <span class="s2">"city"</span>: <span class="s2">"Santa Cruz"</span>,
+         <span class="s2">"state"</span>: <span class="s2">"CA"</span>,
+         <span class="s2">"degree"</span>: <span class="s2">"B.Sc"</span>,
+         <span class="s2">"major"</span>: <span class="s2">"COMPUTER SCIENCE"</span>,
+         <span class="s2">"gpa"</span>: 4
+      <span class="o">}</span>
+   <span class="o">]</span>,
+   <span class="s2">"candidateWorkHistory"</span>:    <span class="o">[</span>
+            <span class="o">{</span>
+         <span class="s2">"startDate"</span>: 1015002000000,
+         <span class="s2">"endDate"</span>: 1188662400000,
+         <span class="s2">"comments"</span>: <span class="s2">"MA Bop Hop Hip"</span>
+      <span class="o">}</span>
+      <span class="o">}</span>
+   <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>The parseToCandidateViaJson operation parses a resume to unsaved Candidate data. A typical use case for this operation is to use parts of the response in the bodies of calls to create new Candidate, CandidateWorkHistory, and CandidateEducation entities. The parseToCandidateViaJson operation lets you send a resume as JSON-encoded text, which is useful for scenarios where you want to parse a block of text rather than a file.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/resume/parseToCandidateViaJson</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>yes</td>
+<td>Input format for the resume. Value can be html or text.</td>
+</tr>
+<tr>
+<td>populateDescription</td>
+<td>no</td>
+<td>Including this parameter fills the Candidate description field with the text or html format of the resume. Value must be text or html. The primary use case for this parameter is to send the resume in the description field for a new Candidate in a PUT /entity/Candidate call. The text or HTML content returned in the description field of the response is JSON-encoded. When the resume is used in a request body, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the value of the &ldquo;description&rdquo; as JSON before using it in a request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-resume-parsetohrxml"><span class="tag">POST</span> /resume/parseToHrXml</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -F <span class="s2">"file=@sampleresume.pdf"</span> <span class="se">\</span>
+     https://rest.bullhorn.com/rest-services/e999/resume/parseToHrXml?format<span class="o">=</span>pdf
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s2">"hrXml"</span>: <span class="s2">"&lt;?xml version=</span><span class="se">\"</span><span class="s2">1.0</span><span class="se">\"</span><span class="s2"> encoding=</span><span class="se">\"</span><span class="s2">UTF-8</span><span class="se">\"</span><span class="s2">?&gt;</span><span class="se">\n</span><span class="s2">&lt;Resume </span><span class="se">\</span><span class="s2">
+ xmlns=</span><span class="se">\"</span><span class="s2">http://ns.hr-xml.org</span><span class="se">\"</span><span class="s2"> xmlns:hr=</span><span class="se">\"</span><span class="s2">http://ns.hr-xml.org/PersonDescriptors</span><span class="se">\"</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ xmlns:xsi=</span><span class="se">\"</span><span class="s2">http://www.w3.org/2001/XMLSchema-instance</span><span class="se">\"</span><span class="s2"> xml:lang=</span><span class="se">\"</span><span class="s2">ENGLISH</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ &lt;ResumeId idOwner=</span><span class="se">\"</span><span class="s2">Resume Mirror</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ &lt;IdValue name=</span><span class="se">\"</span><span class="s2">RESUME ID</span><span class="se">\"</span><span class="s2">/&gt;</span><span class="se">\n</span><span class="s2">  &lt;</span><span class="se">\/</span><span class="s2">ResumeId&gt;</span><span class="se">\n</span><span class="s2">  &lt;StructuredXMLResume&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ &lt;ContactInfo&gt;</span><span class="se">\n</span><span class="s2"> &lt;PersonName&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ &lt;FormattedName&gt;Dr. Minun Keskimmäinen Nimi&lt;</span><span class="se">\/</span><span class="s2">FormattedName&gt;</span><span class="se">\n</span><span class="s2"> &lt;GivenName&gt;Minun&lt;</span><span class="se">\/</span><span class="s2">GivenName&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
+ &lt;MiddleName&gt;Keskimmäinen&lt;</span><span class="se">\/</span><span class="s2">MiddleName&gt;</span><span class="se">\n</span><span class="s2"> &lt;FamilyName&gt;Nimi&lt;</span><span class="se">\/</span><span class="s2">FamilyName&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
+ &lt;Affix type=</span><span class="se">\"</span><span class="s2">formOfAddress</span><span class="se">\"</span><span class="s2">&gt;DR.&lt;</span><span class="se">\/</span><span class="s2">Affix&gt;</span><span class="se">\n</span><span class="s2">  &lt;</span><span class="se">\/</span><span class="s2">PersonName&gt;</span><span class="se">\n</span><span class="s2"> &lt;ContactMethod&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
+ /UserArea&gt;</span><span class="se">\n</span><span class="s2">&lt;</span><span class="se">\/</span><span class="s2">Resume&gt;"</span><span class="o">}</span>
+</code></pre>
+
+<p>The parseToHrXml operation sends a resume as a file attached as multipart/form-data. The attached file must be a non-base64-encoded file. Takes one file per request.</p>
+
+<p><code class="prettyprint">{corpToken}/resume/parseToXrXml</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>yes</td>
+<td>Input format for the resume. Value can be text, html, pdf, doc, docx, rtf, or odt.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-resume-parsetohrxmlviajson"><span class="tag">POST</span> /resume/parseToHrXmlViaJson</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 \
+     Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \
+     \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\n \
+     Telephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\n \
+     Fax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}'</span> <span class="se">\</span>
+     <span class="se">\</span>
+     https://rest.bullhorn.com/rest-services/e999/resume/parseToHrXmlViaJson?format<span class="o">=</span>text&amp;format<span class="o">=</span>html
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s2">"hrXml"</span>: <span class="s2">"&lt;?xml version=</span><span class="se">\"</span><span class="s2">1.0</span><span class="se">\"</span><span class="s2"> encoding=</span><span class="se">\"</span><span class="s2">UTF-8</span><span class="se">\"</span><span class="s2">?&gt;</span><span class="se">\n</span><span class="s2">&lt;Resume </span><span class="se">\</span><span class="s2">
+ xmlns=</span><span class="se">\"</span><span class="s2">http://ns.hr-xml.org</span><span class="se">\"</span><span class="s2"> xmlns:hr=</span><span class="se">\"</span><span class="s2">http://ns.hr-xml.org/PersonDescriptors</span><span class="se">\"</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ xmlns:xsi=</span><span class="se">\"</span><span class="s2">http://www.w3.org/2001/XMLSchema-instance</span><span class="se">\"</span><span class="s2"> xml:lang=</span><span class="se">\"</span><span class="s2">ENGLISH</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ &lt;ResumeId idOwner=</span><span class="se">\"</span><span class="s2">Resume Mirror</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ &lt;IdValue name=</span><span class="se">\"</span><span class="s2">RESUME ID</span><span class="se">\"</span><span class="s2">/&gt;</span><span class="se">\n</span><span class="s2">  &lt;</span><span class="se">\/</span><span class="s2">ResumeId&gt;</span><span class="se">\n</span><span class="s2">  &lt;StructuredXMLResume&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ &lt;ContactInfo&gt;</span><span class="se">\n</span><span class="s2"> &lt;PersonName&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ &lt;FormattedName&gt;Dr. Minun Keskimmäinen Nimi&lt;</span><span class="se">\/</span><span class="s2">FormattedName&gt;</span><span class="se">\n</span><span class="s2"> &lt;GivenName&gt;Minun&lt;</span><span class="se">\/</span><span class="s2">GivenName&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
+ &lt;MiddleName&gt;Keskimmäinen&lt;</span><span class="se">\/</span><span class="s2">MiddleName&gt;</span><span class="se">\n</span><span class="s2"> &lt;FamilyName&gt;Nimi&lt;</span><span class="se">\/</span><span class="s2">FamilyName&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
+ &lt;Affix type=</span><span class="se">\"</span><span class="s2">formOfAddress</span><span class="se">\"</span><span class="s2">&gt;DR.&lt;</span><span class="se">\/</span><span class="s2">Affix&gt;</span><span class="se">\n</span><span class="s2">  &lt;</span><span class="se">\/</span><span class="s2">PersonName&gt;</span><span class="se">\n</span><span class="s2"> &lt;ContactMethod&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
+ /UserArea&gt;</span><span class="se">\n</span><span class="s2">&lt;</span><span class="se">\/</span><span class="s2">Resume&gt;"</span><span class="o">}</span>
+</code></pre>
+
+<p>The parseToHrXmlViaJson operation send plain text or HTML as a JSON-encoded string. This call is useful for sending resume content that a user pastes into a browser form.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{{corpToken}/resume/parseToHrXmlViaJson</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>yes</td>
+<td>Input format for the resume. Value can be html or text.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-resume-converttotext-html"><span class="tag">POST</span> /resume/convertToText|Html</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -F <span class="s2">"file=@sampleresume.pdf"</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/resume/convertToHtml?format<span class="o">=</span>pdf
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"html"</span> : <span class="s2">"&lt;!DOCTYPE HTML PUBLIC </span><span class="se">\"</span><span class="s2">-//W3C//DTD HTML 4.0//EN</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\r\n</span><span class="s2">&lt;html&gt;</span><span class="se">\r\n</span><span class="s2">&lt;head&gt;</span><span class="se">\r\n\</span><span class="s2">
+     &lt;title&gt;&lt;/title&gt;</span><span class="se">\r\n</span><span class="s2">    &lt;meta name=</span><span class="se">\"</span><span class="s2">Author</span><span class="se">\"</span><span class="s2"> content=</span><span class="se">\"</span><span class="s2">RB</span><span class="se">\"</span><span class="s2"> /&gt;</span><span class="se">\r\n</span><span class="s2">    </span><span class="se">\</span><span class="s2">
+     &lt;meta http-equiv=</span><span class="se">\"</span><span class="s2">content-type</span><span class="se">\"</span><span class="s2"> content=</span><span class="se">\"</span><span class="s2">text/html; charset=UTF-16</span><span class="se">\"</span><span class="s2"> /&gt;</span><span class="se">\r\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+     &lt;/head&gt;</span><span class="se">\r\n</span><span class="s2">&lt;body&gt;</span><span class="se">\r\n</span><span class="s2">&lt;div align=</span><span class="se">\"</span><span class="s2">center</span><span class="se">\"</span><span class="s2">&gt;&lt;br /&gt; </span><span class="se">\</span><span class="s2">
+     &lt;font face=</span><span class="se">\"</span><span class="s2">Times New Roman</span><span class="se">\"</span><span class="s2"> size=</span><span class="se">\"</span><span class="s2">3</span><span class="se">\"</span><span class="s2">&gt; </span><span class="se">\</span><span class="s2">
+     Dr. Minun KeskimmÃ¤inen Nimi&lt;/font&gt;</span><span class="se">\n</span><span class="s2">&lt;br /&gt;&lt;font face=</span><span class="se">\"</span><span class="s2">Times New Roman</span><span class="se">\"</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+     size=</span><span class="se">\"</span><span class="s2">3</span><span class="se">\"</span><span class="s2">&gt;123 Osoite&amp;nbsp;Katu&lt;/font&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+     &lt;br /&gt;&lt;font face=</span><span class="se">\"</span><span class="s2">Times New Roman</span><span class="se">\"</span><span class="s2"> size=</span><span class="se">\"</span><span class="s2">3</span><span class="se">\"</span><span class="s2">&gt;Apartment 1&lt;/font&gt;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+     &lt;br /&gt;&lt;font face=</span><span class="se">\"</span><span class="s2">Times New Roman</span><span class="se">\"</span><span class="s2"> size=</span><span class="se">\"</span><span class="s2">3</span><span class="se">\"</span><span class="s2">&gt; </span><span class="se">\</span><span class="s2">
+     Kaupunki, MA 02210&lt;/font&gt;</span><span class="se">\n</span><span class="s2">&lt;br /&gt;&lt;font face=</span><span class="se">\"</span><span class="s2">Times New Roman</span><span class="se">\"</span><span class="s2"> size=</span><span class="se">\"</span><span class="s2">3</span><span class="se">\"</span><span class="s2">&gt; </span><span class="se">\</span><span class="s2">
+     Home: 466-346-4663  Business: 387-438-3874 ext. 89  Mobile: </span><span class="se">\</span><span class="s2">
+      662-466-6624 &lt;/font&gt;</span><span class="se">\n</span><span class="s2">&lt;br /&gt;
+...
+&lt;font face=</span><span class="se">\"</span><span class="s2">Times New Roman</span><span class="se">\"</span><span class="s2"> size=</span><span class="se">\"</span><span class="s2">3</span><span class="se">\"</span><span class="s2">&gt; </span><span class="se">\</span><span class="s2">
+Dean s List: Fall 2005 and Spring 2006&lt;/font&gt;</span><span class="se">\n</span><span class="s2">&lt;br /&gt; </span><span class="se">\</span><span class="s2">
+&amp;nbsp;&lt;br /&gt;&amp;nbsp;&lt;/body&gt;</span><span class="se">\r\n</span><span class="s2">&lt;/html&gt;"</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>The convertToText|Html operations converts a resume to JSON-encoded plain text or HTML text. A typical use case for this operation is to use the converted resume in the body of a call to update a Candidate description. </p>
+
+<p>When the resume text in the response is used in a request body of another call, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the resume as JSON before using it in the request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.</p>
+
+<p><code class="prettyprint">{corpToken}/resume/convertToText|Html</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>yes</td>
+<td>Input format for the resume. Value can be text, html, pdf, doc, docx, rtf, or odt.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-resume-converttotext-htmlviajson"><span class="tag">POST</span> /resume/convertToText|HtmlViaJson</h2>
+
+<p>The value of the “resume” field must be JSON-encoded text. Most programming languages provide utility classes for generating JSON-encoded text.</p>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}'</span> <span class="se">\</span>
+     <span class="se">\</span>
+     https://rest.bullhorn.com/rest-services/e999/resume/convertToTextViaJson?format<span class="o">=</span>html
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s2">"text"</span>: <span class="s2">"</span><span class="se">\r\n\r\n</span><span class="s2">Dr. Minun Keskimmäinen Nimi</span><span class="se">\r\n</span><span class="s2">123 Osoite Katu</span><span class="se">\r\n</span><span class="s2">Apartment 1</span><span class="se">\r\n</span><span class="s2">Kaupunki, </span><span class="se">\</span><span class="s2">
+ MA 02210</span><span class="se">\r\n</span><span class="s2">Home: 466-346-4663  Business: 387-438-3874 ext. 89  Mobile: 662-466-6624</span><span class="se">\r\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ Telephone: 835-383-8353 ext. 90  VoiceNumber: 864-386-8643</span><span class="se">\r\n</span><span class="s2">Fax: 329-329-3290  </span><span class="se">\</span><span class="s2">
+ Pager: 724-772-7247</span><span class="se">\r\n</span><span class="s2">Minun.Nimi@finland.com            </span><span class="se">\</span><span class="s2">
+ mnimi2@finland2.com</span><span class="se">\r\n\r\n</span><span class="s2">Employment History</span><span class="se">\r\n\r\n</span><span class="s2">  Eighties National Music Bank </span><span class="se">\</span><span class="s2">
+ Lexington, MA Jan. 1, 1980 - Dec. 31, 1989 </span><span class="se">\r\n</span><span class="s2">  New Wave Musak Software Engineer</span><span class="se">\r\n\r\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ Listen</span><span class="se">\r\n</span><span class="s2">Like</span><span class="se">\r\n</span><span class="s2">Learn</span><span class="se">\r\n\r\n</span><span class="s2"> </span><span class="se">\r\n</span><span class="s2">  Nineties Bank of Music  </span><span class="se">\</span><span class="s2">
+ Concord, MA  February 1991 - November 1998 </span><span class="se">\r\n</span><span class="s2"> Hip Hop 
+...
+"</span><span class="o">}</span>
+
+</code></pre>
+
+<p>The convertToText|HtmlViaJson operations convert a resume to JSON-encoded plain text or HTML text. A typical use case for this operation is to use the converted resume in the body of a call to update a Candidate description. 
+When the resume text in the response is used in a request body of another call, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the resume as JSON before using it in the request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.</p>
+
+<p>When the resume text in the response is used in a request body of another call, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the resume as JSON before using it in the request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.</p>
+
+<p><code class="prettyprint">{corpToken}/resume/convertToText|HtmlViaJson</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>yes</td>
+<td>Input format for the resume. Value can be text or html.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="saved-search">Saved Search</h1>
+
+<h2 id="get-savedsearch"><span class="tag">GET</span> /savedSearch</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/savedSearch
+
+or:
+
+curl https://rest.bullhorn.com/rest-services/e999/savedSearch?entity<span class="o">=</span>Candidate&amp;entityId<span class="o">=</span>20
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"data"</span> : <span class="o">{</span>
+    <span class="s2">"id"</span> : 3,
+    <span class="s2">"name"</span> : <span class="s2">"nnn_candidate"</span>,
+    <span class="s2">"description"</span> : <span class="s2">"my description"</span>,
+    <span class="s2">"indexType"</span> : <span class="s2">"CANDIDATE"</span>,
+    <span class="s2">"data"</span> : <span class="s2">"data"</span>,
+    <span class="s2">"query"</span> : <span class="s2">"name:lv_"</span>,
+    <span class="s2">"ownerId"</span> : 1314,
+    <span class="s2">"dateAdded"</span> : <span class="s2">"2013-01-31"</span>,
+    <span class="s2">"favorite"</span> : <span class="nb">false</span>
+  <span class="o">}</span>, <span class="o">{</span>
+    <span class="s2">"id"</span> : 2,
+    <span class="s2">"name"</span> : <span class="s2">"nnn_job"</span>,
+    <span class="s2">"description"</span> : <span class="s2">"my description"</span>,
+    <span class="s2">"indexType"</span> : <span class="s2">"JOBORDER"</span>,
+    <span class="s2">"data"</span> : <span class="s2">"data"</span>,
+    <span class="s2">"query"</span> : <span class="s2">"name:lv_"</span>,
+    <span class="s2">"ownerId"</span> : 1314,
+    <span class="s2">"dateAdded"</span> : <span class="s2">"2013-01-31"</span>,
+    <span class="s2">"favorite"</span> : <span class="nb">false</span>
+  <span class="o">}</span> <span class="o">]</span>,
+  <span class="s2">"start"</span> : 0,
+  <span class="s2">"count"</span> : 2
+<span class="o">}</span>
+</code></pre>
+
+<p>The savedSearch operation with no {savedSearchId} path parameter and no query parameters returns all saved searches in the user’s corporation to which the user has entitlements. Use the entity and entityId parameters to return the saved searches associated with a specific entity.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearch</code></p>
+
+<p>Param | Required | Description
+type | no | Returns only saved searches of the specified index type.
+entity &amp; entitId | no | Returns only saved searches associated with the specified entity. Both parameters must be present. For information about associating a savedSearch with a specific entity, see PUT /savedSearchAssociation.
+start | no | From the set of matched results, returns item numbers start through (start + count).
+count | no | Limit on the number of items to return. If the set of matched results is larger than count, caps the returned results at size count.
+orderBy | no | Value can be id or name. Precede field name with a minus sign (-) or plus sign (+) to sort results in descending or ascending order based on that field; default value is &ldquo;-id&rdquo;.
+showTotalMatched | no | Default value is false. Displays count of matching records.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+<aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
+
+<h2 id="get-mysavedsearch"><span class="tag">GET</span> /mySavedSearch</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/mySavedSearch
+
+or:
+
+curl https://rest.bullhorn.com/rest-services/e999/mySavedSearch?entity<span class="o">=</span>Candidate&amp;entityId<span class="o">=</span>20
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"data"</span> : <span class="o">{</span>
+    <span class="s2">"id"</span> : 2,
+    <span class="s2">"name"</span> : <span class="s2">"nnn_job"</span>,
+    <span class="s2">"description"</span> : <span class="s2">"my description"</span>,
+    <span class="s2">"indexType"</span> : <span class="s2">"JOBORDER"</span>,
+    <span class="s2">"data"</span> : <span class="s2">"data"</span>,
+    <span class="s2">"query"</span> : <span class="s2">"name:lv_"</span>,
+    <span class="s2">"ownerId"</span> : 1314,
+    <span class="s2">"dateAdded"</span> : <span class="s2">"2013-01-31"</span>,
+    <span class="s2">"favorite"</span> : <span class="nb">false</span>
+  <span class="o">}</span> <span class="o">]</span>,
+  <span class="s2">"start"</span> : 0,
+  <span class="s2">"count"</span> : 3
+<span class="o">}</span>
+</code></pre>
+
+<p>The mySavedSearch operation returns all saved searches that the user owns.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/mySavedSearch</code></p>
+
+<p>Param | Required | Description
+type | no | Returns only saved searches of the specified index type.
+entity &amp; entitId | no | Returns only saved searches associated with the specified entity. Both parameters must be present. For information about associating a savedSearch with a specific entity, see PUT /savedSearchAssociation.
+start | no | From the set of matched results, returns item numbers start through (start + count).
+count | no | Limit on the number of items to return. If the set of matched results is larger than count, caps the returned results at size count.
+orderBy | no | Value can be id or name. Precede field name with a minus sign (-) or plus sign (+) to sort results in descending or ascending order based on that field; default value is &ldquo;-id&rdquo;.
+showTotalMatched | no | Default value is false. Displays count of matching records.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+<aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
+
+<h2 id="get-savedsearch-savedsearchid"><span class="tag">GET</span> /savedSearch/{savedSearchId}</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/esavedSearch/4
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"data"</span> : <span class="o">{</span>
+    <span class="s2">"id"</span>          : savedSearchId,
+    <span class="s2">"name"</span>        : <span class="s2">"general_ search"</span>,
+    <span class="s2">"description"</span> : <span class="s2">"my acme query"</span>,
+    <span class="s2">"indexType"</span>   : <span class="s2">"JOBORDER"</span>,
+    <span class="s2">"data"</span>        : <span class="s2">"data"</span>,
+    <span class="s2">"query"</span>       : <span class="s2">"name:acme”
+    "</span>ownerId<span class="s2">"     : 1222,
+    "</span>dateAdded<span class="s2">"   : "</span>2013-01-31<span class="s2">",
+    "</span>favorite<span class="s2">"    : true
+  }
+}
+
+</span></code></pre>
+
+<p>Gets a saved Lucene search for any entity type for which the search operation is supported.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearch/{savedSearchId}</code></p>
+
+<p>Param | Required | Description
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+<aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
+
+<h2 id="put-savedsearch"><span class="tag">PUT</span> /savedSearch</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"name"        : "my_note_search", \
+        "description" : "my description", \
+        "indexType"   : "NOTE", \
+        "data"        : "data", \
+        "query"       : "name:pinacle" \
+        } \
+       '</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/e999/savedSearch
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"SavedSearch"</span>,
+    <span class="s2">"changedEntityId"</span>: 4,
+    <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>,
+    <span class="s2">"data"</span>: <span class="o">{</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Creates a saved Lucene search for a Lucene-indexed entity type. The name, indexType, data, and query fields are required in the request body. The user who creates a saved search always gets entitlements for all operations on that saved search; for more information about entitlements, see PUT /savedSearchGrant.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearch/{savedSearchId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-savedsearch-savedsearchid"><span class="tag">POST</span> /savedSearch/{savedSearchId}</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"name"        : "my_note_search", \
+        "description" : "my description", \
+        "indexType"   : "NOTE", \
+        "data"        : "data", \
+        "query"       : "name:pinacle" \
+        } \
+       '</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/e999/savedSearch/4
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"SavedSearch"</span>,
+    <span class="s2">"changedEntityId"</span>: 4,
+    <span class="s2">"changeType"</span>: <span class="s2">"UPDATE"</span>,
+    <span class="s2">"data"</span>: <span class="o">{</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Updates a saved Lucene search for Lucene-indexed entity types. The following fields are optional in the request body: name, description, indexType, data, and query.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearch/{savedSearchId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+
+<h2 id="delete-savedsearch-savedsearchid"><span class="tag">DELETE</span> /savedSearch/{savedSearchId}</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+https://rest.bullhornstaffing.com/e999/esavedSearch/4
+
+<span class="c"># Example Response</span>
+TBD
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"SavedSearch"</span>,
+    <span class="s2">"changedEntityId"</span>: 4,
+    <span class="s2">"changeType"</span>: <span class="s2">"DELETE"</span>,
+    <span class="s2">"data"</span>: <span class="o">{</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Deletes a saved Lucene search for any entity type for which the search operation is supported.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearch/{savedSearchId}</code></p>
+
+<p>Param | Required | Description
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+<aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
+
+<h2 id="put-savedsearchassociation"><span class="tag">PUT</span> /savedSearchAssociation</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     https://rest.bullhornstaffing.com/e999/savedSearchAssociation/4/JobOrder/1495    
+</code></pre>
+
+<p>Creates an association between a saved search and a specified entity id.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearchAssociation/{savedSearchId}/{entityName}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-savedsearchassociation"><span class="tag">DELETE</span> /savedSearchAssociation</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+     https://rest.bullhornstaffing.com/e999/savedSearchAssociation/4/JobOrder/1495    
+</code></pre>
+
+<p>Deletes an association between a saved search and a specified entity id.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearchAssociation/{savedSearchId}/{entityName}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-savedsearchgrants"><span class="tag">GET</span> /savedSearchGrants</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/savedSearchGrants/4
+
+<span class="c"># Example Response</span>
+<span class="o">[</span>
+  <span class="o">{</span> <span class="s2">"type"</span><span class="o">=</span><span class="s2">"CORP"</span>, <span class="s2">"targetId"</span><span class="o">=</span>null<span class="o">}</span>,
+  <span class="o">{</span> <span class="s2">"type"</span><span class="o">=</span><span class="s2">"DEPT"</span>, <span class="s2">"targetId"</span><span class="o">=</span>12<span class="o">}</span>,  
+  <span class="o">{</span> <span class="s2">"type"</span><span class="o">=</span><span class="s2">"USER"</span>, <span class="s2">"targetId"</span><span class="o">=</span>1333<span class="o">}</span>
+<span class="o">]</span>
+
+</code></pre>
+
+<p>Returns entitlements for a saved search.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearchGrants</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 200 code if the saved search is not found. Returns an HTTP 403 error if the saved search exists but the user is not the owner. Returns an HTTP 200 code if the saved search exists and the user is owner (even for missing association).</aside>
+
+<h2 id="delete-savedsearchgrant"><span class="tag">DELETE</span> /savedSearchGrant</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhorn.com/rest-services/e999/savedSearchGrant/4/CORP
+</code></pre>
+
+<p>Deletes entitlements for a saved search.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+<pre class="highlight json"><code><span class="p">{</span><span class="err">corpToken</span><span class="p">}</span><span class="err">/savedSearchGrant/</span><span class="p">{</span><span class="err">savedSearchId</span><span class="p">}</span><span class="err">/CORP</span><span class="w"> 
+</span><span class="p">{</span><span class="err">corpToken</span><span class="p">}</span><span class="err">/savedSearchGrant/</span><span class="p">{</span><span class="err">savedSearchId</span><span class="p">}</span><span class="err">/DEPT/</span><span class="p">{</span><span class="err">departmentId</span><span class="p">}</span><span class="w"> 
+</span><span class="p">{</span><span class="err">corpToken</span><span class="p">}</span><span class="err">/savedSearchGrant/</span><span class="p">{</span><span class="err">savedSearchId</span><span class="p">}</span><span class="err">/USER/</span><span class="p">{</span><span class="err">corporateUserId</span><span class="p">}</span><span class="w"> 
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 200 code if the saved search is not found. Returns an HTTP 403 error if the saved search exists but the user is not the owner. Returns an HTTP 200 code if the saved search exists and the user is owner (even for missing association).</aside>
+
+<p>FAVORITES</p>
+
+<h2 id="put-savedsearchfavorite"><span class="tag">PUT</span> /savedSearchFavorite</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     https://rest.bullhornstaffing.com/e999/savedSearchFavorite/4
+</code></pre>
+
+<p>Adds a saved search to saved search favorites.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearchFavorite/{savedSearchId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-savedsearchassociation"><span class="tag">DELETE</span> /savedSearchAssociation</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+     https://rest.bullhornstaffing.com/e999/savedSearchAssociation/4/JobOrder/1495    
+</code></pre>
+
+<p>Deletes an association between a saved search and a specified entity id.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearchAssociation/{savedSearchId}/{entityName}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 error is saved search is missing or user has no access to it.</aside>
+
+<h2 id="put-savedsearchfavorite"><span class="tag">PUT</span> /savedSearchFavorite</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     https://rest.bullhornstaffing.com/e999/savedSearchFavorite/4
+</code></pre>
+
+<p>Adds a saved search to saved search favorites.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearchFavorite/{savedSearchId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-savedsearchfavorite"><span class="tag">DELETE</span> /savedSearchFavorite</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+     https://rest.bullhornstaffing.com/e999/savedSearchFavorite/4
+</code></pre>
+
+<p>Removes a saved search from saved search favorites.
+<aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/savedSearchFavorite/{savedSearchId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="search">Search</h1>
+
+<h2 id="get-search"><span class="tag">GET</span> /search</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/search/Candidate?query<span class="o">=</span>lastName:Smith&amp;fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[{</span>
+      <span class="s2">"_score"</span>: 1.70002,
+      <span class="s2">"id"</span> : 5059165,
+      <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+    <span class="o">}]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>The Search call retrieves a list of entities. The search call is performed against a optimized index, therefore the query parameter should reflect Lucene Query Syntax. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
+
+<aside class="notice">If you provide no request parameters, a list of available search fields are provided.</aside>
+
+<p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.</p>
+
+<aside class="notice">If parameter &ldquo;fields&rdquo; or &ldquo;layout&rdquo; is not present, the search will return the list of found entity ids in the returned &ldquo;data&rdquo;.</aside>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/search/Candidate?query<span class="o">=</span>isDeleted:0
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[</span>101,102,103,104,...,999]
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/search/{entity}?query={lucene}&amp;fields={fields}&amp;orderBy={fields}&amp;count={count}&amp;start={start}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>query</td>
+<td>yes</td>
+<td>Lucene-Style filter clause.</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>yes*</td>
+<td>Comma-separated list of field names. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes*</td>
+<td>Name of a configured layout. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>showReadOnly</td>
+<td>no</td>
+<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>From the set of matched results, return record numbers start through (start + count)</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>no</td>
+<td>Field to sort result on. Default sort order is ascending. Precede with minus sign to perform descending sort. </td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+
+          <h1 id="event">event</h1>
+
+<h2 id="get-event-subscription"><span class="tag">GET</span> /event/subscription</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?maxEvents<span class="o">=</span>100
+
+<span class="c"># Example Response</span>
+<span class="o">{{</span>
+    <span class="s2">"requestId"</span>: 1,
+    <span class="s2">"events"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"eventId"</span>: <span class="s2">"ID:JBM-40000517"</span>,
+            <span class="s2">"eventType"</span>: <span class="s2">"ENTITY"</span>,
+            <span class="s2">"eventTimestamp"</span>: 1495559294820,
+            <span class="s2">"eventMetadata"</span>: <span class="o">{</span>
+                <span class="s2">"PERSON_ID"</span>: <span class="s2">"1314"</span>,
+                <span class="s2">"TRANSACTION_ID"</span>: <span class="s2">"c8d8f9ea-5ae6-4346-831c-29b91fcb703d"</span>
+            <span class="o">}</span>,
+            <span class="s2">"entityName"</span>: <span class="s2">"ClientContact"</span>,
+            <span class="s2">"entityId"</span>: 8592,
+            <span class="s2">"entityEventType"</span>: <span class="s2">"UPDATED"</span>,
+            <span class="s2">"updatedProperties"</span>: <span class="o">[</span>
+                <span class="s2">"username"</span>,
+                <span class="s2">"password"</span>
+            <span class="o">]</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Lets you get entity events, field map change events, and job match search events.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>maxEvents</td>
+<td>yes</td>
+<td>Integer specifying the maximum number of events to be returned.</td>
+</tr>
+<tr>
+<td>requestId</td>
+<td>no</td>
+<td>Integer specifying an event requestId. Lets you reget events.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-response">HTTP Response</h3>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventID</td>
+<td>Unique identifier for the event.</td>
+</tr>
+<tr>
+<td>eventMetaData</td>
+<td>Contains metadatata key/value pairs. PERSON_ID: User associated with the event. TRANSACTION_ID: For entities that have edit history, a TRANSACTION_ID represents a specific change that happened in the Bullhorn system, triggering an event in the subscription queue. TRANSACTION_IDs are returned as part of the subscription event data and can be used to associate a specific event to the state of a record at that stage.</td>
+</tr>
+<tr>
+<td>eventTimestamp</td>
+<td>The date and time at which the event occurred.</td>
+</tr>
+<tr>
+<td>entityEventType</td>
+<td>Integer specifying the maximum number of events to be returned.</td>
+</tr>
+<tr>
+<td>eventType</td>
+<td>Always &ldquo;ENTITY&rdquo; for entity events.</td>
+</tr>
+<tr>
+<td>entityID</td>
+<td>The unique identifier for the entity instance that was affected.</td>
+</tr>
+<tr>
+<td>entityName</td>
+<td>The name of the entity that was affected.</td>
+</tr>
+<tr>
+<td>updatedProperties</td>
+<td>If the event type is UPDATED, this parameter indicates which properties of the entity were modified.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-event-subscription-lastrequestid"><span class="tag">GET</span> /event/subscription/lastRequestId</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscriptioN/Abcde/lastRequestId
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s1">'result'</span>: 1<span class="o">}</span>
+</code></pre>
+
+<p>Lets you get entity events, field map change events, and job match search events.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}/lastRequestId</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-event-subscription"><span class="tag">PUT</span> /event/subscription</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type<span class="o">=</span>entity&amp;names<span class="o">=</span>Candidate
+&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s1">'lastRequestId'</span>: 0,
+ <span class="s1">'subscriptionId'</span>: <span class="s1">'abcde'</span>,
+ <span class="s1">'createdOn'</span>: 1335285871323,
+ <span class="s1">'jmsSelector'</span>: <span class="s2">"JMSType='ENTITY' AND BhCorpId=44 AND BhEntityName='Candidate' AND BhEntityEventType IN ('UPDATED','INSERTED','DELETED')"</span><span class="o">}</span>
+
+</code></pre>
+
+<p>Lets you subscribe to event types.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>yes</td>
+<td>entity</td>
+</tr>
+<tr>
+<td>names</td>
+<td>yes</td>
+<td>Required with &ldquo;entity&rdquo; type. A comma-separated list of entity names.</td>
+</tr>
+<tr>
+<td>eventTypes</td>
+<td>yes</td>
+<td>RRequired with &ldquo;entity&rdquo; type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-event-subscription"><span class="tag">DELETE</span> /event/subscription</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde
+&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s1">'result'</span>: True<span class="o">}</span>
+
+</code></pre>
+
+<p>Lets you unsubscribe from event types.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="user-headshot-file">User Headshot File</h1>
+
+<h2 id="get-userheadshotfile"><span class="tag">GET</span> /userHeadshotFile</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/userHeadshotFile/Candidate/3835
+
+<span class="c"># Example Response</span>
+&lt;A multipart-encoded version of the file&gt;
+</code></pre>
+
+<p>Returns a user headshot (profile picture) file attached to a Person entity. Headshot files can be attached to the following types of entities:
+* Candidate
+* ClientContact
+* CorporateUser</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/userHeadshotFile/entityId}}</code></p>
+
+<table><thead>
+<tr>
+<th>Param</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
+
+<h2 id="put-userheadshotfile"><span class="tag">PUT</span> /userHeadshotFile</h2>
+<pre class="highlight shell"><code>
+<span class="c"># Base64-encoded userHeadshotFile request</span>
+
+curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
+        "fileType" : "SAMPLE", "name" : "headshotfile.jpg", "contentType" : "image",\
+        "description" : "Headshot file for candidate.", "type" : "headshot"}'</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909
+
+<span class="c"># Multipart/form (raw) userHeadshotFile request</span>
+
+curl -X PUT <span class="se">\</span>
+    -F <span class="s2">"file=@headshotfile.jpg"</span> <span class="se">\</span>
+    https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909/raw?filetype<span class="o">=</span>SAMPLE&amp;externalID<span class="o">=</span>portfolio
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s2">"fileId"</span>: 178<span class="o">}</span>
+</code></pre>
+
+<p>Attaches a user headshot file (profile picture) to an entity. You can send a user headshot file as base64-encoded text or multipart/form data (raw). 
+Files can be attached to the following types of entities:
+* Candidate
+* ClientContact
+* ClientCorporation
+* JobOrder
+* Opportunity
+* Placement</p>
+
+<h3 id="http-request-for-base64-encoded-user-headshot-file">HTTP Request for base64-encoded user headshot file</h3>
+
+<p><code class="prettyprint">{corpToken}/userHeadshotFile/{entityType}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Request body field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalID</td>
+<td>yes</td>
+<td>External identifier for the file.</td>
+</tr>
+<tr>
+<td>fileContent</td>
+<td>yes</td>
+<td>Base64-encoded string of the file content.</td>
+</tr>
+<tr>
+<td>fileType</td>
+<td>yes</td>
+<td>Always use the value “SAMPLE”.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>File name.</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>no</td>
+<td>Type/subtype of the file content.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>no</td>
+<td>Comment that describes the file.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>no</td>
+<td>Type of file that is attached.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-request-for-multipart-form-raw-user-headshot-file">HTTP Request for multipart/form (raw) user headshot file</h3>
+
+<p><code class="prettyprint">{corpToken}/userHeadshotFile/{entityType}/{entityId}/raw</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalID</td>
+<td>yes</td>
+<td>External identifier for the file.</td>
+</tr>
+<tr>
+<td>fileType</td>
+<td>yes</td>
+<td>Always use the value “SAMPLE”.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>File name.</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>no</td>
+<td>Type/subtype of the file content.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>no</td>
+<td>Comment that describes the file.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>no</td>
+<td>Type of file that is attached.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-userheadshotfile"><span class="tag">POST</span> /userHeadshotFile</h2>
+<pre class="highlight shell"><code>
+<span class="c"># Base64-encoded user headshot file request</span>
+
+curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
+        "fileType" : "SAMPLE", "name" : "headshotfile.jpg", "contentType" : "image",\
+        "description" : "Headshot file for candidate.", "type" : "headshot"}'</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909
+
+<span class="c"># Multipart/form (raw) userHeadshotFile request</span>
+
+curl -X POST <span class="se">\</span>
+    -F <span class="s2">"file=@headshotfile.jpg"</span> <span class="se">\</span>
+    https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909/raw?filetype<span class="o">=</span>SAMPLE&amp;externalID<span class="o">=</span>portfolio
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s2">"fileId"</span>: 179<span class="o">}</span>
+</code></pre>
+
+<p>Attaches a user headshot file (profile picture) to an entity. You can send a file as base64-encoded text or multipart/form data (raw). 
+Files can be attached to the following types of entities:
+* Candidate
+* ClientContact
+* ClientCorporation</p>
+
+<h3 id="http-request-for-base64-encoded-user-headshot-file">HTTP Request for base64-encoded user headshot file</h3>
+
+<p><code class="prettyprint">{corpToken}/userHeadshotFile/{entityType}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Request body field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalID</td>
+<td>yes</td>
+<td>External identifier for the file.</td>
+</tr>
+<tr>
+<td>fileContent</td>
+<td>yes</td>
+<td>Base64-encoded string of the file content.</td>
+</tr>
+<tr>
+<td>fileType</td>
+<td>yes</td>
+<td>Always use the value “SAMPLE”.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>File name.</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>no</td>
+<td>Type/subtype of the file content.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>no</td>
+<td>Comment that describes the file.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>no</td>
+<td>Type of file that is attached.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-request-for-multipart-form-raw-file">HTTP Request for multipart/form (raw) file</h3>
+
+<p><code class="prettyprint">{corpToken}/userHeadshotFile/{entityType}/{entityId}/raw</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalID</td>
+<td>yes</td>
+<td>External identifier for the file.</td>
+</tr>
+<tr>
+<td>fileType</td>
+<td>yes</td>
+<td>Always use the value “SAMPLE”.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>File name.</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>no</td>
+<td>Type/subtype of the file content.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>no</td>
+<td>Comment that describes the file.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>no</td>
+<td>Type of file that is attached.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-userheadshotfile"><span class="tag">DELETE</span> /userHeadshotFile</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+   <span class="s2">"fileId"</span>: 178,
+   <span class="s2">"changeType"</span>: <span class="s2">"DELETED"</span>
+<span class="o">}</span>
+
+</code></pre>
+
+<p>Soft deletes a user headshot file. The actual file remains on the server.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/userHeadshotFile/{entityType}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
           <h1 id="errors">Errors</h1>
 
