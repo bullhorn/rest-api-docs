@@ -230,6 +230,58 @@ https://rest-emea.bullhornstaffing.com</p>
 <li>A cookie named <code class="prettyprint">BHRestToken</code>. This cookie is set by the API at login time as a convenience for browser-based clients.</li>
 </ol>
 
+          <h1 id="errors">Errors</h1>
+
+<p>The REST API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request is no good</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong or expired</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The entity requested is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified entity could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access a entity with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The entity requested has been removed from our servers</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too much! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
           <h1 id="allcorpnotes">allCorpNotes</h1>
 
 <h2 id="get-allcorpnotes"><span class="tag">GET</span> /allCorpNotes</h2>
@@ -802,7 +854,7 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
-          <h1 id="department-entity-s">department{Entity}s</h1>
+          <h1 id="department-entities">Department Entities</h1>
 
 <h2 id="get-department-entity-s"><span class="tag">GET</span> /department{Entity}s</h2>
 <pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/departmentClientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;start<span class="o">=</span>0&amp;count<span class="o">=</span>5
@@ -911,7 +963,7 @@ where | no | JPQL query string. Does not apply to Candidate or Note entities.
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. 
 showEditable | no | (true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed. </p>
 
-          <h1 id="department-entity-s">department{Entity}s</h1>
+          <h1 id="my-entities">My Entities</h1>
 
 <h2 id="get-department-entity-s"><span class="tag">GET</span> /department{Entity}s</h2>
 <pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/myClientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;start<span class="o">=</span>0&amp;count<span class="o">=</span>5
@@ -1019,6 +1071,212 @@ query | no | Lucene query string. Applies to Candidate and Note entities only.
 where | no | JPQL query string. Does not apply to Candidate or Note entities.
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. 
 showEditable | no | (true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed. </p>
+
+          <h1 id="events">Events</h1>
+
+<h2 id="get-event-subscription"><span class="tag">GET</span> /event/subscription</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?maxEvents<span class="o">=</span>100
+
+<span class="c"># Example Response</span>
+<span class="o">{{</span>
+    <span class="s2">"requestId"</span>: 1,
+    <span class="s2">"events"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"eventId"</span>: <span class="s2">"ID:JBM-40000517"</span>,
+            <span class="s2">"eventType"</span>: <span class="s2">"ENTITY"</span>,
+            <span class="s2">"eventTimestamp"</span>: 1495559294820,
+            <span class="s2">"eventMetadata"</span>: <span class="o">{</span>
+                <span class="s2">"PERSON_ID"</span>: <span class="s2">"1314"</span>,
+                <span class="s2">"TRANSACTION_ID"</span>: <span class="s2">"c8d8f9ea-5ae6-4346-831c-29b91fcb703d"</span>
+            <span class="o">}</span>,
+            <span class="s2">"entityName"</span>: <span class="s2">"ClientContact"</span>,
+            <span class="s2">"entityId"</span>: 8592,
+            <span class="s2">"entityEventType"</span>: <span class="s2">"UPDATED"</span>,
+            <span class="s2">"updatedProperties"</span>: <span class="o">[</span>
+                <span class="s2">"username"</span>,
+                <span class="s2">"password"</span>
+            <span class="o">]</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Lets you get entity events, field map change events, and job match search events.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>maxEvents</td>
+<td>yes</td>
+<td>Integer specifying the maximum number of events to be returned.</td>
+</tr>
+<tr>
+<td>requestId</td>
+<td>no</td>
+<td>Integer specifying an event requestId. Lets you reget events.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-response">HTTP Response</h3>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventID</td>
+<td>Unique identifier for the event.</td>
+</tr>
+<tr>
+<td>eventMetaData</td>
+<td>Contains metadatata key/value pairs. PERSON_ID: User associated with the event. TRANSACTION_ID: For entities that have edit history, a TRANSACTION_ID represents a specific change that happened in the Bullhorn system, triggering an event in the subscription queue. TRANSACTION_IDs are returned as part of the subscription event data and can be used to associate a specific event to the state of a record at that stage.</td>
+</tr>
+<tr>
+<td>eventTimestamp</td>
+<td>The date and time at which the event occurred.</td>
+</tr>
+<tr>
+<td>entityEventType</td>
+<td>Integer specifying the maximum number of events to be returned.</td>
+</tr>
+<tr>
+<td>eventType</td>
+<td>Always &ldquo;ENTITY&rdquo; for entity events.</td>
+</tr>
+<tr>
+<td>entityID</td>
+<td>The unique identifier for the entity instance that was affected.</td>
+</tr>
+<tr>
+<td>entityName</td>
+<td>The name of the entity that was affected.</td>
+</tr>
+<tr>
+<td>updatedProperties</td>
+<td>If the event type is UPDATED, this parameter indicates which properties of the entity were modified.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-event-subscription-lastrequestid"><span class="tag">GET</span> /event/subscription/lastRequestId</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscriptioN/Abcde/lastRequestId
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s1">'result'</span>: 1<span class="o">}</span>
+</code></pre>
+
+<p>Lets you get entity events, field map change events, and job match search events.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}/lastRequestId</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-event-subscription"><span class="tag">PUT</span> /event/subscription</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type<span class="o">=</span>entity&amp;names<span class="o">=</span>Candidate
+&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s1">'lastRequestId'</span>: 0,
+ <span class="s1">'subscriptionId'</span>: <span class="s1">'abcde'</span>,
+ <span class="s1">'createdOn'</span>: 1335285871323,
+ <span class="s1">'jmsSelector'</span>: <span class="s2">"JMSType='ENTITY' AND BhCorpId=44 AND BhEntityName='Candidate' AND BhEntityEventType IN ('UPDATED','INSERTED','DELETED')"</span><span class="o">}</span>
+
+</code></pre>
+
+<p>Lets you subscribe to event types.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>yes</td>
+<td>entity</td>
+</tr>
+<tr>
+<td>names</td>
+<td>yes</td>
+<td>Required with &ldquo;entity&rdquo; type. A comma-separated list of entity names.</td>
+</tr>
+<tr>
+<td>eventTypes</td>
+<td>yes</td>
+<td>RRequired with &ldquo;entity&rdquo; type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-event-subscription"><span class="tag">DELETE</span> /event/subscription</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde
+&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s1">'result'</span>: True<span class="o">}</span>
+
+</code></pre>
+
+<p>Lets you unsubscribe from event types.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
 
           <h1 id="file">File</h1>
 
@@ -3228,212 +3486,6 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
-          <h1 id="event">event</h1>
-
-<h2 id="get-event-subscription"><span class="tag">GET</span> /event/subscription</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?maxEvents<span class="o">=</span>100
-
-<span class="c"># Example Response</span>
-<span class="o">{{</span>
-    <span class="s2">"requestId"</span>: 1,
-    <span class="s2">"events"</span>: <span class="o">[</span>
-        <span class="o">{</span>
-            <span class="s2">"eventId"</span>: <span class="s2">"ID:JBM-40000517"</span>,
-            <span class="s2">"eventType"</span>: <span class="s2">"ENTITY"</span>,
-            <span class="s2">"eventTimestamp"</span>: 1495559294820,
-            <span class="s2">"eventMetadata"</span>: <span class="o">{</span>
-                <span class="s2">"PERSON_ID"</span>: <span class="s2">"1314"</span>,
-                <span class="s2">"TRANSACTION_ID"</span>: <span class="s2">"c8d8f9ea-5ae6-4346-831c-29b91fcb703d"</span>
-            <span class="o">}</span>,
-            <span class="s2">"entityName"</span>: <span class="s2">"ClientContact"</span>,
-            <span class="s2">"entityId"</span>: 8592,
-            <span class="s2">"entityEventType"</span>: <span class="s2">"UPDATED"</span>,
-            <span class="s2">"updatedProperties"</span>: <span class="o">[</span>
-                <span class="s2">"username"</span>,
-                <span class="s2">"password"</span>
-            <span class="o">]</span>
-        <span class="o">}</span>
-    <span class="o">]</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>Lets you get entity events, field map change events, and job match search events.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>maxEvents</td>
-<td>yes</td>
-<td>Integer specifying the maximum number of events to be returned.</td>
-</tr>
-<tr>
-<td>requestId</td>
-<td>no</td>
-<td>Integer specifying an event requestId. Lets you reget events.</td>
-</tr>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
-<h3 id="http-response">HTTP Response</h3>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>eventID</td>
-<td>Unique identifier for the event.</td>
-</tr>
-<tr>
-<td>eventMetaData</td>
-<td>Contains metadatata key/value pairs. PERSON_ID: User associated with the event. TRANSACTION_ID: For entities that have edit history, a TRANSACTION_ID represents a specific change that happened in the Bullhorn system, triggering an event in the subscription queue. TRANSACTION_IDs are returned as part of the subscription event data and can be used to associate a specific event to the state of a record at that stage.</td>
-</tr>
-<tr>
-<td>eventTimestamp</td>
-<td>The date and time at which the event occurred.</td>
-</tr>
-<tr>
-<td>entityEventType</td>
-<td>Integer specifying the maximum number of events to be returned.</td>
-</tr>
-<tr>
-<td>eventType</td>
-<td>Always &ldquo;ENTITY&rdquo; for entity events.</td>
-</tr>
-<tr>
-<td>entityID</td>
-<td>The unique identifier for the entity instance that was affected.</td>
-</tr>
-<tr>
-<td>entityName</td>
-<td>The name of the entity that was affected.</td>
-</tr>
-<tr>
-<td>updatedProperties</td>
-<td>If the event type is UPDATED, this parameter indicates which properties of the entity were modified.</td>
-</tr>
-</tbody></table>
-
-<h2 id="get-event-subscription-lastrequestid"><span class="tag">GET</span> /event/subscription/lastRequestId</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscriptioN/Abcde/lastRequestId
-
-<span class="c"># Example Response</span>
-<span class="o">{</span><span class="s1">'result'</span>: 1<span class="o">}</span>
-</code></pre>
-
-<p>Lets you get entity events, field map change events, and job match search events.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}/lastRequestId</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
-<h2 id="put-event-subscription"><span class="tag">PUT</span> /event/subscription</h2>
-<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
-     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type<span class="o">=</span>entity&amp;names<span class="o">=</span>Candidate
-&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
-
-<span class="c"># Example Response</span>
-<span class="o">{</span><span class="s1">'lastRequestId'</span>: 0,
- <span class="s1">'subscriptionId'</span>: <span class="s1">'abcde'</span>,
- <span class="s1">'createdOn'</span>: 1335285871323,
- <span class="s1">'jmsSelector'</span>: <span class="s2">"JMSType='ENTITY' AND BhCorpId=44 AND BhEntityName='Candidate' AND BhEntityEventType IN ('UPDATED','INSERTED','DELETED')"</span><span class="o">}</span>
-
-</code></pre>
-
-<p>Lets you subscribe to event types.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>yes</td>
-<td>entity</td>
-</tr>
-<tr>
-<td>names</td>
-<td>yes</td>
-<td>Required with &ldquo;entity&rdquo; type. A comma-separated list of entity names.</td>
-</tr>
-<tr>
-<td>eventTypes</td>
-<td>yes</td>
-<td>RRequired with &ldquo;entity&rdquo; type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.</td>
-</tr>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
-<h2 id="delete-event-subscription"><span class="tag">DELETE</span> /event/subscription</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde
-&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
-
-<span class="c"># Example Response</span>
-<span class="o">{</span><span class="s1">'result'</span>: True<span class="o">}</span>
-
-</code></pre>
-
-<p>Lets you unsubscribe from event types.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
           <h1 id="user-headshot-file">User Headshot File</h1>
 
 <h2 id="get-userheadshotfile"><span class="tag">GET</span> /userHeadshotFile</h2>
@@ -3778,58 +3830,6 @@ Files can be attached to the following types of entities:
 </tbody></table>
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
-
-          <h1 id="errors">Errors</h1>
-
-<p>The REST API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request is no good</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong or expired</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The entity requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified entity could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a entity with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The entity requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too much! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
 
       </div>
         <div class="dark-box">
