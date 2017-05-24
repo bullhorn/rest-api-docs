@@ -1,4 +1,4 @@
-# event
+# Events
 
 ## <span class="tag">GET</span> /event/subscription
 

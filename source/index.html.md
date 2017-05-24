@@ -10,11 +10,13 @@ toc_footers:
 includes:
   - intro
   - authorization
+  - errors
   - allcorpnotes
   - entitlements
   - entity
   - departmententities
   - myentities
+  - subscription
   - file
   - find
   - login
@@ -27,9 +29,7 @@ includes:
   - resume
   - savedsearch
   - search
-  - subscription
   - userheadshot
-  - errors
 
 search: true
 ---
