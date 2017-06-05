@@ -1,4 +1,4 @@
-#department{Entity}s
+#Department Entities
 ##<span class="tag">GET</span> /department{Entity}s
 ``` shell
 curl https://rest.bullhornstaffing.com/rest-services/e999/departmentClientContacts?fields=firstName,lastName,address&start=0&count=5

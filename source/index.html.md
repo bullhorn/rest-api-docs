@@ -11,11 +11,13 @@ includes:
   - intro
   - authorization
   - get
+  - errors
   - allcorpnotes
   - entitlements
   - entity
   - departmententities
   - myentities
+  - subscription
   - file
   - find
   - login
@@ -31,7 +33,6 @@ includes:
   - settings
   - subscription
   - userheadshot
-  - errors
 
 search: true
 ---
