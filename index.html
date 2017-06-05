@@ -216,7 +216,7 @@ https://rest-emea.bullhornstaffing.com</p>
 
 <h2 id="unauthorized-requests">Unauthorized requests</h2>
 
-<p>If a client makes a request and does not include a BhRestToken, the server sends a response with HTTP status <code class="prettyprint">412</code> (precondition failed). If a client request contains an invalid session key, the server returns response status <code class="prettyprint">401</code> (unauthorized). For more information on HTTP status codes see <a href="/#errors">Errors.</a>.</p>
+<p>If a client makes a request and does not include a BhRestToken, the server sends a response with HTTP status <code class="prettyprint">412</code> (precondition failed). If a client request contains an invalid session key, the server returns response status <code class="prettyprint">401</code> (unauthorized). For more information on HTTP status codes see <a href="#errors">Errors</a>.</p>
 
 <h2 id="session-key">Session key</h2>
 
@@ -229,6 +229,430 @@ https://rest-emea.bullhornstaffing.com</p>
 <li>An HTTP header named <code class="prettyprint">BHRestToken</code>.</li>
 <li>A cookie named <code class="prettyprint">BHRestToken</code>. This cookie is set by the API at login time as a convenience for browser-based clients.</li>
 </ol>
+
+          <h1 id="general-get-request-options">General GET request options</h1>
+
+<p>You can use the following API commands to retrieve data:</p>
+
+<ul>
+<li>  /entity</li>
+<li>  /query</li>
+<li>  /meta</li>
+<li>  /search</li>
+</ul>
+
+<p>These calls share some common parameters and behavior.</p>
+
+<h2 id="entity-fields">Entity fields</h2>
+
+<p>Each entity is composed of a distinct set of fields, or properties. When retrieving entities, you specify which fields to return in a query parameter named fields. The following types of values are supported in the fields parameter:</p>
+
+<h4 id="all-fields">All fields</h4>
+
+<p>fields=*</p>
+
+<p><strong>Note:</strong> Use fields=* sparingly. The * value returns all fields, including one-to-many association fields. Each one-to-many field affects performance of the query. Use the /meta/{entityType} call to determine which fields are one-to-many fields.</p>
+
+<h4 id="entity-ids">Entity ids</h4>
+
+<p>All entities have a field named id, which is the primary key of the entity:</p>
+
+<p>fields=id,owner(id),categories(id)</p>
+
+<p>When selecting to-one and to-many association fields, id is automatically included if no subfield is specified:</p>
+
+<p>fields=owner,categories</p>
+
+<p>Is the same as:</p>
+
+<p>fields=owner(id),categories(id)</p>
+
+<h4 id="comma-separated-list-of-fields">Comma-separated list of fields</h4>
+
+<p>fields=id,name,address,owner,categories</p>
+
+<h4 id="nested-to-select-sub-fields-of-composite-to-one-and-to-many-associations">Nested, to select sub-fields of composite, to-one and to-many associations( )</h4>
+
+<p>fields=id,name,address(city,zip),owner(corporation(name)),categories(name)</p>
+
+<p><strong>Note:</strong> For nested to-many associations for which the user does not have read entitlements, only data for predefined fields is returned. The other fields are returned with a value of “null”. The following entity fields are predefined:</p>
+
+<ul>
+<li><p>Candidate: id, firstName, lastName</p></li>
+<li><p>Contact: id, firstName, lastName</p></li>
+<li><p>Job: id, Job Title</p></li>
+<li><p>ClientCorporation: id, Name</p></li>
+<li><p>Placement: id</p></li>
+</ul>
+
+<h4 id="number-of-to-many-entities-to-return-count">Number of to-many entities to return [count]</h4>
+
+<p>fields=categories[3],jobSubmissions[5](dateAdded,jobOrder(name))</p>
+
+<p><strong>Note:</strong> The default count of to-many entities is 5. The maximum count is 10; if you specify a count greater than 15, a message at the end of the response indicates you have specified too many items.</p>
+
+<h4 id="filter-to-many-entities-with-a-sub-where-clause">Filter to-many entities with a sub-where clause</h4>
+
+<p>Use the following syntax to filter the to-many entities that are returned in a response. All three parts of the syntax are optional. The where-filter is delimited by curly braces.</p>
+
+<p>fields=<em>fieldName</em>[count](sub-fields*<em>){where-filter}</em>*</p>
+
+<p>Examples:</p>
+
+<p>search/JobOrder?fields=id,businessSectors[3](name,id){name=&lsquo;Insurance&rsquo;}</p>
+
+<p>search/Candidate?fields=id,lastName,primarySkills(name,id){name IN (Java, &#39;SAP&rsquo;)}</p>
+
+<h4 id="to-many-fields-can-only-appear-at-the-top-level-with-no-nesting">To-many fields can only appear at the top level with no nesting</h4>
+
+<p>Bad: fields=categories(children)</p>
+
+<p>Bad: fields=owner(categories)</p>
+
+<h2 id="entity-metadata">Entity metadata</h2>
+
+<p>You can include metadata, data that describes the structure of returned entity data, in responses that the REST API returns.</p>
+
+<p>The following two tables describe the entity and entity property metadata types.</p>
+
+<p>* Fields that are returned only if meta=full.</p>
+
+<table><thead>
+<tr>
+<th>Entity metadata</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>entity</td>
+<td>Entity name; for example, Candidate, JobOrder.</td>
+</tr>
+<tr>
+<td>label</td>
+<td>Entity display label from the private label attribute &ldquo;EntityTitleXxx&rdquo;; may be missing.</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>Array of property metadata (see table below).</td>
+</tr>
+</tbody></table>
+
+<table>
+<thead>
+<tr class="header">
+<th><h4 id="entity-property-metadata">Entity property metadata</h4></th>
+<th><h4 id="description-1">Description</h4></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>name</td>
+<td>Property name; for example, firstName.</td>
+</tr>
+<tr class="even">
+<td>Label</td>
+<td>Property display label from fieldmap; may be missing.</td>
+</tr>
+<tr class="odd">
+<td>type</td>
+<td>Property type, one of ID, SCALAR, COMPOSITE, TO_ONE, or TO_MANY.</td>
+</tr>
+<tr class="even">
+<td>dataType</td>
+<td>Property data type: Integer, BigDecimal, Double, String, Boolean, Timestamp, byte[], Address, Address1, AddressWithoutCountry (these are composite types), and LoginRestrictions.</td>
+</tr>
+<tr class="odd">
+<td>maxLength</td>
+<td>Only present when dataType=&ldquo;String&rdquo;. The maximum authorized length for this String field.</td>
+</tr>
+<tr class="even">
+<td>dataSpecialization</td>
+<td>Finer definition of dataType. For example, dateType=Timestamp and dataSpecialization=DATE one of NUMERIC, INTEGER, FLOAT, MONEY, PERCENTAGE, PHONE, SSN, HTML, DATE, TIME, DATETIME, COLOR, SYSTEM, or VIRTUAL; may be missing.</td>
+</tr>
+<tr class="odd">
+<td>* optional</td>
+<td>Is the property value optional (specified by Hibernate, typically means database nullability); also see <strong>required</strong>.</td>
+</tr>
+<tr class="even">
+<td>* required</td>
+<td>Is the property value required (specified by fieldmap); also see <strong>optional</strong>.</td>
+</tr>
+<tr class="odd">
+<td>* readonly</td>
+<td>Is the property hidden (specified by fieldmap).</td>
+</tr>
+<tr class="even">
+<td>* multiValue</td>
+<td>Is the property multi-valued (specified by fieldmap); dataType must be String.</td>
+</tr>
+<tr class="odd">
+<td>* inputType</td>
+<td>Suggested input type: CHECKBOX, RADIO, TEXTAREA, or SELECT; may be missing.</td>
+</tr>
+<tr class="even">
+<td>* optionsType</td>
+<td>For inputType SELECT only; for example, Country. may be missing.</td>
+</tr>
+<tr class="odd">
+<td>* optionsUrl</td>
+<td>If optionsType is present, where to get the list of options (displays and values).</td>
+</tr>
+<tr class="even">
+<td>options</td>
+<td>The hard-coded options from fieldMap in an array of value/label pairs; may be missing.</td>
+</tr>
+<tr class="odd">
+<td>* defaultValue</td>
+<td>Value type depends on dataType and dataSpecialization: may be missing.<br />
+If the defaultValue is not translatable, For example, cannot parse string to a date; it is ignored. If multiValue, returns as array.</td>
+</tr>
+<tr class="even">
+<td>fields</td>
+<td>Array of sub-fields property meta for COMPOSITE type.</td>
+</tr>
+<tr class="odd">
+<td>associatedEntity</td>
+<td>Entity metadata for TO_ONE and TO_MANY type.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="bullhorn-fieldmap-edit-types-and-rest-metadata">Bullhorn fieldmap edit types and REST metadata</h3>
+
+<p>The following table lists each Bullhorn fieldmap edit type and the corresponding dataSpecialization, inputType, and optionsType metadata values for the REST API.</p>
+
+<table>
+<thead>
+<tr class="header">
+<th><h4 id="edit-type">Edit type</h4></th>
+<th><h4 id="dataspecialization">DataSpecialization</h4></th>
+<th><h4 id="inputtype">InputType</h4></th>
+<th><h4 id="optionstype">OptionsType</h4></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Color</td>
+<td>COLOR</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Date</td>
+<td>DATE</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Time</td>
+<td>TIME</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Date/Time</td>
+<td>DATETIME</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Float</td>
+<td>FLOAT</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Integer</td>
+<td>INTEGER</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Money</td>
+<td>MONEY</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Numeric</td>
+<td>NUMERIC</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Percentage</td>
+<td>PERCENTAGE</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Phone Number</td>
+<td>PHONE</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Text SSN</td>
+<td>SSN</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>DHTMLEditor</td>
+<td>HTML</td>
+<td></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>DHTMLEditor - No Toolbar</td>
+<td>HTML</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Check Box</td>
+<td> </td>
+<td>CHECKBOX</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Radio</td>
+<td> </td>
+<td>RADIO</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Select</td>
+<td> </td>
+<td>SELECT</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Text</td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Text Block</td>
+<td> </td>
+<td>TEXTAREA</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Text Block Large</td>
+<td> </td>
+<td>TEXTAREA</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Drop Down</td>
+<td> </td>
+<td>SELECT</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Mini Picker</td>
+<td> </td>
+<td>SELECT</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Mini Picker - Text Block</td>
+<td> </td>
+<td>SELECT</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Xxx - Drop Down</td>
+<td> </td>
+<td>SELECT</td>
+<td>Country<br />
+State</td>
+</tr>
+<tr class="even">
+<td>Xxx - Mini Picker</td>
+<td> </td>
+<td>SELECT</td>
+<td>Country<br />
+State</td>
+</tr>
+<tr class="odd">
+<td><p>Picker:[OptionsType]</p>
+<p>Stores data as an INT value unless it is a multi-picker, which stores a comma-separated list of Integers in a string field.</p></td>
+<td> </td>
+<td>SELECT</td>
+<td>BillRateCategory<br />
+BusinessSector<br />
+Candidate<br />
+Category<br />
+Certification<br />
+Client<br />
+ClientCorporation<br />
+HousingAmenity<br />
+HousingComplex<br />
+HousingComplexUnit<br />
+CorporateUser (Internal)<br />
+JobOrder (Job Posting)<br />
+Person (People)<br />
+Shift<br />
+Skill (Skills)<br />
+Specialty<br />
+WorkersComp</td>
+</tr>
+<tr class="even">
+<td><p>Picker:Text:[OptionsType]</p>
+<p>Stores data as a text value unless it is a multi-picker, which stores a comma-separated list of string values.</p></td>
+<td> </td>
+<td>SELECT</td>
+<td>BusinessSectorText<br />
+CandidateText<br />
+CategoryText<br />
+CertificationText<br />
+ClientText<br />
+ClientCorporationText<br />
+HousingComplexText<br />
+HousingComplexUnitText<br />
+CorporateUserText (Internal)<br />
+JobOrderText (Job Posting)<br />
+PersonText (People)<br />
+ShiftText<br />
+SkillText (Skills)<br />
+SpecialtyText<br />
+StateText</td>
+</tr>
+<tr class="odd">
+<td>Custom Component</td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Custom External Control</td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Section Header</td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>System</td>
+<td>SYSTEM</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Virtual</td>
+<td>VIRTUAL</td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
 
           <h1 id="errors">Errors</h1>
 
@@ -421,6 +845,13 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 </tr>
 </tbody></table>
 
+<h3 id="file-privacy-entitlements">File privacy entitlements</h3>
+
+<p>File privacy settings are enforced by a field isPrivate on the file entity. If a file is marked private, the user can only access that file if one of the following is true:
+-   User has the View All Private Attachments entitlement
+-   File is shared with the user
+-   User is the owner or secondary owner of the entity to which the file is associated</p>
+
           <h1 id="entity">Entity</h1>
 
 <h2 id="get-entity"><span class="tag">GET</span> /entity</h2>
@@ -446,7 +877,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <p>Gets one or more entities or to-many associations.</p>
 
-<p>Individual entity records are manifested as resources, where the entity type and ID form the last two parts of the resource path.</p>
+<p>Individual entity records are manifested as resources, where the entity type and id form the last two parts of the resource path.</p>
 
 <p>Specify the fields to be included in the response using the <code class="prettyprint">fields</code> request parameters. The <code class="prettyprint">id</code> field is always returned, regardless of the fields requested. See for more detail on specifying fields.</p>
 
@@ -511,11 +942,11 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <span class="o">}</span>
 </code></pre>
 
-<p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:</p>
+<p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. Id values are specified as a comma-separated list:</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{{entity-id},{entity-id},*}?fields={field-list}</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entityType}/{{entity-id},{entity-id},*}?fields={field-list}</code></p>
 
 <table><thead>
 <tr>
@@ -571,7 +1002,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/entity/{Entity}/{id}/{toManyFieldName}s?fields={field-list}</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entityType}/{id}/{toManyFieldName}s?fields={field-list}</code></p>
 
 <table><thead>
 <tr>
@@ -650,7 +1081,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <li>  You can create to-one associations. The associations can only be to existing entities; You cannot create new associated entities while creating the main entity.</li>
 </ul>
 
-<p>Associations fields are set by giving as their values a JSON object containing one field, named &lsquo;id&rsquo;, and having value the ID of the entity to associate.</p>
+<p>Associations fields are set by giving as their values a JSON object containing one field, named &lsquo;id&rsquo;, and having value the id of the entity to associate.</p>
 
 <p>If you specify fields that do not exist on the entity being created, returns a 400 error containing messaging about the unknown fields,</p>
 
@@ -660,7 +1091,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/entity/{entity-name}</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entityType}</code></p>
 
 <table><thead>
 <tr>
@@ -685,7 +1116,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <p>You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.</p>
 
-<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{entity-id}/{to-many-association-name}/{entity-id},*}</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entityType}/{entity-id}/{to-many-association-name}/{entity-id},*}</code></p>
 
 <table><thead>
 <tr>
@@ -718,14 +1149,14 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <p>You can update entities with HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.</p>
 
-<aside class="warning">To update confidential fields as part of a POST /entity call, the user must have the Edit Confidential Data user action entitlement. The confidentialFieldList private label attribute contains the list of fields that are considered confidential.</aside>
+<aside class="notice">To update confidential fields as part of a POST /entity call, the user must have the Edit Confidential Data user action entitlement. The confidentialFieldList private label attribute contains the list of fields that are considered confidential.</aside>
 
 <ul>
 <li>  You cannot create to-many associations on the entity being updated. You must create to-many associations in a subsequent &ldquo;associate&rdquo; call.</li>
 <li>  You can create to-one associations.</li>
 </ul>
 
-<p>You set association fields by giving as their values a JSON object that contains a field named &#39;id&rsquo;, and providing the value the ID of the entity to associate.</p>
+<p>You set association fields by giving as their values a JSON object that contains a field named &#39;id&rsquo;, and providing the value the id of the entity to associate.</p>
 
 <p>If you provide fields that do not exist on the entity being created, returns a 400 error containing messages about the unknown fields.</p>
 
@@ -733,7 +1164,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/entity/{entity-name}</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entityType}</code></p>
 
 <table><thead>
 <tr>
@@ -807,7 +1238,7 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{entity-id}</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entityType}/{entity-id}</code></p>
 
 <table><thead>
 <tr>
@@ -839,7 +1270,7 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{entity-id}</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entityType}/{entity-id}</code></p>
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
@@ -850,7 +1281,7 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 
 <p>Removes or &ldquo;disassociates&rdquo; a to-many association relationship on an entity.</p>
 
-<p><code class="prettyprint">{corpToken}/entity/{entity-name}/{entity-id}/{to-many-association-name}/{entity-id},*}</code></p>
+<p><code class="prettyprint">{corpToken}/entity/{entityType}/{entity-id}/{to-many-association-name}/{entity-id},*}</code></p>
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
@@ -1065,7 +1496,7 @@ showEditable | no | (true/false) Default value is false. Whether to show the _ed
 
 <p>The default count is 20. The maximum count is 500; if you specify a count greater than 500, a message at the end of the response indicates you have specified too many items.
 The response also includes the actual number of items returned and the start value of the request. This is useful when you want to make calls to page additional sets of data. 
-start | no | FFrom the set of matched results, returns item numbers start through (start + count).
+start | no | From the set of matched results, returns item numbers start through (start + count).
 sort | no | Field to sort result on. Precede with minus sign to perform ascending search. Applies to Candidate and Note entities only. 
 query | no | Lucene query string. Applies to Candidate and Note entities only.
 where | no | JPQL query string. Does not apply to Candidate or Note entities.
@@ -1631,7 +2062,7 @@ Files can be attached to the following types of entities:
 
 <p>For example:</p>
 
-<p><a href="mailto:joe_smith@something-else.com">joe_smith@something-else.com</a> or <a href="mailto:jon33@foo.bar">jon33@foo.bar</a></p>
+<p>joe_smith@something-else.com or jon33@foo.bar</p>
 
 <p><strong>U.S. phone number</strong></p>
 
@@ -1802,7 +2233,7 @@ clientCorporation.name</td>
 <span class="o">}</span>
 </code></pre>
 
-<p>This is the only supported login process in a production environment</p>
+<p>Log in and get a REST session. This is the only supported login process in a production environment.</p>
 
 <table><thead>
 <tr>
@@ -1826,11 +2257,6 @@ clientCorporation.name</td>
 <td>no</td>
 <td>Session time-to-live in minutes.</td>
 </tr>
-<tr>
-<td>clientId</td>
-<td>no</td>
-<td>Pass in an OAuth key here to spoof the features associated.</td>
-</tr>
 </tbody></table>
 
 <aside class="warning"><strong>Possible Error: &ldquo;Invalid or expired OAuth access token.&rdquo;</strong></aside>
@@ -1844,7 +2270,7 @@ clientCorporation.name</td>
 <span class="o">}</span>
 </code></pre>
 
-<p>To logout and invalidate your BhRestToken</p>
+<p>Log out and invalidate your REST session.</p>
 
           <h1 id="lookup">Lookup</h1>
 
@@ -1938,7 +2364,7 @@ curl https://rest.bullhornstaffing.com/e999/lookup/Candidate/12345
 <tr>
 <td>privateLabelID</td>
 <td>no</td>
-<td>The private label ID to use.</td>
+<td>The private label id to use.</td>
 </tr>
 <tr>
 <td>BhRestToken</td>
@@ -2503,7 +2929,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <span class="o">}</span>
 </code></pre>
 
-<p>The <code class="prettyprint">Query</code> call retrieves a list of entities. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Perstance Language (JPQL) syntax, which is similar SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the <a href="/#search">Search</a> call.</p>
+<p>Retrieves a list of entities. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Perstance Language (JPQL) syntax, which is similar SQL syntax.  Access the data via that database is only performant when you query very specific data. Otherwise it is preferred that you use the <a href="#search">Search</a> call if it is available for the entity type for which you want to search.</p>
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 
@@ -2571,6 +2997,77 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 </tbody></table>
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+
+<h2 id="query-where-parameter">Query where parameter</h2>
+
+<p>You can use the following syntax in the where query parameter:</p>
+
+<h3 id="simple-comparisons">Simple comparisons</h3>
+
+<p>property = value
+property &lt;&gt; value
+property &lt; value
+property &lt;= value
+property &gt; value
+property &gt;= value</p>
+
+<h3 id="may-use-compound-property-names-not-for-to-many-properties">May use compound property names (not for to-many properties)</h3>
+
+<p>owner.lastName = &lsquo;Smith&rsquo;
+owner.corporation.name = &#39;Acme&rsquo;</p>
+
+<h3 id="is-not-null">IS [NOT] NULL</h3>
+
+<p>property IS NULL
+property IS NOT NULL</p>
+
+<h3 id="is-not-empty-only-for-to-many-properties">IS [NOT] EMPTY (only for to-many properties)</h3>
+
+<p>categories IS EMPTY
+categories IS NOT EMPTY</p>
+
+<h3 id="not-in">[NOT] IN</h3>
+
+<p>property IN (value, value)
+property NOT IN (value, value)</p>
+
+<h3 id="not-member-of-only-for-to-many-properties">[NOT] MEMBER OF (only for to-many properties)</h3>
+
+<p>id-value MEMBER OF categories
+id-value NOT MEMBER OF categories</p>
+
+<h3 id="logical-expressions-not-and-or">Logical Expressions: NOT, AND, OR</h3>
+
+<p>predicate AND predicate
+predicate OR predicate
+NOT predicate</p>
+
+<h3 id="grouping-by-parentheses">Grouping by parentheses</h3>
+
+<p>predicate AND ( predicate OR predicate )
+(( predicate OR predicate ) AND NOT ( predicate OR predicate )) OR predicate
+ </p>
+
+<h3 id="boolean-values">Boolean values</h3>
+
+<p>true | false
+Examples
+enabled = true
+willingToRelocate = false</p>
+
+<h3 id="datetime-values">Datetime values</h3>
+
+<ul>
+<li><p>UNIX long millis. For example, dateAdded &gt; 1324579022</p></li>
+<li><p>ISO 8601 Date Time String. For example, dateAdded &gt; &#39;1997-07-16T19:20:30.45+01:00&rsquo;</p></li>
+<li><p>Date Time String without Time Zone (default is America/New_York). In the format &#39;yyyy-MM-dd hh:mm:ss.SSS&rsquo;</p></li>
+<li><p>Date Time String with Time Zone &#39;yyyy-MM-dd hh:mm:ss.SSS TZ&rsquo; where TZ may be specified as:</p>
+
+<ul>
+<li>Full TZ name, such as &#39;Asia/Tokyo&rsquo;</li>
+<li>An offset [-]hh:mm. For example, 3:00 or -5:00</li>
+</ul></li>
+</ul>
 
           <h1 id="resume">Resume</h1>
 
@@ -3406,7 +3903,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <span class="o">}</span>
 </code></pre>
 
-<p>The Search call retrieves a list of entities. The search call is performed against a optimized index, therefore the query parameter should reflect Lucene Query Syntax. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
+<p>Retrieves a list of entities. The search call is performed against a optimized index, therefore the query parameter should reflect Lucene Query Syntax. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
 
 <aside class="notice">If you provide no request parameters, a list of available search fields are provided.</aside>
 
@@ -3485,6 +3982,261 @@ BhRestToken | no | Token that represents a session established by the login proc
 </tbody></table>
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+
+          <h1 id="settings">Settings</h1>
+
+<h2 id="get-settings-setting1-setting2">GET /settings/setting1[,setting2&hellip;]</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"allPrivateLabelIds"</span>:  <span class="o">[</span> 1, 2, 3],
+    <span class="s2">"currencyFormat"</span>: <span class="s2">"USD"</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Returns the value(s) of the specified system setting(s). The value type (Integer, String, Boolean, and so forth) depends on the specified setting name.
+<aside class="notice">NOTE: In the allDeptIds field of a settings response, the primary department id is always first in the list of department ids.</aside></p>
+
+<h2 id="get-settings">GET /settings</h2>
+<pre class="highlight shell"><code>curl -X GET <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings"</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"accountLockoutDuration"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/accountLockoutDuration"</span>,
+      <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
+      <span class="s2">"isArray"</span>: <span class="nb">false</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"allDeptIds"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/allDeptIds"</span>,
+      <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
+      <span class="s2">"isArray"</span>: <span class="nb">true</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"allPrivateLabelIds"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds"</span>,
+      <span class="s2">"valueType"</span>: <span class="s2">"INTEGER"</span>,
+      <span class="s2">"isArray"</span>: <span class="nb">true</span>
+    <span class="o">}</span>, <span class="o">{</span>
+      <span class="s2">"name"</span>: <span class="s2">"commentActionList"</span>,
+      <span class="s2">"valueUrl"</span>: <span class="s2">"http://rest.bullhornstaffing.com/rest-services/e999/settings/commentActionList"</span>,
+      <span class="s2">"valueType"</span>: <span class="s2">"STRING"</span>,
+      <span class="s2">"isArray"</span>: <span class="nb">true</span>
+    <span class="o">}</span>
+    ...
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Returns a list of predefined setting names and their metadata.</p>
+
+          <h1 id="events">Events</h1>
+
+<h2 id="get-event-subscription"><span class="tag">GET</span> /event/subscription</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?maxEvents<span class="o">=</span>100
+
+<span class="c"># Example Response</span>
+<span class="o">{{</span>
+    <span class="s2">"requestId"</span>: 1,
+    <span class="s2">"events"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"eventId"</span>: <span class="s2">"ID:JBM-40000517"</span>,
+            <span class="s2">"eventType"</span>: <span class="s2">"ENTITY"</span>,
+            <span class="s2">"eventTimestamp"</span>: 1495559294820,
+            <span class="s2">"eventMetadata"</span>: <span class="o">{</span>
+                <span class="s2">"PERSON_ID"</span>: <span class="s2">"1314"</span>,
+                <span class="s2">"TRANSACTION_ID"</span>: <span class="s2">"c8d8f9ea-5ae6-4346-831c-29b91fcb703d"</span>
+            <span class="o">}</span>,
+            <span class="s2">"entityName"</span>: <span class="s2">"ClientContact"</span>,
+            <span class="s2">"entityId"</span>: 8592,
+            <span class="s2">"entityEventType"</span>: <span class="s2">"UPDATED"</span>,
+            <span class="s2">"updatedProperties"</span>: <span class="o">[</span>
+                <span class="s2">"username"</span>,
+                <span class="s2">"password"</span>
+            <span class="o">]</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Lets you get entity events, field map change events, and job match search events.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>maxEvents</td>
+<td>yes</td>
+<td>Integer specifying the maximum number of events to be returned.</td>
+</tr>
+<tr>
+<td>requestId</td>
+<td>no</td>
+<td>Integer specifying an event requestId. Lets you reget events.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-response">HTTP Response</h3>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventID</td>
+<td>Unique identifier for the event.</td>
+</tr>
+<tr>
+<td>eventMetaData</td>
+<td>Contains metadatata key/value pairs. PERSON_ID: User associated with the event. TRANSACTION_ID: For entities that have edit history, a TRANSACTION_ID represents a specific change that happened in the Bullhorn system, triggering an event in the subscription queue. TRANSACTION_IDs are returned as part of the subscription event data and can be used to associate a specific event to the state of a record at that stage.</td>
+</tr>
+<tr>
+<td>eventTimestamp</td>
+<td>The date and time at which the event occurred.</td>
+</tr>
+<tr>
+<td>entityEventType</td>
+<td>Integer specifying the maximum number of events to be returned.</td>
+</tr>
+<tr>
+<td>eventType</td>
+<td>Always &ldquo;ENTITY&rdquo; for entity events.</td>
+</tr>
+<tr>
+<td>entityID</td>
+<td>The unique identifier for the entity instance that was affected.</td>
+</tr>
+<tr>
+<td>entityName</td>
+<td>The name of the entity that was affected.</td>
+</tr>
+<tr>
+<td>updatedProperties</td>
+<td>If the event type is UPDATED, this parameter indicates which properties of the entity were modified.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-event-subscription-lastrequestid"><span class="tag">GET</span> /event/subscription/lastRequestId</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscriptioN/Abcde/lastRequestId
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s1">'result'</span>: 1<span class="o">}</span>
+</code></pre>
+
+<p>Lets you get entity events, field map change events, and job match search events.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}/lastRequestId</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-event-subscription"><span class="tag">PUT</span> /event/subscription</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type<span class="o">=</span>entity&amp;names<span class="o">=</span>Candidate
+&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s1">'lastRequestId'</span>: 0,
+ <span class="s1">'subscriptionId'</span>: <span class="s1">'abcde'</span>,
+ <span class="s1">'createdOn'</span>: 1335285871323,
+ <span class="s1">'jmsSelector'</span>: <span class="s2">"JMSType='ENTITY' AND BhCorpId=44 AND BhEntityName='Candidate' AND BhEntityEventType IN ('UPDATED','INSERTED','DELETED')"</span><span class="o">}</span>
+
+</code></pre>
+
+<p>Lets you subscribe to event types.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>yes</td>
+<td>entity</td>
+</tr>
+<tr>
+<td>names</td>
+<td>yes</td>
+<td>Required with &ldquo;entity&rdquo; type. A comma-separated list of entity names.</td>
+</tr>
+<tr>
+<td>eventTypes</td>
+<td>yes</td>
+<td>RRequired with &ldquo;entity&rdquo; type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-event-subscription"><span class="tag">DELETE</span> /event/subscription</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde
+&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
+
+<span class="c"># Example Response</span>
+<span class="o">{</span><span class="s1">'result'</span>: True<span class="o">}</span>
+
+</code></pre>
+
+<p>Lets you unsubscribe from event types.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
 
           <h1 id="user-headshot-file">User Headshot File</h1>
 
