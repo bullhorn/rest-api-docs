@@ -12,14 +12,13 @@ curl https://rest.bullhornstaffing.com/login?access_token=xxx&version=*
 }
 ```
 
-This is the only supported login process in a production environment
+Log in and get a REST session. This is the only supported login process in a production environment.
 
 Parameter | Required | Description
 ------ | -------- | -----
 access_token | yes | Access token obtained from OAuth authorization |
 version      | yes | Version of the API to use (\* is a wildcard for latest version). |
 ttl          | no  | Session time-to-live in minutes. |
-clientId     | no  |  Pass in an OAuth key here to spoof the features associated. |
 
 <aside class="warning"><strong>Possible Error: "Invalid or expired OAuth access token."</strong></aside>
 
@@ -34,4 +33,5 @@ curl https://rest.bullhornstaffing.com/e999/logout
 }
 ```
 
-To logout and invalidate your BhRestToken
+Log out and invalidate your REST session.
+ 

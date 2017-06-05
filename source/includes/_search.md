@@ -16,7 +16,7 @@ curl https://rest.bullhornstaffing.com/e999/search/Candidate?query=lastName:Smit
 }
 ```
 
-The Search call retrieves a list of entities. The search call is performed against a optimized index, therefore the query parameter should reflect Lucene Query Syntax. For information about the Lucene query syntax, see: [Lucene Tutorial](http://www.lucenetutorial.com/lucene-query-syntax.html)
+Retrieves a list of entities. The search call is performed against a optimized index, therefore the query parameter should reflect Lucene Query Syntax. For information about the Lucene query syntax, see: [Lucene Tutorial](http://www.lucenetutorial.com/lucene-query-syntax.html)
 
 <aside class="notice">If you provide no request parameters, a list of available search fields are provided.</aside>
 

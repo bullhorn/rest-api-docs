@@ -52,8 +52,8 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | notes | To-many association | IDs of Note entities associated with this Lead. | | |
 | numEmployees | Integer | The number of employees associated with the Lead. | | |
 | occupation | String(50) | Occupation of the Lead. | | |
-| owner | To-one association | ID of the CorporateUser who is the owner of this Lead record. | X |
-| ownerCorporation | To-one association | Corporation ID of the Lead's owner. | | |
+| owner | To-one association | id of the CorporateUser who is the owner of this Lead record. | X |
+| ownerCorporation | To-one association | Corporation id of the Lead's owner. | | |
 | pager | String(20) | Lead's pager number. | | |
 | phone | String (20) | Lead's primary telephone number. | | |
 | phone2 | String(20) | Additional phone number for the Lead. | | |

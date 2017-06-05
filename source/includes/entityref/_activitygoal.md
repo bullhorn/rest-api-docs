@@ -6,7 +6,7 @@ Read-only view of activity goals established for sales personnel in the organiza
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | user | To-many association | CorporateUser for whom this activity goal was created. | X | X |
-| department | To-one association | Department of user for whom this activity goal was created. Entity: CorporationDepartment; id - Integer | | |
+| department | To-one association | Department of user for whom this activity goal was created. | | |
 | activityType | String | Type of goal for record. | X | X |
 | startDate | String | The first day of the time period in which this activity goal is in effect, in the format: "YYYY-MM-DD". | X | |
 | endDate | String | The last day of time period in which this activity goal is in effect, in the format: "YYYY-MM-DD". | X | |

@@ -11,13 +11,13 @@ Represents a possible Opportunity which can be converted to a JobOrder.
 | assignedDate | Timestamp | Date the Opportunity was assigned to a CorporateUser. | | |
 | assignedUsers | To-many association | CorporateUsers assigned to this Opportunity. | | |
 | benefits | String | Text description of benefits offered with this Opportunity. | | |
-| billRateCategoryID | Integer | ID of the client bill rate category. | | |
+| billRateCategoryID | Integer | id of the client bill rate category. | | |
 | bonusPackage | String | Text description of the bonus package offered with this Opportunity. | | |
 | branchCode | String(100) | Code representing the corporate branch where this Opportunity is located. | | |
-| businessSector | Integer | ID of the primary BusinessSector associated with this Opportunity. | | |
+| businessSector | Integer | id of the primary BusinessSector associated with this Opportunity. | | |
 | businessSectors | To-many association | IDs of BusinessSectors associated with this Opportunity. | | |
 | campaignSource | String(100) | Campaign source of this Opportunity. | | |
-| category | Integer | ID of the primary Category associated with this Opportunity. | | |
+| category | Integer | id of the primary Category associated with this Opportunity. | | |
 | categories | To-many association | IDs of Categories associated with this Opportunity. | | |
 | certifications | To-many association | Certifications needed for this Opportunity. | | |
 | clientContact | To-one association | ClientContact associated with this Opportunity. | X | |
@@ -44,7 +44,7 @@ Represents a possible Opportunity which can be converted to a JobOrder.
 | expectedCloseDate | Timestamp | Expected close date of this Opportunity. | | |
 | expectedFee | Double | Fee, expressed as a percentage, that will be paid by the ClientCorporation when the potential JobOrder is filled. | | |
 | expectedParRate | BigDecimal | The expected pay rate of this Opportunity. | | |
-| externalCategoryID | Integer | ID of the external category of this Opportunity. | | |
+| externalCategoryID | Integer | id of the external category of this Opportunity. | | |
 | externalID | String(30) | External identifier for the record, used for migrations and back-office integration. | | |
 | history | To-many association | IDs of OpportunityHistory entities associated with this Opportunity. | | |
 | ignoreUntilDate | Timestamp | The date, if any, until which to ignore this Opportunity. Allows you to ignore an Opportunity until a certain day/time. | | |
@@ -57,7 +57,7 @@ Represents a possible Opportunity which can be converted to a JobOrder.
 | numOpenings | Integer | Number of openings of this Opportunity. | | |
 | onSite | String(20) | Location requirements of this Opportunity. | | |
 | optionsPackage | String | Options package of this Opportunity. | | |
-| owner | To-one association | ID of CorporateUser who owns this Opportunity. | X | |
+| owner | To-one association | id of CorporateUser who owns this Opportunity. | X | |
 | priority | Integer | Priority of this Opportunity, for example, Cold, Cool, Medium, Warm, Hot. Stored in DB as Integer with display values configured in field maps. | | |
 | publicDescription | String | Public description of this Opportunity. | | |
 | publishedZip | String(18) | Published zip code of this Opportunity. | | |

@@ -33,3 +33,10 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 | DELETE_CORPORATE | Generally, user can delete any entity. User must also have READ_CORPORATE access level. |
 | DELETE_DEPARTMENT | User can delete entities owned by the user AND owned by users from the same department(s). User must also have READ DEPARTMENT or READ CORPORATE access level. |
 | DELETE | User can delete entities owned by the user only. |
+
+### File privacy entitlements
+
+File privacy settings are enforced by a field isPrivate on the file entity. If a file is marked private, the user can only access that file if one of the following is true:
+-   User has the View All Private Attachments entitlement
+-   File is shared with the user
+-   User is the owner or secondary owner of the entity to which the file is associated

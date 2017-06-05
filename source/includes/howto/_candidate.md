@@ -109,4 +109,4 @@ We attach a .doc resume file named candidate.doc to the request as a multipart/f
 }
 ```
 
-This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:
+This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. id values are specified as a comma-separated list:

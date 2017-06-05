@@ -8,7 +8,7 @@ User authorization and session management use the following flow:
 
 ## Unauthorized requests
 
-If a client makes a request and does not include a BhRestToken, the server sends a response with HTTP status `412` (precondition failed). If a client request contains an invalid session key, the server returns response status `401` (unauthorized). For more information on HTTP status codes see [Errors.](/#errors).
+If a client makes a request and does not include a BhRestToken, the server sends a response with HTTP status `412` (precondition failed). If a client request contains an invalid session key, the server returns response status `401` (unauthorized). For more information on HTTP status codes see [Errors](#errors).
 
 ## Session key
 

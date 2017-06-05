@@ -15,7 +15,7 @@ curl https://rest.bullhornstaffing.com/e999/query/Candidate?fields=firstName,las
 }
 ```
 
-The `Query` call retrieves a list of entities. The query is performed against the database. The `where` parameter accepts Java Perstance Language (JPQL) syntax, which is similar SQL syntax.  Access the data via that database is only performant when query very specific data, otherwised it is preferred that you use the [Search](/#search) call.
+Retrieves a list of entities. The query is performed against the database. The `where` parameter accepts Java Perstance Language (JPQL) syntax, which is similar SQL syntax.  Access the data via that database is only performant when you query very specific data. Otherwise it is preferred that you use the [Search](#search) call if it is available for the entity type for which you want to search.
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 
@@ -37,3 +37,60 @@ showEditable | no | (true/false) Whether to show the _editable field in response
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+
+## Query where parameter
+You can use the following syntax in the where query parameter:
+
+### Simple comparisons
+property = value
+property <> value
+property < value
+property <= value
+property > value
+property >= value
+
+### May use compound property names (not for to-many properties)
+owner.lastName = 'Smith'
+owner.corporation.name = 'Acme'
+
+### IS [NOT] NULL
+property IS NULL
+property IS NOT NULL
+
+### IS [NOT] EMPTY (only for to-many properties)
+categories IS EMPTY
+categories IS NOT EMPTY
+
+### [NOT] IN
+property IN (value, value)
+property NOT IN (value, value)
+
+### [NOT] MEMBER OF (only for to-many properties)
+id-value MEMBER OF categories
+id-value NOT MEMBER OF categories
+
+### Logical Expressions: NOT, AND, OR
+predicate AND predicate
+predicate OR predicate
+NOT predicate
+
+### Grouping by parentheses
+predicate AND ( predicate OR predicate )
+(( predicate OR predicate ) AND NOT ( predicate OR predicate )) OR predicate
+ 
+### Boolean values
+true | false
+Examples
+enabled = true
+willingToRelocate = false
+
+### Datetime values 
+- UNIX long millis. For example, dateAdded > 1324579022
+
+- ISO 8601 Date Time String. For example, dateAdded > '1997-07-16T19:20:30.45+01:00'
+
+- Date Time String without Time Zone (default is America/New_York). In the format 'yyyy-MM-dd hh:mm:ss.SSS'
+
+- Date Time String with Time Zone 'yyyy-MM-dd hh:mm:ss.SSS TZ' where TZ may be specified as:
+ - Full TZ name, such as 'Asia/Tokyo'
+ - An offset [-]hh:mm. For example, 3:00 or -5:00

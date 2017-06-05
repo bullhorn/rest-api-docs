@@ -76,7 +76,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | salary | BigDecimal | Salary that the employee will receive. This may be either a yearly or hourly salary. See salaryUnit. The default value is 0. | X | |
 | salaryUnit | String (20) | Indicates whether the salary is per year or per hour. | X | |
 | salesManagerPercentGrossMargin | Double | Percentage of the total gross margin that the sales manager will receive. | X | |
-| shiftID | Integer | **Not supported in this release.** Id of the Shift object associated with this Placement, if applicable. |
+| shift | To-one association | Shift associated with this Placement, if applicable. |
 | statementClientContact | To-one association | ClientContact who should receive statements associated with this Placement. | | |
 | status | String (30) | Status of the Placement. For example, Approved, Completed, Terminated, and so forth. The default value is “Placed”. | X | |
 | surveys | Survey | **Not supported in this release.** Surveys associated with this Placement. | | |

@@ -40,4 +40,4 @@ NOTE: At least one of the required parameters(fields and layout) or both must be
 }
 ```
 
-This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:
+This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. id values are specified as a comma-separated list:
