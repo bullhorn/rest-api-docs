@@ -11,7 +11,7 @@ Read-only entity that represents a file associated with an entity. The GET /enti
 | description | String | Description for the file. | X | |
 | directory | String | Location of the file on server. | X | |
 | distribution | String | Distribution type for the file. | X | |
-| externalID | String | Third-party ID of the file. | X | |
+| externalID | String | Third-party id of the file. | X | |
 | fileExtension | String | Extension type of the file. | X | X |
 | fileSize | Integer | Size on disk of the file. | X | X |
 | fileType | String | Type of the file; for example, SAMPLE. | X | |

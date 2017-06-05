@@ -39,6 +39,6 @@ Represents an Internal user at your organization. CorporateUser is read-only. 
 | password | String | CorporateUser’s password for logging in to Bullhorn. | X | |
 | phone to phone3 | String (20) | Phone number of the CorporateUser. | | |
 | smsOptIn | Boolean | Indicates whether the CorporateUser has granted permission to be sent messages via SMS. | | |
-| taskAssignments | Task | Not supported in this release. Tasks that have been assigned to this CorporateUser, including those owned by the user. | | |
+| taskAssignments | Task | Tasks that have been assigned to this CorporateUser, including those owned by the user. | | |
 | timeZoneOffsetEST | Integer | Indicates the number of hours by which the CorporateUser’s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |
 | username | String (100) | CorporateUser’s username for logging in to Bullhorn. | X | |

@@ -62,7 +62,7 @@ Any combination of a-z,A-Z,0-9,!,#,$,%, &, ', *, +, -, /, =, ?, ^, _ or ` but no
 
 For example:
 
-[joe_smith@something-else.com](mailto:joe_smith@something-else.com) or [jon33@foo.bar](mailto:jon33@foo.bar)
+joe_smith@something-else.com or jon33@foo.bar
 
 **U.S. phone number**
 

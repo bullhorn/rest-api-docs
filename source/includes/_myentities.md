@@ -72,7 +72,7 @@ departmentIds | no | iComma-separated list of department ids. When not specified
 count | no | Limit on the number of entities to return. If the set of matched results is larger than the count value, the returned results is capped at the count value.
 The default count is 20. The maximum count is 500; if you specify a count greater than 500, a message at the end of the response indicates you have specified too many items.
 The response also includes the actual number of items returned and the start value of the request. This is useful when you want to make calls to page additional sets of data. 
-start | no | FFrom the set of matched results, returns item numbers start through (start + count).
+start | no | From the set of matched results, returns item numbers start through (start + count).
 sort | no | Field to sort result on. Precede with minus sign to perform ascending search. Applies to Candidate and Note entities only. 
 query | no | Lucene query string. Applies to Candidate and Note entities only.
 where | no | JPQL query string. Does not apply to Candidate or Note entities.

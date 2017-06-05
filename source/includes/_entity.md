@@ -25,7 +25,7 @@ curl https://rest.bullhornstaffing.com/e999/entity/Candidate/5059165?fields=firs
 
 Gets one or more entities or to-many associations.
 
-Individual entity records are manifested as resources, where the entity type and ID form the last two parts of the resource path.
+Individual entity records are manifested as resources, where the entity type and id form the last two parts of the resource path.
 
 Specify the fields to be included in the response using the `fields` request parameters. The `id` field is always returned, regardless of the fields requested. See for more detail on specifying fields.
 
@@ -66,11 +66,11 @@ curl https://rest.bullhornstaffing.com/e999/entity/Candidate/123,456?fields=id,f
 }
 ```
 
-This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. ID values are specified as a comma-separated list:
+This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. Id values are specified as a comma-separated list:
 
 ### HTTP Request
 
-`{corpToken}/entity/{entity-name}/{{entity-id},{entity-id},*}?fields={field-list}`
+`{corpToken}/entity/{entityType}/{{entity-id},{entity-id},*}?fields={field-list}`
 
 Parameter | Required | Description
 ------ | -------- | -----
@@ -97,7 +97,7 @@ This is an extension of the single and multiple GETs that returns the to-many as
 
 ### HTTP Request
 
-`{corpToken}/entity/{Entity}/{id}/{toManyFieldName}s?fields={field-list}`
+`{corpToken}/entity/{entityType}/{id}/{toManyFieldName}s?fields={field-list}`
 
 Parameter | Required | Description
 ------ | -------- | -----
@@ -134,7 +134,7 @@ You can use HTTP PUT requests to create new entities. The URL looks the same as 
 *   You cannot create to-many associations on the entity being inserted. You must create them in a subsequent "associate" call.
 *   You can create to-one associations. The associations can only be to existing entities; You cannot create new associated entities while creating the main entity.
 
-Associations fields are set by giving as their values a JSON object containing one field, named 'id', and having value the ID of the entity to associate.
+Associations fields are set by giving as their values a JSON object containing one field, named 'id', and having value the id of the entity to associate.
 
 If you specify fields that do not exist on the entity being created, returns a 400 error containing messaging about the unknown fields,
 
@@ -144,7 +144,7 @@ NOTE: When using an HTTP PUT request to create a Client Corporation entity an ar
 
 ### HTTP Request
 
-`{corpToken}/entity/{entity-name}`
+`{corpToken}/entity/{entityType}`
 
 Parameter | Required | Description
 ------ | -------- | -----
@@ -162,7 +162,7 @@ curl -X PUT \
 
 You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.
 
-`{corpToken}/entity/{entity-name}/{entity-id}/{to-many-association-name}/{entity-id},*}`
+`{corpToken}/entity/{entityType}/{entity-id}/{to-many-association-name}/{entity-id},*}`
 
 Parameter | Required | Description
 ------ | -------- | -----
@@ -186,12 +186,12 @@ curl -X POST \
 ```
 You can update entities with HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.
 
-<aside class="warning">To update confidential fields as part of a POST /entity call, the user must have the Edit Confidential Data user action entitlement. The confidentialFieldList private label attribute contains the list of fields that are considered confidential.</aside>
+<aside class="notice">To update confidential fields as part of a POST /entity call, the user must have the Edit Confidential Data user action entitlement. The confidentialFieldList private label attribute contains the list of fields that are considered confidential.</aside>
 
 *   You cannot create to-many associations on the entity being updated. You must create to-many associations in a subsequent "associate" call.
 *   You can create to-one associations.
 
-You set association fields by giving as their values a JSON object that contains a field named 'id', and providing the value the ID of the entity to associate.
+You set association fields by giving as their values a JSON object that contains a field named 'id', and providing the value the id of the entity to associate.
 
 If you provide fields that do not exist on the entity being created, returns a 400 error containing messages about the unknown fields.
 
@@ -199,7 +199,7 @@ Most entities in the Bullhorn data model contain mandatory fields, some of which
 
 ### HTTP Request
 
-`{corpToken}/entity/{entity-name}`
+`{corpToken}/entity/{entityType}`
 
 Parameter | Required | Description
 ------ | -------- | -----
@@ -259,7 +259,7 @@ This operation is available for all entity types except immutable entities, whic
 
 ### HTTP Request
 
-`{corpToken}/entity/{entity-name}/{entity-id}`
+`{corpToken}/entity/{entityType}/{entity-id}`
 
 Parameter | Required | Description
 ------ | -------- | -----
@@ -283,7 +283,7 @@ When you soft delete an entity, it is not removed from the database. A soft dele
 
 ### HTTP Request
 
-`{corpToken}/entity/{entity-name}/{entity-id}`
+`{corpToken}/entity/{entityType}/{entity-id}`
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
@@ -296,7 +296,7 @@ curl -X DELETE \
 
 Removes or "disassociates" a to-many association relationship on an entity.
 
-`{corpToken}/entity/{entity-name}/{entity-id}/{to-many-association-name}/{entity-id},*}`
+`{corpToken}/entity/{entityType}/{entity-id}/{to-many-association-name}/{entity-id},*}`
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 

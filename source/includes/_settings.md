@@ -1,5 +1,20 @@
 # Settings
 
+## GET /settings/setting1[,setting2...]
+
+``` shell
+curl https://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
+
+# Example Response
+{
+    "allPrivateLabelIds":  [ 1, 2, 3],
+    "currencyFormat": "USD"
+}
+```
+
+Returns the value(s) of the specified system setting(s). The value type (Integer, String, Boolean, and so forth) depends on the specified setting name.
+<aside class="notice">NOTE: In the allDeptIds field of a settings response, the primary department id is always first in the list of department ids.</aside>
+
 ## GET /settings
 
 ``` shell
@@ -34,19 +49,4 @@ curl -X GET "http://rest.bullhornstaffing.com/rest-services/e999/settings"
 }
 ```
 
-returns the complete list of settings.
-
-## GET /settings/setting1[,setting2...]
-
-``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
-
-# Example Response
-{
-    "allPrivateLabelIds":  [ 1, 2, 3],
-    "currencyFormat": "USD"
-}
-```
-
-Value type (integer, boolean, etc) depends on settingName.
-If no settingName is supplied, a list of predefined setting names and their meta data is returned. Return types (string, integer, decimal, boolean, and array of the base type) are defined in the meta data. If conversion fails, for example cannot convert "abc" to integer, the raw string will be returned.
+Returns a list of predefined setting names and their metadata.

@@ -5,7 +5,7 @@ Read-only entity that represents a field change associated with an [Entity]EditH
 
 | **{Entity}EditHistoryFieldChange field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
-| id | Integer | ID of this entity. | X | X |
+| id | Integer | id of this entity. | X | X |
 | columnName | String (100) | Database column name for the value that was changed. | X | X |
 | display | String (100) | FieldMap label for the columnName. Value is deduced at the time of [Entity]EditHistoryFieldChange entity creation and does not update if the columnName FieldMap is subsequently renamed/relabeled. | X | X | 
 | editHistory | To-one association | {Entity}EditHistory entity that owns this [Entity]EditHistoryFieldChange entity. | X | X |

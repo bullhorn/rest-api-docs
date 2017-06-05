@@ -6,10 +6,10 @@ Represents a housing complex that a ClientCorporation uses when providing housin
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | address | Address | HousingComplex address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/HousingComplex?fields=address(countryID) | | |
-| billingContactID | Integer | The Bullhorn ClientContact ID of the billing contact person for this housing complex. |
+| billingContactID | Integer | The Bullhorn ClientContact id of the billing contact person for this housing complex. |
 | comments | String | Free-text comments about this housing complex. | | |
-| complexManagerID | Integer | The Bullhorn ClientContact ID of the housing complex manager. | | |
-| complexOwnerID | Integer | The Bullhorn ClientContact ID of the housing complex owner.  | | |
+| complexManagerID | Integer | The Bullhorn ClientContact id of the housing complex manager. | | |
+| complexOwnerID | Integer | The Bullhorn ClientContact id of the housing complex owner.  | | |
 | contactName | String (100) | Name of the contact person for the housing complex, generally a facilities manager or superintendent. | | |
 | customContactID1 to 3 | Integer | Configurable fields for identifying additional ClientContacts who have roles related to this housing complex. | | |
 | customDate1 to 3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |

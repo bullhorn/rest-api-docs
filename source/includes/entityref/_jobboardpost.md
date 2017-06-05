@@ -19,7 +19,7 @@ Represents a view into a JobOrder entity with information typically used in publ
 | publicDescription | String (200000) | Description of this job for use on public job boards. | X | |
 | publishedCategory | To-one association | The category that was last selected when publishing the job. |  X | |
 | publishedZip | String (18) | Published Zip Code of the job location. | X  | |
-| responseUser | To-one association | ID of CorporateUser to whom submissions should be sent. |  X | |
+| responseUser | To-one association | id of CorporateUser to whom submissions should be sent. |  X | |
 | salary | BigDecimal | Salary offered for this job. |  X | |
 | salaryUnit | String (12) | Salary unit represented by the range (e.g. per hour, yearly). |  X | |
 | startDate | Timestamp | Desired start date for the position. | X | X |
