@@ -2,7 +2,7 @@
 
 Represents a person seeking a job.
 
-The Candidate entity supports the [massUpdate](#get-massupdate) operations.
+The Candidate entity supports the massUpdate operations.
 
 | **Candidate field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |

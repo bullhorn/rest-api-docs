@@ -31,7 +31,7 @@ The JobOrder entity supports the massUpdate operations.
 | customDate1-3 | BigDecimal | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customFloat1-3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customInt1-3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned. | | |
+| customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: [http://developer.bullhorn.com/articles/customobjects](http://developer.bullhorn.com/articles/customobjects) | | |
 | customText1-20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1-5 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date when this record was created in the Bullhorn system. | X | |
@@ -57,6 +57,7 @@ The JobOrder entity supports the massUpdate operations.
 | isOpen | Boolean | Indicates whether the job is open. | | |
 | isPublic | Boolean | Controls whether a job appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1. | | |
 | jobBoardList | String | List of job boards on which this job has been posted. | | |
+| markupPercentage | Double | Represents the relationship between clientBillRate and PayRate MP = (CBR - PR) / PR | X | X |
 | notes | To-many association | Ids of Notes associated with this job. | | |
 | numOpenings | Integer | Number of openings to be filled for this job. | | |
 | onSite | String (20) | Location requirements; for example, on-site, off-site, no preference. | | |
