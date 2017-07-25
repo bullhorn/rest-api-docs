@@ -21,7 +21,6 @@ includes:
   - file
   - find
   - login
-  - lookup
   - massupdate
   - meta
   - options
