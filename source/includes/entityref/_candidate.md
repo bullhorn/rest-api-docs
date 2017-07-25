@@ -98,7 +98,7 @@ The Candidate entity supports the massUpdate operations.
 | skillSet | String | Text description of Candidate's skills. | | |
 | smsOptIn | Boolean | Indicates whether Candidate has granted permission to be sent messages via SMS. | | |
 | source | String (200) | Candidate source: for example, Advertisement, Client Referral, LinkedIn, Monster.com, and so forth. Allowable values can be configured using field maps. | | |
-| specialties | To-many association | Candidate’s specialty skills. This field is populated when you associate a Specialty with this Candidate in [a to-many association](#create-to-many-associations) operation. | | |
+| specialties | To-many association | Candidate’s specialty skills. This field is populated when you associate a Specialty with this Candidate in a to-many association operation. | | |
 | ssn | String (18) | Candidate's Social Security Number. Check field map for proper format. | | |
 | stateAddtionalWitholdingsAmount | BigDecimal | Number of state withholdings Candidate has selected on his or her W-2 tax form. | | |
 | stateExemptions | Integer | Number of state exemptions Candidate has indicated on W-2 tax form. | | |
