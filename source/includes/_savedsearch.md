@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /savedSearch
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/savedSearch
+curl https://rest.bullhornstaffing.com/rest-services/e999/savedSearch
 
 or:
 
@@ -55,7 +55,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /mySavedSearch
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/mySavedSearch
+curl https://rest.bullhornstaffing.com/rest-services/e999/mySavedSearch
 
 or:
 
@@ -97,7 +97,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /savedSearch/{savedSearchId}
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/esavedSearch/4
+curl https://rest.bullhornstaffing.com/rest-services/e999/esavedSearch/4
 
 # Example Response
 {
@@ -137,7 +137,7 @@ curl -X PUT \
         "query"       : "name:pinacle" \
         } \
        ' \
-     https://rest.bullhornstaffing.com/e999/savedSearch
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearch
 
 # Example Response
 {
@@ -172,7 +172,7 @@ curl -X POST \
         "query"       : "name:pinacle" \
         } \
        ' \
-     https://rest.bullhornstaffing.com/e999/savedSearch/4
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearch/4
 
 # Example Response
 {
@@ -202,7 +202,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 curl -X DELETE \
-https://rest.bullhornstaffing.com/e999/esavedSearch/4
+https://rest.bullhornstaffing.com/rest-services/e999/esavedSearch/4
 
 # Example Response
 TBD
@@ -230,7 +230,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 curl -X PUT \
-     https://rest.bullhornstaffing.com/e999/savedSearchAssociation/4/JobOrder/1495    
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchAssociation/4/JobOrder/1495    
 ```
 Creates an association between a saved search and a specified entity id.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside>
@@ -247,7 +247,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 curl -X DELETE \
-     https://rest.bullhornstaffing.com/e999/savedSearchAssociation/4/JobOrder/1495    
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchAssociation/4/JobOrder/1495    
 ```
 Deletes an association between a saved search and a specified entity id.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside>
@@ -313,7 +313,7 @@ FAVORITES
 
 ``` shell
 curl -X PUT \
-     https://rest.bullhornstaffing.com/e999/savedSearchFavorite/4
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchFavorite/4
 ```
 Adds a saved search to saved search favorites.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside>
@@ -330,7 +330,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 curl -X DELETE \
-     https://rest.bullhornstaffing.com/e999/savedSearchAssociation/4/JobOrder/1495    
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchAssociation/4/JobOrder/1495    
 ```
 Deletes an association between a saved search and a specified entity id.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside>
@@ -350,7 +350,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 curl -X PUT \
-     https://rest.bullhornstaffing.com/e999/savedSearchFavorite/4
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchFavorite/4
 ```
 Adds a saved search to saved search favorites.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside>
@@ -367,7 +367,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 curl -X DELETE \
-     https://rest.bullhornstaffing.com/e999/savedSearchFavorite/4
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchFavorite/4
 ```
 Removes a saved search from saved search favorites.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside>

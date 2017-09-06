@@ -42,11 +42,11 @@ Read-only system fields ( fields with names prefixed with _ ) are not represente
 ##  <span class="tag">GET</span> /meta/{Entity}
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*
+curl https://rest.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*
 # Example Response
 {
   "entity" : "Candidate",
-  "entityMetaUrl" : "https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*",
+  "entityMetaUrl" : "https://rest.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*",
   "label" : "Candidate",
   "fields" : { {
     "name" : "id",

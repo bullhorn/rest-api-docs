@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /userHeadshotFile
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/userHeadshotFile/Candidate/3835
+curl https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
 
 # Example Response
 <A multipart-encoded version of the file>
