@@ -15,7 +15,7 @@ Web URLs are case-sensitive, except for machine names. We shall follow that prac
 
 All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:
 
-`https://rest.bullhornstaffing.com/e999/entity/Candidate`
+`https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate`
 
 Where `e999` is the corporation identifier.
 

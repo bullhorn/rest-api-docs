@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /entity
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/entity/Candidate/5059165?fields=firstName,lastName,address
+curl https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/5059165?fields=firstName,lastName,address
 
 # Example Response
 {
@@ -48,7 +48,7 @@ showEditable | no | (true/false) Default value is false. Whether to show the _ed
 ## Multiple Entities
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName
+curl https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields=id,firstName,lastName
 
 # Example Response
 {
@@ -86,7 +86,7 @@ showEditable | no | (true/false) Whether to show the editable field in responses
 ## To-many Associations
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&count=2
+curl https://rest.bullhornstaffing.com/rest-services/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields=firstName,lastName,address&count=2
 
 # Example Response
 {
@@ -119,7 +119,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 curl -X PUT \
      -H "Content-Type: application/json" \
      -d '{"firstName" : "Alanzo", "lastName" : "Smith"}' \
-     https://rest.bullhornstaffing.com/e999/entity/Candidate
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate
 
 # Example Response
 {
@@ -157,7 +157,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 curl -X PUT \
-     https://rest.bullhornstaffing.com/e999/entity/Candidate/3084/primarySkills/964,684,253
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/3084/primarySkills/964,684,253
 ```
 
 You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.
@@ -176,7 +176,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 curl -X POST \
      -H "Content-Type: application/json" \
      -d '{ "id" : 5059165, "firstName" : "Alanzo","lastName" : "Smith" }' \
-     https://rest.bullhornstaffing.com/e999/entity/Candidate/5059165
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/5059165
 
      # Example Response
 {
@@ -212,10 +212,10 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 # This example will create and associate a new customObject1s record.
-curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
+curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
 
 # This example will update an existing customObject1s record #1.
-curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
+curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
 ```
 
 For special to-many associations, like Custom Objects, we have the ability to create and associate in a single step.  These is due to the fact that we need to know their context to enforce security and data integrity.  You can add/update to-many associations with a POST request the same as if it was data directly on the parent entity. You can combine standard parent entity updates with special association add and edits.
@@ -243,7 +243,7 @@ The API supports two types of delete requests:
 
 ``` shell
 curl -X DELETE \
-     https://rest.bullhornstaffing.com/e999/entity/NoteEntity/2552
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/NoteEntity/2552
 ```
 
 Hard deletes a hard-deletable entity, which removes it from the database. Soft deletes a soft-deletable entity, which sets the isDeleted property of the entity to true.
@@ -275,7 +275,7 @@ To delete an entity with children, explicitly delete all the children before att
 curl -X POST \
      -H "Content-Type: application/json" \
      -d '{ "isDeleted" : true }' \
-     https://rest.bullhornstaffing.com/e999/entity/ClientContact/1804
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/ClientContact/1804
 
 ```
 
@@ -291,7 +291,7 @@ When you soft delete an entity, it is not removed from the database. A soft dele
 
 ``` shell
 curl -X DELETE \
-     https://rest.bullhornstaffing.com/e999/entity/Candidate/3084/primarySkills/253
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/3084/primarySkills/253
 ```
 
 Removes or "disassociates" a to-many association relationship on an entity.

@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /ping
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/ping
+curl https://rest.bullhornstaffing.com/rest-services/e999/ping
 
 # Example Response
 {

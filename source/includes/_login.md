@@ -25,7 +25,7 @@ ttl          | no  | Session time-to-live in minutes. |
 ## Logout
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/logout
+curl https://rest.bullhornstaffing.com/rest-services/e999/logout
 
 # Example Response
 {

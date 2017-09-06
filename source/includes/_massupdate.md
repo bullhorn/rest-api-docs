@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /massUpdate
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/massUpdate
+curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate
 
 # Example Response
 [
@@ -33,7 +33,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /massUpdate/{entityType}
 
 ``` shell
-curl https://rest.bullhornstaffing.com/e999/massUpdate/entity
+curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate/entity
 
 # Example Response
 [ {
@@ -70,7 +70,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 curl -X POST \
      -H "Content-Type: application/json" \
      -d '{"ids": [789,790], "status": "active"}' \
-     https://rest.bullhornstaffing.com/e999/massUpdate/JobOrder
+     https://rest.bullhornstaffing.com/rest-services/e999/massUpdate/JobOrder
 
 # Example Response
 {
