@@ -113,9 +113,6 @@
         </div>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -138,7 +135,7 @@
 
 <p>All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:</p>
 
-<p><code class="prettyprint">https://rest.bullhornstaffing.com/e999/entity/Candidate</code></p>
+<p><code class="prettyprint">https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate</code></p>
 
 <p>Where <code class="prettyprint">e999</code> is the corporation identifier.</p>
 
@@ -709,7 +706,7 @@ StateText</td>
           <h1 id="allcorpnotes">allCorpNotes</h1>
 
 <h2 id="get-allcorpnotes"><span class="tag">GET</span> /allCorpNotes</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffingcom/rest-services/e999/allCorpNotes?clientCorpId<span class="o">=</span>4&amp;fields<span class="o">=</span><span class="nv">start</span><span class="o">=</span>0&amp;count<span class="o">=</span>5
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/allCorpNotes?clientCorpId<span class="o">=</span>4&amp;fields<span class="o">=</span><span class="nv">start</span><span class="o">=</span>0&amp;count<span class="o">=</span>5
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -855,7 +852,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
           <h1 id="entity">Entity</h1>
 
 <h2 id="get-entity"><span class="tag">GET</span> /entity</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/entity/Candidate/5059165?fields<span class="o">=</span>firstName,lastName,address
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/5059165?fields<span class="o">=</span>firstName,lastName,address
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -924,7 +921,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h2 id="multiple-entities">Multiple Entities</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/entity/Candidate/123,456?fields<span class="o">=</span>id,firstName,lastName
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields<span class="o">=</span>id,firstName,lastName
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -990,7 +987,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
 <h2 id="to-many-associations">To-many Associations</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;count<span class="o">=</span>2
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;count<span class="o">=</span>2
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1064,7 +1061,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
      -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
      -d <span class="s1">'{"firstName" : "Alanzo", "lastName" : "Smith"}'</span> <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/entity/Candidate
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1111,7 +1108,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <h3 id="create-to-many-associations">Create To-many Associations</h3>
 <pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/entity/Candidate/3084/primarySkills/964,684,253
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/3084/primarySkills/964,684,253
 </code></pre>
 
 <p>You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.</p>
@@ -1138,7 +1135,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
      -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
      -d <span class="s1">'{ "id" : 5059165, "firstName" : "Alanzo","lastName" : "Smith" }'</span> <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/entity/Candidate/5059165
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/5059165
 
      <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1184,10 +1181,10 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <h3 id="to-many-associations-special-case">To-many Associations - Special Case</h3>
 <pre class="highlight shell"><code><span class="c"># This example will create and associate a new customObject1s record.</span>
-curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
+curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
 
 <span class="c"># This example will update an existing customObject1s record #1.</span>
-curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
+curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
 </code></pre>
 
 <p>For special to-many associations, like Custom Objects, we have the ability to create and associate in a single step.  These is due to the fact that we need to know their context to enforce security and data integrity.  You can add/update to-many associations with a POST request the same as if it was data directly on the parent entity. You can combine standard parent entity updates with special association add and edits.</p>
@@ -1222,7 +1219,7 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 
 <h3 id="hard-or-soft-delete-via-delete-call">Hard or Soft Delete via DELETE call</h3>
 <pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/entity/NoteEntity/2552
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/NoteEntity/2552
 </code></pre>
 
 <p>Hard deletes a hard-deletable entity, which removes it from the database. Soft deletes a soft-deletable entity, which sets the isDeleted property of the entity to true.</p>
@@ -1262,7 +1259,7 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
      -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
      -d <span class="s1">'{ "isDeleted" : true }'</span> <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/entity/ClientContact/1804
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/ClientContact/1804
 
 </code></pre>
 
@@ -1276,7 +1273,7 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 
 <h3 id="disassociate-to-many-associations">Disassociate To-many Associations</h3>
 <pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/entity/Candidate/3084/primarySkills/253
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/3084/primarySkills/253
 </code></pre>
 
 <p>Removes or &ldquo;disassociates&rdquo; a to-many association relationship on an entity.</p>
@@ -1381,18 +1378,39 @@ curl -X PUT https://rest.bullhornstaffing.com/e999/entity/JobOrder/123
 <tr>
 <td>count</td>
 <td>no</td>
-<td>Limit on the number of entities to return. If the set of matched results is larger than the count value, the returned results is capped at the count value.</td>
+<td>Limit on the number of entities to return. If the set of matched results is larger than the count value, the returned results is capped at the count value. The default count is 20. The maximum count is 500; if you specify a count greater than 500, a message at the end of the response indicates you have specified too many items. The response also includes the actual number of items returned and the start value of the request. This is useful when you want to make calls to page additional sets of data.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>FFrom the set of matched results, returns item numbers start through (start + count).</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>no</td>
+<td>Field to sort result on. Precede with minus sign to perform ascending search. Applies to Candidate and Note entities only.</td>
+</tr>
+<tr>
+<td>query</td>
+<td>no</td>
+<td>Lucene query string. Applies to Candidate and Note entities only.</td>
+</tr>
+<tr>
+<td>where</td>
+<td>no</td>
+<td>JPQL query string. Does not apply to Candidate or Note entities.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed.</td>
 </tr>
 </tbody></table>
-
-<p>The default count is 20. The maximum count is 500; if you specify a count greater than 500, a message at the end of the response indicates you have specified too many items.
-The response also includes the actual number of items returned and the start value of the request. This is useful when you want to make calls to page additional sets of data. 
-start | no | FFrom the set of matched results, returns item numbers start through (start + count).
-sort | no | Field to sort result on. Precede with minus sign to perform ascending search. Applies to Candidate and Note entities only. 
-query | no | Lucene query string. Applies to Candidate and Note entities only.
-where | no | JPQL query string. Does not apply to Candidate or Note entities.
-meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. 
-showEditable | no | (true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed. </p>
 
           <h1 id="my-entities">My Entities</h1>
 
@@ -1485,23 +1503,44 @@ showEditable | no | (true/false) Default value is false. Whether to show the _ed
 <tr>
 <td>departmentIds</td>
 <td>no</td>
-<td>iComma-separated list of department ids. When not specified, the call returns entities from all of the user&rsquo;s departments.</td>
+<td>Comma-separated list of department ids. When not specified, the call returns entities from all of the user&rsquo;s departments.</td>
 </tr>
 <tr>
 <td>count</td>
 <td>no</td>
-<td>Limit on the number of entities to return. If the set of matched results is larger than the count value, the returned results is capped at the count value.</td>
+<td>Limit on the number of entities to return. If the set of matched results is larger than the count value, the returned results is capped at the count value. The default count is 20. The maximum count is 500; if you specify a count greater than 500, a message at the end of the response indicates you have specified too many items. The response also includes the actual number of items returned and the start value of the request. This is useful when you want to make calls to page additional sets of data.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>From the set of matched results, returns item numbers start through (start + count).</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>no</td>
+<td>Field to sort result on. Precede with minus sign to perform ascending search. Applies to Candidate and Note entities only.</td>
+</tr>
+<tr>
+<td>query</td>
+<td>no</td>
+<td>Lucene query string. Applies to Candidate and Note entities only.</td>
+</tr>
+<tr>
+<td>where</td>
+<td>no</td>
+<td>JPQL query string. Does not apply to Candidate or Note entities.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed.</td>
 </tr>
 </tbody></table>
-
-<p>The default count is 20. The maximum count is 500; if you specify a count greater than 500, a message at the end of the response indicates you have specified too many items.
-The response also includes the actual number of items returned and the start value of the request. This is useful when you want to make calls to page additional sets of data. 
-start | no | From the set of matched results, returns item numbers start through (start + count).
-sort | no | Field to sort result on. Precede with minus sign to perform ascending search. Applies to Candidate and Note entities only. 
-query | no | Lucene query string. Applies to Candidate and Note entities only.
-where | no | JPQL query string. Does not apply to Candidate or Note entities.
-meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. 
-showEditable | no | (true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed. </p>
 
           <h1 id="events">Events</h1>
 
@@ -1712,7 +1751,7 @@ showEditable | no | (true/false) Default value is false. Whether to show the _ed
           <h1 id="file">File</h1>
 
 <h2 id="get-file"><span class="tag">GET</span> /file</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/file/Candidate/3835/231
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/3835/231
 
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s2">"File"</span>: <span class="o">{</span>
@@ -1752,7 +1791,7 @@ Files can be attached to the following types of entities:
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h2 id="get-entityfiles"><span class="tag">GET</span> /entityFiles</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/entityFiles/Candidate/203866
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/entityFiles/Candidate/203866
 
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s2">"EntityFiles"</span>: <span class="o">[</span>
@@ -1974,7 +2013,7 @@ Files can be attached to the following types of entities:
           <h1 id="find">Find</h1>
 
 <h2 id="get-find"><span class="tag">GET</span> /find</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/find?query<span class="o">=</span>smith&amp;countPerEntity<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/find?query<span class="o">=</span>smith&amp;countPerEntity<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2229,7 +2268,7 @@ clientCorporation.name</td>
 <span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"BhRestToken"</span> : <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>,
-  <span class="s2">"restUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/rest-services/[corporation-token]/"</span>
+  <span class="s2">"restUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/"</span>
 <span class="o">}</span>
 </code></pre>
 
@@ -2262,7 +2301,7 @@ clientCorporation.name</td>
 <aside class="warning"><strong>Possible Error: &ldquo;Invalid or expired OAuth access token.&rdquo;</strong></aside>
 
 <h2 id="logout">Logout</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/logout
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/logout
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2272,113 +2311,10 @@ clientCorporation.name</td>
 
 <p>Log out and invalidate your REST session.</p>
 
-          <h1 id="lookup">Lookup</h1>
-
-<h2 id="get-lookup"><span class="tag">GET</span> /lookup</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/lookup?filter<span class="o">=</span>smith&amp;entity<span class="o">=</span>Candidate,ClientContact&amp;start<span class="o">=</span>0,10&amp;count<span class="o">=</span>10
-
-<span class="c"># Example Response</span>
-<span class="o">{</span>
-    <span class="s2">"data"</span>: <span class="o">[{</span>
-      <span class="s2">"_score"</span>: 1.70002,
-      <span class="s2">"id"</span> : 5059165,
-      <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
-      <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
-    <span class="o">}]</span>
-<span class="o">}</span>
-
-curl https://rest.bullhornstaffing.com/e999/lookup/Candidate/12345
-
-<span class="c"># Example Response</span>
-<span class="o">{</span>
-    <span class="s2">"data"</span>: <span class="o">[{</span>
-      <span class="s2">"id"</span> : 5059165,
-      <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
-      <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
-    <span class="o">}]</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>Searches using FastFind for FastFind-able entities, else uses custom Lucene or Hibernate queries. Returns a standardized set of data per EntityType.</p>
-
-<p>Uses search implementations for:</p>
-
-<ul>
-<li>  Candidate</li>
-<li>  ClientContact</li>
-<li>  JobOrder</li>
-<li>  Lead</li>
-<li>  Opportunity</li>
-<li>  Placement</li>
-</ul>
-
-<p>Uses Hibernate queries for:</p>
-
-<ul>
-<li>  Skill</li>
-<li>  CorporateUser</li>
-<li>  DistributionList</li>
-</ul>
-
-<p>A call to search returns an _id, _entityType, and _label specific to each entity.</p>
-
-<p>A details call returns a subset of the entity&rsquo;s data. Each entity has a different set of data returned. This is the equivalent of a call which has had its fields parameter specified.</p>
-
-<h3 id="http-requests">HTTP Requests</h3>
-
-<h4 id="lookup">Lookup</h4>
-
-<p><code class="prettyprint">../lookup?filter={terms}&amp;entity={comma,separated,entity,names}&amp;count={num}&amp;start=one,number,per,entity</code></p>
-
-<h4 id="lookup-details">Lookup Details</h4>
-
-<p><code class="prettyprint">../lookup/{entity}/{id}</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>filter</td>
-<td>no</td>
-<td>The search terms, such as the name or title.</td>
-</tr>
-<tr>
-<td>entity</td>
-<td>no</td>
-<td>A comma-separated list of entity names to search on using the given filter.</td>
-</tr>
-<tr>
-<td>count</td>
-<td>no</td>
-<td>The total number of results to return.</td>
-</tr>
-<tr>
-<td>start</td>
-<td>no</td>
-<td>A comma-separated list of start values for pagination of given entities. This list&rsquo;s size should be the same as the length of the entity parameter. Defaults to 0.</td>
-</tr>
-<tr>
-<td>privateLabelID</td>
-<td>no</td>
-<td>The private label id to use.</td>
-</tr>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
-<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
-
           <h1 id="mass-update">Mass Update</h1>
 
 <h2 id="get-massupdate"><span class="tag">GET</span> /massUpdate</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/massUpdate
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate
 
 <span class="c"># Example Response</span>
 <span class="o">[</span>
@@ -2417,7 +2353,7 @@ curl https://rest.bullhornstaffing.com/e999/lookup/Candidate/12345
 </tbody></table>
 
 <h2 id="get-massupdate-entitytype"><span class="tag">GET</span> /massUpdate/{entityType}</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/massUpdate/entity
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate/entity
 
 <span class="c"># Example Response</span>
 <span class="o">[</span> <span class="o">{</span>
@@ -2463,7 +2399,7 @@ curl https://rest.bullhornstaffing.com/e999/lookup/Candidate/12345
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
      -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
      -d <span class="s1">'{"ids": [789,790], "status": "active"}'</span> <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/massUpdate/JobOrder
+     https://rest.bullhornstaffing.com/rest-services/e999/massUpdate/JobOrder
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2546,11 +2482,11 @@ The request body uses the following syntax:</p>
 <p>Read-only system fields ( fields with names prefixed with _ ) are not represented in entity metadata ever, even with * calls.</p>
 
 <h2 id="get-meta-entity"><span class="tag">GET</span> /meta/{Entity}</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/meta/Candidate?fields<span class="o">=</span><span class="k">*</span>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields<span class="o">=</span><span class="k">*</span>
 <span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"entity"</span> : <span class="s2">"Candidate"</span>,
-  <span class="s2">"entityMetaUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/e999/meta/Candidate?fields=*"</span>,
+  <span class="s2">"entityMetaUrl"</span> : <span class="s2">"https://rest.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*"</span>,
   <span class="s2">"label"</span> : <span class="s2">"Candidate"</span>,
   <span class="s2">"fields"</span> : <span class="o">{</span> <span class="o">{</span>
     <span class="s2">"name"</span> : <span class="s2">"id"</span>,
@@ -2673,7 +2609,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="options">Options</h1>
 
 <h2 id="get-options"><span class="tag">GET</span> /options</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/options
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/options
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2718,7 +2654,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 </tbody></table>
 
 <h2 id="get-options-optionstype"><span class="tag">GET</span> /options/{optionsType}</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/options/Country
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/options/Country
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2890,7 +2826,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="ping">Ping</h1>
 
 <h2 id="get-ping"><span class="tag">GET</span> /ping</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/ping
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/ping
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2917,7 +2853,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="query">Query</h1>
 
 <h2 id="get-query"><span class="tag">GET</span> /query</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/query/Candidate?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/query/Candidate?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -3422,7 +3358,7 @@ When the resume text in the response is used in a request body of another call, 
           <h1 id="saved-search">Saved Search</h1>
 
 <h2 id="get-savedsearch"><span class="tag">GET</span> /savedSearch</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/savedSearch
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/savedSearch
 
 or:
 
@@ -3474,7 +3410,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
 
 <h2 id="get-mysavedsearch"><span class="tag">GET</span> /mySavedSearch</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/mySavedSearch
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/mySavedSearch
 
 or:
 
@@ -3516,7 +3452,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
 
 <h2 id="get-savedsearch-savedsearchid"><span class="tag">GET</span> /savedSearch/{savedSearchId}</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/esavedSearch/4
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/esavedSearch/4
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -3556,7 +3492,7 @@ BhRestToken | no | Token that represents a session established by the login proc
         "query"       : "name:pinacle" \
         } \
        '</span> <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/savedSearch
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearch
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -3600,7 +3536,7 @@ BhRestToken | no | Token that represents a session established by the login proc
         "query"       : "name:pinacle" \
         } \
        '</span> <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/savedSearch/4
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearch/4
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -3638,7 +3574,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 <h2 id="delete-savedsearch-savedsearchid"><span class="tag">DELETE</span> /savedSearch/{savedSearchId}</h2>
 <pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
-https://rest.bullhornstaffing.com/e999/esavedSearch/4
+https://rest.bullhornstaffing.com/rest-services/e999/esavedSearch/4
 
 <span class="c"># Example Response</span>
 TBD
@@ -3665,7 +3601,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 <h2 id="put-savedsearchassociation"><span class="tag">PUT</span> /savedSearchAssociation</h2>
 <pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/savedSearchAssociation/4/JobOrder/1495    
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchAssociation/4/JobOrder/1495    
 </code></pre>
 
 <p>Creates an association between a saved search and a specified entity id.
@@ -3691,7 +3627,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 <h2 id="delete-savedsearchassociation"><span class="tag">DELETE</span> /savedSearchAssociation</h2>
 <pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/savedSearchAssociation/4/JobOrder/1495    
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchAssociation/4/JobOrder/1495    
 </code></pre>
 
 <p>Deletes an association between a saved search and a specified entity id.
@@ -3783,7 +3719,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 <h2 id="put-savedsearchfavorite"><span class="tag">PUT</span> /savedSearchFavorite</h2>
 <pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/savedSearchFavorite/4
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchFavorite/4
 </code></pre>
 
 <p>Adds a saved search to saved search favorites.
@@ -3809,7 +3745,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 <h2 id="delete-savedsearchassociation"><span class="tag">DELETE</span> /savedSearchAssociation</h2>
 <pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/savedSearchAssociation/4/JobOrder/1495    
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchAssociation/4/JobOrder/1495    
 </code></pre>
 
 <p>Deletes an association between a saved search and a specified entity id.
@@ -3837,7 +3773,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 <h2 id="put-savedsearchfavorite"><span class="tag">PUT</span> /savedSearchFavorite</h2>
 <pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/savedSearchFavorite/4
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchFavorite/4
 </code></pre>
 
 <p>Adds a saved search to saved search favorites.
@@ -3863,7 +3799,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 <h2 id="delete-savedsearchfavorite"><span class="tag">DELETE</span> /savedSearchFavorite</h2>
 <pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
-     https://rest.bullhornstaffing.com/e999/savedSearchFavorite/4
+     https://rest.bullhornstaffing.com/rest-services/e999/savedSearchFavorite/4
 </code></pre>
 
 <p>Removes a saved search from saved search favorites.
@@ -3890,7 +3826,7 @@ BhRestToken | no | Token that represents a session established by the login proc
           <h1 id="search">Search</h1>
 
 <h2 id="get-search"><span class="tag">GET</span> /search</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/search/Candidate?query<span class="o">=</span>lastName:Smith&amp;fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/search/Candidate?query<span class="o">=</span>lastName:Smith&amp;fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -3910,7 +3846,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.</p>
 
 <aside class="notice">If parameter &ldquo;fields&rdquo; or &ldquo;layout&rdquo; is not present, the search will return the list of found entity ids in the returned &ldquo;data&rdquo;.</aside>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/search/Candidate?query<span class="o">=</span>isDeleted:0
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/search/Candidate?query<span class="o">=</span>isDeleted:0
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -4241,7 +4177,7 @@ BhRestToken | no | Token that represents a session established by the login proc
           <h1 id="user-headshot-file">User Headshot File</h1>
 
 <h2 id="get-userheadshotfile"><span class="tag">GET</span> /userHeadshotFile</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/e999/userHeadshotFile/Candidate/3835
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
 
 <span class="c"># Example Response</span>
 &lt;A multipart-encoded version of the file&gt;

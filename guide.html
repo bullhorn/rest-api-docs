@@ -112,9 +112,6 @@
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -127,7 +124,7 @@
           <h1 id="company">Company</h1>
 
 <h2 id="getting-a-company-39-s-notes">Getting a Company&rsquo;s notes</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhornstaffing.com/e999/entity/ClientCorporation/5059165/clientContactNotes?fields=id,action,comments</span>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhornstaffing.com/rest-services/e999/entity/ClientCorporation/5059165/clientContactNotes?fields=id,action,comments</span>
 <span class="p">{</span>
   <span class="s2">"total"</span> <span class="err">:</span> <span class="mi">3</span><span class="p">,</span>
   <span class="s2">"data"</span> <span class="err">:</span> <span class="p">[{</span>
@@ -146,7 +143,7 @@
 <p>NOTE: At least one of the required parameters(fields and layout) or both must be specified.</p>
 
 <h2 id="multiple-entities">Multiple Entities</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhornstaffing.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
 <span class="p">{</span>
     <span class="nl">data</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
@@ -255,7 +252,7 @@
 <p>We attach a .doc resume file named candidate.doc to the request as a multipart/form attachment; in a browser form, this is <code class="prettyprint">&lt;input type=&quot;file&quot;/&gt;</code>. The call returns candidate, candidate education, candidate work history, and skills data.</p>
 
 <h2 id="multiple-entities">Multiple Entities</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhornstaffing.com/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
+<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
 <span class="p">{</span>
     <span class="nl">data</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
@@ -276,7 +273,7 @@
           <h1 id="lead">Lead</h1>
 
 <h2 id="convert-a-lead-to-a-contact">Convert a Lead to a Contact</h2>
-<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhornstaffing.com/e999/entity/Lead/5059165?fields=id,firstName,lastName</span>
+<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhornstaffing.com/rest-services/e999/entity/Lead/5059165?fields=id,firstName,lastName</span>
 <span class="p">{</span>
     <span class="nl">data</span><span class="p">:</span> <span class="p">{</span>
         <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
@@ -285,7 +282,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1">// POST https://rest.bullhornstaffing.com/e999/entity/ClientContact</span>
+<span class="c1">// POST https://rest.bullhornstaffing.com/rest-services/e999/entity/ClientContact</span>
 <span class="p">{</span>
     <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
     <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>
@@ -303,7 +300,7 @@
 <p>Then change the status of the Lead and POST Back to the original url.</p>
 
 <h2 id="convert-a-lead-to-a-candidate">Convert a Lead to a Candidate</h2>
-<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhornstaffing.com/e999/entity/Lead/5059165?fields=id,firstName,lastName</span>
+<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhornstaffing.com/rest-services/e999/entity/Lead/5059165?fields=id,firstName,lastName</span>
 <span class="p">{</span>
     <span class="nl">data</span><span class="p">:</span> <span class="p">{</span>
         <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
@@ -312,7 +309,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1">// POST https://rest.bullhornstaffing.com/e999/entity/Candiate</span>
+<span class="c1">// POST https://rest.bullhornstaffing.com/rest-services/e999/entity/Candiate</span>
 <span class="p">{</span>
     <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
     <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>

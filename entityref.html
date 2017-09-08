@@ -110,9 +110,6 @@
         </div>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="content">
@@ -631,7 +628,7 @@
 
 <p>Represents a person seeking a job.</p>
 
-<p>The Candidate entity supports the <a href="#get-massupdate">massUpdate</a> operations.</p>
+<p>The Candidate entity supports the massUpdate operations.</p>
 
 <table><thead>
 <tr>
@@ -1289,7 +1286,7 @@
 <tr>
 <td>specialties</td>
 <td>To-many association</td>
-<td>Candidate’s specialty skills. This field is populated when you associate a Specialty with this Candidate in <a href="#create-to-many-associations">a to-many association</a> operation.</td>
+<td>Candidate’s specialty skills. This field is populated when you associate a Specialty with this Candidate in a to-many association operation.</td>
 <td></td>
 <td></td>
 </tr>
@@ -2284,7 +2281,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned.</td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -2791,7 +2788,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned.</td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -4297,7 +4294,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned.</td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -4475,6 +4472,13 @@
 <td>List of job boards on which this job has been posted.</td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>markupPercentage</td>
+<td>Double</td>
+<td>Represents the relationship between clientBillRate and PayRate MP = (CBR - PR) / PR</td>
+<td>X</td>
+<td>X</td>
 </tr>
 <tr>
 <td>notes</td>
@@ -4848,7 +4852,7 @@
 <tr>
 <td>status</td>
 <td>String (30)</td>
-<td>Status of the JobSubmission (for example, reviewed, accepted, and so forth.). Allowable values are configured in field maps.</td>
+<td>Status of the JobSubmission (for example, reviewed, accepted, and so forth.). Allowable values are available in the response of the settings/jobResponseStatusList operation.</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -5822,7 +5826,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned.</td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
 <td></td>
 <td></td>
 </tr>
