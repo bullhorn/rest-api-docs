@@ -6,7 +6,6 @@ page_classes: no-langs
 mystyle: no-langs
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
 
 includes:
   - entityref/activitygoal
