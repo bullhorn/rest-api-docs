@@ -136,8 +136,72 @@ fileType | yes | Always use the value “SAMPLE”.
 name | yes | File name.
 contentType | no | Type/subtype of the file content.
 description | no | Comment that describes the file.
-type | no | Type of file that is attached.BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+type | no | Type of file that is attached.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
+## <span class="tag">POST</span> /file
+
+``` shell
+
+# Base64-encoded file request
+
+curl -X POST \
+     -H "Content-Type: application/json" \
+     -d '{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
+        "fileType" : "SAMPLE", "name" : "TestResumeFile.txt", "contentType" : "text/plain",\
+        "description" : "Resume file for candidate.", "type" : "cover"}' \
+     https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/1234
+
+# Multipart/form (raw) file request
+
+curl -X POST \
+    -F "file=@samplefile.txt" \
+    https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/1234/raw?filetype=SAMPLE&externalID=portfolio
+
+# Example Response
+No response body; returns 200 on successful update.
+```
+Updates a file attachment. You can update a file as base64-encoded text or multipart/form data (raw). 
+Files attachments can be updated for the following types of entities:
+* Candidate
+* ClientContact
+* ClientCorporation
+* JobOrder
+* Opportunity
+* Placement
+
+### HTTP Request for base64-encoded file
+
+`{corpToken}/file/{entityType}/{entityId}/{fileId}`
+
+Request body field | Required | Description
+------ | -------- | -----
+externalID | yes | External identifier for the file.
+fileContent | yes | Base64-encoded string of the file content.
+fileType | yes | Always use the value “SAMPLE”.
+name | yes | File name.
+contentType | no | Type/subtype of the file content.
+description | no | Comment that describes the file.
+type | no | Type of file that is attached.
+
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+### HTTP Request for multipart/form (raw) file
+
+`{corpToken}/file/{entityType}/{entityId}/raw`
+
+Parameter | Required | Description
+------ | -------- | -----
+externalID | yes | External identifier for the file.
+fileType | yes | Always use the value “SAMPLE”.
+name | yes | File name.
+contentType | no | Type/subtype of the file content.
+description | no | Comment that describes the file.
+type | no | Type of file that is attached.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ## <span class="tag">DELETE</span> /file
 

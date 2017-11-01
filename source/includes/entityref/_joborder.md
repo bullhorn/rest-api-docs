@@ -55,7 +55,7 @@ The JobOrder entity supports the massUpdate operations.
 | isInterviewRequired | Boolean | Indicates whether applicants are required to Interview for the job. | | |
 | isJobcastPublished | Boolean | Indicates whether the job was published through Jobcast. | | |
 | isOpen | Boolean | Indicates whether the job is open. | | |
-| isPublic | Boolean | Controls whether a job appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1. | | |
+| isPublic | Integer | Controls whether a job appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1. | | |
 | jobBoardList | String | List of job boards on which this job has been posted. | | |
 | markupPercentage | Double | Represents the relationship between clientBillRate and PayRate MP = (CBR - PR) / PR | X | X |
 | notes | To-many association | Ids of Notes associated with this job. | | |

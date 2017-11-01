@@ -17,7 +17,6 @@ includes:
   - entityref/candidate
   - entityref/candidatecertification
   - entityref/candidatereference
-  - entityref/candidatecertification
   - entityref/candidateworkhistory
   - entityref/category
   - entityref/certification
