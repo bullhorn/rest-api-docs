@@ -43,7 +43,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | durationWeeks | Double | Duration of the job in weeks. You can use this property in addition to dateEnd. | X | |
 | employeeType | String (30) | Type of employee. For example, W2, 1099, Employee, Contractor, and so forth. | | |
 | expiringCredentials | Integer | Number of credentials on requirements of this placement that are expiring within the next 30 days or already expired. | | |
-| employmentType | String (30) | Employment Type, initially copied from the associated JobOrder but can be modified on the Placement record. | X | |
+| employmentType | String (30) | Employment type. | X | X |
 | fee | Double | Fee (expressed as a decimal) that the company will receive for this placement. | X | |
 | hoursOfOperation | String (100) | Hours during which the employee will work. | | |
 | hoursPerDay | Double | Number of hours per day that the employee will work. | X | |

@@ -8,7 +8,7 @@ curl https://rest.bullhornstaffing.com/login?access_token=xxx&version=*
 # Example Response
 {
   "BhRestToken" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-  "restUrl" : "https://rest.bullhornstaffing.com/rest-services/[corporation-token]/"
+  "restUrl" : "https://rest.bullhornstaffing.com/rest-services/{corpToken}/"
 }
 ```
 

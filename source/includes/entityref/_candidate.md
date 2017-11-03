@@ -52,7 +52,7 @@ The Candidate entity supports the massUpdate operations.
 | federalExemptions | Integer | Number of federal exemptions the Candidate has indicated on his or her W-2 tax form. | | |
 | federalFilingStatus | String (1) | Candidate's federal tax filing status. | | |
 | firstName | String (50) | Candidate's first name. | X | |
-| gender | String (6) | Candidate's gender. | | |
+| gender | String (1) | Candidate's gender. Options are U (unknown), M (male), F (female) | | |
 | hourlyRate | BigDecimal | Candidate's desired hourly pay rate. | | |
 | hourlyRateLow | BigDecimal | Lowest hourly pay rate the Candidate will accept. | | |
 | i9OnFile | Integer | Indicates whether Candidate's I-9 form has already been filled out and is on file. | | |

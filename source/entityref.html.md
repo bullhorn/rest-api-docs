@@ -6,7 +6,6 @@ page_classes: no-langs
 mystyle: no-langs
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
 
 includes:
   - entityref/activitygoal
@@ -18,7 +17,6 @@ includes:
   - entityref/candidate
   - entityref/candidatecertification
   - entityref/candidatereference
-  - entityref/candidatecertification
   - entityref/candidateworkhistory
   - entityref/category
   - entityref/certification
