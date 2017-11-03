@@ -12,8 +12,8 @@ The Candidate entity supports the massUpdate operations.
 | candidateSource | To-one association | Source of the Candidate. |   X | |
 | category | To-one association | Candidate's primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category. **Note:** This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below). | X | |
 | categories | To-many association | Categories assigned to Candidate. | | |
-| certifications | String | Candidate's certifications. | | |
-| comments | String | Free-text comments on Candidate. | X | |
+| certifications | String (2147483647) | Candidate's certifications. | | |
+| comments | String (2147483647) | Free-text comments on Candidate. | X | |
 | companyName | String (100) | Name of company where the Candidate currently works. | | |
 | companyURL | String (100) | Candidate's personal URL. | | |
 | customDate1 to 3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
@@ -21,7 +21,7 @@ The Candidate entity supports the massUpdate operations.
 | customInt1 to 3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: [http://developer.bullhorn.com/articles/customobjects](http://developer.bullhorn.com/articles/customobjects) | | |
 | customText1 to 20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customTextBlock1 to 5 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customTextBlock1 to 5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | X |
 | dateAvailable | Timestamp | Date on which Candidate will be available to begin work. | | |
 | dateAvailableEnd | Timestamp | Date on which Candidate's availability will end, if applicable. | | |
@@ -32,11 +32,11 @@ The Candidate entity supports the massUpdate operations.
 | dateOfBirth | Timestamp | Candidate's date of birth. | | |
 | dayRate | BigDecimal | Candidate's desired per-day pay rate. | | |
 | dayRateLow | BigDecimal | Lowest per-day rate the Candidate will accept. | | |
-| degreeList | String | List of Candidate's educational degrees. Field on the edit screen, not the field in People Template. | | |
-| description | String | Text field, usually used to contain the Candidate's resume. | | |
-| desiredLocations | String | Locations where Candidate would like to work. | | |
+| degreeList | String (2147483647) | List of Candidate's educational degrees. Field on the edit screen, not the field in People Template. | | |
+| description | String (2147483647) | Text field, usually used to contain the Candidate's resume. | | |
+| desiredLocations | String (2147483647) | Locations where Candidate would like to work. | | |
 | disability | String (1) | Indicates whether Candidate has a disability. Allowable values can be configured using field maps. Default values are U (Unknown), Y (Yes), and N (No). | | |
-| educationDegree | String | Candidate's highest level of education. | | |
+| educationDegree | String (2147483647) | Candidate's highest level of education. | | |
 | email | String (100) | Candidate's email address. | | |
 | email2 | String (100) | Additional email address. | | |
 | email3 | String (100) | Additional email address. | | |
@@ -50,7 +50,7 @@ The Candidate entity supports the massUpdate operations.
 | fax3 | String (20) | Additional fax number. | | |
 | federalAdditionalWitholdingsAmount | BigDecimal | Number of federal withholdings the Candidate has selected on his or her W-2 tax form. | | |
 | federalExemptions | Integer | Number of federal exemptions the Candidate has indicated on his or her W-2 tax form. | | |
-| federalFilingStatus | String | Candidate's federal tax filing status. | | |
+| federalFilingStatus | String (1) | Candidate's federal tax filing status. | | |
 | firstName | String (50) | Candidate's first name. | X | |
 | gender | String (1) | Candidate's gender. Options are U (unknown), M (male), F (female) | | |
 | hourlyRate | BigDecimal | Candidate's desired hourly pay rate. | | |
@@ -64,15 +64,15 @@ The Candidate entity supports the massUpdate operations.
 | linkedPerson | To-one association | If person represented by Candidate is also a ClientContact, this field includes the following ClientContact fields: id, _subtype | | |
 | localAddtionalWitholdingsAmount | BigDecimal | Number of local withholdings the Candidate has selected on his or her W-2 tax form. | | |
 | localExemptions | Integer | Number of local exemptions Candidate has indicated on his or her W-2 tax form. | | |
-| localFilingStatus | String | Candidate's local tax filing status. | | |
-| localTaxCode | String | Candidate's local tax code (if local taxes apply); not required. | | |
+| localFilingStatus | String (1) | Candidate's local tax filing status. | | |
+| localTaxCode | String (40) | Candidate's local tax code (if local taxes apply); not required. | | |
 | massMailOptOut | Boolean | Indicates whether Candidate has chosen not to be included in mass emails through the Bullhorn system. | | |
 | middleName | String (50) | Candidate's middle name. | | |
 | mobile | String (20) | Candidate's mobile (cell) telephone number. | | |
 | name | String | Candidate's full name. If setting firstname or lastname, you must also set this field; it does not populate automatically. | X | |
 | namePrefix | String (5) | Candidate's name prefix, for example Dr., Ms., Mr., and so forth. | | |
 | nameSuffix | String (5) | Candidate's name suffix, for example Jr. | | |
-| nickName | String | Candidate's nickname. | | |
+| nickName | String (50) | Candidate's nickname. | | |
 | numCategories | Integer | Number of Category objects associated with Candidate. | | |
 | numOwners | Integer | Number of CorporateUsers that are listed as owner of Candidate. | | |
 | occupation | String (50) | Candidate's current occupation or job title. | | |
@@ -86,7 +86,7 @@ The Candidate entity supports the massUpdate operations.
 | placements | To-many association | Placements for Candidate. This field is populated when you create Placements where Placement.candidate is this Candidate. | X | |
 | preferredContact | String (15) | Candidate's preferred method of contact (for example, phone, email, and so forth.) | X | |
 | primarySkills | To-many association | Skills that are listed as primary Skills for Candidate. | | |
-| recentClientList | String | List of ClientCorporations for which Candidate has worked. | | |
+| recentClientList | String (2147483647) | List of ClientCorporations for which Candidate has worked. | | |
 | referredBy | String (50) | Name of person who referred Candidate. | | |
 | referredByPerson | To-one association | Person who referred Candidate, if applicable. | | |
 | salary | BigDecimal | Candidate's desired yearly salary. | | |
@@ -95,24 +95,25 @@ The Candidate entity supports the massUpdate operations.
 | secondaryOwners | To-many association | CorporateUsers who are additional owners of Candidate. | | |
 | secondarySkills | Skill | Skills that are listed as secondary skills for Candidate. | | |
 | sendouts | To-many association | Sendouts for Candidate. This field is populated when you create Sendouts where the Sendout.candidate is this Candidate. | | |
-| skillSet | String | Text description of Candidate's skills. | | |
+| skillSet | String (2147483647) | Text description of Candidate's skills. | | |
 | smsOptIn | Boolean | Indicates whether Candidate has granted permission to be sent messages via SMS. | | |
 | source | String (200) | Candidate source: for example, Advertisement, Client Referral, LinkedIn, Monster.com, and so forth. Allowable values can be configured using field maps. | | |
 | specialties | To-many association | Candidate’s specialty skills. This field is populated when you associate a Specialty with this Candidate in a to-many association operation. | | |
 | ssn | String (18) | Candidate's Social Security Number. Check field map for proper format. | | |
 | stateAddtionalWitholdingsAmount | BigDecimal | Number of state withholdings Candidate has selected on his or her W-2 tax form. | | |
 | stateExemptions | Integer | Number of state exemptions Candidate has indicated on W-2 tax form. | | |
-| stateFilingStatus | String | Candidate's state tax filing status. | | |
+| stateFilingStatus | String (1) | Candidate's state tax filing status. | | |
 | status | String (100) | Candidate status with company: for example, New Lead, Active, Offer Pending, Placed, and so forth. Allowable values can be configured using field maps. | X | |
 | submissions | To-many association | JobSubmissions for Candidate. This field is populated when you create JobSubmissions where JobSubmission.candidate is this Candidate. | X | |
 | tasks | To-many association | Tasks associated with Candidate. This field is populated when you create Tasks where Task.candidate is this Candidate. | | |
 | taxID | String (18) | Id that Candidate uses for tax purposes if not SSN. | | |
-| taxState | String | State in which Candidate pays taxes. | | |
+| taxState | String (30) | State in which Candidate pays taxes. | | |
 | timeZoneOffsetEST | Integer | Indicates the number of hours by which the Candidate's time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |
 | travelLimit | Integer | Maximum distance Candidate is willing to travel. | | |
+| travelMethod | String (100) | Method of travel to job. | | |
 | type | String (100) | Candidate type: for example, Active, Passive, and so forth. | | |
 | userDateAdded | Timestamp | Date the record was added to the system. | X | |
-| username | String | Candidate’s username for logging in to Bullhorn. The default value is _[random number] | X | |
+| username | String (100) | Candidate’s username for logging in to Bullhorn. The default value is _[random number] | X | |
 | veteran | String (1) | Indicates whether Candidate is a veteran: Y for yes, N for no, or U for unknown. | | |
 | webResponse | To-many association | Web responses for Candidate. This field is populated when you create JobSubmissions where JobSubmission.candidate is this Candidate and JobSubmission.status is “New Lead”. | | |
 | willRelocate | Boolean | Indicates whether Candidate is willing to relocate for a position. | | |

@@ -6,9 +6,9 @@ Represents a Bullhorn custom action. For more information about custom actions, 
 | **CustomAction field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| actionOrder | Integer | | |
+| actionOrder | Integer | Order of custom action. | | |
 | apiKeyID | Integer | Bullhorn API key id. | | |
-| componentURL | String | URL of CustomAction. | | |
+| componentURL | String (4000) | URL of CustomAction. | | |
 | enabled | Boolean | Indicates whether CustomAction is enabled. | | |
-| entity | String | Entity to which CustomAction applies. | X | |
-| name | String | Name of CustomAction. | | |
+| entity | String (50) | Entity to which CustomAction applies. | X | |
+| name | String (50) | Name of CustomAction. | | |

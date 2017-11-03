@@ -7,5 +7,4 @@ Represents a skill that a candidate may have. You can use the Skill entity in a 
 | id | Integer | Unique identifier for this entity. | X | X |
 | enabled | Boolean | Indicates whether Skill is enabled. | | |
 | categories | To-many association | Categories with which this Skill is associated. | | |
-| description | String | **Not supported in this release.** Text description of this Skill. | X | |
 | name | String (100) | Name of this Skill. | X | X |

@@ -18,7 +18,7 @@ The Task entity supports the massUpdate operations.
 | dateCompleted | Timestamp | The date when the task was completed, if applicable. The default value is current time rounded up to next 15 minutes, or dateBegin if it is provided. | | |
 | dateEnd | Timestamp | The date when the task was scheduled to end. Used for recurring tasks. | X | |
 | dateLastModified | Timestamp | Date when the Task was last modified. | | |
-| description | String | Free-text description of the task. The default value is “”. | X | |
+| description | String (2147483647) | Free-text description of the task. The default value is “”. | X | |
 | isCompleted | Boolean | Indicates whether the task has been completed. | X | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted. | X | |
 | isPrivate | Boolean | Indicates whether this is a private task. A private task is not visible to users other than the user who created the task. | X | |

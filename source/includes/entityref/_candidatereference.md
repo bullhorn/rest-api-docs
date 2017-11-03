@@ -12,8 +12,8 @@ Represents a person who serves as a reference for a Candidate.
 | customDate1 to 5 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customFloat1 to 5 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customInt1 to 5 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customText1 to 5 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customTextBlock1 to 3 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customText1 to 5 | String (500) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customTextBlock1 to 3 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
 | employmentEnd | Timestamp | End date of Candidate's employment with the reference. | | |
 | employmentStart | Timestamp | Start of the period during which the Candidate worked with the reference. | | |

@@ -12,7 +12,7 @@ If you include a commentingPerson value and a personReference value when you cre
 | commentingPerson | To-one association | Person who created the Note. The default value is user who creates the Note. | X | |
 | candidates | To-many association | Candidates associated with this Note. | | |
 | clientContacts | To-many association | ClientContacts associated with this Note. | | |
-| comments | String | Text of this Note. | X | |
+| comments | String (2147483647) | Text of this Note. | X | |
 | corporateUsers | To-many association | Ids of CorporateUsers associated with this Note. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
 | dateLastModified | Timestamp | Date on which the Note was last modified. | | |

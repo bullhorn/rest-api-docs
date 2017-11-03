@@ -6,9 +6,9 @@ This entity represents a certification that a Candidate may have.
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | boardCertification | String (100) | Set by certificationBoardCertificationList private label attribute | | |
-| candidate | To-one association | Candidate associated to CandidateCertification. | X | |
-| certification | To-one association | Certification associated to CandidateCertification. | X | |
-| comments | String | Free-text comments on this record. | | |
+| candidate | To-one association | Candidate linked to CandidateCertification. | X | |
+| certification | To-one association | Certification linked to CandidateCertification. | X | |
+| comments | String (2147483647) | Free-text comments on this record. | | |
 | compact | Integer | yes/no (1/0) Whether compact or not. | | |
 | copyOnFile | Integer | yes/no (1/0) Whether on file. | | |
 | dateCertified | Timestamp | Date candidate obtained certification. | | |

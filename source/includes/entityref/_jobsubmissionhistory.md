@@ -5,7 +5,7 @@ Read-only entity that represents the transaction history of a JobSubmission. The
 | **JobSubmissionHistory field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| comments | String | Value of the JobSubmission comments fields for this transaction. | | |
+| comments | String (2147483647) | Value of the JobSubmission comments fields for this transaction. | | |
 | dateAdded | Timestamp | Date on which the JobSubmission record was created in the Bullhorn system. | X | X |
 | jobSubmission | To-one association | JobSubmission associated with this JobSubmissionHistory. | X | X |
 | sendingUser | To-one association | CorporateUser credited with making the JobSubmission. The default value is user who created the JobSubmission. | X |  X |

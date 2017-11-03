@@ -6,8 +6,8 @@ Represents a housing complex that a ClientCorporation uses when providing housin
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | address | Address | HousingComplex address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/HousingComplex?fields=address(countryID) | | |
-| billingContactID | Integer | The Bullhorn ClientContact id of the billing contact person for this housing complex. |
-| comments | String | Free-text comments about this housing complex. | | |
+| billingContactID | Integer | The Bullhorn ClientContact id of the billing contact person for this housing complex. | | |
+| comments | String (2147483647) | Free-text comments about this housing complex. | | |
 | complexManagerID | Integer | The Bullhorn ClientContact id of the housing complex manager. | | |
 | complexOwnerID | Integer | The Bullhorn ClientContact id of the housing complex owner.  | | |
 | contactName | String (100) | Name of the contact person for the housing complex, generally a facilities manager or superintendent. | | |
@@ -16,7 +16,7 @@ Represents a housing complex that a ClientCorporation uses when providing housin
 | customFloat1 to 3 | Double | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | X | |
 | customInt1 to 3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customText1 to 5 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customTextBlock1 to 5 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customTextBlock1 to 5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | The date on which this record was created in the Bullhorn system. | X | |
 | fax | String (20) | Fax number for the housing complex. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system. | X | |
