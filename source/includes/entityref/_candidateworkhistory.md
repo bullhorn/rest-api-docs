@@ -8,7 +8,7 @@ Represents a single entry in the "Work History" section of a Candidate's resume:
 | bonus | Double | Amount of the bonus paid to Candidate. | | |
 | candidate | To-one association | Candidate with whom CandidateWorkHistory is associated. | X | |
 | clientCorporation | To-one association | ClientCorporation associated with Candidate. | | |
-| comments | String | Free-text comments on CandidateWorkHistory. | | |
+| comments | String (2147483647) | Free-text comments on CandidateWorkHistory. | | |
 | commission | Double | Amount of commission earned by Candidate at this position. | | |
 | companyName | String (100) | Name of the company where the Candidate worked. | | |
 | customDate1 to 5 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |

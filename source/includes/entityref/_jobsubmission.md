@@ -12,7 +12,7 @@ The JobSubmission entity supports the massUpdate operations.
 | appointments | To-many association | Ids of Appointments associated with this JobSubmission. | | |
 | billRate | BigDecimal | Bill rate for this JobSubmission. | | |
 | candidate | To-one association | Candidate submitted for this job. | X | | 
-| comments | String | Free-text comments on this JobSubmission. | | |
+| comments | String (2147483647) | Free-text comments on this JobSubmission. | | |
 | dateAdded | Timestamp | Date on which this JobSubmission record was created in the Bullhorn system. | X | X |
 | dateLastModified | Timestamp | Date on which the JobSubmission was last modified. | | |
 | dateWebResponse | Timestamp | When a new web response is added, set the dateWebResponse field to the current timestamp. When a web response is promoted to a submission, update the dateAdded property to the current timestamp. | X | |

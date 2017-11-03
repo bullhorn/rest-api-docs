@@ -8,7 +8,7 @@ This entity represents a certification that a Candidate may have.
 | boardCertification | String (100) | Set by certificationBoardCertificationList private label attribute | | |
 | candidate | To-one association | Candidate linked to CandidateCertification. | X | |
 | certification | To-one association | Certification linked to CandidateCertification. | X | |
-| comments | String | Free-text comments on this record. | | |
+| comments | String (2147483647) | Free-text comments on this record. | | |
 | compact | Integer | yes/no (1/0) Whether compact or not. | | |
 | copyOnFile | Integer | yes/no (1/0) Whether on file. | | |
 | dateCertified | Timestamp | Date candidate obtained certification. | | |

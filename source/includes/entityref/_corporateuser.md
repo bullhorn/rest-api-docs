@@ -8,7 +8,7 @@ Represents an Internal user at your organization. CorporateUser is read-only. 
 | customDate1 to 3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customFloat1 to 3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customInt1 to 3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment | | |
-| customText1 to 20 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customText1 to 20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateLastComment | Timestamp | Date on which CorporateUser’s last comment was made. | | |
 | departments | To-many association | Ids of departments to which the CorporateUser belongs. | | |
 | address | Address | CorporateUser’s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use th. e following REST call to get the list of countryIDs and labels: /meta/CorporateUser?fields=address(countryID) | X | |
@@ -16,10 +16,10 @@ Represents an Internal user at your organization. CorporateUser is read-only. 
 | email2 | String (100) | Additional email address 2. | | |
 | email3 | String (100) | Additional email address 3. | | |
 | emailNotify | Boolean | Indicates whether the user has chosen to be notified via pop-up in the Bullhorn application when a new email message arrives. | X | |
-| emailSignature | String | Contents of the user's email signature. | X | |
+| emailSignature | String (2147483647) | Contents of the user's email signature. | X | |
 | enabled | Boolean | Indicates whether the user may log in to the Bullhorn application. | X | X |
-| externalEmail | String | User’s external (non-Bullhorn) email address. Used for forwarding | X | |
-| firstName | String | First name of the CorporateUser. | | |
+| externalEmail | String (60) | User’s external (non-Bullhorn) email address. Used for forwarding | X | |
+| firstName | String (50) | First name of the CorporateUser. | | |
 | inboundEmailEnabled | Boolean | Indicates whether the user can receive email through the Bullhorn application. | X | |
 | isDayLightSavingsTime | Boolean | Indicates whether it is daylight savings time. | | |
 | isDeleted | Boolean | Indicates whether CorporateUser is deleted. | | |
@@ -36,7 +36,6 @@ Represents an Internal user at your organization. CorporateUser is read-only. 
 | nickName | String (50) | Nickname of the CorporateUser. | | |
 | occupation | String (50) | Occupation of the CorporateUser. | | |
 | pager | String (20) | Pager number of the CorporateUser. | | |
-| password | String | CorporateUser’s password for logging in to Bullhorn. | X | |
 | phone to phone3 | String (20) | Phone number of the CorporateUser. | | |
 | smsOptIn | Boolean | Indicates whether the CorporateUser has granted permission to be sent messages via SMS. | | |
 | taskAssignments | Task | Tasks that have been assigned to this CorporateUser, including those owned by the user. | | |

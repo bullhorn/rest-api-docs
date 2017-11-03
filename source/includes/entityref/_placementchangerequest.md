@@ -8,23 +8,23 @@ Represents a change request that is submitted for a particular Placement. Placem
 | approvingUser | To-one association | Id of user who approved the change. | | |
 | billingClientContact | To-one association | ClientContact in charge of processing bills for this Placement. | | |
 | billingFrequency | String (20) | Frequency with which the client company will be billed for this position, initially copied from the associated ClientCorporation but can be modified on the Placement. | | |
-| bonusPackage | String | Text description of the bonus package for this Placement. | | |
+| bonusPackage | String (2147483647) | Text description of the bonus package for this Placement. | | |
 | clientBillRate | Double | Hourly rate at which the client company will be billed for work done during regular business hours. | | |
 | clientOvertimeRate | Double | Hourly rate at which the client company will be billed for overtime. | | |
-| comments | String | Free text field for any comments on this record. | | |
+| comments | String (2147483647) | Free text field for any comments on this record. | | |
 | correlatedCustomDate1-3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | correlatedCustomFloat1-3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | correlatedCustomInt1-3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | correlatedCustomText1-10 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| correlatedCustomTextBlock1-3 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| costCenter | String | Text field for Client Cost Center. Drives invoice grouping (placements with the same cost center for the same client will be grouped together). | | |
+| correlatedCustomTextBlock1-3 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| costCenter | String (100) | Text field for Client Cost Center. Drives invoice grouping (placements with the same cost center for the same client will be grouped together). | | |
 | customBillRate1-10 | BigDecimal | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customDate1-3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customFloat1-3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customInt1-3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment | | |
 | customPayRate1-10 | BigDecimal | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customText1-40 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customTextBlock1-5 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customTextBlock1-5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this entity was created. | X | X |
 | dateApproved | Timestamp | Date on which this change was approved. | | |
 | dateBegin | Timestamp | Date on which Candidate will begin work. | X | |
@@ -42,27 +42,27 @@ Represents a change request that is submitted for a particular Placement. Placem
 | hoursPerDay | Double | Number of hours per day that the employee will work. | X | |
 | housingManagerID | Integer | Id of CorporateUser serving as manager of the housing arrangements, if applicable. | | |
 | housingStatus | String (30) | Status of the Placement Housing, if applicable. | | |
-| optionsPackage | String | Text description of the stock options package associated with this Placement. | | |
+| optionsPackage | String (2147483647) | Text description of the stock options package associated with this Placement. | | |
 | otExemption | Integer | Indicates whether the employee is eligible for hours over 40 to automatically be classified as Overtime. Boolean 0 = Eligible, 1 = Exempt. | | |
 | otherHourlyFee | Double | Additional hourly fees, if any. | | |
-| otherHourlyFeeComments | String | Free text field for comments on additional hourly fees. | | |
+| otherHourlyFeeComments | String (2147483647) | Free text field for comments on additional hourly fees. | | |
 | overtimeRate | Double | Hourly rate at which the employee will be paid for overtime work. | | |
 | payRate | BigDecimal | Rate at which the employee will be paid during regular business hours. This may or may not be used depending on the job type. | X | |
 | placement | To-one association | Placement to which this change request applies. | X | |
 | recruitingManagerPercentGrossMargin | Double | Percentage of total gross margin that the recruiting manager will receive. | X | |
 | referralFee | BigDecimal | Referral fee associated with this Placement, if any. Only used with external Candidate source. | | |
-| referralFeeType | String | Configurable list of fee types associated with referralFee. Only used with external Candidate source. | | |
-| reportTo | String | Name/title of the person to whom this position will report. | | |
+| referralFeeType | String (20) | Configurable list of fee types associated with referralFee. Only used with external Candidate source. | | |
+| reportTo | String (100) | Name/title of the person to whom this position will report. | | |
 | requestCustomDate1-3 | Timestamp | Configurable date fields. | | |
 | requestCustomFloat1-3 | Double | Configurable numeric fields. | | |
 | requestCustomInt1-3 | Integer | Configurable numeric fields. | | |
 | requestCustomText1-20 | String (30) | Configurable text fields. | | |
-| requestCustomTextBlock1-5 | String | Configurable text fields. | | |
+| requestCustomTextBlock1-5 | String (2147483647) | Configurable text fields. | | |
 | requestingUser | To-one association | CorporateUser who initiated this change request. | X | |
 | requestStatus | String (40) | Status of change request. | X | |
 | requestType | String (50) | Configurable. Type of request. | X | |
 | salary | BigDecimal | Salary that employee will receive. This may be either a yearly or hourly salary. See salaryUnit. | X | |
-| salaryUnit | String | Indicates whether the salary is per year or per hour. | X | |
+| salaryUnit | String (20) | Indicates whether the salary is per year or per hour. | X | |
 | salesManager-PercentGrossMargin | Double | Percentage of the total gross margin that the sales manager will receive. | X | |
 | statementClientContact | To-one association | ClientContact who should receive statements associated with this Placement. | | |
 | status | String (100) | Status of Placement: for example, Approved, Completed, Terminated, and so forth. | X | |

@@ -6,7 +6,7 @@ Read-only entity that represents the transaction history of an {Entity}. The GET
 | **{Entity}EditHistory field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | id of this entity. | X | X |
-| auditTrail | String | An HTML snippet representing the field changes for the given ID. Not always generated. | X | | 
+| auditTrail | String (2147483647) | An HTML snippet representing the field changes for the given ID. Not always generated. | X | | 
 | dateAdded | Timestamp | Date on which this {Entity}EditHistory record was created in the Bullhorn system. | X | X |
 | fieldChanges | To-many association | The {Entity}EditHistoryFieldChange entities associated with this {Entity}EditHistory. | X | | 
 | migrateGUID | String (36) | Unused. |  X | | 

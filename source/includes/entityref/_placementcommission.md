@@ -5,7 +5,7 @@ Represents a commission payment that is paid upon successful placement of a Cand
 | **PlacementCommission field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X |
-| comments | String | Free-text comments on this commission. |
+| comments | String (2147483647) | Free-text comments on this commission. |
 | commissionPercentage | Double | The commission amount, expressed as a percentage: for example, 0.05 = 5%. Saved as decimal. | X |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X |
 | dateLastModified | Timestamp | Date on which the PlacementCommission was last modified. |

@@ -9,5 +9,5 @@ Read-only entity that represents a field change associated with an [Entity]EditH
 | columnName | String (100) | Database column name for the value that was changed. | X | X |
 | display | String (100) | FieldMap label for the columnName. Value is deduced at the time of [Entity]EditHistoryFieldChange entity creation and does not update if the columnName FieldMap is subsequently renamed/relabeled. | X | X | 
 | editHistory | To-one association | {Entity}EditHistory entity that owns this [Entity]EditHistoryFieldChange entity. | X | X |
-| newValue | String | The value of columnName before update. |  X | | 
-| oldValue | String | The value of columnName after update. |  X | |
+| newValue | String (2147483647) | The value of columnName before update. |  X | | 
+| oldValue | String (2147483647) | The value of columnName after update. |  X | |

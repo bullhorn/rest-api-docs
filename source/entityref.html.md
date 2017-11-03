@@ -32,6 +32,8 @@ includes:
   - entityref/country
   - entityref/customaction
   - entityref/department
+  - entityref/entityedithistory
+  - entityref/entityedithistoryfieldchange
   - entityref/entityfileattachment
   - entityref/housingcomplex
   - entityref/jobboardpost

@@ -6,8 +6,8 @@ Represents a view into a JobOrder entity with information typically used in publ
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | address | Address | Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record. |  X | |
-| benefits | String | Text description of benefits offered with this job. |  X | |
-| bonusPackage | String | Text description of the bonus package offered with this job. |  X | |
+| benefits | String (2147483647) | Text description of benefits offered with this job. |  X | |
+| bonusPackage | String (2147483647) | Text description of the bonus package offered with this job. |  X | |
 | categories | To-many association | IDs of Categories associated with this job. |  X | |
 | dateAdded | Timestamp | Date when this record was created in the Bullhorn system. | X | |
 | dateEnd | Timestamp | Date when the job will end (if applicable). |  X | |

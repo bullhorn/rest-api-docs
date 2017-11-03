@@ -9,4 +9,4 @@ If you include a commentingPerson value and a personReference value when you cre
 | id | Integer | Unique identifier for this entity. | X | |
 | note | To-one association | Note associated with this NoteEntity. | | |
 | targetEntityID | Integer | Id of target entity to which the associated Note applies. | X | |
-| targetEntityName | String | Name of target entity type. For Candidates ClientContacts, and CorporateUsers, specify “User” as the targetEntityName value. For JobOrders and Placements, specify the actual entity name as the targetEntityName value. | X | |
+| targetEntityName | String (50) | Name of target entity type. For Candidates ClientContacts, and CorporateUsers, specify “User” as the targetEntityName value. For JobOrders and Placements, specify the actual entity name as the targetEntityName value. | X | |

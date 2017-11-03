@@ -6,7 +6,7 @@ Represents an appointment on a Bullhorn user's calendar. A separate Appointment 
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity.  | X | |
 | attendees | To-many association | Ids of the AppointmentAttendees for this Appointment. | | |
-| appointmentUUID | String | A secondary unique identifier for this entity. Used to identify the record when it is synchronized to external systems. Format is 8-4-4-16 where all characters are A-Z or 0-9. | X | |
+| appointmentUUID | String (300) | A secondary unique identifier for this entity. Used to identify the record when it is synchronized to external systems. Format is 8-4-4-16 where all characters are A-Z or 0-9. | X | |
 | candidateReference | To-one association | The Candidate with whom this Appointment is associated, if any. | | |
 | clientContactReference | To-one association | The ClientContact with whom this Appointment is associated, if any. | | |
 | childAppointments | To-many association | Child Appointments associated with this Appointment. The ownerID of any child Appointment represents a user who has been invited to this Appointment. | | |
@@ -15,13 +15,14 @@ Represents an appointment on a Bullhorn user's calendar. A separate Appointment 
 | dateBegin | Timestamp | The date on which the appointment began/will begin.<br>The default value is current time rounded up to next half hour, or 15 minutes before dateEnd if it is provided. | X | |
 | dateEnd | Timestamp | The date on which the appointment ended/will end.<br>The default value is 15 minutes after dateBegin. | X | |
 | dateLastModified | Timestamp | The date on which this record was last modified. | | |
-| description | String | Free-text description of the appointment.<br>The default value is “”. | X | |
+| description | String (2147483647) | Free-text description of the appointment.<br>The default value is “”. | X | |
 | isAllDay | Boolean | Indicates whether the appointment will last all day. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system. | X | |
 | isPrivate | Boolean | Indicates whether the appointment is viewable by others. If set to private, only the appointment owner and attendees may view the appointment details. | X | |
 | jobOrder | To-one association | JobOrder associated with the appointment, if any.| | |
 | lead | To-one association | Lead, if any, associated with the appointment. Included Lead field is id. | | |
 | location | String (100) | Indicates where the appointment will take place (conference room name, and so forth).<br>The default value is “”. | X | |
+| migrateGUID | String (36) | Unused. |  X | |
 | notificationMinutes | Integer | Indicates when the Bullhorn application should remind the user of the appointment. May be zero for no reminder. | X | |
 | opportunity | To-one association | Opportunity, if any, associated with the appointment. Included Opportunity field is id. | | |
 | owner | To-one association | Bullhorn user (Person) who owns the appointment. The default value is user who creates the Appointment. | | X | 

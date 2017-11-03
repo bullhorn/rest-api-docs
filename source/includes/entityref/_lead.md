@@ -8,13 +8,13 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | address | Address | Lead's address. This is an address object containing Street Address, City, State, Zip, and CountryID. | | |
 | assignedTo | To-many association | CorporateUser(s) this Lead is assigned to. | | |
 | businessSectors | To-many association | IDs of BusinessSectors in which the Lead operates. | | |
-| campaignSource | String | Campaign source of the Lead. | | |
+| campaignSource | String (15) | Campaign source of the Lead. | | |
 | candidates | To-many association | Candidates associated with this Lead. | | |
 | category | To-one association | Lead's primary Category. | X | |
 | categories | To-many association | IDs of the Categories associated with the Lead. Note that the categoryId property is used to store the Lead's primary Category, while this association hold that Category and any other Categories to which the Lead belongs. | | |
 | clientContacts | To-many association | ClientContacts associated with this Lead. | | |
 | clientCorporation | To-one association | ClientCorporation associated with this Lead. | | |
-| comments | String | Free-text comments on this Lead. | | |
+| comments | String (2147483647) | Free-text comments on this Lead. | | |
 | companyName | String(100) | Name of the Lead's company (can be used if there is no ClientCorporation entity for this Lead's company). | | |
 | companyURL | String(100) | | | |
 | conversionSource | String(200) | Source of the Lead's conversion. For example, Cold Call, Monster, and so forth. | | |
@@ -22,12 +22,12 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | customFloat1-3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customInt1-3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customText1-20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customTextBlock1-5 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customTextBlock1-5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
 | dateLastComment | Timestamp | Date on which the last comment referencing this Lead was made. | | |
 | dateLastModified | Timestamp | Date on which the Lead was last modified. | | |
 | dateLastVisited | Timestamp | Date on which the Lead was last visited. | | |
-| description | String | Description of the Lead. | | |
+| description | String (2147483647) | Description of the Lead. | | |
 | distributionLists | To-many association | IDs of DistributionLists associated with this Lead. | | |
 | division | String (40) | Department that the Lead is associated with. | | |
 | email | String (100) | Lead's primary email address. | X | |
@@ -45,7 +45,7 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | massMailOptOut | Boolean | Indicates whether the Lead has chosen not to be included in mass emails through the Bullhorn system | X | |
 | middleName | String (50) | Lead's middle name. | | |
 | mobile | String (20) | Lead's mobile (cellular) telephone number. | | |
-| name | String | Lead's full name. Should be a combination of the firstName and lastName fields separated by a space. <br>**Notes:** If you create a Lead with no value in the name field, users have no way to select that Lead in the Bullhorn staffing application. If you create or modify a Lead name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the Lead in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields. | | |
+| name | String (100) | Lead's full name. Should be a combination of the firstName and lastName fields separated by a space. <br>**Notes:** If you create a Lead with no value in the name field, users have no way to select that Lead in the Bullhorn staffing application. If you create or modify a Lead name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the Lead in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields. | | |
 | namePrefix | String (5) | Lead's name prefix. For example Dr., Ms, Mr., and so forth. | | |
 | nameSuffix | String (5) | Lead's name suffix. For example Jr. | | |
 | nickName | String(50) | Lead's nickname. | | |
@@ -67,7 +67,7 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | salary | BigDecimal | The desired salary of the Lead. | | |
 | salaryLow | BigDecimal | The lowest yearly salary the Lead would accept. | | |
 | secondarySkills | To-many association | Skills that are listed as secondary skills for this Lead | | |
-| skillSet | String | Text description of the Lead's skills. | | |
+| skillSet | String (2147483647) | Text description of the Lead's skills. | | |
 | smsOptIn | Boolean | Indicates whether the Lead has granted permission to be sent messages via SMS. | | |
 | specialties | To-many association | IDs of the Specialties are associated with this Lead. | | |
 | status | String (100) | Status of the lead; for example, New Lead, Active, Prospect, and so forth. Possible values can be configured using field maps. | X | |
