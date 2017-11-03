@@ -909,7 +909,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <tr>
 <td>meta</td>
 <td>no</td>
-<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see <a href="#meta">Meta</a>.</td>
 </tr>
 <tr>
 <td>showEditable</td>
@@ -975,7 +975,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <tr>
 <td>meta</td>
 <td>no</td>
-<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see <a href="#meta">Meta</a>.</td>
 </tr>
 <tr>
 <td>showEditable</td>
@@ -1041,7 +1041,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <tr>
 <td>meta</td>
 <td>no</td>
-<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see .</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see <a href="#meta">Meta</a>.</td>
 </tr>
 <tr>
 <td>showEditable</td>
@@ -1972,7 +1972,152 @@ Files can be attached to the following types of entities:
 <tr>
 <td>type</td>
 <td>no</td>
-<td>Type of file that is attached.BhRestToken</td>
+<td>Type of file that is attached.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-file"><span class="tag">POST</span> /file</h2>
+<pre class="highlight shell"><code>
+<span class="c"># Base64-encoded file request</span>
+
+curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
+        "fileType" : "SAMPLE", "name" : "TestResumeFile.txt", "contentType" : "text/plain",\
+        "description" : "Resume file for candidate.", "type" : "cover"}'</span> <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/1234
+
+<span class="c"># Multipart/form (raw) file request</span>
+
+curl -X POST <span class="se">\</span>
+    -F <span class="s2">"file=@samplefile.txt"</span> <span class="se">\</span>
+    https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/1234/raw?filetype<span class="o">=</span>SAMPLE&amp;externalID<span class="o">=</span>portfolio
+
+<span class="c"># Example Response</span>
+No response body; returns 200 on successful update.
+</code></pre>
+
+<p>Updates a file attachment. You can update a file as base64-encoded text or multipart/form data (raw). 
+Files attachments can be updated for the following types of entities:
+* Candidate
+* ClientContact
+* ClientCorporation
+* JobOrder
+* Opportunity
+* Placement</p>
+
+<h3 id="http-request-for-base64-encoded-file">HTTP Request for base64-encoded file</h3>
+
+<p><code class="prettyprint">{corpToken}/file/{entityType}/{entityId}/{fileId}</code></p>
+
+<table><thead>
+<tr>
+<th>Request body field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalID</td>
+<td>yes</td>
+<td>External identifier for the file.</td>
+</tr>
+<tr>
+<td>fileContent</td>
+<td>yes</td>
+<td>Base64-encoded string of the file content.</td>
+</tr>
+<tr>
+<td>fileType</td>
+<td>yes</td>
+<td>Always use the value “SAMPLE”.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>File name.</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>no</td>
+<td>Type/subtype of the file content.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>no</td>
+<td>Comment that describes the file.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>no</td>
+<td>Type of file that is attached.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-request-for-multipart-form-raw-file">HTTP Request for multipart/form (raw) file</h3>
+
+<p><code class="prettyprint">{corpToken}/file/{entityType}/{entityId}/raw</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalID</td>
+<td>yes</td>
+<td>External identifier for the file.</td>
+</tr>
+<tr>
+<td>fileType</td>
+<td>yes</td>
+<td>Always use the value “SAMPLE”.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>File name.</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>no</td>
+<td>Type/subtype of the file content.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>no</td>
+<td>Comment that describes the file.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>no</td>
+<td>Type of file that is attached.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
 

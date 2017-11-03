@@ -136,7 +136,7 @@
 </tr>
 <tr>
 <td>user</td>
-<td>To-many association</td>
+<td>To-one association</td>
 <td>CorporateUser for whom this activity goal was created.</td>
 <td>X</td>
 <td>X</td>
@@ -150,21 +150,21 @@
 </tr>
 <tr>
 <td>activityType</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Type of goal for record.</td>
 <td>X</td>
 <td>X</td>
 </tr>
 <tr>
 <td>startDate</td>
-<td>String</td>
+<td>Date</td>
 <td>The first day of the time period in which this activity goal is in effect, in the format: &ldquo;YYYY-MM-DD&rdquo;.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>endDate</td>
-<td>String</td>
+<td>Date</td>
 <td>The last day of time period in which this activity goal is in effect, in the format: &ldquo;YYYY-MM-DD&rdquo;.</td>
 <td>X</td>
 <td></td>
@@ -185,7 +185,7 @@
 </tr>
 <tr>
 <td>periodName</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Time period for activity goal. (Weekly/Monthly).</td>
 <td>X</td>
 <td>X</td>
@@ -221,7 +221,7 @@
 </tr>
 <tr>
 <td>codeIdentifier</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Field that determines if a goal is an ActivityGoal or RecordBasedGoal.</td>
 <td>X</td>
 <td></td>
@@ -235,7 +235,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td>String</td>
+<td>String (2000)</td>
 <td>Goal description.</td>
 <td>X</td>
 <td></td>
@@ -263,7 +263,7 @@
 </tr>
 <tr>
 <td>name</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Name of goal.</td>
 <td>X </td>
 <td></td>
@@ -313,7 +313,7 @@
 </tr>
 <tr>
 <td>periodName</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Time period for activity goal. (Weekly/Monthly).</td>
 <td>X</td>
 <td></td>
@@ -356,7 +356,7 @@
 </tr>
 <tr>
 <td>appointmentUUID</td>
-<td>String</td>
+<td>String (300)</td>
 <td>A secondary unique identifier for this entity. Used to identify the record when it is synchronized to external systems. Format is 8-4-4-16 where all characters are A-Z or 0-9.</td>
 <td>X</td>
 <td></td>
@@ -419,7 +419,7 @@
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text description of the appointment.<br>The default value is “”.</td>
 <td>X</td>
 <td></td>
@@ -464,6 +464,13 @@
 <td>String (100)</td>
 <td>Indicates where the appointment will take place (conference room name, and so forth).<br>The default value is “”.</td>
 <td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>migrateGUID</td>
+<td>String (36)</td>
+<td>Unused.</td>
+<td> X</td>
 <td></td>
 </tr>
 <tr>
@@ -586,6 +593,13 @@
 <td>X</td>
 <td></td>
 </tr>
+<tr>
+<td>migrateGUID</td>
+<td>String (36)</td>
+<td>Unused.</td>
+<td> X</td>
+<td></td>
+</tr>
 </tbody></table>
 
           <h1 id="businesssector">BusinessSector</h1>
@@ -683,14 +697,14 @@
 </tr>
 <tr>
 <td>certifications</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Candidate&rsquo;s certifications.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text comments on Candidate.</td>
 <td>X</td>
 <td></td>
@@ -746,7 +760,7 @@
 </tr>
 <tr>
 <td>customTextBlock1 to 5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -823,21 +837,21 @@
 </tr>
 <tr>
 <td>degreeList</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>List of Candidate&rsquo;s educational degrees. Field on the edit screen, not the field in People Template.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text field, usually used to contain the Candidate&rsquo;s resume.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>desiredLocations</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Locations where Candidate would like to work.</td>
 <td></td>
 <td></td>
@@ -851,7 +865,7 @@
 </tr>
 <tr>
 <td>educationDegree</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Candidate&rsquo;s highest level of education.</td>
 <td></td>
 <td></td>
@@ -949,7 +963,7 @@
 </tr>
 <tr>
 <td>federalFilingStatus</td>
-<td>String</td>
+<td>String (1)</td>
 <td>Candidate&rsquo;s federal tax filing status.</td>
 <td></td>
 <td></td>
@@ -1047,14 +1061,14 @@
 </tr>
 <tr>
 <td>localFilingStatus</td>
-<td>String</td>
+<td>String (1)</td>
 <td>Candidate&rsquo;s local tax filing status.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>localTaxCode</td>
-<td>String</td>
+<td>String (40)</td>
 <td>Candidate&rsquo;s local tax code (if local taxes apply); not required.</td>
 <td></td>
 <td></td>
@@ -1103,7 +1117,7 @@
 </tr>
 <tr>
 <td>nickName</td>
-<td>String</td>
+<td>String (50)</td>
 <td>Candidate&rsquo;s nickname.</td>
 <td></td>
 <td></td>
@@ -1201,7 +1215,7 @@
 </tr>
 <tr>
 <td>recentClientList</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>List of ClientCorporations for which Candidate has worked.</td>
 <td></td>
 <td></td>
@@ -1264,7 +1278,7 @@
 </tr>
 <tr>
 <td>skillSet</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of Candidate&rsquo;s skills.</td>
 <td></td>
 <td></td>
@@ -1313,7 +1327,7 @@
 </tr>
 <tr>
 <td>stateFilingStatus</td>
-<td>String</td>
+<td>String (1)</td>
 <td>Candidate&rsquo;s state tax filing status.</td>
 <td></td>
 <td></td>
@@ -1348,7 +1362,7 @@
 </tr>
 <tr>
 <td>taxState</td>
-<td>String</td>
+<td>String (30)</td>
 <td>State in which Candidate pays taxes.</td>
 <td></td>
 <td></td>
@@ -1368,6 +1382,13 @@
 <td></td>
 </tr>
 <tr>
+<td>travelMethod</td>
+<td>String (100)</td>
+<td>Method of travel to job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>type</td>
 <td>String (100)</td>
 <td>Candidate type: for example, Active, Passive, and so forth.</td>
@@ -1383,7 +1404,7 @@
 </tr>
 <tr>
 <td>username</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Candidate’s username for logging in to Bullhorn. The default value is _[random number]</td>
 <td>X</td>
 <td></td>
@@ -1474,7 +1495,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text comments on this record.</td>
 <td></td>
 <td></td>
@@ -1512,6 +1533,13 @@
 <td>Timestamp</td>
 <td>Date the CandidateCertification was last updated.</td>
 <td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>fileAttachments</td>
+<td>Many-to-many association</td>
+<td>CandidateFileAttachements associated to entity. Association created by adding the ID(s) of the fileAttachment(s) to this field in an association PUT call of the form: {corpToken}/entity/CandidateCertification/{entity-id}/fileAttachments/{entity-id},*}.</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -1643,14 +1671,14 @@
 </tr>
 <tr>
 <td>customText1 to 5</td>
-<td>String</td>
+<td>String (500)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>customTextBlock1 to 3</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -1748,147 +1776,6 @@
 </tr>
 </tbody></table>
 
-          <h1 id="candidatecertification">CandidateCertification</h1>
-
-<p>This entity represents a certification that a Candidate may have.</p>
-
-<table><thead>
-<tr>
-<th><strong>CandidateCertification field</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Not null</strong></th>
-<th><strong>Read-only</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Integer</td>
-<td>Unique identifier for this entity.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr>
-<td>boardCertification</td>
-<td>String (100)</td>
-<td>Set by certificationBoardCertificationList private label attribute</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>candidate</td>
-<td>To-one association</td>
-<td>Candidate linked to CandidateCertification.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>certification</td>
-<td>To-one association</td>
-<td>Certification linked to CandidateCertification.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>comments</td>
-<td>String</td>
-<td>Free-text comments on this record.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>compact</td>
-<td>Integer</td>
-<td>yes/no (1/0) Whether compact or not.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>copyOnFile</td>
-<td>Integer</td>
-<td>yes/no (1/0) Whether on file.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>dateCertified</td>
-<td>Timestamp</td>
-<td>Date candidate obtained certification.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>dateExpiration</td>
-<td>Timestamp</td>
-<td>Date certification expires.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>dateLastModified</td>
-<td>Timestamp</td>
-<td>Date the CandidateCertification was last updated.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>issuedBy</td>
-<td>String (100)</td>
-<td>Entity that issued certification to candidate.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>licenseNumber</td>
-<td>String (100)</td>
-<td>License number of the certification.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>licenseType</td>
-<td>String (30)</td>
-<td>License Type of the certification.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>location</td>
-<td>String (100)</td>
-<td>Location where certification is valid.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>modifyingUser</td>
-<td>To-one association</td>
-<td>Creator of CandidateCertification.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>name</td>
-<td>String (100)</td>
-<td>Name of CandidateCertification.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>results</td>
-<td>String (255)</td>
-<td>Free text of certification results.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>status</td>
-<td>String (30)</td>
-<td>Status of CandidateCertification.</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-
           <h1 id="candidateworkhistory">CandidateWorkHistory</h1>
 
 <p>Represents a single entry in the &ldquo;Work History&rdquo; section of a Candidate&rsquo;s resume: that is, a job the Candidate has had. For each current or former position the Candidate has held, there is a unique CandidateWorkHistory instance associated with that Candidate. Each CandidateWorkHistory instance corresponds to a line item on the &ldquo;Work History&rdquo; tab of a Candidate record in the Bullhorn application.</p>
@@ -1932,7 +1819,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text comments on CandidateWorkHistory.</td>
 <td></td>
 <td></td>
@@ -2172,7 +2059,7 @@
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text description of this certification.</td>
 <td></td>
 <td></td>
@@ -2238,7 +2125,7 @@
 </tr>
 <tr>
 <td>certifications</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Contact&rsquo;s certifications.</td>
 <td></td>
 <td></td>
@@ -2252,7 +2139,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text comments on this Contact.</td>
 <td></td>
 <td></td>
@@ -2294,7 +2181,7 @@
 </tr>
 <tr>
 <td>customTextBlock1-5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -2322,28 +2209,28 @@
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String  (2147483647)</td>
 <td>Large text field for additional information about the contact.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>desiredCategories</td>
-<td>String</td>
+<td>String (255)</td>
 <td>Categories that the ClientContact wants Candidates to belong to.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>desiredSkills</td>
-<td>String</td>
+<td>String (255)</td>
 <td>Skills that the ClientContact wants his or her Candidates to have.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>desiredSpecialties</td>
-<td>String</td>
+<td>String (255)</td>
 <td>Specialties that the ClientContact wants his or her Candidates to have.</td>
 <td></td>
 <td></td>
@@ -2469,7 +2356,7 @@
 </tr>
 <tr>
 <td>name</td>
-<td>String</td>
+<td>String (100)</td>
 <td>ClientContact&rsquo;s full name. Should be a combination of the firstName and lastName fields separated by a space. <strong>Notes:</strong> If you create a ClientContact with no value in the name field, users will have no way to select that ClientContact in the Bullhorn staffing application. If you create or modify a ClientContact name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the ClientContact in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields.</td>
 <td></td>
 <td></td>
@@ -2637,7 +2524,7 @@
 </tr>
 <tr>
 <td>username</td>
-<td>String</td>
+<td>String (100)</td>
 <td>ClientContact&rsquo;s username for logging in to Bullhorn. The default value is _[random number]</td>
 <td>X </td>
 <td></td>
@@ -2710,7 +2597,7 @@
 </tr>
 <tr>
 <td>businessSectorList</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Comma-separated list of BusinessSectors in which the ClientCorporation operates. See field map data for a list of possible values.</td>
 <td></td>
 <td></td>
@@ -2738,7 +2625,7 @@
 </tr>
 <tr>
 <td>companyDescription</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the company.</td>
 <td></td>
 <td></td>
@@ -2752,14 +2639,14 @@
 </tr>
 <tr>
 <td>competitors</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Company&rsquo;s major competitors.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>culture</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the corporate culture.</td>
 <td></td>
 <td></td>
@@ -2801,7 +2688,7 @@
 </tr>
 <tr>
 <td>customTextBlock1-5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -2830,14 +2717,14 @@
 <tr>
 <td>department</td>
 <td>To-one association</td>
-<td>Department in the ClientCorporation that has primary responsibility for this client (for example, a regional office). Default value is primary department of user who adds the</td>
-<td>externalID</td>
-<td>String (30)</td>
+<td>Department in the ClientCorporation that has primary responsibility for this client (for example, a regional office). Default value is primary department of user who adds the ClientCorporation.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td>record.</td>
-<td></td>
-<td></td>
+<td>externalID</td>
+<td>String (30)</td>
+<td>External identifier for the record, used for migrations and back-office Integration.</td>
 <td></td>
 <td></td>
 </tr>
@@ -2850,21 +2737,21 @@
 </tr>
 <tr>
 <td>funding</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Current funding status of the ClientCorporation.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>industryList</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Comma-separated list of industries in which the company operates. See field map data for the list used by a particular company.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>invoiceFormat</td>
-<td>String</td>
+<td>String (50)</td>
 <td>Configurable field to be passed to a back-office system to indicate how to group invoices for this company (Per Placement, Per Billing Contact, and so forth.)</td>
 <td></td>
 <td></td>
@@ -2899,7 +2786,7 @@
 </tr>
 <tr>
 <td>notes</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free text field for entering any comments or notes about the company.</td>
 <td></td>
 <td></td>
@@ -2955,7 +2842,7 @@
 </tr>
 <tr>
 <td>revenue</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Estimated annual revenue in millions for the company.</td>
 <td></td>
 <td></td>
@@ -3162,7 +3049,7 @@
 </tr>
 <tr>
 <td>customText1 to 20</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -3218,7 +3105,7 @@
 </tr>
 <tr>
 <td>emailSignature</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Contents of the user&rsquo;s email signature.</td>
 <td>X</td>
 <td></td>
@@ -3232,14 +3119,14 @@
 </tr>
 <tr>
 <td>externalEmail</td>
-<td>String</td>
+<td>String (60)</td>
 <td>User’s external (non-Bullhorn) email address. Used for forwarding</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>firstName</td>
-<td>String</td>
+<td>String (50)</td>
 <td>First name of the CorporateUser.</td>
 <td></td>
 <td></td>
@@ -3357,13 +3244,6 @@
 <td></td>
 </tr>
 <tr>
-<td>password</td>
-<td>String</td>
-<td>CorporateUser’s password for logging in to Bullhorn.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
 <td>phone to phone3</td>
 <td>String (20)</td>
 <td>Phone number of the CorporateUser.</td>
@@ -3472,14 +3352,14 @@
 </tr>
 <tr>
 <td>code</td>
-<td>String</td>
+<td>String (4)</td>
 <td>Code associated with this Country.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>name</td>
-<td>String</td>
+<td>String (64)</td>
 <td>Name of the Country.</td>
 <td>X</td>
 <td></td>
@@ -3517,7 +3397,7 @@
 <tr>
 <td>actionOrder</td>
 <td>Integer</td>
-<td></td>
+<td>Order of custom action.</td>
 <td></td>
 <td></td>
 </tr>
@@ -3530,7 +3410,7 @@
 </tr>
 <tr>
 <td>componentURL</td>
-<td>String</td>
+<td>String (4000)</td>
 <td>URL of CustomAction.</td>
 <td></td>
 <td></td>
@@ -3544,14 +3424,14 @@
 </tr>
 <tr>
 <td>entity</td>
-<td>String</td>
+<td>String (50)</td>
 <td>Entity to which CustomAction applies.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>name</td>
-<td>String</td>
+<td>String (50)</td>
 <td>Name of CustomAction.</td>
 <td></td>
 <td></td>
@@ -3594,9 +3474,139 @@
 </tr>
 <tr>
 <td>name</td>
-<td>String(100)</td>
+<td>String (100)</td>
 <td>Department name.</td>
 <td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="entity-edithistory">{Entity}EditHistory</h1>
+
+<p>Read-only entity that represents the transaction history of an {Entity}. The GET /query{Entity}EditHistory call returns a list of {Entity}EditHistory entities for one or more {Entity} entities. The GET /entity{Entity}EditHistory/{comma-separated entityIds} call returns one or more {Entity}EditHistory entities, each of which represents a set of {Entity} field changes.
+{Entity} can be any one of the following: Appointment, CandidateCertification, ClientCorporation, JobOrder, JobSubmission, Opportunity, Placement, PlacementCertification, PlacementChangeRequest, PlacementCommission, Task, User.</p>
+
+<table><thead>
+<tr>
+<th><strong>{Entity}EditHistory field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>id of this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>auditTrail</td>
+<td>String (2147483647)</td>
+<td>An HTML snippet representing the field changes for the given ID. Not always generated.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this {Entity}EditHistory record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>fieldChanges</td>
+<td>To-many association</td>
+<td>The {Entity}EditHistoryFieldChange entities associated with this {Entity}EditHistory.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>migrateGUID</td>
+<td>String (36)</td>
+<td>Unused.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>modifyingPerson</td>
+<td>To-one association</td>
+<td>User credited with making the [Entity] change(s).</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>targetEntity</td>
+<td>To-one association</td>
+<td>The [Entity] to which this {Entity}EditHistory applies.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>transactionID</td>
+<td>String (36)</td>
+<td>Unique transaction id for this {Entity}EditHistory.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="entity-edithistoryfieldchange">{Entity}EditHistoryFieldChange</h1>
+
+<p>Read-only entity that represents a field change associated with an [Entity]EditHistory entity. The GET /query{Entity}EditHistoryFieldChange call returns a list of [Entity]EditHistoryFieldChange entities for one or more {Entity}EditHistory entities. The GET /entity{Entity}EditHistoryFieldChange/{comma-separated entityIds} call returns one or more {Entity}EditHistoryFieldChange entities.
+{Entity} can be any one of the following: Appointment, CandidateCertification, ClientCorporation, JobOrder, JobSubmission, Opportunity, Placement, PlacementCertification, PlacementChangeRequest, PlacementCommission, Task, User.</p>
+
+<table><thead>
+<tr>
+<th><strong>{Entity}EditHistoryFieldChange field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>id of this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>columnName</td>
+<td>String (100)</td>
+<td>Database column name for the value that was changed.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>display</td>
+<td>String (100)</td>
+<td>FieldMap label for the columnName. Value is deduced at the time of [Entity]EditHistoryFieldChange entity creation and does not update if the columnName FieldMap is subsequently renamed/relabeled.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>editHistory</td>
+<td>To-one association</td>
+<td>{Entity}EditHistory entity that owns this [Entity]EditHistoryFieldChange entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>newValue</td>
+<td>String (2147483647)</td>
+<td>The value of columnName before update.</td>
+<td> X</td>
+<td></td>
+</tr>
+<tr>
+<td>oldValue</td>
+<td>String (2147483647)</td>
+<td>The value of columnName after update.</td>
+<td> X</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -3623,14 +3633,14 @@
 </tr>
 <tr>
 <td>contentSubType</td>
-<td>String</td>
+<td>String (64)</td>
 <td>Content subtype for the file.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>contentType</td>
-<td>String</td>
+<td>String (64)</td>
 <td>Content type for the file.</td>
 <td>X</td>
 <td></td>
@@ -3644,35 +3654,35 @@
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Description for the file.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>directory</td>
-<td>String</td>
+<td>String (150)</td>
 <td>Location of the file on server.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>distribution</td>
-<td>String</td>
+<td>String (8)</td>
 <td>Distribution type for the file.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>externalID</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Third-party id of the file.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>fileExtension</td>
-<td>String</td>
+<td>String (10)</td>
 <td>Extension type of the file.</td>
 <td>X</td>
 <td>X</td>
@@ -3686,7 +3696,7 @@
 </tr>
 <tr>
 <td>fileType</td>
-<td>String</td>
+<td>String (15)</td>
 <td>Type of the file; for example, SAMPLE.</td>
 <td>X</td>
 <td></td>
@@ -3735,14 +3745,14 @@
 </tr>
 <tr>
 <td>name</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Name of the file.</td>
 <td>X</td>
 <td>X</td>
 </tr>
 <tr>
 <td>type</td>
-<td>String</td>
+<td>String (50)</td>
 <td>Type of the file; for example, Resume.</td>
 <td>X</td>
 <td></td>
@@ -3756,7 +3766,7 @@
 </tr>
 <tr>
 <td>uuid</td>
-<td>String</td>
+<td>String (36)</td>
 <td>Globally unique random ID.</td>
 <td>X</td>
 <td>X</td>
@@ -3799,7 +3809,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text comments about this housing complex.</td>
 <td></td>
 <td></td>
@@ -3862,7 +3872,7 @@
 </tr>
 <tr>
 <td>customTextBlock1 to 5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -3947,14 +3957,14 @@
 </tr>
 <tr>
 <td>benefits</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of benefits offered with this job.</td>
 <td> X</td>
 <td></td>
 </tr>
 <tr>
 <td>bonusPackage</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the bonus package offered with this job.</td>
 <td> X</td>
 <td></td>
@@ -4153,7 +4163,7 @@
 </tr>
 <tr>
 <td>benefits</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of benefits offered with this job.</td>
 <td></td>
 <td></td>
@@ -4167,7 +4177,7 @@
 </tr>
 <tr>
 <td>bonusPackage</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the bonus package offered with this job.</td>
 <td></td>
 <td></td>
@@ -4195,7 +4205,7 @@
 </tr>
 <tr>
 <td>certificationList</td>
-<td>String</td>
+<td>String (255)</td>
 <td>List of Certifications that an applicant should have.</td>
 <td></td>
 <td></td>
@@ -4258,7 +4268,7 @@
 </tr>
 <tr>
 <td>correlatedCustom-TextBlock1-3</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -4307,7 +4317,7 @@
 </tr>
 <tr>
 <td>customTextBlock1-5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -4349,7 +4359,7 @@
 </tr>
 <tr>
 <td>degreeList</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>List of educational degrees required for this job.</td>
 <td></td>
 <td></td>
@@ -4468,7 +4478,7 @@
 </tr>
 <tr>
 <td>jobBoardList</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>List of job boards on which this job has been posted.</td>
 <td></td>
 <td></td>
@@ -4510,7 +4520,7 @@
 </tr>
 <tr>
 <td>optionsPackage</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the stock options package offered with this job.</td>
 <td></td>
 <td></td>
@@ -4552,7 +4562,7 @@
 </tr>
 <tr>
 <td>reasonClosed</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the reason this job was closed, if applicable.</td>
 <td></td>
 <td></td>
@@ -4601,7 +4611,7 @@
 </tr>
 <tr>
 <td>skillList</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Comma-separated list of skills the applicants should have.</td>
 <td></td>
 <td></td>
@@ -4691,13 +4701,6 @@
 <td></td>
 </tr>
 <tr>
-<td>usersAssigned</td>
-<td>String()</td>
-<td>Comma-separated list of user IDs that represent a horizontal view of the assignedUsers list.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>willRelocate</td>
 <td>Boolean</td>
 <td>Indicates whether the hiring company will provide relocation assistance.</td>
@@ -4767,7 +4770,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text comments on this JobSubmission.</td>
 <td></td>
 <td></td>
@@ -4880,7 +4883,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Value of the JobSubmission comments fields for this transaction.</td>
 <td></td>
 <td></td>
@@ -4965,7 +4968,7 @@
 </tr>
 <tr>
 <td>campaignSource</td>
-<td>String</td>
+<td>String (15)</td>
 <td>Campaign source of the Lead.</td>
 <td></td>
 <td></td>
@@ -5007,7 +5010,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text comments on this Lead.</td>
 <td></td>
 <td></td>
@@ -5063,7 +5066,7 @@
 </tr>
 <tr>
 <td>customTextBlock1-5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -5098,7 +5101,7 @@
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Description of the Lead.</td>
 <td></td>
 <td></td>
@@ -5224,7 +5227,7 @@
 </tr>
 <tr>
 <td>name</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Lead&rsquo;s full name. Should be a combination of the firstName and lastName fields separated by a space. <br><strong>Notes:</strong> If you create a Lead with no value in the name field, users have no way to select that Lead in the Bullhorn staffing application. If you create or modify a Lead name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the Lead in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields.</td>
 <td></td>
 <td></td>
@@ -5378,7 +5381,7 @@
 </tr>
 <tr>
 <td>skillSet</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the Lead&rsquo;s skills.</td>
 <td></td>
 <td></td>
@@ -5484,7 +5487,7 @@
 </tr>
 <tr>
 <td>status</td>
-<td>String(30)</td>
+<td>String (30)</td>
 <td>Status of the associated Lead at the time this LeadHistory was created.</td>
 <td>X</td>
 <td>X</td>
@@ -5550,7 +5553,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text of this Note.</td>
 <td>X</td>
 <td></td>
@@ -5699,7 +5702,7 @@
 </tr>
 <tr>
 <td>benefits</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of benefits offered with this Opportunity.</td>
 <td></td>
 <td></td>
@@ -5707,20 +5710,20 @@
 <tr>
 <td>billRateCategoryID</td>
 <td>Integer</td>
-<td>id of the client bill rate category.</td>
+<td>ID of the client bill rate category.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>bonusPackage</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the bonus package offered with this Opportunity.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>branchCode</td>
-<td>String(100)</td>
+<td>String (100)</td>
 <td>Code representing the corporate branch where this Opportunity is located.</td>
 <td></td>
 <td></td>
@@ -5728,7 +5731,7 @@
 <tr>
 <td>businessSector</td>
 <td>Integer</td>
-<td>id of the primary BusinessSector associated with this Opportunity.</td>
+<td>ID of the primary BusinessSector associated with this Opportunity.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5741,7 +5744,7 @@
 </tr>
 <tr>
 <td>campaignSource</td>
-<td>String(100)</td>
+<td>String (100)</td>
 <td>Campaign source of this Opportunity.</td>
 <td></td>
 <td></td>
@@ -5749,7 +5752,7 @@
 <tr>
 <td>category</td>
 <td>Integer</td>
-<td>id of the primary Category associated with this Opportunity.</td>
+<td>ID of the primary Category associated with this Opportunity.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5818,7 +5821,7 @@
 </tr>
 <tr>
 <td>customTextBlock1-5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -5853,21 +5856,21 @@
 </tr>
 <tr>
 <td>degreeList</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Degree requirements for this Opportunity.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of this Opportunity.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>educationDegree</td>
-<td>String(50)</td>
+<td>String (50)</td>
 <td>Education requirements for this Opportunity.</td>
 <td></td>
 <td></td>
@@ -5938,13 +5941,13 @@
 <tr>
 <td>externalCategoryID</td>
 <td>Integer</td>
-<td>id of the external category of this Opportunity.</td>
+<td>ID of the external category of this Opportunity.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>externalID</td>
-<td>String(30)</td>
+<td>String (30)</td>
 <td>External identifier for the record, used for migrations and back-office integration.</td>
 <td></td>
 <td></td>
@@ -6014,14 +6017,14 @@
 </tr>
 <tr>
 <td>onSite</td>
-<td>String(20)</td>
+<td>String (20)</td>
 <td>Location requirements of this Opportunity.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>optionsPackage</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Options package of this Opportunity.</td>
 <td></td>
 <td></td>
@@ -6029,7 +6032,7 @@
 <tr>
 <td>owner</td>
 <td>To-one association</td>
-<td>id of CorporateUser who owns this Opportunity.</td>
+<td>ID of CorporateUser who owns this Opportunity.</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -6042,21 +6045,21 @@
 </tr>
 <tr>
 <td>publicDescription</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Public description of this Opportunity.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>publishedZip</td>
-<td>String(18)</td>
+<td>String (18)</td>
 <td>Published zip code of this Opportunity.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>reasonClosed</td>
-<td>String(255)</td>
+<td>String (255)</td>
 <td>Text description of the reason this Opportunity was closed.</td>
 <td></td>
 <td></td>
@@ -6070,14 +6073,14 @@
 </tr>
 <tr>
 <td>salaryUnit</td>
-<td>String(12)</td>
+<td>String (12)</td>
 <td>Salary unit represented by the range. For example, per hour, yearly, and so forth.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>skillList</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Comma-separated list of skills the applicants should have.</td>
 <td></td>
 <td></td>
@@ -6225,7 +6228,7 @@
 </tr>
 <tr>
 <td>status</td>
-<td>String</td>
+<td>String (200)</td>
 <td>Status of the associated Opportunity at the time this OpportunityHistory was created.</td>
 <td>X</td>
 <td>X</td>
@@ -6310,7 +6313,7 @@
 </tr>
 <tr>
 <td>bonusPackage</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the bonus package for this placement.</td>
 <td></td>
 <td></td>
@@ -6345,7 +6348,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text field for entering any comments about the Placement.</td>
 <td></td>
 <td></td>
@@ -6387,7 +6390,7 @@
 </tr>
 <tr>
 <td>correlatedCustomTextBlock1-3</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -6450,7 +6453,7 @@
 </tr>
 <tr>
 <td>customTextBlock1-5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -6576,7 +6579,7 @@
 </tr>
 <tr>
 <td>housingStatus</td>
-<td>String</td>
+<td>String (30)</td>
 <td>Status of the Placement Housing, if applicable.</td>
 <td></td>
 <td></td>
@@ -6646,7 +6649,7 @@
 </tr>
 <tr>
 <td>optionsPackage</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the stock options package associated with this Placement.</td>
 <td></td>
 <td></td>
@@ -6667,7 +6670,7 @@
 </tr>
 <tr>
 <td>otherHourlyFeeComments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free text field for comments on additional hourly fees.</td>
 <td></td>
 <td></td>
@@ -6723,7 +6726,7 @@
 </tr>
 <tr>
 <td>referralFeeType</td>
-<td>String</td>
+<td>String (20)</td>
 <td>Configurable list of fee types associated with the referralFee. Only used with external Candidate source.</td>
 <td>X</td>
 <td></td>
@@ -6807,14 +6810,14 @@
 </tr>
 <tr>
 <td>taxState</td>
-<td>String</td>
+<td>String (50)</td>
 <td>Name of the US State that is the tax state for this Placement.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>terminationReason</td>
-<td>String</td>
+<td>String (100)</td>
 <td>If the Placement has a status of &ldquo;Terminated,&rdquo; this field indicates the reason for termination.</td>
 <td></td>
 <td></td>
@@ -6963,7 +6966,7 @@
 </tr>
 <tr>
 <td>bonusPackage</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the bonus package for this Placement.</td>
 <td></td>
 <td></td>
@@ -6984,7 +6987,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free text field for any comments on this record.</td>
 <td></td>
 <td></td>
@@ -7019,14 +7022,14 @@
 </tr>
 <tr>
 <td>correlatedCustomTextBlock1-3</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>costCenter</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Text field for Client Cost Center. Drives invoice grouping (placements with the same cost center for the same client will be grouped together).</td>
 <td></td>
 <td></td>
@@ -7075,7 +7078,7 @@
 </tr>
 <tr>
 <td>customTextBlock1-5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
@@ -7201,7 +7204,7 @@
 </tr>
 <tr>
 <td>optionsPackage</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Text description of the stock options package associated with this Placement.</td>
 <td></td>
 <td></td>
@@ -7222,7 +7225,7 @@
 </tr>
 <tr>
 <td>otherHourlyFeeComments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free text field for comments on additional hourly fees.</td>
 <td></td>
 <td></td>
@@ -7264,14 +7267,14 @@
 </tr>
 <tr>
 <td>referralFeeType</td>
-<td>String</td>
+<td>String (20)</td>
 <td>Configurable list of fee types associated with referralFee. Only used with external Candidate source.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>reportTo</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Name/title of the person to whom this position will report.</td>
 <td></td>
 <td></td>
@@ -7306,7 +7309,7 @@
 </tr>
 <tr>
 <td>requestCustomTextBlock1-5</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Configurable text fields.</td>
 <td></td>
 <td></td>
@@ -7341,7 +7344,7 @@
 </tr>
 <tr>
 <td>salaryUnit</td>
-<td>String</td>
+<td>String (20)</td>
 <td>Indicates whether the salary is per year or per hour.</td>
 <td>X</td>
 <td></td>
@@ -7419,7 +7422,7 @@
 </tr>
 <tr>
 <td>comments</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text comments on this commission.</td>
 <td></td>
 <td></td>
@@ -7616,13 +7619,6 @@
 <td></td>
 </tr>
 <tr>
-<td>description</td>
-<td>String</td>
-<td><strong>Not supported in this release.</strong> Text description of this Skill.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
 <td>name</td>
 <td>String (100)</td>
 <td>Name of this Skill.</td>
@@ -7703,7 +7699,7 @@
 </tr>
 <tr>
 <td>code</td>
-<td>String</td>
+<td>String (50)</td>
 <td>Postal abbreviation of the state.</td>
 <td></td>
 <td></td>
@@ -7825,7 +7821,7 @@
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text description of the task. The default value is “”.</td>
 <td>X</td>
 <td></td>
@@ -8015,7 +8011,7 @@
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text description.</td>
 <td></td>
 <td></td>
@@ -8043,7 +8039,7 @@
 </tr>
 <tr>
 <td>name</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Name of this Tearsheet.</td>
 <td>X</td>
 <td></td>
@@ -8150,7 +8146,7 @@
 </tr>
 <tr>
 <td>description</td>
-<td>String</td>
+<td>String (2147483647)</td>
 <td>Free-text description.</td>
 <td></td>
 <td></td>
@@ -8214,7 +8210,7 @@
 </tr>
 <tr>
 <td>name</td>
-<td>String</td>
+<td>String (100)</td>
 <td>Name of this TimeUnit.</td>
 <td>X</td>
 <td></td>
