@@ -8,6 +8,7 @@ Read-only entity that represents a file associated with an entity. The GET /enti
 | contentSubType | String (64) | Content subtype for the file. | X | |
 | contentType | String (64) | Content type for the file. | X | |
 | dateAdded | Timestamp | When the file was added. | X | X |
+| departmentsSharedWith | To-many association | Departments with which the file is shared. | X | |
 | description | String (2147483647) | Description for the file. | X | |
 | directory | String (150) | Location of the file on server. | X | |
 | distribution | String (8) | Distribution type for the file. | X | |

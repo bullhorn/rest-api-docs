@@ -115,7 +115,7 @@ The Candidate entity supports the massUpdate operations.
 | userDateAdded | Timestamp | Date the record was added to the system. | X | |
 | username | String (100) | Candidate’s username for logging in to Bullhorn. The default value is _[random number] | X | |
 | veteran | String (1) | Indicates whether Candidate is a veteran: Y for yes, N for no, or U for unknown. | | |
-| webResponse | To-many association | Web responses for Candidate. This field is populated when you create JobSubmissions where JobSubmission.candidate is this Candidate and JobSubmission.status is “New Lead”. | | |
+| webResponses | To-many association | Web responses for Candidate. This field is populated when you create JobSubmissions where JobSubmission.candidate is this Candidate and JobSubmission.status is “New Lead”. | | |
 | willRelocate | Boolean | Indicates whether Candidate is willing to relocate for a position. | | |
 | workAuthorized | Boolean | Indicates whether Candidate is authorized to work in the U.S. | | |
 | workPhone | String (20) | Candidate's telephone number at work. | | | |
