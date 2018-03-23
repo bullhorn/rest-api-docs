@@ -19,22 +19,6 @@ All URLs are namespaced by corporation. The first path element of all API URLs, 
 
 Where `e999` is the corporation identifier.
 
-##### Data-center-specific base URLs
-
-Use the following base URL that applies to your geographic location and swimlane.
-
-###### U.S. East Coast Data Center 
-(CLS4, CLS5, CLS2, CLS20, CLS6, CLS7)
-https://rest.bullhornstaffing.com
-
-###### U.S. West Coast Data Center  
-(CLS30, CLS31, CLS32, CLS33)
-https://rest-west.bullhornstaffing.com
-
-###### UK Data Center  
-(CLS21, CLS22)
-https://rest-emea.bullhornstaffing.com
-
 ### Entities
 Bullhorn uses the term entity to refer to a type represented in the Bullhorn system. Candidate, ClientContact, JobOrder, and Placement are examples of entities. Entities capture the core concepts within the Bullhorn system and provide an organization for storing staffing data and applying the rules and processing that comprise the Bullhorn system.
 

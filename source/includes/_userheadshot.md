@@ -9,6 +9,7 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candi
 <A multipart-encoded version of the file>
 ```
 Returns a user headshot (profile picture) file attached to a Person entity. Headshot files can be attached to the following types of entities:
+
 * Candidate
 * ClientContact
 * CorporateUser
@@ -48,6 +49,7 @@ curl -X PUT \
 ```
 Attaches a user headshot file (profile picture) to an entity. You can send a user headshot file as base64-encoded text or multipart/form data (raw). 
 Files can be attached to the following types of entities:
+
 * Candidate
 * ClientContact
 * ClientCorporation
@@ -112,6 +114,7 @@ curl -X POST \
 ```
 Attaches a user headshot file (profile picture) to an entity. You can send a file as base64-encoded text or multipart/form data (raw). 
 Files can be attached to the following types of entities:
+
 * Candidate
 * ClientContact
 * ClientCorporation

@@ -37,6 +37,10 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 ### File privacy entitlements
 
 File privacy settings are enforced by a field isPrivate on the file entity. If a file is marked private, the user can only access that file if one of the following is true:
--   User has the View All Private Attachments entitlement
--   File is shared with the user
--   User is the owner or secondary owner of the entity to which the file is associated
+
+*   User has the View All Private Attachments entitlement
+*   File is shared with the user
+*   User is the owner or secondary owner of the entity to which the file is associated
+*   File is shared with a department of which the user is a member
+*   If file ownership is enabled, the user is the owner (uploader) of the file; otherwise, the user is the owner or secondary owner of the entity to which the file is associated
+

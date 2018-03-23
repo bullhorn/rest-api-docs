@@ -249,6 +249,7 @@ curl -X DELETE \
 Hard deletes a hard-deletable entity, which removes it from the database. Soft deletes a soft-deletable entity, which sets the isDeleted property of the entity to true.
 
 This operation is available for all entity types except immutable entities, which are neither hard-deletable or soft-deletable. Immutable entities include the following:
+
 *   BusinessSector
 *   Category
 *   Country
