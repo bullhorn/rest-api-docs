@@ -139,25 +139,6 @@
 
 <p>Where <code class="prettyprint">e999</code> is the corporation identifier.</p>
 
-<h5 id="data-center-specific-base-urls">Data-center-specific base URLs</h5>
-
-<p>Use the following base URL that applies to your geographic location and swimlane.</p>
-
-<h6 id="u-s-east-coast-data-center">U.S. East Coast Data Center</h6>
-
-<p>(CLS4, CLS5, CLS2, CLS20, CLS6, CLS7)
-https://rest.bullhornstaffing.com</p>
-
-<h6 id="u-s-west-coast-data-center">U.S. West Coast Data Center</h6>
-
-<p>(CLS30, CLS31, CLS32, CLS33)
-https://rest-west.bullhornstaffing.com</p>
-
-<h6 id="uk-data-center">UK Data Center</h6>
-
-<p>(CLS21, CLS22)
-https://rest-emea.bullhornstaffing.com</p>
-
 <h3 id="entities">Entities</h3>
 
 <p>Bullhorn uses the term entity to refer to a type represented in the Bullhorn system. Candidate, ClientContact, JobOrder, and Placement are examples of entities. Entities capture the core concepts within the Bullhorn system and provide an organization for storing staffing data and applying the rules and processing that comprise the Bullhorn system.</p>
@@ -844,10 +825,15 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <h3 id="file-privacy-entitlements">File privacy entitlements</h3>
 
-<p>File privacy settings are enforced by a field isPrivate on the file entity. If a file is marked private, the user can only access that file if one of the following is true:
--   User has the View All Private Attachments entitlement
--   File is shared with the user
--   User is the owner or secondary owner of the entity to which the file is associated</p>
+<p>File privacy settings are enforced by a field isPrivate on the file entity. If a file is marked private, the user can only access that file if one of the following is true:</p>
+
+<ul>
+<li>  User has the View All Private Attachments entitlement</li>
+<li>  File is shared with the user</li>
+<li>  User is the owner or secondary owner of the entity to which the file is associated</li>
+<li>  File is shared with a department of which the user is a member</li>
+<li>  If file ownership is enabled, the user is the owner (uploader) of the file; otherwise, the user is the owner or secondary owner of the entity to which the file is associated</li>
+</ul>
 
           <h1 id="entity">Entity</h1>
 
@@ -1224,14 +1210,17 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 
 <p>Hard deletes a hard-deletable entity, which removes it from the database. Soft deletes a soft-deletable entity, which sets the isDeleted property of the entity to true.</p>
 
-<p>This operation is available for all entity types except immutable entities, which are neither hard-deletable or soft-deletable. Immutable entities include the following:
-*   BusinessSector
-*   Category
-*   Country
-*   Skill
-*   Specialty
-*   State
-*   TimeUnit</p>
+<p>This operation is available for all entity types except immutable entities, which are neither hard-deletable or soft-deletable. Immutable entities include the following:</p>
+
+<ul>
+<li>  BusinessSector</li>
+<li>  Category</li>
+<li>  Country</li>
+<li>  Skill</li>
+<li>  Specialty</li>
+<li>  State</li>
+<li>  TimeUnit</li>
+</ul>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1762,13 +1751,16 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 </code></pre>
 
 <p>Returns an attached file as base64-encoded text.
-Files can be attached to the following types of entities:
-* Candidate
-* ClientContact
-* ClientCorporation
-* JobOrder
-* Opportunity
-* Placement</p>
+Files can be attached to the following types of entities:</p>
+
+<ul>
+<li>Candidate</li>
+<li>ClientContact</li>
+<li>ClientCorporation</li>
+<li>JobOrder</li>
+<li>Opportunity</li>
+<li>Placement</li>
+</ul>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1815,13 +1807,16 @@ Files can be attached to the following types of entities:
 </code></pre>
 
 <p>Returns metadata for attached files.
-Files can be attached to the following types of entities:
-* Candidate
-* ClientContact
-* ClientCorporation
-* JobOrder
-* Opportunity
-* Placement</p>
+Files can be attached to the following types of entities:</p>
+
+<ul>
+<li>Candidate</li>
+<li>ClientContact</li>
+<li>ClientCorporation</li>
+<li>JobOrder</li>
+<li>Opportunity</li>
+<li>Placement</li>
+</ul>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1863,13 +1858,16 @@ curl -X PUT <span class="se">\</span>
 </code></pre>
 
 <p>Attaches a file to an entity. You can send a file as base64-encoded text or multipart/form data (raw). 
-Files can be attached to the following types of entities:
-* Candidate
-* ClientContact
-* ClientCorporation
-* JobOrder
-* Opportunity
-* Placement</p>
+Files can be attached to the following types of entities:</p>
+
+<ul>
+<li>Candidate</li>
+<li>ClientContact</li>
+<li>ClientCorporation</li>
+<li>JobOrder</li>
+<li>Opportunity</li>
+<li>Placement</li>
+</ul>
 
 <h3 id="http-request-for-base64-encoded-file">HTTP Request for base64-encoded file</h3>
 
@@ -2003,13 +2001,16 @@ No response body; returns 200 on successful update.
 </code></pre>
 
 <p>Updates a file attachment. You can update a file as base64-encoded text or multipart/form data (raw). 
-Files attachments can be updated for the following types of entities:
-* Candidate
-* ClientContact
-* ClientCorporation
-* JobOrder
-* Opportunity
-* Placement</p>
+Files attachments can be updated for the following types of entities:</p>
+
+<ul>
+<li>Candidate</li>
+<li>ClientContact</li>
+<li>ClientCorporation</li>
+<li>JobOrder</li>
+<li>Opportunity</li>
+<li>Placement</li>
+</ul>
 
 <h3 id="http-request-for-base64-encoded-file">HTTP Request for base64-encoded file</h3>
 
@@ -4328,10 +4329,13 @@ BhRestToken | no | Token that represents a session established by the login proc
 &lt;A multipart-encoded version of the file&gt;
 </code></pre>
 
-<p>Returns a user headshot (profile picture) file attached to a Person entity. Headshot files can be attached to the following types of entities:
-* Candidate
-* ClientContact
-* CorporateUser</p>
+<p>Returns a user headshot (profile picture) file attached to a Person entity. Headshot files can be attached to the following types of entities:</p>
+
+<ul>
+<li>Candidate</li>
+<li>ClientContact</li>
+<li>CorporateUser</li>
+</ul>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -4375,13 +4379,16 @@ curl -X PUT <span class="se">\</span>
 </code></pre>
 
 <p>Attaches a user headshot file (profile picture) to an entity. You can send a user headshot file as base64-encoded text or multipart/form data (raw). 
-Files can be attached to the following types of entities:
-* Candidate
-* ClientContact
-* ClientCorporation
-* JobOrder
-* Opportunity
-* Placement</p>
+Files can be attached to the following types of entities:</p>
+
+<ul>
+<li>Candidate</li>
+<li>ClientContact</li>
+<li>ClientCorporation</li>
+<li>JobOrder</li>
+<li>Opportunity</li>
+<li>Placement</li>
+</ul>
 
 <h3 id="http-request-for-base64-encoded-user-headshot-file">HTTP Request for base64-encoded user headshot file</h3>
 
@@ -4515,10 +4522,13 @@ curl -X POST <span class="se">\</span>
 </code></pre>
 
 <p>Attaches a user headshot file (profile picture) to an entity. You can send a file as base64-encoded text or multipart/form data (raw). 
-Files can be attached to the following types of entities:
-* Candidate
-* ClientContact
-* ClientCorporation</p>
+Files can be attached to the following types of entities:</p>
+
+<ul>
+<li>Candidate</li>
+<li>ClientContact</li>
+<li>ClientCorporation</li>
+</ul>
 
 <h3 id="http-request-for-base64-encoded-user-headshot-file">HTTP Request for base64-encoded user headshot file</h3>
 
