@@ -11,7 +11,7 @@ Represents an Internal user at your organization. CorporateUser is read-only. 
 | customText1 to 20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateLastComment | Timestamp | Date on which CorporateUser’s last comment was made. | | |
 | departments | To-many association | Ids of departments to which the CorporateUser belongs. | | |
-| address | Address | CorporateUser’s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/CorporateUser?fields=address(countryID) | X | |
+| address | Address | CorporateUser’s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/CorporateUser?fields=address(countryID) | X | |
 | email | String (100) | Primary email address. | | |
 | email2 | String (100) | Additional email address 2. | | |
 | email3 | String (100) | Additional email address 3. | | |
