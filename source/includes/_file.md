@@ -15,7 +15,7 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/3835/23
 
 Returns an attached file as base64-encoded text.
 
-**Note:** The optional "raw" path parameter returns a multipart-encoded version of the file. This path parameter exists for convenience. When an API user makes a call of this form in a browser, it appears that their browser has downloaded the file.
+**Note:** The optional "raw" path parameter returns a multipart-encoded version of the file. This path parameter exists for convenience. When an API user makes a call of this form in a browser, it appears that the browser has downloaded the file.
 
 Files can be attached to the following types of entities:
 
