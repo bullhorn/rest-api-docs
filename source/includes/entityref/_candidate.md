@@ -96,7 +96,7 @@ The Candidate entity supports the massUpdate operations.
 | secondarySkills | Skill | Skills that are listed as secondary skills for Candidate. | | |
 | sendouts | To-many association | Sendouts for Candidate. This field is populated when you create Sendouts where the Sendout.candidate is this Candidate. | | |
 | skillSet | String (2147483647) | Text description of Candidate's skills. | | |
-| smsOptIn | Boolean | Indicates whether Candidate has granted permission to be sent messages via SMS. | | |
+| smsOptIn | Boolean | Indicates whether Candidate has granted permission to be sent messages via SMS. Can only set on create calls; updates are not allowed. | | |
 | source | String (200) | Candidate source: for example, Advertisement, Client Referral, LinkedIn, Monster.com, and so forth. Allowable values can be configured using field maps. | | |
 | specialties | To-many association | Candidate’s specialty skills. This field is populated when you associate a Specialty with this Candidate in a to-many association operation. | | |
 | ssn | String (18) | Candidate's Social Security Number. Check field map for proper format. | | |

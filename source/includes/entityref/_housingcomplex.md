@@ -5,7 +5,7 @@ Represents a housing complex that a ClientCorporation uses when providing housin
 | **HousingComplex field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| address | Address | HousingComplex address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/HousingComplex?fields=address(countryID) | | |
+| address | Address | HousingComplex address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/HousingComplex?fields=address(countryID) | | |
 | billingContactID | Integer | The Bullhorn ClientContact id of the billing contact person for this housing complex. | | |
 | comments | String (2147483647) | Free-text comments about this housing complex. | | |
 | complexManagerID | Integer | The Bullhorn ClientContact id of the housing complex manager. | | |
