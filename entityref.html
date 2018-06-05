@@ -663,7 +663,7 @@
 <tr>
 <td>address</td>
 <td>Address</td>
-<td>Candidate address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID)</td>
+<td>Candidate address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/Candidate?fields=address(countryID)</td>
 <td></td>
 <td></td>
 </tr>
@@ -684,7 +684,7 @@
 <tr>
 <td>category</td>
 <td>To-one association</td>
-<td>Candidate&rsquo;s primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category. <strong>Note:</strong> This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below).</td>
+<td>Candidate&rsquo;s primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category.<br><strong>Note:</strong> This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below).</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -747,7 +747,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br><a href="http://bullhorn.github.io/Custom-Objects">http://bullhorn.github.io/Custom-Objects</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -1041,7 +1041,7 @@
 <tr>
 <td>linkedPerson</td>
 <td>To-one association</td>
-<td>If person represented by Candidate is also a ClientContact, this field includes the following ClientContact fields: id, _subtype</td>
+<td>If person represented by Candidate is also a ClientContact, this field includes the following ClientContact fields<br>: id, _subtype</td>
 <td></td>
 <td></td>
 </tr>
@@ -1251,7 +1251,7 @@
 <tr>
 <td>secondaryAddress</td>
 <td>Address</td>
-<td>Candidate&rsquo;s work address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID)</td>
+<td>Candidate&rsquo;s work address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/Candidate?fields=address(countryID)</td>
 <td></td>
 <td></td>
 </tr>
@@ -1286,7 +1286,7 @@
 <tr>
 <td>smsOptIn</td>
 <td>Boolean</td>
-<td>Indicates whether Candidate has granted permission to be sent messages via SMS.</td>
+<td>Indicates whether Candidate has granted permission to be sent messages via SMS. Can only set on create calls; updates are not allowed.</td>
 <td></td>
 <td></td>
 </tr>
@@ -1595,6 +1595,168 @@
 <td>status</td>
 <td>String (30)</td>
 <td>Status of CandidateCertification.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="candidateeducation">CandidateEducation</h1>
+
+<p>Represents an educational degree or course of study that a Candidate lists on his or her resume. Each CandidateEducation instance corresponds to a line item on the &ldquo;Education&rdquo; tab of a Candidate in the Bullhorn application.</p>
+
+<table><thead>
+<tr>
+<th><strong>CandidateEducation field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate with whom this entity is associated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>certification</td>
+<td>String (100)</td>
+<td>Certification received with this education, if applicable.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>city</td>
+<td>String (40)</td>
+<td>Name of the city where the education took place.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String (2147483647)</td>
+<td>Free-text comments on this record.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1 to 5</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 5</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 5</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 5</td>
+<td>String (500)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1 to 3</td>
+<td>String (255)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>degree</td>
+<td>String (100)</td>
+<td>Indicates what educational degree the Candidate received; for example, B.A., M.A., Ph.D., and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>Timestamp</td>
+<td>Date when Candidate finished this education.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expirationDate</td>
+<td>Timestamp</td>
+<td>Expiration date for a certificate or other credential that needs to be periodically renewed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>gpa</td>
+<td>Double</td>
+<td>Indicates Candidate&rsquo;s grade point average.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>graduationDate</td>
+<td>Timestamp</td>
+<td>Date when Candidate graduated.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>major</td>
+<td>String (100)</td>
+<td>Indicates the field in which Candidate majored.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>school</td>
+<td>String (100)</td>
+<td>Name of the educational institute where this education took place.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>Timestamp</td>
+<td>Date when Candidate began study.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>String (50)</td>
+<td>Name of the U.S State in which the education took place.</td>
 <td></td>
 <td></td>
 </tr>
@@ -2098,7 +2260,7 @@
 <tr>
 <td>address</td>
 <td>Address</td>
-<td>Contact&rsquo;s  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:/meta/ClientContact?fields=address(countryID)</td>
+<td>Contact&rsquo;s  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/ClientContact?fields=address(countryID)</td>
 <td></td>
 <td></td>
 </tr>
@@ -2168,7 +2330,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br><a href="http://bullhorn.github.io/Custom-Objects">http://bullhorn.github.io/Custom-Objects</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -2469,7 +2631,7 @@
 <tr>
 <td>secondaryAddress</td>
 <td>Address</td>
-<td>ClientContact&rsquo;s secondary (home)  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/ClientContact?fields=address(countryID).</td>
+<td>ClientContact&rsquo;s secondary (home)  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/ClientContact?fields=address(countryID).</td>
 <td></td>
 <td></td>
 </tr>
@@ -2490,7 +2652,7 @@
 <tr>
 <td>smsOptIn</td>
 <td>Boolean</td>
-<td>Indicates whether the ClientContact has granted permission to be sent messages via SMS.</td>
+<td>Indicates whether the ClientContact has granted permission to be sent messages via SMS.  Can only set on create calls; updates are not allowed.</td>
 <td></td>
 <td></td>
 </tr>
@@ -2556,7 +2718,7 @@
 <tr>
 <td>address</td>
 <td>Address</td>
-<td>ClientCorporation&rsquo;s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:/meta/ClientContact?fields=address(countryID)</td>
+<td>ClientCorporation&rsquo;s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/ClientContact?fields=address(countryID)</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -2675,7 +2837,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br><a href="http://bullhorn.github.io/Custom-Objects">http://bullhorn.github.io/Custom-Objects</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -3043,7 +3205,7 @@
 <tr>
 <td>customInt1 to 3</td>
 <td>Integer</td>
-<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
 </tr>
@@ -3071,7 +3233,7 @@
 <tr>
 <td>address</td>
 <td>Address</td>
-<td>CorporateUser’s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use th. e following REST call to get the list of countryIDs and labels: /meta/CorporateUser?fields=address(countryID)</td>
+<td>CorporateUser’s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/CorporateUser?fields=address(countryID)</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -3099,28 +3261,28 @@
 <tr>
 <td>emailNotify</td>
 <td>Boolean</td>
-<td>Indicates whether the user has chosen to be notified via pop-up in the Bullhorn application when a new email message arrives.</td>
+<td>Indicates whether the CorporateUser has chosen to be notified via pop-up in the Bullhorn application when a new email message arrives.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>emailSignature</td>
 <td>String (2147483647)</td>
-<td>Contents of the user&rsquo;s email signature.</td>
+<td>Contents of the CorporateUser&rsquo;s email signature.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>enabled</td>
 <td>Boolean</td>
-<td>Indicates whether the user may log in to the Bullhorn application.</td>
+<td>Indicates whether the CorporateUser may log in to the Bullhorn application.</td>
 <td>X</td>
 <td>X</td>
 </tr>
 <tr>
 <td>externalEmail</td>
 <td>String (60)</td>
-<td>User’s external (non-Bullhorn) email address. Used for forwarding</td>
+<td>User’s external (non-Bullhorn) email address. Used for forwarding.</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -3134,7 +3296,7 @@
 <tr>
 <td>inboundEmailEnabled</td>
 <td>Boolean</td>
-<td>Indicates whether the user can receive email through the Bullhorn application.</td>
+<td>Indicates whether the CorporateUser can receive email through the Bullhorn application.</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -3162,7 +3324,7 @@
 <tr>
 <td>isOutboundFaxEnabled</td>
 <td>Boolean</td>
-<td>Indicates whether the user has permission to send faxes.</td>
+<td>Indicates whether the CorporateUser has permission to send faxes.</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -3260,7 +3422,7 @@
 <tr>
 <td>taskAssignments</td>
 <td>Task</td>
-<td>Tasks that have been assigned to this CorporateUser, including those owned by the user.</td>
+<td>Tasks that have been assigned to this CorporateUser, including those owned by the CorporateUser.</td>
 <td></td>
 <td></td>
 </tr>
@@ -3803,7 +3965,7 @@
 <tr>
 <td>address</td>
 <td>Address</td>
-<td>HousingComplex address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/HousingComplex?fields=address(countryID)</td>
+<td>HousingComplex address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/HousingComplex?fields=address(countryID)</td>
 <td></td>
 <td></td>
 </tr>
@@ -4143,7 +4305,7 @@
 <tr>
 <td>address</td>
 <td>Address1</td>
-<td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/JobOrder?felds=address(countryID)</td>
+<td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID)</td>
 <td></td>
 <td></td>
 </tr>
@@ -4311,7 +4473,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br><a href="http://bullhorn.github.io/Custom-Objects">http://bullhorn.github.io/Custom-Objects</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -5396,7 +5558,7 @@
 <tr>
 <td>smsOptIn</td>
 <td>Boolean</td>
-<td>Indicates whether the Lead has granted permission to be sent messages via SMS.</td>
+<td>Indicates whether the Lead has granted permission to be sent messages via SMS.  Can only set on create calls; updates are not allowed.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5836,7 +5998,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: <a href="http://developer.bullhorn.com/articles/customobjects">http://developer.bullhorn.com/articles/customobjects</a></td>
+<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br><a href="http://bullhorn.github.io/Custom-Objects">http://bullhorn.github.io/Custom-Objects</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -6440,7 +6602,7 @@
 <tr>
 <td>customObject1s to 10s</td>
 <td>CustomObject</td>
-<td>Fields to which custom objects can be assigned.</td>
+<td>Fields to which custom objects can be assigned.  For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br><a href="http://bullhorn.github.io/Custom-Objects">http://bullhorn.github.io/Custom-Objects</a></td>
 <td></td>
 <td></td>
 </tr>

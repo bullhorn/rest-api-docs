@@ -131,6 +131,8 @@
 
 <h3 id="urls">URLs</h3>
 
+<p>API users should use <a href="././Data-Center-URLs.html">data-center-specific base URLs</a> for the Bullhorn OAuth, REST, and SOAP APIs.</p>
+
 <p>Web URLs are case-sensitive, except for machine names. We shall follow that practice. All REST API URLs should be considered case-sensitive.</p>
 
 <p>All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:</p>
@@ -1750,8 +1752,11 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 <span class="o">}}</span>
 </code></pre>
 
-<p>Returns an attached file as base64-encoded text.
-Files can be attached to the following types of entities:</p>
+<p>Returns an attached file as base64-encoded text.</p>
+
+<p><strong>Note:</strong> The optional &ldquo;raw&rdquo; path parameter returns a multipart-encoded version of the file. This path parameter exists for convenience. When an API user makes a call of this form in a browser, it appears that the browser has downloaded the file.</p>
+
+<p>Files can be attached to the following types of entities:</p>
 
 <ul>
 <li>Candidate</li>
@@ -1764,7 +1769,7 @@ Files can be attached to the following types of entities:</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/file/{entityType}/{entityId}/{fileId}</code></p>
+<p><code class="prettyprint">{corpToken}/file/{entityType}/{entityId}/{fileId}(/raw)</code></p>
 
 <table><thead>
 <tr>
@@ -4002,7 +4007,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/search/{entity}?query={lucene}&amp;fields={fields}&amp;orderBy={fields}&amp;count={count}&amp;start={start}</code></p>
+<p><code class="prettyprint">{corpToken}/search/{entity}?query={lucene}&amp;fields={fields}&amp;sort={fields}&amp;count={count}&amp;start={start}</code></p>
 
 <table><thead>
 <tr>
@@ -4014,7 +4019,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <tr>
 <td>query</td>
 <td>yes</td>
-<td>Lucene-Style filter clause.</td>
+<td>Lucene-style filter clause.</td>
 </tr>
 <tr>
 <td>fields</td>

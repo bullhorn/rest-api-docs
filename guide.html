@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Example Reference</title>
+    <title>Articles</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <style>
@@ -92,7 +92,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -103,8 +103,6 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -117,214 +115,2506 @@
       <div class="dark-box"></div>
       <div class="content">
         
-          <h1 id="introduction">Introduction</h1>
+          <h1 id="getting-started-with-the-bullhorn-rest-api">Getting Started with the Bullhorn REST API</h1>
 
-<p>The Bullhorn REST API is difficult to fully grasp with just reviewing the technical documentation.  This reference guide is the counterpart to the <a href="/">Api Reference</a> and is intended to walk you through examples to accomplish a goal while using the REST Api.</p>
+<p>The Bullhorn REST API gives partner a simple yet powerful way to interact with the Bullhorn system. Because it uses HTTP requests and responses and standard data structures, the REST API is accessible from many programming languages and is particularly well-suited to mobile applications and applications that use the most current web technologies.</p>
 
-          <h1 id="company">Company</h1>
+<h2 id="get-access-to-the-bullhorn-rest-api">Get access to the Bullhorn REST API</h2>
 
-<h2 id="getting-a-company-39-s-notes">Getting a Company&rsquo;s notes</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhornstaffing.com/rest-services/e999/entity/ClientCorporation/5059165/clientContactNotes?fields=id,action,comments</span>
-<span class="p">{</span>
-  <span class="s2">"total"</span> <span class="err">:</span> <span class="mi">3</span><span class="p">,</span>
-  <span class="s2">"data"</span> <span class="err">:</span> <span class="p">[{</span>
-    <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
-    <span class="s2">"action"</span> <span class="p">:</span> <span class="s2">"Inbound Call"</span><span class="p">,</span>
-    <span class="s2">"comments"</span> <span class="p">:</span> <span class="s2">"Got a call from johnny about new opportunity"</span>
-  <span class="p">},</span>
-  <span class="p">...]</span>
-<span class="p">}</span>
-</code></pre>
+<p>Bullhorn uses OAuth 2.0 as the authorization mechanism for the Bullhorn REST API. See OAuth authorization for the Bullhorn REST API for high-level information about how Bullhorn uses OAuth with the REST API. Bullhorn customers can obtain OAuth keys for developing applications with the Bullhorn REST API by creating a support ticket via the Bullhorn Resource Center.</p>
 
-<p>The <code class="prettyprint">ClientCorporation</code> or <code class="prettyprint">Company</code> record can not have <code class="prettyprint">Notes</code> associated with them.  A Company&rsquo;s notes will be inferred through the notes associated with the <code class="prettyprint">ClientContacts</code> or <code class="prettyprint">Contacts</code> associated with the company.  The REST API has a field <code class="prettyprint">clientContactNotes</code> that automatically rolls up the Contacts notes as a <code class="prettyprint">TO_MANY</code> field.</p>
+<p>You must have a valid OAuth 2.0 API key that contains the following data before your application can perform the OAuth authorization process described below:</p>
 
-<p>The API also offers a way to query directly against the <code class="prettyprint">TO_MANY</code> field as we do in the example.  This will return a list of Note entities, you may apply additional filters to the query.  The syntax should be similar to that of a <code class="prettyprint">query</code> call.</p>
+<table><thead>
+<tr>
+<th style="text-align: left"><strong>parameter</strong></th>
+<th style="text-align: left"><strong>description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">redirect_uri</td>
+<td style="text-align: left">URI for the location of your application provided to Bullhorn when registered</td>
+</tr>
+<tr>
+<td style="text-align: left">client_id</td>
+<td style="text-align: left">ID generated by Bullhorn identifiny your account</td>
+</tr>
+<tr>
+<td style="text-align: left">client_secret</td>
+<td style="text-align: left">Password for your application to authenticate into the system</td>
+</tr>
+</tbody></table>
 
-<p>NOTE: At least one of the required parameters(fields and layout) or both must be specified.</p>
+<h2 id="complete-the-authorization-process">Complete the authorization process</h2>
 
-<h2 id="multiple-entities">Multiple Entities</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
-<span class="p">{</span>
-    <span class="nl">data</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
-          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
-        <span class="p">},</span> <span class="p">{</span>
-          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">456</span><span class="p">,</span>
-          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Janis"</span><span class="p">,</span>
-          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Williams"</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
+<h3 id="get-an-authorization-code">Get an authorization code</h3>
 
-<p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. id values are specified as a comma-separated list:</p>
+<p>Your application must complete these steps to get an authorization code. These steps require Bullhorn user credentials, but may be performed programmatically or manually. Here we show the manual steps so you can quickly understand the process.</p>
 
-          <h1 id="candidate">Candidate</h1>
+<ol>
+<li><p>Access the following URL, substituting your actual values for the placeholders in the query parameters:</p>
 
-<h2 id="parsing-a-resume">Parsing a Resume</h2>
-<pre class="highlight javascript"><code><span class="c1">// POST https://rest.bullhornstaffing.com/rest-services/{corpToken}/resume/parseToCandidate?format=DOC</span>
-<span class="p">{</span>
-    <span class="s2">"candidate"</span><span class="err">:</span> <span class="p">{</span>
-        <span class="s2">"address"</span><span class="err">:</span> <span class="p">{</span>
-            <span class="s2">"address1"</span><span class="err">:</span> <span class="s2">"123 Osoite Katu"</span><span class="p">,</span>
-            <span class="s2">"address2"</span><span class="err">:</span> <span class="s2">"Apartment 1"</span><span class="p">,</span>
-            <span class="s2">"city"</span><span class="err">:</span> <span class="s2">"Kaupunki"</span><span class="p">,</span>
-            <span class="s2">"state"</span><span class="err">:</span> <span class="s2">"MA"</span><span class="p">,</span>
-            <span class="s2">"zip"</span><span class="err">:</span> <span class="s2">"02210"</span><span class="p">,</span>
-            <span class="s2">"countryID"</span><span class="err">:</span> <span class="mi">1</span>
-        <span class="p">},</span>
-        <span class="s2">"phone"</span><span class="err">:</span> <span class="s2">"+1 4663464663"</span><span class="p">,</span>
-        <span class="s2">"fax"</span><span class="err">:</span> <span class="s2">"+1 3293293290"</span><span class="p">,</span>
-        <span class="s2">"pager"</span><span class="err">:</span> <span class="s2">"+1 724 7727247"</span><span class="p">,</span>
-        <span class="s2">"mobile"</span><span class="err">:</span> <span class="s2">"+1 662 4666624"</span><span class="p">,</span>
-        <span class="s2">"firstName"</span><span class="err">:</span> <span class="s2">"Minun"</span><span class="p">,</span>
-        <span class="s2">"lastName"</span><span class="err">:</span> <span class="s2">"Nimi"</span><span class="p">,</span>
-        <span class="s2">"nameSuffix"</span><span class="err">:</span> <span class="s2">"DR."</span><span class="p">,</span>
-        <span class="s2">"email"</span><span class="err">:</span> <span class="s2">"minun.nimi@finland.com"</span><span class="p">,</span>
-        <span class="s2">"phone2"</span><span class="err">:</span> <span class="s2">"+1 835 3838353x90"</span><span class="p">,</span>
-        <span class="s2">"phone3"</span><span class="err">:</span> <span class="s2">"+1 864 3868643"</span><span class="p">,</span>
-        <span class="s2">"email2"</span><span class="err">:</span> <span class="s2">"mnimi2@finland2.com"</span><span class="p">,</span>
-        <span class="s2">"email3"</span><span class="err">:</span> <span class="s2">"minumn3@finland3.com"</span><span class="p">,</span>
-        <span class="s2">"workPhone"</span><span class="err">:</span> <span class="s2">"+1 3874383874x89"</span>
-    <span class="p">},</span>
-   <span class="s2">"candidateEducation"</span><span class="err">:</span>    <span class="p">[</span>
-            <span class="p">{</span>
-         <span class="s2">"startDate"</span><span class="p">:</span> <span class="mi">1007226000000</span><span class="p">,</span>
-         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">1117641600000</span><span class="p">,</span>
-         <span class="s2">"graduationDate"</span><span class="p">:</span> <span class="mi">1117641600000</span><span class="p">,</span>
-         <span class="s2">"school"</span><span class="p">:</span> <span class="s2">"Berkeley State University"</span><span class="p">,</span>
-         <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Santa Cruz"</span><span class="p">,</span>
-         <span class="s2">"state"</span><span class="p">:</span> <span class="s2">"CA"</span><span class="p">,</span>
-         <span class="s2">"degree"</span><span class="p">:</span> <span class="s2">"B.Sc"</span><span class="p">,</span>
-         <span class="s2">"major"</span><span class="p">:</span> <span class="s2">"COMPUTER SCIENCE"</span><span class="p">,</span>
-         <span class="s2">"gpa"</span><span class="p">:</span> <span class="mi">4</span>
-      <span class="p">},</span>
-            <span class="p">{</span>
-         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">1241193600000</span><span class="p">,</span>
-         <span class="s2">"graduationDate"</span><span class="p">:</span> <span class="mi">1241193600000</span><span class="p">,</span>
-         <span class="s2">"school"</span><span class="p">:</span> <span class="s2">"Boston University School of Music"</span><span class="p">,</span>
-         <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Boston"</span><span class="p">,</span>
-         <span class="s2">"state"</span><span class="p">:</span> <span class="s2">"MA"</span><span class="p">,</span>
-         <span class="s2">"degree"</span><span class="p">:</span> <span class="s2">"B.A"</span><span class="p">,</span>
-         <span class="s2">"major"</span><span class="p">:</span> <span class="s2">"ADMINISTRATION International Management"</span><span class="p">,</span>
-         <span class="s2">"gpa"</span><span class="p">:</span> <span class="mf">3.87</span>
-      <span class="p">}</span>
-   <span class="p">],</span>
-   <span class="s2">"candidateWorkHistory"</span><span class="err">:</span>    <span class="p">[</span>
-            <span class="p">{</span>
-         <span class="s2">"startDate"</span><span class="p">:</span> <span class="mi">1015002000000</span><span class="p">,</span>
-         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">1188662400000</span><span class="p">,</span>
-         <span class="s2">"companyName"</span><span class="p">:</span> <span class="s2">"Teen Pop"</span><span class="p">,</span>
-         <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Pop Software Engineer"</span><span class="p">,</span>
-         <span class="s2">"comments"</span><span class="p">:</span> <span class="s2">"New Millennium Music Corp. Really  How  What"</span>
-      <span class="p">},</span>
-            <span class="p">{</span>
-         <span class="s2">"startDate"</span><span class="p">:</span> <span class="mi">665427600000</span><span class="p">,</span>
-         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">909939600000</span><span class="p">,</span>
-         <span class="s2">"companyName"</span><span class="p">:</span> <span class="s2">"Nineties Bank of Music Concord"</span><span class="p">,</span>
-         <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Hip Hop Software Engineer"</span><span class="p">,</span>
-         <span class="s2">"comments"</span><span class="p">:</span> <span class="s2">"MA    Bop  Hop  Hip"</span>
-      <span class="p">},</span>
-            <span class="p">{</span>
-         <span class="s2">"startDate"</span><span class="p">:</span> <span class="mi">315594000000</span><span class="p">,</span>
-         <span class="s2">"endDate"</span><span class="p">:</span> <span class="mi">628534800000</span><span class="p">,</span>
-         <span class="s2">"companyName"</span><span class="p">:</span> <span class="s2">"Eighties National"</span><span class="p">,</span>
-         <span class="s2">"comments"</span><span class="p">:</span> <span class="s2">"New Wave Musak  Listen  Like  Learn"</span>
-      <span class="p">}</span>
-   <span class="p">],</span>
-   <span class="s2">"skillList"</span><span class="err">:</span>    <span class="p">[</span>
-      <span class="s2">"Blowout preventer"</span><span class="p">,</span>
-      <span class="s2">"FINANCE"</span><span class="p">,</span>
-      <span class="s2">"MA"</span>
-   <span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
+<p><code class="prettyprint">https://auth.bullhornstaffing.com/oauth/authorize?client_id={client_id}&amp;response_type=code&amp;redirect_uri={optional redirect_uri}&amp;state={recommended state value}</code></p>
 
-<p>The Bullhorn REST API provides a set of operations that parse a resume to Candidate-related data or HRXML. The API also provides operations that convert a resume to HTML or plain text.</p>
+<p>A login page is displayed.  </p>
 
-<aside class="notice">Before using the REST API, you must perform authorization and authentication. See Getting Started with the Bullhorn REST API for information about obtaining an OAuth 2.0 access token and logging in to the REST API.
-</aside>
+<p>The state query parameter is recommended.The client uses this value to maintain state between the request and the callback. It should be used for preventing cross-site request forgery.  </p>
 
-<p>To return candidate-related data from a parsed resume, we make a <code class="prettyprint">POST</code> /resume/parseToCandidate REST call.</p>
+<p>The redirect_uri query parameter is optional. If used, the redirect_uri must match one of the redirect_uris specified in the OAuth API key.</p></li>
+<li><p>On the <em>login page</em>, user enters a valid Bullhorn username/password combination and clicks the Login button.
+A Terms of Service page is displayed.</p></li>
+<li><p>User clicks the Agree button to accept the terms of service.</p>
+
+<p>The page is redirected to the redirect URI with a code query parameter on the URL. The code value is the authorization code required to get an access token, which you use to get a Bullhorn session key required for REST API calls.</p></li>
+</ol>
+
+<h3 id="get-an-access-token">Get an access token</h3>
+
+<p>Your application uses the authorization code to get an access token. A valid access token is a required query parameter on a REST login request. This part of the process requires no direct user interaction.</p>
+
+<p><strong>Note:</strong> To get an access token, your application must make a <strong>POST</strong> request. For learning purposes, you can make manual <strong>POST</strong>, PUT, and DELETE requests in your web browser after installing an extension. On Google Chrome, install the Postman extension. On Mozilla Firefox, install the HTTP Resource Test extension.</p>
+
+<p>Make a <strong>POST</strong> request with the following URL, substituting your actual values for the placeholders in the query parameters. If you specified a redirect_uri in the oauth/authorize request, you must specify the same redirect_uri in this request.</p>
+<pre class="highlight http"><code><span class="err">https://auth.bullhornstaffing.com/oauth/token?grant_type=authorization_code&amp;code={auth_code}&amp;client_id={client_id}&amp;client_secret={client_secret}&amp;redirect_uri={optional redirect_uri}
+</span></code></pre>
+
+<p>The <strong>POST</strong> response contains an access token that you use in REST API /login requests to obtain a Bullhorn session token and a base REST URL. The access token is valid for 10 minutes.</p>
+
+<p>If Bullhorn has provided you with the ability to generate refresh tokens, the <strong>POST</strong> response also contains a refresh token. When the Bullhorn session expires, you use a refresh token to get a new access token without reauthorizing (getting another authorization code). A new refresh token is returned with every new access token. The refresh token has no expiration date/time, but it does expire when a new access token and refresh token are generated.</p>
+
+<h3 id="use-a-refresh-token-to-get-a-new-access-token">Use a refresh token to get a new access token</h3>
+
+<p>To obtain an access token with a refresh token, make a <strong>POST</strong> request with the following URL, substituting your actual values for the placeholders in the query parameters:</p>
+<pre class="highlight http"><code><span class="err">https://auth.bullhornstaffing.com/oauth/token?grant_type=refresh_token&amp;refresh_token={refresh_token}&amp;client_id={client_id}&amp;client_secret={client_secret}
+</span></code></pre>
+
+<h2 id="familiarize-yourself-with-the-rest-api">Familiarize yourself with the REST API</h2>
+
+<p>Making a REST call is as simple as sending an HTTP request to a server and getting an HTTP response back. Calls that get data from the server are simple URLs. The Bullhorn REST API uses JSON (JavaScript Object Notation) to structure all response data. The REST API also accepts JSON-formatted data for create, update, and delete (CRUD) requests. JSON uses a simple data structure that is very easy to read and understand.</p>
+
+<p>The easiest way to get started with the REST API is by making REST calls in a standard web browser. You can make REST <strong>GET</strong> calls by entering the REST URL in the browser URL field and pressing Enter. You can make <strong>PUT</strong>, <strong>POST</strong>, and <strong>DELETE</strong> calls for CRUD operations with the Postman extension on Chrome or the HTTP Resource Test extension on Firefox.</p>
+
+<p>The next steps are:
+- Start making REST calls.
+- Read the REST API Reference.
+- Read the Bullhorn Style Guide for user interface design guidelines.</p>
+
+<p>If you have a question, you can post it on the support forums.</p>
+
+<h2 id="log-in-to-the-rest-api">Log in to the REST API</h2>
+
+<p>The first call you make with the Bullhorn REST API is a login call. The login call returns a session key that you can use for subsequent requests. The login call is an HTTP <strong>GET</strong> request that looks like this:</p>
+
+<p>Using version=* to get the latest version:</p>
+<pre class="highlight http"><code><span class="err">POST https://rest.bullhornstaffing.com/rest-services/login?version=*&amp;access_token={xxxxxxxx}
+</span></code></pre>
+
+<p>Using version=2.0 to get the current version:</p>
+<pre class="highlight http"><code><span class="err">POST https://rest.bullhornstaffing.com/rest-services/login?version=2.0&amp;access_token={xxxxxxxx}
+</span></code></pre>
+
+<p>The login URL uses HTTPS and includes the following components:</p>
+
+<p>| rest.bullhornstaffing.com   | Bullhorn server name |
+| /rest-services              | Context root of the Bullhorn web application |
+| /login                      | login command |
+| version=*                   | version query parameter:, where * indicates the latest version and 2.0 indicates the current version.|</p>
+
+<p>A successful login response looks like this:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"BhRestToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a33da348-d562-4211-a48c-8d8cac14a38e"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"restUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The login response contains a session key named BhRestToken as well as the base URL for subsequent REST calls. The URL includes the Bullhorn corpToken to use with the current login.</p>
+
+<h2 id="make-a-rest-call-to-get-a-bullhorn-entity">Make a REST call to get a Bullhorn entity</h2>
+
+<p>After obtaining a session key you can make REST calls that get data or perform CRUD operations on the Bullhorn server. For example, a request to get a specific Candidate looks like this:</p>
+<pre class="highlight http"><code><span class="err">GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/{id}?BhRestToken={session_key}&amp;fields=firstName,lastName,address
+</span></code></pre>
+
+<p>The get entity by id URL uses HTTPS and includes the following components:</p>
+
+<p>| rest.bullhornstaffing.com         | Bullhorn server name |
+| /rest-services                    | Context root of the Bullhorn web application |
+| /entity                           | entity command |
+| Candidate                         | Type of entity to get |
+| {id}                              | id of the entity |
+| BhRestToken={session_key}         | Session key from successful login |
+| fields=firstName,lastName,address | Entity fields to include in the response |</p>
+
+<p>The response to this request is in JSON format and looks like this:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FName01"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LName01"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Address1 Ave"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"# suite address2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Cityville"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MA"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"01754"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"countryID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="make-a-rest-call-to-create-a-bullhorn-entity">Make a REST call to create a Bullhorn entity</h2>
+
+<p>A REST request to create a new entity is very similar to a request to get an entity. The differences are that the request is an HTTP <strong>POST</strong> rather than an HTTP <strong>GET</strong>, no id parameter is specified on the URL, and the body of the HTTP request contains field values for the new entity.</p>
+
+<p>For example, the URL of a <strong>PUT</strong> request to create a new Candidate entity looks like this:</p>
+<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate?BhRestToken={session_key}
+</span></code></pre>
+
+<p>The <strong>PUT</strong> request body looks like this, where the xxxx values would be real values:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">xxxx</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">xxxxx</span><span class="p">},</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"address1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"state"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"NY"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"zip"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"countryID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">x</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"secondaryAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"address1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pxxxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"state"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MA"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"zip"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">54321</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"countryID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">x</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"customDate1"</span><span class="p">:</span><span class="w"> </span><span class="err">xxxx</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dateAvailableEnd"</span><span class="p">:</span><span class="w"> </span><span class="err">xxxx</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="err">xxxx</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ownerCorporation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">xxxx</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"userType"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">xxxx</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="get-more-information-about-rest-and-json">Get more information about REST and JSON</h2>
+
+<p>There is a great deal of introductory information about RESTful web services available online. The following articles are good starting points:</p>
+
+<ul>
+<li><a href="http://www.ibm.com/developerworks/webservices/library/ws-restful/">http://www.ibm.com/developerworks/webservices/library/ws-restful/</a></li>
+<li><a href="http://rest.elkstein.org/">http://rest.elkstein.org/</a></li>
+</ul>
+
+<p>The following articles provide good information about JSON and JSONP:</p>
+
+<ul>
+<li><a href="http://www.json.org/">http://www.json.org/</a></li>
+<li><a href="http://en.wikipedia.org/wiki/JSON/">http://en.wikipedia.org/wiki/JSON/</a></li>
+<li><a href="http://en.wikipedia.org/wiki/JSONP/">http://en.wikipedia.org/wiki/JSONP/</a></li>
+</ul>
+
+          <h1 id="use-the-rest-api-with-custom-objects">Use the REST API with Custom Objects</h1>
+
+<h2 id="what-are-custom-objects">What are custom objects</h2>
+
+<p>Custom objects are custom fields that extend the standard Bullhorn Candidate, ClientContact, ClientCorporation, JobOrder, Opportunity, and Placement entities. You can use custom objects to more closely match your business data requirements. These fields are entities and you can use the REST API to create, edit, and return instances of them. See the Bullhorn Resource Center for general information about custom objects.</p>
+
+<p><strong>Note:</strong> Before using the REST API, you must perform authorization and authentication. See Getting Started with the Bullhorn REST API for information about obtaining an OAuth 2.0 access token and logging in to the REST API.</p>
+
+<h2 id="rest-api-calls-for-custom-objects">REST API calls for custom objects</h2>
+
+<p>The following topics provide REST API examples to get you up and running quickly with custom objects:</p>
+
+<ul>
+<li><a href="#get-metadata-for-custom-objects">Get metadata for custom objects</a></li>
+<li><a href="#create-custom-object-on-new-entity">Create custom object on new entity</a></li>
+<li><a href="#update-custom-object-on-existing-entity">Update custom object on existing entity</a></li>
+<li><a href="#update-and-create-custom-objects-on-existing-entity">Update and create custom objects on existing entity</a></li>
+<li><a href="#search-for-entity-based-on-custom-object">Search for entity based on custom object</a></li>
+<li><a href="#disassociate-custom-object-from-entity">Disassociate custom object from entity</a></li>
+<li><a href="#query-custom-object">Query custom object</a></li>
+</ul>
+
+<h2 id="get-metadata-for-custom-objects">Get metadata for custom objects</h2>
+
+<p>Before working with custom objects with the REST API, you first must understand the structure of the custom objects assigned to an entity type. The REST /meta request returns information about the structure of the entity type, including its assigned custom objects.</p>
+
+<p>Each entity can have customObject1s through customObject10s assigned as custom objects. To determine which custom objects are assigned to an entity type, request all fields with the * character as the following example shows. Only the assigned customObjects are returned in the list of entity fields.</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can view that custom object or its metadata. If the current user does not have view entitlements to a custom object, a /meta call returns no metadata for that custom object. </p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?
+fields=*
+~~~</p>
+
+<p>Once you know the custom objects available on an entity type, you can get more information about those custom objects. You have two choices for working with custom objects:
+* Use the client-defined object and field names assigned in the Bullhorn administration application; for example, $Invoice(status).
+* Use the static object and field names defined in the database; for example, customObject2s(text1).</p>
+
+<p>Your choice depends on whether you prefer to work with names that reflect the business logic that a custom object represents. To use client-defined object and field names, the Bullhorn support team must enable &ldquo;Use Client Defined Name in REST&rdquo; on the custom object configuration. On the JSON response of an entity metadata call, such as meta/Candidate?fields=<em>, the value of the JSON key &ldquo;associatedEntity.label&rdquo; on a customObject{#}s object is the client-defined custom object name. For example, the client-defined custom object name on this example is &ldquo;ClientDefinedCO&rdquo;:
+~~~ json
+&hellip;
+ {
+    &ldquo;name&rdquo; : &ldquo;customObject9s&rdquo;,
+    &ldquo;type&rdquo; : &ldquo;TO_MANY&rdquo;,
+    &ldquo;confidential&rdquo; : false,
+    &ldquo;label&rdquo; : &ldquo;Custom Object9s&rdquo;,
+    &ldquo;optionsType&rdquo; : &ldquo;PersonCustomObjectInstance9&rdquo;,
+    &ldquo;optionsUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/options/PersonCustomObjectInstance9&rdquo;,
+    &ldquo;hideFromSearch&rdquo; : false,
+    &ldquo;associatedEntity&rdquo; : {
+      &ldquo;entity&rdquo; : &ldquo;PersonCustomObjectInstance9&rdquo;,
+      &ldquo;entityMetaUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/meta/PersonCustomObjectInstance9?fields=</em>&rdquo;,
+      &ldquo;label&rdquo; : &ldquo;ClientDefinedCO&rdquo;,
+      &ldquo;dateLastModified&rdquo; : &ldquo;1505885678477&rdquo;,
+      &ldquo;fields&rdquo; : [ {
+        &ldquo;name&rdquo; : &ldquo;id&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;ID&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Integer&rdquo;
+      } ],
+      &ldquo;staticTemplateName&rdquo; : &ldquo;ClientDefinedCO&rdquo;,
+      &ldquo;tabName&rdquo; : &ldquo;ClientDefinedCO&rdquo;
+    }
+&hellip;
+~~~</p>
+
+<p><strong>Note:</strong> You must reference the client-defined name with the $ character as a prefix.</p>
+
+<h3 id="client-defined-custom-object-metadata">Client-defined custom object metadata</h3>
+
+<p>The following request returns just the metadata for the custom object assigned to $ClientDefinedCO on the Candidate entity type. This is an example of working with a custom object by its client-defined name:</p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?
+fields=$ClientDefinedCO(*)
+~~~</p>
+
+<p>Response:
+~~~ json
+{
+  &ldquo;entity&rdquo; : &ldquo;Candidate&rdquo;,
+  &ldquo;entityMetaUrl&rdquo; : &ldquo;https://rest-test-backend.bh-bos2.bullhorn.com:8181/rest-services/1yg8p/meta/Candidate?fields=<em>&rdquo;,
+  &ldquo;label&rdquo; : &ldquo;Candidate&rdquo;,
+  &ldquo;dateLastModified&rdquo; : &ldquo;1505885660081&rdquo;,
+  &ldquo;fields&rdquo; : [ {
+    &ldquo;name&rdquo; : &ldquo;$ClientDefinedCO&rdquo;,
+    &ldquo;type&rdquo; : &ldquo;TO_MANY&rdquo;,
+    &ldquo;confidential&rdquo; : false,
+    &ldquo;label&rdquo; : &ldquo;Custom Object9s&rdquo;,
+    &ldquo;optionsType&rdquo; : &ldquo;PersonCustomObjectInstance9&rdquo;,
+    &ldquo;optionsUrl&rdquo; : &ldquo;https://rest-test-backend.bh-bos2.bullhorn.com:8181/rest-services/1yg8p/options/PersonCustomObjectInstance9&rdquo;,
+    &ldquo;hideFromSearch&rdquo; : false,
+    &ldquo;associatedEntity&rdquo; : {
+      &ldquo;entity&rdquo; : &ldquo;$PersonClientDefinedCO&rdquo;,
+      &ldquo;entityMetaUrl&rdquo; : &ldquo;http://rest-test-backend.bh-bos2.bullhorn.com:8181/rest-services/1yg8p/meta/$PersonClientDefinedCO?fields=</em>&rdquo;,
+      &ldquo;label&rdquo; : &ldquo;ClientDefinedCO&rdquo;,
+      &ldquo;dateLastModified&rdquo; : &ldquo;1505885678477&rdquo;,
+      &ldquo;fields&rdquo; : [ {
+        &ldquo;name&rdquo; : &ldquo;id&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;ID&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Integer&rdquo;
+      }, {
+        &ldquo;name&rdquo; : &ldquo;dateAdded&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Timestamp&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;Date Added&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;dateLastModified&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Timestamp&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;Date Last Modified&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;person&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;TO_ONE&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;Person&rdquo;,
+        &ldquo;optionsType&rdquo; : &ldquo;Person&rdquo;,
+        &ldquo;optionsUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/options/Person&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false,
+        &ldquo;associatedEntity&rdquo; : {
+          &ldquo;entity&rdquo; : &ldquo;Person&rdquo;,
+          &ldquo;entityMetaUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/meta/Person?fields=*&rdquo;,
+          &ldquo;label&rdquo; : &ldquo;Person&rdquo;,
+          &ldquo;dateLastModified&rdquo; : &ldquo;1505885679669&rdquo;,
+          &ldquo;fields&rdquo; : [ {
+            &ldquo;name&rdquo; : &ldquo;id&rdquo;,
+            &ldquo;type&rdquo; : &ldquo;ID&rdquo;,
+            &ldquo;dataType&rdquo; : &ldquo;Integer&rdquo;
+          }, {
+            &ldquo;name&rdquo; : &ldquo;_subtype&rdquo;,
+            &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+            &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+            &ldquo;maxLength&rdquo; : 255
+          }, {
+            &ldquo;name&rdquo; : &ldquo;firstName&rdquo;,
+            &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+            &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+            &ldquo;maxLength&rdquo; : 50,
+            &ldquo;confidential&rdquo; : false,
+            &ldquo;label&rdquo; : &ldquo;First Name&rdquo;,
+            &ldquo;hideFromSearch&rdquo; : false
+          }, {
+            &ldquo;name&rdquo; : &ldquo;lastName&rdquo;,
+            &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+            &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+            &ldquo;maxLength&rdquo; : 50,
+            &ldquo;confidential&rdquo; : false,
+            &ldquo;label&rdquo; : &ldquo;Last Name&rdquo;,
+            &ldquo;hideFromSearch&rdquo; : false
+          } ]
+        }
+      }, {
+        &ldquo;name&rdquo; : &ldquo;clientDefinedTextField&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+        &ldquo;maxLength&rdquo; : 100,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;clientDefinedText&rdquo;,
+        &ldquo;optionsType&rdquo; : &ldquo;$PersonclientDefinedText&rdquo;,
+        &ldquo;optionsUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/options/$PersonclientDefinedText&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      } ],
+      &ldquo;staticTemplateName&rdquo; : &ldquo;ClientDefinedCO&rdquo;,
+      &ldquo;tabName&rdquo; : &ldquo;ClientDefinedCO&rdquo;
+    }
+  } ]
+}
+~~~</p>
+
+<h3 id="static-custom-object-metadata">Static custom object metadata</h3>
+
+<p>The following request returns just the metadata for the custom object assigned to customObject2s on the Candidate entity type. This is an example of working with a custom object by its standard name:</p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?
+fields=customObject2s(*)
+~~~</p>
+
+<p>Response:
+~~~ json
+{
+  &ldquo;entity&rdquo; : &ldquo;Candidate&rdquo;,
+  &ldquo;entityMetaUrl&rdquo; : &ldquo;http://rest.bullhornstaffing.com/rest-services/1yg8p/meta/Candidate?fields=<em>&rdquo;,
+  &ldquo;label&rdquo; : &ldquo;Candidate&rdquo;,
+  &ldquo;fields&rdquo; : [ {
+    &ldquo;name&rdquo; : &ldquo;customObject2s&rdquo;,
+    &ldquo;type&rdquo; : &ldquo;TO_MANY&rdquo;,
+    &ldquo;confidential&rdquo; : false,
+    &ldquo;label&rdquo; : &ldquo;Custom Object2s&rdquo;,
+    &ldquo;optionsType&rdquo; : &ldquo;PersonCustomObjectInstance2&rdquo;,
+    &ldquo;optionsUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/options/PersonCustomObjectInstance2&rdquo;,
+    &ldquo;hideFromSearch&rdquo; : false,
+    &ldquo;associatedEntity&rdquo; : {
+      &ldquo;entity&rdquo; : &ldquo;PersonCustomObjectInstance2&rdquo;,
+      &ldquo;entityMetaUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/meta/PersonCustomObjectInstance2?fields=</em>&rdquo;,
+      &ldquo;label&rdquo; : &ldquo;RestAutomation1&rdquo;,
+      &ldquo;fields&rdquo; : [ {
+        &ldquo;name&rdquo; : &ldquo;date1&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Timestamp&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;date1&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;dateAdded&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Timestamp&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;Date Added&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;float1&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Float&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;float1&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;int1&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Integer&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;int1&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;text1&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+        &ldquo;maxLength&rdquo; : 100,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;text1a&rdquo;,
+        &ldquo;options&rdquo; : [ {
+          &ldquo;value&rdquo; : &ldquo;sometext1&rdquo;,
+          &ldquo;label&rdquo; : &ldquo;sometext1&rdquo;
+        }, {
+          &ldquo;value&rdquo; : &ldquo;sometext2&rdquo;,
+          &ldquo;label&rdquo; : &ldquo;sometext2&rdquo;
+        } ],
+        &ldquo;hideFromSearch&rdquo; : false
+      } ]
+    }
+  } ]
+}
+~~~</p>
+
+<h2 id="create-custom-object-on-new-entity">Create custom object on new entity</h2>
+
+<p>The following example request creates a new Candidate and also creates a new client-defined custom object and associates it with the Candidate. The custom object is assigned to the $ClientDefinedCO field on the Candidate entity type; the &ldquo;clientDefinedText&rdquo; field name is obtained from the field &ldquo;label&rdquo; on the entity metadata response.</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can create or edit that custom object. If the current user does not have edit entitlements to a custom object, the user cannot create or edit that type of custom object.</p>
+
+<p>Request URI:
+~~~ http
+PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate
+Content-Type: application/json
+~~~</p>
+
+<p>Request body:
+~~~ json
+{
+    &ldquo;$ClientDefinedCO&rdquo;:[{&ldquo;clientDefinedText&rdquo;:&ldquo;some text&rdquo;}],
+    &ldquo;firstName&rdquo;: &ldquo;TestFirst&rdquo;,
+    &ldquo;lastName&rdquo;: &ldquo;TestLast&rdquo;,
+    &ldquo;name&rdquo;: &ldquo;TestFirst TestLast&rdquo;,
+    &ldquo;username&rdquo;: &ldquo;TestCandidatexxx&rdquo;,
+    &ldquo;status&rdquo; : &ldquo;active&rdquo;
+}
+~~~</p>
+
+<p>Response:
+~~~ json
+{
+    &ldquo;changedEntityType&rdquo;: &ldquo;Candidate&rdquo;,
+    &ldquo;changedEntityId&rdquo;: 31918,
+    &ldquo;changeType&rdquo;: &ldquo;INSERT&rdquo;
+    &hellip;
+}
+~~~</p>
+
+<p>Alternatively, you can use the static custom object and field names obtained from entity metadata, as the following request body shows:
+ ~~~ json
+ {
+    &ldquo;customObject9s&rdquo;:[{&ldquo;text1&rdquo;:&ldquo;some text&rdquo;}],
+    &ldquo;firstName&rdquo;: &ldquo;TestFirst&rdquo;,
+    &ldquo;lastName&rdquo;: &ldquo;TestLast&rdquo;,
+    &ldquo;name&rdquo;: &ldquo;TestFirst TestLast&rdquo;,
+    &ldquo;username&rdquo;: &ldquo;TestCandidatexxx&rdquo;,
+    &ldquo;status&rdquo; : &ldquo;active&rdquo;
+}
+~~~</p>
+
+<h2 id="update-custom-object-on-existing-entity">Update custom object on existing entity</h2>
+
+<p>The following example request updates a client-defined custom object on a Candidate. The example updates the clientDefinedText field of the custom object that has id 3649.</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can create or edit that custom object. If the current user does not have edit entitlements to a custom object, the user cannot create or edit that type of custom object.</p>
+
+<p>Request URI:
+~~~ http
+POST https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/32031
+Content-Type: application/json
+~~~</p>
+
+<p>Request body:
+~~~ json
+{
+   &ldquo;$ClientDefinedCO&rdquo;:[{&ldquo;id&rdquo;:3649,
+   &ldquo;clientDefinedText&rdquo;:&ldquo;updated the value!&rdquo;}]
+}
+~~~</p>
+
+<p>Alternatively, you can use the static custom object and field names obtained from entity metadata, as the following request body shows:
+~~~ json
+{
+   &ldquo;customObject9s&rdquo;:[{&ldquo;id&rdquo;:3649,
+   &ldquo;text1&rdquo;:&ldquo;updated the value!&rdquo;}]
+}
+~~~</p>
+
+<h2 id="update-and-create-custom-objects-on-existing-entity">Update and create custom objects on existing entity</h2>
+
+<p>The following example request updates an existing client-defined custom object and creates a new client-defined custom object on an existing Candidate. The example updates the clientDefinedText field of the custom object that has id 3649 and also creates a new custom object and sets its clientDefinedText value.</p>
+
+<p>Request URI:
+~~~ http
+POST https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/32039
+Content-Type: application/json
+~~~</p>
+
+<p>Request body:
+~~~ json
+{
+   &ldquo;$ClientDefinedCO&rdquo;:
+     [
+        {&ldquo;id&rdquo;:3649,
+        &ldquo;clientDefinedText&rdquo;:&ldquo;updated the value!&rdquo;},
+        {&ldquo;clientDefinedText&rdquo;:&ldquo;Brand new custom object here!&rdquo;}
+     ]
+}
+~~~</p>
+
+<p>Alternatively, you can use the static custom object and field names obtained from entity metadata, as the following request body shows:
+ ~~~ json
+{
+   &ldquo;customObject9s&rdquo;:
+     [
+        {&ldquo;id&rdquo;:3649,&ldquo;text1&rdquo;:&ldquo;updated the value!&rdquo;},
+        {&ldquo;text1&rdquo;:&ldquo;Brand new custom object here!&rdquo;}
+     ]
+}
+~~~</p>
+
+<h2 id="search-for-entity-based-on-custom-object">Search for entity based on custom object</h2>
+
+<p>The following example request performs a Candidate search based on the value of the clientDefinedText field of a client-defined custom object. The syntax used in the &ldquo;query&rdquo; parameter on the request is a lookup query, which is a SQL query on an indexed entity field; the indexed entity field is Candidate.id. The search returns all Candidates with ids where $ClientDefinedCO.clientDefinedText=&lsquo;sometext&rsquo;.</p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/search/Candidate?
+query=id:&ldquo;^($ClientDefinedCO.clientDefinedText=&#39;sometext&rsquo;)&rdquo;&amp;fields=id,
+$ClientDefinedCO(clientDefinedText)&amp;sort=-id&amp;count=5
+~~~</p>
+
+<p>Alternatively, you can use the static custom object and field names obtained from entity metadata, as the following request URI shows:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/search/Candidate?
+query=id:&ldquo;^(customObject9s.text1=&#39;sometext&rsquo;)&rdquo;&amp;fields=id,customObject2s(text1)&amp;sort=-id&amp;count=5
+~~~</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can view that custom object. If the current user does not have view entitlements to a custom object, a search on that custom object returns no matching items.</p>
+
+<h2 id="disassociate-custom-object-from-entity">Disassociate custom object from entity</h2>
+
+<p>The following example request disassociates an existing custom object from an existing entity in a standard disassociation request. You must use the static custom object name for this call. </p>
+
+<p>Request URI:
+~~~ http
+DELETE https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/32056
+/customObject2s/3680
+~~~</p>
+
+<h2 id="query-custom-object">Query custom object</h2>
+
+<p>The following example request performs a custom object query. You must use the static custom object name for this call.</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can view that custom object. If the current user does not have view entitlements to a custom object, a query on that custom object returns no matching items.</p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/query/PersonCustomObjectInstance2?
+where=id=3684&amp;fields=*&amp;orderBy=-id&amp;count=5
+~~~</p>
+
+          <h1 id="data-center-specific-api-urls">Data-center-specific API URLs</h1>
+
+<p>API users should use the following data-center-specific base URLs for the Bullhorn OAuth, REST, and SOAP APIs.</p>
+
+<h2 id="u-s-east-coast-data-center">U.S. East Coast Data Center</h2>
+
+<h3 id="cls5-cls2-cls20">CLS5, CLS2,CLS20</h3>
+
+<ul>
+<li>https://auth.bullhornstaffing.com </li>
+<li>https://rest.bullhornstaffing.com</li>
+<li>https://api.bullhornstaffing.com</li>
+</ul>
+
+<h2 id="u-s-west-coast-data-center">U.S. West Coast Data Center</h2>
+
+<h3 id="cls30-cls31-cls32-cls33-cls34">CLS30,CLS31,CLS32,CLS33,CLS34</h3>
+
+<ul>
+<li>https://auth-west.bullhornstaffing.com</li>
+<li>https://rest-west.bullhornstaffing.com</li>
+<li>https://api-west.bullhornstaffing.com</li>
+</ul>
+
+<h2 id="apac-data-center">APAC Data Center</h2>
+
+<h3 id="cls50">CLS50</h3>
+
+<ul>
+<li>https://auth-west50.bullhornstaffing.com</li>
+<li>https://rest-west50.bullhornstaffing.com</li>
+<li>https://api-west50.bullhornstaffing.com</li>
+</ul>
+
+<h2 id="uk-data-center">UK Data Center</h2>
+
+<h3 id="cls21-cls22-cls23">CLS21,CLS22,CLS23</h3>
+
+<ul>
+<li>https://auth-emea.bullhornstaffing.com</li>
+<li>https://rest-emea.bullhornstaffing.com</li>
+<li>https://api-emea.bullhornstaffing.com</li>
+</ul>
+
+<h2 id="german-data-center">German Data Center</h2>
+
+<h3 id="cls70">CLS70</h3>
+
+<ul>
+<li>https://auth-ger.bullhornstaffing.com</li>
+<li>https://rest-ger.bullhornstaffing.com</li>
+<li>https://api-ger.bullhornstaffing.com</li>
+</ul>
+
+<h2 id="sandbox-environments">Sandbox Environments</h2>
+
+<h3 id="bhnext">BHNEXT</h3>
+
+<ul>
+<li>https://auth9.bullhornstaffing.com</li>
+<li>https://rest9.bullhornstaffing.com</li>
+<li>https://bhservice9.bullhornstaffing.com</li>
+</ul>
+
+<h3 id="cls91">CLS91</h3>
+
+<ul>
+<li>https://auth-west9.bullhornstaffing.com</li>
+<li>https://rest-west9.bullhornstaffing.com</li>
+<li>https://api-west9.bullhornstaffing.com</li>
+</ul>
+
+<h2 id="about-cluster-ids">About Cluster IDs</h2>
+
+<p>CLS2, CLS21 etc. are cluster IDs that are contained in a user’s browser URL (address bar) once they are logged in.</p>
+
+<p>Example: https://cls21.bullhornstaffing.com/BullhornSTAFFING/MainFrame.jsp?#no-ba&hellip; indicates that the logged in user is on CLS21 (therefore the appropriate API URLs to use are for the UK Data Center)
+As such Cluster IDs do not change for a customer, so identifying the correct cluster ID for all users for a given customer is a one time exercise.</p>
+
+          <h1 id="use-the-rest-api-with-custom-objects">Use the REST API with Custom Objects</h1>
+
+<h2 id="what-are-custom-objects">What are custom objects</h2>
+
+<p>Custom objects are custom fields that extend the standard Bullhorn Candidate, ClientContact, ClientCorporation, JobOrder, Opportunity, and Placement entities. You can use custom objects to more closely match your business data requirements. These fields are entities and you can use the REST API to create, edit, and return instances of them. See the Bullhorn Resource Center for general information about custom objects.</p>
+
+<p><strong>Note:</strong> Before using the REST API, you must perform authorization and authentication. See Getting Started with the Bullhorn REST API for information about obtaining an OAuth 2.0 access token and logging in to the REST API.</p>
+
+<h2 id="rest-api-calls-for-custom-objects">REST API calls for custom objects</h2>
+
+<p>The following topics provide REST API examples to get you up and running quickly with custom objects:</p>
+
+<ul>
+<li><a href="#get-metadata-for-custom-objects">Get metadata for custom objects</a></li>
+<li><a href="#create-custom-object-on-new-entity">Create custom object on new entity</a></li>
+<li><a href="#update-custom-object-on-existing-entity">Update custom object on existing entity</a></li>
+<li><a href="#update-and-create-custom-objects-on-existing-entity">Update and create custom objects on existing entity</a></li>
+<li><a href="#search-for-entity-based-on-custom-object">Search for entity based on custom object</a></li>
+<li><a href="#disassociate-custom-object-from-entity">Disassociate custom object from entity</a></li>
+<li><a href="#query-custom-object">Query custom object</a></li>
+</ul>
+
+<h2 id="get-metadata-for-custom-objects">Get metadata for custom objects</h2>
+
+<p>Before working with custom objects with the REST API, you first must understand the structure of the custom objects assigned to an entity type. The REST /meta request returns information about the structure of the entity type, including its assigned custom objects.</p>
+
+<p>Each entity can have customObject1s through customObject10s assigned as custom objects. To determine which custom objects are assigned to an entity type, request all fields with the * character as the following example shows. Only the assigned customObjects are returned in the list of entity fields.</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can view that custom object or its metadata. If the current user does not have view entitlements to a custom object, a /meta call returns no metadata for that custom object. </p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?
+fields=*
+~~~</p>
+
+<p>Once you know the custom objects available on an entity type, you can get more information about those custom objects. You have two choices for working with custom objects:
+* Use the client-defined object and field names assigned in the Bullhorn administration application; for example, $Invoice(status).
+* Use the static object and field names defined in the database; for example, customObject2s(text1).</p>
+
+<p>Your choice depends on whether you prefer to work with names that reflect the business logic that a custom object represents. To use client-defined object and field names, the Bullhorn support team must enable &ldquo;Use Client Defined Name in REST&rdquo; on the custom object configuration. On the JSON response of an entity metadata call, such as meta/Candidate?fields=<em>, the value of the JSON key &ldquo;associatedEntity.label&rdquo; on a customObject{#}s object is the client-defined custom object name. For example, the client-defined custom object name on this example is &ldquo;ClientDefinedCO&rdquo;:
+~~~ json
+&hellip;
+ {
+    &ldquo;name&rdquo; : &ldquo;customObject9s&rdquo;,
+    &ldquo;type&rdquo; : &ldquo;TO_MANY&rdquo;,
+    &ldquo;confidential&rdquo; : false,
+    &ldquo;label&rdquo; : &ldquo;Custom Object9s&rdquo;,
+    &ldquo;optionsType&rdquo; : &ldquo;PersonCustomObjectInstance9&rdquo;,
+    &ldquo;optionsUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/options/PersonCustomObjectInstance9&rdquo;,
+    &ldquo;hideFromSearch&rdquo; : false,
+    &ldquo;associatedEntity&rdquo; : {
+      &ldquo;entity&rdquo; : &ldquo;PersonCustomObjectInstance9&rdquo;,
+      &ldquo;entityMetaUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/meta/PersonCustomObjectInstance9?fields=</em>&rdquo;,
+      &ldquo;label&rdquo; : &ldquo;ClientDefinedCO&rdquo;,
+      &ldquo;dateLastModified&rdquo; : &ldquo;1505885678477&rdquo;,
+      &ldquo;fields&rdquo; : [ {
+        &ldquo;name&rdquo; : &ldquo;id&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;ID&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Integer&rdquo;
+      } ],
+      &ldquo;staticTemplateName&rdquo; : &ldquo;ClientDefinedCO&rdquo;,
+      &ldquo;tabName&rdquo; : &ldquo;ClientDefinedCO&rdquo;
+    }
+&hellip;
+~~~</p>
+
+<p><strong>Note:</strong> You must reference the client-defined name with the $ character as a prefix.</p>
+
+<h3 id="client-defined-custom-object-metadata">Client-defined custom object metadata</h3>
+
+<p>The following request returns just the metadata for the custom object assigned to $ClientDefinedCO on the Candidate entity type. This is an example of working with a custom object by its client-defined name:</p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?
+fields=$ClientDefinedCO(*)
+~~~</p>
+
+<p>Response:
+~~~ json
+{
+  &ldquo;entity&rdquo; : &ldquo;Candidate&rdquo;,
+  &ldquo;entityMetaUrl&rdquo; : &ldquo;https://rest-test-backend.bh-bos2.bullhorn.com:8181/rest-services/1yg8p/meta/Candidate?fields=<em>&rdquo;,
+  &ldquo;label&rdquo; : &ldquo;Candidate&rdquo;,
+  &ldquo;dateLastModified&rdquo; : &ldquo;1505885660081&rdquo;,
+  &ldquo;fields&rdquo; : [ {
+    &ldquo;name&rdquo; : &ldquo;$ClientDefinedCO&rdquo;,
+    &ldquo;type&rdquo; : &ldquo;TO_MANY&rdquo;,
+    &ldquo;confidential&rdquo; : false,
+    &ldquo;label&rdquo; : &ldquo;Custom Object9s&rdquo;,
+    &ldquo;optionsType&rdquo; : &ldquo;PersonCustomObjectInstance9&rdquo;,
+    &ldquo;optionsUrl&rdquo; : &ldquo;https://rest-test-backend.bh-bos2.bullhorn.com:8181/rest-services/1yg8p/options/PersonCustomObjectInstance9&rdquo;,
+    &ldquo;hideFromSearch&rdquo; : false,
+    &ldquo;associatedEntity&rdquo; : {
+      &ldquo;entity&rdquo; : &ldquo;$PersonClientDefinedCO&rdquo;,
+      &ldquo;entityMetaUrl&rdquo; : &ldquo;http://rest-test-backend.bh-bos2.bullhorn.com:8181/rest-services/1yg8p/meta/$PersonClientDefinedCO?fields=</em>&rdquo;,
+      &ldquo;label&rdquo; : &ldquo;ClientDefinedCO&rdquo;,
+      &ldquo;dateLastModified&rdquo; : &ldquo;1505885678477&rdquo;,
+      &ldquo;fields&rdquo; : [ {
+        &ldquo;name&rdquo; : &ldquo;id&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;ID&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Integer&rdquo;
+      }, {
+        &ldquo;name&rdquo; : &ldquo;dateAdded&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Timestamp&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;Date Added&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;dateLastModified&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Timestamp&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;Date Last Modified&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;person&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;TO_ONE&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;Person&rdquo;,
+        &ldquo;optionsType&rdquo; : &ldquo;Person&rdquo;,
+        &ldquo;optionsUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/options/Person&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false,
+        &ldquo;associatedEntity&rdquo; : {
+          &ldquo;entity&rdquo; : &ldquo;Person&rdquo;,
+          &ldquo;entityMetaUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/meta/Person?fields=*&rdquo;,
+          &ldquo;label&rdquo; : &ldquo;Person&rdquo;,
+          &ldquo;dateLastModified&rdquo; : &ldquo;1505885679669&rdquo;,
+          &ldquo;fields&rdquo; : [ {
+            &ldquo;name&rdquo; : &ldquo;id&rdquo;,
+            &ldquo;type&rdquo; : &ldquo;ID&rdquo;,
+            &ldquo;dataType&rdquo; : &ldquo;Integer&rdquo;
+          }, {
+            &ldquo;name&rdquo; : &ldquo;_subtype&rdquo;,
+            &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+            &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+            &ldquo;maxLength&rdquo; : 255
+          }, {
+            &ldquo;name&rdquo; : &ldquo;firstName&rdquo;,
+            &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+            &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+            &ldquo;maxLength&rdquo; : 50,
+            &ldquo;confidential&rdquo; : false,
+            &ldquo;label&rdquo; : &ldquo;First Name&rdquo;,
+            &ldquo;hideFromSearch&rdquo; : false
+          }, {
+            &ldquo;name&rdquo; : &ldquo;lastName&rdquo;,
+            &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+            &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+            &ldquo;maxLength&rdquo; : 50,
+            &ldquo;confidential&rdquo; : false,
+            &ldquo;label&rdquo; : &ldquo;Last Name&rdquo;,
+            &ldquo;hideFromSearch&rdquo; : false
+          } ]
+        }
+      }, {
+        &ldquo;name&rdquo; : &ldquo;clientDefinedTextField&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+        &ldquo;maxLength&rdquo; : 100,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;clientDefinedText&rdquo;,
+        &ldquo;optionsType&rdquo; : &ldquo;$PersonclientDefinedText&rdquo;,
+        &ldquo;optionsUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/options/$PersonclientDefinedText&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      } ],
+      &ldquo;staticTemplateName&rdquo; : &ldquo;ClientDefinedCO&rdquo;,
+      &ldquo;tabName&rdquo; : &ldquo;ClientDefinedCO&rdquo;
+    }
+  } ]
+}
+~~~</p>
+
+<h3 id="static-custom-object-metadata">Static custom object metadata</h3>
+
+<p>The following request returns just the metadata for the custom object assigned to customObject2s on the Candidate entity type. This is an example of working with a custom object by its standard name:</p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/meta/Candidate?
+fields=customObject2s(*)
+~~~</p>
+
+<p>Response:
+~~~ json
+{
+  &ldquo;entity&rdquo; : &ldquo;Candidate&rdquo;,
+  &ldquo;entityMetaUrl&rdquo; : &ldquo;http://rest.bullhornstaffing.com/rest-services/1yg8p/meta/Candidate?fields=<em>&rdquo;,
+  &ldquo;label&rdquo; : &ldquo;Candidate&rdquo;,
+  &ldquo;fields&rdquo; : [ {
+    &ldquo;name&rdquo; : &ldquo;customObject2s&rdquo;,
+    &ldquo;type&rdquo; : &ldquo;TO_MANY&rdquo;,
+    &ldquo;confidential&rdquo; : false,
+    &ldquo;label&rdquo; : &ldquo;Custom Object2s&rdquo;,
+    &ldquo;optionsType&rdquo; : &ldquo;PersonCustomObjectInstance2&rdquo;,
+    &ldquo;optionsUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/options/PersonCustomObjectInstance2&rdquo;,
+    &ldquo;hideFromSearch&rdquo; : false,
+    &ldquo;associatedEntity&rdquo; : {
+      &ldquo;entity&rdquo; : &ldquo;PersonCustomObjectInstance2&rdquo;,
+      &ldquo;entityMetaUrl&rdquo; : &ldquo;https://rest.bullhornstaffing.com/rest-services/1yg8p/meta/PersonCustomObjectInstance2?fields=</em>&rdquo;,
+      &ldquo;label&rdquo; : &ldquo;RestAutomation1&rdquo;,
+      &ldquo;fields&rdquo; : [ {
+        &ldquo;name&rdquo; : &ldquo;date1&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Timestamp&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;date1&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;dateAdded&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Timestamp&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;Date Added&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;float1&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Float&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;float1&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;int1&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;Integer&rdquo;,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;int1&rdquo;,
+        &ldquo;hideFromSearch&rdquo; : false
+      }, {
+        &ldquo;name&rdquo; : &ldquo;text1&rdquo;,
+        &ldquo;type&rdquo; : &ldquo;SCALAR&rdquo;,
+        &ldquo;dataType&rdquo; : &ldquo;String&rdquo;,
+        &ldquo;maxLength&rdquo; : 100,
+        &ldquo;confidential&rdquo; : false,
+        &ldquo;label&rdquo; : &ldquo;text1a&rdquo;,
+        &ldquo;options&rdquo; : [ {
+          &ldquo;value&rdquo; : &ldquo;sometext1&rdquo;,
+          &ldquo;label&rdquo; : &ldquo;sometext1&rdquo;
+        }, {
+          &ldquo;value&rdquo; : &ldquo;sometext2&rdquo;,
+          &ldquo;label&rdquo; : &ldquo;sometext2&rdquo;
+        } ],
+        &ldquo;hideFromSearch&rdquo; : false
+      } ]
+    }
+  } ]
+}
+~~~</p>
+
+<h2 id="create-custom-object-on-new-entity">Create custom object on new entity</h2>
+
+<p>The following example request creates a new Candidate and also creates a new client-defined custom object and associates it with the Candidate. The custom object is assigned to the $ClientDefinedCO field on the Candidate entity type; the &ldquo;clientDefinedText&rdquo; field name is obtained from the field &ldquo;label&rdquo; on the entity metadata response.</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can create or edit that custom object. If the current user does not have edit entitlements to a custom object, the user cannot create or edit that type of custom object.</p>
+
+<p>Request URI:
+~~~ http
+PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate
+Content-Type: application/json
+~~~</p>
+
+<p>Request body:
+~~~ json
+{
+    &ldquo;$ClientDefinedCO&rdquo;:[{&ldquo;clientDefinedText&rdquo;:&ldquo;some text&rdquo;}],
+    &ldquo;firstName&rdquo;: &ldquo;TestFirst&rdquo;,
+    &ldquo;lastName&rdquo;: &ldquo;TestLast&rdquo;,
+    &ldquo;name&rdquo;: &ldquo;TestFirst TestLast&rdquo;,
+    &ldquo;username&rdquo;: &ldquo;TestCandidatexxx&rdquo;,
+    &ldquo;status&rdquo; : &ldquo;active&rdquo;
+}
+~~~</p>
+
+<p>Response:
+~~~ json
+{
+    &ldquo;changedEntityType&rdquo;: &ldquo;Candidate&rdquo;,
+    &ldquo;changedEntityId&rdquo;: 31918,
+    &ldquo;changeType&rdquo;: &ldquo;INSERT&rdquo;
+    &hellip;
+}
+~~~</p>
+
+<p>Alternatively, you can use the static custom object and field names obtained from entity metadata, as the following request body shows:
+ ~~~ json
+ {
+    &ldquo;customObject9s&rdquo;:[{&ldquo;text1&rdquo;:&ldquo;some text&rdquo;}],
+    &ldquo;firstName&rdquo;: &ldquo;TestFirst&rdquo;,
+    &ldquo;lastName&rdquo;: &ldquo;TestLast&rdquo;,
+    &ldquo;name&rdquo;: &ldquo;TestFirst TestLast&rdquo;,
+    &ldquo;username&rdquo;: &ldquo;TestCandidatexxx&rdquo;,
+    &ldquo;status&rdquo; : &ldquo;active&rdquo;
+}
+~~~</p>
+
+<h2 id="update-custom-object-on-existing-entity">Update custom object on existing entity</h2>
+
+<p>The following example request updates a client-defined custom object on a Candidate. The example updates the clientDefinedText field of the custom object that has id 3649.</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can create or edit that custom object. If the current user does not have edit entitlements to a custom object, the user cannot create or edit that type of custom object.</p>
+
+<p>Request URI:
+~~~ http
+POST https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/32031
+Content-Type: application/json
+~~~</p>
+
+<p>Request body:
+~~~ json
+{
+   &ldquo;$ClientDefinedCO&rdquo;:[{&ldquo;id&rdquo;:3649,
+   &ldquo;clientDefinedText&rdquo;:&ldquo;updated the value!&rdquo;}]
+}
+~~~</p>
+
+<p>Alternatively, you can use the static custom object and field names obtained from entity metadata, as the following request body shows:
+~~~ json
+{
+   &ldquo;customObject9s&rdquo;:[{&ldquo;id&rdquo;:3649,
+   &ldquo;text1&rdquo;:&ldquo;updated the value!&rdquo;}]
+}
+~~~</p>
+
+<h2 id="update-and-create-custom-objects-on-existing-entity">Update and create custom objects on existing entity</h2>
+
+<p>The following example request updates an existing client-defined custom object and creates a new client-defined custom object on an existing Candidate. The example updates the clientDefinedText field of the custom object that has id 3649 and also creates a new custom object and sets its clientDefinedText value.</p>
+
+<p>Request URI:
+~~~ http
+POST https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/32039
+Content-Type: application/json
+~~~</p>
+
+<p>Request body:
+~~~ json
+{
+   &ldquo;$ClientDefinedCO&rdquo;:
+     [
+        {&ldquo;id&rdquo;:3649,
+        &ldquo;clientDefinedText&rdquo;:&ldquo;updated the value!&rdquo;},
+        {&ldquo;clientDefinedText&rdquo;:&ldquo;Brand new custom object here!&rdquo;}
+     ]
+}
+~~~</p>
+
+<p>Alternatively, you can use the static custom object and field names obtained from entity metadata, as the following request body shows:
+ ~~~ json
+{
+   &ldquo;customObject9s&rdquo;:
+     [
+        {&ldquo;id&rdquo;:3649,&ldquo;text1&rdquo;:&ldquo;updated the value!&rdquo;},
+        {&ldquo;text1&rdquo;:&ldquo;Brand new custom object here!&rdquo;}
+     ]
+}
+~~~</p>
+
+<h2 id="search-for-entity-based-on-custom-object">Search for entity based on custom object</h2>
+
+<p>The following example request performs a Candidate search based on the value of the clientDefinedText field of a client-defined custom object. The syntax used in the &ldquo;query&rdquo; parameter on the request is a lookup query, which is a SQL query on an indexed entity field; the indexed entity field is Candidate.id. The search returns all Candidates with ids where $ClientDefinedCO.clientDefinedText=&lsquo;sometext&rsquo;.</p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/search/Candidate?
+query=id:&ldquo;^($ClientDefinedCO.clientDefinedText=&#39;sometext&rsquo;)&rdquo;&amp;fields=id,
+$ClientDefinedCO(clientDefinedText)&amp;sort=-id&amp;count=5
+~~~</p>
+
+<p>Alternatively, you can use the static custom object and field names obtained from entity metadata, as the following request URI shows:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/search/Candidate?
+query=id:&ldquo;^(customObject9s.text1=&#39;sometext&rsquo;)&rdquo;&amp;fields=id,customObject2s(text1)&amp;sort=-id&amp;count=5
+~~~</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can view that custom object. If the current user does not have view entitlements to a custom object, a search on that custom object returns no matching items.</p>
+
+<h2 id="disassociate-custom-object-from-entity">Disassociate custom object from entity</h2>
+
+<p>The following example request disassociates an existing custom object from an existing entity in a standard disassociation request. You must use the static custom object name for this call. </p>
+
+<p>Request URI:
+~~~ http
+DELETE https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/32056
+/customObject2s/3680
+~~~</p>
+
+<h2 id="query-custom-object">Query custom object</h2>
+
+<p>The following example request performs a custom object query. You must use the static custom object name for this call.</p>
+
+<p><strong>Note:</strong> A custom object can be configured so that only users in specific departments can view that custom object. If the current user does not have view entitlements to a custom object, a query on that custom object returns no matching items.</p>
+
+<p>Request URI:
+~~~ http
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/query/PersonCustomObjectInstance2?
+where=id=3684&amp;fields=*&amp;orderBy=-id&amp;count=5
+~~~</p>
+
+          <h1 id="use-the-rest-api-to-create-candidates-and-submit-them-for-jobs">Use the REST API to create candidates and submit them for jobs</h1>
+
+<p>In this article, we use the Bullhorn REST API to complete the following sequence of tasks:</p>
+
+<ol>
+<li>Get a list of jobs from Bullhorn</li>
+<li>Get a list of tearsheets (hot lists) from Bullhorn</li>
+<li>Create a candidate in Bullhorn</li>
+<li>Add the candidate to a tearsheet</li>
+<li>Submit the candidate for a job as a web response</li>
+<li>Promote the web response to a submission</li>
+</ol>
+
+<p>Before using the REST API, you must perform authorization and authentication. See <a href="../Getting-Started-with-REST">Getting Started with the Bullhorn REST API</a> for information about obtaining an OAuth 2.0 access token and logging in to the REST API.</p>
+
+<h2 id="get-a-list-of-jobs">Get a list of jobs</h2>
+
+<p>The first thing we want to do after logging into the REST API is get a list of jobs from Bullhorn. From this list, we can choose jobs that match potential candidates. To get a list of jobs that match our search criteria, we make a GET /search/JobOrder REST call in which we provide a search query. The query is made against an Apache Lucene search index and uses Lucene query syntax. For more information about Lucene query syntax, see:</p>
+
+<p><a href="http://www.lucenetutorial.com/lucene-query-syntax.html/">http://www.lucenetutorial.com/lucene-query-syntax.html/</a></p>
+
+<p>Here is a sample REST call where we search for jobs that are open, not deleted, and not archived. The fields parameter refines the call to return just the id, company (clientCorporation), company contact (clientContact), and description for each job that is returned. Note that the count parameter is set to 20, which is the default count for a /search call. To view additional items, you can page data by setting the start and count query parameters to match the items you want to return in subsequent REST calls.</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">GET https://rest.bullhorn.com/rest-services/{corpToken}/search/JobOrder?query=isOpen:1 AND isDeleted:0 AND NOT status:archive&amp;fields=id,clientCorporation,clientContact,description&amp;count=20&amp;start=0
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1154</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"count"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">95423</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"clientCorporation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3767</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"General Chemical"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"clientContact"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5063396</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Chris"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Jones"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sample"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"_score"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">95429</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"clientCorporation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">103371</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bowlmatic, Inc."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"clientContact"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5062195</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Samual"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sample"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"_score"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The search call only returns jobs that the user is entitled to view. Bullhorn users have one of the following entitlement levels for viewing jobs:</p>
+
+<ul>
+<li>All jobs that users in this user&rsquo;s company created</li>
+<li>All jobs that users in this user&rsquo;s department created</li>
+<li>Only jobs that this user created</li>
+</ul>
+
+<h2 id="get-a-list-of-tearsheets-hot-lists">Get a list of tearsheets (hot lists)</h2>
+
+<p>The next thing we want to do is get a list of tearsheets. You use tearsheets, also called hot lists, to group candidates, contacts, or even jobs based on any criteria you define, to save for later use. To get a list of tearsheets that match our search criteria, we make a GET /query/Tearsheet REST call in which we provide a search query. The query is made against a database and uses SQL-like syntax.</p>
+
+<p>Here is a sample REST call where we search for tearsheets that are public and not deleted, or are private, not deleted, and owned by the current user. Replace {currentUserId} with the actual id of the user; You can make the /settings/userId call to get the current user id. The fields query parameter returns all fields for each tearsheet that is returned. Note that the count parameter is set to 15, which is the default count for a /query call. To view additional items, you can page data by setting the start and count query parameters to match the items you want to return in subsequent REST calls.</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">GET https://rest.bullhorn.com/rest-services/{corpToken}/query/Tearsheet?fields=*&amp;where=(isPrivate=false AND isDeleted=false) OR (isPrivate=true ANDisDeleted=false AND owner.id={currentUserId})
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"start"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"count"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3198</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"candidates"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"clientContacts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"dateAdded"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1396371363117</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isDeleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isPrivate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"jobOrders"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tearsheet1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"owner"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5119506</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"recipients"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3197</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"candidates"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"clientContacts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"dateAdded"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1396365291813</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isDeleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isPrivate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"jobOrders"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tearsheet2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"owner"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5119506</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"recipients"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="err">...</span><span class="w">
+  </span><span class="err">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="create-a-candidate">Create a candidate</h2>
+
+<p>Now that we have a lists of jobs and tearsheets, we can create a candidate, which we will add to a tearsheet and submit for a job.</p>
+
+<p>Here is a sample REST call where we create a candidate:</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate
+{
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "jsmith@novacorp.com",
+    "description": "Resume text.",
+    "name": "John Smith",
+    "username": "user1",
+    "password": "secretPassword",
+    "category": { "id": 212822 },
+    "userType": {"id":35}
+}
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"changedEntityType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Candidate"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"changedEntityId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3747</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"changeType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>We would want to perform duplicate checking on the following fields before sending the request to create a candidate:</p>
+
+<ul>
+<li>firstName (first three characters only)</li>
+<li>lastName</li>
+<li>email</li>
+</ul>
+
+<p>First, we make a GET /search/Candidate REST call and return the first three items, if any are found. If email or lastName is blank, we can skip this check.</p>
+
+<p>Here is a sample REST call that searches for duplicates based on the request above:</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/search/Candidate?count=3&amp;query=firstName:"John" AND lastName:"Smith"AND email:"jsmith@novacorp.com"&amp;fields=id,firstName,lastName,email
+</span></code></pre>
+
+<p>If a duplicate was found, the response might look like this:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"_score"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.501189</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3082</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jsmith@novacorp.com"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><strong>Note:</strong> You can use the REST API to create a candidate and related data from a resume.</p>
+
+<h2 id="add-the-candidate-to-a-tearsheet">Add the candidate to a tearsheet</h2>
+
+<p>Now we can add the new candidate to a tearsheet. To do this, we make a PUT /entity/Tearsheet association REST call in which we specify the id of the tearsheet, the name of the entity association field (in this case, candidates), and the id of the candidate. To add more than one candidate to a tearsheet, we use a comma-separated list as shown in this sample REST call:</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Tearsheet/7/candidates/3747,3738
+{
+    "changedEntityType": "Tearsheet",
+    "changedEntityId": 5
+    "changeType": "ASSOCIATE"
+}
+</span></code></pre>
+
+<h2 id="submit-the-candidate-for-a-job-as-a-web-response">Submit the candidate for a job as a web response</h2>
+
+<p>Next, we submit the candidate for a job as a web response. A web response is an online application for a job that has not yet been submitted. To create a web response, we make a PUT /entity/JobSubmission REST call in which we set the candidate field to the id of our candidate, the jobOrder field to the id of our job, the status field to &ldquo;New Lead&rdquo;, and the dateWebResponse field to the current date/time as a Unix timestamp in milliseconds.</p>
+
+<p>Here is a sample REST call where we create a web response:</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/JobSubmission
+{
+    "candidate": {"id": 3747},
+    "jobOrder": {"id": 36},
+    "status": "New Lead",
+    "dateWebResponse": 1370522348880
+}
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"changedEntityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JobSubmission"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changedEntityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">863</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="promote-the-web-response-to-a-submission">Promote the web response to a submission</h2>
+
+<p>When we want to promote the web response to a submission, we make a POST /entity/JobSubmission REST call in which we update the status field to &ldquo;Submitted&rdquo; and the dateAdded field to the current date/time as a Unix timestamp in milliseconds.</p>
+
+<p>Here is a sample REST call where we create a submission:</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">POST https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/JobSubmission/863
+{
+    "status": "Submitted",
+    "dateAdded": 1370522348880,
+}
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"changedEntityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JobSubmission"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changedEntityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">863</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPDATE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><strong>Note:</strong> If we decided that we never want to promote the web response to a submission, we make a POST /entity/JobSubmission REST call in which we set the isHidden field to &ldquo;true&rdquo;.</p>
+
+          <h1 id="use-the-rest-api-to-create-candidate-data-from-a-resume">Use the REST API to create candidate data from a resume</h1>
+
+<p>The Bullhorn REST API provides a set of operations that parse a resume to Candidate-related data or HRXML. The API also provides operations that convert a resume to HTML or plain text. In this article, we use the REST API to complete the following sequence of tasks:</p>
+
+<ol>
+<li>Parse a resume</li>
+<li>Create a candidate</li>
+<li>Create candidate education</li>
+<li>Create candidate work history</li>
+<li>Add primary skills to the candidate</li>
+<li>Attach a resume file to the candidate</li>
+</ol>
+
+<p>Before using the REST API, you must perform authorization and authentication. See <a href="../Getting-Started-with-REST">Getting Started with the Bullhorn REST API</a> for information about obtaining an OAuth 2.0 access token and logging in to the REST API. for information about obtaining an OAuth 2.0 access token and logging in to the REST API.</p>
+
+<h2 id="parse-a-resume">Parse a resume</h2>
+
+<p>To return candidate-related data from a parsed resume, we make a POST /resume/parseToCandidate REST call.</p>
 
 <p>We attach a .doc resume file named candidate.doc to the request as a multipart/form attachment; in a browser form, this is <code class="prettyprint">&lt;input type=&quot;file&quot;/&gt;</code>. The call returns candidate, candidate education, candidate work history, and skills data.</p>
 
-<h2 id="multiple-entities">Multiple Entities</h2>
-<pre class="highlight javascript"><code><span class="c1">// https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields=id,firstName,lastName</span>
-<span class="p">{</span>
-    <span class="nl">data</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
-          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Alanzo"</span><span class="p">,</span>
-          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Smith"</span>
-        <span class="p">},</span> <span class="p">{</span>
-          <span class="s2">"id"</span> <span class="p">:</span> <span class="mi">456</span><span class="p">,</span>
-          <span class="s2">"firstName"</span> <span class="p">:</span> <span class="s2">"Janis"</span><span class="p">,</span>
-          <span class="s2">"lastName"</span> <span class="p">:</span> <span class="s2">"Williams"</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">POST https://rest.bullhornstaffing.com/rest-services/{corpToken}/resume/parseToCandidate?format=DOC
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"candidate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Osoite Katu"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apartment 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kaupunki"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MA"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02210"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"countryID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 4663464663"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 3293293290"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"pager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 724 7727247"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 662 4666624"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Minun"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nimi"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"nameSuffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DR."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minun.nimi@finland.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 835 3838353x90"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 864 3868643"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mnimi2@finland2.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minumn3@finland3.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"workPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 3874383874x89"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"candidateEducation"</span><span class="p">:</span><span class="w">    </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1007226000000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1117641600000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"graduationDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1117641600000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"school"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berkeley State University"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Santa Cruz"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"degree"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B.Sc"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPUTER SCIENCE"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"gpa"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1241193600000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"graduationDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1241193600000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"school"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boston University School of Music"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boston"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MA"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"degree"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B.A"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"major"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMINISTRATION International Management"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"gpa"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.87</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"candidateWorkHistory"</span><span class="p">:</span><span class="w">    </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1015002000000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1188662400000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"companyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teen Pop"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pop Software Engineer"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Millennium Music Corp. Really  How  What"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">665427600000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">909939600000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"companyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nineties Bank of Music Concord"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hip Hop Software Engineer"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MA    Bop  Hop  Hip"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">315594000000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">628534800000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"companyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eighties National"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Wave Musak  Listen  Like  Learn"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"skillList"</span><span class="p">:</span><span class="w">    </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Blowout preventer"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"FINANCE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"MA"</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="create-a-candidate-from-the-parsed-resume">Create a candidate from the parsed resume</h2>
+
+<p>To create a candidate from the parsed resume, we make a PUT /entity/Candidate REST call.</p>
+
+<p><strong>Note:</strong> When performing this operation programmatically, you would most likely parse the /resume/parseToCandidate response to a Json object for easy manipulation. You would then write the &ldquo;Candidate&rdquo; section of the response to a string you can use in the body of the PUT /entity/Candidate request.
+The body of this request is the Candidate section of the /resume/parseToCandidate response. No data changes are necessary.</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate
+{
+    "address": {
+        "address1": "123 Osoite Katu",
+        "address2": "Apartment 1",
+        "city": "Kaupunki",
+        "state": "MA",
+        "zip": "02210",
+        "countryID": 1
+    },
+    "phone": "+1 4663464663",
+    "fax": "+1 3293293290",
+    "pager": "+1 724 7727247",
+    "mobile": "+1 662 4666624",
+    "firstName": "Minun",
+    "lastName": "Nimi",
+    "nameSuffix": "DR.",
+    "email": "minun.nimi@finland.com",
+    "phone2": "+1 835 3838353x90",
+    "phone3": "+1 864 3868643",
+    "email2": "mnimi2@finland2.com",
+    "email3": "minumn3@finland3.com",
+    "workPhone": "+1 3874383874x89"
+
+    }
+}
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"changedEntityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Candidate"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"changedEntityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2038</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>We have successfully created a Candidate entity from the parsed resume. We can return the new Candidate entity with this request URI:</p>
+<pre class="highlight http"><code><span class="err">GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/2038?fields=*
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2038</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"address1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Osoite Katu"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Apartment 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Kaupunki"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MA"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"02210"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"countryID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"businessSectors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"candidateID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">871</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"categories"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"category"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">431889</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nt">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Minun"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"_300006637"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"veteran"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"willRelocate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"workAuthorized"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"workPhone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 3874383874x89"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>With a slight change to the POST /resume/parseToCandidate REST call, we can return a text or HTML version of the resume in the response. We will return a text version of the resume. The only difference is that the call includes the populateDescription parameter.</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">POST https://rest.bullhornstaffing.com/rest-services/{corpToken}/resume/parseToCandidate?format=DOC&amp;populateDescription=text
+</span></code></pre>
+
+<p>The response includes the text version of the resume in the description field of the Candidate data.</p>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"candidate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:</span><span class="w">       </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Osoite Katu"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apartment 1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kaupunki"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MA"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02210"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"countryID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 4663464663"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 3293293290"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"pager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 724 7727247"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 662 4666624"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Minun"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nimi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"nameSuffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DR."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"middleName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keskimmäinen"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minun.nimi@finland.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 835 3838353x90"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 864 3868643"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mnimi2@finland2.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minumn3@finland3.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dr. Minun Keskimmäinen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA
+ 02210\r\nHome: 466-346-4663 Business: 387-438-3874 ext. 89 Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext.
+90 VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 Pager: 724-772-7247\r\nMinun.Nimi@finland.com
+ mnimi2@finland2.comminumn3@finland3.com\r\n\r\nEmployment History\r\n\r\nEighties National Music Bank Lexington,
+ MA Jan. 1, 1980 - Dec. 31, 1989\r\n\r\nNew Wave Musak Software Engineer\r\n·  Listen\r\n·  Like\r\n
+Learn\r\n\r\nNineties Bank of Music Concord, MA February 1991 - November 1998\r\n\r\nHip Hop Software Engineer\r\n·
+Bop\r\n·  Hop\r\n·  Hip\r\n\r\nNew Millennium Music Corp. Bedford, MA Mar. 2002 - Sept. 2007\r\n\r\nTeen Pop Software
+Engineer\r\n·  Really\r\n·  How\r\n·  What\r\n\r\nEducation\r\n\r\nBerkeley State University, Santa Cruz, CA\r\nBachelor of
+Science, Computer Science, December 2001 - June 2005\r\n·  Cumulative GPA: 3.0/4.0; Major GPA: 4.0/4.0\r\n·  Dean's
+List - 3 Semesters\r\n\r\nBoston University School of Music; Boston, MA\r\nBachelor of Arts in Business Administration
+May 2009\r\nDual Concentration in International Management and Finance\r\nMinor in Economics\r\nCumulative GPA: 3.87\r\n
+Activities/Honors\r\nHonors Student\r\nDean s List: Fall 2005 and Spring 2006\r\n\r\n.\r\n"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"workPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 3874383874x89"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+   </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<p><strong>Note:</strong> The resume in the description field is a Json-encoded string. If you have parsed the POST /resume/parseToCandidate response to an object for manipulation, you must re-encode the description value before using it in a PUT /entity/Candidate call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.</p>
+
+<h2 id="create-candidate-education-data-from-the-parsed-resume">Create candidate education data from the parsed resume</h2>
+
+<p>To create a CandidateEducation entity from the parsed resume, we make a PUT /entity/CandidateEducation REST call.</p>
+
+<p>The CandidateEducation section of the POST /resume/parseToCandidate response is an array of CandidateEducation objects. You must make separate PUT /entity/CandidateEducation calls for each CandidateEducation object in the array.</p>
+
+<p><strong>Note:</strong> When performing this operation programmatically, you would most likely parse the /resume/parseToCandidate response to a Json object for easy manipulation. You would then write a &ldquo;CandidateEducation&rdquo; object from the response to a string you can use in the body of the PUT /entity/CandidateEducation request.</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/CandidateEducation
+</span></code></pre>
+
+<p>Request body:
+~~~
+{
+   &ldquo;candidate&rdquo;:  {&ldquo;id&rdquo;: 2038},
+   &ldquo;startDate&rdquo;: 1007226000000,
+   &ldquo;endDate&rdquo;: 1117641600000,
+   &ldquo;graduationDate&rdquo;: 1117641600000,
+   &ldquo;school&rdquo;: &ldquo;Berkeley State University&rdquo;,
+   &ldquo;city&rdquo;: &ldquo;Santa Cruz&rdquo;,
+   &ldquo;state&rdquo;: &ldquo;CA&rdquo;,
+   &ldquo;degree&rdquo;: &ldquo;B.Sc&rdquo;,
+   &ldquo;major&rdquo;: &ldquo;COMPUTER SCIENCE&rdquo;,
+   &ldquo;gpa&rdquo;: 4
+}
+~~~</p>
+
+<p>The request body matches the first item in the array of returned CandidateEducation objects with the exception of one additional field, the &ldquo;candidate&rdquo; field, where we specify the id of the new Candidate entity.</p>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"changedEntityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CandidateEducation"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changedEntityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">657</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>We have successfully created a CandidateEducation entity from the parsed resume. We can return the new CandidateEducation entity with this request URI:</p>
+<pre class="highlight plaintext"><code>GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/2038?fields=*
 </code></pre>
 
-<p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. id values are specified as a comma-separated list:</p>
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">657</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"candidate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2038</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Minun"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Nimi"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"certification"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Santa Cruz"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customDate1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+     </span><span class="err">...</span><span class="w">
+    </span><span class="nt">"dateAdded"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1369334851697</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"degree"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"B.Sc"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"endDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1117641600000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expirationDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gpa"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"graduationDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1117641600000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isDeleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"major"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPUTER SCIENCE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"migrateGUID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"school"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Berkeley State University"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"startDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1007226000000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"state"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-          <h1 id="lead">Lead</h1>
+<h2 id="create-candidate-work-history-from-the-parsed-resume">Create candidate work history from the parsed resume</h2>
 
-<h2 id="convert-a-lead-to-a-contact">Convert a Lead to a Contact</h2>
-<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhornstaffing.com/rest-services/e999/entity/Lead/5059165?fields=id,firstName,lastName</span>
-<span class="p">{</span>
-    <span class="nl">data</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
-        <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>
-        <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Jameson'</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>To create a CandidateWorkHistory entity from the parsed resume, we make a PUT /entity/CandidateWorkHistory REST call.</p>
 
-<span class="c1">// POST https://rest.bullhornstaffing.com/rest-services/e999/entity/ClientContact</span>
-<span class="p">{</span>
-    <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
-    <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>
-    <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Jameson'</span>
-<span class="p">}</span>
+<p>The CandidateWorkHistory section of the POST /resume/parseToCandidate response is an array of CandidateWorkHistory objects. You must make separate PUT /entity/CandidateWorkHistory calls for each CandidateWorkHistory object in the array.</p>
+
+<p><strong>Note:</strong> When performing this operation programmatically, you would most likely parse the /resume/parseToCandidate response to a Json object for easy manipulation. You would then write a &ldquo;CandidateWorkHistory&rdquo; object from the response to a string you can use in the body of the PUT /entity/CandidateWorkHistory request.</p>
+
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/CandidateWorkHistory
+{
+    "candidate":  {"id": 2038},
+        "startDate": 1015002000000,
+         "endDate": 1188662400000,
+         "companyName": "Teen Pop",
+         "title": "Pop Software Engineer",
+         "comments": "New Millennium Music Corp. Really  How  What"
+}
+</span></code></pre>
+
+<p>The request body matches the first item in the array of returned CandidateWorkHistory objects with the exception of one additional field, the &ldquo;candidate&rdquo; field, where we specify the id of the new Candidate entity.</p>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"changedEntityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CandidateWorkHistory"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changedEntityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2446</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>We have successfully created a CandidateWorkHistory entity. We can return the new CandidateWorkHistory entity with this request URI:</p>
+<pre class="highlight http"><code><span class="err">GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/CandidateWorkHistory/2446?fields=*
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2446</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bonus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"candidate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2038</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Minun"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Nimi"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"clientCorporation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"New Millennium Music Corp. Really  How  What"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"commission"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"companyName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Teen Pop"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customDate1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+     </span><span class="err">...</span><span class="w">
+    </span><span class="nt">"dateAdded"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1369336573990</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"endDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1188662400000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isDeleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isLastJob"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"jobOrder"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"migrateGUID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"placement"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"salary1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"salary2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"salaryType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"startDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1015002000000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"terminationReason"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Pop Software Engineer"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="add-primary-skills-from-the-parsed-resume">Add primary skills from the parsed resume</h2>
+
+<p>The SkillList section of the POST /resume/parseToCandidate response is an array of skill names. To add primary skill associations to the Candidate entity, we need to know the ids of existing Skill entities that correspond to the returned skill names. These are the skills defined in the Bullhorn private label. We call GET /options/Skill to return the full list of Skill entities.</p>
+
+<p>When we find matching Skill ids, we call PUT /entity/Candidate/{candidateId}/primarySkills/{skillId,skillId,&hellip;} to associate those Skill entities as primary skills for the Candidate.
+<strong>Note:</strong> When performing this operation programmatically, you would most likely parse the POST /resume/parseToCandidate response to a Json object for easy manipulation.</p>
+
+<p>Request URI for adding Skills 260 and 964 as primary skill associations:</p>
+<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/2038/primarySkills/260,964
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"changedEntityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Candidate"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changedEntityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2038</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASSOCIATE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>We have successfully added two primary skill associations to the Candidate entity. We can see that the associations have been added with this request URI:</p>
+<pre class="highlight plaintext"><code>GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/2038?fields=primarySkills
 </code></pre>
 
-<p>The process is simple for converting <code class="prettyprint">Leads</code> to <code class="prettyprint">Contacts</code>. First retrieve the data for the Lead.</p>
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"primarySkills"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">964</span><span class="w">
+      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">260</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<p>Then <code class="prettyprint">POST</code> the data back to the ClientContact url.</p>
+<h2 id="attach-the-resume-file-to-the-candidate">Attach the resume file to the candidate</h2>
 
-<aside class="notice">Don&rsquo;t forget to add the lead.id to payload so the Contact will be associated with the lead that generated it. ClientContact.clientCorporation is a required field, so make sure the lead has that filled our or add it to the payload yourself.
-</aside>
+<p>To attach the original resume file to the Candidate entity, we call PUT /file/Candidate/{candidateId}/raw. We attach the .doc resume file to the request as a multipart/form attachment; in a browser form, this is <code class="prettyprint">&lt;input type=&quot;file&quot;/&gt;</code>.</p>
 
-<p>Then change the status of the Lead and POST Back to the original url.</p>
+<p>Request URI:</p>
+<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/file/Candidate/2038/raw?externalID=Portfolio&amp;fileType=SAMPLE
+</span></code></pre>
 
-<h2 id="convert-a-lead-to-a-candidate">Convert a Lead to a Candidate</h2>
-<pre class="highlight javascript"><code><span class="c1">// GET https://rest.bullhornstaffing.com/rest-services/e999/entity/Lead/5059165?fields=id,firstName,lastName</span>
-<span class="p">{</span>
-    <span class="nl">data</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
-        <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>
-        <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Jameson'</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>The externalID and fileType parameters are required. For externalID, use Portfolio as the value. For fileType, use SAMPLE as the value.</p>
 
-<span class="c1">// POST https://rest.bullhornstaffing.com/rest-services/e999/entity/Candiate</span>
-<span class="p">{</span>
-    <span class="nl">id</span> <span class="p">:</span> <span class="mi">3212</span><span class="p">,</span>
-    <span class="nx">firstName</span> <span class="err">:</span> <span class="s1">'John'</span><span class="p">,</span>
-    <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Jameson'</span>
-<span class="p">}</span>
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"fileId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">124523</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>We have successfully attached the resume file to the Candidate entity. We can see that the attachment has been added with this request URI:</p>
+<pre class="highlight http"><code><span class="err">GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entityFiles/Candidate/2038
+</span></code></pre>
+
+<p>Response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"EntityFiles"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1234523</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Resume"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"candidate.doc"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contentType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"application/msword"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+          <h1 id="understanding-rest-form-triggers">Understanding REST Form Triggers</h1>
+
+<p>REST form triggers let you intercept REST calls and perform additional validations or data processing before data is saved in the Bullhorn database. Because application logic for form triggers can live outside of the Bullhorn hosting facilities, you have the freedom to write your own custom logic, including accessing non-Bullhorn systems to verify or modify data.</p>
+
+<p>A form trigger is a web application that performs its own validation or data processing. If the form trigger responds with a value of true, the data is saved to the database. The Bullhorn support team can also configure what should happen if a form trigger fails to respond in a timely fashion. REST form triggers are configured at the corporation level.</p>
+
+<p>You can create REST form triggers for creating or updating entities of the following types:</p>
+
+<ul>
+<li>Candidate</li>
+<li>ClientContact</li>
+<li>ClientCorporation</li>
+<li>JobOrder</li>
+<li>JobSubmission</li>
+<li>Lead</li>
+<li>Note</li>
+<li>Opportunity</li>
+<li>Placement</li>
+</ul>
+
+<p>The Bullhorn support team configures your form trigger with the following information:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Field</th>
+<th style="text-align: left">Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">Name</td>
+<td style="text-align: left">Name of the form trigger.</td>
+</tr>
+<tr>
+<td style="text-align: left">Trigger URL</td>
+<td style="text-align: left">Endpoint to hit when the REST create or update request is sent.</td>
+</tr>
+<tr>
+<td style="text-align: left">Wait for Response</td>
+<td style="text-align: left">Whether to wait for the response of the form trigger before proceeding.</td>
+</tr>
+<tr>
+<td style="text-align: left">Timeout</td>
+<td style="text-align: left">Time to wait for a response. Maximum of three seconds. If it takes longer, it is considered an error.</td>
+</tr>
+<tr>
+<td style="text-align: left">HTTP Method</td>
+<td style="text-align: left">Whether the trigger takes a POST or PUT.</td>
+</tr>
+</tbody></table>
+
+<h2 id="validating-and-changing-data">Validating and changing data</h2>
+
+<p>Regardless of your programming environment, the remote service you use as a form trigger must provide logic for validating the data passed to it, and provide a response of true or false. The request body that is sent to the form trigger endpoint has the following structure:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">User</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">updating</span><span class="w"> </span><span class="err">user</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="err">....</span><span class="w"> </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The form trigger endpoint response must conform to the following structure:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">                 </span><span class="err">//</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">save</span><span class="w"> </span><span class="err">it</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">not</span><span class="w">
+    </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Error message"</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">false,</span><span class="w"> </span><span class="err">reason</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">not</span><span class="w"> </span><span class="err">save</span><span class="w">
+    </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="err">....</span><span class="w"> </span><span class="err">}</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">save</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">was</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><strong>IMPORTANT:</strong> The data returned in the &ldquo;data&rdquo; key of the response is what will be saved. If the form trigger is performing validation with no data changes, it still must respond with the full data packet that was sent to it.</p>
+
+<h2 id="executing-a-form-trigger-on-a-rest-call">Executing a form trigger on a REST call</h2>
+
+<p>To execute a form trigger, you must pass “executeFormTriggers=true” on an entity create or update call. For example, the following REST call creates a Candidate and executes a form trigger that changes the value of the Candidate name:</p>
+<pre class="highlight http"><code><span class="err">PUT http://rest.bullhornstaffing.com/rest-services/abcde/entity/Candidate?&amp;executeFormTriggers=true
+</span></code></pre>
+
+<p>Body:
+~~~ json
+{
+    &ldquo;firstName&rdquo;: &ldquo;First&rdquo;,
+    &ldquo;lastName&rdquo;: &ldquo;Last&rdquo;,
+    &ldquo;name&rdquo;: &ldquo;FirstLast&rdquo;,
+    &ldquo;username&rdquo;: &ldquo;TestUserName&rdquo;,
+    &ldquo;status&rdquo; : &ldquo;active&rdquo;
+}
+~~~</p>
+
+<p>Response:
+~~~ json
+{
+    &ldquo;changedEntityType&rdquo;: &ldquo;Candidate&rdquo;,
+    &ldquo;changedEntityId&rdquo;: 792069,
+    &ldquo;changeType&rdquo;: &ldquo;INSERT&rdquo;,
+    &ldquo;data&rdquo;: {
+        &ldquo;lastName&rdquo;: &ldquo;Last&rdquo;,
+        &ldquo;username&rdquo;: &ldquo;TestUserName&rdquo;,
+        &ldquo;status&rdquo;: &ldquo;active&rdquo;,
+        &ldquo;name&rdquo;: &ldquo;FirstLast&rdquo;,
+        &ldquo;firstName&rdquo;: &ldquo;First&rdquo;
+    }
+}
+~~~</p>
+
+<p>The following REST call gets back the name field of the Candidate that was just created. Note that the name value is changed so that a timestamp precedes the value that was sent on the request to create the Candidate:</p>
+<pre class="highlight http"><code><span class="err">GET http://rest.bullhornstaffing.com/rest-services/abcde/entity/Candidate/792069?fields=name
+</span></code></pre>
+
+<p>Body:
+~~~ json
+{
+    &ldquo;data&rdquo;: {
+        &ldquo;name&rdquo;: &ldquo;1503504704182 FirstLast&rdquo;
+    }
+}
+~~~</p>
+
+          <p><img alt="Bullhorn Connect" src="images/connect.png" /></p>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Internally at Bullhorn we have to open new pages within the CRM from different contexts of the application, externally from emails, or from other products offerings.  This API is publicly accessible and can be used by our partners as well.</p>
+
+<h1 id="use-cases">Use Cases</h1>
+
+<p>The API lives under one endpoint, all you need to do you open a new browser window to the following urls.  If Bullhorn is running in another tab then the window will close and the page will be opened within the current Bullhorn context.  If Bullhorn is not running the user will be prompted to login before being brought to the page.</p>
+
+<p><code class="prettyprint">https://www.bullhornstaffing.com/BullhornStaffing/OpenWindow.cfm</code></p>
+
+<p>Every <strong>OpenWindow</strong> calls has a few required params:</p>
+
+<table><thead>
+<tr>
+<th>Params</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>entity</td>
+<td>Define the Entity type for the page you want to open</td>
+</tr>
+<tr>
+<td>view</td>
+<td>The tab, section, or view to open, eg. Add, Edit, Notes</td>
+</tr>
+</tbody></table>
+
+<h2 id="opening-add-forms">Opening Add Forms</h2>
+
+<table><thead>
+<tr>
+<th>Entity</th>
+<th>Call</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Candidate:</td>
+<td><code class="prettyprint">/OpenWindow.cfm?entity=Candidate&amp;view=Add</code></td>
+</tr>
+<tr>
+<td>ClientContact:</td>
+<td><code class="prettyprint">/OpenWindow.cfm?entity=ClientContact&amp;view=Add</code></td>
+</tr>
+<tr>
+<td>ClientCorporation:</td>
+<td><code class="prettyprint">/OpenWindow.cfm?entity=ClientCorporation&amp;view=Add</code></td>
+</tr>
+<tr>
+<td>JobOrder:</td>
+<td><code class="prettyprint">/OpenWindow.cfm?entity=JobOrder&amp;view=Add</code></td>
+</tr>
+<tr>
+<td>Placement:</td>
+<td><code class="prettyprint">/OpenWindow.cfm?entity=Placement&amp;view=Add</code></td>
+</tr>
+<tr>
+<td>Opportunity:</td>
+<td><code class="prettyprint">/OpenWindow.cfm?entity=Opportunity&amp;view=Add</code></td>
+</tr>
+<tr>
+<td>Lead:</td>
+<td><code class="prettyprint">/OpenWindow.cfm?entity=Lead&amp;view=Add</code></td>
+</tr>
+</tbody></table>
+
+<p>If you want to add a note to any of the top level entities you can use the <code class="prettyprint">AddNote</code> view:</p>
+<pre class="highlight plaintext"><code>/OpenWindow.cfm?entity=Candidate&amp;view=AddNote
 </code></pre>
 
-<p>The process for converting a <code class="prettyprint">Lead</code> or <code class="prettyprint">Candidate</code> is nearly identical.</p>
+<p>Or alternatively you can use the <code class="prettyprint">Note</code> entity and pass all of the references yourself:</p>
+<pre class="highlight plaintext"><code>/OpenWindow.cfm
+    ?entity=Note
+    &amp;view=Add
+    &amp;action=Phone Call
+    &amp;comments=Really interesting message
+    &amp;personReferenceID=123       // About
+    &amp;otherPersonReferenceIDs=1   // Candidate, Lead, Contact references
+    &amp;jobOrderReferenceID=1       // Job references
+    &amp;opportunityID=456           // Opportunity references
+    &amp;placementReferenceID=1      // Placement references
+</code></pre>
+
+<h2 id="overview-pages">Overview Pages</h2>
+
+<p>The same concept can be applied for the overview pages using the <code class="prettyprint">Overview</code> view parameter, just make sure you remember to include an <code class="prettyprint">id</code> parameter as well:</p>
+<pre class="highlight plaintext"><code>/OpenWindow.cfm?entity=Candidate&amp;id=12345&amp;view=Overview
+</code></pre>
+
+<p>If you want to open a the activity tab on the overview you can use the <code class="prettyprint">Activity</code> view parameter. Additionally you can use the <code class="prettyprint">expandedSection</code> parameter to have a specific section open:</p>
+<pre class="highlight plaintext"><code>/OpenWindow.cfm?entity=Candidate&amp;id=12345&amp;view=Activity&amp;expandedSection=Interviews
+</code></pre>
+
+<p>The <strong>Edit</strong> tab can be opened with specific <code class="prettyprint">Edit</code> view parameters:</p>
+<pre class="highlight plaintext"><code>// Edit
+/OpenWindow.cfm?entity=Candidate&amp;id=12345&amp;view=Edit
+</code></pre>
+
+<h1 id="disclaimer">Disclaimer</h1>
+
+<p>The OpenWindow API has been changed frequently over the years as new entities and sections of the application get added or updated. The API is stable and no foreseeable changes are planned.  This Article does not include all of the features in the OpenWindow API or any of the nuances that might exist just the most common use cases.  If you have any question or need to open a window that is not listed please ask them in our <a href="https://gitter.im/bullhorn/Open-Source">Gitter channel.</a></p>
+
+          <p>Custom components, tabs, and menu actions enable developers and partners to incorporate content and functionality from an external application into a Bullhorn entity page. Custom components are tied to field maps and you configure them with the Field Mappings tool. Custom tabs and menu actions are not tied to field maps; you configure them with the View Layout tool.</p>
+
+<p>Custom components appear on entity pages. There are two types of custom components within Bullhorn:</p>
+
+<ul>
+<li>Display components can appear on overview pages. While they can be interactive, they do not by default modify Bullhorn data.</li>
+<li>Edit components are used on edit forms in Bullhorn. </li>
+</ul>
+
+<p>Custom tabs appear on candidate, client, contact, job, and placement pages. The order of custom tabs matches the order specified in View Layout.</p>
+
+<p>Custom menu actions appear on contextual menus for candidates, clients, contacts, jobs, and placements. The order of custom menu actions matches the order specified in View Layout. A line separator appears above the first custom menu action displayed. A maximum of five custom menu actions can appear on a menu. Custom menu actions appear in the following locations:</p>
+
+<ul>
+<li>Menu displayed when you select a candidate, contact, company, or job name from the candidate list, submission list, or placement list</li>
+<li>Menu displayed when you click Select An Action from a candidate, contact, company, or job record</li>
+</ul>
+
+<p>Custom display components can only appear on overview pages and have a limited amount of space, but they have the advantage of being immediately visible to the user when the record is opened. A custom tab or menu action can present more data than a custom display component, but users must click a custom tab or menu item to access the component. You should decide whether a custom display component, tab, or menu action makes sense based on the data it must present and how the user will interact with it. Bullhorn partners creating components for multiple customers should also provide instructions that specify where administrators can or should place their component for it to render properly.</p>
+
+<p>Custom components, tabs, and menu actions are all self-contained IFRAMEs hosted by the Bullhorn browser application. The IFRAME can request any URL that has been configured in Bullhorn. When the IFRAME is created, the Bullhorn application automatically appends the context data necessary for the remote server to identify the calling user and responds with the appropriate data or content for that Bullhorn record.</p>
+
+<p>All requests to the remote system are made from the user’s client computer, so the remote application can reside on any system to which the user can gain access. The custom component can be as simple as some customized content relevant to the current record, or it can involve multiple user interactions and component refreshes.</p>
+
+<h2 id="example">Example</h2>
+
+<p>The following example walks through how a fictitious company called Quick Assessments could create a custom tab that integrates Bullhorn with its service.
+Although this example uses a custom tab, you could easily implement the same functionality with a custom component or menu action.</p>
+
+<p>Quick Assessments provides online assessments for common skill areas. Recruiters with an account can create a new assessment by providing the candidate’s key contact information and selecting the required assessment from a list of pre-configured options.</p>
+
+<p>To simplify the process of registering candidates for assessments, Quick Assessments has created a custom tab on the Candidate record in Bullhorn.</p>
+
+<p>NEW IMAGE HERE</p>
+
+<p>The application hosted in the tab provides a button that enables users to register a candidate for an assessment directly from the candidate record.  It also presents a list of existing assessments for candidates who have already taken tests through the Quick Assessments application.</p>
+
+<p>NEW IMAGE HERE</p>
+
+<p>The following table describes how this custom tab interacts with the Bullhorn web application and the Bullhorn SOAP web services API to enable the integration.</p>
+
+<p>FIXTHISTABLE ==========================================</p>
+
+<table><thead>
+<tr>
+<th><strong>Action</strong></th>
+<th><strong>Response</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>User loads the Quick Assessment tab of a Candidate record.</td>
+<td>When the user requests the Bullhorn page, an IFRAME for the Quick Assessments application makes a request for the following URL: http://quickassessments.com/bhwidget/?Key=12349876&amp;userid=0&amp;entitytype=candidate&amp;entityid=99&amp;privatelabelid=105&amp;height=yy&amp;width=xx). The URL and the Key attribute were configured for this tab through the Bullhorn administrator based on instructions from Quick Assessments. Quick Assessments assigns each customer a unique Key for identification purposes. The remaining URL variables are appended at runtime by the Bullhorn application based on the user’s context.</td>
+</tr>
+<tr>
+<td></td>
+<td>The Quick Assessments page verifies that the Key matches a valid Quick Assessments customer ID and checks to see if there are any active assessments for a candidate with a userId of 99. If there are no assessments associated with this ID, the server returns HTML that displays an Add Assessment button. This appears within the tab in Bullhorn.</td>
+</tr>
+<tr>
+<td>User clicks the Add Assessment button.</td>
+<td>Clicking the button loads a new HTML page within the IFRAME that presents a list of assessments that are available to this customer.</td>
+</tr>
+<tr>
+<td>User picks an assessment and clicks submit.</td>
+<td>Using the ID property for this candidate and its partner API key, the Quick Assessments application requests the necessary data from the Bullhorn SOAP web services API (name, email address, etc.). Using this data, the Quick Assessments application creates a new assessment and sends a notification to the candidate. It also stores the Bullhorn ID for future reference.</td>
+</tr>
+<tr>
+<td></td>
+<td>The Quick Assessment application refreshes the IFRAME and lists the current assessment with a status of ”pending.”</td>
+</tr>
+</tbody></table>
+
+<p>Creating a Custom Display Component</p>
+
+<p>Custom display components are dedicated portions of a screen in Bullhorn that are programmed to show non-Bullhorn content that is served from a remote application or service. Building a custom display component is as simple as creating a web application that can process requests from the IFRAME component and render an HTML user interface that fits into the space allotted by the Bullhorn user interface.</p>
+
+<p>When a custom component is initialized in the Bullhorn application, it issues a GET request for its associated URL. The URL is configured  in the Default Value property of the Custom Component field.  These values must be configured by the Bullhorn administrator using the Field Mappings tool. The URL can also include any variables needed to authorize this account with the external application; for example, username, password, account number, and so forth. Each customer or private label can have a unique URL/variable combination, but all requests made from that private label contain the values configured for the custom component.</p>
+
+<p>If additional personalization or authorization is required, you can use the dynamically appended variables listed below or use a login screen and cookies to manage authentication. When the request is made, the following dynamic variables are appended to the component’s URL on a per request basis.</p>
+
+<p>Parameter Name</p>
+
+<p>Type</p>
+
+<p>Description</p>
+
+<p>CorporationID</p>
+
+<p>Integer</p>
+
+<p>The unique ID for the corporation of the current user.</p>
+
+<p>currentBullhornUrl</p>
+
+<p>String</p>
+
+<p>The URL of the Bullhorn page that is hosting the IFRAME. This value is URL encoded.</p>
+
+<p>EntityID</p>
+
+<p>Integer</p>
+
+<p>The unique ID for this entity instance. This can be used to retrieve the entire entity DTO using the find operation.</p>
+
+<p>EntityType</p>
+
+<p>String</p>
+
+<p>The name of the entity page on which this component has been placed. Possible values are Candidate, Client Contact, Client, and Job Posting.</p>
+
+<p>PrivateLabelID</p>
+
+<p>Integer</p>
+
+<p>The unique ID for the private label (configuration) through which the user is accessing the application.</p>
+
+<p>UserID</p>
+
+<p>Integer</p>
+
+<p>The unique ID for the user of the application.</p>
+
+<p>The page that processes the request made by the custom component should use these values to authorize the request and determine what content should be returned to the user when the component is loaded.</p>
+
+<p>The method for accessing these variables varies depending on your programming environment. For example, in PHP, they become accessible in the $_REQUEST variable; in ASP.NET, they become accessible in the Page.Request object.</p>
+
+<p>Configuring a Custom Display Component</p>
+
+<p>Configuring a custom display component for use in the Bullhorn application involves the View Layout and the Field Mappings tools. Each of the supported records in Bullhorn includes three fields that can be used for custom components: CustomComponent1, CustomComponent2, and CustomComponent3. To configure the URL for a custom component:</p>
+
+<p>On the Tools menu, select Field Mappings.
+Select the entity to which you would like to add the component.</p>
+
+<p>Click the name of one of the available custom component fields (CustomComponent1-3).</p>
+
+<p>In the Hidden field, change the value to No if it is not already set to No.</p>
+
+<p>In the Default Value field, add the URL that should be requested for this component.</p>
+
+<p>Click Save.</p>
+
+<p>Once your custom display component has been configured in the Field Mappings tool, it is ready to be placed on either the overview tab of that record type (the default view) or on a custom tab on that record type.</p>
+
+<p>Placing Custom Display Components on the Overview Tab
+There are five potential locations for a custom component on the overview tab. The following table and figure illustrate the available placements and the corresponding sizes for custom components. The size values will be included as URL variables (see above).</p>
+
+<p>Placement</p>
+
+<p>Height</p>
+
+<p>Width</p>
+
+<p>OverviewTop (A)</p>
+
+<p>150 px</p>
+
+<p>600 px</p>
+
+<p>OverviewLeft (B)</p>
+
+<p>150 px</p>
+
+<p>300 px</p>
+
+<p>OverviewRight &copy;</p>
+
+<p>150 px</p>
+
+<p>300 px</p>
+
+<p>OverviewBottom (D)</p>
+
+<p>150 px</p>
+
+<p>600 px</p>
+
+<p>SideInfo (E)</p>
+
+<p>150 px</p>
+
+<p>150 px</p>
+
+<p>To configure the placement of the custom component on the Overview tab of the entity page:</p>
+
+<p>On the Tools menu, select View Layout .</p>
+
+<p>Select the entity where the custom component should appear.</p>
+
+<p>Select the Overview Tab tab.</p>
+
+<p>Locate the section where you would like to include the component</p>
+
+<p>Select the component from the list of fields in the Exclude from View list.</p>
+
+<p>Click the right arrow to move this field to the Include in View list.</p>
+
+<p>Click Save.</p>
+
+<p>The custom component now appears on the Overview tab of the entity.</p>
+
+<p>Creating a Custom Edit Component
+Custom edit components allow you to override the built-in edit controls in Bullhorn and replace them with controls that present data not managed by the Bullhorn application. When the user saves the form, Bullhorn takes the value set by the custom edit component and inserts it into the appropriate field in the Bullhorn record.</p>
+
+<p>Like custom display components, custom edit components are displayed within an IFRAME. The URL requested by the control includes all of the parameters listed above for custom display components. In addition, the current value for the edit control’s field will also be included in the URL, as follows:</p>
+
+<p>Parameter Name</p>
+
+<p>Type</p>
+
+<p>Description</p>
+
+<p>baseControlName</p>
+
+<p>String</p>
+
+<p>The name of the field with which this custom edit component is associated. This corresponds to the field in Bullhorn that will be updated when the form is saved.</p>
+
+<p>value</p>
+
+<p>Any</p>
+
+<p>The current value of the field in Bullhorn.</p>
+
+<p>Once they have been loaded, custom edit components communicate with the Bullhorn application form by changing the parent href property (the href of the form that launched the custom external control).</p>
+
+<p>The following example illustrates the HTML and JavaScript for a drop-down control that is configured for the experience property.</p>
+
+<p><html></p>
+
+<p><head><title></title></head></p>
+
+<p><body onload="initialize()"></p>
+
+<script type="text/javascript">
+
+function initialize(){
+
+// Get the name of the control and its current value from the href property
+
+var controlName=getQueryStringParameter(location.href, "baseControlName");
+
+var initialValue=getQueryStringParameter(location.href, "value");
+
+ 
+
+//Set the experience drop-down to the current value
+
+var dropdown = document.getElementById("experience");
+
+for(i=0;i<dropdown.options.length;i++){
+
+if(dropdown.options[i].value==initialValue){
+
+dropdown.options[i].selected =true;
+
+return;
+
+}
+
+}
+
+}
+
+ 
+
+function setValue(value) {
+
+//Get control Name (passed in url src)
+
+var controlName=getQueryStringParameter(location.href, "baseControlName");
+
+ 
+
+//Get current url from currentBullhornUrl param
+
+var currentHref=decodeURIComponent(getQueryStringParameter(location.href, "currentBullhornUrl").replace(/\+/g,  " "));
+
+ 
+
+//Build controlName and value in the format controlName=value
+
+var fragment=controlName + "=" + value;
+
+currentHref+="#" + fragment;
+
+parent.location.href=currentHref;
+
+}
+
+ 
+
+//Generic function to extract values from the referring URL
+
+ 
+
+function getQueryStringParameter(href, paramName){
+
+var regexS = "[\\?&]"+ paramName +"=([^&#]*)";
+
+var regex = new RegExp( regexS );
+
+var results = regex.exec( href);
+
+if( results == null ) {
+
+return "";
+
+} else {
+
+return results[1];
+
+}
+
+}
+
+</script>
+
+<p><select id="experience" onchange="setValue(experience.options[selectedIndex].value)"></p>
+
+<p><option selected>Please select one&hellip;</option></p>
+
+<p><option value="beginner">Beginner</option></p>
+
+<p><option value="intermediate">Intermediate</option></p>
+
+<p><option value="advanced">Advanced</option></p>
+
+<p><option value="expert">Expert</option></p>
+
+<p></select></p>
+
+<p></body></p>
+
+<p></html></p>
+
+<p>Configuring a Custom Edit Component</p>
+
+<p>Configuring a custom edit component for use in the Bullhorn application involves the Field Mappings tool. To configure one of the Bullhorn fields to use a custom edit component:</p>
+
+<p>On the Tools menu, select Field Mappings.
+Select the entity to which you would like to add the edit component.</p>
+
+<p>Click the name of the field whose edit control you want to replace (for example, experience). Note: You cannot use any of the customComponent1-3 fields, as these do not represent record values that are stored in Bullhorn. You must use a standard Bullhorn field, such as experience or customText1.</p>
+
+<p>Select Custom External Control from the Edit Type drop-down.</p>
+
+<p>In the Default Value field, add the URL that should be requested for this component.</p>
+
+<p>Click Save .</p>
+
+<p>Configuring the Client Browser for Custom Edit Components
+To function properly, the website where the control(s) are hosted must be added to Internet Explorer 7 and 8 Trusted Sites and the Navigate sub-frames across different domains custom setting must be enabled for the trusted sites.</p>
+
+<p>Creating a Custom Tab or Menu Action
+The amount of space available on a dedicated tab or popup window depends on the user’s screen resolution and user interface configuration. You should design the page to easily adapt to multiple widths.</p>
+
+<p>To ensure that no vertical scroll bars appear, the custom tab and custom menu action features provide a way for your application to communicate its height to the hosting page. To take advantage of this feature, you should add a URL variable called displayHeight to the URL when it is configured in the View Layout tool. For example, http://[baseURL]?displayHeight=3000px. If you do not provide a displayHeight value, the default height of the IFRAME is 4000px.</p>
+
+<p>You can also dynamically modify the height of the IFRAME by changing the displayHeight variable after Bullhorn has initialized the IFRAME. This is useful if your page dynamically shows or hides regions of the DOM, or if users will navigate through multiple pages of different heights. The following JavaScript functions can be added to any page that appears in a custom tab:</p>
+
+<p>function addResizeParameterToUrl()</p>
+
+<p>{</p>
+
+<p>var size = document.body.scrollHeight;</p>
+
+<p>var currentHref = decodeURIComponent(getQueryStringParameter(location.href,</p>
+
+<p>&ldquo;currentBullhornUrl&rdquo;).replace(/+/g, &ldquo; &rdquo;));</p>
+
+<p>var fragment=&ldquo;displayHeight=&rdquo; + size;</p>
+
+<p>currentHref+=&ldquo;#&rdquo; + fragment;</p>
+
+<p>parent.location.href=currentHref;</p>
+
+<p>}</p>
+
+<p>The hosting Bullhorn page listens for changes to the displayHeight URL variable and adjusts the dimensions of the IFRAME accordingly. To ensure this variable is updated, you must also attach the addResizeParameterToURL() function as a listener to the onresize and onload events on the page. You can do this by adding the following to the page&rsquo;s body tag:</p>
+
+<p><body onresize="addResizeParameterToUrl();" onload="addResizeParameterToUrl();"></p>
+
+<p>Depending on the amount of DOM scripting in your pages, you may also need to call this function from other places in your application as well.</p>
+
+<p>If additional personalization or authorization is required, you can use the dynamically appended variables listed below or use a login screen and cookies to manage authentication. When the request is made, the following dynamic variables are appended to the component’s URL on a per request basis.</p>
+
+<p>Parameter Name</p>
+
+<p>Type</p>
+
+<p>Description</p>
+
+<p>CorporationID</p>
+
+<p>Integer</p>
+
+<p>The unique ID for the corporation of the current user.</p>
+
+<p>currentBullhornUrl</p>
+
+<p>String</p>
+
+<p>The URL of the Bullhorn page that is hosting the IFRAME. This value is URL encoded.</p>
+
+<p>EntityID</p>
+
+<p>Integer</p>
+
+<p>The unique ID for this entity instance. This can be used to retrieve the entire entity DTO using the find operation.</p>
+
+<p>EntityType</p>
+
+<p>String</p>
+
+<p>The name of the entity page on which this component has been placed. Possible values are Candidate, Client Contact, Client, and Job Posting.</p>
+
+<p>PrivateLabelID</p>
+
+<p>Integer</p>
+
+<p>The unique ID for the private label (configuration) through which the user is accessing the application.</p>
+
+<p>UserID</p>
+
+<p>Integer</p>
+
+<p>The unique ID for the user of the application.</p>
+
+<p>authCode</p>
+
+<p>String</p>
+
+<p>An encoded value used by partner applications to authenticate the request (included only for tabs or menu actions configured for a partner application).</p>
+
+<p>The page that processes the request should use these values to authorize the request and determine what content should be returned to the user when the component is loaded.</p>
+
+<p>The method for accessing these variables varies depending on your programming environment. For example, in PHP, they become accessible in the $_REQUEST variable; in ASP.NET, they become accessible in the Page.Request object.</p>
+
+<p>The following table describes how a custom tab or custom menu action interacts with the Bullhorn web application and the Bullhorn SOAP web services API to enable the integration.</p>
+
+<p>Action</p>
+
+<p>Response</p>
+
+<p>User clicks a custom tab or a custom menu item.</p>
+
+<p>For a custom tab, the web page for the associated URL opens in an IFRAME that fills the tab.</p>
+
+<p>For a custom menu action, the web page for the associated URL opens in an IFRAME that fills a popup window.</p>
+
+<p>For a custom tab, the user interacts with contents of tab.</p>
+
+<p>For a custom menu action, the user interacts with a popup window.</p>
+
+<p>Configuring a Custom Tab or Menu Action
+To configure a custom tab or menu action:</p>
+
+<p>On the Tools menu, select View Layout .</p>
+
+<p>Select the entity to which you want to add the custom tab or menu action.</p>
+
+<p>To add a custom tab, select the Custom Tabs tab. 
+To add a custom menu action, select the Custom Menu Actions tab.</p>
+
+<p>Click the Add New button.</p>
+
+<p>In the Name field of the new entry, enter the name to display for the custom tab or menu item.</p>
+
+<p>In the URL field, enter the URL you want to request.</p>
+
+<p>In the Partner Name field, select a partner name if desired.</p>
+
+<p>If you are configuring more than one custom tab or menu action, use the arrows to set the order in which the items will appear.</p>
+
+<p>Click Save.</p>
 
       </div>
         <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
