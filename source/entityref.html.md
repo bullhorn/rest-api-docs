@@ -16,6 +16,7 @@ includes:
   - entityref/businesssector
   - entityref/candidate
   - entityref/candidatecertification
+  - entityref/candidateeducation
   - entityref/candidatereference
   - entityref/candidateworkhistory
   - entityref/category

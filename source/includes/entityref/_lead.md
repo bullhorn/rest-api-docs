@@ -68,7 +68,7 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | salaryLow | BigDecimal | The lowest yearly salary the Lead would accept. | | |
 | secondarySkills | To-many association | Skills that are listed as secondary skills for this Lead | | |
 | skillSet | String (2147483647) | Text description of the Lead's skills. | | |
-| smsOptIn | Boolean | Indicates whether the Lead has granted permission to be sent messages via SMS. | | |
+| smsOptIn | Boolean | Indicates whether the Lead has granted permission to be sent messages via SMS.  Can only set on create calls; updates are not allowed. | | |
 | specialties | To-many association | IDs of the Specialties are associated with this Lead. | | |
 | status | String (100) | Status of the lead; for example, New Lead, Active, Prospect, and so forth. Possible values can be configured using field maps. | X | |
 | tearsheets | To-many association | IDs of Tearsheets associated with this Lead. | | |

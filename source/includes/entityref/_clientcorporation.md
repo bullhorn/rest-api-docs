@@ -7,7 +7,7 @@ The ClientCorporation entity supports the massUpdate operations.
 | **ClientCorporation field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| address | Address | ClientCorporation's main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:/meta/ClientContact?fields=address(countryID)  | X | |
+| address | Address | ClientCorporation's main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/ClientContact?fields=address(countryID)  | X | |
 | annualRevenue | BigDecimal | ClientCorporation's annual revenue in millions of U.S. dollars. | X | |
 | billingAddress | AddressWithout-Country | Address that contains the address to which bills should be sent for this ClientCorporation. address1, address2, city, state, zip | | |
 | billingContact | String (100) | Name of the person to whom bills should be sent. | | |
@@ -24,7 +24,7 @@ The ClientCorporation entity supports the massUpdate operations.
 | customDate1-3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customFloat1-3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customInt1-3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: [http://developer.bullhorn.com/articles/customobjects](http://developer.bullhorn.com/articles/customobjects) | | |
+| customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br>[http://bullhorn.github.io/Custom-Objects](http://bullhorn.github.io/Custom-Objects) | | |
 | customText1-20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1-5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | X |

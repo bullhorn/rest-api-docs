@@ -7,10 +7,10 @@ The Candidate entity supports the massUpdate operations.
 | **Candidate field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| address | Address | Candidate address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID) | | |
+| address | Address | Candidate address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/Candidate?fields=address(countryID) | | |
 | businessSectors | To-many association | Ids of BusinessSectors with which Candidate is associated. | | |
 | candidateSource | To-one association | Source of the Candidate. |   X | |
-| category | To-one association | Candidate's primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category. **Note:** This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below). | X | |
+| category | To-one association | Candidate's primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category.<br>**Note:** This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below). | X | |
 | categories | To-many association | Categories assigned to Candidate. | | |
 | certifications | String (2147483647) | Candidate's certifications. | | |
 | comments | String (2147483647) | Free-text comments on Candidate. | X | |
@@ -19,7 +19,7 @@ The Candidate entity supports the massUpdate operations.
 | customDate1 to 3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customFloat1 to 3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customInt1 to 3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects: [http://developer.bullhorn.com/articles/customobjects](http://developer.bullhorn.com/articles/customobjects) | | |
+| customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br>[http://bullhorn.github.io/Custom-Objects](http://bullhorn.github.io/Custom-Objects) | | |
 | customText1 to 20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1 to 5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | X |
@@ -61,7 +61,7 @@ The Candidate entity supports the massUpdate operations.
 | isEditable | Boolean | Indicates whether Candidate can edit his or her profile information; applicable to Candidate/Client login. | X |
 | lastName | String (50) | Candidate's last name. | X | |
 | leads | To-many association | Leads associated with this Candidate. | | |
-| linkedPerson | To-one association | If person represented by Candidate is also a ClientContact, this field includes the following ClientContact fields: id, _subtype | | |
+| linkedPerson | To-one association | If person represented by Candidate is also a ClientContact, this field includes the following ClientContact fields<br>: id, _subtype | | |
 | localAddtionalWitholdingsAmount | BigDecimal | Number of local withholdings the Candidate has selected on his or her W-2 tax form. | | |
 | localExemptions | Integer | Number of local exemptions Candidate has indicated on his or her W-2 tax form. | | |
 | localFilingStatus | String (1) | Candidate's local tax filing status. | | |
@@ -91,12 +91,12 @@ The Candidate entity supports the massUpdate operations.
 | referredByPerson | To-one association | Person who referred Candidate, if applicable. | | |
 | salary | BigDecimal | Candidate's desired yearly salary. | | |
 | salaryLow | BigDecimal | Lowest yearly salary the Candidate will accept. | | |
-| secondaryAddress | Address | Candidate's work address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels: /meta/Candidate?fields=address(countryID) | | |
+| secondaryAddress | Address | Candidate's work address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/Candidate?fields=address(countryID) | | |
 | secondaryOwners | To-many association | CorporateUsers who are additional owners of Candidate. | | |
 | secondarySkills | Skill | Skills that are listed as secondary skills for Candidate. | | |
 | sendouts | To-many association | Sendouts for Candidate. This field is populated when you create Sendouts where the Sendout.candidate is this Candidate. | | |
 | skillSet | String (2147483647) | Text description of Candidate's skills. | | |
-| smsOptIn | Boolean | Indicates whether Candidate has granted permission to be sent messages via SMS. | | |
+| smsOptIn | Boolean | Indicates whether Candidate has granted permission to be sent messages via SMS. Can only set on create calls; updates are not allowed. | | |
 | source | String (200) | Candidate source: for example, Advertisement, Client Referral, LinkedIn, Monster.com, and so forth. Allowable values can be configured using field maps. | | |
 | specialties | To-many association | Candidate’s specialty skills. This field is populated when you associate a Specialty with this Candidate in a to-many association operation. | | |
 | ssn | String (18) | Candidate's Social Security Number. Check field map for proper format. | | |

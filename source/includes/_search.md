@@ -35,11 +35,11 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/search/Candidate?query
 
 ### HTTP Request
 
-`{corpToken}/search/{entity}?query={lucene}&fields={fields}&orderBy={fields}&count={count}&start={start}`
+`{corpToken}/search/{entity}?query={lucene}&fields={fields}&sort={fields}&count={count}&start={start}`
 
 Parameter | Required | Description
 ------ | -------- | -----
-query | yes | Lucene-Style filter clause.
+query | yes | Lucene-style filter clause.
 fields | yes* | Comma-separated list of field names. Use fields or layout, but not both.
 layout | yes* | Name of a configured layout. Use fields or layout, but not both.
 showReadOnly | no | (true/false) Whether to show read-only fields. Only applies when the layout parameter is used.
