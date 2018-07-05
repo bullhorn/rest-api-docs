@@ -14,6 +14,9 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/3835/23
 ```
 
 Returns an attached file as base64-encoded text.
+
+**Note:** The optional "raw" path parameter returns a multipart-encoded version of the file. This path parameter exists for convenience. When an API user makes a call of this form in a browser, it appears that the browser has downloaded the file.
+
 Files can be attached to the following types of entities:
 
 * Candidate
@@ -25,7 +28,7 @@ Files can be attached to the following types of entities:
 
 ### HTTP Request
 
-`{corpToken}/file/{entityType}/{entityId}/{fileId}`
+`{corpToken}/file/{entityType}/{entityId}/{fileId}(/raw)`
 
 Param | Required | Description
 ------ | -------- | -----
@@ -34,6 +37,8 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 ## <span class="tag">GET</span> /entityFiles
+
+(deprecated; replaced by /entity/{entityType}/{entityId}/fileAttachments)
 
 ``` shell
 curl https://rest.bullhornstaffing.com/rest-services/e999/entityFiles/Candidate/203866
@@ -76,6 +81,66 @@ Files can be attached to the following types of entities:
 Param | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+## <span class="tag">GET</span> /entity/{entityType}/{entityId}/fileAttachments
+
+
+``` shell
+curl https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/203866/fileAttachments?fields=*
+
+# Example Response
+{
+  "start" : 0,
+  "count" : 1,
+  "data" : [ {
+    "contentSubType" : "plain",
+    "contentType" : "text",
+    "dateAdded" : 1530815115887,
+    "departmentsSharedWith" : {
+      "total" : 0,
+      "data" : [ ]
+    },
+    "description" : null,
+    "directory" : "4659/2018.07/",
+    "distribution" : "internal",
+    "externalID" : "Portfolio",
+    "fileExtension" : ".txt",
+    "fileOwner" : null,
+    "fileSize" : 23,
+    "fileType" : "SAMPLE         ",
+    "isCopied" : false,
+    "isDeleted" : false,
+    "isEncrypted" : true,
+    "isExternal" : false,
+    "isOpen" : true,
+    "isPrivate" : false,
+    "isSendOut" : false,
+    "jobOrder" : {
+      "id" : 232625,
+      "title" : "Greatest Job"
+    } ]
+}
+```
+
+Returns metadata for attached files.
+
+Files can be attached to the following types of entities:
+
+* Candidate
+* ClientContact
+* ClientCorporation
+* JobOrder
+* Opportunity
+* Placement
+
+### HTTP Request
+
+`{corpToken}/entityFiles/{entityType}/{entityId}`
+
+Param | Required | Description
+------ | -------- | -----
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
 
 ## <span class="tag">PUT</span> /file
 
