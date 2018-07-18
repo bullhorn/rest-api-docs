@@ -16,7 +16,6 @@ includes:
   - entity
   - departmententities
   - myentities
-  - subscription
   - file
   - find
   - login

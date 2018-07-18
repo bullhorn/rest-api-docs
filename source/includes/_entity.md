@@ -136,9 +136,9 @@ You can use HTTP PUT requests to create new entities. The URL looks the same as 
 
 Associations fields are set by giving as their values a JSON object containing one field, named 'id', and having value the id of the entity to associate.
 
-If you specify fields that do not exist on the entity being created, returns a 400 error containing messaging about the unknown fields,
+If you specify fields that do not exist on the entity being created, returns a 400 error containing messaging about the unknown fields.
 
-Most entities in the Bullhorn data model contains mandatory fields. Some of these mandatory fields have default values. All mandatory fields without default values must have values specified in the JSON body of the PUT request or returns a 400 error.
+Most entities in the Bullhorn data model contain mandatory fields. Some of these mandatory fields have default values. All mandatory fields without default values must have values specified in the JSON body of the PUT request or return a 400 error.
 
 NOTE: When using an HTTP PUT request to create a Client Corporation entity an archived Client Contact entity, which belongs to this new Client Corporation, will automatically be created. This mirrors what is done through the ATS when creating a Client Corporation and allows the new Client Corporation to correctly follow ownership rules (where the ownership of a Client Corp is based on ownership of its Client Contacts) and belong to the person creating it. 
 
@@ -218,7 +218,7 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
 ```
 
-For special to-many associations, like Custom Objects, we have the ability to create and associate in a single step.  These is due to the fact that we need to know their context to enforce security and data integrity.  You can add/update to-many associations with a POST request the same as if it was data directly on the parent entity. You can combine standard parent entity updates with special association add and edits.
+For special to-many associations, like Custom Objects, you can create and associate in a single step. You can add or update to-many associations with a POST request as if the data is directly on the parent entity. You can combine standard parent entity updates with special association add and edits.
 
 ### HTTP Request
 
