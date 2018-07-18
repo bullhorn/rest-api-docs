@@ -28,7 +28,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | customDate1-3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customFloat1-3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customInt1-3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned. | | |
+| customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned.  For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br>[http://bullhorn.github.io/Custom-Objects](http://bullhorn.github.io/Custom-Objects) | | |
 | customPayRate1-10 | BigDecimal | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customText1-40 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1-5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
