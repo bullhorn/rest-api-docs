@@ -15,7 +15,7 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/query/Candidate?fields
 }
 ```
 
-Retrieves a list of entities. The query is performed against the database. The `where` parameter accepts Java Perstance Language (JPQL) syntax, which is similar SQL syntax.  Access the data via that database is only performant when you query very specific data. Otherwise it is preferred that you use the [Search](#search) call if it is available for the entity type for which you want to search.
+Retrieves a list of entities. The query is performed against the database. The `where` parameter accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the [Search](#search) call when it is available for the entity type for which you want to search.
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 

@@ -11,9 +11,9 @@ Whenever possible, the REST API will follow specifications, conventions and prac
 
 ### URLs
 
-API users should use [data-center-specific base URLs](././Data-Center-URLs.html) for the Bullhorn OAuth, REST, and SOAP APIs.
+API users should use [data-center-specific base URLs](http://bullhorn.github.io/Data-Center-URLs) data-center-specific base URLs for the Bullhorn OAuth, REST, and SOAP APIs.
 
-Web URLs are case-sensitive, except for machine names. We shall follow that practice. All REST API URLs should be considered case-sensitive.
+Web URLs are case-sensitive, except for machine names. All REST API URLs should be considered case-sensitive.
 
 All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:
 
