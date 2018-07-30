@@ -8,6 +8,7 @@ The Candidate entity supports the massUpdate operations.
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | address | Address | Candidate address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/Candidate?fields=address(countryID) | | |
+| blacklistClientCorporations | To-many association | Set of ClientCorporations blacklisted for this Candidate. | | |
 | businessSectors | To-many association | Ids of BusinessSectors with which Candidate is associated. | | |
 | candidateSource | To-one association | Source of the Candidate. |   X | |
 | category | To-one association | Candidate's primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category.<br>**Note:** This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below). | X | |
@@ -116,6 +117,7 @@ The Candidate entity supports the massUpdate operations.
 | username | String (100) | Candidate’s username for logging in to Bullhorn. The default value is _[random number] | X | |
 | veteran | String (1) | Indicates whether Candidate is a veteran: Y for yes, N for no, or U for unknown. | | |
 | webResponses | To-many association | Web responses for Candidate. This field is populated when you create JobSubmissions where JobSubmission.candidate is this Candidate and JobSubmission.status is “New Lead”. | | |
+| whitelistClientCorporations | To-many association | Set of ClientCorporations whitelisted for this Candidate. | | |
 | willRelocate | Boolean | Indicates whether Candidate is willing to relocate for a position. | | |
 | workAuthorized | Boolean | Indicates whether Candidate is authorized to work in the U.S. | | |
 | workPhone | String (20) | Candidate's telephone number at work. | | | |
