@@ -131,9 +131,9 @@
 
 <h3 id="urls">URLs</h3>
 
-<p>API users should use <a href="././Data-Center-URLs.html">data-center-specific base URLs</a> for the Bullhorn OAuth, REST, and SOAP APIs.</p>
+<p>API users should use <a href="http://bullhorn.github.io/Data-Center-URLs/">data-center-specific base URLs</a> data-center-specific base URLs for the Bullhorn OAuth, REST, and SOAP APIs.</p>
 
-<p>Web URLs are case-sensitive, except for machine names. We shall follow that practice. All REST API URLs should be considered case-sensitive.</p>
+<p>Web URLs are case-sensitive, except for machine names. All REST API URLs should be considered case-sensitive.</p>
 
 <p>All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:</p>
 
@@ -662,7 +662,7 @@ StateText</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a entity with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access an entity with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
@@ -1068,9 +1068,9 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 
 <p>Associations fields are set by giving as their values a JSON object containing one field, named &lsquo;id&rsquo;, and having value the id of the entity to associate.</p>
 
-<p>If you specify fields that do not exist on the entity being created, returns a 400 error containing messaging about the unknown fields,</p>
+<p>If you specify fields that do not exist on the entity being created, returns a 400 error containing messaging about the unknown fields.</p>
 
-<p>Most entities in the Bullhorn data model contains mandatory fields. Some of these mandatory fields have default values. All mandatory fields without default values must have values specified in the JSON body of the PUT request or returns a 400 error.</p>
+<p>Most entities in the Bullhorn data model contain mandatory fields. Some of these mandatory fields have default values. All mandatory fields without default values must have values specified in the JSON body of the PUT request or return a 400 error.</p>
 
 <p>NOTE: When using an HTTP PUT request to create a Client Corporation entity an archived Client Contact entity, which belongs to this new Client Corporation, will automatically be created. This mirrors what is done through the ATS when creating a Client Corporation and allows the new Client Corporation to correctly follow ownership rules (where the ownership of a Client Corp is based on ownership of its Client Contacts) and belong to the person creating it. </p>
 
@@ -1175,7 +1175,7 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
 </code></pre>
 
-<p>For special to-many associations, like Custom Objects, we have the ability to create and associate in a single step.  These is due to the fact that we need to know their context to enforce security and data integrity.  You can add/update to-many associations with a POST request the same as if it was data directly on the parent entity. You can combine standard parent entity updates with special association add and edits.</p>
+<p>For special to-many associations, like Custom Objects, you can create and associate in a single step. You can add or update to-many associations with a POST request as if the data is directly on the parent entity. You can combine standard parent entity updates with special association add and edits.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1533,212 +1533,6 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 </tr>
 </tbody></table>
 
-          <h1 id="events">Events</h1>
-
-<h2 id="get-event-subscription"><span class="tag">GET</span> /event/subscription</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?maxEvents<span class="o">=</span>100
-
-<span class="c"># Example Response</span>
-<span class="o">{{</span>
-    <span class="s2">"requestId"</span>: 1,
-    <span class="s2">"events"</span>: <span class="o">[</span>
-        <span class="o">{</span>
-            <span class="s2">"eventId"</span>: <span class="s2">"ID:JBM-40000517"</span>,
-            <span class="s2">"eventType"</span>: <span class="s2">"ENTITY"</span>,
-            <span class="s2">"eventTimestamp"</span>: 1495559294820,
-            <span class="s2">"eventMetadata"</span>: <span class="o">{</span>
-                <span class="s2">"PERSON_ID"</span>: <span class="s2">"1314"</span>,
-                <span class="s2">"TRANSACTION_ID"</span>: <span class="s2">"c8d8f9ea-5ae6-4346-831c-29b91fcb703d"</span>
-            <span class="o">}</span>,
-            <span class="s2">"entityName"</span>: <span class="s2">"ClientContact"</span>,
-            <span class="s2">"entityId"</span>: 8592,
-            <span class="s2">"entityEventType"</span>: <span class="s2">"UPDATED"</span>,
-            <span class="s2">"updatedProperties"</span>: <span class="o">[</span>
-                <span class="s2">"username"</span>,
-                <span class="s2">"password"</span>
-            <span class="o">]</span>
-        <span class="o">}</span>
-    <span class="o">]</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>Lets you get entity events, field map change events, and job match search events.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>maxEvents</td>
-<td>yes</td>
-<td>Integer specifying the maximum number of events to be returned.</td>
-</tr>
-<tr>
-<td>requestId</td>
-<td>no</td>
-<td>Integer specifying an event requestId. Lets you reget events.</td>
-</tr>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
-<h3 id="http-response">HTTP Response</h3>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>eventID</td>
-<td>Unique identifier for the event.</td>
-</tr>
-<tr>
-<td>eventMetaData</td>
-<td>Contains metadatata key/value pairs. PERSON_ID: User associated with the event. TRANSACTION_ID: For entities that have edit history, a TRANSACTION_ID represents a specific change that happened in the Bullhorn system, triggering an event in the subscription queue. TRANSACTION_IDs are returned as part of the subscription event data and can be used to associate a specific event to the state of a record at that stage.</td>
-</tr>
-<tr>
-<td>eventTimestamp</td>
-<td>The date and time at which the event occurred.</td>
-</tr>
-<tr>
-<td>entityEventType</td>
-<td>Integer specifying the maximum number of events to be returned.</td>
-</tr>
-<tr>
-<td>eventType</td>
-<td>Always &ldquo;ENTITY&rdquo; for entity events.</td>
-</tr>
-<tr>
-<td>entityID</td>
-<td>The unique identifier for the entity instance that was affected.</td>
-</tr>
-<tr>
-<td>entityName</td>
-<td>The name of the entity that was affected.</td>
-</tr>
-<tr>
-<td>updatedProperties</td>
-<td>If the event type is UPDATED, this parameter indicates which properties of the entity were modified.</td>
-</tr>
-</tbody></table>
-
-<h2 id="get-event-subscription-lastrequestid"><span class="tag">GET</span> /event/subscription/lastRequestId</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscriptioN/Abcde/lastRequestId
-
-<span class="c"># Example Response</span>
-<span class="o">{</span><span class="s1">'result'</span>: 1<span class="o">}</span>
-</code></pre>
-
-<p>Lets you get entity events, field map change events, and job match search events.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}/lastRequestId</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
-<h2 id="put-event-subscription"><span class="tag">PUT</span> /event/subscription</h2>
-<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
-     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type<span class="o">=</span>entity&amp;names<span class="o">=</span>Candidate
-&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
-
-<span class="c"># Example Response</span>
-<span class="o">{</span><span class="s1">'lastRequestId'</span>: 0,
- <span class="s1">'subscriptionId'</span>: <span class="s1">'abcde'</span>,
- <span class="s1">'createdOn'</span>: 1335285871323,
- <span class="s1">'jmsSelector'</span>: <span class="s2">"JMSType='ENTITY' AND BhCorpId=44 AND BhEntityName='Candidate' AND BhEntityEventType IN ('UPDATED','INSERTED','DELETED')"</span><span class="o">}</span>
-
-</code></pre>
-
-<p>Lets you subscribe to event types.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>yes</td>
-<td>entity</td>
-</tr>
-<tr>
-<td>names</td>
-<td>yes</td>
-<td>Required with &ldquo;entity&rdquo; type. A comma-separated list of entity names.</td>
-</tr>
-<tr>
-<td>eventTypes</td>
-<td>yes</td>
-<td>RRequired with &ldquo;entity&rdquo; type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.</td>
-</tr>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
-<h2 id="delete-event-subscription"><span class="tag">DELETE</span> /event/subscription</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde
-&amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
-
-<span class="c"># Example Response</span>
-<span class="o">{</span><span class="s1">'result'</span>: True<span class="o">}</span>
-
-</code></pre>
-
-<p>Lets you unsubscribe from event types.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">{corpToken}/event/subscription/{subscriptionId}</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>BhRestToken</td>
-<td>no</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
-</tr>
-</tbody></table>
-
           <h1 id="file">File</h1>
 
 <h2 id="get-file"><span class="tag">GET</span> /file</h2>
@@ -1788,6 +1582,8 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h2 id="get-entityfiles"><span class="tag">GET</span> /entityFiles</h2>
+
+<p>(deprecated; replaced by /entity/{entityType}/{entityId}/fileAttachments)</p>
 <pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/entityFiles/Candidate/203866
 
 <span class="c"># Example Response</span>
@@ -1813,6 +1609,74 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 
 <p>Returns metadata for attached files.
 Files can be attached to the following types of entities:</p>
+
+<ul>
+<li>Candidate</li>
+<li>ClientContact</li>
+<li>ClientCorporation</li>
+<li>JobOrder</li>
+<li>Opportunity</li>
+<li>Placement</li>
+</ul>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/entityFiles/{entityType}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Param</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-entity-entitytype-entityid-fileattachments"><span class="tag">GET</span> /entity/{entityType}/{entityId}/fileAttachments</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/203866/fileAttachments?fields<span class="o">=</span><span class="k">*</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+  <span class="s2">"start"</span> : 0,
+  <span class="s2">"count"</span> : 1,
+  <span class="s2">"data"</span> : <span class="o">[</span> <span class="o">{</span>
+    <span class="s2">"contentSubType"</span> : <span class="s2">"plain"</span>,
+    <span class="s2">"contentType"</span> : <span class="s2">"text"</span>,
+    <span class="s2">"dateAdded"</span> : 1530815115887,
+    <span class="s2">"departmentsSharedWith"</span> : <span class="o">{</span>
+      <span class="s2">"total"</span> : 0,
+      <span class="s2">"data"</span> : <span class="o">[</span> <span class="o">]</span>
+    <span class="o">}</span>,
+    <span class="s2">"description"</span> : null,
+    <span class="s2">"directory"</span> : <span class="s2">"4659/2018.07/"</span>,
+    <span class="s2">"distribution"</span> : <span class="s2">"internal"</span>,
+    <span class="s2">"externalID"</span> : <span class="s2">"Portfolio"</span>,
+    <span class="s2">"fileExtension"</span> : <span class="s2">".txt"</span>,
+    <span class="s2">"fileOwner"</span> : null,
+    <span class="s2">"fileSize"</span> : 23,
+    <span class="s2">"fileType"</span> : <span class="s2">"SAMPLE         "</span>,
+    <span class="s2">"isCopied"</span> : <span class="nb">false</span>,
+    <span class="s2">"isDeleted"</span> : <span class="nb">false</span>,
+    <span class="s2">"isEncrypted"</span> : <span class="nb">true</span>,
+    <span class="s2">"isExternal"</span> : <span class="nb">false</span>,
+    <span class="s2">"isOpen"</span> : <span class="nb">true</span>,
+    <span class="s2">"isPrivate"</span> : <span class="nb">false</span>,
+    <span class="s2">"isSendOut"</span> : <span class="nb">false</span>,
+    <span class="s2">"jobOrder"</span> : <span class="o">{</span>
+      <span class="s2">"id"</span> : 232625,
+      <span class="s2">"title"</span> : <span class="s2">"Greatest Job"</span>
+    <span class="o">}</span> <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Returns metadata for attached files.</p>
+
+<p>Files can be attached to the following types of entities:</p>
 
 <ul>
 <li>Candidate</li>
@@ -3016,7 +2880,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <span class="o">}</span>
 </code></pre>
 
-<p>Retrieves a list of entities. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Perstance Language (JPQL) syntax, which is similar SQL syntax.  Access the data via that database is only performant when you query very specific data. Otherwise it is preferred that you use the <a href="#search">Search</a> call if it is available for the entity type for which you want to search.</p>
+<p>Retrieves a list of entities. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the <a href="#search">Search</a> call when it is available for the entity type for which you want to search.</p>
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 
@@ -3990,7 +3854,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <span class="o">}</span>
 </code></pre>
 
-<p>Retrieves a list of entities. The search call is performed against a optimized index, therefore the query parameter should reflect Lucene Query Syntax. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
+<p>Retrieves a list of entities. The search call is performed against a Lucene index. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
 
 <aside class="notice">If you provide no request parameters, a list of available search fields are provided.</aside>
 

@@ -668,6 +668,13 @@
 <td></td>
 </tr>
 <tr>
+<td>blacklistClientCorporations</td>
+<td>To-many association</td>
+<td>Set of ClientCorporations blacklisted for this Candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>businessSectors</td>
 <td>To-many association</td>
 <td>Ids of BusinessSectors with which Candidate is associated.</td>
@@ -1420,6 +1427,13 @@
 <td>webResponses</td>
 <td>To-many association</td>
 <td>Web responses for Candidate. This field is populated when you create JobSubmissions where JobSubmission.candidate is this Candidate and JobSubmission.status is “New Lead”.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>whitelistClientCorporations</td>
+<td>To-many association</td>
+<td>Set of ClientCorporations whitelisted for this Candidate.</td>
 <td></td>
 <td></td>
 </tr>
@@ -4022,7 +4036,7 @@
 <td>customFloat1 to 3</td>
 <td>Double</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td>X</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -4093,6 +4107,548 @@
 <td>To-many association</td>
 <td>Set of ClientCorporations to use this housing complex.</td>
 <td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="housingcomplexfurnituredelivery">HousingComplexFurnitureDelivery</h1>
+
+<p>Read-only enntity that represents a housing complex furniture delivery that a ClientCorporation uses when providing housing for certain types of employees. </p>
+
+<table><thead>
+<tr>
+<th><strong>HousingComplexFurnitureDelivery field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>HousingComplex address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/HousingComplex?fields=address(countryID)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingContactID</td>
+<td>Integer</td>
+<td>The Bullhorn ClientContact id of the billing contact person for this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String (2147483647)</td>
+<td>Free-text comments about this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contactName</td>
+<td>String (100)</td>
+<td>Name of the contact person for the housing complex, generally a facilities manager or superintendent.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customContactID1 and 2</td>
+<td>Integer</td>
+<td>Configurable fields for identifying additional ClientContacts who have roles related to this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1 to 3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 3</td>
+<td>Double</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 5</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1 to 5</td>
+<td>String (2147483647)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateOfDelivery</td>
+<td>Timestamp</td>
+<td>The delivery date of furniture.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateOfOrder</td>
+<td>Timestamp</td>
+<td>The order date of furniture.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateOfPickup</td>
+<td>Timestamp</td>
+<td>The pickup date of furniture.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax</td>
+<td>String (20)</td>
+<td>Fax number for the housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of the housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String (20)</td>
+<td>Primary phone number of the housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unit</td>
+<td>To-one association</td>
+<td>Associated HousingComplexUnit.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="housingcomplexunit">HousingComplexUnit</h1>
+
+<p>Read-only entity that represents a housing complex unit that a ClientCorporation uses when providing housing for certain types of employees. </p>
+
+<table><thead>
+<tr>
+<th><strong>HousingComplexUnit field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>billingContactID</td>
+<td>Integer</td>
+<td>The Bullhorn ClientContact id of the billing contact person for this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String (2147483647)</td>
+<td>Free-text comments about this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contactName</td>
+<td>String (100)</td>
+<td>Name of the contact person for the housing complex, generally a facilities manager or superintendent.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customContactID1 and 2</td>
+<td>Integer</td>
+<td>Configurable fields for identifying additional ClientContacts who have roles related to this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1 to 3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 3</td>
+<td>Double</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 5</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1 to 5</td>
+<td>String (2147483647)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLeaseBegin</td>
+<td>Timestamp</td>
+<td>The lease begin date.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLeaseEnd</td>
+<td>Timestamp</td>
+<td>The lease end date.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateOfDeposit</td>
+<td>Timestamp</td>
+<td>The deposit date.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateORefund</td>
+<td>Timestamp</td>
+<td>The refund date.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>firstMonthProRate</td>
+<td>Double</td>
+<td>Prorate value for the first month of the lease.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isDepositRefundable</td>
+<td>Boolean</td>
+<td>Indicates whether lease is on file.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isLeaseOnFile</td>
+<td>Boolean</td>
+<td>Indicates whether deposit is refundable.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>maxOccupants</td>
+<td>Integer</td>
+<td>Maximum number of occupants.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>monthlyRent</td>
+<td>Double</td>
+<td>Monthly rent.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of the housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>occupants</td>
+<td>Integer</td>
+<td>Number of occupants.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>penalties</td>
+<td>String</td>
+<td>CorporateUser who is the owner of this housing complex.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>securityDeposit</td>
+<td>Double</td>
+<td>Amount of security deposit.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unitManagerID</td>
+<td>Integer</td>
+<td>ID of unit manager.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>furnitureDeliveries</td>
+<td>To-many association</td>
+<td>Set of FurnitureDeliveries attached to this HousingComplexUnit.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>userHousingComplexUnits</td>
+<td>To-many association</td>
+<td>Set of userHousingComplexUnits attached to this HousingComplexUnit.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>utilityAccounts</td>
+<td>To-many association</td>
+<td>Set of utilityAccounts attached to this HousingComplexUnit.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="housingcomplexutilityaccount">HousingComplexUtilityAccount</h1>
+
+<p>Read-only entity that represents a housing complex unit utility account that a ClientCorporation uses when providing housing for certain types of employees. </p>
+
+<table><thead>
+<tr>
+<th><strong>HousingComplexUtilityAccount field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>HousingComplex address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/HousingComplex?fields=address(countryID)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td>String (100)</td>
+<td>Utility account number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>billingContactID</td>
+<td>Integer</td>
+<td>The Bullhorn ClientContact id of the billing contact person for this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String (2147483647)</td>
+<td>Free-text comments about this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contactName</td>
+<td>String (100)</td>
+<td>Name of the contact person for the housing complex, generally a facilities manager or superintendent.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customContactID1 and 2</td>
+<td>Integer</td>
+<td>Configurable fields for identifying additional ClientContacts who have roles related to this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1 to 3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 3</td>
+<td>Double</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 5</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1 to 5</td>
+<td>String (2147483647)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateConnected</td>
+<td>Timestamp</td>
+<td>Utility connection date.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateDisconnected</td>
+<td>Timestamp</td>
+<td>Utility disconnection date.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>deposit</td>
+<td>Double</td>
+<td>Deposit amount.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fax</td>
+<td>String (20)</td>
+<td>Fax number for the housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of the housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String (20)</td>
+<td>Primary phone number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>String (100)</td>
+<td>Type of utility account.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unit</td>
+<td>To-one association</td>
+<td>Associated HousingComplexUnit.</td>
+<td>X</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -8400,6 +8956,7 @@
 </tr>
 </tbody></table>
 
+          
       </div>
     </div>
   </body>
