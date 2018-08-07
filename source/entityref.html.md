@@ -61,7 +61,7 @@ includes:
   - entityref/tearsheetmember
   - entityref/tearsheetrecipient
   - entityref/timeunit
-  - entityref/userhousingcomplex
+  - entityref/userhousingcomplexunit
 
 search: true
 ---
