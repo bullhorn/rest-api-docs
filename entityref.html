@@ -8956,7 +8956,119 @@
 </tr>
 </tbody></table>
 
-          
+          <h1 id="userhousingcomplexunit">UserHousingComplexUnit</h1>
+
+<p>Read-only entity that represents a housing complex unit for a candidate. </p>
+
+<table><thead>
+<tr>
+<th><strong>UserHousingComplexUnit field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>To-one association</td>
+<td>Candidate submitted for this job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String (2147483647)</td>
+<td>Free-text comments about this housing complex.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customDate1 to 5</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 5</td>
+<td>Double</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 5</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 5</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customTextBlock1 to 5</td>
+<td>String (2147483647)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateBegin</td>
+<td>Timestamp</td>
+<td>Begin date.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateEnd</td>
+<td>Timestamp</td>
+<td>End date.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>deduction</td>
+<td>Double</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>placement</td>
+<td>To-many association</td>
+<td>Set of FurnitureDeliveries attached to this HousingComplexUnit.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unit</td>
+<td>To-one association</td>
+<td>Associated HousingComplexUnit.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
       </div>
     </div>
   </body>
