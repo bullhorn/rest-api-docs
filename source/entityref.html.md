@@ -35,6 +35,9 @@ includes:
   - entityref/entityedithistoryfieldchange
   - entityref/entityfileattachment
   - entityref/housingcomplex
+  - entityref/housingcomplexfurnituredelivery
+  - entityref/housingcomplexunit
+  - entityref/housingcomplexutilityaccount
   - entityref/jobboardpost
   - entityref/joborder
   - entityref/jobsubmission
@@ -58,6 +61,7 @@ includes:
   - entityref/tearsheetmember
   - entityref/tearsheetrecipient
   - entityref/timeunit
+  - entityref/userhousingcomplex
 
 search: true
 ---
