@@ -8,15 +8,15 @@ The JobOrder entity supports the massUpdate operations.
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | address | Address1 | Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID) | | |
-| appointments | To-many association | Ids of Appointments associated with this job. | | |
-| approvedPlacements | To-many association | Ids of the approved Placements associated with this job. | | |
+| appointments | To-many association | Appointments associated with this job. | | |
+| approvedPlacements | To-many association | Approved Placements associated with this job. | | |
 | assignedUsers | To-many association | Internal users assigned to this job. | | |
 | benefits | String (2147483647) | Text description of benefits offered with this job. | | |
 | billRateCategoryID | Integer | Id of the client bill rate category. | | |
 | bonusPackage | String (2147483647) | Text description of the bonus package offered with this job. | | |
 | branchCode | String (100) | Code representing the corporate branch where the job is located. | | |
-| businessSectors | To-many association | Ids of BusinessSectors associated with this job. | | |
-| categories | To-many association | Ids of Categories associated with this job. | | |
+| businessSectors | To-many association | BusinessSectors associated with this job. | | |
+| categories | To-many association | Categories associated with this job. | | |
 | certificationList | String (255) | List of Certifications that an applicant should have. | | |
 | certifications | To-many association | Certifications that applicants should have. | | |
 | clientBillRate | BigDecimal | Amount to be billed to the client for this job when it is filled. | | |
@@ -49,7 +49,7 @@ The JobOrder entity supports the massUpdate operations.
 | feeArrangement | Double | Fee, expressed as a percentage, that will be paid by the ClientCorporation when the job is filled. | | |
 | hoursOfOperation | String (30) | Hiring company's hours of operation. | | |
 | hoursPerWeek | Double | Number of hours per week that the employee will work. | | |
-| Interviews | To-many association | Ids of interview Appointments associated with this job. | | |
+| Interviews | To-many association | Interview Appointments associated with this job. | | |
 | isClientEditable | Boolean | Indicates whether a ClientContact can modify the job via the Bullhorn system. | | |
 | isDeleted | Boolean | Indicates whether this record is marked as deleted in the Bullhorn system. | | |
 | isInterviewRequired | Boolean | Indicates whether applicants are required to Interview for the job. | | |
@@ -58,14 +58,14 @@ The JobOrder entity supports the massUpdate operations.
 | isPublic | Boolean | Controls whether a job appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1. | | |
 | jobBoardList | String (2147483647) | List of job boards on which this job has been posted. | | |
 | markupPercentage | Double | Represents the relationship between clientBillRate and PayRate MP = (CBR - PR) / PR | X | X |
-| notes | To-many association | Ids of Notes associated with this job. | | |
+| notes | To-many association | Notes associated with this job. | | |
 | numOpenings | Integer | Number of openings to be filled for this job. | | |
 | onSite | String (20) | Location requirements; for example, on-site, off-site, no preference. | | |
-| Opportunity | To-one association | Opportunity with which this JobOrder is associated. | | |
+| Opportunity | To-one association | Opportunity with which this job is associated. | | |
 | optionsPackage | String (2147483647) | Text description of the stock options package offered with this job. | | |
 | owner | To-one association | CorporateUser who owns this job. The default value is user who creates the JobOrder. | X | |
 | payRate | BigDecimal | Pay rate offered with this job. | | |
-| placements | To-many association | Ids of Placements associated with this job. | | |
+| placements | To-many association | Placements associated with this job. | | |
 | publicDescription | String (200000) | Description of this job for use on public job boards. | | |
 | publishedZip | String (18) | Published Zip Code of the job location. | | |
 | reasonClosed | String (2147483647) | Text description of the reason this job was closed, if applicable. | | |
@@ -74,20 +74,21 @@ The JobOrder entity supports the massUpdate operations.
 | responseUser | To-one association | CorporateUser to whom submissions should be sent. |
 | salary | BigDecimal | Salary offered for this job. | | |
 | salaryUnit | String (12) | Salary unit represented by the range (for example, per hour, yearly). | | |
-| sendouts | To-many association | Ids of Sendouts associated with this job. | | |
+| sendouts | To-many association | Sendouts associated with this job. | | |
 | skillList | String (2147483647) | Comma-separated list of skills the applicants should have. | | |
-| skills | To-many association | Ids of Skills associated with this job. | | |
+| skills | To-many association | Skills associated with this job. | | |
 | source | String (100) | Source of the job. | | |
 | startDate | Timestamp | Desired start date for the position. The default value is 12 AM on day record is added. | X | |
 | status | String (200) | Current status of the Job Order. Examples: Accepting Candidates, Currently Interviewing, Covered, Offer Out, Placed | | |
-| submissions | To-many association | Ids of JobSubmissions associated with this job. | | |
+| submissions | To-many association |JobSubmissions associated with this job. | | |
 | tasks | Task | Tasks associated with this job. | | |
 | taxRate | Double | Rate (percentage) at which the person hired for this job will be taxed. | | |
 | taxStatus | String (20) | Tax Status, for example, 1099, W-2, and so forth. | | |
-| tearsheets | To-many association | Ids of Tearsheets with which this JobOrder is associated. | | |
+| tearsheets | To-many association | Tearsheets with which this job is associated. | | |
 | title | String (100) | Job title. | | |
 | travelRequirements | String (50) | Text description of the amount of travel required for this job. | | |
 | type | Integer | Job type, for example, Cold, Cool, Medium, Warm, Hot. Stored in DB as Integer with display values configured in field maps. | | |
+| webResponses | To-many association | Web responses associated with this job. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”. | | |
 | willRelocate | Boolean | Indicates whether the hiring company will provide relocation assistance. | | |
 | willSponsor | Boolean | Indicates whether the hiring company is willing to sponsor an employee on a work visa. | | |
 | yearsRequired | Integer | Number of years of experience required for the job. | | |
