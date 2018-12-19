@@ -235,9 +235,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 Deletes an entity or to-many association.
 
-The API supports two types of delete requests:
-* Hard or soft delete using the DELETE verb
-* Soft delete using the POST verb.
+The API supports hard or soft delete using the DELETE verb. You can also use a standard update request with the POST verb to set the isDeleted property of a soft-deletable entity to true.
 
 ### Hard or Soft Delete via DELETE call
 
@@ -246,13 +244,14 @@ curl -X DELETE \
      https://rest.bullhornstaffing.com/rest-services/e999/entity/NoteEntity/2552
 ```
 
-Hard deletes a hard-deletable entity, which removes it from the database. Soft deletes a soft-deletable entity, which sets the isDeleted property of the entity to true.
+Hard deletes one or more hard-deletable entities, which removes it from the database. Soft deletes one or more soft-deletable entities, which sets the isDeleted property of the entity to true.
 
-This operation is available for all entity types except immutable entities, which are neither hard-deletable or soft-deletable. Immutable entities include the following:
+This operation is available for all entity types except immutable entities, which are neither hard-deletable nor soft-deletable. Immutable entities include the following:
 
 *   BusinessSector
 *   Category
 *   Country
+*   ClientCorporation
 *   Skill
 *   Specialty
 *   State
