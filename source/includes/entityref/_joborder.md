@@ -7,7 +7,7 @@ The JobOrder entity supports the massUpdate operations.
 | **JobOrder field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| address | Address1 | Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID) | | |
+| address | Address1 | Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID) | | |
 | appointments | To-many association | Appointments associated with this job. | | |
 | approvedPlacements | To-many association | Approved Placements associated with this job. | | |
 | assignedUsers | To-many association | Internal users assigned to this job. | | |
