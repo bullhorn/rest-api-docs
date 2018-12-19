@@ -99,7 +99,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 type | yes | entity | fieldMapChange | jobMatchSearch.
 names | yes | Required with "entity" type. A comma-separated list of entity names.
-eventTypes | yes | RRequired with "entity" type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.
+eventTypes | yes | Required with "entity" type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ## <span class="tag">DELETE</span> /event/subscription
