@@ -1,5 +1,5 @@
 #My Entities
-##<span class="tag">GET</span> /department{Entity}s
+##<span class="tag">GET</span> /my{Entity}s
 ``` shell
 curl https://rest.bullhornstaffing.com/rest-services/e999/myClientContacts?fields=firstName,lastName,address&start=0&count=5
 
