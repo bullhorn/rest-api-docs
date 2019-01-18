@@ -1201,23 +1201,22 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 
 <p>Deletes an entity or to-many association.</p>
 
-<p>The API supports two types of delete requests:
-* Hard or soft delete using the DELETE verb
-* Soft delete using the POST verb.</p>
+<p>The API supports hard or soft delete using the DELETE verb. You can also use a standard update request with the POST verb to set the isDeleted property of a soft-deletable entity to true.</p>
 
 <h3 id="hard-or-soft-delete-via-delete-call">Hard or Soft Delete via DELETE call</h3>
 <pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/NoteEntity/2552
 </code></pre>
 
-<p>Hard deletes a hard-deletable entity, which removes it from the database. Soft deletes a soft-deletable entity, which sets the isDeleted property of the entity to true.</p>
+<p>Hard deletes one or more hard-deletable entities, which removes it from the database. Soft deletes one or more soft-deletable entities, which sets the isDeleted property of the entity to true.</p>
 
-<p>This operation is available for all entity types except immutable entities, which are neither hard-deletable or soft-deletable. Immutable entities include the following:</p>
+<p>This operation is available for all entity types except immutable entities, which are neither hard-deletable nor soft-deletable. Immutable entities include the following:</p>
 
 <ul>
 <li>  BusinessSector</li>
 <li>  Category</li>
 <li>  Country</li>
+<li>  ClientCorporation</li>
 <li>  Skill</li>
 <li>  Specialty</li>
 <li>  State</li>
@@ -1405,7 +1404,7 @@ curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder
 
           <h1 id="my-entities">My Entities</h1>
 
-<h2 id="get-department-entity-s"><span class="tag">GET</span> /department{Entity}s</h2>
+<h2 id="get-my-entity-s"><span class="tag">GET</span> /my{Entity}s</h2>
 <pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/myClientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;start<span class="o">=</span>0&amp;count<span class="o">=</span>5
 
 <span class="c"># Example Response</span>
@@ -4151,7 +4150,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <tr>
 <td>eventTypes</td>
 <td>yes</td>
-<td>RRequired with &ldquo;entity&rdquo; type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.</td>
+<td>Required with &ldquo;entity&rdquo; type. A comma-separated list of entity event types: INSERTED, UPDATED, DELETED.</td>
 </tr>
 <tr>
 <td>BhRestToken</td>

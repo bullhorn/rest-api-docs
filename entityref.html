@@ -4861,21 +4861,21 @@
 <tr>
 <td>address</td>
 <td>Address1</td>
-<td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID)</td>
+<td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID)</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>appointments</td>
 <td>To-many association</td>
-<td>Ids of Appointments associated with this job.</td>
+<td>Appointments associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>approvedPlacements</td>
 <td>To-many association</td>
-<td>Ids of the approved Placements associated with this job.</td>
+<td>Approved Placements associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
@@ -4917,14 +4917,14 @@
 <tr>
 <td>businessSectors</td>
 <td>To-many association</td>
-<td>Ids of BusinessSectors associated with this job.</td>
+<td>BusinessSectors associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>categories</td>
 <td>To-many association</td>
-<td>Ids of Categories associated with this job.</td>
+<td>Categories associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5155,7 +5155,7 @@
 <tr>
 <td>Interviews</td>
 <td>To-many association</td>
-<td>Ids of interview Appointments associated with this job.</td>
+<td>Interview Appointments associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5218,7 +5218,7 @@
 <tr>
 <td>notes</td>
 <td>To-many association</td>
-<td>Ids of Notes associated with this job.</td>
+<td>Notes associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5239,7 +5239,7 @@
 <tr>
 <td>Opportunity</td>
 <td>To-one association</td>
-<td>Opportunity with which this JobOrder is associated.</td>
+<td>Opportunity with which this job is associated.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5267,7 +5267,7 @@
 <tr>
 <td>placements</td>
 <td>To-many association</td>
-<td>Ids of Placements associated with this job.</td>
+<td>Placements associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5330,7 +5330,7 @@
 <tr>
 <td>sendouts</td>
 <td>To-many association</td>
-<td>Ids of Sendouts associated with this job.</td>
+<td>Sendouts associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5344,7 +5344,7 @@
 <tr>
 <td>skills</td>
 <td>To-many association</td>
-<td>Ids of Skills associated with this job.</td>
+<td>Skills associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5372,7 +5372,7 @@
 <tr>
 <td>submissions</td>
 <td>To-many association</td>
-<td>Ids of JobSubmissions associated with this job.</td>
+<td>JobSubmissions associated with this job.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5400,7 +5400,7 @@
 <tr>
 <td>tearsheets</td>
 <td>To-many association</td>
-<td>Ids of Tearsheets with which this JobOrder is associated.</td>
+<td>Tearsheets with which this job is associated.</td>
 <td></td>
 <td></td>
 </tr>
@@ -5422,6 +5422,13 @@
 <td>type</td>
 <td>Integer</td>
 <td>Job type, for example, Cold, Cool, Medium, Warm, Hot. Stored in DB as Integer with display values configured in field maps.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>webResponses</td>
+<td>To-many association</td>
+<td>Web responses associated with this job. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”.</td>
 <td></td>
 <td></td>
 </tr>
