@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+ - 2.2
+ - jruby
+install:
+  - bundle install
+provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
