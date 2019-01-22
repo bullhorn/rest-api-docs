@@ -15,7 +15,7 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/query/ClientContact?fi
 }
 ```
 
-Retrieves a list of entities. For long where values, always use the POST version of the query operation rather than this GET version. The query is performed against the database. The `where` parameter accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the [Search](#search) call when it is available for the entity type for which you want to search.
+Retrieves a list of entities. To avoid hitting URL length limits, always use the POST version of the query call rather than this GET version for `where` values that exceed 7500 characters in length. The query is performed against the database. The `where` parameter accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the [Search](#search) call when it is available for the entity type for which you want to search.
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 
@@ -55,7 +55,7 @@ curl -X POST \
 }
 ```
 
-Retrieves a list of entities. For long `where` values, always use this version of the query operation rather than the GET version. The query is performed against the database. The `where` field in the request body accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the [Search](#search) call when it is available for the entity type for which you want to search.
+Retrieves a list of entities. To avoid hitting URL length limits, always use this version of the query call rather than the GET version for `where` values that exceed 7500 characters in length. The query is performed against the database. The `where` field in the request body accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the [Search](#search) call when it is available for the entity type for which you want to search.
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 

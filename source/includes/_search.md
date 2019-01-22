@@ -16,7 +16,7 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/search/Candidate?query
 }
 ```
 
-Retrieves a list of entities. For long query values, always use the POST version of the search operation rather than this GET version.
+Retrieves a list of entities. To avoid hitting URL length limits, always use the POST version of the search call rather than this GET version for `query` values that exceed 7500 characters in length.
 The search call is performed against a Lucene index. For information about the Lucene query syntax, see: [Lucene Tutorial](http://www.lucenetutorial.com/lucene-query-syntax.html)
 
 <aside class="notice">If you provide no request parameters on the GET form of the call, a list of available search fields is provided.</aside>
@@ -72,7 +72,7 @@ curl -X POST \
 }
 ```
 
-Retrieves a list of entities. For long `query` values, always use this version of the search operation rather than the GET version. Place the `query` in JSON format in the request body. For example:
+Retrieves a list of entities. To avoid hitting URL length limits, always use this version of the search call rather than the GET version for `query` values that exceed 7500 characters in length. Place the `query` in JSON format in the request body. For example:
 ```
 {"query": "id:10125 10126 10127 10128 10129 10130 10131 10132 10133 10134 10135 10136 10137 10138 17376 26865 67604 67605 80203 80204 80205 80206 80207 80208 80209 80210 80211 80212 80213 80214"}
 ```
