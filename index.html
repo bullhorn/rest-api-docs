@@ -2867,7 +2867,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="query">Query</h1>
 
 <h2 id="get-query"><span class="tag">GET</span> /query</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/query/Candidate?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2879,7 +2879,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <span class="o">}</span>
 </code></pre>
 
-<p>Retrieves a list of entities. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the <a href="#search">Search</a> call when it is available for the entity type for which you want to search.</p>
+<p>Retrieves a list of entities. To avoid hitting URL length limits, always use the POST version of the query call rather than this GET version for <code class="prettyprint">where</code> values that exceed 7500 characters in length. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the <a href="#search">Search</a> call when it is available for the entity type for which you want to search.</p>
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 
@@ -2899,6 +2899,86 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <td>yes</td>
 <td>SQL-style filter clause</td>
 </tr>
+<tr>
+<td>fields</td>
+<td>yes*</td>
+<td>Comma-separated list of field names. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes*</td>
+<td>Name of a configured layout. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>showReadOnly</td>
+<td>no</td>
+<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>From the set of matched results, return record numbers start through (start + count)</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>no</td>
+<td>Name of property on which to base the order of returned entities.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+
+<h2 id="post-query"><span class="tag">POST</span> /query</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"where": "id IN (10125, 10126, 10127, 10128, 10129, 10130, 10131, 10132, 10133, 10134, 10135, 10136, 10137, 10138, 17376, 26865, 67604, 67605, 80203, 80204, 80205, 80206, 80207, 80208, 80209, 80210, 80211, 80212, 80213, 80214)"}'</span> <span class="se">\</span>
+      https://rest.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[{</span>
+        <span class="s2">"id"</span> : 10125,
+        <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+        <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+    <span class="o">}]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Retrieves a list of entities. To avoid hitting URL length limits, always use this version of the query call rather than the GET version for <code class="prettyprint">where</code> values that exceed 7500 characters in length. The query is performed against the database. The <code class="prettyprint">where</code> field in the request body accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the <a href="#search">Search</a> call when it is available for the entity type for which you want to search.</p>
+
+<aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/query/{entity}?fields={fields}&amp;orderBy={fields}&amp;count={count}&amp;start={start}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>fields</td>
 <td>yes*</td>
@@ -3853,9 +3933,10 @@ BhRestToken | no | Token that represents a session established by the login proc
 <span class="o">}</span>
 </code></pre>
 
-<p>Retrieves a list of entities. The search call is performed against a Lucene index. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
+<p>Retrieves a list of entities. To avoid hitting URL length limits, always use the POST version of the search call rather than this GET version for <code class="prettyprint">query</code> values that exceed 7500 characters in length.
+The search call is performed against a Lucene index. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
 
-<aside class="notice">If you provide no request parameters, a list of available search fields are provided.</aside>
+<aside class="notice">If you provide no request parameters on the GET form of the call, a list of available search fields is provided.</aside>
 
 <p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.</p>
 
@@ -3884,6 +3965,92 @@ BhRestToken | no | Token that represents a session established by the login proc
 <td>yes</td>
 <td>Lucene-style filter clause.</td>
 </tr>
+<tr>
+<td>fields</td>
+<td>yes*</td>
+<td>Comma-separated list of field names. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>yes*</td>
+<td>Name of a configured layout. Use fields or layout, but not both.</td>
+</tr>
+<tr>
+<td>showReadOnly</td>
+<td>no</td>
+<td>(true/false) Whether to show read-only fields. Only applies when the layout parameter is used.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>no</td>
+<td>Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>no</td>
+<td>From the set of matched results, return record numbers start through (start + count)</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>no</td>
+<td>Field to sort result on. Default sort order is ascending. Precede with minus sign to perform descending sort. </td>
+</tr>
+<tr>
+<td>meta</td>
+<td>no</td>
+<td>off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see</td>
+</tr>
+<tr>
+<td>showEditable</td>
+<td>no</td>
+<td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
+
+<h2 id="post-search"><span class="tag">POST</span> /search</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"query": "id:10125 10126 10127 10128 10129 10130 10131 10132 10133 10134 10135 10136 10137 10138 17376 26865 67604 67605 80203 80204 80205 80206 80207 80208 80209 80210 80211 80212 80213 80214"}'</span> <span class="se">\</span>
+      https://rest.bullhornstaffing.com/rest-services/e999/search/Candidate?fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">[{</span>
+      <span class="s2">"_score"</span>: 1.70002,
+      <span class="s2">"id"</span> : 10125,
+      <span class="s2">"firstName"</span> : <span class="s2">"Alanzo"</span>,
+      <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
+    <span class="o">}]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Retrieves a list of entities. To avoid hitting URL length limits, always use this version of the search call rather than the GET version for <code class="prettyprint">query</code> values that exceed 7500 characters in length. Place the <code class="prettyprint">query</code> in JSON format in the request body. For example:
+<code class="prettyprint">
+{&quot;query&quot;: &quot;id:10125 10126 10127 10128 10129 10130 10131 10132 10133 10134 10135 10136 10137 10138 17376 26865 67604 67605 80203 80204 80205 80206 80207 80208 80209 80210 80211 80212 80213 80214&quot;}
+</code></p>
+
+<p>The search call is performed against a Lucene index. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
+
+<p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/search/{entity}?fields={fields}&amp;sort={fields}&amp;count={count}&amp;start={start}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>fields</td>
 <td>yes*</td>
