@@ -62,6 +62,8 @@ includes:
   - entityref/tearsheetrecipient
   - entityref/timeunit
   - entityref/userhousingcomplexunit
+  - entityref/workerscompensation
+  - entityref/workerscompensationrate
 
 search: true
 ---
