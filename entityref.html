@@ -9083,6 +9083,120 @@
 </tr>
 </tbody></table>
 
+          <h1 id="workerscompensation">WorkersCompensation</h1>
+
+<p>This entity represents Entity that represents workers compensation data.</p>
+
+<table><thead>
+<tr>
+<th><strong>WorkersCompensation field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>The code set for this WorkersCompensation.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Description text about the WorkersCompensation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The name of the WorkersCompensation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rates</td>
+<td>To-many association</td>
+<td>Set of WorkersCompensationRate entities attached to this WorkersCompensation.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>State associated to this WorkersCompensation.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="workerscompensationrate">WorkersCompensationRate</h1>
+
+<p>This entity represents represents workers compensation rate data.</p>
+
+<table><thead>
+<tr>
+<th><strong>WorkersCompensationRate field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>compensation</td>
+<td>To-one assocation</td>
+<td>The WorkersCompensation entity related to this rate.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>Timestamp</td>
+<td>End date set for this WorkersCompensationRate.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>privateLabel</td>
+<td>To-one association</td>
+<td>Private Label associated to the WorkersCompensationRate.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>rate</td>
+<td>Double</td>
+<td>The value of the rate.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>Timestamp</td>
+<td>Start date set for this WorkersCompensationRate.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
       </div>
     </div>
   </body>
