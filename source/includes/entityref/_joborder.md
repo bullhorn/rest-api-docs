@@ -91,4 +91,5 @@ The JobOrder entity supports the massUpdate operations.
 | webResponses | To-many association | Web responses associated with this job. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”. | | |
 | willRelocate | Boolean | Indicates whether the hiring company will provide relocation assistance. | | |
 | willSponsor | Boolean | Indicates whether the hiring company is willing to sponsor an employee on a work visa. | | |
+| workersCompRate | To-one association | WorkersCompensationRate entity associated with this job. | | |
 | yearsRequired | Integer | Number of years of experience required for the job. | | |
