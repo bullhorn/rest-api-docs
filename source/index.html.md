@@ -27,6 +27,7 @@ includes:
   - resume
   - savedsearch
   - search
+  - services
   - settings
   - subscription
   - userheadshot
