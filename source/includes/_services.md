@@ -18,7 +18,7 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/services/PlacementChan
 
 Approves a Placement Change Request and updates the associated Placement with the fields changes specified on the Placement Change Request.
 
-Placement Change Requests's status is changed to the value stored in the Private Label Attribute "placementApprovalStatus".
+Placement Change Requests's requestStatus is changed to the value stored in the Private Label Attribute "placementApprovalStatus".
 
 ### HTTP Request
 
