@@ -4100,6 +4100,44 @@ The search call is performed against a Lucene index. For information about the L
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
+          <h1 id="services">Services</h1>
+
+<h2 id="get-services-placementchangerequest-approve">GET /services/PlacementChangeRequest/approve/</h2>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"message"</span>: <span class="s2">"success"</span>,
+    <span class="s2">"placementID"</span>: 70695,
+    <span class="s2">"placementChangeRequest"</span>: <span class="o">{</span>
+        <span class="s2">"requestStatus"</span>: <span class="s2">"Approved"</span>,
+        <span class="s2">"id"</span>: 123
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Approves a PlacementChangeRequest and updates the associated placement with the fields changes specified on the PlacementChangeRequest.</p>
+
+<p>The PlacementChangeRequest requestStatus is changed to the value stored in the private label attribute &ldquo;placementApprovalStatus&rdquo;.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/PlacementChangeRequest/approve/{placementChangeRequestId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
           <h1 id="settings">Settings</h1>
 
 <h2 id="get-settings-setting1-setting2">GET /settings/setting1[,setting2&hellip;]</h2>
