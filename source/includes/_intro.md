@@ -26,7 +26,7 @@ Bullhorn uses the term entity to refer to a type represented in the Bullhorn sys
 
 ### JSON
 
-The REST API f the specifications and conventions of the JavaScript Object Notation (JSON) data format and any related Javascript syntax specifications. For more information, see the following articles:
+The REST API follows the specifications and conventions of the JavaScript Object Notation (JSON) data format and any related Javascript syntax specifications. For more information, see the following articles:
 
 *   [http://www.json.org](http://www.json.org)
 *   [http://en.wikipedia.org/wiki/JSON](http://en.wikipedia.org/wiki/JSON)
@@ -41,6 +41,7 @@ For more information about JSONP, see the following article: [http://en.wikipedi
 
 ## API Operations
 There are several API operations for retrieving entity data: entity, search, query, and meta. These calls share some common parameters and behavior.
+
 * Use the entity operation to create, update, and get entities by id; use the PUT, POST, and GET HTTP verbs to create, update and get entities, respectively.
 * Use the search operation to search for entities in a Lucene search index, and return them by id. Use the search operation with search/{EntityType} and no query parameters to return data that describes the structure of the Lucene index fields for the entity.
 * Use the query operation to query for entities with the Java Persistence Query Language (JPQL), and return them by id.
