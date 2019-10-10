@@ -12,7 +12,7 @@ Represents a general ledger segment for assignment to Placement, BillableCharge,
 </colgroup>
 <thead>
 <tr class="header">
-<th><p><strong>GeneralLedgerSegment</strong> fields</p></th>
+<th>GeneralLedgerSegment fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>

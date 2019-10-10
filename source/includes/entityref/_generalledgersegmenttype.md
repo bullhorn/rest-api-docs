@@ -12,7 +12,7 @@ Represents a general ledger segment for assignment to Placement, BillableCharge,
 </colgroup>
 <thead>
 <tr class="header">
-<th><p><strong>GeneralLedgerSegmentType</strong> fields</p></th>
+<th>GeneralLedgerSegmentType fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>
@@ -23,7 +23,7 @@ Represents a general ledger segment for assignment to Placement, BillableCharge,
 <tr class="odd">
 <td>id</td>
 <td>Integer</td>
-<td>Unique Identifier for this entity.</td>
+<td>Unique identifier for this entity.</td>
 <td>X</td>
 <td>X</td>
 </tr>

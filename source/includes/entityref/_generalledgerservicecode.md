@@ -12,7 +12,7 @@ Represents a general ledger service code.
 </colgroup>
 <thead>
 <tr class="header">
-<th><p><strong>GeneralLedgerServiceCode</strong> fields</p></th>
+<th>GeneralLedgerServiceCode fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>
@@ -23,7 +23,7 @@ Represents a general ledger service code.
 <tr class="odd">
 <td>id</td>
 <td>Integer</td>
-<td>Unique Identifier for this entity.</td>
+<td>Unique identifier for this entity.</td>
 <td>X</td>
 <td>X</td>
 </tr>

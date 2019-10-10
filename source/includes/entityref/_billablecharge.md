@@ -12,7 +12,7 @@ Represents a billable charge.
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>BillableCharge fields</p></th>
+<th>>BillableCharge fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>
@@ -23,7 +23,7 @@ Represents a billable charge.
 <tr class="odd">
 <td>id</td>
 <td>Integer</td>
-<td>Unique Identifier for this entity.</td>
+<td>Unique identifier for this entity.</td>
 <td>X</td>
 <td>X</td>
 </tr>
