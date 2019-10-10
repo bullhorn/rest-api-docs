@@ -12,7 +12,7 @@ Read-only entity that represents a PayMaster record.
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>payMaster fields</p></th>
+<th>PayMaster fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>
@@ -23,7 +23,7 @@ Read-only entity that represents a PayMaster record.
 <tr class="odd">
 <td>id</td>
 <td>Integer</td>
-<td>Unique Identifier for this entity</td>
+<td>Unique identifier for this entity</td>
 <td>X</td>
 <td>X</td>
 </tr>

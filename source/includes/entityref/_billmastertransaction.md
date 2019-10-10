@@ -12,7 +12,7 @@ Read-only entity that represents a BillMasterTransaction.
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>BillMasterTransaction fields</p></th>
+<th>BillMasterTransaction fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>
@@ -23,7 +23,7 @@ Read-only entity that represents a BillMasterTransaction.
 <tr class="odd">
 <td>id</td>
 <td>Integer</td>
-<td>Unique Identifier for this entity.</td>
+<td>Unique identifier for this entity.</td>
 <td>X</td>
 <td>X</td>
 </tr>

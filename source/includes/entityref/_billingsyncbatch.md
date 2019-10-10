@@ -12,7 +12,7 @@ Read-only entity that represents a billing-sync batch. Dynamic insert and update
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>BillingSyncBatch fields</p></th>
+<th>BillingSyncBatch fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>
@@ -23,7 +23,7 @@ Read-only entity that represents a billing-sync batch. Dynamic insert and update
 <tr class="odd">
 <td>id</td>
 <td>Integer</td>
-<td>Unique Identifier for this entity.</td>
+<td>Unique identifier for this entity.</td>
 <td>X</td>
 <td>X</td>
 </tr>

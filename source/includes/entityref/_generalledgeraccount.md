@@ -12,7 +12,7 @@ Represents a general ledger account for use with billing information, including 
 </colgroup>
 <thead>
 <tr class="header">
-<th><p><strong>GeneralLedgerAccount</strong> fields</p></th>
+<th>GeneralLedgerAccount fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>

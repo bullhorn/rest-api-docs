@@ -12,7 +12,7 @@ Read-only entity that represents a billing-sync error. Dynamic insert and update
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>BillingSyncError fields</p></th>
+<th>BillingSyncError fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>
@@ -23,7 +23,7 @@ Read-only entity that represents a billing-sync error. Dynamic insert and update
 <tr class="odd">
 <td>id</td>
 <td>Integer</td>
-<td>Unique Identifier for this entity.</td>
+<td>Unique identifier for this entity.</td>
 <td>X</td>
 <td>X</td>
 </tr>
