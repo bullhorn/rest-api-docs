@@ -147,7 +147,7 @@
 
 <h3 id="json">JSON</h3>
 
-<p>The REST API f the specifications and conventions of the JavaScript Object Notation (JSON) data format and any related Javascript syntax specifications. For more information, see the following articles:</p>
+<p>The REST API follows the specifications and conventions of the JavaScript Object Notation (JSON) data format and any related Javascript syntax specifications. For more information, see the following articles:</p>
 
 <ul>
 <li>  <a href="http://www.json.org">http://www.json.org</a></li>
@@ -167,11 +167,14 @@
 
 <h2 id="api-operations">API Operations</h2>
 
-<p>There are several API operations for retrieving entity data: entity, search, query, and meta. These calls share some common parameters and behavior.
-* Use the entity operation to create, update, and get entities by id; use the PUT, POST, and GET HTTP verbs to create, update and get entities, respectively.
-* Use the search operation to search for entities in a Lucene search index, and return them by id. Use the search operation with search/{EntityType} and no query parameters to return data that describes the structure of the Lucene index fields for the entity.
-* Use the query operation to query for entities with the Java Persistence Query Language (JPQL), and return them by id.
-* Use the meta operation to return entity metadata data that describes the structure of returned entity data. You can also return entity metadata on any entity, search, or query call by including the meta query parameter on the call; See <code class="prettyprint">Meta</code> for details.</p>
+<p>There are several API operations for retrieving entity data: entity, search, query, and meta. These calls share some common parameters and behavior.</p>
+
+<ul>
+<li>Use the entity operation to create, update, and get entities by id; use the PUT, POST, and GET HTTP verbs to create, update and get entities, respectively.</li>
+<li>Use the search operation to search for entities in a Lucene search index, and return them by id. Use the search operation with search/{EntityType} and no query parameters to return data that describes the structure of the Lucene index fields for the entity.</li>
+<li>Use the query operation to query for entities with the Java Persistence Query Language (JPQL), and return them by id.</li>
+<li>Use the meta operation to return entity metadata data that describes the structure of returned entity data. You can also return entity metadata on any entity, search, or query call by including the meta query parameter on the call; See <code class="prettyprint">Meta</code> for details.</li>
+</ul>
 
 <h3 id="entity-ids">Entity ids</h3>
 

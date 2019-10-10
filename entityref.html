@@ -7058,6 +7058,1840 @@
 </tr>
 </tbody></table>
 
+          <h1 id="pay-and-bill-batchgroup">Pay and Bill - BatchGroup</h1>
+
+<p>Read-only entity that represents a batch group. Dynamic insert via billing-sync-services.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>BatchGroup fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date the entity was added.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>billingSyncBatches</td>
+<td>To-many association</td>
+<td><p>BillingSyncBatches.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-billablecharge">Pay and Bill - BillableCharge</h1>
+
+<p>Represents a billable charge.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>BillableCharge fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>addedByUser</td>
+<td>To-one association</td>
+<td><p>Corporate User.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>firstName</li>
+<li>lastName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>billMasters</td>
+<td><p>To-one association</p></td>
+<td><p>Bill masters.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>billingClientContact</td>
+<td><p>To-one association</p></td>
+<td><p>Billing contact.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>firstName</li>
+<li>lastName</li>
+</ul>
+<p> </p></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>billingClientCorporation</td>
+<td><p>To-one association</p></td>
+<td><p>Bill-to company.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>billingCorporateUser</td>
+<td>To-one association</td>
+<td><p>Corporate User.</p>
+<p><span>Default fields:</span></p>
+<ul>
+<li>id</li>
+<li>firstName</li>
+<li>lastName</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>billingFrequency</td>
+<td>String (20)</td>
+<td>Billing frequency.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>billingProfile</td>
+<td>To-one association</td>
+<td><p>Billing profile.</p>
+<p>Default Fields:</p>
+<ul>
+<li>id</li>
+<li>clientCorporation</li>
+<li>title</li>
+<li>effectiveDate</li>
+<li>effectiveEndDate</li>
+<li>versionID</li>
+<li>billingClientCorporation</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>billingSchedule</td>
+<td>Integer</td>
+<td>Billing schedule.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>candidate</td>
+<td><p>To-one association</p></td>
+<td><p>Candidate.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>firstName</li>
+<li>lastName</li>
+</ul>
+<p> </p></td>
+<td> </td>
+<td> X</td>
+</tr>
+<tr class="odd">
+<td>clientCorporation</td>
+<td><p>To-one association</p></td>
+<td><p>ClientCorporation.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul>
+<p> </p></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>currencyUnit</td>
+<td>To-one association</td>
+<td><p>Currency unit.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>alphabeticCode</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date the entity was added.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date last modified.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>description</td>
+<td>String</td>
+<td>Description.</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>fileAttachments</td>
+<td>To-many association</td>
+<td><p>Billable Charge File Attachment.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td><p>generalLedgerSegment1</p></td>
+<td><span>To-one association</span></td>
+<td><p>General Ledger Segment 1.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td><p><span>generalLedgerSegment2</span></p></td>
+<td><span>To-one association</span></td>
+<td><p>General Ledger Segment 2</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td><p><span>generalLedgerSegment3</span></p></td>
+<td><span>To-one association</span></td>
+<td><p>General Ledger Segment 3.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td><p><span>generalLedgerSegment4</span></p></td>
+<td><span>To-one association</span></td>
+<td>General Ledger Segment 4.
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td><p><span>generalLedgerSegment5</span></p></td>
+<td><span>To-one association</span></td>
+<td><span>General Ledger Segment 5.</span>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>invoiceTerm</td>
+<td>To-one association</td>
+<td><p>Invoice terms.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>clientCorporation</li>
+<li>title</li>
+<li>effectiveDate</li>
+<li>effectiveEndDate</li>
+<li>versionID</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>isInvoiced</td>
+<td>Boolean</td>
+<td>Indicates whether billable charge is invoiced.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>jobOrder</td>
+<td><p>To-one association</p></td>
+<td><p>Job.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>title</li>
+</ul></td>
+<td> </td>
+<td> X</td>
+</tr>
+<tr class="odd">
+<td>periodEndDate</td>
+<td>Date</td>
+<td>Period end date</td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>placement</td>
+<td>To-one association</td>
+<td><p>Placement.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>readyToBillOverride</td>
+<td>Integer</td>
+<td>Ready to bill override.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>status</td>
+<td>To-one association</td>
+<td><p>BillableChargeStatusLookup.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>label</li>
+<li>readOnly</li>
+</ul></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>subTotal</td>
+<td>BigDecimal</td>
+<td>subtotal.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>transactionStatus</td>
+<td><p>To-one association</p></td>
+<td><p>Transaction status.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>transactionType</td>
+<td><p>To-one association</p></td>
+<td><p>Transaction type.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-billingsyncbatch">Pay and Bill - BillingSyncBatch</h1>
+
+<p>Read-only entity that represents a billing-sync batch. Dynamic insert and update via billing-sync-services.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>BillingSyncBatch fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>batchGroup</td>
+<td><p>To-many association</p>
+<p> </p></td>
+<td><p>Batch group.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td><span>X</span></td>
+</tr>
+<tr class="odd">
+<td>billMasters</td>
+<td><p>To-one association</p></td>
+<td><p>BillMasters.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date the entity was added.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date last modified.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>defaultBillableCharge</td>
+<td><span>To-one association</span></td>
+<td>Default BillableCharge.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>defaultPayableCharge</td>
+<td><span>To-one association</span></td>
+<td>Default PayableCharge.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>externalID</td>
+<td>String (50)</td>
+<td><span>User facing unique identifier.</span></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>payMasters</td>
+<td>To-many association</td>
+<td><p>PayMasters.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>periodEndDate</td>
+<td>Date</td>
+<td>Period end date</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>timeOfExternalEvent</td>
+<td>Timestamp</td>
+<td>Time of external event that initiated batch.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>transactionOrigin</td>
+<td><span>To-one association</span></td>
+<td>Origin of transaction.</td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-billingsyncerror">Pay and Bill - BillingSyncError</h1>
+
+<p>Read-only entity that represents a billing-sync error. Dynamic insert and update via billing-sync-services.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>BillingSyncError fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>acknowledgedByUser</td>
+<td>To-one association</td>
+<td>User who acknowledges the error.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>acknowledgeDate</td>
+<td>Timestamp</td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date the entity was added.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>errorCode</td>
+<td>String (100)</td>
+<td>Billing-sync error code.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>externalID</td>
+<td>String (50)</td>
+<td>User facing unique identifier.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>placement</td>
+<td>To-one association</td>
+<td>Placement associated with this error.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>rawDataPacket</td>
+<td>String (2147483647)</td>
+<td>Raw data packet.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>rawError</td>
+<td>String (2147483647)</td>
+<td>Raw error.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>tokens</td>
+<td><span>String (</span> <span>2147483647)</span></td>
+<td>Tokens.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>transactionDate</td>
+<td>Date</td>
+<td>Date of transaction.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>transactionOrigin</td>
+<td>To-one association</td>
+<td>Transaction origin.</td>
+<td> </td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-billmaster">Pay and Bill - BillMaster</h1>
+
+<p>Read-only entity that represents a BillMaster record.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>BillMaster fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>billMasterTransactions</td>
+<td>To-many association</td>
+<td><p>Associated BillMasterTransactions.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>billableCharge</td>
+<td>To-one association</td>
+<td><p>Associated BillableCharge.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>billingSyncBatch</td>
+<td>To-one association</td>
+<td><p>Associated BillingSyncBatch.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>canInvoice</td>
+<td>Boolean</td>
+<td>Indicates whether can invoice.</td>
+<td> </td>
+<td><p>X</p></td>
+</tr>
+<tr class="even">
+<td>earnCode</td>
+<td>To-one association</td>
+<td><p>Associated EarnCode.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalID</li>
+<li>title</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>transactionDate</td>
+<td><p>Date</p></td>
+<td><p>Transaction date</p></td>
+<td> </td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-billmastertransaction">Pay and Bill - BillMasterTransaction</h1>
+
+<p>Read-only entity that represents a BillMasterTransaction.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>BillMasterTransaction fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>adjustmentSequenceNumber</td>
+<td><p>Integer</p></td>
+<td><p>Adjustment sequence number.</p></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>amount</td>
+<td>BigDecimal</td>
+<td>Amount.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>billMaster</td>
+<td>To-one association</td>
+<td><p>Associated BillMaster.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>comments</td>
+<td>String (2147483647)</td>
+<td>Comments.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>currencyUnit</td>
+<td>To-one association</td>
+<td><p>Associated CurrencyUnit.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date the entity was added.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date last modified.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>invoiceStatement</td>
+<td>To-one association</td>
+<td><p>Associated InvoiceStatement.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>invoiceStatementBatch</td>
+<td>To-one association</td>
+<td><p>Associated InvoiceStatementBatch.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>invoiceStatementLineItem</td>
+<td>To-one association</td>
+<td><p>Associated InvoiceStatementLineItem.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>needsReview</td>
+<td>Boolean</td>
+<td>Whether transaction needs review.</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>quantity</td>
+<td>Double</td>
+<td>Quantity.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>rate</td>
+<td>BigDecimal</td>
+<td><p>Rate.</p></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>recordingDate</td>
+<td>Date</td>
+<td>Recording date.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>reversalOfTransaction</td>
+<td>To-one association</td>
+<td>Associated reversed BillMasterTransaction.</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>transactionOrigin</td>
+<td><p>To-one association</p></td>
+<td><p>Associated TransactionOrigin.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>transactionStatus</td>
+<td><p>To-one association</p></td>
+<td><p>Associated TransactionStatus.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>transactionType</td>
+<td><p>To-one association</p></td>
+<td><p>Associated TransactionOrigin.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>unitOfMeasure</td>
+<td><p>To-one association</p>
+<p>(String Flag)</p></td>
+<td><p>Associated UnitOfMeasure.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>label</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-generalledgeraccount">Pay and Bill - GeneralLedgerAccount</h1>
+
+<p>Represents a general ledger account for use with billing information, including earn codes and invoice terms.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>GeneralLedgerAccount</strong> fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>id</p></td>
+<td><p>Integer</p></td>
+<td><p>Unique identifier for this entity.</p></td>
+<td><p>X</p></td>
+<td><p> </p></td>
+</tr>
+<tr class="even">
+<td>externalAccountNumber</td>
+<td><span>Integer</span></td>
+<td><p><span>External account number.</span></p></td>
+<td> X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>externalAccountName</td>
+<td><p><span>String (100)</span></p></td>
+<td><p><span>External account n</span>ame.</p></td>
+<td> X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>externalAccountType</td>
+<td><p><span>String (100)</span></p></td>
+<td><p><span>External account </span> <span>type.</span></p></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>externalAccountDetailType</td>
+<td><p><span>String (100)</span></p></td>
+<td><p><span>External account detail </span> <span>type.</span></p></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>isAccountsReceivable</td>
+<td><p>Boolean</p></td>
+<td><p>Is <span>accounts receivable </span>account.</p>
+<p>The default value is false.</p></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>isActive</td>
+<td><p>Boolean</p>
+<p> </p></td>
+<td><p>Is active account.</p>
+<p>The default value is true.</p></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>isBill</td>
+<td><p>Boolean</p></td>
+<td><p>Is bill account.</p>
+<p><span>The default value is false.</span></p></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>isDeleted</td>
+<td><p>Boolean</p></td>
+<td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>isPay</td>
+<td><p>Boolean</p></td>
+<td><p>Is pay account.</p>
+<p><span>The default value is false.</span></p></td>
+<td>X</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-generalledgersegment">Pay and Bill - GeneralLedgerSegment</h1>
+
+<p>Represents a general ledger segment for assignment to Placement, BillableCharge, and PayableCharge</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>GeneralLedgerSegment</strong> fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>id</p></td>
+<td><p>Integer</p></td>
+<td><p>Unique identifier for this entity.</p></td>
+<td><p>X</p></td>
+<td><p> </p></td>
+</tr>
+<tr class="even">
+<td>externalSegmentName</td>
+<td><span>String (100)</span></td>
+<td><p>External <span>segment</span> <span> </span>number.</p></td>
+<td> X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>externalSegmentNumber</td>
+<td><p>String (100)</p></td>
+<td><p>External <span>segment </span>name.</p></td>
+<td> X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>generalLedgerSegmentType</td>
+<td><p>To-one association</p></td>
+<td>GeneralLedger.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>isActive</td>
+<td><p>Boolean</p></td>
+<td><p>Is active account.</p>
+<p>The default value is true.</p></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>isDeleted</td>
+<td><p>Boolean</p></td>
+<td><p><span>Whether entity is deleted.</span></p>
+<p><span>The default value is false.</span></p></td>
+<td><span>X</span></td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-generalledgersegmenttype">Pay and Bill - GeneralLedgerSegmentType</h1>
+
+<p>Represents a general ledger segment for assignment to Placement, BillableCharge, and PayableCharge.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>GeneralLedgerSegmentType</strong> fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>description</td>
+<td>String (100)</td>
+<td>Description.</td>
+<td> X</td>
+<td> X</td>
+</tr>
+<tr class="odd">
+<td><span>segmentType</span></td>
+<td><span>String (100)</span></td>
+<td><span>Segment type.</span></td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+
+          
+          <h1 id="pay-and-bill-payablecharge">Pay and Bill - PayableCharge</h1>
+
+<p>Read-only entity that represents a payable charge. Dynamic insert and update via billing-sync-services.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>PayableCharge fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>addedByUser</td>
+<td>To-one association</td>
+<td><p>Corporate User</p>
+<p>Default Fields:</p>
+<ul>
+<li>id</li>
+<li>firstName</li>
+<li>lastName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>canExport</td>
+<td>Boolean</td>
+<td> </td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>candidate</td>
+<td><p>To-one association</p></td>
+<td><p>Candidate</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>firstName</li>
+<li>lastName</li>
+</ul>
+<p> </p></td>
+<td> </td>
+<td> X</td>
+</tr>
+<tr class="odd">
+<td>clientCorporation</td>
+<td><p>To-one association</p></td>
+<td><p>clientCorporation</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul>
+<p> </p></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>currencyUnit</td>
+<td>To-one association</td>
+<td><p>Currency unit</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>alphabeticCode</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date the entity was added</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date last modified</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>description</td>
+<td>String (MAX)</td>
+<td>Description</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>employeeType</td>
+<td>String (30)</td>
+<td>Tax form type</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td><p>generalLedgerSegment1</p></td>
+<td><span>To-one association</span></td>
+<td><p>General Ledger Segment 1</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td><p><span>generalLedgerSegment2</span></p></td>
+<td><span>To-one association</span></td>
+<td><p>General Ledger Segment 2</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td><p><span>generalLedgerSegment3</span></p></td>
+<td><span>To-one association</span></td>
+<td><p>General Ledger Segment 3</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td><p><span>generalLedgerSegment4</span></p></td>
+<td><span>To-one association</span></td>
+<td>General Ledger Segment 4
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td><p><span>generalLedgerSegment5</span></p></td>
+<td><span>To-one association</span></td>
+<td><span>General Ledger Segment 5</span>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalSegmentNumber</li>
+<li>externalSegmentName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>jobOrder</td>
+<td><p>To-one association</p></td>
+<td><p>job</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>title</li>
+</ul>
+<p> </p></td>
+<td> </td>
+<td> X</td>
+</tr>
+<tr class="odd">
+<td>payMasters</td>
+<td>To-Many association</td>
+<td><p>Associated PayMasters</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>periodEndDate</td>
+<td>Date</td>
+<td>Period end date</td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>placement</td>
+<td>To-one association</td>
+<td><p>Placement</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>readyToPayOverride</td>
+<td>Boolean</td>
+<td>Ready to pay status override</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>status</td>
+<td>To-one association</td>
+<td><p>PayableChargeStatusLookup.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>label</li>
+<li>readOnly</li>
+</ul></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>subtotal</td>
+<td>BigDecimal</td>
+<td>subtotal</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>transactionStatus</td>
+<td><p>To-one association</p></td>
+<td><p>Transaction status</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>transactionType</td>
+<td><p>To-one association</p></td>
+<td><p>Transaction origin</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-paymaster">Pay and Bill - PayMaster</h1>
+
+<p>Read-only entity that represents a PayMaster record.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>payMaster fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>billingSyncBatch</td>
+<td>To-one association</td>
+<td><p>Billing sync batch</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>canExport</td>
+<td>Boolean</td>
+<td> </td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>earnCode</td>
+<td>To-one association</td>
+<td><p>Earn code</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>externalID</li>
+<li>title</li>
+</ul></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>payMasterTransactions</td>
+<td>To-many association</td>
+<td><p>Pay master transaction</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>payableCharge</td>
+<td>To-one association</td>
+<td><p>Payable charge</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>transactionDate</td>
+<td><p>Date</p></td>
+<td><p>Transaction date</p></td>
+<td>X</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-paymastertransaction">Pay and Bill - PayMasterTransaction</h1>
+
+<p>Read-only entity that represents a PayMasterTransaction.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>PayMasterTransaction fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>adjustmentSequenceNumber</td>
+<td><p>Integer</p></td>
+<td><p>Adjustment sequence number</p></td>
+<td><span>X</span></td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>amount</td>
+<td>BigDecimal</td>
+<td>Amount</td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>String (2147483647)</td>
+<td>Comment</td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>currencyUnit</td>
+<td>To-one association</td>
+<td><p>Currency unit</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>alphabeticCode</li>
+<li>name</li>
+</ul></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date the entity was added</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date last modified</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>payExportBatch</td>
+<td>To-one association</td>
+<td><p>Pay Export Batch</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>payMaster</td>
+<td>To-one association</td>
+<td><p>Pay master</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td><span>X</span></td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>quantity</td>
+<td>BigDecimal</td>
+<td>Quantity</td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>rate</td>
+<td>BigDecimal</td>
+<td><p>Rate</p></td>
+<td>X</td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>recordingDate</td>
+<td>Date</td>
+<td>Recording date</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>reversalOfTransaction</td>
+<td>To-one association</td>
+<td><p>Pay Master Transaction</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>transactionOrigin</td>
+<td><p>To-one association</p></td>
+<td><p>Transaction origin</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>transactionStatus</td>
+<td><p>To-one association</p></td>
+<td><p>Transaction status</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>transactionType</td>
+<td><p>To-one association</p></td>
+<td><p>Transaction type</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>unitOfMeasure</td>
+<td><p>To-one association</p>
+<p>(String Flag)</p></td>
+<td><p>Unit of measure</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>label</li>
+</ul></td>
+<td>X</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-transactionorigin">Pay and Bill - TransactionOrigin</h1>
+
+<p>Read-only entity that represents a transaction type.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>TransactionOrigin fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>name</td>
+<td>String (100)</td>
+<td>Name</td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-transactionstatus">Pay and Bill - TransactionStatus</h1>
+
+<p>Read-only entity that represents a transaction type.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>TransactionStatus fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>name</td>
+<td>String (100)</td>
+<td>Name</td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-transactiontype">Pay and Bill - TransactionType</h1>
+
+<p>Read-only entity that represents a transaction type.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>TransactionType fields</p></th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique Identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>name</td>
+<td>String (100)</td>
+<td>Name</td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+
           <h1 id="placement">Placement</h1>
 
 <p>Represents a successfully filled job; for example, a placement of a candidate in a job. Each Placement record corresponds to a single JobOrder and a single Candidate, although a JobOrder may have multiple Placements associated with it. For example, a company could hire several people for the same position. The Placement entity supports the massupdate operations.</p>
