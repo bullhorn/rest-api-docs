@@ -48,6 +48,22 @@ includes:
   - entityref/notentity
   - entityref/opportunity
   - entityref/opportunityhistory
+  - entityref/batchgroup
+  - entityref/billablecharge
+  - entityref/billingsyncbatch
+  - entityref/billingsyncerror
+  - entityref/billmaster
+  - entityref/billmastertransaction
+  - entityref/generalledgeraccount
+  - entityref/generalledgersegment
+  - entityref/generalledgersegmenttype
+  - entityref/generlledgerservicecode
+  - entityref/payablecharge
+  - entityref/paymaster
+  - entityref/paymastertransaction
+  - entityref/transactionorigin
+  - entityref/transactionstatus
+  - entityref/transactiontype
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest
