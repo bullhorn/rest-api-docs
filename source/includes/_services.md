@@ -2,9 +2,9 @@
 
 ## POST /services/CCPA/notifyOnCapture
 
-The California Consumer Privacy Act (CCPA) is bill meant to enhance privacy rights and consumer protection for residents of California and goes into effect on January, 2020. Notify on Capture is a feature of this bill that notifies a person in the system that their data is being captured for the purposes of serving them as a staffing agency. An email is sent and a note is added to the person record for tracking.  
+The California Consumer Privacy Act (CCPA) is a bill meant to enhance privacy rights and consumer protection for residents of California and goes into effect on January, 2020. Notify on Capture is a feature of this bill that notifies a person in the system that their data is being captured for the purposes of serving them as a staffing agency. An email is sent and a note is added to the person record for tracking. The staffing agency is responsible for knowing if and when to send Notify on Capture emails.
 
-The email body and subject line are pulled from as system settings (a.k.a Private Label Attributes) that are specific to the type person record:
+The email body and subject line are pulled from as system settings (a.k.a. Private Label Attributes) that are specific to the type person record:
  
  * `candidateDataCaptureNotificationEmailBody` / `candidateDataCaptureNotificationEmailSubjectLine`
  * `contactDataCaptureNotificationEmailBody` / `contactDataCaptureNotificationEmailSubjectLine`
