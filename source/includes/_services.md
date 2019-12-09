@@ -4,13 +4,13 @@
 
 The California Consumer Privacy Act (CCPA) is a bill meant to enhance privacy rights and consumer protection for residents of California and goes into effect on January, 2020. Notify on Capture is a feature of this bill that notifies a person in the system that their data is being captured for the purposes of serving them as a staffing agency. An email is sent and a note is added to the person record for tracking. The staffing agency is responsible for knowing if and when to send Notify on Capture emails.
 
-The email body and subject line are pulled from as system settings (a.k.a. Private Label Attributes) that are specific to the type person record:
+The email body and subject line are pulled from system settings (private label attributes) that are specific to the person record:
  
  * `candidateDataCaptureNotificationEmailBody` / `candidateDataCaptureNotificationEmailSubjectLine`
  * `contactDataCaptureNotificationEmailBody` / `contactDataCaptureNotificationEmailSubjectLine`
  * `leadDataCaptureNotificationEmailBody` / `leadDataCaptureNotificationEmailSubjectLine`
 
-After the email is successfully sent, a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting. 
+After the email is successfully sent a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting. 
 
 ``` shell
 curl https://rest.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
@@ -62,7 +62,7 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/services/PlacementChan
 
 Approves a PlacementChangeRequest and updates the associated placement with the fields changes specified on the PlacementChangeRequest.
 
-The PlacementChangeRequest requestStatus is changed to the value stored in the private label attribute "placementApprovalStatus".
+The PlacementChangeRequest requestStatus is changed to the value stored in the placementApprovalStatus private label attribute.
 
 ### HTTP Request
 
