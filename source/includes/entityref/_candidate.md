@@ -51,7 +51,7 @@ The Candidate entity supports the massUpdate operations.
 | fax3 | String (20) | Additional fax number. | | |
 | federalAdditionalWitholdingsAmount | BigDecimal | Number of federal withholdings the Candidate has selected on his or her W-2 tax form. | | |
 | federalExemptions | Integer | Number of federal exemptions the Candidate has indicated on his or her W-2 tax form. | | |
-| federalExtraWithholdingAmount | BigDecimal | Enter any additional tax you want withheld each pay period | | |
+| federalExtraWithholdingAmount | BigDecimal | Enter any additional tax you want withheld each pay period. | | |
 | federalFilingStatus | String (1) | Candidate's federal tax filing status. | | |
 | firstName | String (50) | Candidate's first name. | X | |
 | gender | String (1) | Candidate's gender. Options are U (unknown), M (male), F (female) | | |
@@ -79,7 +79,7 @@ The Candidate entity supports the massUpdate operations.
 | numCategories | Integer | Number of Category objects associated with Candidate. | | |
 | numOwners | Integer | Number of CorporateUsers that are listed as owner of Candidate. | | |
 | occupation | String (50) | Candidate's current occupation or job title. | | |
-| otherDeductionsAmount | BigDecimal |  If there are other deductions to be claimed (other then standard). | | |
+| otherDeductionsAmount | BigDecimal |  If there are other deductions to be claimed (other than standard). | | |
 | otherIncomeAmount | BigDecimal | If you want tax withheld for other income that is expected. | | |
 | owner | To-one association | CorporateUser who is the primary owner of Candidate. The default value is user who creates the Candidate. | X | |
 | pager | String (20) | Candidate's pager number. | | |
@@ -117,7 +117,7 @@ The Candidate entity supports the massUpdate operations.
 | totalDependentClaimAmount | BigDecimal |  Total amount that are being claimed for dependents. | | |
 | travelLimit | Integer | Maximum distance Candidate is willing to travel. | | |
 | travelMethod | String (100) | Method of travel to job. | | |
-| twoJobs | Boolean | If more then 1 job is held at a time OR if the person is married and filing jointly and their spouse also works. | | |
+| twoJobs | Boolean | If more then one job is held at a time OR if the person is married and filing jointly and their spouse also works. | | |
 | type | String (100) | Candidate type: for example, Active, Passive, and so forth. | | |
 | userDateAdded | Timestamp | Date the record was added to the system. | X | |
 | username | String (100) | Candidate’s username for logging in to Bullhorn. The default value is _[random number] | X | |
