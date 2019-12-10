@@ -51,6 +51,7 @@ The Candidate entity supports the massUpdate operations.
 | fax3 | String (20) | Additional fax number. | | |
 | federalAdditionalWitholdingsAmount | BigDecimal | Number of federal withholdings the Candidate has selected on his or her W-2 tax form. | | |
 | federalExemptions | Integer | Number of federal exemptions the Candidate has indicated on his or her W-2 tax form. | | |
+| federalExtraWithholdingAmount | BigDecimal | Enter any additional tax you want withheld each pay period. | | |
 | federalFilingStatus | String (1) | Candidate's federal tax filing status. | | |
 | firstName | String (50) | Candidate's first name. | X | |
 | gender | String (1) | Candidate's gender. Options are U (unknown), M (male), F (female) | | |
@@ -60,6 +61,7 @@ The Candidate entity supports the massUpdate operations.
 | interviews | To-many association | Interviews for Candidate. This field is populated when you create Appointments where Appointment.candidate is this Candidate and Appointment.type is “Interview”. | X | |
 | isDeleted | Boolean | Indicates whether this record is marked as deleted in the Bullhorn system. | X | |
 | isEditable | Boolean | Indicates whether Candidate can edit his or her profile information; applicable to Candidate/Client login. | X |
+| isExempt | Boolean | To claim exemption from withholding, set this to Yes. | | |
 | lastName | String (50) | Candidate's last name. | X | |
 | leads | To-many association | Leads associated with this Candidate. | | |
 | linkedPerson | To-one association | If person represented by Candidate is also a ClientContact, this field includes the following ClientContact fields<br>: id, _subtype | | |
@@ -77,6 +79,8 @@ The Candidate entity supports the massUpdate operations.
 | numCategories | Integer | Number of Category objects associated with Candidate. | | |
 | numOwners | Integer | Number of CorporateUsers that are listed as owner of Candidate. | | |
 | occupation | String (50) | Candidate's current occupation or job title. | | |
+| otherDeductionsAmount | BigDecimal |  If there are other deductions to be claimed (other than standard). | | |
+| otherIncomeAmount | BigDecimal | If you want tax withheld for other income that is expected. | | |
 | owner | To-one association | CorporateUser who is the primary owner of Candidate. The default value is user who creates the Candidate. | X | |
 | pager | String (20) | Candidate's pager number. | | |
 | paperWorkOnFile | String | Configurable field that tracks whether the Candidate's tax paperwork has been received. | | |
@@ -110,8 +114,10 @@ The Candidate entity supports the massUpdate operations.
 | taxID | String (18) | Id that Candidate uses for tax purposes if not SSN. | | |
 | taxState | String (30) | State in which Candidate pays taxes. | | |
 | timeZoneOffsetEST | Integer | Indicates the number of hours by which the Candidate's time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |
+| totalDependentClaimAmount | BigDecimal |  Total amount that are being claimed for dependents. | | |
 | travelLimit | Integer | Maximum distance Candidate is willing to travel. | | |
 | travelMethod | String (100) | Method of travel to job. | | |
+| twoJobs | Boolean | If more then one job is held at a time OR if the person is married and filing jointly and their spouse also works. | | |
 | type | String (100) | Candidate type: for example, Active, Passive, and so forth. | | |
 | userDateAdded | Timestamp | Date the record was added to the system. | X | |
 | username | String (100) | Candidate’s username for logging in to Bullhorn. The default value is _[random number] | X | |
