@@ -12,7 +12,7 @@ Represents a billable charge.
 </colgroup>
 <thead>
 <tr class="header">
-<th>>BillableCharge fields</th>
+<th>BillableCharge fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>
