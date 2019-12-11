@@ -969,6 +969,13 @@
 <td></td>
 </tr>
 <tr>
+<td>federalExtraWithholdingAmount</td>
+<td>BigDecimal</td>
+<td>Enter any additional tax you want withheld each pay period.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>federalFilingStatus</td>
 <td>String (1)</td>
 <td>Candidate&rsquo;s federal tax filing status.</td>
@@ -1029,6 +1036,13 @@
 <td>Boolean</td>
 <td>Indicates whether Candidate can edit his or her profile information; applicable to Candidate/Client login.</td>
 <td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isExempt</td>
+<td>Boolean</td>
+<td>To claim exemption from withholding, set this to Yes.</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -1147,6 +1161,20 @@
 <td>occupation</td>
 <td>String (50)</td>
 <td>Candidate&rsquo;s current occupation or job title.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>otherDeductionsAmount</td>
+<td>BigDecimal</td>
+<td>If there are other deductions to be claimed (other than standard).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>otherIncomeAmount</td>
+<td>BigDecimal</td>
+<td>If you want tax withheld for other income that is expected.</td>
 <td></td>
 <td></td>
 </tr>
@@ -1382,6 +1410,13 @@
 <td></td>
 </tr>
 <tr>
+<td>totalDependentClaimAmount</td>
+<td>BigDecimal</td>
+<td>Total amount that are being claimed for dependents.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>travelLimit</td>
 <td>Integer</td>
 <td>Maximum distance Candidate is willing to travel.</td>
@@ -1392,6 +1427,13 @@
 <td>travelMethod</td>
 <td>String (100)</td>
 <td>Method of travel to job.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>twoJobs</td>
+<td>Boolean</td>
+<td>If more then one job is held at a time OR if the person is married and filing jointly and their spouse also works.</td>
 <td></td>
 <td></td>
 </tr>
@@ -7122,7 +7164,7 @@
 </colgroup>
 <thead>
 <tr class="header">
-<th>>BillableCharge fields</th>
+<th>BillableCharge fields</th>
 <th>Type</th>
 <th>Description</th>
 <th>Not null</th>

@@ -4105,6 +4105,68 @@ The search call is performed against a Lucene index. For information about the L
 
           <h1 id="services">Services</h1>
 
+<h2 id="post-services-ccpa-notifyoncapture">POST /services/CCPA/notifyOnCapture</h2>
+
+<p>The California Consumer Privacy Act (CCPA) is a bill meant to enhance privacy rights and consumer protection for residents of California and goes into effect on January, 2020. Notify on Capture is a feature of this bill that notifies a person in the system that their data is being captured for the purposes of serving them as a staffing agency. An email is sent and a note is added to the person record for tracking. The staffing agency is responsible for knowing if and when to send Notify on Capture emails.</p>
+
+<p>The email body and subject line are pulled from system settings (private label attributes) that are specific to the person record:</p>
+
+<ul>
+<li><code class="prettyprint">candidateDataCaptureNotificationEmailBody</code> / <code class="prettyprint">candidateDataCaptureNotificationEmailSubjectLine</code></li>
+<li><code class="prettyprint">contactDataCaptureNotificationEmailBody</code> / <code class="prettyprint">contactDataCaptureNotificationEmailSubjectLine</code></li>
+<li><code class="prettyprint">leadDataCaptureNotificationEmailBody</code> / <code class="prettyprint">leadDataCaptureNotificationEmailSubjectLine</code></li>
+</ul>
+
+<p>After the email is successfully sent a note is added to the person record with an action type from the: <code class="prettyprint">dataCaptureNotificationNoteType</code> system setting. </p>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
+
+<span class="c"># Example Responsew</span>
+<span class="o">{</span>
+    <span class="s2">"results"</span>: <span class="o">{</span>
+        <span class="s2">"SUCCESS"</span>: <span class="o">[</span>
+            123,
+            456
+        <span class="o">]</span>,
+        <span class="s2">"FAILURE"</span>: <span class="o">[]</span>
+    <span class="o">}</span>,
+    <span class="s2">"overallStatus"</span>: <span class="s2">"SUCCESS"</span>,
+    <span class="s2">"message"</span>: <span class="s2">"Notify on capture email has been sent and note added."</span>,
+    <span class="s2">"successIds"</span>: <span class="o">[</span>
+        123,
+        456
+    <span class="o">]</span>,
+    <span class="s2">"failureIds"</span>: <span class="o">[]</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/CCPA/notifyOnCapture</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>entity</td>
+<td>yes</td>
+<td>One of: &ldquo;Candidate&rdquo;, &ldquo;ClientContact&rdquo;, or &ldquo;Lead&rdquo;.</td>
+</tr>
+<tr>
+<td>ids</td>
+<td>yes</td>
+<td>List of IDs of the given type of entity, a maximum of 500 per call.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
 <h2 id="get-services-placementchangerequest-approve">GET /services/PlacementChangeRequest/approve/</h2>
 <pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
 
@@ -4121,7 +4183,7 @@ The search call is performed against a Lucene index. For information about the L
 
 <p>Approves a PlacementChangeRequest and updates the associated placement with the fields changes specified on the PlacementChangeRequest.</p>
 
-<p>The PlacementChangeRequest requestStatus is changed to the value stored in the private label attribute &ldquo;placementApprovalStatus&rdquo;.</p>
+<p>The PlacementChangeRequest requestStatus is changed to the value stored in the placementApprovalStatus private label attribute.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
