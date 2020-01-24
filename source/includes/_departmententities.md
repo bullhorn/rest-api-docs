@@ -57,7 +57,7 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/departmentClientContac
 
 
 ```
-Returns the entities for the departments to which the current user belongs, for the following entity types: Candidate, ClientContact, ClientCorporation, JobOrder, Placement, and Note. For Candidate and Note requests, an _score field is included in each item returned; this is the Lucene search score.
+Returns the entities for the departments to which the current user belongs, for the following entity types: Candidate, ClientContact, Placement, and Note. For Candidate and Note requests, an _score field is included in each item returned; this is the Lucene search score.
 
 ### HTTP Request
 
