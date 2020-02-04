@@ -1,6 +1,6 @@
-# PlacementCertification
+# JobSubmissionCertificationRequirement
 
-This entity represents the required certifications for a Placement.
+This entity represents the required certifications for a Job Submission.
 
 <table>
  <colgroup>
@@ -12,7 +12,7 @@ This entity represents the required certifications for a Placement.
  </colgroup>
  <thead>
  <tr class="header">
- <th>PlacementCertification fields</th>
+ <th>JobSubmissionCertificationRequirement fields</th>
  <th>Type</th>
  <th>Description</th>
  <th>Not null</th>
@@ -33,20 +33,6 @@ This entity represents the required certifications for a Placement.
  <td>CandidateCertification that fulfills this Requirement.</td>
  <td></td>
  <td></td>
- </tr>
-<tr class="even">
- <td>candidateCertificationName</td>
- <td>String (255)</td>
- <td></td>
- <td></td>
- <td>X</td>
- </tr>
-<tr class="odd">
- <td>candidateCertificationStatus</td>
- <td>String (255)</td>
- <td></td>
- <td></td>
- <td>X</td>
  </tr>
 <tr class="even">
  <td>certification</td>
@@ -105,59 +91,47 @@ This entity represents the required certifications for a Placement.
  <td>X</td>
  </tr>
 <tr class="even">
- <td>dateLastModified</td>
- <td>Timestamp</td>
- <td></td>
- <td>X</td>
- <td>X</td>
- </tr>
-<tr class="odd">
  <td>documentDeadline</td>
  <td>Timestamp</td>
  <td></td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
- <td>editHistories</td>
+<tr class="odd">
+ <td>
+chments</td>
  <td>To Many Association</td>
- <td>PlacementCertificationEditHistory</td>
+ <td>Candidate
+chment</td>
  <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>jobSubmission</td>
+ <td>To One Association</td>
+ <td>JobSubmission</td>
  <td>X</td>
+ <td></td>
  </tr>
 <tr class="odd">
- <td>fileAttachments</td>
- <td>To Many Association</td>
- <td>CandidateFileAttachment</td>
- <td></td>
- <td>X</td>
- </tr>
-<tr class="even">
  <td>matchingCredentialCount</td>
  <td>Integer</td>
  <td></td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>modifyingUser</td>
  <td>To One Association</td>
  <td>CorporateUser</td>
  <td>X</td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>owner</td>
  <td>To One Association</td>
  <td>CorporateUser</td>
- <td>X</td>
  <td></td>
- </tr>
-<tr class="odd">
- <td>placement</td>
- <td>To One Association</td>
- <td>Placement</td>
- <td>X</td>
  <td></td>
  </tr>
 <tr class="even">
@@ -166,6 +140,20 @@ This entity represents the required certifications for a Placement.
  <td>CertificationRequirementStatusLookup</td>
  <td></td>
  <td></td>
+ </tr>
+<tr class="odd">
+ <td>userCertificationName</td>
+ <td>String (100)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>userCertificationStatus</td>
+ <td>String (30)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
  </tr>
  </tbody>
 </table>
