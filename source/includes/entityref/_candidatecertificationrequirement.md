@@ -1,5 +1,7 @@
 # CandidateCertificationRequirement
 
+This entity represents the required certifications for a Candidate.
+
 <table>
  <colgroup>
  <col width="20%" />
@@ -35,14 +37,14 @@
 <tr class="even">
  <td>candidateCertification</td>
  <td>To One Association</td>
- <td>CandidateCertification</td>
+ <td>CandidateCertification that fulfills this Requirement.</td>
  <td></td>
  <td></td>
  </tr>
 <tr class="odd">
  <td>certification</td>
  <td>To One Association</td>
- <td>Certification</td>
+ <td>The Certification that is required.</td>
  <td>X</td>
  <td></td>
  </tr>

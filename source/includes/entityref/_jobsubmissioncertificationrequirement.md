@@ -1,5 +1,7 @@
 # JobSubmissionCertificationRequirement
 
+This entity represents the required certifications for a Job Submission.
+
 <table>
  <colgroup>
  <col width="20%" />
@@ -28,14 +30,14 @@
 <tr class="odd">
  <td>candidateCertification</td>
  <td>To One Association</td>
- <td>CandidateCertification</td>
+ <td>CandidateCertification that fulfills this Requirement.</td>
  <td></td>
  <td></td>
  </tr>
 <tr class="even">
  <td>certification</td>
  <td>To One Association</td>
- <td>Certification</td>
+ <td>The Certification that is required.</td>
  <td>X</td>
  <td></td>
  </tr>
