@@ -1,19 +1,127 @@
 # Certification
 
-This entity represents a certification that a Candidate has.
-
-| **Certification field** | **Type** | **Description** | **Not null** | **Read-only** |
-| --- | --- | --- | --- | --- |
-| id | Integer | Unique identifier for this entity. | X | X |
-| description | String (2147483647)  | Free-text description of this certification. | | |
-| name | String (100) | Name of this certification. | X | |
-| expirationDateOptional | Timestamp | Expiration for the certification |  |  |
-| categoryID | int | The Category this certification is linked to |  |  |
-| specialtyID | int | The Specialty this certification is linked to |  |  |
-| state | String(100) | The state where this certification is valid |  |  |
-| country | String(100) | The country where this certification is valid |  |  |
-| customText1-10 | String(100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. |  |  |
-| customTextBlock1-5 | String(2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. |  |  |
-| customDate1-3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. |  |  |
-| customFloat1-3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. |  |  |
-| customInt1-3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. |  |  |
+<table>
+ <colgroup>
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ </colgroup>
+ <thead>
+ <tr class="header">
+ <th>Certification fields</th>
+ <th>Type</th>
+ <th>Description</th>
+ <th>Not null</th>
+ <th>Read-only</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="even">
+ <td>id</td>
+ <td>ID</td>
+ <td>Unique identifier for this entity.</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>category</td>
+ <td>To One Association</td>
+ <td>Category</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>certificationGroups</td>
+ <td>To Many Association</td>
+ <td>CertificationGroup</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>countryID</td>
+ <td>To One Association</td>
+ <td>Country</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customDate1-3</td>
+ <td>Timestamp</td>
+ <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customFloat1-3</td>
+ <td>Double</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customInt1-3</td>
+ <td>Integer</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customText1-10</td>
+ <td>String (100)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customTextBlock1-5</td>
+ <td>String (2147483647)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>description</td>
+ <td>String (2147483647)</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>expirationDateOptional</td>
+ <td>Boolean</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>name</td>
+ <td>String (100)</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>privateLabels</td>
+ <td>To Many Association</td>
+ <td>PrivateLabel</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>specialty</td>
+ <td>To One Association</td>
+ <td>Specialty</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>state</td>
+ <td>String (100)</td>
+ <td>NorthAmericaState</td>
+ <td></td>
+ <td></td>
+ </tr>
+ </tbody>
+</table>

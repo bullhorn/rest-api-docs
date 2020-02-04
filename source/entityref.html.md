@@ -16,11 +16,13 @@ includes:
   - entityref/businesssector
   - entityref/candidate
   - entityref/candidatecertification
+  - entityref/candidatecertificationrequirement
   - entityref/candidateeducation
   - entityref/candidatereference
   - entityref/candidateworkhistory
   - entityref/category
   - entityref/certification
+  - entityref/certificationrequirement
   - entityref/clientcontact
   - entityref/clientcorporation
   - entityref/clientcorporationappointment
@@ -41,6 +43,7 @@ includes:
   - entityref/jobboardpost
   - entityref/joborder
   - entityref/jobsubmission
+  - entityref/jobsubmissioncertificationrequirement
   - entityref/jobsubmissionhistory
   - entityref/lead
   - entityref/leadhistory
