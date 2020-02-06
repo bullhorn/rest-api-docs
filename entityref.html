@@ -1656,6 +1656,164 @@
 </tr>
 </tbody></table>
 
+          <h1 id="candidatecertificationrequirement">CandidateCertificationRequirement</h1>
+
+<p>This entity represents the required certifications for a Candidate.</p>
+
+<table>
+ <colgroup>
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ </colgroup>
+ <thead>
+ <tr class="header">
+ <th>CandidateCertificationRequirement fields</th>
+ <th>Type</th>
+ <th>Description</th>
+ <th>Not null</th>
+ <th>Read-only</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="even">
+ <td>id</td>
+ <td>ID</td>
+ <td>Unique identifier for this entity.</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>candidate</td>
+ <td>To One Association</td>
+ <td>Candidate</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>candidateCertification</td>
+ <td>To One Association</td>
+ <td>CandidateCertification that fulfills this Requirement.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>certification</td>
+ <td>To One Association</td>
+ <td>The Certification that is required.</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customDate1-10</td>
+ <td>Timestamp</td>
+ <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customFloat1-3</td>
+ <td>Double</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customInt1-3</td>
+ <td>Integer</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customText1-10</td>
+ <td>String (100)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customTextBlock1-10</td>
+ <td>String (2147483647)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>dateAdded</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>dateExpiration</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>documentDeadline</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>fileAttachments</td>
+ <td>To Many Association</td>
+ <td>CandidateFileAttachment</td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>matchingCredentialCount</td>
+ <td>Integer</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>modifyingUser</td>
+ <td>To One Association</td>
+ <td>CorporateUser</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>owner</td>
+ <td>To One Association</td>
+ <td>CorporateUser</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>status</td>
+ <td>To One Association</td>
+ <td>CertificationRequirementStatusLookup</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>userCertificationName</td>
+ <td>String (100)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>userCertificationStatus</td>
+ <td>String (30)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+ </tbody>
+</table>
+
           <h1 id="candidateeducation">CandidateEducation</h1>
 
 <p>Represents an educational degree or course of study that a Candidate lists on his or her resume. Each CandidateEducation instance corresponds to a line item on the &ldquo;Education&rdquo; tab of a Candidate in the Bullhorn application.</p>
@@ -2257,109 +2415,303 @@
 
           <h1 id="certification">Certification</h1>
 
-<p>This entity represents a certification that a Candidate has.</p>
+<table>
+ <colgroup>
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ </colgroup>
+ <thead>
+ <tr class="header">
+ <th>Certification fields</th>
+ <th>Type</th>
+ <th>Description</th>
+ <th>Not null</th>
+ <th>Read-only</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="even">
+ <td>id</td>
+ <td>ID</td>
+ <td>Unique identifier for this entity.</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>category</td>
+ <td>To One Association</td>
+ <td>Category</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>certificationGroups</td>
+ <td>To Many Association</td>
+ <td>CertificationGroup</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>countryID</td>
+ <td>To One Association</td>
+ <td>Country</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customDate1-3</td>
+ <td>Timestamp</td>
+ <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customFloat1-3</td>
+ <td>Double</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customInt1-3</td>
+ <td>Integer</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customText1-10</td>
+ <td>String (100)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customTextBlock1-5</td>
+ <td>String (2147483647)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>description</td>
+ <td>String (2147483647)</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>expirationDateOptional</td>
+ <td>Boolean</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>name</td>
+ <td>String (100)</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>privateLabels</td>
+ <td>To Many Association</td>
+ <td>PrivateLabel</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>specialty</td>
+ <td>To One Association</td>
+ <td>Specialty</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>state</td>
+ <td>String (100)</td>
+ <td>NorthAmericaState</td>
+ <td></td>
+ <td></td>
+ </tr>
+ </tbody>
+</table>
 
-<table><thead>
-<tr>
-<th><strong>Certification field</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Not null</strong></th>
-<th><strong>Read-only</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Integer</td>
-<td>Unique identifier for this entity.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr>
-<td>description</td>
-<td>String (2147483647)</td>
-<td>Free-text description of this certification.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>name</td>
-<td>String (100)</td>
-<td>Name of this certification.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>expirationDateOptional</td>
-<td>Timestamp</td>
-<td>Expiration for the certification</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>categoryID</td>
-<td>int</td>
-<td>The Category this certification is linked to</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>specialtyID</td>
-<td>int</td>
-<td>The Specialty this certification is linked to</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>state</td>
-<td>String(100)</td>
-<td>The state where this certification is valid</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>country</td>
-<td>String(100)</td>
-<td>The country where this certification is valid</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customText1-10</td>
-<td>String(100)</td>
-<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customTextBlock1-5</td>
-<td>String(2147483647)</td>
-<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customDate1-3</td>
-<td>Timestamp</td>
-<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customFloat1-3</td>
-<td>Double</td>
-<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customInt1-3</td>
-<td>Integer</td>
-<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
+          <h1 id="certificationrequirement">CertificationRequirement</h1>
+
+<p>Read-Only Entity - Data from CandidateCertificationRequirement, JobSubmissionCertificationRequirement, and PlacementCertification joined together</p>
+
+<table>
+ <colgroup>
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ </colgroup>
+ <thead>
+ <tr class="header">
+ <th>CertificationRequirement fields</th>
+ <th>Type</th>
+ <th>Description</th>
+ <th>Not null</th>
+ <th>Read-only</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="even">
+ <td>id</td>
+ <td>ID</td>
+ <td>Unique identifier for this entity.</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>candidate</td>
+ <td>To One Association</td>
+ <td>Candidate</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>candidateCertification</td>
+ <td>To One Association</td>
+ <td>CandidateCertification that fulfills this Requirement.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>certification</td>
+ <td>To One Association</td>
+ <td>The Certification that is required.</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customDate1-10</td>
+ <td>Timestamp</td>
+ <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customFloat1-3</td>
+ <td>Double</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customInt1-3</td>
+ <td>Integer</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customText1-10</td>
+ <td>String (100)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customTextBlock1-10</td>
+ <td>String (2147483647)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>dateAdded</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>dateExpiration</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>documentDeadline</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>fileAttachments</td>
+ <td>To Many Association</td>
+ <td>CandidateFileAttachment</td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>jobSubmission</td>
+ <td>To One Association</td>
+ <td>JobSubmission</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>matchingCredentialCount</td>
+ <td>Integer</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>modifyingUser</td>
+ <td>To One Association</td>
+ <td>CorporateUser</td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>owner</td>
+ <td>To One Association</td>
+ <td>CorporateUser</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>placement</td>
+ <td>To One Association</td>
+ <td>Placement</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>status</td>
+ <td>To One Association</td>
+ <td>CertificationRequirementStatusLookup</td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>userCertificationName</td>
+ <td>String (100)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>userCertificationStatus</td>
+ <td>String (30)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+ </tbody>
+</table>
 
           <h1 id="clientcontact">ClientContact</h1>
 
@@ -5711,6 +6063,166 @@
 <td></td>
 </tr>
 </tbody></table>
+
+          <h1 id="jobsubmissioncertificationrequirement">JobSubmissionCertificationRequirement</h1>
+
+<p>This entity represents the required certifications for a Job Submission.</p>
+
+<table>
+ <colgroup>
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ </colgroup>
+ <thead>
+ <tr class="header">
+ <th>JobSubmissionCertificationRequirement fields</th>
+ <th>Type</th>
+ <th>Description</th>
+ <th>Not null</th>
+ <th>Read-only</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="even">
+ <td>id</td>
+ <td>ID</td>
+ <td>Unique identifier for this entity.</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>candidateCertification</td>
+ <td>To One Association</td>
+ <td>CandidateCertification that fulfills this Requirement.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>certification</td>
+ <td>To One Association</td>
+ <td>The Certification that is required.</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customDate1-10</td>
+ <td>Timestamp</td>
+ <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customFloat1-3</td>
+ <td>Double</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customInt1-3</td>
+ <td>Integer</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customText1-10</td>
+ <td>String (100)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customTextBlock1-10</td>
+ <td>String (2147483647)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>dateAdded</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>dateExpiration</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>documentDeadline</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>
+chments</td>
+ <td>To Many Association</td>
+ <td>Candidate
+chment</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>jobSubmission</td>
+ <td>To One Association</td>
+ <td>JobSubmission</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>matchingCredentialCount</td>
+ <td>Integer</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>modifyingUser</td>
+ <td>To One Association</td>
+ <td>CorporateUser</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>owner</td>
+ <td>To One Association</td>
+ <td>CorporateUser</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>status</td>
+ <td>To One Association</td>
+ <td>CertificationRequirementStatusLookup</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>userCertificationName</td>
+ <td>String (100)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>userCertificationStatus</td>
+ <td>String (30)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+ </tbody>
+</table>
 
           <h1 id="jobsubmissionhistory">JobSubmissionHistory</h1>
 
@@ -9560,53 +10072,175 @@
 
           <h1 id="placementcertification">PlacementCertification</h1>
 
-<p>This entity represents the required certification for a Placement.</p>
+<p>This entity represents the required certifications for a Placement.</p>
 
-<table><thead>
-<tr>
-<th><strong>PlacementCertification field</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Not null</strong></th>
-<th><strong>Read-only</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Integer</td>
-<td>Unique identifier for this entity.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr>
-<td>CandidateCertification</td>
-<td>To-one association</td>
-<td>CandidateCertification that fulfills this PlacementCertification.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>certification</td>
-<td>To-one association</td>
-<td>The certification that is required.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>dateAdded</td>
-<td>Timestamp</td>
-<td>The date on which this record was created in the Bullhorn system.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>placement</td>
-<td>To-one association</td>
-<td>Placement that this PlacementCertification is for.</td>
-<td>X</td>
-<td></td>
-</tr>
-</tbody></table>
+<table>
+ <colgroup>
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ </colgroup>
+ <thead>
+ <tr class="header">
+ <th>PlacementCertification fields</th>
+ <th>Type</th>
+ <th>Description</th>
+ <th>Not null</th>
+ <th>Read-only</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="even">
+ <td>id</td>
+ <td>ID</td>
+ <td>Unique identifier for this entity.</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>candidateCertification</td>
+ <td>To One Association</td>
+ <td>CandidateCertification that fulfills this Requirement.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>candidateCertificationName</td>
+ <td>String (255)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>candidateCertificationStatus</td>
+ <td>String (255)</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>certification</td>
+ <td>To One Association</td>
+ <td>The Certification that is required.</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customDate1-10</td>
+ <td>Timestamp</td>
+ <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customFloat1-3</td>
+ <td>Double</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customInt1-3</td>
+ <td>Integer</td>
+ <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>customText1-10</td>
+ <td>String (100)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>customTextBlock1-10</td>
+ <td>String (2147483647)</td>
+ <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>dateAdded</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>dateExpiration</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>dateLastModified</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>documentDeadline</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>editHistories</td>
+ <td>To Many Association</td>
+ <td>PlacementCertificationEditHistory</td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>fileAttachments</td>
+ <td>To Many Association</td>
+ <td>CandidateFileAttachment</td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>matchingCredentialCount</td>
+ <td>Integer</td>
+ <td></td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>modifyingUser</td>
+ <td>To One Association</td>
+ <td>CorporateUser</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="even">
+ <td>owner</td>
+ <td>To One Association</td>
+ <td>CorporateUser</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>placement</td>
+ <td>To One Association</td>
+ <td>Placement</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>status</td>
+ <td>To One Association</td>
+ <td>CertificationRequirementStatusLookup</td>
+ <td></td>
+ <td></td>
+ </tr>
+ </tbody>
+</table>
 
           <h1 id="placementchangerequest">PlacementChangeRequest</h1>
 
