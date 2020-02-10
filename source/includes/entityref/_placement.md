@@ -38,7 +38,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | dateEffective | Timestamp | Date when a pending change to the Candidate's pay rate will take effect. | | |
 | dateEnd | Timestamp | Date when the job will end. For a permanent placement, this is null. | | |
 | daysGuaranteed | Integer | Number of days the Candidate is guaranteed for this job. If the Candidate leaves the job before working this many days, the ClientCompany may not have to pay its fee; see daysProRated. Used for Permanent placements. | X | |
-| dateLastModified | Timestamp | Date on which the Placement was last modified. | | |
+| dateLastModified | Timestamp | Date on which the Placement was last modified. | X | X |
 | daysProRated | Integer | Indicates how many days the Candidate must work before the Client Corporation will be expected to pay a pro-rated portion of the fee. Used for Permanent placements. For example, if daysGuaranteed = 90 and daysProRated = 30, then if the Candidate works 29 days no fee is due, but if the Candidate works 30-89 days the Client Corporation must pay a percentage of the fee, and if the Candidate works 90 days or more, the full fee is due. | X | |
 | durationWeeks | Double | Duration of the job in weeks. You can use this property in addition to dateEnd. | X | |
 | employeeType | String (30) | Type of employee. For example, W2, 1099, Employee, Contractor, and so forth. | | |

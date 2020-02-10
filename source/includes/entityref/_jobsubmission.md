@@ -14,7 +14,7 @@ The JobSubmission entity supports the massUpdate operations.
 | candidate | To-one association | Candidate submitted for this job. | X | | 
 | comments | String (2147483647) | Free-text comments on this JobSubmission. | | |
 | dateAdded | Timestamp | Date on which this JobSubmission record was created in the Bullhorn system. | X | X |
-| dateLastModified | Timestamp | Date on which the JobSubmission was last modified. | | |
+| dateLastModified | Timestamp | Date on which the JobSubmission was last modified. | X | X |
 | dateWebResponse | Timestamp | When a new web response is added, set the dateWebResponse field to the current timestamp. When a web response is promoted to a submission, update the dateAdded property to the current timestamp. | X | |
 | isDeleted | Boolean | Indicates whether this record is marked as deleted in the Bullhorn system. | X | |
 | isHidden | Boolean | Indicates whether web responses are hidden. If you do not plan to promote a web response to a submission, set the isHidden field to true. | | |

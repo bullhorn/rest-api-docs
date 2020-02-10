@@ -8,7 +8,7 @@ Represents a tearsheet. The Tearsheet entity supports the massUpdate operations
 | candidates | To-many association | Candidates with which this Tearsheet is associated. The default fields | | |
 | clientContacts | To-many association | ClientContacts with which this Tearsheet is associated. | | |
 | dateAdded | Timestamp | Date on which the Tearsheet was created in the Bullhorn system. | X | |
-| dateLastModified | Timestamp | Date on which the Tearsheet was last modified. | | |
+| dateLastModified | Timestamp | Date on which the Tearsheet was last modified. | X | X |
 | description | String (2147483647) | Free-text description. | | |
 | isDeleted | Boolean | Indicates whether this record is marked as deleted in the Bullhorn system. | X | |
 | isPrivate | Boolean | Indicates whether this is a private Tearsheet. A private Tearsheet is not visible to users other than the user who created the tearsheet. | | |

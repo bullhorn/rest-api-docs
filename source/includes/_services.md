@@ -13,9 +13,10 @@ The email body and subject line are pulled from system settings (private label a
 After the email is successfully sent a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting. 
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
+curl -X POST \
+      https://rest.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
 
-# Example Responsew
+# Example Response
 {
     "results": {
         "SUCCESS": [
@@ -44,10 +45,11 @@ entity | yes | One of: "Candidate", "ClientContact", or "Lead".
 ids | yes | List of IDs of the given type of entity, a maximum of 500 per call.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-## GET /services/PlacementChangeRequest/approve/
+## POST /services/PlacementChangeRequest/approve/
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
+curl -X POST \
+      https://rest.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
 
 # Example Response
 {

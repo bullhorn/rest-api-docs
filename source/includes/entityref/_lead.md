@@ -25,7 +25,7 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | customTextBlock1-5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
 | dateLastComment | Timestamp | Date on which the last comment referencing this Lead was made. | | |
-| dateLastModified | Timestamp | Date on which the Lead was last modified. | | |
+| dateLastModified | Timestamp | Date on which the Lead was last modified. | X | X |
 | dateLastVisited | Timestamp | Date on which the Lead was last visited. | | |
 | description | String (2147483647) | Description of the Lead. | | |
 | distributionLists | To-many association | IDs of DistributionLists associated with this Lead. | | |

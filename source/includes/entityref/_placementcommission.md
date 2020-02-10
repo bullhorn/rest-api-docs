@@ -8,7 +8,7 @@ Represents a commission payment that is paid upon successful placement of a Cand
 | comments | String (2147483647) | Free-text comments on this commission. |
 | commissionPercentage | Double | The commission amount, expressed as a percentage: for example, 0.05 = 5%. Saved as decimal. | X |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X |
-| dateLastModified | Timestamp | Date on which the PlacementCommission was last modified. |
+| dateLastModified | Timestamp | Date on which the PlacementCommission was last modified. | X | X |
 | externalRecipient | String (100) | If the person who should receive the commission does not have a Bullhorn id, this field indicates that person's name. |
 | flatPayout | Double | The commission expressed as a flat sum. | X |
 | grossMarginPercentage | Double | The percentage of the total gross margin for the Placement that the commission recipient will receive. | X |

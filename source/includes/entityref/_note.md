@@ -15,7 +15,7 @@ If you include a commentingPerson value and a personReference value when you cre
 | comments | String (2147483647) | Text of this Note. | X | |
 | corporateUsers | To-many association | Ids of CorporateUsers associated with this Note. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
-| dateLastModified | Timestamp | Date on which the Note was last modified. | | |
+| dateLastModified | Timestamp | Date on which the Note was last modified. | X | X |
 | externalID | String (50) | External identifier for the record, used for integrations with external datasources or custom imports. | | | 
 | entities | To-many association | Ids of NoteEntities associated with this Note. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as Deleted in the Bullhorn system. | X | |

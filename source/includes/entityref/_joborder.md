@@ -38,7 +38,7 @@ The JobOrder entity supports the massUpdate operations.
 | dateClosed | Timestamp | Date when the job was marked as closed. | | |
 | dateEnd | Timestamp | Date when the job will end (if applicable). | | |
 | dateLastExported | Timestamp | Date when the job was last exported. | | |
-| dateLastModified | Timestamp | Date on which the job was last modified. | | |
+| dateLastModified | Timestamp | Date on which the job was last modified. | X | X |
 | degreeList | String (2147483647) | List of educational degrees required for this job. | | |
 | description | String (200000) | Text description of the job. | | |
 | durationWeeks | Double | Expected duration the job. For a permanent position, this is null. | | |
