@@ -29,7 +29,7 @@ The ClientCorporation entity supports the massUpdate operations.
 | customTextBlock1-5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | X |
 | dateFounded | Timestamp | Date on which the ClientCorporation was founded. | | |
-| dateLastModified | Timestamp | Date on which the ClientCorporation was last modified. | | |
+| dateLastModified | Timestamp | Date on which the ClientCorporation was last modified. | X | X |
 | department | To-one association | Department in the ClientCorporation that has primary responsibility for this client (for example, a regional office). Default value is primary department of user who adds the ClientCorporation. | | |
 | externalID | String (30) | External identifier for the record, used for migrations and back-office Integration. | | |
 | feeArrangement | Double | Fee, expressed as a percentage, that this ClientCorporation will pay for each Placement. | X | |

@@ -30,7 +30,7 @@ Represents a possible Opportunity which can be converted to a JobOrder.
 | customTextBlock1-5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br>[http://bullhorn.github.io/Custom-Objects](http://bullhorn.github.io/Custom-Objects) | | |
 | dateAdded | Timestamp | Date when this record was created in the Bullhorn system. | X | |
-| dateLastModified | Timestamp | Date this record was last modified. | | |
+| dateLastModified | Timestamp | Date this record was last modified. | X | X |
 | dealValue | BigDecimal | Deal value for this Opportunity. | | |
 | degreeList | String (2147483647) | Degree requirements for this Opportunity. | | |
 | description | String (2147483647) | Text description of this Opportunity. | | |

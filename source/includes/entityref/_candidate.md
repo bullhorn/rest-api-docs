@@ -27,8 +27,8 @@ The Candidate entity supports the massUpdate operations.
 | dateAvailable | Timestamp | Date on which Candidate will be available to begin work. | | |
 | dateAvailableEnd | Timestamp | Date on which Candidate's availability will end, if applicable. | | |
 | dateI9Expiration | Timestamp | Date on which the Candidate's I9 form will expire. | | |
-| dateLastComment | Timestamp | Date of the most recent Note referencing Candidate. | | |
-| dateLastModified | Timestamp | Date the Candidate was last modified. | | |
+| dateLastComment | Timestamp | Date of the most recent Note referencing Candidate. | | X |
+| dateLastModified | Timestamp | Date the Candidate was last modified. | X | X |
 | dateNextCall | Timestamp | Date when the Candidate should next be called. | | |
 | dateOfBirth | Timestamp | Candidate's date of birth. | | |
 | dayRate | BigDecimal | Candidate's desired per-day pay rate. | | |

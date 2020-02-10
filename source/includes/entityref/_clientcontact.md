@@ -21,7 +21,7 @@ The ClientContact entity supports the massUpdate operations.
 | customText1-20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1-5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
-| dateLastModified | Timestamp | Date on which the ClientContact was last modified. | | |
+| dateLastModified | Timestamp | Date on which the ClientContact was last modified. | X | X |
 | dateLastVisit | Timestamp | Date of ClientContact’s last visit. | | |
 | description | String  (2147483647) | Large text field for additional information about the contact. | | |
 | desiredCategories | String (255) | Categories that the ClientContact wants Candidates to belong to. | | |

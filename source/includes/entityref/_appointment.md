@@ -14,7 +14,7 @@ Represents an appointment on a Bullhorn user's calendar. A separate Appointment 
 | dateAdded | Timestamp | The date on which this record was created in the Bullhorn system. | X | |
 | dateBegin | Timestamp | The date on which the appointment began/will begin.<br>The default value is current time rounded up to next half hour, or 15 minutes before dateEnd if it is provided. | X | |
 | dateEnd | Timestamp | The date on which the appointment ended/will end.<br>The default value is 15 minutes after dateBegin. | X | |
-| dateLastModified | Timestamp | The date on which this record was last modified. | | |
+| dateLastModified | Timestamp | The date on which this record was last modified. | X | X |
 | description | String (2147483647) | Free-text description of the appointment.<br>The default value is “”. | X | |
 | isAllDay | Boolean | Indicates whether the appointment will last all day. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system. | X | |

@@ -13,7 +13,7 @@ This entity represents a certification that a Candidate may have.
 | copyOnFile | Integer | yes/no (1/0) Whether on file. | | |
 | dateCertified | Timestamp | Date candidate obtained certification. | | |
 | dateExpiration | Timestamp | Date certification expires. | | |
-| dateLastModified | Timestamp | Date the CandidateCertification was last updated. | X | |
+| dateLastModified | Timestamp | Date the CandidateCertification was last updated. | X | X |
 | fileAttachments | Many-to-many association | CandidateFileAttachements associated to entity. Association created by adding the ID(s) of the fileAttachment(s) to this field in an association PUT call of the form: {corpToken}/entity/CandidateCertification/{entity-id}/fileAttachments/{entity-id},*}. | | |
 | issuedBy | String (100) | Entity that issued certification to candidate. | | |
 | licenseNumber | String (100) | License number of the certification. | | |

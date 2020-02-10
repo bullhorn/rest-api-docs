@@ -31,7 +31,7 @@ Represents a change request that is submitted for a particular Placement. Placem
 | dateClientEffective | Timestamp | Date on which a pending change to the ClientCorporation bill rate will take effect. | | |
 | dateEffective | Timestamp | Date on which a pending change to the Candidate's pay rate will take effect. | | |
 | dateEnd | Timestamp | Date on which the job will end. For a permanent placement, this will be null. | | |
-| dateLastModified | Timestamp | Date on which the PlacementChangeRequest was last modified. | | |
+| dateLastModified | Timestamp | Date on which the PlacementChangeRequest was last modified. | X | X |
 | daysGuaranteed | Integer | Number of days Candidate is guaranteed for this job. If Candidate leaves the job before working this many days, the ClientCorporation may not have to pay its fee; see daysProRated. Used for Permanent placements. | X | |
 | daysProRated | Integer | Indicates how many days the Candidate must work before the ClientCorporation will be expected to pay a pro-rated portion of the fee. Used for Permanent placements. For example, if daysGuaranteed = 90 and daysProRated = 30, then if the Candidate works 29 days no fee is due, but if the Candidate works 30-89 days the ClientCorporation must pay a percentage of the fee, and if the Candidate works 90 days or more, the full fee is due. | X | |
 | durationWeeks | Double | Duration of the job in weeks. This field can be used in addition to dateEnd. | X | |
