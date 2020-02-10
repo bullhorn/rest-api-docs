@@ -4118,9 +4118,10 @@ The search call is performed against a Lucene index. For information about the L
 </ul>
 
 <p>After the email is successfully sent a note is added to the person record with an action type from the: <code class="prettyprint">dataCaptureNotificationNoteType</code> system setting. </p>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+      https://rest.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
 
-<span class="c"># Example Responsew</span>
+<span class="c"># Example Response</span>
 <span class="o">{</span>
     <span class="s2">"results"</span>: <span class="o">{</span>
         <span class="s2">"SUCCESS"</span>: <span class="o">[</span>
@@ -4167,8 +4168,9 @@ The search call is performed against a Lucene index. For information about the L
 </tr>
 </tbody></table>
 
-<h2 id="get-services-placementchangerequest-approve">GET /services/PlacementChangeRequest/approve/</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
+<h2 id="post-services-placementchangerequest-approve">POST /services/PlacementChangeRequest/approve/</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+      https://rest.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
