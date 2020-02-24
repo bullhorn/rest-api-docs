@@ -118,9 +118,14 @@ This will only be used in the ui if the `enableCandidateCertificationRequirement
 
 Creating a file should use a custom endpoint
 PUT `{{restUrl}}file/CertificationFileAttachment/`
-```{
-  "fileContent":"BASE_64_FILE_CONTENTS",
-  "name":"image.png",
-  "contentType":"image/png",
-  "candidateID":xxx
-}```
+
+    {
+      "fileContent":"BASE_64_FILE_CONTENTS",
+      "name":"image.png",
+      "contentType":"image/png",
+      "candidateID":xxx
+    }
+
+Move/Copy a file from a candidate to a certification file attachment
+
+POST `{restUrl}/entity/Candidate/{candidateId}}/{candidateFileId}}/fileAttachments/(move|copy)/toCertification`
