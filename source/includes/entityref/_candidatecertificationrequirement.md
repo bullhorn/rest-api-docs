@@ -36,7 +36,7 @@ This entity represents the required certifications for a Candidate.
  </tr>
 <tr class="even">
  <td>candidateCertification</td>
- <tdTo-one association</td>
+ <td>To-one association</td>
  <td>CandidateCertification that fulfills this Requirement.</td>
  <td></td>
  <td></td>
