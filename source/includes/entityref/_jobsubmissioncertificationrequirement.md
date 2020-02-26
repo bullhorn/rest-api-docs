@@ -29,21 +29,21 @@ This entity represents the required certifications for a Job Submission.
  </tr>
 <tr class="odd">
  <td>candidateCertification</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CandidateCertification that fulfills this Requirement.</td>
  <td></td>
  <td></td>
  </tr>
 <tr class="even">
  <td>certification</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>The Certification that is required.</td>
  <td>X</td>
  <td></td>
  </tr>
 <tr class="odd">
  <td>certificationFileAttachments</td>
- <td>To Many Association</td>
+ <td>To-one association</td>
  <td>CertificationFileAttachment</td>
  <td></td>
  <td>X</td>
@@ -113,7 +113,7 @@ This entity represents the required certifications for a Job Submission.
  </tr>
 <tr class="odd">
  <td>jobSubmission</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>JobSubmission</td>
  <td>X</td>
  <td></td>
@@ -127,21 +127,21 @@ This entity represents the required certifications for a Job Submission.
  </tr>
 <tr class="odd">
  <td>modifyingUser</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CorporateUser</td>
  <td>X</td>
  <td>X</td>
  </tr>
 <tr class="even">
  <td>owner</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CorporateUser</td>
  <td></td>
  <td></td>
  </tr>
 <tr class="odd">
  <td>status</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CertificationRequirementStatusLookup</td>
  <td></td>
  <td></td>
