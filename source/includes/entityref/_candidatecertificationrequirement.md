@@ -134,7 +134,7 @@ This entity represents the required certifications for a Candidate.
  </tr>
 <tr class="even">
  <td>owner</td>
- <tdTo-one association</td>
+ <td>To-one association</td>
  <td>CorporateUser</td>
  <td>X</td>
  <td></td>
