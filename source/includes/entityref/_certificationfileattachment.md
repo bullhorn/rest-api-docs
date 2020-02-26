@@ -1,7 +1,7 @@
 # CertificationFileAttachment
 
 This entity represents files that can be attached directly to candidate certifications.  
-This will only be used in the ui if the `enableCandidateCertificationRequirement` pla is enabled.
+This will only be used in the user interface if the enableCandidateCertificationRequirement private label attribute is enabled.
 
 <table>
  <colgroup>
