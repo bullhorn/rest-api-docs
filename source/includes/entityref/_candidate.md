@@ -136,4 +136,4 @@ The Candidate entity supports the massUpdate operations.
 
 By default, candidate fields listed in the ‘Confidential Fields’ private label attribute are returned with the value “\*\*CONFIDENTIAL\*\*”. However, confidential fields can also be included in the ‘Candidate Viewable Confidential Fields’ private label attribute. Only users with the ‘View Candidate Viewable Confidential Fields’ user action entitlement can view candidate viewable confidential fields.
 
-User who have both the ‘View Candidate Viewable Confidential Fields’ and ‘Edit Confidential Fields’ user action entitlements can edit candidate viewable confidential fields.
+Users who have both the ‘View Candidate Viewable Confidential Fields’ and ‘Edit Confidential Fields’ user action entitlements can edit candidate viewable confidential fields.

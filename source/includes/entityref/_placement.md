@@ -9,7 +9,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | approvedChangeRequests | Integer | Number of change requests with a status of approved. | | |
 | approvingClientContact | To-one association | ClientContact who can approve the timecard, if used. Included fields are id, firstName, lastName. | | |
 | backupApprovingClientContact | To-one association | Another ClientContact who can approve the timecard, if used. Included fields are: id, firstName, lastName | | |
-| benefitGroup | String | Indicates the benefits group which is selected for this placement. | | |
+| benefitGroup | String | Indicates the benefits group that is selected for this placement. | | |
 | billingClientContact | To-one association | ClientContact in charge of processing bills for this Placement.  | | |
 | billingFrequency | String (20) | Frequency with which the client company will be billed for this position, initially copied from the associated ClientCorporation record but can be modified on the Placement record. | | |
 | bonusPackage | String (2147483647) | Text description of the bonus package for this placement. | | |
@@ -44,7 +44,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | durationWeeks | Double | Duration of the job in weeks. You can use this property in addition to dateEnd. | X | |
 | employeeType | String (30) | Type of employee. For example, W2, 1099, Employee, Contractor, and so forth. | | |
 | expiringCredentials | Integer | Number of credentials on requirements of this placement that are expiring within the next 30 days or already expired. | | |
-| employmentStartDate | Timestamp | Indicates the date on which paid employment begins for this placement. Can be different from Placement Start Date. Used for payroll integrations. | | |
+| employmentStartDate | Timestamp | Indicates the date on which paid employment begins for this placement. Can be different from placement start date. Used for payroll integrations. | | |
 | employmentType | String (30) | Employment type. | X | X |
 | fee | Double | Fee (expressed as a decimal) that the company will receive for this placement. | X | |
 | hoursOfOperation | String (100) | Hours during which the employee will work. | | |

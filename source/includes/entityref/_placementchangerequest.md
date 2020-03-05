@@ -6,7 +6,7 @@ Represents a change request that is submitted for a particular Placement. Placem
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | approvingUser | To-one association | Id of user who approved the change. | | |
-| benefitGroup | String | Indicates the benefits group which is selected for this placement. | | |
+| benefitGroup | String | Indicates the benefits group that is selected for this placement. | | |
 | billingClientContact | To-one association | ClientContact in charge of processing bills for this Placement. | | |
 | billingFrequency | String (20) | Frequency with which the client company will be billed for this position, initially copied from the associated ClientCorporation but can be modified on the Placement. | | |
 | bonusPackage | String (2147483647) | Text description of the bonus package for this Placement. | | |
@@ -36,7 +36,7 @@ Represents a change request that is submitted for a particular Placement. Placem
 | daysGuaranteed | Integer | Number of days Candidate is guaranteed for this job. If Candidate leaves the job before working this many days, the ClientCorporation may not have to pay its fee; see daysProRated. Used for Permanent placements. | X | |
 | daysProRated | Integer | Indicates how many days the Candidate must work before the ClientCorporation will be expected to pay a pro-rated portion of the fee. Used for Permanent placements. For example, if daysGuaranteed = 90 and daysProRated = 30, then if the Candidate works 29 days no fee is due, but if the Candidate works 30-89 days the ClientCorporation must pay a percentage of the fee, and if the Candidate works 90 days or more, the full fee is due. | X | |
 | durationWeeks | Double | Duration of the job in weeks. This field can be used in addition to dateEnd. | X | |
-| employmentStartDate | Timestamp | Indicates the date on which paid employment begins for this placement. Can be different from Placement Start Date. Used for payroll integrations. | | |
+| employmentStartDate | Timestamp | Indicates the date on which paid employment begins for this placement. Can be different from placement start date. Used for payroll integrations. | | |
 | employeeType | String (30) | Type of employee: for example W2, 1099, Employee, Contractor, and so forth. | |
 | employmentType | String (30) | Employment type, initially copied from the associated JobOrder but can be modified on the Placement. | X | |
 | fee | Double | Fee (expressed as a decimal) that the company will receive for this placement. | X | |
