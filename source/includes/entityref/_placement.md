@@ -9,6 +9,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | approvedChangeRequests | Integer | Number of change requests with a status of approved. | | |
 | approvingClientContact | To-one association | ClientContact who can approve the timecard, if used. Included fields are id, firstName, lastName. | | |
 | backupApprovingClientContact | To-one association | Another ClientContact who can approve the timecard, if used. Included fields are: id, firstName, lastName | | |
+| benefitGroup | String | Indicates the benefits group that is selected for this placement. | | |
 | billingClientContact | To-one association | ClientContact in charge of processing bills for this Placement.  | | |
 | billingFrequency | String (20) | Frequency with which the client company will be billed for this position, initially copied from the associated ClientCorporation record but can be modified on the Placement record. | | |
 | bonusPackage | String (2147483647) | Text description of the bonus package for this placement. | | |
@@ -43,6 +44,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | durationWeeks | Double | Duration of the job in weeks. You can use this property in addition to dateEnd. | X | |
 | employeeType | String (30) | Type of employee. For example, W2, 1099, Employee, Contractor, and so forth. | | |
 | expiringCredentials | Integer | Number of credentials on requirements of this placement that are expiring within the next 30 days or already expired. | | |
+| employmentStartDate | Timestamp | Indicates the date on which paid employment begins for this placement. Can be different from placement start date. Used for payroll integrations. | | |
 | employmentType | String (30) | Employment type. | X | X |
 | fee | Double | Fee (expressed as a decimal) that the company will receive for this placement. | X | |
 | hoursOfOperation | String (100) | Hours during which the employee will work. | | |
@@ -65,9 +67,13 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | otherHourlyFeeComments | String (2147483647) | Free text field for comments on additional hourly fees. | | |
 | overtimeMarkupPercentage | Double | overtimeMarkupPercentage = (clientOvertimeRate - overtimeRate) / overtimeRate. Multiply by 100 to get actual percentage. | | |
 | overtimeRate | Double | Hourly rate at which the employee will be paid for overtime work. | | |
+| payGroup | String | Indicates the frequency with which the placement is paid. Used for payroll integrations. | | |
 | payRate | BigDecimal | Rate at which the employee will be paid during regular business hours. This may or may not be used depending on the job type. | X | |
+| payrollEmployeeType | String | Indicates the type of employee for payroll purposes. | | |
+| payrollSyncStatus | String | Indicates whether the Placement has successfully synced to payroll provider. Used for payroll integrations. | | |
 | pendingChangeRequests | Integer | Number of change requests with a status of submitted. | | |
 | placementCertifications | To-many association | PlacementCertifications associated with this Placement. | | |
+| positionCode | String | Indicates a code for the position. Used in payroll integrations. | | |
 | recruitingManagerPercentGrossMargin | Double | Percentage of the total gross margin that the recruiting manager will receive. | X | |
 | referralFee | BigDecimal | Referral fee associated with this Placement, if any. Only used with external Candidate source. | X | |
 | referralFeeType | String (20) | Configurable list of fee types associated with the referralFee. Only used with external Candidate source. | X | |

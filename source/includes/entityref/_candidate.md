@@ -69,6 +69,7 @@ The Candidate entity supports the massUpdate operations.
 | localExemptions | Integer | Number of local exemptions Candidate has indicated on his or her W-2 tax form. | | |
 | localFilingStatus | String (1) | Candidate's local tax filing status. | | |
 | localTaxCode | String (40) | Candidate's local tax code (if local taxes apply); not required. | | |
+| maritalStatus | String | Indicates the current marital status of the candidate. | | |
 | massMailOptOut | Boolean | Indicates whether Candidate has chosen not to be included in mass emails through the Bullhorn system. | | |
 | middleName | String (50) | Candidate's middle name. | | |
 | mobile | String (20) | Candidate's mobile (cell) telephone number. | | |
@@ -85,6 +86,8 @@ The Candidate entity supports the massUpdate operations.
 | pager | String (20) | Candidate's pager number. | | |
 | paperWorkOnFile | String | Configurable field that tracks whether the Candidate's tax paperwork has been received. | | |
 | password | String | Candidate’s password. The default value is a randomly generated string. | X | |
+| payrollClientStartDate  | Timestamp | Indicates the date on which the employee was first on payroll at the staffing company. Used for payroll integrations. | | |
+| payrollStatus | String | Indicates whether the Candidate is currently active on payroll or not. Used for payroll integrations. | | |
 | phone | String (20) | Candidate's home telephone number. | | |
 | phone2 | String (20) | Candidate's telephone number at work. | | |
 | phone3 | String (20) | Alternate telephone number. | | |
@@ -114,6 +117,7 @@ The Candidate entity supports the massUpdate operations.
 | taxID | String (18) | Id that Candidate uses for tax purposes if not SSN. | | |
 | taxState | String (30) | State in which Candidate pays taxes. | | |
 | timeZoneOffsetEST | Integer | Indicates the number of hours by which the Candidate's time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |
+| tobaccoUser | String | Indicates the tobacco usage of the candidate. | | |
 | totalDependentClaimAmount | BigDecimal |  Total amount that are being claimed for dependents. | | |
 | travelLimit | Integer | Maximum distance Candidate is willing to travel. | | |
 | travelMethod | String (100) | Method of travel to job. | | |
@@ -132,4 +136,4 @@ The Candidate entity supports the massUpdate operations.
 
 By default, candidate fields listed in the ‘Confidential Fields’ private label attribute are returned with the value “\*\*CONFIDENTIAL\*\*”. However, confidential fields can also be included in the ‘Candidate Viewable Confidential Fields’ private label attribute. Only users with the ‘View Candidate Viewable Confidential Fields’ user action entitlement can view candidate viewable confidential fields.
 
-User who have both the ‘View Candidate Viewable Confidential Fields’ and ‘Edit Confidential Fields’ user action entitlements can edit candidate viewable confidential fields.
+Users who have both the ‘View Candidate Viewable Confidential Fields’ and ‘Edit Confidential Fields’ user action entitlements can edit candidate viewable confidential fields.
