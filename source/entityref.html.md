@@ -22,6 +22,7 @@ includes:
   - entityref/candidateworkhistory
   - entityref/category
   - entityref/certification
+  - entityref/certificationfileattachment
   - entityref/certificationrequirement
   - entityref/clientcontact
   - entityref/clientcorporation
