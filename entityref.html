@@ -1095,6 +1095,13 @@
 <td></td>
 </tr>
 <tr>
+<td>maritalStatus</td>
+<td>String</td>
+<td>Indicates the current marital status of the candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>massMailOptOut</td>
 <td>Boolean</td>
 <td>Indicates whether Candidate has chosen not to be included in mass emails through the Bullhorn system.</td>
@@ -1204,6 +1211,20 @@
 <td>String</td>
 <td>Candidate’s password. The default value is a randomly generated string.</td>
 <td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>payrollClientStartDate</td>
+<td>Timestamp</td>
+<td>Indicates the date on which the employee was first on payroll at the staffing company. Used for payroll integrations.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>payrollStatus</td>
+<td>String</td>
+<td>Indicates whether the Candidate is currently active on payroll or not. Used for payroll integrations.</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -1410,6 +1431,13 @@
 <td></td>
 </tr>
 <tr>
+<td>tobaccoUser</td>
+<td>String</td>
+<td>Indicates the tobacco usage of the candidate.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>totalDependentClaimAmount</td>
 <td>BigDecimal</td>
 <td>Total amount that are being claimed for dependents.</td>
@@ -1506,7 +1534,7 @@
 
 <p>By default, candidate fields listed in the ‘Confidential Fields’ private label attribute are returned with the value “**CONFIDENTIAL**”. However, confidential fields can also be included in the ‘Candidate Viewable Confidential Fields’ private label attribute. Only users with the ‘View Candidate Viewable Confidential Fields’ user action entitlement can view candidate viewable confidential fields.</p>
 
-<p>User who have both the ‘View Candidate Viewable Confidential Fields’ and ‘Edit Confidential Fields’ user action entitlements can edit candidate viewable confidential fields.</p>
+<p>Users who have both the ‘View Candidate Viewable Confidential Fields’ and ‘Edit Confidential Fields’ user action entitlements can edit candidate viewable confidential fields.</p>
 
           <h1 id="candidatecertification">CandidateCertification</h1>
 
@@ -1594,7 +1622,14 @@
 <tr>
 <td>fileAttachments</td>
 <td>Many-to-many association</td>
-<td>CandidateFileAttachements associated to entity. Association created by adding the ID(s) of the fileAttachment(s) to this field in an association PUT call of the form: {corpToken}/entity/CandidateCertification/{entity-id}/fileAttachments/{entity-id},*}.</td>
+<td>CandidateFileAttachments associated to entity. Association created by adding the ID(s) of the fileAttachment(s) to this field in an association PUT call of the form: {corpToken}/entity/CandidateCertification/{entity-id}/fileAttachments/{entity-id},*}.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>certificationFileAttachments</td>
+<td>Many-to-many association</td>
+<td>CertificationFileAttachments associated to entity.</td>
 <td></td>
 <td></td>
 </tr>
@@ -1687,124 +1722,131 @@
  </tr>
 <tr class="odd">
  <td>candidate</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>Candidate</td>
  <td>X</td>
  <td></td>
  </tr>
 <tr class="even">
  <td>candidateCertification</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CandidateCertification that fulfills this Requirement.</td>
  <td></td>
  <td></td>
  </tr>
 <tr class="odd">
  <td>certification</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>The Certification that is required.</td>
  <td>X</td>
  <td></td>
  </tr>
 <tr class="even">
+ <td>certificationFileAttachments</td>
+ <td>To-many association</td>
+ <td>CertificationFileAttachment</td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
  <td>customDate1-10</td>
  <td>Timestamp</td>
  <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>customFloat1-3</td>
  <td>Double</td>
  <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>customInt1-3</td>
  <td>Integer</td>
  <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>customText1-10</td>
  <td>String (100)</td>
  <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>customTextBlock1-10</td>
  <td>String (2147483647)</td>
  <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>dateAdded</td>
  <td>Timestamp</td>
  <td></td>
  <td>X</td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>dateExpiration</td>
  <td>Timestamp</td>
  <td></td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>documentDeadline</td>
  <td>Timestamp</td>
  <td></td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>fileAttachments</td>
- <td>To Many Association</td>
+ <td>To-many association</td>
  <td>CandidateFileAttachment</td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>matchingCredentialCount</td>
  <td>Integer</td>
  <td></td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>modifyingUser</td>
- <td>To One Association</td>
+ <tdTo-one association</td>
  <td>CorporateUser</td>
  <td>X</td>
  <td>X</td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>owner</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CorporateUser</td>
  <td>X</td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>status</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CertificationRequirementStatusLookup</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>userCertificationName</td>
  <td>String (100)</td>
  <td></td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>userCertificationStatus</td>
  <td>String (30)</td>
  <td></td>
@@ -2540,6 +2582,137 @@
  </tr>
  </tbody>
 </table>
+
+          <h1 id="certificationfileattachment">CertificationFileAttachment</h1>
+
+<p>This entity represents files that can be attached directly to candidate certifications.<br>
+This will only be used in the user interface if the enableCandidateCertificationRequirement private label attribute is enabled.</p>
+
+<table>
+ <colgroup>
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ <col width="20%" />
+ </colgroup>
+ <thead>
+ <tr class="header">
+ <th>CertificationFileAttachment fields</th>
+ <th>Type</th>
+ <th>Description</th>
+ <th>Not null</th>
+ <th>Read-only</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr class="even">
+ <td>id</td>
+ <td>ID</td>
+ <td>Unique identifier for this entity.</td>
+ <td>X</td>
+ <td>X</td>
+ </tr>
+<tr class="odd">
+ <td>candidate</td>
+ <td>To One Association</td>
+ <td>Candidate</td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>candidateCertification</td>
+ <td>To One Association</td>
+ <td>CandidateCertification</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>contentSubType</td>
+ <td>String (64)</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>contentType</td>
+ <td>String (64)</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>dateAdded</td>
+ <td>Timestamp</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>directory</td>
+ <td>String (2147483647)</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>fileExtension</td>
+ <td>String (10)</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>fileOwner</td>
+ <td>To One Association</td>
+ <td>CorporateUser</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>fileSize</td>
+ <td>Integer</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>isExternal</td>
+ <td>Boolean</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr class="odd">
+ <td>name</td>
+ <td>String (255)</td>
+ <td></td>
+ <td>X</td>
+ <td></td>
+ </tr>
+<tr class="even">
+ <td>type</td>
+ <td>String (64)</td>
+ <td></td>
+ <td></td>
+ <td></td>
+ </tr>
+ </tbody>
+</table>
+
+<p>Creating a file should use a custom endpoint
+PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code></p>
+
+<p>{
+      &ldquo;fileContent&rdquo;:&ldquo;BASE_64_FILE_CONTENTS&rdquo;,
+      &ldquo;name&rdquo;:&ldquo;image.png&rdquo;,
+      &ldquo;contentType&rdquo;:&ldquo;image/png&rdquo;,
+      &ldquo;candidateID&rdquo;:xxx
+    }</p>
+
+<p>Move/Copy a file from a candidate to a certification file attachment</p>
+
+<p>POST <code class="prettyprint">{restUrl}/entity/Candidate/{candidateId}}/{candidateFileId}}/fileAttachments/(move|copy)/toCertification</code></p>
 
           <h1 id="certificationrequirement">CertificationRequirement</h1>
 
@@ -6095,126 +6268,131 @@
  </tr>
 <tr class="odd">
  <td>candidateCertification</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CandidateCertification that fulfills this Requirement.</td>
  <td></td>
  <td></td>
  </tr>
 <tr class="even">
  <td>certification</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>The Certification that is required.</td>
  <td>X</td>
  <td></td>
  </tr>
 <tr class="odd">
+ <td>certificationFileAttachments</td>
+ <td>To-one association</td>
+ <td>CertificationFileAttachment</td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
  <td>customDate1-10</td>
  <td>Timestamp</td>
  <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>customFloat1-3</td>
  <td>Double</td>
  <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>customInt1-3</td>
  <td>Integer</td>
  <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>customText1-10</td>
  <td>String (100)</td>
  <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>customTextBlock1-10</td>
  <td>String (2147483647)</td>
  <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>dateAdded</td>
  <td>Timestamp</td>
  <td></td>
  <td>X</td>
  <td>X</td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>dateExpiration</td>
  <td>Timestamp</td>
  <td></td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>documentDeadline</td>
  <td>Timestamp</td>
  <td></td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
- <td>
-chments</td>
+<tr class="even">
+ <td>fileAttachments</td>
  <td>To Many Association</td>
- <td>Candidate
-chment</td>
+ <td>CandidateFileAttachment</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>jobSubmission</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>JobSubmission</td>
  <td>X</td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>matchingCredentialCount</td>
  <td>Integer</td>
  <td></td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>modifyingUser</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CorporateUser</td>
  <td>X</td>
  <td>X</td>
+ </tr>
+<tr class="even">
+ <td>owner</td>
+ <td>To-one association</td>
+ <td>CorporateUser</td>
+ <td></td>
+ <td></td>
  </tr>
 <tr class="odd">
- <td>owner</td>
- <td>To One Association</td>
- <td>CorporateUser</td>
- <td></td>
- <td></td>
- </tr>
-<tr class="even">
  <td>status</td>
- <td>To One Association</td>
+ <td>To-one association</td>
  <td>CertificationRequirementStatusLookup</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>userCertificationName</td>
  <td>String (100)</td>
  <td></td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>userCertificationStatus</td>
  <td>String (30)</td>
  <td></td>
@@ -9495,6 +9673,13 @@ chment</td>
 <td></td>
 </tr>
 <tr>
+<td>benefitGroup</td>
+<td>String</td>
+<td>Indicates the benefits group that is selected for this placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>billingClientContact</td>
 <td>To-one association</td>
 <td>ClientContact in charge of processing bills for this Placement. </td>
@@ -9733,6 +9918,13 @@ chment</td>
 <td></td>
 </tr>
 <tr>
+<td>employmentStartDate</td>
+<td>Timestamp</td>
+<td>Indicates the date on which paid employment begins for this placement. Can be different from placement start date. Used for payroll integrations.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>employmentType</td>
 <td>String (30)</td>
 <td>Employment type.</td>
@@ -9887,10 +10079,31 @@ chment</td>
 <td></td>
 </tr>
 <tr>
+<td>payGroup</td>
+<td>String</td>
+<td>Indicates the frequency with which the placement is paid. Used for payroll integrations.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>payRate</td>
 <td>BigDecimal</td>
 <td>Rate at which the employee will be paid during regular business hours. This may or may not be used depending on the job type.</td>
 <td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>payrollEmployeeType</td>
+<td>String</td>
+<td>Indicates the type of employee for payroll purposes.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>payrollSyncStatus</td>
+<td>String</td>
+<td>Indicates whether the Placement has successfully synced to payroll provider. Used for payroll integrations.</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -9904,6 +10117,13 @@ chment</td>
 <td>placementCertifications</td>
 <td>To-many association</td>
 <td>PlacementCertifications associated with this Placement.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>positionCode</td>
+<td>String</td>
+<td>Indicates a code for the position. Used in payroll integrations.</td>
 <td></td>
 <td></td>
 </tr>
@@ -10128,111 +10348,118 @@ chment</td>
  <td></td>
  </tr>
 <tr class="odd">
+ <td>certificationFileAttachments</td>
+ <td>To Many Association</td>
+ <td>CertificationFileAttachment</td>
+ <td></td>
+ <td>X</td>
+ </tr>
+<tr class="even">
  <td>customDate1-10</td>
  <td>Timestamp</td>
  <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>customFloat1-3</td>
  <td>Double</td>
  <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>customInt1-3</td>
  <td>Integer</td>
  <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>customText1-10</td>
  <td>String (100)</td>
  <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>customTextBlock1-10</td>
  <td>String (2147483647)</td>
  <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>dateAdded</td>
  <td>Timestamp</td>
  <td></td>
  <td>X</td>
  <td>X</td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>dateExpiration</td>
  <td>Timestamp</td>
  <td></td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>dateLastModified</td>
  <td>Timestamp</td>
  <td></td>
  <td>X</td>
  <td>X</td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>documentDeadline</td>
  <td>Timestamp</td>
  <td></td>
  <td></td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>editHistories</td>
  <td>To Many Association</td>
  <td>PlacementCertificationEditHistory</td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>fileAttachments</td>
  <td>To Many Association</td>
  <td>CandidateFileAttachment</td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>matchingCredentialCount</td>
  <td>Integer</td>
  <td></td>
  <td></td>
  <td>X</td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>modifyingUser</td>
  <td>To One Association</td>
  <td>CorporateUser</td>
  <td>X</td>
  <td>X</td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>owner</td>
  <td>To One Association</td>
  <td>CorporateUser</td>
  <td>X</td>
  <td></td>
  </tr>
-<tr class="odd">
+<tr class="even">
  <td>placement</td>
  <td>To One Association</td>
  <td>Placement</td>
  <td>X</td>
  <td></td>
  </tr>
-<tr class="even">
+<tr class="odd">
  <td>status</td>
  <td>To One Association</td>
  <td>CertificationRequirementStatusLookup</td>
@@ -10266,6 +10493,13 @@ chment</td>
 <td>approvingUser</td>
 <td>To-one association</td>
 <td>Id of user who approved the change.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>benefitGroup</td>
+<td>String</td>
+<td>Indicates the benefits group that is selected for this placement.</td>
 <td></td>
 <td></td>
 </tr>
@@ -10473,6 +10707,13 @@ chment</td>
 <td></td>
 </tr>
 <tr>
+<td>employmentStartDate</td>
+<td>Timestamp</td>
+<td>Indicates the date on which paid employment begins for this placement. Can be different from placement start date. Used for payroll integrations.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>employeeType</td>
 <td>String (30)</td>
 <td>Type of employee: for example W2, 1099, Employee, Contractor, and so forth.</td>
@@ -10557,6 +10798,13 @@ chment</td>
 <td></td>
 </tr>
 <tr>
+<td>payGroup</td>
+<td>String</td>
+<td>Indicates the frequency with which the placement is paid. Used for payroll integrations.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>payRate</td>
 <td>BigDecimal</td>
 <td>Rate at which the employee will be paid during regular business hours. This may or may not be used depending on the job type.</td>
@@ -10564,10 +10812,24 @@ chment</td>
 <td></td>
 </tr>
 <tr>
+<td>payrollEmployeeType</td>
+<td>String</td>
+<td>Indicates the type of employee for payroll purposes.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>placement</td>
 <td>To-one association</td>
 <td>Placement to which this change request applies.</td>
 <td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>positionCode</td>
+<td>String</td>
+<td>Indicates a code for the position. Used in payroll integrations.</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
