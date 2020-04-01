@@ -180,14 +180,13 @@ Files can be attached to the following types of entities:
 
 Request body field | Required | Description
 ------ | -------- | -----
-comments | no | Comments that describes the file.
-contentType | no | Type/subtype of the file content.
 externalID | yes | External identifier for the file.
 fileContent | yes | Base64-encoded string of the file content.
 fileExtension | no | Extension of the file. For example, .doc or .jpg.
 fileType | yes | Always use the value “SAMPLE”.
 name | yes | File name. If a file extension is included as part of the name and the fileExtension field is not set, the file extension in the name is used.
-type | no | Type of file that is attached.
+description | no | Description of the file.
+contentType | no | Type/subtype of the file content.type | no | Type of file that is attached.
 
 
 Parameter | Required | Description
@@ -246,14 +245,13 @@ Files attachments can be updated for the following types of entities:
 
 Request body field | Required | Description
 ------ | -------- | -----
-comments | no | Comments that describes the file.
-contentType | no | Type/subtype of the file content.
 externalID | yes | External identifier for the file.
 fileContent | yes | Base64-encoded string of the file content.
 fileExtension | no | Extension of the file. For example, .doc or .jpg.
 fileType | yes | Always use the value “SAMPLE”.
 name | yes | File name. If a file extension is included as part of the name and the fileExtension field is not set, the file extension in the name is used.
-type | no | Type of file that is attached.
+description | no | Description of the file.
+contentType | no | Type/subtype of the file content.type | no | Type of file that is attached.
 
 
 Parameter | Required | Description
