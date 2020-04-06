@@ -182,11 +182,11 @@ Request body field | Required | Description
 ------ | -------- | -----
 externalID | yes | External identifier for the file.
 fileContent | yes | Base64-encoded string of the file content.
+fileExtension | no | Extension of the file. For example, .doc or .jpg.
 fileType | yes | Always use the value “SAMPLE”.
-name | yes | File name.
-contentType | no | Type/subtype of the file content.
-description | no | Comment that describes the file.
-type | no | Type of file that is attached.
+name | yes | File name. If a file extension is included as part of the name and the fileExtension field is not set, the file extension in the name is used.
+description | no | Description of the file.
+contentType | no | Type/subtype of the file content.type | no | Type of file that is attached.
 
 
 Parameter | Required | Description
@@ -247,11 +247,11 @@ Request body field | Required | Description
 ------ | -------- | -----
 externalID | yes | External identifier for the file.
 fileContent | yes | Base64-encoded string of the file content.
+fileExtension | no | Extension of the file. For example, .doc or .jpg.
 fileType | yes | Always use the value “SAMPLE”.
-name | yes | File name.
-contentType | no | Type/subtype of the file content.
-description | no | Comment that describes the file.
-type | no | Type of file that is attached.
+name | yes | File name. If a file extension is included as part of the name and the fileExtension field is not set, the file extension in the name is used.
+description | no | Description of the file.
+contentType | no | Type/subtype of the file content.type | no | Type of file that is attached.
 
 
 Parameter | Required | Description
