@@ -1762,6 +1762,11 @@ Files can be attached to the following types of entities:</p>
 <td>Base64-encoded string of the file content.</td>
 </tr>
 <tr>
+<td>fileExtension</td>
+<td>no</td>
+<td>Extension of the file. For example, .doc or .jpg.</td>
+</tr>
+<tr>
 <td>fileType</td>
 <td>yes</td>
 <td>Always use the value “SAMPLE”.</td>
@@ -1769,22 +1774,17 @@ Files can be attached to the following types of entities:</p>
 <tr>
 <td>name</td>
 <td>yes</td>
-<td>File name.</td>
-</tr>
-<tr>
-<td>contentType</td>
-<td>no</td>
-<td>Type/subtype of the file content.</td>
+<td>File name. If a file extension is included as part of the name and the fileExtension field is not set, the file extension in the name is used.</td>
 </tr>
 <tr>
 <td>description</td>
 <td>no</td>
-<td>Comment that describes the file.</td>
+<td>Description of the file.</td>
 </tr>
 <tr>
-<td>type</td>
+<td>contentType</td>
 <td>no</td>
-<td>Type of file that is attached.</td>
+<td>Type/subtype of the file content.type</td>
 </tr>
 </tbody></table>
 
@@ -1905,6 +1905,11 @@ Files attachments can be updated for the following types of entities:</p>
 <td>Base64-encoded string of the file content.</td>
 </tr>
 <tr>
+<td>fileExtension</td>
+<td>no</td>
+<td>Extension of the file. For example, .doc or .jpg.</td>
+</tr>
+<tr>
 <td>fileType</td>
 <td>yes</td>
 <td>Always use the value “SAMPLE”.</td>
@@ -1912,22 +1917,17 @@ Files attachments can be updated for the following types of entities:</p>
 <tr>
 <td>name</td>
 <td>yes</td>
-<td>File name.</td>
-</tr>
-<tr>
-<td>contentType</td>
-<td>no</td>
-<td>Type/subtype of the file content.</td>
+<td>File name. If a file extension is included as part of the name and the fileExtension field is not set, the file extension in the name is used.</td>
 </tr>
 <tr>
 <td>description</td>
 <td>no</td>
-<td>Comment that describes the file.</td>
+<td>Description of the file.</td>
 </tr>
 <tr>
-<td>type</td>
+<td>contentType</td>
 <td>no</td>
-<td>Type of file that is attached.</td>
+<td>Type/subtype of the file content.type</td>
 </tr>
 </tbody></table>
 
