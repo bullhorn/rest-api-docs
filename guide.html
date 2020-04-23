@@ -717,7 +717,7 @@ DELETE https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candid
 <p>Request URI:
 ~~~ http
 GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/query/PersonCustomObjectInstance2?
-where=id=3684&amp;fields=*&amp;orderBy=-id&amp;count=5
+where=id=3684&amp;fields=id&amp;orderBy=-id&amp;count=5
 ~~~</p>
 
           <h1 id="data-center-specific-api-urls">Data-center-specific API URLs</h1>
@@ -1196,7 +1196,7 @@ DELETE https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candid
 <p>Request URI:
 ~~~ http
 GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/query/PersonCustomObjectInstance2?
-where=id=3684&amp;fields=*&amp;orderBy=-id&amp;count=5
+where=id=3684&amp;fields=id&amp;orderBy=-id&amp;count=5
 ~~~</p>
 
           <h1 id="use-the-rest-api-to-create-candidates-and-submit-them-for-jobs">Use the REST API to create candidates and submit them for jobs</h1>
@@ -1278,7 +1278,7 @@ where=id=3684&amp;fields=*&amp;orderBy=-id&amp;count=5
 <p>Here is a sample REST call where we search for tearsheets that are public and not deleted, or are private, not deleted, and owned by the current user. Replace {currentUserId} with the actual id of the user; You can make the /settings/userId call to get the current user id. The fields query parameter returns all fields for each tearsheet that is returned. Note that the count parameter is set to 15, which is the default count for a /query call. To view additional items, you can page data by setting the start and count query parameters to match the items you want to return in subsequent REST calls.</p>
 
 <p>Request URI:</p>
-<pre class="highlight http"><code><span class="err">GET https://rest.bullhorn.com/rest-services/{corpToken}/query/Tearsheet?fields=*&amp;where=(isPrivate=false AND isDeleted=false) OR (isPrivate=true ANDisDeleted=false AND owner.id={currentUserId})
+<pre class="highlight http"><code><span class="err">GET https://rest.bullhorn.com/rest-services/{corpToken}/query/Tearsheet?fields=id&amp;where=(isPrivate=false AND isDeleted=false) OR (isPrivate=true ANDisDeleted=false AND owner.id={currentUserId})
 </span></code></pre>
 
 <p>Response:</p>
@@ -1745,7 +1745,7 @@ Activities/Honors\r\nHonors Student\r\nDean s List: Fall 2005 and Spring 2006\r\
 </span></code></pre>
 
 <p>We have successfully created a CandidateEducation entity from the parsed resume. We can return the new CandidateEducation entity with this request URI:</p>
-<pre class="highlight plaintext"><code>GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/2038?fields=*
+<pre class="highlight plaintext"><code>GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/2038?fields=id
 </code></pre>
 
 <p>Response:</p>

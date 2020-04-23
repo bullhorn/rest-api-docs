@@ -19,7 +19,9 @@
 
 <p>fields=*</p>
 
-<p><strong>Note:</strong> Use fields=* sparingly. The * value returns all fields, including one-to-many association fields. Each one-to-many field affects performance of the query. Use the /meta/{entityType} call to determine which fields are one-to-many fields.</p>
+<p><strong>Note:</strong> Other than for /meta/{entityType}, the fields=* syntax is now deprecated because of negative performance impact. Calls using this syntax will be blocked.</p>
+
+<p>Use the /meta/{entityType} call with fields=* to see the full entity model, including association fields.</p>
 
 <h4 id="entity-ids">Entity ids</h4>
 
