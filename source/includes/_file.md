@@ -86,7 +86,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/203866/fileAttachments?fields=*
+curl https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/203866/fileAttachments?fields=id
 
 # Example Response
 {

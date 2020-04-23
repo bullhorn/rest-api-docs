@@ -394,5 +394,5 @@ The following example request performs a custom object query. You must use the s
 Request URI:
 ~~~ http
 GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/query/PersonCustomObjectInstance2?
-where=id=3684&fields=*&orderBy=-id&count=5
+where=id=3684&fields=id&orderBy=-id&count=5
 ~~~
