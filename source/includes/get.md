@@ -17,7 +17,9 @@ Each entity is composed of a distinct set of fields, or properties. When retriev
 
 fields=\*
 
-**Note:** Use fields=\* sparingly. The \* value returns all fields, including one-to-many association fields. Each one-to-many field affects performance of the query. Use the /meta/{entityType} call to determine which fields are one-to-many fields.
+**Note:** Other than for /meta/{entityType}, the fields=\* syntax is now deprecated because of negative performance impact. Calls using this syntax will be blocked.
+
+Use the /meta/{entityType} call with fields=\* to see the full entity model, including association fields.
 
 #### Entity ids
 

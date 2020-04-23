@@ -304,7 +304,7 @@ Response:
 We have successfully created a CandidateEducation entity from the parsed resume. We can return the new CandidateEducation entity with this request URI:
 
 ~~~
-GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/2038?fields=*
+GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/2038?fields=id
 ~~~
 
 Response:

@@ -87,7 +87,7 @@ Here is a sample REST call where we search for tearsheets that are public and no
 Request URI:
 
 ~~~ http
-GET https://rest.bullhorn.com/rest-services/{corpToken}/query/Tearsheet?fields=*&where=(isPrivate=false AND isDeleted=false) OR (isPrivate=true ANDisDeleted=false AND owner.id={currentUserId})
+GET https://rest.bullhorn.com/rest-services/{corpToken}/query/Tearsheet?fields=id&where=(isPrivate=false AND isDeleted=false) OR (isPrivate=true ANDisDeleted=false AND owner.id={currentUserId})
 ~~~
 
 Response:
