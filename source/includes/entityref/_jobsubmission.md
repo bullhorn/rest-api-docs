@@ -25,3 +25,5 @@ The JobSubmission entity supports the massUpdate operations.
 | sendingUser | To-one association | CorporateUser credited with making the submission. The default value is user who created the JobSubmission. | X | |
 | source | String (100) | Source of the JobSubmission (for example, web, Integer, and so forth.) | | |
 | status | String (30) | Status of the JobSubmission (for example, reviewed, accepted, and so forth.). Allowable values are available in the response of the settings/jobResponseStatusList operation. | X | |
+| startDate | Timestamp | Place holder for where the start date of the Placement.  This is not automatically updated. |  |  |
+| endDate | Timestamp | Place holder for where the start date of the Placement.  This is not automatically updated. |  |  |
