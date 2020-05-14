@@ -90,6 +90,14 @@ curl -X POST \
 ]
 ```
 
+### HTTP Request
+
+`{corpToken}/services/IssueReport`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
 ## POST /services/PlacementChangeRequest/approve/
 
 ``` shell
