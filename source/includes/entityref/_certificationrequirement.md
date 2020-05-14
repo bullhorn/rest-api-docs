@@ -167,5 +167,13 @@ Read-Only Entity - Data from CandidateCertificationRequirement, JobSubmissionCer
  <td></td>
  <td>X</td>
  </tr>
+<tr class="odd">
+<td>isDeleted</td>
+<td><p>Boolean</p></td>
+<td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+<td>X</td>
+<td> </td>
+</tr>
  </tbody>
 </table>
