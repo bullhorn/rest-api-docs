@@ -61,6 +61,11 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | jobSubmission | To-one association | JobSubmission associated with this Placement. | | |
 | markupPercentage | Double | markupPercentage = (clientBillRate - payRate) / payRate. Multiply by 100 to get actual percentage. | | |
 | notes | To-many association | Notes associated with this Placement. | | |
+| onboardingDocumentReceivedCount | Integer |  Number of eStaff onboarding documents that have been received by the Candidate. | | |
+| onboardingDocumentSentCount | Integer | Number of eStaff onboarding documents that have been sent and completed by the Candidate. | | |
+| onboardingPercentComplete | Integer | Percentage of eStaff onboarding documents that a Candidate has completed. | | |
+| onboardingReceivedSent | OnboardingReceivedSent | Readonly composite field that contains:<ul><li>onboardingDocumentReceivedCount</li><li>onboardingDocumentSentCount</li></ul></ul> Use this to only view these fields.<br>To update, update the fields directly. | | |
+| onboardingStatus | String | Candidate's eStaff onboarding status. | | |
 | optionsPackage | String (2147483647) | Text description of the stock options package associated with this Placement. | | |
 | otExemption | Boolean | Indicates whether the employee is eligible for hours over 40 to automatically be classified as Overtime. Boolean: 0 = Eligible, 1 = Exempt. | | |
 | otherHourlyFee | Double | Additional hourly fees, if any. | | |
