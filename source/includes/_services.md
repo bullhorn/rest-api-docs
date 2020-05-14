@@ -45,6 +45,59 @@ entity | yes | One of: "Candidate", "ClientContact", or "Lead".
 ids | yes | List of IDs of the given type of entity, a maximum of 500 per call.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
+## POST /services/IssueReport
+
+The Issue Report service allows for creation of issues to be presented to the user. These user-facing issues will be related to existing entities, and provide data on what the issue is and how to fix it. 
+
+``` shell
+curl -X POST \
+      https://rest.bullhornstaffing.com/rest-services/e999/services/IssueReport
+
+# Example Request
+{
+    "issues": [
+        {
+            "action": "New Hire Export",
+            "actionEntity": "Placement",
+            "actionEntityId": 4,
+            "externalSystemName": "ACME HR",
+            "issueItems": [
+                {
+                    "severity": "Error",
+                    "errorType": "MISSING-DATA",
+                    "fieldReference": "zip",
+                    "description": "Work location zip code is missing."
+                },
+                {
+                    "severity": "Error",
+                    "errorType": "INVALID-DATA",
+                    "fieldReference": "status",
+                    "description": "Invalid status 'Mostly Active'. Valid statuses are 'Active', 'Inactive', 'Other'."
+                }
+            ]
+        }
+    ]
+}
+
+# Example Response
+[
+    {
+        "changedEntityType": "Issue",
+        "changedEntityId": 1234,
+        "changeType": "INSERT",
+        "data": {}
+    }
+]
+```
+
+### HTTP Request
+
+`{corpToken}/services/IssueReport`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
 ## POST /services/PlacementChangeRequest/approve/
 
 ``` shell
