@@ -4644,6 +4644,63 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 </tr>
 </tbody></table>
 
+          <h1 id="estaffmappableflowback">EstaffMappableFlowback</h1>
+
+<p>Represents data sent to Bullhorn ATS when Candidate onboarding information is updated in eStaff.</p>
+
+<table><thead>
+<tr>
+<th><strong>EstaffMappableFlowback field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>estaffFieldType</td>
+<td>String (255)</td>
+<td>Field type in eStaff ATS.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>estaffRecordType</td>
+<td>String (255)</td>
+<td>Record type in eStaff ATS.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>atsField</td>
+<td>String (255)</td>
+<td>Field type in Bullhorn ATS.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>atsEntity</td>
+<td>String (255)</td>
+<td>Entity type in Bullhorn ATS.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>alwaysOverwrite</td>
+<td>Boolean</td>
+<td>Determines if values in Bullhorn ATS should always be overwritten by eStaff values or only if the Bullhorn value is blank.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
           <h1 id="housingcomplex">HousingComplex</h1>
 
 <p>Represents a housing complex that a ClientCorporation uses when providing housing for certain types of employees. </p>
