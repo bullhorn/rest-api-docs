@@ -37,6 +37,7 @@ includes:
   - entityref/entityedithistory
   - entityref/entityedithistoryfieldchange
   - entityref/entityfileattachment
+  - entityref/estaffmappableflowback
   - entityref/housingcomplex
   - entityref/housingcomplexfurnituredelivery
   - entityref/housingcomplexunit
