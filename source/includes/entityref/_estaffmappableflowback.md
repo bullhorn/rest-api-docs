@@ -4,7 +4,7 @@ Represents data sent to Bullhorn ATS when Candidate onboarding information is up
 
 | **EstaffMappableFlowback field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
-| id | Integer | Unique identifier for this entity. | X | X |
+| estaffMappableFlowbackID | Integer | Unique identifier for this entity. | X | X |
 | estaffFieldType | String (255) | Field type in eStaff ATS. | X | |
 | estaffRecordType | String (255) | Record type in eStaff ATS. | X | |
 | atsField | String (255) | Field type in Bullhorn ATS. | X | |
