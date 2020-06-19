@@ -1,6 +1,6 @@
 # WorkersCompensationRate
 
-This entity represents represents workers compensation rate data.
+Represents workers compensation rate data.
 
 | **WorkersCompensationRate field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
