@@ -1,6 +1,6 @@
 # WorkersCompensation
 
-This entity represents Entity that represents workers compensation data.
+Represents workers compensation data.
 
 | **WorkersCompensation field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
