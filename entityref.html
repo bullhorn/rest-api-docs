@@ -7165,6 +7165,84 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 </tr>
 </tbody></table>
 
+          <h1 id="pay-and-bill-legalbusinessentity">Pay and Bill - LegalBusinessEntity</h1>
+
+<p>Entity representing a Legal Business Entity for use in payroll integrations.</p>
+
+<table><thead>
+<tr>
+<th><strong>LegalBusinessEntity field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>countryID</td>
+<td>Integer</td>
+<td>The ID code representing the country associated with this legal business entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which the entity was created.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>defaultCurrencyUnit</td>
+<td>To-one association</td>
+<td>The currency unit assigned as the default for this legal business entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>legalName</td>
+<td>String</td>
+<td>The long-form legal name of this legal business entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>legalEntityNumber</td>
+<td>String</td>
+<td>The string value representing the legal business number for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>shortName</td>
+<td>String</td>
+<td>The shortened name used to represent this legal business entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>statusLookup</td>
+<td>To-one association</td>
+<td>An associated value representing the status of this legal business entity.  A status of &ldquo;Active&rdquo; is a value of 1 and a status of &ldquo;Inactive&rdquo; is a value of 2.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
           <h1 id="note">Note</h1>
 
 <p>Represents a note (comment) associated with a Candidate, ClientContact, CorporateUser, JobOrder, Lead, or Opportunity. Notes can be accessed via the &ldquo;Notes&rdquo; tab on the person&rsquo;s record in the Bullhorn application.</p>
