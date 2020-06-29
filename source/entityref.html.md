@@ -49,6 +49,7 @@ includes:
   - entityref/jobsubmissionhistory
   - entityref/lead
   - entityref/leadhistory
+  - entityref/legalBusinessEntity
   - entityref/note
   - entityref/notentity
   - entityref/opportunity
