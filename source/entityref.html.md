@@ -49,7 +49,6 @@ includes:
   - entityref/jobsubmissionhistory
   - entityref/lead
   - entityref/leadhistory
-  - entityref/legalBusinessEntity
   - entityref/note
   - entityref/notentity
   - entityref/opportunity
@@ -63,7 +62,8 @@ includes:
   - entityref/generalledgeraccount
   - entityref/generalledgersegment
   - entityref/generalledgersegmenttype
-  - entityref/generlledgerservicecode
+  - entityref/generalledgerservicecode
+  - entityref/legalBusinessEntity
   - entityref/payablecharge
   - entityref/paymaster
   - entityref/paymastertransaction
