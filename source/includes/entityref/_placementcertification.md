@@ -2,6 +2,7 @@
 
 This entity represents the required certifications for a Placement.
 
+
 <table>
     <colgroup>
         <col width="20%" />
@@ -20,7 +21,7 @@ This entity represents the required certifications for a Placement.
         </tr>
     </thead>
     <tbody>
-                <tr class="even">
+        <tr class="even">
             <td>id</td>
             <td>ID</td>
             <td>Unique identifier for this entity.</td>

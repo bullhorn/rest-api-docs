@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-                <tr class="even">
+        <tr class="even">
             <td>id</td>
             <td>ID</td>
             <td>Unique identifier for this entity.</td>
@@ -80,6 +80,20 @@
             <td>customTextBlock1-5</td>
             <td>String (2147483647)</td>
             <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
             <td></td>
             <td></td>
         </tr>

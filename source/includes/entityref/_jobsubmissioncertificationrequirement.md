@@ -2,6 +2,7 @@
 
 This entity represents the required certifications for a Job Submission.
 
+
 <table>
     <colgroup>
         <col width="20%" />
@@ -20,7 +21,7 @@ This entity represents the required certifications for a Job Submission.
         </tr>
     </thead>
     <tbody>
-                <tr class="even">
+        <tr class="even">
             <td>id</td>
             <td>ID</td>
             <td>Unique identifier for this entity.</td>
@@ -98,20 +99,27 @@ This entity represents the required certifications for a Job Submission.
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>documentDeadline</td>
+            <td>dateLastModified</td>
             <td>Timestamp</td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
+            <td>documentDeadline</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>fileAttachments</td>
             <td>To Many Association</td>
             <td>CandidateFileAttachment</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td><p><span>Whether entity is deleted.</span></p>
@@ -119,56 +127,56 @@ This entity represents the required certifications for a Job Submission.
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>jobSubmission</td>
             <td>To One Association</td>
             <td>JobSubmission</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>matchingCredentialCount</td>
             <td>Integer</td>
             <td></td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>migrateGUID</td>
             <td>String (36)</td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>modifyingUser</td>
             <td>To One Association</td>
             <td>CorporateUser</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>owner</td>
             <td>To One Association</td>
             <td>CorporateUser</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>status</td>
             <td>To One Association</td>
             <td>CertificationRequirementStatusLookup</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>userCertificationName</td>
             <td>String (100)</td>
             <td></td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>userCertificationStatus</td>
             <td>String (30)</td>
             <td></td>
