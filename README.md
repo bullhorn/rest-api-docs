@@ -27,3 +27,12 @@ You can now see the docs at http://localhost:4567. Whoa! That was fast!
 Now that Slate is all set up your machine, you'll probably want to learn more about
  [editing Slate markdown](https://github.com/tripit/slate/wiki/Markdown-Syntax), or
  [how to publish your docs](https://github.com/tripit/slate/wiki/Deploying-Slate).
+
+
+### Generating Documentation
+
+Import `Code Generation.postman_collection.json` to postman
+
+Paste in your current documentation to pre-request scripts (or specify the new entity)  
+
+View your postman console to copy the new documentation
