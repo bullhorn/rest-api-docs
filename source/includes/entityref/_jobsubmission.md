@@ -6,6 +6,7 @@ The JobSubmission entity supports the massUpdate operations.
 
 **Note:** When you set the status field of a JobSubmission to “New Lead”, it becomes a web response, which is an informal job submission. When you update another status, it becomes a formal job submission. When you create a web response, set the dateWebResponse field to the current date. When you update a web response to make it a formal job submission, set the dateAdded field to the current date.
 
+
 <table>
     <colgroup>
         <col width="20%" />
@@ -26,7 +27,7 @@ The JobSubmission entity supports the massUpdate operations.
     <tbody>
         <tr class="even">
             <td>id</td>
-            <td>ID</td>
+            <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
             <td>X</td>
@@ -236,3 +237,4 @@ The JobSubmission entity supports the massUpdate operations.
         </tr>
     </tbody>
 </table>
+
