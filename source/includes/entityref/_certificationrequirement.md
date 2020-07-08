@@ -3,6 +3,7 @@
 Data from CandidateCertificationRequirement, JobSubmissionCertificationRequirement, and PlacementCertification joined together
 
 
+
 <table>
     <colgroup>
         <col width="20%" />
@@ -23,7 +24,7 @@ Data from CandidateCertificationRequirement, JobSubmissionCertificationRequireme
     <tbody>
         <tr class="even">
             <td>id</td>
-            <td>ID</td>
+            <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
             <td>X</td>
@@ -199,4 +200,3 @@ Data from CandidateCertificationRequirement, JobSubmissionCertificationRequireme
         </tr>
     </tbody>
 </table>
-

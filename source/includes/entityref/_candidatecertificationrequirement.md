@@ -3,6 +3,7 @@
 This entity represents the required certifications for a Candidate.
 
 
+
 <table>
     <colgroup>
         <col width="20%" />
@@ -23,7 +24,7 @@ This entity represents the required certifications for a Candidate.
     <tbody>
         <tr class="even">
             <td>id</td>
-            <td>ID</td>
+            <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td></td>
             <td>X</td>
