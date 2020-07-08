@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1a325120-67eb-406b-83b2-7a0570ae78e8",
+		"_postman_id": "47808c59-362d-4f86-8f7d-572aa61d0c42",
 		"name": "Code Generation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,16 +11,17 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "03672a6a-dae4-48d2-ac82-9691bbbfc444",
+						"id": "50f48092-9396-447c-a1b6-c5f16ffbb697",
 						"exec": [
 							"",
 							"const currentRaw = JSON.parse(postman.getEnvironmentVariable('documentation_current'));",
 							"const currentParts = currentRaw.match(/^\\# [A-z0-9]+\\n+((?:.|\\n)*)\\n+(<table>(?:.|\\n)*?<\\/table>|(?:\\n\\|.*\\|)+)((.|\\n)*)/);",
 							"",
-							"const currentDescription = currentParts[1];",
-							"const currentExtraInfo = currentParts[3];",
 							"const currentFields = {};",
-							"const currentRawTable = currentParts[2].trim();",
+							"",
+							"const currentDescription = currentParts ? currentParts[1] : '';",
+							"const currentExtraInfo = currentParts ? currentParts[3] : '';",
+							"const currentRawTable = currentParts ? currentParts[2].trim() : '';",
 							"if (/<table>/.test(currentRawTable)) {",
 							"    const $ = cheerio.load(currentRawTable);",
 							"",
@@ -141,6 +142,7 @@
 							"        field.type += ` (${field.maxLength})`;",
 							"    }",
 							"    if (field.name === 'id') {",
+							"        field.type = 'Integer';",
 							"        field.required = true;",
 							"        field.readOnly = true;",
 							"    }",
@@ -204,7 +206,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "97c9c0a5-aee5-4225-80b0-6edc78f2211d",
+						"id": "6c0683df-d18f-434c-a603-fd02037a0141",
 						"exec": [
 							"//If it is a new entity, fill in originalEntity, if it is an existing entity, copy and paste the current documentation",
 							"const originalEntity = '';",

@@ -5,6 +5,7 @@ This will only be used in the user interface if the enableCandidateCertification
 
 
 
+
 <table>
     <colgroup>
         <col width="20%" />
@@ -25,7 +26,7 @@ This will only be used in the user interface if the enableCandidateCertification
     <tbody>
         <tr class="even">
             <td>id</td>
-            <td>ID</td>
+            <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
             <td>X</td>
