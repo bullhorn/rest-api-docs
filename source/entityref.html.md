@@ -65,6 +65,13 @@ includes:
   - entityref/generalledgerservicecode
   - entityref/legalBusinessEntity
   - entityref/payablecharge
+  - entityref/paybill/billmasterdiscountrate
+  - entityref/paybill/billmastertransactiondiscountrate
+  - entityref/paybill/billmastertransactionsalestaxrate
+  - entityref/paybill/discountrate
+  - entityref/paybill/discountrateversion
+  - entityref/paybill/salestaxrate
+  - entityref/paybill/salestaxrateversion
   - entityref/paymaster
   - entityref/paymastertransaction
   - entityref/transactionorigin
