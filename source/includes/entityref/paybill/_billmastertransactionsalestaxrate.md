@@ -1,4 +1,4 @@
-# BillMasterTransactionSalesTaxRate
+# Pay and Bill - BillMasterTransactionSalesTaxRate
 
 Represents an association between a BillMasterTransaction and SalesTaxRate
 

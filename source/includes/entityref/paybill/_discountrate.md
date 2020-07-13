@@ -1,4 +1,4 @@
-# DiscountRate
+# Pay and Bill - DiscountRate
 
 An effective dated entity that represents a Discount Rate
 

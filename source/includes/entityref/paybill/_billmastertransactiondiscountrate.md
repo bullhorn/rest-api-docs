@@ -1,4 +1,4 @@
-# BillMasterTransactionDiscountRate
+# Pay and Bill - BillMasterTransactionDiscountRate
 
 Represents an association between a BillMasterTransaction and DiscountRate
 

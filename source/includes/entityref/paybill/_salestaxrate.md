@@ -1,4 +1,4 @@
-# SalesTaxRate
+# Pay and Bill - SalesTaxRate
 
 An Effective Dated Entity that represents a sales tax rate
 
