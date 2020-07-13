@@ -53,30 +53,30 @@ includes:
   - entityref/notentity
   - entityref/opportunity
   - entityref/opportunityhistory
-  - entityref/batchgroup
-  - entityref/billablecharge
-  - entityref/billingsyncbatch
-  - entityref/billingsyncerror
-  - entityref/billmaster
-  - entityref/billmastertransaction
-  - entityref/generalledgeraccount
-  - entityref/generalledgersegment
-  - entityref/generalledgersegmenttype
-  - entityref/generalledgerservicecode
-  - entityref/legalBusinessEntity
-  - entityref/payablecharge
+  - entityref/paybill/batchgroup
+  - entityref/paybill/billablecharge
+  - entityref/paybill/billingsyncbatch
+  - entityref/paybill/billingsyncerror
+  - entityref/paybill/billmaster
   - entityref/paybill/billmasterdiscountrate
+  - entityref/paybill/billmastertransaction
   - entityref/paybill/billmastertransactiondiscountrate
   - entityref/paybill/billmastertransactionsalestaxrate
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
+  - entityref/paybill/generalledgeraccount
+  - entityref/paybill/generalledgersegment
+  - entityref/paybill/generalledgersegmenttype
+  - entityref/paybill/generalledgerservicecode
+  - entityref/paybill/legalBusinessEntity
+  - entityref/paybill/payablecharge
+  - entityref/paybill/paymaster
+  - entityref/paybill/paymastertransaction
   - entityref/paybill/salestaxrate
   - entityref/paybill/salestaxrateversion
-  - entityref/paymaster
-  - entityref/paymastertransaction
-  - entityref/transactionorigin
-  - entityref/transactionstatus
-  - entityref/transactiontype
+  - entityref/paybill/transactionorigin
+  - entityref/paybill/transactionstatus
+  - entityref/paybill/transactiontype
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest
