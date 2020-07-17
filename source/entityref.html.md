@@ -42,6 +42,8 @@ includes:
   - entityref/housingcomplexfurnituredelivery
   - entityref/housingcomplexunit
   - entityref/housingcomplexutilityaccount
+  - entityref/issue
+  - entityref/issueitems
   - entityref/jobboardpost
   - entityref/joborder
   - entityref/jobsubmission
