@@ -14,7 +14,7 @@ Entity representing individual reported issues.
 | externalEntityName | String | A reference to any external entity name that is related to this issue. | | |
 | fieldReference | String | The field on the entity that is known to be related to the issue being reported. | | |
 | fixableByUser | Boolean | Whether or not this issue should be fixable by a user. | | |
-| fixInBullhorn | Boolean | Whether or not this issue should be fixable from the Bullhorn system. | | |
+| fixInBullhorn | Boolean | Whether or not this issue should be fixable within the Bullhorn system. | | |
 | issue | To-one associaton | The Issue entity to which this IssueItems entity is associated. | X | |
 | issueResolutionStatusLookup | To-one associaton | The code of the issue resolution status.  A value of 1 means Open.  A value of 2 means Resolved.  A value of 3 means Dismissed. | X | |
 | modifiedByUser | To-one association | The user who last modified the entity. | | |

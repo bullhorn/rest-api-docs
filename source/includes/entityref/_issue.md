@@ -11,5 +11,5 @@ Entity representing an Issue which contains metadata and a collection of IssueIt
 | dateAdded | Timestamp | The date on which the entity was created. | X | |
 | externalSystemName | String | Name of an integrating external system to be used to specify the source of the issue being reported. | | |
 | issueItems | To-many association | The list of associated IssueItems related to this Issue. | | |
-| payMasterTransactionPayExportBatchIssues | To-many association | Association to any related PayMasterTransactionPayExportBatchIssues which can tie the issue to a pay export batch.| | |
+| payMasterTransactionPayExportBatchIssues | To-many association | Association to any related PayMasterTransactionPayExportBatchIssues which can tie the issue to a pay export batch.| | X |
 | severity | String | The severity of the Issue.  Valid values are Error, Warning, Exception, and Unknown. | X | |
