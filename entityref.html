@@ -5541,6 +5541,253 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 </tr>
 </tbody></table>
 
+          <h1 id="issue">Issue</h1>
+
+<p>Entity representing an Issue which contains metadata and a collection of IssueItems which represent individual reported issues.</p>
+
+<table><thead>
+<tr>
+<th><strong>Issue field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>action</td>
+<td>String</td>
+<td>The action being performed that initiated this Issue.  Valid values are &ldquo;Payroll Export&rdquo;, &ldquo;New Hire Export&rdquo;, &ldquo;Accounts Payable Export&rdquo;, or &ldquo;Unknown&rdquo;.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>actionEntityID</td>
+<td>Integer</td>
+<td>The ID of the entity on which this Issue is based.  This can be left blank if no specific entity is relevant.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>actionEntityName</td>
+<td>String</td>
+<td>The name of the entity on which this Issue is based.  This can be left blank if no specific entity is relevant.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which the entity was created.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>externalSystemName</td>
+<td>String</td>
+<td>Name of an integrating external system to be used to specify the source of the issue being reported.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>issueItems</td>
+<td>To-many association</td>
+<td>The list of associated IssueItems related to this Issue.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>payMasterTransactionPayExportBatchIssues</td>
+<td>To-many association</td>
+<td>Association to any related PayMasterTransactionPayExportBatchIssues which can tie the issue to a pay export batch.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>severity</td>
+<td>String</td>
+<td>The severity of the Issue.  Valid values are Error, Warning, Exception, and Unknown.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
+          <h1 id="issueitems">IssueItems</h1>
+
+<p>Entity representing individual reported issues.</p>
+
+<table><thead>
+<tr>
+<th><strong>IssueItems field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>String</td>
+<td>Comments about the IssueItems to be used for reference.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>A text description of the IssueItems.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>The date on which the entity was created.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLateModified</td>
+<td>Timestamp</td>
+<td>The date on which the entity was last modified.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>errorType</td>
+<td>String</td>
+<td>The type of error type being reported.  Valid values are INVALID-DATA, MISSING-DATA, DATA-MISMATCH, SYSTEM-ERROR, or UNKNOWN.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalEntityID</td>
+<td>String</td>
+<td>A reference to any external entity ID that is related to this issue.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalEntityName</td>
+<td>String</td>
+<td>A reference to any external entity name that is related to this issue.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fieldReference</td>
+<td>String</td>
+<td>The field on the entity that is known to be related to the issue being reported.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fixableByUser</td>
+<td>Boolean</td>
+<td>Whether or not this issue should be fixable by a user.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fixInBullhorn</td>
+<td>Boolean</td>
+<td>Whether or not this issue should be fixable within the Bullhorn system.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>issue</td>
+<td>To-one associaton</td>
+<td>The Issue entity to which this IssueItems entity is associated.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>issueResolutionStatusLookup</td>
+<td>To-one associaton</td>
+<td>The code of the issue resolution status.  A value of 1 means Open.  A value of 2 means Resolved.  A value of 3 means Dismissed.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>modifiedByUser</td>
+<td>To-one association</td>
+<td>The user who last modified the entity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rawIssueItemPayload</td>
+<td>String</td>
+<td>Text field containing raw payload information such as JSON containing additional context of the reported issue.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referenceUrl</td>
+<td>String</td>
+<td>The Bullhorn API URL that is being reported on by this issue.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referenceUrlMethod</td>
+<td>String</td>
+<td>The Bullhorn API HTTP method that is being reported on by this issue.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referenceUrlResponse</td>
+<td>String</td>
+<td>The Bullhorn API response message that is being reported on by this issue.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>referenceUrlStatusCode</td>
+<td>Integer</td>
+<td>The Bullhorn API HTTP status code that is being reported on by this issue.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>severity</td>
+<td>String</td>
+<td>The severity of the IssueItems.  Valid values are Error, Warning, Exception, and Unknown.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>sourceEntity</td>
+<td>String</td>
+<td>The entity type that is being reported on in this issue.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sourceEntityID</td>
+<td>Integer</td>
+<td>The ID of the entity that is being reported on in this issue.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
           <h1 id="jobboardpost">JobBoardPost</h1>
 
 <p>Represents a view into a JobOrder entity with information typically used in public job boards. JobBoardPost is a read-only entity.</p>
