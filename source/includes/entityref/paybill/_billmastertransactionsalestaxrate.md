@@ -34,22 +34,21 @@ Entitlements - None
         <tr class="odd">
             <td>adjustmentSequenceNumber</td>
             <td>Integer</td>
-            <td>Adjustment sequence number.</td>
+            <td>Represents the order in which adjustments should happen.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>baseAmount</td>
             <td>BigDecimal</td>
-            <td></td>
+            <td>Amount used to calculate the total sales tax for the entity, in conjunction with the salesTaxRate.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>billMasterTransaction</td>
-            <td>To One Association</td>
+            <td>To One Association (BillMasterTransaction)</td>
             <td>
-                <p>BillMasterTransaction</p>
                 <p>Associated Bill Master Transaction</p>
                 <p>Default fields:</p>
                 <ul>
@@ -61,9 +60,8 @@ Entitlements - None
         </tr>
         <tr class="even">
             <td>currencyUnit</td>
-            <td>To One Association</td>
+            <td>To One Association (CurrencyUnit)</td>
             <td>
-                <p>CurrencyUnit</p>
                 <p>Associated Currency Unit.</p>
                 <p>Default fields:</p>
                 <ul>
@@ -83,16 +81,16 @@ Entitlements - None
         </tr>
         <tr class="even">
             <td>reversalOfTransactionSalesTaxRate</td>
-            <td>To One Association</td>
-            <td>Associated reversed Bill Master Transaction Sales Tax Rate.</td>
+            <td>To One Association (BillMasterTransactionSalesTaxRate)</td>
+            <td>Associated reversed Bill Master Transaction Sales Tax Rate. (Only applies if a reversal happened.)</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>salesTaxRate</td>
-            <td>To One Association</td>
+            <td>To One Association (SalesTaxRate)</td>
             <td>
-                <p>Associated Currency Unit.</p>
+                <p>Associated Sales Tax Rate; used to calculate taxAmount in conjunction with baseAmount.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -109,14 +107,14 @@ Entitlements - None
         <tr class="even">
             <td>salesTaxRateVersionID</td>
             <td>Integer</td>
-            <td></td>
+            <td>Associated version used for calculating the taxAmount.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>taxAmount</td>
             <td>BigDecimal</td>
-            <td></td>
+            <td>Calculated by multiplying the baseAmount by the salesTaxRate.</td>
             <td>X</td>
             <td>X</td>
         </tr>

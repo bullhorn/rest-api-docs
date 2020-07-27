@@ -55,56 +55,14 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         <tr class="even">
             <td>effectiveDate</td>
             <td>Date</td>
-            <td>Effective date.</td>
+            <td>The earliest date that this tax should apply to.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>effectiveEndDate</td>
             <td>Date</td>
-            <td>Effective end date.</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerAccount</td>
-            <td>To One Association</td>
-            <td>GeneralLedgerAccount</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment1</td>
-            <td>To One Association</td>
-            <td>GeneralLedgerSegment1</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment2</td>
-            <td>To One Association</td>
-            <td>GeneralLedgerSegment2</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment3</td>
-            <td>To One Association</td>
-            <td>GeneralLedgerSegment3</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment4</td>
-            <td>To One Association</td>
-            <td>GeneralLedgerSegment4</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment5</td>
-            <td>To One Association</td>
-            <td>GeneralLedgerSegment5</td>
+            <td>The latest date that this tax should apply to.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -118,14 +76,14 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         <tr class="odd">
             <td>jurisdictionName</td>
             <td>String (200)</td>
-            <td></td>
+            <td>Jurisdiction name</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>label</td>
             <td>String (200)</td>
-            <td></td>
+            <td>Label</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -145,9 +103,8 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         </tr>
         <tr class="odd">
             <td>source</td>
-            <td>To One Association</td>
+            <td>To One Association (SalesTaxRateSourceLookup)</td>
             <td>
-                <p>SalesTaxRateSourceLookup</p>
                 <p>The source of this entity.</p>
                 <p>Default fields:</p>
                 <ul>
@@ -160,9 +117,8 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         </tr>
         <tr class="even">
             <td>status</td>
-            <td>To One Association</td>
+            <td>To One Association (TaxStatusLookup)</td>
             <td>
-                <p>TaxStatusLookup</p>
                 <p>Status of this entity.</p>
                 <p>Default fields:</p>
                 <ul>
@@ -175,9 +131,8 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         </tr>
         <tr class="odd">
             <td>taxType</td>
-            <td>To One Association</td>
+            <td>To One Association (TaxTypeLookup)</td>
             <td>
-                <p>TaxTypeLookup</p>
                 <p>The tax type of this entity. This is used to help map V1 of taxes to V2 by storing what type of tax the user intended to create.</p>
                 <p>Default fields:</p>
                 <ul>

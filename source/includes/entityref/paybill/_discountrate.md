@@ -41,22 +41,21 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>calculateAndDisplayOnInvoice</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Determines whether to show calculated discount on invoice.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>calculatePriority</td>
             <td>Integer</td>
-            <td></td>
+            <td>The order in which to calculate this discount relative to other discounts applied to the invoice. Should be a value from 1 to 25.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
-            <td>To One Association</td>
+            <td>To One Association (ClientCorporation)</td>
             <td>
-                <p>ClientCorporation</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -82,9 +81,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>discountTypeLookup</td>
-            <td>To One Association</td>
+            <td>To One Association (DiscountTypeLookup)</td>
             <td>
-                <p>DiscountTypeLookup</p>
+                <p>Type of the discount rate</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -96,8 +95,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>earnCodes</td>
-            <td>To Many Association</td>
-            <td>EarnCode</td>
+            <td>To Many Association (EarnCode)</td>
+            <td>EarnCodes associated with this DiscountRate</td>
             <td></td>
             <td></td>
         </tr>
@@ -117,9 +116,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerAccount</td>
-            <td>To One Association</td>
+            <td>To One Association (GeneralLedgerAccount)</td>
             <td>
-                <p>GeneralLedgerAccount</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -132,9 +130,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>generalLedgerSegment1</td>
-            <td>To One Association</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
             <td>
-                <p>GeneralLedgerSegment1</p>
                 <p>"Class"</p>
                 <p>Default fields:</p>
                 <ul>
@@ -148,9 +145,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment2</td>
-            <td>To One Association</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
             <td>
-                <p>GeneralLedgerSegment2</p>
                 <p>"Division"</p>
                 <p>Default fields:</p>
                 <ul>
@@ -164,9 +160,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>generalLedgerSegment3</td>
-            <td>To One Association</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
             <td>
-                <p>GeneralLedgerSegment3</p>
                 <p>"Department"</p>
                 <p>Default fields:</p>
                 <ul>
@@ -180,9 +175,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment4</td>
-            <td>To One Association</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
             <td>
-                <p>GeneralLedgerSegment4</p>
                 <p>"Country"</p>
                 <p>Default fields:</p>
                 <ul>
@@ -196,9 +190,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>generalLedgerSegment5</td>
-            <td>To One Association</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
             <td>
-                <p>GeneralLedgerSegment5</p>
                 <p>"Location"</p>
                 <p>Default fields:</p>
                 <ul>
@@ -212,9 +205,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerServiceCode</td>
-            <td>To One Association</td>
+            <td>To One Association (GeneralLedgerServiceCode)</td>
             <td>
-                <p>GeneralLedgerServiceCode</p>
                 <p>"Product/Service Code"</p>
                 <p>Default fields:</p>
                 <ul>
@@ -229,7 +221,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>ignoreForSalesTaxCalculations</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Flag determining whether to apply the discount rate before taxes are calculated</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -249,9 +241,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>owner</td>
-            <td>To One Association</td>
+            <td>To One Association (CorporateUser)</td>
             <td>
-                <p>CorporateUser</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -265,7 +256,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>rate</td>
             <td>BigDecimal</td>
-            <td></td>
+            <td>The rate per quantity to apply</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -278,9 +269,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>statusLookup</td>
-            <td>To One Association</td>
+            <td>To One Association (StatusLookup)</td>
             <td>
-                <p>StatusLookup</p>
+                <p>Status of the DiscountRate</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -306,9 +297,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>versions</td>
-            <td>To Many Association</td>
+            <td>To Many Association (DiscountRateVersion)</td>
             <td>
-                <p>DiscountRateVersion</p>
                 <p>Versions.</p>
                 <p>Default fields:</p>
                 <ul>

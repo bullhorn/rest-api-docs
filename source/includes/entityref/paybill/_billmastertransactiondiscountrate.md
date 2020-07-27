@@ -41,15 +41,14 @@ Entitlements - None
         <tr class="even">
             <td>baseAmount</td>
             <td>BigDecimal</td>
-            <td></td>
+            <td>	Amount used to calculate the total sales tax for the entity, in conjunction with the discountRate.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>billMasterTransaction</td>
-            <td>To One Association</td>
+            <td>To One Association (BillMasterTransaction)</td>
             <td>
-                <p>BillMasterTransaction</p>
                 <p>Associated Bill Master Transaction</p>
                 <p>Default fields:</p>
                 <ul>
@@ -58,12 +57,23 @@ Entitlements - None
             </td>
             <td>X</td>
             <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>currencyUnit</td>
-            <td>To One Association</td>
+        </tr><tr class="even">
+            <td>billMasterTransactionDiscountDetail</td>
+            <td>To One Association (BillMasterTransactionDiscountDetail)</td>
             <td>
-                <p>CurrencyUnit</p>
+             <p>Associated BillMasterTransactionDiscountDetail</p>
+             <p>Default fields:</p>
+             <ul>
+                 <li>id</li>
+             </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>currencyUnit</td>
+            <td>To One Association (CurrencyUnit)</td>
+            <td>
                 <p>Associated Currency Unit.</p>
                 <p>Default fields:</p>
                 <ul>
@@ -73,26 +83,25 @@ Entitlements - None
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
             <td>Date the entity was added.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>discountAmount</td>
             <td>BigDecimal</td>
-            <td></td>
+            <td>Calculated by multiplying the baseAmount by the discountRate.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>discountRate</td>
-            <td>To One Association</td>
+            <td>To One Association (DiscountRate)</td>
             <td>
-                <p>DiscountRate</p>
-                <p>Associated Discount Rate.</p>
+                <p>Associated Discount Rate; used to calculate discountAmount in conjunction with baseAmount.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -105,18 +114,17 @@ Entitlements - None
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>discountRateVersionID</td>
             <td>Integer</td>
-            <td></td>
+            <td>Associated version used for calculating the discountAmount.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>reversalOfTransactionDiscountRate</td>
-            <td>To One Association</td>
+            <td>To One Association (BillMasterTransactionDiscountRate)</td>
             <td>
-                <p>BillMasterTransactionDiscountRate</p>
                 <p>Associated reversed Bill Master Transaction Discount Rate.</p>
             </td>
             <td></td>

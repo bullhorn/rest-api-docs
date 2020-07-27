@@ -67,96 +67,6 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>generalLedgerAccount</td>
-            <td>To One Association</td>
-            <td>
-                <p>GeneralLedgerAccount associated with this SalesTaxRate.</p>
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                    <li>externalAccountNumber</li>
-                    <li>externalAccountName</li>
-                </ul>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment1</td>
-            <td>To One Association</td>
-            <td>
-                <p>GeneralLedgerSegment1</p>
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                    <li>externalSegmentNumber</li>
-                    <li>externalSegmentName</li>
-                </ul>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment2</td>
-            <td>To One Association</td>
-            <td>
-                <p>GeneralLedgerSegment2</p>
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                    <li>externalSegmentNumber</li>
-                    <li>externalSegmentName</li>
-                </ul>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment3</td>
-            <td>To One Association</td>
-            <td>
-                <p>GeneralLedgerSegment3</p>
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                    <li>externalSegmentNumber</li>
-                    <li>externalSegmentName</li>
-                </ul>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment4</td>
-            <td>To One Association</td>
-            <td>
-                <p>GeneralLedgerSegment4</p>
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                    <li>externalSegmentNumber</li>
-                    <li>externalSegmentName</li>
-                </ul>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment5</td>
-            <td>To One Association</td>
-            <td>
-                <p>GeneralLedgerSegment5</p>
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                    <li>externalSegmentNumber</li>
-                    <li>externalSegmentName</li>
-                </ul>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td>          	
@@ -175,9 +85,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>jurisdictionType</td>
-            <td>To One Association</td>
+            <td>To One Association (TaxJurisdictionTypeLookup)</td>
             <td>
-                <p>TaxJurisdictionTypeLookup</p>
+                <p>Jurisdiction type. (Ex: city, state, district, special, other)</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -196,9 +106,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>owner</td>
-            <td>To One Association</td>
+            <td>To One Association (CorporateUser)</td>
             <td>
-                <p>CorporateUser who is the owner of this entity. The default value is the user who created the entity.</p>
+                <p>Corporate User who is the owner of this entity. The default value is the user who created the entity.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -225,9 +135,8 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>source</td>
-            <td>To One Association</td>
+            <td>To One Association (SalesTaxRateSourceLookup)</td>
             <td>
-                <p>SalesTaxRateSourceLookup</p>
                 <p>The source of this entity.</p>
                 <p>Default fields:</p>
                 <ul>
@@ -247,9 +156,8 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>status</td>
-            <td>To One Association</td>
+            <td>To One Association (TaxStatusLookup)</td>
             <td>
-                <p>TaxStatusLookup</p>
                 <p>Status of this entity.</p>
                 <p>Default fields:</p>
                 <ul>
@@ -262,9 +170,8 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>taxType</td>
-            <td>To One Association</td>
+            <td>To One Association (TaxTypeLookup)</td>
             <td>
-                <p>TaxTypeLookup</p>
                 <p>The tax type of this entity. This is used to help map V1 of taxes to V2 by storing what type of tax the user intended to create.</p>
                 <p>Default fields:</p>
                 <ul>
@@ -277,9 +184,8 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>type</td>
-            <td>To One Association</td>
+            <td>To One Association (SalesTaxRateTypeLookup)</td>
             <td>
-                </p>SalesTaxRateTypeLookup</p>
                 </p>Type of entity.</p>
                 <p>Default fields:</p>
                 <ul>
@@ -299,8 +205,8 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>versions</td>
-            <td>To Many Association</td>
-            <td>SalesTaxRateVersion</td>
+            <td>To Many Association (SalesTaxRateVersion)</td>
+            <td>Versions of this entity</td>
             <td></td>
             <td>X</td>
         </tr>
