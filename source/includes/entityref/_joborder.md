@@ -38,21 +38,21 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>appointments</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Appointments associated with this job.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>approvedPlacements</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Approved Placements associated with this job.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>assignedUsers</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Internal users assigned to this job.</td>
             <td></td>
             <td></td>
@@ -73,7 +73,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>billingProfile</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>BillingProfile</td>
             <td></td>
             <td></td>
@@ -87,7 +87,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>branch</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>Branch</td>
             <td></td>
             <td>X</td>
@@ -101,21 +101,21 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>businessSectors</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>BusinessSectors associated with this job.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>categories</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Categories associated with this job.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>certificationGroups</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>CertificationGroup</td>
             <td></td>
             <td></td>
@@ -129,7 +129,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>certifications</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Certifications that applicants should have.</td>
             <td></td>
             <td></td>
@@ -143,21 +143,21 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>clientContact</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>ClientContact associated with this job.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>Hiring company.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>clientCorporationLine</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>AgreementLine</td>
             <td></td>
             <td>X</td>
@@ -458,7 +458,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>fileAttachments</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>JobOrderFileAttachment</td>
             <td></td>
             <td>X</td>
@@ -479,7 +479,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>interviews</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Appointment</td>
             <td></td>
             <td>X</td>
@@ -535,21 +535,21 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>jobCode</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>JobCode</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>jobOrderIntegrations</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>JobOrderIntegration</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>location</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>Location</td>
             <td></td>
             <td></td>
@@ -563,7 +563,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>notes</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Notes associated with this job.</td>
             <td></td>
             <td></td>
@@ -584,7 +584,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>opportunity</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>JobOrder</td>
             <td></td>
             <td></td>
@@ -598,7 +598,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>owner</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>CorporateUser who owns this job. The default value is user who creates the JobOrder.</td>
             <td>X</td>
             <td></td>
@@ -612,7 +612,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>placements</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Placements associated with this job.</td>
             <td></td>
             <td></td>
@@ -626,7 +626,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>publishedCategory</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>Category</td>
             <td></td>
             <td>X</td>
@@ -654,14 +654,14 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>reportToClientContact</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>ClientContact this job reports to.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>responseUser</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>CorporateUser to whom submissions should be sent.</td>
             <td></td>
             <td></td>
@@ -682,21 +682,21 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>sendouts</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Sendouts associated with this job.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>shift</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>Shift</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>shifts</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Shift</td>
             <td></td>
             <td></td>
@@ -710,7 +710,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>skills</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Skills associated with this job.</td>
             <td></td>
             <td></td>
@@ -724,7 +724,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>specialties</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Specialty</td>
             <td></td>
             <td></td>
@@ -745,14 +745,14 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>submissions</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>JobSubmissions associated with this job.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>tasks</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Tasks associated with this job.</td>
             <td></td>
             <td></td>
@@ -773,14 +773,14 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>tearsheets</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Tearsheets with which this job is associated.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>timeUnits</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>TimeUnit</td>
             <td></td>
             <td>X</td>
@@ -815,7 +815,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>webResponses</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>Web responses associated with this job. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”.</td>
             <td></td>
             <td></td>
@@ -843,7 +843,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>workersCompRate</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>WorkersCompensationRate entity associated with this job.</td>
             <td></td>
             <td></td>
