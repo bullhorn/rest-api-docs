@@ -2727,6 +2727,78 @@
     </tbody>
 </table>
 
+          <h1 id="certificationgroup">CertificationGroup</h1>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>CertificationGroup fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>certifications</td>
+            <td>To-many Association</td>
+            <td>Certification</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>migrateGUID</td>
+            <td>String (36)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>name</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>privateLabelID</td>
+            <td>Integer</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="certificationfileattachment">CertificationFileAttachment</h1>
 
 <p>This entity represents files that can be attached directly to candidate certifications.<br>
@@ -5977,625 +6049,859 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 
 <p>The JobOrder entity supports the massUpdate operations.</p>
 
-<table><thead>
-<tr>
-<th><strong>JobOrder field</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Not null</strong></th>
-<th><strong>Read-only</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Integer</td>
-<td>Unique identifier for this entity.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr>
-<td>address</td>
-<td>Address1</td>
-<td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>appointments</td>
-<td>To-many association</td>
-<td>Appointments associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>approvedPlacements</td>
-<td>To-many association</td>
-<td>Approved Placements associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>assignedUsers</td>
-<td>To-many association</td>
-<td>Internal users assigned to this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>benefits</td>
-<td>String (2147483647)</td>
-<td>Text description of benefits offered with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>billRateCategoryID</td>
-<td>Integer</td>
-<td>Id of the client bill rate category.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bonusPackage</td>
-<td>String (2147483647)</td>
-<td>Text description of the bonus package offered with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>branchCode</td>
-<td>String (100)</td>
-<td>Code representing the corporate branch where the job is located.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>businessSectors</td>
-<td>To-many association</td>
-<td>BusinessSectors associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>categories</td>
-<td>To-many association</td>
-<td>Categories associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>certificationList</td>
-<td>String (255)</td>
-<td>List of Certifications that an applicant should have.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>certifications</td>
-<td>To-many association</td>
-<td>Certifications that applicants should have.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>clientBillRate</td>
-<td>BigDecimal</td>
-<td>Amount to be billed to the client for this job when it is filled.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>clientContact</td>
-<td>To-one association</td>
-<td>ClientContact associated with this job.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>clientCorporation</td>
-<td>To-one association</td>
-<td>Hiring company.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>correlatedCustom-Date1-3</td>
-<td>Timestamp</td>
-<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>correlatedCustom-Float1-3</td>
-<td>Double</td>
-<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>correlatedCustomInt1-3</td>
-<td>Integer</td>
-<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>correlatedCustomText1-10</td>
-<td>String (100)</td>
-<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>correlatedCustom-TextBlock1-3</td>
-<td>String (2147483647)</td>
-<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>costCenter</td>
-<td>String (30)</td>
-<td>Name of the cost center associated with this job. This cost center flows to the placement record and drives invoice grouping (placements with the same cost center for the same client will be grouped together)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customDate1-3</td>
-<td>BigDecimal</td>
-<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customFloat1-3</td>
-<td>Double</td>
-<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customInt1-3</td>
-<td>Integer</td>
-<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customObject1s to 10s</td>
-<td>CustomObject</td>
-<td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br><a href="http://bullhorn.github.io/Custom-Objects">http://bullhorn.github.io/Custom-Objects</a></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customText1-20</td>
-<td>String (100)</td>
-<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>customTextBlock1-5</td>
-<td>String (2147483647)</td>
-<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>dateAdded</td>
-<td>Timestamp</td>
-<td>Date when this record was created in the Bullhorn system.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>dateClosed</td>
-<td>Timestamp</td>
-<td>Date when the job was marked as closed.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>dateEnd</td>
-<td>Timestamp</td>
-<td>Date when the job will end (if applicable).</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>dateLastExported</td>
-<td>Timestamp</td>
-<td>Date when the job was last exported.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>dateLastModified</td>
-<td>Timestamp</td>
-<td>Date on which the job was last modified.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr>
-<td>degreeList</td>
-<td>String (2147483647)</td>
-<td>List of educational degrees required for this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>description</td>
-<td>String (200000)</td>
-<td>Text description of the job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>durationWeeks</td>
-<td>Double</td>
-<td>Expected duration the job. For a permanent position, this is null.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>educationDegree</td>
-<td>String (50)</td>
-<td>Required degree for the job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>employmentType</td>
-<td>String (200)</td>
-<td>Type of employment offered: for example, contract, permanent, and so forth. Determines which of the five job types are used.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>externalCategoryID</td>
-<td>Integer</td>
-<td>Category exposed on public job postings to the web.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>externalID</td>
-<td>String (30)</td>
-<td>Used for migrations or for the job&rsquo;s external/back-office identification number.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>feeArrangement</td>
-<td>Double</td>
-<td>Fee, expressed as a percentage, that will be paid by the ClientCorporation when the job is filled.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>hoursOfOperation</td>
-<td>String (30)</td>
-<td>Hiring company&rsquo;s hours of operation.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>hoursPerWeek</td>
-<td>Double</td>
-<td>Number of hours per week that the employee will work.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Interviews</td>
-<td>To-many association</td>
-<td>Interview Appointments associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>isClientEditable</td>
-<td>Boolean</td>
-<td>Indicates whether a ClientContact can modify the job via the Bullhorn system.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>isDeleted</td>
-<td>Boolean</td>
-<td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>isInterviewRequired</td>
-<td>Boolean</td>
-<td>Indicates whether applicants are required to Interview for the job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>isJobcastPublished</td>
-<td>Boolean</td>
-<td>Indicates whether the job was published through Jobcast.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>isOpen</td>
-<td>Boolean</td>
-<td>Indicates whether the job is open.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>isPublic</td>
-<td>Boolean</td>
-<td>Controls whether a job appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>jobBoardList</td>
-<td>String (2147483647)</td>
-<td>List of job boards on which this job has been posted.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>markupPercentage</td>
-<td>Double</td>
-<td>Represents the relationship between clientBillRate and PayRate MP = (CBR - PR) / PR</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr>
-<td>notes</td>
-<td>To-many association</td>
-<td>Notes associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>numOpenings</td>
-<td>Integer</td>
-<td>Number of openings to be filled for this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>onSite</td>
-<td>String (20)</td>
-<td>Location requirements; for example, on-site, off-site, no preference.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Opportunity</td>
-<td>To-one association</td>
-<td>Opportunity with which this job is associated.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>optionsPackage</td>
-<td>String (2147483647)</td>
-<td>Text description of the stock options package offered with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>owner</td>
-<td>To-one association</td>
-<td>CorporateUser who owns this job. The default value is user who creates the JobOrder.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>payRate</td>
-<td>BigDecimal</td>
-<td>Pay rate offered with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>placements</td>
-<td>To-many association</td>
-<td>Placements associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>publicDescription</td>
-<td>String (200000)</td>
-<td>Description of this job for use on public job boards.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>publishedZip</td>
-<td>String (18)</td>
-<td>Published Zip Code of the job location.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>reasonClosed</td>
-<td>String (2147483647)</td>
-<td>Text description of the reason this job was closed, if applicable.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>reportTo</td>
-<td>String (100)</td>
-<td>Name and/or title of the person this job will report to.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>reportToClientContact</td>
-<td>To-one association</td>
-<td>ClientContact this job reports to.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>responseUser</td>
-<td>To-one association</td>
-<td>CorporateUser to whom submissions should be sent.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>salary</td>
-<td>BigDecimal</td>
-<td>Salary offered for this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>salaryUnit</td>
-<td>String (12)</td>
-<td>Salary unit represented by the range (for example, per hour, yearly).</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>sendouts</td>
-<td>To-many association</td>
-<td>Sendouts associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>skillList</td>
-<td>String (2147483647)</td>
-<td>Comma-separated list of skills the applicants should have.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>skills</td>
-<td>To-many association</td>
-<td>Skills associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>source</td>
-<td>String (100)</td>
-<td>Source of the job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>startDate</td>
-<td>Timestamp</td>
-<td>Desired start date for the position. The default value is 12 AM on day record is added.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>status</td>
-<td>String (200)</td>
-<td>Current status of the Job Order. Examples: Accepting Candidates, Currently Interviewing, Covered, Offer Out, Placed</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>submissions</td>
-<td>To-many association</td>
-<td>JobSubmissions associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>tasks</td>
-<td>Task</td>
-<td>Tasks associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>taxRate</td>
-<td>Double</td>
-<td>Rate (percentage) at which the person hired for this job will be taxed.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>taxStatus</td>
-<td>String (20)</td>
-<td>Tax Status, for example, 1099, W-2, and so forth.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>tearsheets</td>
-<td>To-many association</td>
-<td>Tearsheets with which this job is associated.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>title</td>
-<td>String (100)</td>
-<td>Job title.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>travelRequirements</td>
-<td>String (50)</td>
-<td>Text description of the amount of travel required for this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>type</td>
-<td>Integer</td>
-<td>Job type, for example, Cold, Cool, Medium, Warm, Hot. Stored in DB as Integer with display values configured in field maps.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>webResponses</td>
-<td>To-many association</td>
-<td>Web responses associated with this job. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>willRelocate</td>
-<td>Boolean</td>
-<td>Indicates whether the hiring company will provide relocation assistance.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>willSponsor</td>
-<td>Boolean</td>
-<td>Indicates whether the hiring company is willing to sponsor an employee on a work visa.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>workersCompRate</td>
-<td>To-one association</td>
-<td>WorkersCompensationRate entity associated with this job.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>yearsRequired</td>
-<td>Integer</td>
-<td>Number of years of experience required for the job.</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobOrder fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>address</td>
+            <td>COMPOSITE</td>
+            <td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>appointments</td>
+            <td>To-many Association</td>
+            <td>Appointments associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>approvedPlacements</td>
+            <td>To-many Association</td>
+            <td>Approved Placements associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>assignedUsers</td>
+            <td>To-many Association</td>
+            <td>Internal users assigned to this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>benefits</td>
+            <td>String (2147483647)</td>
+            <td>Text description of benefits offered with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billRateCategoryID</td>
+            <td>Integer</td>
+            <td>Id of the client bill rate category.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billingProfile</td>
+            <td>To-one Association</td>
+            <td>BillingProfile</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>bonusPackage</td>
+            <td>String (2147483647)</td>
+            <td>Text description of the bonus package offered with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>branch</td>
+            <td>To-one Association</td>
+            <td>Branch</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>branchCode</td>
+            <td>String (100)</td>
+            <td>Code representing the corporate branch where the job is located.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>businessSectors</td>
+            <td>To-many Association</td>
+            <td>BusinessSectors associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>categories</td>
+            <td>To-many Association</td>
+            <td>Categories associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>certificationGroups</td>
+            <td>To-many Association</td>
+            <td>CertificationGroup</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>certificationList</td>
+            <td>String (255)</td>
+            <td>List of Certifications that an applicant should have.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>certifications</td>
+            <td>To-many Association</td>
+            <td>Certifications that applicants should have.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>clientBillRate</td>
+            <td>BigDecimal</td>
+            <td>Amount to be billed to the client for this job when it is filled.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>clientContact</td>
+            <td>To-one Association</td>
+            <td>ClientContact associated with this job.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>clientCorporation</td>
+            <td>To-one Association</td>
+            <td>Hiring company.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>clientCorporationLine</td>
+            <td>To-one Association</td>
+            <td>AgreementLine</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomDate1</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomDate2</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomDate3</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomFloat1</td>
+            <td>Double</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomFloat2</td>
+            <td>Double</td>
+            <td>CorporateUserText</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomFloat3</td>
+            <td>Double</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomInt1</td>
+            <td>Integer</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomInt2</td>
+            <td>Integer</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomInt3</td>
+            <td>Integer</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomText1</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomText10</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomText2</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomText3</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomText4</td>
+            <td>String (100)</td>
+            <td>CorporateUserText</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomText5</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomText6</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomText7</td>
+            <td>String (100)</td>
+            <td>ClientText</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomText8</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomText9</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomTextBlock1</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>correlatedCustomTextBlock2</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>correlatedCustomTextBlock3</td>
+            <td>String (2147483647)</td>
+            <td>CorporateUserText</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>costCenter</td>
+            <td>String (30)</td>
+            <td>Name of the cost center associated with this job. This cost center flows to the placement record and drives invoice grouping (placements with the same cost center for the same client will be grouped together)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customDate1-3</td>
+            <td>Timestamp</td>
+            <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customFloat1-3</td>
+            <td>Double</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customInt1-3</td>
+            <td>Integer</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customText1-20</td>
+            <td>String (100)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customTextBlock1-5</td>
+            <td>String (2147483647)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date when this record was created in the Bullhorn system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateClosed</td>
+            <td>Timestamp</td>
+            <td>Date when the job was marked as closed.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateEnd</td>
+            <td>Timestamp</td>
+            <td>Date when the job will end (if applicable).</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastExported</td>
+            <td>Timestamp</td>
+            <td>Date when the job was last exported.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date on which the job was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastPublished</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>degreeList</td>
+            <td>String (2147483647)</td>
+            <td>List of educational degrees required for this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (2147483647)</td>
+            <td>Text description of the job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>durationWeeks</td>
+            <td>Double</td>
+            <td>Expected duration the job. For a permanent position, this is null.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>educationDegree</td>
+            <td>String (50)</td>
+            <td>Required degree for the job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>employmentType</td>
+            <td>String (200)</td>
+            <td>Type of employment offered: for example, contract, permanent, and so forth. Determines which of the five job types are used.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>externalCategoryID</td>
+            <td>Integer</td>
+            <td>Category exposed on public job postings to the web.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>Used for migrations or for the job&rsquo;s external/back-office identification number.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>feeArrangement</td>
+            <td>Double</td>
+            <td>Fee, expressed as a percentage, that will be paid by the ClientCorporation when the job is filled.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>fileAttachments</td>
+            <td>To-many Association</td>
+            <td>JobOrderFileAttachment</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>hoursOfOperation</td>
+            <td>String (30)</td>
+            <td>Hiring company&rsquo;s hours of operation.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>hoursPerWeek</td>
+            <td>Double</td>
+            <td>Number of hours per week that the employee will work.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>interviews</td>
+            <td>To-many Association</td>
+            <td>Appointment</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>isClientEditable</td>
+            <td>Boolean</td>
+            <td>Indicates whether a ClientContact can modify the job via the Bullhorn system.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isInterviewRequired</td>
+            <td>Boolean</td>
+            <td>Indicates whether applicants are required to Interview for the job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isJobcastPublished</td>
+            <td>Boolean</td>
+            <td>Indicates whether the job was published through Jobcast.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isOpen</td>
+            <td>Boolean</td>
+            <td>Indicates whether the job is open.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isPublic</td>
+            <td>Integer</td>
+            <td>Controls whether a job appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jobBoardList</td>
+            <td>String (2147483647)</td>
+            <td>List of job boards on which this job has been posted.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jobCode</td>
+            <td>To-one Association</td>
+            <td>JobCode</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>jobOrderIntegrations</td>
+            <td>To-many Association</td>
+            <td>JobOrderIntegration</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>location</td>
+            <td>To-one Association</td>
+            <td>Location</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>markUpPercentage</td>
+            <td>Double</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>notes</td>
+            <td>To-many Association</td>
+            <td>Notes associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>numOpenings</td>
+            <td>Integer</td>
+            <td>Number of openings to be filled for this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>onSite</td>
+            <td>String (20)</td>
+            <td>Location requirements; for example, on-site, off-site, no preference.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>opportunity</td>
+            <td>To-one Association</td>
+            <td>JobOrder</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>optionsPackage</td>
+            <td>String (2147483647)</td>
+            <td>Text description of the stock options package offered with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one Association</td>
+            <td>CorporateUser who owns this job. The default value is user who creates the JobOrder.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>payRate</td>
+            <td>BigDecimal</td>
+            <td>Pay rate offered with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>placements</td>
+            <td>To-many Association</td>
+            <td>Placements associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>publicDescription</td>
+            <td>String (2147483647)</td>
+            <td>Description of this job for use on public job boards.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>publishedCategory</td>
+            <td>To-one Association</td>
+            <td>Category</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>publishedZip</td>
+            <td>String (18)</td>
+            <td>Published Zip Code of the job location.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>reasonClosed</td>
+            <td>String (2147483647)</td>
+            <td>Text description of the reason this job was closed, if applicable.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>reportTo</td>
+            <td>String (100)</td>
+            <td>Name and/or title of the person this job will report to.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>reportToClientContact</td>
+            <td>To-one Association</td>
+            <td>ClientContact this job reports to.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>responseUser</td>
+            <td>To-one Association</td>
+            <td>CorporateUser to whom submissions should be sent.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>salary</td>
+            <td>BigDecimal</td>
+            <td>Salary offered for this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>salaryUnit</td>
+            <td>String (12)</td>
+            <td>Salary unit represented by the range (for example, per hour, yearly).</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>sendouts</td>
+            <td>To-many Association</td>
+            <td>Sendouts associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>shift</td>
+            <td>To-one Association</td>
+            <td>Shift</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>shifts</td>
+            <td>To-many Association</td>
+            <td>Shift</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>skillList</td>
+            <td>String (2147483647)</td>
+            <td>Comma-separated list of skills the applicants should have.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>skills</td>
+            <td>To-many Association</td>
+            <td>Skills associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>source</td>
+            <td>String (100)</td>
+            <td>Source of the job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>specialties</td>
+            <td>To-many Association</td>
+            <td>Specialty</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>startDate</td>
+            <td>Timestamp</td>
+            <td>Desired start date for the position. The default value is 12 AM on day record is added.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>status</td>
+            <td>String (200)</td>
+            <td>Current status of the Job Order. Examples: Accepting Candidates, Currently Interviewing, Covered, Offer Out, Placed</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>submissions</td>
+            <td>To-many Association</td>
+            <td>JobSubmissions associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>tasks</td>
+            <td>To-many Association</td>
+            <td>Tasks associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>taxRate</td>
+            <td>Double</td>
+            <td>Rate (percentage) at which the person hired for this job will be taxed.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>taxStatus</td>
+            <td>String (20)</td>
+            <td>Tax Status, for example, 1099, W-2, and so forth.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>tearsheets</td>
+            <td>To-many Association</td>
+            <td>Tearsheets with which this job is associated.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeUnits</td>
+            <td>To-many Association</td>
+            <td>TimeUnit</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>title</td>
+            <td>String (100)</td>
+            <td>Job title.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>travelRequirements</td>
+            <td>String (50)</td>
+            <td>Text description of the amount of travel required for this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>type</td>
+            <td>Integer</td>
+            <td>Job type, for example, Cold, Cool, Medium, Warm, Hot. Stored in DB as Integer with display values configured in field maps.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>usersAssigned</td>
+            <td>String (0)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>webResponses</td>
+            <td>To-many Association</td>
+            <td>Web responses associated with this job. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>willRelocate</td>
+            <td>Boolean</td>
+            <td>Indicates whether the hiring company will provide relocation assistance.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>willRelocateInt</td>
+            <td>Integer</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>willSponsor</td>
+            <td>Boolean</td>
+            <td>Indicates whether the hiring company is willing to sponsor an employee on a work visa.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>workersCompRate</td>
+            <td>To-one Association</td>
+            <td>WorkersCompensationRate entity associated with this job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>yearsRequired</td>
+            <td>Integer</td>
+            <td>Number of years of experience required for the job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
 
           <h1 id="jobsubmission">JobSubmission</h1>
 
@@ -9151,6 +9457,95 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 </tbody>
 </table>
 
+          <h1 id="pay-and-bill-billmasterdiscountrate">Pay and Bill - BillMasterDiscountRate</h1>
+
+<p>Represents an association between BillMaster and a DiscountRate</p>
+
+<p>CRUD Access - READ</p>
+
+<p>Entitlements - None</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>BillMasterDiscountRate fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billMaster</td>
+            <td>To One Association (BillMaster)</td>
+            <td>
+                <p>Associated Bill Master</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>discountRate</td>
+            <td>To One Association (DiscountRate)</td>
+            <td>
+                <p>Associated Discount Rate.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>title</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                    <li>versionID</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To One Association (CorporateUser)</td>
+            <td>
+                <p>CorporateUser</p>
+                <p>Associated Corporate User.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-billmastertransaction">Pay and Bill - BillMasterTransaction</h1>
 
 <p>Read-only entity that represents a BillMasterTransaction.</p>
@@ -9356,6 +9751,847 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td>X</td>
 </tr>
 </tbody>
+</table>
+
+          <h1 id="pay-and-bill-billmastertransactiondiscountrate">Pay and Bill - BillMasterTransactionDiscountRate</h1>
+
+<p>Represents an association between a BillMasterTransaction and DiscountRate</p>
+
+<p>CRUD Access - READ</p>
+
+<p>Entitlements - None</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>BillMasterTransactionDiscountRate fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>adjustmentSequenceNumber</td>
+            <td>Integer</td>
+            <td>Adjustment sequence number.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>baseAmount</td>
+            <td>BigDecimal</td>
+            <td>    Amount used to calculate the total sales tax for the entity, in conjunction with the discountRate.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billMasterTransaction</td>
+            <td>To One Association (BillMasterTransaction)</td>
+            <td>
+                <p>Associated Bill Master Transaction</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr><tr class="even">
+            <td>billMasterTransactionDiscountDetail</td>
+            <td>To One Association (BillMasterTransactionDiscountDetail)</td>
+            <td>
+             <p>Associated BillMasterTransactionDiscountDetail</p>
+             <p>Default fields:</p>
+             <ul>
+                 <li>id</li>
+             </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>currencyUnit</td>
+            <td>To One Association (CurrencyUnit)</td>
+            <td>
+                <p>Associated Currency Unit.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>discountAmount</td>
+            <td>BigDecimal</td>
+            <td>Calculated by multiplying the baseAmount by the discountRate.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>discountRate</td>
+            <td>To One Association (DiscountRate)</td>
+            <td>
+                <p>Associated Discount Rate; used to calculate discountAmount in conjunction with baseAmount.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                    <li>versionID</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>discountRateVersionID</td>
+            <td>Integer</td>
+            <td>Associated version used for calculating the discountAmount.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>reversalOfTransactionDiscountRate</td>
+            <td>To One Association (BillMasterTransactionDiscountRate)</td>
+            <td>
+                <p>Associated reversed Bill Master Transaction Discount Rate.</p>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-billmastertransactionsalestaxrate">Pay and Bill - BillMasterTransactionSalesTaxRate</h1>
+
+<p>Represents an association between a BillMasterTransaction and SalesTaxRate</p>
+
+<p>CRUD Access - READ</p>
+
+<p>Entitlements - None</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>BillMasterTransactionSalesTaxRate fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>adjustmentSequenceNumber</td>
+            <td>Integer</td>
+            <td>Represents the order in which adjustments should happen.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>baseAmount</td>
+            <td>BigDecimal</td>
+            <td>Amount used to calculate the total sales tax for the entity, in conjunction with the salesTaxRate.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billMasterTransaction</td>
+            <td>To One Association (BillMasterTransaction)</td>
+            <td>
+                <p>Associated Bill Master Transaction</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>currencyUnit</td>
+            <td>To One Association (CurrencyUnit)</td>
+            <td>
+                <p>Associated Currency Unit.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>reversalOfTransactionSalesTaxRate</td>
+            <td>To One Association (BillMasterTransactionSalesTaxRate)</td>
+            <td>Associated reversed Bill Master Transaction Sales Tax Rate. (Only applies if a reversal happened.)</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>salesTaxRate</td>
+            <td>To One Association (SalesTaxRate)</td>
+            <td>
+                <p>Associated Sales Tax Rate; used to calculate taxAmount in conjunction with baseAmount.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                    <li>versionID</li>
+                    <li>jurisdictionName</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>salesTaxRateVersionID</td>
+            <td>Integer</td>
+            <td>Associated version used for calculating the taxAmount.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>taxAmount</td>
+            <td>BigDecimal</td>
+            <td>Calculated by multiplying the baseAmount by the salesTaxRate.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-discountrate">Pay and Bill - DiscountRate</h1>
+
+<p>An effective dated entity that represents a Discount Rate</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+
+<p>Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rate and Version, Manage Current Discount Rate Version, Manage Future Discount Rate Version, Manage Historical Discount Rate Version, View Current and Future Discount Rate and Version</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>DiscountRate fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>Amount of discount</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>calculateAndDisplayOnInvoice</td>
+            <td>Boolean</td>
+            <td>Determines whether to show calculated discount on invoice.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>calculatePriority</td>
+            <td>Integer</td>
+            <td>The order in which to calculate this discount relative to other discounts applied to the invoice. Should be a value from 1 to 25.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>clientCorporation</td>
+            <td>To One Association (ClientCorporation)</td>
+            <td>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X   </td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>discountTypeLookup</td>
+            <td>To One Association (DiscountTypeLookup)</td>
+            <td>
+                <p>Type of the discount rate</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>earnCodes</td>
+            <td>To Many Association (EarnCode)</td>
+            <td>EarnCodes associated with this DiscountRate</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>Effective date.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>Effective end date.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerAccount</td>
+            <td>To One Association (GeneralLedgerAccount)</td>
+            <td>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalAccountNumber</li>
+                    <li>externalAccountName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment1</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Class&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment2</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Division&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment3</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Department&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment4</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Country&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment5</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Location&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerServiceCode</td>
+            <td>To One Association (GeneralLedgerServiceCode)</td>
+            <td>
+                <p>&ldquo;Product/Service Code&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalServiceCodeNumber</li>
+                    <li>externalServiceCodeName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>ignoreForSalesTaxCalculations</td>
+            <td>Boolean</td>
+            <td>Flag determining whether to apply the discount rate before taxes are calculated</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Soft deleted flag.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>Indicates if this is the first version.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>owner</td>
+            <td>To One Association (CorporateUser)</td>
+            <td>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>rate</td>
+            <td>BigDecimal</td>
+            <td>The rate per quantity to apply</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>sentToAccountsReceivable</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>statusLookup</td>
+            <td>To One Association (StatusLookup)</td>
+            <td>
+                <p>Status of the DiscountRate</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>title</td>
+            <td>String (200)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>versions</td>
+            <td>To Many Association (DiscountRateVersion)</td>
+            <td>
+                <p>Versions.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                    <li>title</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-discountrateversion">Pay and Bill - DiscountRateVersion</h1>
+
+<p>The version entity for the Discount Rate effective dated entity</p>
+
+<p>CRUD Access - READ</p>
+
+<p>Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rate and Version, Manage Current Discount Rate Version, Manage Future Discount Rate Version, Manage Historical Discount Rate Version, View Current and Future Discount Rate and Version</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>DiscountRateVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>Amount of discount</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>calculateAndDisplayOnInvoice</td>
+            <td>Boolean</td>
+            <td>Determines whether to show calculated discount on invoice.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>calculatePriority</td>
+            <td>Integer</td>
+            <td>The order in which to calculate this discount relative to other discounts applied to the invoice. Should be a value from 1 to 25.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>discountRateID</td>
+            <td>Integer</td>
+            <td>The ID of the DiscountRate this version is applicable to</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>discountTypeLookup</td>
+            <td>To One Association (DiscountTypeLookup)</td>
+            <td>
+                <p>The Discount type</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>earnCodes</td>
+            <td>To Many Association (EarnCode)</td>
+            <td>EarnCodes associated with this DiscountRate</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>The earliest date that this discount should apply to.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>The latest date that this discount should apply to. </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerAccount</td>
+            <td>To One Association (GeneralLedgerAccount)</td>
+            <td>
+                <p>GeneralLedgerAccount</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalAccountNumber</li>
+                    <li>externalAccountName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment1</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Class&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment2</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Division&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment3</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Department&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment4</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Country&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment5</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Location&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerServiceCode</td>
+            <td>To One Association (GeneralLedgerServiceCode)</td>
+            <td>
+                <p>&ldquo;Product/Service Code&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalServiceCodeNumber</li>
+                    <li>externalServiceCodeName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>ignoreForSalesTaxCalculations</td>
+            <td>Boolean</td>
+            <td>Whether or not the discount should be applied when calculating sales taxes.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>Indicates if this is the first version.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>rate</td>
+            <td>BigDecimal</td>
+            <td>The rate per quantity to apply</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>sentToAccountsReceivable</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>statusLookup</td>
+            <td>To One Association (StatusLookup)</td>
+            <td>
+                <p>Status of the DiscountRateVersion</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>title</td>
+            <td>String (200)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
 </table>
 
           <h1 id="pay-and-bill-generalledgeraccount">Pay and Bill - GeneralLedgerAccount</h1>
@@ -10266,6 +11502,369 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td> </td>
 </tr>
 </tbody>
+</table>
+
+          <h1 id="pay-and-bill-salestaxrate">Pay and Bill - SalesTaxRate</h1>
+
+<p>An Effective Dated Entity that represents a sales tax rate</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+
+<p>Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax Rate and Version, Manage Current Sales Tax Rate Version, Manage Historical Sales Tax Rate Version, Manage Future Sales Tax Rate Version, View Current and Future Sales Tax Rate and Version</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>SalesTaxRate fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date on which the entity was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date on which the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>Date on which the rate will take effect.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>Date on which the rate will no longer in effect.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>            
+                <p>Indicates whether this record has been marked as deleted in the Bullhorn system.</p>
+                <p>The default value is false.</p>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jurisdictionName</td>
+            <td>String (200)</td>
+            <td>Jurisdiction name.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jurisdictionType</td>
+            <td>To One Association (TaxJurisdictionTypeLookup)</td>
+            <td>
+                <p>Jurisdiction type. (Ex: city, state, district, special, other)</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>label</td>
+            <td>String (200)</td>
+            <td>Label.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To One Association (CorporateUser)</td>
+            <td>
+                <p>Corporate User who is the owner of this entity. The default value is the user who created the entity.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>rate</td>
+            <td>BigDecimal</td>
+            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>reportingCodeName</td>
+            <td>String (100)</td>
+            <td>Reporting code name.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>source</td>
+            <td>To One Association (SalesTaxRateSourceLookup)</td>
+            <td>
+                <p>The source of this entity.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>stateID</td>
+            <td>Integer</td>
+            <td>State ID from internal database table.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>status</td>
+            <td>To One Association (TaxStatusLookup)</td>
+            <td>
+                <p>Status of this entity.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>taxType</td>
+            <td>To One Association (TaxTypeLookup)</td>
+            <td>
+                <p>The tax type of this entity. This is used to help map V1 of taxes to V2 by storing what type of tax the user intended to create.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>type</td>
+            <td>To One Association (SalesTaxRateTypeLookup)</td>
+            <td>
+                </p>Type of entity.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>versions</td>
+            <td>To Many Association (SalesTaxRateVersion)</td>
+            <td>Versions of this entity</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-salestaxrateversion">Pay and Bill - SalesTaxRateVersion</h1>
+
+<p>The version entity for the Sales Tax Rate effective dated entity</p>
+
+<p>CRUD Access - READ</p>
+
+<p>Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax Rate and Version, Manage Current Sales Tax Rate Version, Manage Future Sales Tax Rate Version, Manage Historical Sales Tax Rate Version, View Current and Future Sales Tax Rate and Version)</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>SalesTaxRateVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>The earliest date that this tax should apply to.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>The latest date that this tax should apply to.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>Indicates if this record was the first version created on the SalesTaxRate. The default value is false.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>jurisdictionName</td>
+            <td>String (200)</td>
+            <td>Jurisdiction name</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>label</td>
+            <td>String (200)</td>
+            <td>Label</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>rate</td>
+            <td>BigDecimal</td>
+            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>reportingCodeName</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>source</td>
+            <td>To One Association (SalesTaxRateSourceLookup)</td>
+            <td>
+                <p>The source of this entity.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>status</td>
+            <td>To One Association (TaxStatusLookup)</td>
+            <td>
+                <p>Status of this entity.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>taxType</td>
+            <td>To One Association (TaxTypeLookup)</td>
+            <td>
+                <p>The tax type of this entity. This is used to help map V1 of taxes to V2 by storing what type of tax the user intended to create.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+    </tbody>
 </table>
 
           <h1 id="pay-and-bill-transactionorigin">Pay and Bill - TransactionOrigin</h1>
