@@ -24,7 +24,7 @@ Returns the list of entity types that support mass update.
 
 ### HTTP Request
 
-`{corpToken}/massUpdate/{entityType}`
+`{corpToken}/massUpdate`
 
 Param | Required | Description
 ------ | -------- | -----
@@ -33,7 +33,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /massUpdate/{entityType}
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate/entity
+curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate/JobOrder
 
 # Example Response
 [ {
@@ -77,7 +77,7 @@ curl -X POST \
     "count": 2
 }
 ```
-Performs a massUpdate on all entities of the specified type for which the entity id is included in the request body.
+Performs a massUpdate on all entity records of the specified type for which the entity id is included in the request body. Use the GET /massUpdate/{entityType} request to see the list of entity properties for which mass update is supported on the specified entity type.
 The request body uses the following syntax:
 
 ```
