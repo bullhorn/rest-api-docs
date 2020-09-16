@@ -2426,8 +2426,11 @@ clientCorporation.name</td>
 <span class="o">}</span>
 </code></pre>
 
-<p>Performs a massUpdate on all entity records of the specified type for which the entity id is included in the request body. Use the GET /massUpdate/{entityType} request to see the list of entity properties for which mass update is supported on the specified entity type.
-The request body uses the following syntax:</p>
+<p>Performs a massUpdate on all entity records of the specified type for which the entity id is included in the request body.</p>
+
+<p><br><strong>Note:</strong> Use the GET /massUpdate/{entityType} request to see the list of entity properties for which mass update is supported on the specified entity type.</p>
+
+<p>The request body uses the following syntax:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"ids"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">],</span><span class="w">
   </span><span class="nt">"{property}"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">value</span><span class="p">,</span><span class="w">
