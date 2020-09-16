@@ -2355,7 +2355,7 @@ clientCorporation.name</td>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">{corpToken}/massUpdate/{entityType}</code></p>
+<p><code class="prettyprint">{corpToken}/massUpdate</code></p>
 
 <table><thead>
 <tr>
@@ -2372,7 +2372,7 @@ clientCorporation.name</td>
 </tbody></table>
 
 <h2 id="get-massupdate-entitytype"><span class="tag">GET</span> /massUpdate/{entityType}</h2>
-<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate/entity
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate/JobOrder
 
 <span class="c"># Example Response</span>
 <span class="o">[</span> <span class="o">{</span>
@@ -2426,7 +2426,7 @@ clientCorporation.name</td>
 <span class="o">}</span>
 </code></pre>
 
-<p>Performs a massUpdate on all entities of the specified type for which the entity id is included in the request body.
+<p>Performs a massUpdate on all entity records of the specified type for which the entity id is included in the request body. Use the GET /massUpdate/{entityType} request to see the list of entity properties for which mass update is supported on the specified entity type.
 The request body uses the following syntax:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"ids"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">],</span><span class="w">
