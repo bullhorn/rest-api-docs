@@ -78,9 +78,9 @@ curl -X POST \
 }
 ```
 Performs a massUpdate on all entity records of the specified type for which the entity id is included in the request body.
-
-<br>**Note:** Use the GET /massUpdate/{entityType} request to see the list of entity properties for which mass update is supported on the specified entity type.
-
+<br>
+**Note:** Use the GET /massUpdate/{entityType} request to see the list of entity properties for which mass update is supported on the specified entity type.
+<br>
 The request body uses the following syntax:
 
 ```
