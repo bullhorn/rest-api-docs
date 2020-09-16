@@ -64,6 +64,7 @@ includes:
   - entityref/paybill/billmasterdiscountrate
   - entityref/paybill/billmastertransaction
   - entityref/paybill/billmastertransactiondiscountrate
+  - entityref/paybill/billmastertransactiondistributionbatch
   - entityref/paybill/billmastertransactionsalestaxrate
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
