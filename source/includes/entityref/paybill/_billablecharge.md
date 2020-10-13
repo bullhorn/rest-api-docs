@@ -259,6 +259,18 @@ Represents a billable charge.
 <td> </td>
 </tr>
 <tr class="even">
+<td><p><span>generalLedgerStatus</span></p></td>
+<td><span>To-one association</span></td>
+<td><span>General Ledger Status</span>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>label</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
 <td>invoiceTerm</td>
 <td>To-one association</td>
 <td><p>Invoice terms.</p>
@@ -274,14 +286,14 @@ Represents a billable charge.
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>isInvoiced</td>
 <td>Boolean</td>
 <td>Indicates whether billable charge is invoiced.</td>
 <td>X</td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>jobOrder</td>
 <td><p>To-one association</p></td>
 <td><p>Job.</p>
@@ -293,14 +305,14 @@ Represents a billable charge.
 <td> </td>
 <td> X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>periodEndDate</td>
 <td>Date</td>
 <td>Period end date</td>
 <td>X</td>
 <td> </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>placement</td>
 <td>To-one association</td>
 <td><p>Placement.</p>
@@ -311,14 +323,14 @@ Represents a billable charge.
 <td> </td>
 <td> </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>readyToBillOverride</td>
 <td>Integer</td>
 <td>Ready to bill override.</td>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>status</td>
 <td>To-one association</td>
 <td><p>BillableChargeStatusLookup.</p>
@@ -331,14 +343,14 @@ Represents a billable charge.
 <td>X</td>
 <td> </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>subTotal</td>
 <td>BigDecimal</td>
 <td>subtotal.</td>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>transactionStatus</td>
 <td><p>To-one association</p></td>
 <td><p>Transaction status.</p>
@@ -350,7 +362,7 @@ Represents a billable charge.
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>transactionType</td>
 <td><p>To-one association</p></td>
 <td><p>Transaction type.</p>

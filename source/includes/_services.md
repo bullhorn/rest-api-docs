@@ -126,3 +126,63 @@ The PlacementChangeRequest requestStatus is changed to the value stored in the p
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+## PUT /services/RevenueRecognition/BillMasterTransactionDistributionBatch
+
+Handles the creation of a BillMasterTransactionDistributionBatch and it's subsequent association to BillableCharges
+
+``` shell
+curl -X PUT \
+      https://rest.bullhornstaffing.com/rest-services/e999/services/RevenueRecognition/BillMasterTransactionDistributionBatch
+
+# Example Request
+{
+    "billableChargeIds":[1118]
+}
+
+# Example Response
+{
+    "changedEntityType":"BillMasterTransactionDistributionBatch",
+    "changedEntityId":178,
+    "changeType":"INSERT",
+    "data":{}
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/RevenueRecognition/BillMasterTransactionDistributionBatch`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+## PUT /services/RevenueRecognition/UnbilledRevenueDistributionBatch 
+
+Handles the creation of an UnbilledRevenueDistributionBatch and it's subsequent association to UnbilledRevenueDistributions
+
+``` shell
+curl -X PUT \
+      https://rest.bullhorn.com/rest-services/e999/services/RevenueRecognition/UnbilledRevenueDistributionBatch 
+
+# Example Request
+{
+    "billableChargeIds":[1110]
+}
+
+# Example Response
+{
+    "changedEntityType":"UnbilledRevenueDistributionBatch",
+    "changedEntityId":58,
+    "changeType":"INSERT",
+    "data":{}
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/RevenueRecognition/BillMasterTransactionDistributionBatch`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
