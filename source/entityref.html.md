@@ -8,7 +8,7 @@ mystyle: no-langs
 toc_footers:
 
 includes:
-  - entityref/activitygoal
+  - entityref/activitygoall
   - entityref/activitygoalconfiguration
   - entityref/activitygoaltarget
   - entityref/appointment
