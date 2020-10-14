@@ -80,6 +80,7 @@ includes:
   - entityref/paybill/transactionorigin
   - entityref/paybill/transactionstatus
   - entityref/paybill/transactiontype
+  - entityref/paybill/unbilledrevenuedistributionbatch
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest
