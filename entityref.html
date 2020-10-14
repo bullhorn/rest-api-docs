@@ -5636,7 +5636,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <tr>
 <td>action</td>
 <td>String</td>
-<td>The action being performed that initiated this Issue.  Valid values are &ldquo;Payroll Export&rdquo;, &ldquo;New Hire Export&rdquo;, &ldquo;Accounts Payable Export&rdquo;, or &ldquo;Unknown&rdquo;.</td>
+<td>The action being performed that initiated this Issue.  This field is free-form.  For Payroll Export issues, typical values are &ldquo;Payroll Export&rdquo;, &ldquo;New Hire Export&rdquo;, &ldquo;Accounts Payable Export&rdquo;, or &ldquo;Unknown&rdquo;.</td>
 <td></td>
 <td></td>
 </tr>
@@ -9028,6 +9028,18 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td> </td>
 </tr>
 <tr class="even">
+<td><p><span>generalLedgerStatus</span></p></td>
+<td><span>To-one association</span></td>
+<td><span>General Ledger Status</span>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>label</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
 <td>invoiceTerm</td>
 <td>To-one association</td>
 <td><p>Invoice terms.</p>
@@ -9043,14 +9055,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>isInvoiced</td>
 <td>Boolean</td>
 <td>Indicates whether billable charge is invoiced.</td>
 <td>X</td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>jobOrder</td>
 <td><p>To-one association</p></td>
 <td><p>Job.</p>
@@ -9062,14 +9074,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td> </td>
 <td> X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>periodEndDate</td>
 <td>Date</td>
 <td>Period end date</td>
 <td>X</td>
 <td> </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>placement</td>
 <td>To-one association</td>
 <td><p>Placement.</p>
@@ -9080,14 +9092,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td> </td>
 <td> </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>readyToBillOverride</td>
 <td>Integer</td>
 <td>Ready to bill override.</td>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>status</td>
 <td>To-one association</td>
 <td><p>BillableChargeStatusLookup.</p>
@@ -9100,14 +9112,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td>X</td>
 <td> </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>subTotal</td>
 <td>BigDecimal</td>
 <td>subtotal.</td>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>transactionStatus</td>
 <td><p>To-one association</p></td>
 <td><p>Transaction status.</p>
@@ -9119,7 +9131,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>transactionType</td>
 <td><p>To-one association</p></td>
 <td><p>Transaction type.</p>
@@ -9738,6 +9750,19 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td>X</td>
 </tr>
 <tr class="even">
+<td>unbilledRevenueGeneralLedgerExportStatusLookup</td>
+<td><p>To-one association</p></td>
+<td><p>Associated UnbilledRevenueGeneralLedgerExportStatusLookup.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>label</li>
+</ul>
+<p>Value defaulted to &lsquo;Ready for Distribution&rsquo;</p></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
 <td>unitOfMeasure</td>
 <td><p>To-one association</p>
 <p>(String Flag)</p></td>
@@ -9884,6 +9909,95 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             </td>
             <td></td>
             <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-billmastertransactiondistributionbatch">Pay and Bill - BillMasterTransactionDistributionBatch</h1>
+
+<p>Read-only entity used to track which BillMasterTransactions are ready for revenue recognition distribution record creation</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>BillMasterTransactionDistributionBatch fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>accountingDate</td>
+            <td>Date</td>
+            <td>Accounting Date.</td>
+            <td> </td>
+            <td> </td>
+        </tr>
+        <tr class="odd">
+            <td>batchStatus</td>
+            <td>To One Association (BatchStatusLookup)</td>
+            <td>Status of this entity.</td>
+            <td>X</td>
+            <td> </td>
+        </tr>
+        <tr class="even">
+            <td>billableCharges</td>
+            <td>To Many Association (BillableCharge)</td>
+            <td>Billable Charges associated to this entity.</td>
+            <td> </td>
+            <td> </td>
+        </tr>
+        <tr class="odd">
+            <td>billMasterTransactions</td>
+            <td>To Many Association (Bill Master Transaction)</td>
+            <td>Bill Master Transactions associated to this entity.</td>
+            <td> </td>
+            <td> </td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date on which the entity was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date on which the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To One Association (CorporateUser)</td>
+            <td>
+                <p>Corporate User who is the owner of this entity. The default value is the user who created the entity.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
@@ -11573,6 +11687,111 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>generalLedgerAccount</td>
+            <td>To One Association (GeneralLedgerAccount)</td>
+            <td>
+                <p>GeneralLedgerAccount</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalAccountNumber</li>
+                    <li>externalAccountName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment1</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Class&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment2</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Division&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment3</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Department&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment4</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Country&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment5</td>
+            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>
+                <p>&ldquo;Location&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerServiceCode</td>
+            <td>To One Association (GeneralLedgerServiceCode)</td>
+            <td>
+                <p>&ldquo;Product/Service Code&rdquo;</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalServiceCodeNumber</li>
+                    <li>externalServiceCodeName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td>            
@@ -11582,14 +11801,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jurisdictionName</td>
             <td>String (200)</td>
             <td>Jurisdiction name.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>jurisdictionType</td>
             <td>To One Association (TaxJurisdictionTypeLookup)</td>
             <td>
@@ -11603,14 +11822,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>label</td>
             <td>String (200)</td>
             <td>Label.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>owner</td>
             <td>To One Association (CorporateUser)</td>
             <td>
@@ -11625,21 +11844,21 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>rate</td>
             <td>BigDecimal</td>
             <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>reportingCodeName</td>
             <td>String (100)</td>
             <td>Reporting code name.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>source</td>
             <td>To One Association (SalesTaxRateSourceLookup)</td>
             <td>
@@ -11653,14 +11872,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>stateID</td>
             <td>Integer</td>
             <td>State ID from internal database table.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>status</td>
             <td>To One Association (TaxStatusLookup)</td>
             <td>
@@ -11674,7 +11893,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>taxType</td>
             <td>To One Association (TaxTypeLookup)</td>
             <td>
@@ -11688,7 +11907,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>type</td>
             <td>To One Association (SalesTaxRateTypeLookup)</td>
             <td>
@@ -11702,14 +11921,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>versionID</td>
             <td>Integer</td>
             <td>Unique Identifier for the current version</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>versions</td>
             <td>To Many Association (SalesTaxRateVersion)</td>
             <td>Versions of this entity</td>
@@ -11980,6 +12199,117 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td>Name</td>
 <td> </td>
 <td> </td>
+</tr>
+</tbody>
+</table>
+
+          <h1 id="pay-and-bill-unbilledrevenuedistributionbatch">Pay and Bill - UnbilledRevenueDistributionBatch</h1>
+
+<p>Represents an unbilled revenue distribution batch.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>UnbilledRevenueDistributionBatch fields</th>
+<th>Type</th>
+<th>Description</th>
+<th>Not null</th>
+<th>Read-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>accountingDate</td>
+<td>Date</td>
+<td>Date used to track when batch is booked for reporting.</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>batchStatus</td>
+<td><p>To-one association</p></td>
+<td><p>The associated BatchStatusLookup representing the status of the batch.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>billableCharges</td>
+<td><p>To-many association</p></td>
+<td><p>The BillableCharges associated to this batch.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul>
+<p> </p></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>canvasReport</td>
+<td><p>To-one association</p></td>
+<td><p>CanvasReport associated with this batch.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Timestamp representing when this batch was added.</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Timestamp representing when this batch was last modified.</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>owner</td>
+<td>To-one association</td>
+<td><p>The owner of this batch.</p>
+<p>Default Fields:</p>
+<ul>
+<li>id</li>
+<li>firstName</li>
+<li>lastName</li>
+</ul></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>unbilledRevenueDistributions</td>
+<td>To-many association</td>
+<td><p>The UnbilledRevenueDistributions that are associated with this batch.</p>
+<p>Default Fields:</p>
+<ul>
+<li>id</li>
+</ul></td>
+<td> </td>
+<td>X</td>
 </tr>
 </tbody>
 </table>

@@ -4271,6 +4271,82 @@ The search call is performed against a Lucene index. For information about the L
 </tr>
 </tbody></table>
 
+<h2 id="put-services-revenuerecognition-billmastertransactiondistributionbatch">PUT /services/RevenueRecognition/BillMasterTransactionDistributionBatch</h2>
+
+<p>Handles the creation of a BillMasterTransactionDistributionBatch and its subsequent association to BillableCharges.</p>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+      https://rest.bullhornstaffing.com/rest-services/e999/services/RevenueRecognition/BillMasterTransactionDistributionBatch
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"billableChargeIds"</span>:[1118]
+<span class="o">}</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>:<span class="s2">"BillMasterTransactionDistributionBatch"</span>,
+    <span class="s2">"changedEntityId"</span>:178,
+    <span class="s2">"changeType"</span>:<span class="s2">"INSERT"</span>,
+    <span class="s2">"data"</span>:<span class="o">{}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/RevenueRecognition/BillMasterTransactionDistributionBatch</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-services-revenuerecognition-unbilledrevenuedistributionbatch">PUT /services/RevenueRecognition/UnbilledRevenueDistributionBatch</h2>
+
+<p>Handles the creation of an UnbilledRevenueDistributionBatch and its subsequent association to UnbilledRevenueDistributions.</p>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+      https://rest.bullhorn.com/rest-services/e999/services/RevenueRecognition/UnbilledRevenueDistributionBatch 
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"billableChargeIds"</span>:[1110]
+<span class="o">}</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>:<span class="s2">"UnbilledRevenueDistributionBatch"</span>,
+    <span class="s2">"changedEntityId"</span>:58,
+    <span class="s2">"changeType"</span>:<span class="s2">"INSERT"</span>,
+    <span class="s2">"data"</span>:<span class="o">{}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/RevenueRecognition/BillMasterTransactionDistributionBatch</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
           <h1 id="settings">Settings</h1>
 
 <h2 id="get-settings-setting1-setting2">GET /settings/setting1[,setting2&hellip;]</h2>
