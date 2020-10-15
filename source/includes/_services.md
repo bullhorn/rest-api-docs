@@ -129,7 +129,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ## PUT /services/RevenueRecognition/BillMasterTransactionDistributionBatch
 
-Handles the creation of a BillMasterTransactionDistributionBatch and its subsequent association to BillableCharges.
+Handles the creation of a BillMasterTransactionDistributionBatch and its subsequent association to BillableCharges. Requires the Mass Create Unbilled Revenue Distributions entitlement.
 
 ``` shell
 curl -X PUT \
@@ -159,7 +159,7 @@ BhRestToken | yes | Token that represents a session established by the login pro
 
 ## PUT /services/RevenueRecognition/UnbilledRevenueDistributionBatch 
 
-Handles the creation of an UnbilledRevenueDistributionBatch and its subsequent association to UnbilledRevenueDistributions.
+Handles the creation of an UnbilledRevenueDistributionBatch and its subsequent association to UnbilledRevenueDistributions. Requires the Mass Export Unbilled Revenue Distributions entitlement. 
 
 ``` shell
 curl -X PUT \
