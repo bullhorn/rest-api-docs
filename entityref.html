@@ -6077,7 +6077,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         <tr class="odd">
             <td>address</td>
             <td>COMPOSITE</td>
-            <td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID)</td>
+            <td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID)</td>
             <td></td>
             <td></td>
         </tr>
@@ -8585,6 +8585,20 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td>tasks</td>
 <td>To-many association</td>
 <td>Tasks associated with this Opportunity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taxRate</td>
+<td>Double</td>
+<td>Rate (percentage) at which the person hired for this job will be taxed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taxStatus</td>
+<td>String (20)</td>
+<td>Tax Status, for example, 1099, W-2, and so forth.</td>
 <td></td>
 <td></td>
 </tr>
@@ -12482,21 +12496,28 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td></td>
 </tr>
 <tr>
-<td>customDate1-3</td>
+<td>customDate1-13</td>
 <td>Timestamp</td>
 <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>customFloat1-3</td>
+<td>customEncryptedText1-60</td>
+<td>String (100)</td>
+<td>Configurable encrypted text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1-23</td>
 <td>Double</td>
 <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>customInt1-3</td>
+<td>customInt1-23</td>
 <td>Integer</td>
 <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
@@ -12517,14 +12538,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td></td>
 </tr>
 <tr>
-<td>customText1-40</td>
+<td>customText1-60</td>
 <td>String (100)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>customTextBlock1-5</td>
+<td>customTextBlock1-10</td>
 <td>String (2147483647)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
