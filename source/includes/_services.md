@@ -186,3 +186,37 @@ curl -X PUT \
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+## POST /services/RevenueRecognition/UpdateTransactionExportStatus
+
+Allows the API user to update the unbilledRevenueGeneralLedgerExportStatus for one or more BillMasterTransactions.
+
+``` shell
+curl -X POST \
+      https://rest.bullhorn.com/rest-services/e999/services/RevenueRecognition/UpdateTransactionExportStatus 
+
+# Example Request
+{
+    "billMasterTransactionIDs": [1110],
+    "unbilledRevenueGeneralLedgerExportStatusLookupID": 2
+}
+
+# Example Response
+{
+    "changedEntityType": "BillMasterTransaction",
+    "changeType": "UPDATE",
+    "data": {
+        "billMasterTransactionIDs": [
+            1110
+        ]
+    }
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/RevenueRecognition/UpdateTransactionExportStatus`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
