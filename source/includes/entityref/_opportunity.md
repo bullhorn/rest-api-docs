@@ -70,6 +70,8 @@ Represents a possible Opportunity which can be converted to a JobOrder.
 | specialties | To-many association | IDs of Specialties associated with this Opportunity. | | |
 | status | String (200) | Current status of this Opportunity. i.e. Prospective, Active, Lost to Competition, and so forth. | | |
 | tasks | To-many association | Tasks associated with this Opportunity. | | |
+| taxRate | Double | Rate (percentage) at which the person hired for this job will be taxed. | | |
+| taxStatus | String (20) | Tax Status, for example, 1099, W-2, and so forth. | | |
 | tearsheets | To-many association | Tearsheets associated with this Opportunity | | |
 | title | String (100) | Opportunity title. | | |
 | type | String (200) | Type of employment offered: for example, contract, permanent, and so forth. Determines which of the five Opportunity tracks are used. | X | |

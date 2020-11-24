@@ -1,10 +1,4 @@
-Search messages
- 
-GET https://rest91.bullhornstaffing.com/rest-services/5dlxi9/meta/BillableCharge?fields=*&meta=full
-200
-1404 ms
- 
-# BillableCharge
+# Pay and Bill - BillableCharge
 
 Represents a billable charge.
 
@@ -367,11 +361,13 @@ Represents a billable charge.
             <td>jobOrder</td>
             <td>To One Association</td>
             <td><p>Job.</p>
+
 <p>Default fields:</p>
 <ul>
 <li>id</li>
 <li>title</li>
 </ul></td>
+
             <td></td>
             <td></td>
         </tr>
@@ -403,6 +399,7 @@ Represents a billable charge.
 <ul>
 <li>id</li>
 </ul></td>
+
             <td></td>
             <td></td>
         </tr>
@@ -417,12 +414,14 @@ Represents a billable charge.
             <td>status</td>
             <td>To One Association</td>
             <td><p>BillableChargeStatusLookup.</p>
+
 <p>Default fields:</p>
 <ul>
 <li>id</li>
 <li>label</li>
 <li>readOnly</li>
 </ul></td>
+
             <td>X</td>
             <td></td>
         </tr>
@@ -444,6 +443,7 @@ Represents a billable charge.
             <td>transactionStatus</td>
             <td>To One Association</td>
             <td><p>Transaction status.</p>
+
 <p>Default fields:</p>
 <ul>
 <li>id</li>

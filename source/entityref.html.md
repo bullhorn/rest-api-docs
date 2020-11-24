@@ -64,6 +64,7 @@ includes:
   - entityref/paybill/billmasterdiscountrate
   - entityref/paybill/billmastertransaction
   - entityref/paybill/billmastertransactiondiscountrate
+  - entityref/paybill/billmastertransactiondistributionbatch
   - entityref/paybill/billmastertransactionsalestaxrate
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
@@ -80,6 +81,7 @@ includes:
   - entityref/paybill/transactionorigin
   - entityref/paybill/transactionstatus
   - entityref/paybill/transactiontype
+  - entityref/paybill/unbilledrevenuedistributionbatch
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest

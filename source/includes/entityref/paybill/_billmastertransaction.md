@@ -190,6 +190,19 @@ Read-only entity that represents a BillMasterTransaction.
 <td>X</td>
 </tr>
 <tr class="even">
+<td>unbilledRevenueGeneralLedgerExportStatusLookup</td>
+<td><p>To-one association</p></td>
+<td><p>Associated UnbilledRevenueGeneralLedgerExportStatusLookup.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>label</li>
+</ul>
+<p>Value defaulted to 'Ready for Distribution'</p></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
 <td>unitOfMeasure</td>
 <td><p>To-one association</p>
 <p>(String Flag)</p></td>
