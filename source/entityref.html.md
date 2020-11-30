@@ -52,6 +52,8 @@ includes:
   - entityref/jobsubmissionhistory
   - entityref/lead
   - entityref/leadhistory
+  - entityref/location
+  - entityref/locationversion
   - entityref/note
   - entityref/notentity
   - entityref/opportunity
