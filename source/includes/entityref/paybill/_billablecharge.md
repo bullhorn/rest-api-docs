@@ -2,7 +2,6 @@
 
 Represents a billable charge.
 
-
 <table>
     <colgroup>
         <col width="20%" />
@@ -30,8 +29,8 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>addedByUser</td>
-            <td>To One Association</td>
-            <td><p>Corporate User.</p>
+            <td>To-one Association</td>
+            <td><p>CorporateUser - this is the internal user who added the record.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -43,15 +42,15 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>billMasterTransactionDistributionBatches</td>
-            <td>To Many Association</td>
-            <td>BillMasterTransactionDistributionBatch</td>
+            <td>To-many Association</td>
+            <td>BillMasterTransactionDistributionBatch - list of associated bill master transaction distribution batches</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>billMasters</td>
-            <td>To Many Association</td>
-            <td><p>Bill masters.</p>
+            <td>To-many Association</td>
+            <td><p>BillMaster - list of associated bill master records.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -61,22 +60,22 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>billableTransactions</td>
-            <td>To Many Association</td>
-            <td>BillableChargeBillableTransaction</td>
+            <td>To-many Association</td>
+            <td>BillableChargeBillableTransaction - list of associated billable charge transactions.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>billingCalendarInstances</td>
-            <td>To Many Association</td>
+            <td>To-many Association - list of associated billing calendar instances.</td>
             <td>CalendarInstance</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>billingClientContact</td>
-            <td>To One Association</td>
-            <td><p>Billing contact.</p>
+            <td>To-one Association</td>
+            <td><p>Billing contact - the client contact associated with this billable charge.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -89,8 +88,8 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>billingClientCorporation</td>
-            <td>To One Association</td>
-            <td><p>Bill-to company.</p>
+            <td>To-one Association</td>
+            <td><p>ClientCorporation - this is the bill-to company.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -101,8 +100,8 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>billingCorporateUser</td>
-            <td>To One Association</td>
-            <td><p>Corporate User.</p>
+            <td>To-one Association</td>
+            <td><p>CorporateUser.</p>
 <p><span>Default fields:</span></p>
 <ul>
 <li>id</li>
@@ -121,7 +120,7 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>billingProfile</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td><p>Billing profile.</p>
 <p>Default Fields:</p>
 <ul>
@@ -145,14 +144,14 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>billingSyncBatchFileAttachments</td>
-            <td>To Many Association</td>
-            <td>BillingSyncBatchFileAttachment</td>
+            <td>To-many Association</td>
+            <td>BillingSyncBatchFileAttachment - list of associated billing sync batch file attachments.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>candidate</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td><p>Candidate.</p>
 <p>Default fields:</p>
 <ul>
@@ -166,7 +165,7 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td><p>ClientCorporation.</p>
 <p>Default fields:</p>
 <ul>
@@ -179,7 +178,7 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>currencyUnit</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td><p>Currency unit.</p>
 <p>Default fields:</p>
 <ul>
@@ -213,8 +212,8 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>entryTypeLookup</td>
-            <td>To One Association</td>
-            <td>Options are Timesheet or Expense</td>
+            <td>To-one Association</td>
+            <td>entryTypeLookup - options are Timesheet or Expense.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -227,18 +226,14 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>fileAttachments</td>
-            <td>To Many Association</td>
-            <td><p>Billable Charge File Attachment.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
+            <td>To-many Association</td>
+            <td>Use BillingSyncBatchFileAttachment instead.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>generalLedgerSegment1</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>GeneralLedgerSegment1
 <p>Default fields:</p>
 <ul>
@@ -251,7 +246,7 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment2</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>GeneralLedgerSegment2
             	<p>Default fields:</p>
 <ul>
@@ -265,7 +260,7 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>generalLedgerSegment3</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>GeneralLedgerSegment3
             <p>Default fields:</p>
 <ul>
@@ -278,7 +273,7 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment4</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>GeneralLedgerSegment4
 <p>Default fields:</p>
 <ul>
@@ -291,7 +286,7 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>generalLedgerSegment5</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>GeneralLedgerSegment5
 <p>Default fields:</p>
 <ul>
@@ -303,22 +298,22 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>generalLedgerServiceCode</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>GeneralLedgerServiceCode</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerStatus</td>
-            <td>To One Association</td>
-            <td>This is the General Ledger Status and it points to UnbilledRevenueGeneralLedgerExportStatusLookup.
+            <td>To-one Association</td>
+            <td>UnbilledRevenueGeneralLedgerExportStatusLookup - General Ledger Exports Status.
 <p>Options are:</p>
 <ol>
 	<li>Export Failed</li>
 	<li>Ready for Distribution</li>
 	<li>Stamped for Distribution</li>
 	<li>Creating Distribution</li>
-	<li>	Ready for Export</li>
+	<li>Ready for Export</li>
 	<li>Export Queued</li>
 	<li>Export in progress</li>
 	<li>Export Successful</li>
@@ -329,8 +324,8 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>invoiceTerm</td>
-            <td>To One Association</td>
-            <td><p>Invoice terms.</p>
+            <td>To-one Association</td>
+            <td><p>InvoiceTerms.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -345,8 +340,8 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>invoicedTransactions</td>
-            <td>To Many Association</td>
-            <td>Lists IDs of invoiced transactions</td>
+            <td>To-many Association</td>
+            <td>InvoicedTransactions - lists IDs of invoiced transactions</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -359,7 +354,7 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>jobOrder</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td><p>Job.</p>
 
 <p>Default fields:</p>
@@ -373,8 +368,8 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>payBillCycles</td>
-            <td>To Many Association</td>
-            <td>Displays the associated Billing Cycle(s)
+            <td>To-many Association</td>
+            <td>PayBillCycles - displays the associated Billing Cycle(s)
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -393,7 +388,7 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>placement</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td><p>Placement.</p>
 <p>Default fields:</p>
 <ul>
@@ -412,7 +407,7 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>status</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td><p>BillableChargeStatusLookup.</p>
 
 <p>Default fields:</p>
@@ -441,8 +436,8 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>transactionStatus</td>
-            <td>To One Association</td>
-            <td><p>Transaction status.</p>
+            <td>To-one Association</td>
+            <td><p>TransactionStatus.</p>
 
 <p>Default fields:</p>
 <ul>
@@ -454,7 +449,7 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>transactionType</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td><p>Transaction type.</p>
 <p>Default fields:</p>
 <ul>
@@ -466,7 +461,7 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>unbillableTransactions</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>BillableChargeUnbillableTransaction</td>
             <td></td>
             <td>X</td>
