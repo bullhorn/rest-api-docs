@@ -53,7 +53,7 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
         </tr>
         <tr class="even">
             <td>candidate</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>The Candidate of the associated Location<br><br>Default fields:<ul>
                 <li>id</li>
                 <li>firstName</li>
@@ -64,8 +64,8 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
         </tr>
         <tr class="odd">
             <td>clientCorporation</td>
-            <td>To One Association</td>
-            <td>The CLient Corporation of the associated Location<br><br>Default fields:<ul>
+            <td>To-one Association</td>
+            <td>ClientCorporation of the associated Location<br><br>Default fields:<ul>
                 <li>id</li>
                 <li>name</li></ul></td>
             <td></td>
@@ -185,7 +185,7 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
         </tr>
         <tr class="even">
             <td>owner</td>
-            <td>To One Association</td>
+            <td>To-one Association</td>
             <td>CorporateUser who is the owner of this entity. The default value is user who created the entity. <br><br>Default values:
                 <ul><li>id</li>
                 <li>firstName</li>
@@ -195,7 +195,7 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
         </tr>
         <tr class="odd">
             <td>salesTaxGroups</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>AllSalesTaxGroup</td>
             <td></td>
             <td></td>
@@ -217,15 +217,14 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
         <tr class="even">
             <td>versionID</td>
             <td>Integer</td>
-            <td>Version associated with the Location. On GET calls, this is the ID of the current Version. On POST calls, this is the Version to update.</td>
+            <td>LocationVersion associated with the Location. On GET calls, this is the ID of the current Version. On POST calls, this is the Version to update.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>versions</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>LocationVersion - Versions associated with the Location.<br><br>Default fields:
-
                 <ul><li>id</li>
                 <li>effectiveDate</li>
                 <li>effectiveEndDate</li>
