@@ -160,7 +160,7 @@ CRUD Access - READ
         </tr>
         <tr class="even">
             <td>salesTaxGroups</td>
-            <td>To-many Association</td>
+            <td>To-many association</td>
             <td>AllSalesTaxGroup</td>
             <td></td>
             <td></td>
