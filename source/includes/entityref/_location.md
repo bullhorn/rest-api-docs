@@ -53,7 +53,7 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
         </tr>
         <tr class="even">
             <td>candidate</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>The Candidate of the associated Location<br><br>Default fields:<ul>
                 <li>id</li>
                 <li>firstName</li>
@@ -64,7 +64,7 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
         </tr>
         <tr class="odd">
             <td>clientCorporation</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>ClientCorporation of the associated Location<br><br>Default fields:<ul>
                 <li>id</li>
                 <li>name</li></ul></td>
@@ -195,7 +195,7 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
         </tr>
         <tr class="odd">
             <td>salesTaxGroups</td>
-            <td>To-many Association</td>
+            <td>To-many association</td>
             <td>AllSalesTaxGroup</td>
             <td></td>
             <td></td>
@@ -223,7 +223,7 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
         </tr>
         <tr class="odd">
             <td>versions</td>
-            <td>To-many Association</td>
+            <td>To-many association</td>
             <td>LocationVersion - Versions associated with the Location.<br><br>Default fields:
                 <ul><li>id</li>
                 <li>effectiveDate</li>
