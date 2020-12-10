@@ -2,9 +2,6 @@
 
 An Entity representing a group of rates on a Placement
 
-CRUD Access - READ, DELETE
-
-Entitlements - Based on PlacementRateCardVersion entitlements
 
 <table>
     <colgroup>
