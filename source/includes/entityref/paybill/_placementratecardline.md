@@ -2,9 +2,6 @@
 
 An Entity representing each individual rate on a Placement
 
-CRUD Access - READ
-
-Entitlements - Based on PlacementRateCardVersion entitlements
 
 <table>
     <colgroup>
