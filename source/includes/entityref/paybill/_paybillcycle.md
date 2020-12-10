@@ -1,6 +1,6 @@
 #  Pay and Bill - PayBillCycle
 
-Read-only entity that represents a Calendar Instance record.
+Entity that represents a billing cycle record.
 
 
 <table>
