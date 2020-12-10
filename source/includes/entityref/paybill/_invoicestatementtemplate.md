@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceStatementTemplate
 
-Read-only entity that represents a Calendar Instance record.
+Entity that represents an Invoice Statement Template record.
 
 
 <table>
