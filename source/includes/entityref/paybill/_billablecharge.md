@@ -362,6 +362,7 @@ Represents a billable charge.
 <li>id</li>
 <li>title</li>
 </ul></td>
+
             <td></td>
             <td></td>
         </tr>
@@ -467,3 +468,4 @@ Represents a billable charge.
         </tr>
     </tbody>
 </table>
+

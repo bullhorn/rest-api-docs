@@ -52,6 +52,8 @@ includes:
   - entityref/jobsubmissionhistory
   - entityref/lead
   - entityref/leadhistory
+  - entityref/location
+  - entityref/locationversion
   - entityref/note
   - entityref/notentity
   - entityref/opportunity
@@ -64,6 +66,7 @@ includes:
   - entityref/paybill/billmasterdiscountrate
   - entityref/paybill/billmastertransaction
   - entityref/paybill/billmastertransactiondiscountrate
+  - entityref/paybill/billmastertransactiondistributionbatch
   - entityref/paybill/billmastertransactionsalestaxrate
   - entityref/paybill/calendar
   - entityref/paybill/calendarfrequencylookup
@@ -91,6 +94,7 @@ includes:
   - entityref/paybill/transactionorigin
   - entityref/paybill/transactionstatus
   - entityref/paybill/transactiontype
+  - entityref/paybill/unbilledrevenuedistributionbatch
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest
