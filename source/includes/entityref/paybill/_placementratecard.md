@@ -4,8 +4,6 @@ An Effective Dated Entity that represents a all of the rates on a Placement. Pla
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 
-Entitlements - Manage Current Placement Rate Card Version, Manage Historical Placement Rate Card Version, Manage Future Placement Rate Card Version, Add Placement Rate Card, Delete Placement Rate Card and Version, View Current and Future Placement Rate Card and Version, Add Placement Rate Card Version
-
 <table>
     <colgroup>
         <col width="20%" />
