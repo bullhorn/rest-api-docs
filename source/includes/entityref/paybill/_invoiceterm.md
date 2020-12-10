@@ -1,6 +1,6 @@
-# InvoiceTerm
+# Pay and Bill - InvoiceTerm
 
-
+Entity that represents a customer invoice terms record.
 
 
 <table>
