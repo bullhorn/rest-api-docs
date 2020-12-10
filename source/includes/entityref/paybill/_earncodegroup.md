@@ -46,7 +46,7 @@ This entity represents the Earn Code Group which is a grouping of one or three e
         </tr>
         <tr class="odd">
             <td>chargeTypeLookup</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>ChargeTypeLookup - is the earn code group used for time or expense related data. Options are:
                 <ul>
                     <li>1 = Time</li>
@@ -71,21 +71,21 @@ This entity represents the Earn Code Group which is a grouping of one or three e
         </tr>
         <tr class="even">
             <td>defaultEarnCode</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>DefaultEarnCode - The default Earn Code of this group, EarnCode.earnCodeTypeLookup = REG</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>doubleTimeEarnCode</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>DoubleTimeEarnCode - The Double Time Earn Code of this group, EarnCode.earnCodeTypeLookup = DT.</td>
             <td>Not null, if accruesOT is true</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>earnCodeGroupStatusLookup</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>EarnCodeGroupStatusLookup - status of the earn code grpup. Options are Active or Inactive</td>
             <td>X</td>
             <td></td>
@@ -99,14 +99,14 @@ This entity represents the Earn Code Group which is a grouping of one or three e
         </tr>
         <tr class="even">
             <td>overtimeEarnCode</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>OvertimeEarnCode - The Overtime Earn Code of this group, EarnCode.earnCodeTypeLookup = OT.</td>
             <td>Not null, if accruesOT is true</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>payBillOptionsLookup</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>PayBillOptionsLookup - Indicates how this earn code group should be configured for pay and bill reasons. Options are:
                 <ul>
                     <li>1 = Pay & Bill</li>
@@ -120,7 +120,7 @@ This entity represents the Earn Code Group which is a grouping of one or three e
         </tr>
         <tr class="even">
             <td>unitOfMeasure</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>UnitOfMeasure - what unit is this earn code being paid in. Options are:
                 <ul>
                     <li>1 = Hours</li>

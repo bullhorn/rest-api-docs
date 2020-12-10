@@ -1,8 +1,10 @@
-# Pay and Bill - PlacementRateCardVersion
+# Pay and Bill - PlacementRateCardLineGroup
 
-Represents a placement rate card version.
+An Entity representing a group of rates on a Placement
 
-CRUD Access - CREATE, READ, UPDATE, DELETE.
+CRUD Access - READ, DELETE
+
+Entitlements - Based on PlacementRateCardVersion entitlements
 
 <table>
     <colgroup>
@@ -14,7 +16,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
     </colgroup>
     <thead>
         <tr class="header">
-            <th>PlacementRateCardVersion fields</th>
+            <th>PlacementRateCardLineGroup fields</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -30,47 +32,73 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>dateAdded</td>
-            <td>Timestamp</td>
-            <td>Date the entity was added.</td>
-            <td>X</td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>dateLastModified</td>
-            <td>Timestamp</td>
-            <td>Date last modified.</td>
-            <td>X</td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>effectiveDate</td>
-            <td>Date</td>
-            <td></td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>effectiveEndDate</td>
-            <td>Date</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>isFirst</td>
-            <td>Boolean</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>placementRateCardLineGroups</td>
-            <td>To Many Association</td>
-            <td>PlacementRateCardLineGroup
+            <td>earnCodeGroup</td>
+            <td>To One Association</td>
+            <td>Earn Code Group for all of the rates
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isBase</td>
+            <td>Boolean</td>
+            <td>This is the list of default rates for the rate card.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>migrateGUID</td>
+            <td>String (36)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>placementRateCard</td>
+            <td>To One Association</td>
+            <td>PlacementRateCard
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>placementRateCardLines</td>
+            <td>To Many Association</td>
+            <td>PlacementRateCardLine - (No more than there are EarnCodes for the given EarnCodeGroup)
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>placementRateCardVersion</td>
+            <td>To One Association</td>
+            <td>PlacementRateCardVersion
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
                 </ul>
             </td>
             <td></td>

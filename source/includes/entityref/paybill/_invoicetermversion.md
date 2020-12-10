@@ -1,6 +1,6 @@
-# EarnCode
+# Pay and Bill - InvoiceTermVersion
 
-Represents an earn code.
+Represents an invoice term version.
 
 
 <table>
@@ -13,7 +13,7 @@ Represents an earn code.
     </colgroup>
     <thead>
         <tr class="header">
-            <th>EarnCode fields</th>
+            <th>InvoiceTermVersion fields</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -29,172 +29,207 @@ Represents an earn code.
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>code</td>
-            <td>String (100)</td>
-            <td>Customer facing identifier.</td>
+            <td>approvalRequired</td>
+            <td>Boolean</td>
+            <td>Indicates whether approval is required for invoices before they can be finalized.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
+            <td>currencyUnit</td>
+            <td>To-one association</td>
+            <td>CurrencyUnit</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>customDate1-3</td>
             <td>Timestamp</td>
             <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>customFloat1-3</td>
             <td>Double</td>
             <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>customInt1-3</td>
             <td>Integer</td>
             <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>customText1-20</td>
             <td>String (100)</td>
             <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>customTextBlock1-3</td>
             <td>String (2147483647)</td>
             <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
             <td></td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>X</td>
+            <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>description</td>
             <td>String (255)</td>
             <td></td>
             <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td></td>
+            <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>earnCodeGroup</td>
-            <td>To-one association</td>
-            <td>EarnCodeGroup</td>
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td></td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>earnCodeTypeLookup</td>
-            <td>To-one association</td>
-            <td>EarnCodeTypeLookup - the type of the earn code. Options are
-                <ul>
-                    <li>1 = Reg</li>
-                    <li>2 = OT</li>
-                    <li>3 = DT</li>
-                </ul>
-            </td>
-            <td>X</td>
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>Customer defined identifier.</td>
+            <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>externalID</td>
+            <td>fileTypesForInvoicing</td>
+            <td>To-many association</td>
+            <td>BillingSyncBatchFileTypeLookup - Indicates what types of attachments should be included in Invoice Statement PDF. </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerAccountsReceivable</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerAccountsReceivable - General Ledger Account (with isAccountsReceivable = 'true') associated with this InvoiceTerm.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceApprovedTimecardsRequired</td>
+            <td>Boolean</td>
+            <td>Indicates what status the timecard should be in (Submitted or Approved) before it can be invoiced.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceGroupBy</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceOn</td>
             <td>String (100)</td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
-            <td>generalLedgerBillAccount</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerBillAccount - GeneralLedgerAccount for the earn code where isBill = true (Bill Account).</td>
+        <tr class="even">
+            <td>invoiceSplitBy</td>
+            <td>String (2147483647)</td>
             <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementTemplate</td>
+            <td>To-one association</td>
+            <td>InvoiceStatementTemplate - this is the invoice template that is used in generating the invoice PDF.</td>
+            <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>generalLedgerPayAccount</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerPayAccount - GeneralLedgerAccount for the earn code where isPay = true (Pay Account).  </td>
+            <td>invoiceSummarizeBy</td>
+            <td>String (2147483647)</td>
             <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment1</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment1</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment2</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment2</td>
-            <td></td>
+            <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>generalLedgerSegment3</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment3</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment4</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment4</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment5</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment5</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerServiceCode</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerServiceCode for the earn code (Product/Service Code).</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>isDeleted</td>
+            <td>isFirst</td>
             <td>Boolean</td>
-            <td><p><span>Whether entity is deleted.</span></p>
-<p><span> <span>The default value is false.</span> </span></p></td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>payBillCycle</td>
+            <td>To-one association</td>
+            <td>PayBillCycle - this is the associated billing cycle.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>paymentTerms</td>
+            <td>String (100)</td>
+            <td></td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>owner</td>
-            <td>To-one association</td>
-            <td>CorporateUser who is the owner of this entity. The default value is user who created the entity.
-                <p>Default fields:</p>
-                    <ul><li>id</li>
-                    <li>firstName</li>
-                    <li>firstName</li>
-                </ul>
-            </td>
+            <td>purchaseOrderRequired</td>
+            <td>Boolean</td>
             <td></td>
             <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>remitInstructions</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>status</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>title</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>waitForTimecards</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
-

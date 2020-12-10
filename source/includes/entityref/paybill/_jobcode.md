@@ -133,10 +133,12 @@ Has associated EditHistory and EditHistoryFieldChange entities
             <td>owner</td>
             <td>To One Association</td>
             <td>CorporateUser who is the owner of this entity. The default value is user who created the entity.
-
-<p>Default fields:</p>
-<ul><li>id</li>
-<li>name</li></ul></td>
+                <p>Default fields:</p>
+                    <ul><li>id</li>
+                    <li>firstName</li>
+                    <li>firstName</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>

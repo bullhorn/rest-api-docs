@@ -127,7 +127,7 @@ Entitlements - Manage Current Placement Rate Card Version, Manage Historical Pla
         <tr class="even">
             <td>versions</td>
             <td>To Many Association</td>
-            <td>PlacementRateCardVersion</td>
+            <td>IDs of associated PlacementRateCardVersion records</td>
             <td></td>
             <td>X</td>
         </tr>

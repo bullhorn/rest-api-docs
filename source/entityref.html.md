@@ -65,16 +65,27 @@ includes:
   - entityref/paybill/billmastertransaction
   - entityref/paybill/billmastertransactiondiscountrate
   - entityref/paybill/billmastertransactionsalestaxrate
+  - entityref/paybill/calendar
+  - entityref/paybill/calendarfrequencylookup
+  - entityref/paybill/calendarinstance
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
+  - entityref/paybill/earncode
+  - entityref/paybill/earncodegroup
   - entityref/paybill/generalledgeraccount
   - entityref/paybill/generalledgersegment
   - entityref/paybill/generalledgersegmenttype
   - entityref/paybill/generalledgerservicecode
+  - entityref/paybill/invoiceterm
+  - entityref/paybill/invoicetermversion
+  - entityref/paybill/jobcode
   - entityref/paybill/legalBusinessEntity
   - entityref/paybill/payablecharge
   - entityref/paybill/paymaster
   - entityref/paybill/paymastertransaction
+  - entityref/paybill/placementratecard
+  - entityref/paybill/placementratecardline
+  - entityref/paybill/placementratecardversion
   - entityref/paybill/salestaxrate
   - entityref/paybill/salestaxrateversion
   - entityref/paybill/transactionorigin
