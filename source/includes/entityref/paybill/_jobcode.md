@@ -1,11 +1,6 @@
 # Pay and Bill - JobCode
 
 Represents a Job Code.
-CRUD Access - CREATE, READ, UPDATE, DELETE.
-
-Entitlements - Add Job Code, View Job Code, Edit Job Code, Delete Job Code.
-
-Has associated EditHistory and EditHistoryFieldChange entities
 
 <table>
     <colgroup>
