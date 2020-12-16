@@ -1,5 +1,3 @@
-2020Board4183#
-
 # Pay and Bill - BillableCharge
 
 Represents a billable charge.
@@ -470,3 +468,4 @@ Represents a billable charge.
         </tr>
     </tbody>
 </table>
+
