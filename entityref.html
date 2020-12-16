@@ -9202,9 +9202,7 @@ CRUD Access - READ</p>
 </tbody>
 </table>
 
-          <p>2020Board4183#</p>
-
-<h1 id="pay-and-bill-billablecharge">Pay and Bill - BillableCharge</h1>
+          <h1 id="pay-and-bill-billablecharge">Pay and Bill - BillableCharge</h1>
 
 <p>Represents a billable charge.</p>
 
@@ -9911,91 +9909,199 @@ CRUD Access - READ</p>
 <p>Read-only entity that represents a BillMaster record.</p>
 
 <table>
-<colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>BillMaster fields</th>
-<th>Type</th>
-<th>Description</th>
-<th>Not null</th>
-<th>Read-only</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td>Integer</td>
-<td>Unique identifier for this entity.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>billMasterTransactions</td>
-<td>To-many association</td>
-<td><p>Associated BillMasterTransactions.</p>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>BillMaster fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billMasterTransactions</td>
+            <td>To-many association</td>
+            <td><p>Associated BillMasterTransactions.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
 </ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>billableCharge</td>
-<td>To-one association</td>
-<td><p>Associated BillableCharge.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>billingSyncBatch</td>
-<td>To-one association</td>
-<td><p>Associated BillingSyncBatch.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>canInvoice</td>
-<td>Boolean</td>
-<td>Indicates whether can invoice.</td>
-<td> </td>
-<td><p>X</p></td>
-</tr>
-<tr class="even">
-<td>earnCode</td>
-<td>To-one association</td>
-<td><p>Associated EarnCode.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalID</li>
-<li>title</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>transactionDate</td>
-<td><p>Date</p></td>
-<td><p>Transaction date</p></td>
-<td> </td>
-<td>X</td>
-</tr>
-</tbody>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>billableCharge</td>
+            <td>To-one association</td>
+            <td><p>Associated BillableCharge.</p>
+                <p>Default fields:</p>
+                    <ul>
+                        <li>id</li>
+                    </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billingCalendarInstance</td>
+            <td>To-one association</td>
+            <td>CalendarInstance - list of associated billing calendar instances.
+            <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>billingSyncBatch</td>
+            <td>To-one association</td>
+            <td><p>Associated BillingSyncBatch.</p>
+                <p>Default fields:</p>
+                <ul>
+                <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billingSyncBatchFileAttachments</td>
+            <td>To-many association</td>
+            <td>BillingSyncBatchFileAttachment - list of files associated with the record.
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>canInvoice</td>
+            <td>Boolean</td>
+            <td>Indicates whether can invoice.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>chargeTypeLookup</td>
+            <td>To-one association</td>
+            <td>ChargeTypeLookup - options are Timesheet or Expense Report.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>earnCode</td>
+            <td>To-one association</td>
+            <td><p>Associated EarnCode.</p>
+                <p>Default fields:</p>
+                    <ul>
+                    <li>id</li>
+                    <li>externalID</li>
+                    <li>title</li>
+                    </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>location</td>
+            <td>To-one association</td>
+            <td>Location
+                <p>Default fields:</p>
+                <ul>
+                        <li>id</li>
+                        <li>clientCorporation</li>
+                        <li>candidate</li>
+                        <li>title</li>
+                        <li>effectiveDate</li>
+                        <li>effecitveEndDate</li>
+                        <li>versionID</li>
+                        <li>externalID</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>payBillCycle</td>
+            <td>To-one association</td>
+            <td>PayBillCycle - this is the associated billing cycle. 
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>transactionDate</td>
+            <td>Date</td>
+            <td><p>Transaction date</p></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>transactionStatus</td>
+            <td>To-one association</td>
+            <td>TransactionStatus. Options are:
+                <ul>
+                    <li>1 = Pending</li>
+                    <li>2 = Submitted</li>
+                    <li>3 = Payment Approved</li>
+                    <li>4 = Approved</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
 </table>
 
           <h1 id="pay-and-bill-billmasterdiscountrate">Pay and Bill - BillMasterDiscountRate</h1>
@@ -10654,6 +10760,205 @@ CRUD Access - READ</p>
     </tbody>
 </table>
 
+          <h1 id="pay-and-bill-calendar">Pay and Bill - Calendar</h1>
+
+<p>Entity that represents a Calendar record.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Calendar fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>calendarFrequencyLookup</td>
+            <td>To-one association</td>
+            <td>CalendarFrequencyLookup</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>label</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-calendarfrequencylookup">Pay and Bill - CalendarFrequencyLookup</h1>
+
+<p>Read-only lookup entity used with billing cycles and billing calendars.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>CalendarFrequencyLookup fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>label</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-calendarinstance">Pay and Bill - CalendarInstance</h1>
+
+<p>Entity that represents a Calendar Instance record.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>CalendarInstance fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>calendar</td>
+            <td>To-one association</td>
+            <td>Calendar - each calendar instance record is linked to a Calendar record.
+                <p>Default Fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>endDate</td>
+            <td>Date</td>
+            <td>End date of the calendar instance.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>label</td>
+            <td>String (150)</td>
+            <td>Title for the calendar instance.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>startDate</td>
+            <td>Date</td>
+            <td>Start date of the calendar instance.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-discountrate">Pay and Bill - DiscountRate</h1>
 
 <p>An effective dated entity that represents a Discount Rate</p>
@@ -11237,6 +11542,341 @@ CRUD Access - READ</p>
     </tbody>
 </table>
 
+          <h1 id="earncode">EarnCode</h1>
+
+<p>Represents an earn code.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>EarnCode fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>code</td>
+            <td>String (100)</td>
+            <td>Customer facing identifier.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customDate1-3</td>
+            <td>Timestamp</td>
+            <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customFloat1-3</td>
+            <td>Double</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customInt1-3</td>
+            <td>Integer</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customText1-20</td>
+            <td>String (100)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customTextBlock1-3</td>
+            <td>String (2147483647)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (255)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>earnCodeGroup</td>
+            <td>To-one association</td>
+            <td>EarnCodeGroup</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>earnCodeTypeLookup</td>
+            <td>To-one association</td>
+            <td>EarnCodeTypeLookup - the type of the earn code. Options are
+                <ul>
+                    <li>1 = Reg</li>
+                    <li>2 = OT</li>
+                    <li>3 = DT</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerBillAccount</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerBillAccount - GeneralLedgerAccount for the earn code where isBill = true (Bill Account).</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerPayAccount</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerPayAccount - GeneralLedgerAccount for the earn code where isPay = true (Pay Account).  </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment1</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerSegment1</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment2</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerSegment2</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment3</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerSegment3</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment4</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerSegment4</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment5</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerSegment5</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerServiceCode</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerServiceCode for the earn code (Product/Service Code).</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser who is the owner of this entity. The default value is user who created the entity.
+                <p>Default fields:</p>
+                    <ul><li>id</li>
+                    <li>firstName</li>
+                    <li>firstName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="earncodegroup">EarnCodeGroup</h1>
+
+<p>This entity represents the Earn Code Group which is a grouping of one or three earn codes.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>EarnCodeGroup fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>accruesOT</td>
+            <td>Boolean</td>
+            <td>Does this Earn Code Group accrue Overtime? If yes, then overtimeEarnCode and doubleTimeEarnCode are not null.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>allowForSelfService</td>
+            <td>Boolean</td>
+            <td>This group allows self service, which means it will be displayed in PeopleNet.  </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>chargeTypeLookup</td>
+            <td>To-one association</td>
+            <td>ChargeTypeLookup - is the earn code group used for time or expense related data. Options are:
+                <ul>
+                    <li>1 = Time</li>
+                    <li>2 = Expense</li>
+                </ul></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>defaultEarnCode</td>
+            <td>To-one association</td>
+            <td>DefaultEarnCode - The default Earn Code of this group, EarnCode.earnCodeTypeLookup = REG</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>doubleTimeEarnCode</td>
+            <td>To-one association</td>
+            <td>DoubleTimeEarnCode - The Double Time Earn Code of this group, EarnCode.earnCodeTypeLookup = DT.</td>
+            <td>Not null, if accruesOT is true</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>earnCodeGroupStatusLookup</td>
+            <td>To-one association</td>
+            <td>EarnCodeGroupStatusLookup - status of the earn code grpup. Options are Active or Inactive</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isTaxable</td>
+            <td>Boolean</td>
+            <td>Should taxes be applied to this Earn Code Group? Defaults to true.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>overtimeEarnCode</td>
+            <td>To-one association</td>
+            <td>OvertimeEarnCode - The Overtime Earn Code of this group, EarnCode.earnCodeTypeLookup = OT.</td>
+            <td>Not null, if accruesOT is true</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>payBillOptionsLookup</td>
+            <td>To-one association</td>
+            <td>PayBillOptionsLookup - Indicates how this earn code group should be configured for pay and bill reasons. Options are:
+                <ul>
+                    <li>1 = Pay & Bill</li>
+                    <li>2 = Pay Only</li>
+                    <li>3 = Bill Only</li>
+                    <li>4 = None</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>unitOfMeasure</td>
+            <td>To-one association</td>
+            <td>UnitOfMeasure - what unit is this earn code being paid in. Options are:
+                <ul>
+                    <li>1 = Hours</li>
+                    <li>2 = Days</li>
+                    <li>3 = Weeks</li>
+                    <li>4 = Months</li>
+                    <li>4 = Units</li>
+                    <li>4 = Amount</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-generalledgeraccount">Pay and Bill - GeneralLedgerAccount</h1>
 
 <p>Represents a general ledger account for use with billing information, including earn codes and invoice terms.</p>
@@ -11514,6 +12154,681 @@ CRUD Access - READ</p>
 <p> </p></td>
 </tr>
 </tbody>
+</table>
+
+          <h1 id="pay-and-bill-invoiceterm">Pay and Bill - InvoiceTerm</h1>
+
+<p>Entity that represents a customer invoice terms record.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>InvoiceTerm fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>approvalRequired</td>
+            <td>Boolean</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>ClientCorporation</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>currencyUnit</td>
+            <td>To-one association</td>
+            <td>CurrencyUnit</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customDate1-3</td>
+            <td>Timestamp</td>
+            <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customFloat1-3</td>
+            <td>Double</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customInt1-3</td>
+            <td>Integer</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customText1-20</td>
+            <td>String (100)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customTextBlock1-3</td>
+            <td>String (2147483647)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (255)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>discountRates</td>
+            <td>To-many association</td>
+            <td>DiscountRate</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>fileTypesForInvoicing</td>
+            <td>To-many association</td>
+            <td>BillingSyncBatchFileTypeLookup</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerAccountsReceivable</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerAccountsReceivable</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceApprovedTimecardsRequired</td>
+            <td>Boolean</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceGroupBy</td>
+            <td>String</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceOn</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceSplitBy</td>
+            <td>String </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementTemplate</td>
+            <td>To-one association</td>
+            <td>InvoiceStatementTemplate</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceSummarizeBy</td>
+            <td>String</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>payBillCycle</td>
+            <td>To-one association</td>
+            <td>PayBillCycle</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>paymentTerms</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>purchaseOrderRequired</td>
+            <td>Boolean</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>remitInstructions</td>
+            <td>String </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>status</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>surchargeRates</td>
+            <td>To-many Association</td>
+            <td>SurchargeRate</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>title</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>InvoiceTermVersion</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>waitForTimecards</td>
+            <td>Boolean</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-invoicetermversion">Pay and Bill - InvoiceTermVersion</h1>
+
+<p>Represents an invoice term version.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>InvoiceTermVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>approvalRequired</td>
+            <td>Boolean</td>
+            <td>Indicates whether approval is required for invoices before they can be finalized.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>currencyUnit</td>
+            <td>To-one association</td>
+            <td>CurrencyUnit</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customDate1-3</td>
+            <td>Timestamp</td>
+            <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customFloat1-3</td>
+            <td>Double</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customInt1-3</td>
+            <td>Integer</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customText1-20</td>
+            <td>String (100)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customTextBlock1-3</td>
+            <td>String (2147483647)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>description</td>
+            <td>String (255)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>Customer defined identifier.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>fileTypesForInvoicing</td>
+            <td>To-many association</td>
+            <td>BillingSyncBatchFileTypeLookup - Indicates what types of attachments should be included in Invoice Statement PDF. </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerAccountsReceivable</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerAccountsReceivable - General Ledger Account (with isAccountsReceivable = &lsquo;true&rsquo;) associated with this InvoiceTerm.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceApprovedTimecardsRequired</td>
+            <td>Boolean</td>
+            <td>Indicates what status the timecard should be in (Submitted or Approved) before it can be invoiced.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceGroupBy</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceOn</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceSplitBy</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementTemplate</td>
+            <td>To-one association</td>
+            <td>InvoiceStatementTemplate - this is the invoice template that is used in generating the invoice PDF.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceSummarizeBy</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>payBillCycle</td>
+            <td>To-one association</td>
+            <td>PayBillCycle - this is the associated billing cycle.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>paymentTerms</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>purchaseOrderRequired</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>remitInstructions</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>status</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>title</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>waitForTimecards</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-jobcode">Pay and Bill - JobCode</h1>
+
+<p>Represents a Job Code.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobCode fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>ID</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>businessSectors</td>
+            <td>To Many Association</td>
+            <td>BusinessSector<p>Default fields:</p>
+<ul><li>id</li>
+<li>name</li></ul></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>categories</td>
+            <td>To Many Association</td>
+            <td>Category<p>Default fields:</p>
+<ul><li>id</li>
+<li>name</li></ul></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customDate1-3</td>
+            <td>Timestamp</td>
+            <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customFloat1-3</td>
+            <td>Double</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customInt1-3</td>
+            <td>Integer</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customText1-20</td>
+            <td>String (100)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customTextBlock1-3</td>
+            <td>String (2147483647)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>departments</td>
+            <td>To Many Association</td>
+            <td>CorporationDepartment<p>Default fields:</p>
+<ul><li>id</li>
+<li>name</li></ul></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (255)</td>
+            <td>Description.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>Customer defined identifier.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To One Association</td>
+            <td>CorporateUser who is the owner of this entity. The default value is user who created the entity.
+                <p>Default fields:</p>
+                    <ul><li>id</li>
+                    <li>firstName</li>
+                    <li>firstName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>status</td>
+            <td>String (100)</td>
+            <td>Options are Active or Inactive</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>title</td>
+            <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
 </table>
 
           <h1 id="pay-and-bill-legalbusinessentity">Pay and Bill - LegalBusinessEntity</h1>
@@ -12145,6 +13460,335 @@ CRUD Access - READ</p>
 <td> </td>
 </tr>
 </tbody>
+</table>
+
+          <h1 id="pay-and-bill-placementratecard">Pay and Bill - PlacementRateCard</h1>
+
+<p>An Effective Dated Entity that represents a all of the rates on a Placement. PlacementRateCard is the flattened entity. When making PUT and POST calls to PlacementRateCard, the child entities (PlacementRateCardLineGroup - PlacementRateCardLine) can be passed as well with all associated data.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PlacementRateCard fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>ID</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To One Association</td>
+            <td>CorporateUser who is the owner of this entity. The default value is user who created the entity.
+                <p>Default fields:</p>
+                    <ul><li>id</li>
+                    <li>firstName</li>
+                    <li>firstName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>placement</td>
+            <td>To One Association</td>
+            <td><p>Placement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>placementRateCardLineGroups</td>
+            <td>To Many Association</td>
+            <td>PlacementRateCardLineGroup - list of IDs of the associated rate groups.
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>rootExternalID</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>rootMigrateGUID</td>
+            <td>String (36)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>versions</td>
+            <td>To Many Association</td>
+            <td>IDs of associated PlacementRateCardVersion records</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-placementratecardline">Pay and Bill - PlacementRateCardLine</h1>
+
+<p>An Entity representing each individual rate on a Placement</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PlacementRateCardLine fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>ID</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>alias</td>
+            <td>String (100)</td>
+            <td>Name of Earn Code that will be displayed in Time and Expense and on the Invoice Statement</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billCurrencyUnit</td>
+            <td>To One Association</td>
+            <td>Currency Unit for billing
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>alphabeticCode</li>
+                    <li>name</li>
+                </ul>                
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billRate</td>
+            <td>BigDecimal</td>
+            <td>Rate for billing (i.e. Hourly rate) </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>earnCode</td>
+            <td>To One Association</td>
+            <td>Earn Code associated with the line, based on the EarnCodeGroup </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>Customer defined identifier</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>migrateGUID</td>
+            <td>String (36)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>payCurrencyUnit</td>
+            <td>To One Association</td>
+            <td>CurrencyUnit for payroll
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>alphabeticCode</li>
+                    <li>name</li>
+                </ul>                
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>payRate</td>
+            <td>BigDecimal</td>
+            <td>Pay Rate</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>placementRateCardLineGroup</td>
+            <td>To One Association</td>
+            <td>PlacementRateCardLineGroup
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>                              
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-placementratecardversion">Pay and Bill - PlacementRateCardVersion</h1>
+
+<p>Represents a placement rate card version.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PlacementRateCardVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>ID</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>placementRateCardLineGroups</td>
+            <td>To Many Association</td>
+            <td>PlacementRateCardLineGroup
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
 </table>
 
           <h1 id="pay-and-bill-salestaxrate">Pay and Bill - SalesTaxRate</h1>
