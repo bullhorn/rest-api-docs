@@ -679,7 +679,7 @@ StateText</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too much! Slow down!</td>
+<td>Rate Limited &ndash; Wait 1 second then retry request. Repeat until successful.</td>
 </tr>
 <tr>
 <td>500</td>
@@ -4332,6 +4332,48 @@ The search call is performed against a Lucene index. For information about the L
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/RevenueRecognition/BillMasterTransactionDistributionBatch</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-services-revenuerecognition-updatetransactionexportstatus">POST /services/RevenueRecognition/UpdateTransactionExportStatus</h2>
+
+<p>Allows the API user to update the unbilledRevenueGeneralLedgerExportStatus for one or more BillMasterTransactions.</p>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+      https://rest.bullhorn.com/rest-services/e999/services/RevenueRecognition/UpdateTransactionExportStatus 
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"billMasterTransactionIDs"</span>: <span class="o">[</span>1110],
+    <span class="s2">"unbilledRevenueGeneralLedgerExportStatusLookupID"</span>: 2
+<span class="o">}</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"BillMasterTransaction"</span>,
+    <span class="s2">"changeType"</span>: <span class="s2">"UPDATE"</span>,
+    <span class="s2">"data"</span>: <span class="o">{</span>
+        <span class="s2">"billMasterTransactionIDs"</span>: <span class="o">[</span>
+            1110
+        <span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/RevenueRecognition/UpdateTransactionExportStatus</code></p>
 
 <table><thead>
 <tr>
