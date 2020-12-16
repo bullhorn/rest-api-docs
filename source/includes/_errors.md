@@ -11,6 +11,6 @@ Error Code | Meaning
 405 | Method Not Allowed -- You tried to access an entity with an invalid method
 406 | Not Acceptable -- You requested a format that isn't json
 410 | Gone -- The entity requested has been removed from our servers
-429 | Too Many Requests -- You're requesting too much! Slow down!
+429 | Rate Limited -- Wait 1 second then retry request. Repeat until successful.
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
