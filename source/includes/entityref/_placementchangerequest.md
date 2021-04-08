@@ -20,11 +20,12 @@ Represents a change request that is submitted for a particular Placement. Placem
 | correlatedCustomTextBlock1-3 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | costCenter | String (100) | Text field for Client Cost Center. Drives invoice grouping (placements with the same cost center for the same client will be grouped together). | | |
 | customBillRate1-10 | BigDecimal | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customDate1-3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customFloat1-3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customInt1-3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment | | |
+| customDate1-13 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customEncryptedText1-10 | String (100) | Configurable encrypted text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customFloat1-23 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customInt1-23 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment | | |
 | customPayRate1-10 | BigDecimal | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customText1-40 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customText1-60 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1-5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this entity was created. | X | X |
 | dateApproved | Timestamp | Date on which this change was approved. | | |
