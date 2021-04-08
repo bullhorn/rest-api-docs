@@ -27,7 +27,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | costCenter | String (100) | Text field for Client Cost Center. Drives invoice grouping (placements with the same cost center for the same client will be grouped together). | | |
 | customBillRate1-10 | BigDecimal | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customDate1-13 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customEncryptedText1-60 | String (100) | Configurable encrypted text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
+| customEncryptedText1-10 | String (100) | Configurable encrypted text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customFloat1-23 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customInt1-23 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customObject1s to 10s | CustomObject | Fields to which custom objects can be assigned.  For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:<br>[http://bullhorn.github.io/Custom-Objects](http://bullhorn.github.io/Custom-Objects) | | |
