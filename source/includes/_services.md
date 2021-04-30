@@ -246,7 +246,7 @@ curl -X PUT \
 
 ### HTTP Request
 
-`{corpToken}/services/RevenueRecognition/UpdateTransactionExportStatus`
+`{corpToken}/services/BillMasterSyncBatch`
 
 Parameter | Required | Description
 ------ | -------- | -----
