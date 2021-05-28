@@ -73,11 +73,15 @@ search/JobOrder?fields=id,businessSectors\[3\](name,id){name='Insurance'}
 
 search/Candidate?fields=id,lastName,primarySkills(name,id){name IN (Java, 'SAP')}
 
-#### To-many fields can only appear at the top level with no nesting
+#### To-many fields can only appear at the top level with no nesting 
 
 Bad: fields=categories(children)
 
 Bad: fields=owner(categories)
+
+**Note:** Exception for PlacementRateCard's placementRateCardLineGroup and placementRateCardLine fields
+
+Acceptable: fields=placementRateCardLineGroup(placementRateCardLine(*))
 
 ## Entity metadata
 
