@@ -53,7 +53,7 @@ An Entity representing each individual rate on a Placement
             <td>billMultiplier</td>
             <td>BigDecimal</td>
             <td>
-                <p>The multiplier between the REG billRate and the current line’s billRate</p>
+                <p>The multiplier between the REG billRate and the current line’s billRate.</p>
                 <ul>
                     <li>REG billMultiplier is always 1 (read only)</li>
                     <li>The following are defaulted from PayBillSetting:</li>
@@ -71,8 +71,8 @@ An Entity representing each individual rate on a Placement
             <td>billRate</td>
             <td>BigDecimal</td>
             <td>
-                <p>Rate for billing (i.e. Hourly rate)</p>
-                <p>billRate can get automatically calculated in code based off its respective payRate and markupPercent</p>
+                <p>Rate for billing (stored as an hourly rate).</p>
+                <p>billRate can get automatically calculated in code based off its respective payRate and markupPercent.</p>
             </td>
             <td>X</td>
             <td></td>
@@ -97,7 +97,7 @@ An Entity representing each individual rate on a Placement
             <td>
                 <p>Used to indicate what the difference is between the payRate and billRate as a percentage.</p>
                 <p>= (billRate - payRate) / payRate</p>
-                <p>(i.e. If payRate = 20 and billRate = 28 then there is a 40% markup)</p>
+                <p>(For example, if payRate = 20 and billRate = 28 then there is a 40% markup.)</p>
                 <p>markups get automatically calculated in code based off their respective billRate and payRate.</p>
             </td>
             <td></td>
@@ -109,7 +109,7 @@ An Entity representing each individual rate on a Placement
             <td>
                 <p>Used to indicate what the difference is between payRate and billRate displayed as money.</p>
                 <p>= billRate - payRate</p>
-                <p>(i.e. $10.00 difference between billRate = $20.00 and payRate = $10.00)</p>
+                <p>(For example, there's a $10.00 difference between billRate = $20.00 and payRate = $10.00.)</p>
                 <p>markups get automatically calculated in code based off their respective billRate and payRate.</p>
             </td>
             <td></td>
@@ -140,7 +140,7 @@ An Entity representing each individual rate on a Placement
             <td>payMultiplier</td>
             <td>BigDecimal</td>
             <td>
-            <p>The multiplier between the REG payRate and the current line’s payRate</p>
+            <p>The multiplier between the REG payRate and the current line’s payRate.</p>
                 <ul>
                     <li>REG billMultiplier is always 1 (read only)</li>
                     <li>The following are defaulted from PayBillSetting:</li>
@@ -157,8 +157,8 @@ An Entity representing each individual rate on a Placement
             <td>payRate</td>
             <td>BigDecimal</td>
             <td>
-                <p>Pay Rate (Hourly rate)</p>
-                <p>payRate can get automatically calculated in code based off its respective billRate and markupPercent</p>
+                <p>Pay Rate (stored as an hourly rate).</p>
+                <p>payRate can get automatically calculated in code based off its respective billRate and markupPercent.</p>
             </td>
             <td>X</td>
             <td></td>
