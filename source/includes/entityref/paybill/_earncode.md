@@ -1,4 +1,4 @@
-# EarnCode
+# Pay and Bill - EarnCode
 
 Represents an earn code.
 

@@ -1,5 +1,5 @@
 
-# EarnCodeGroup
+# Pay and Bill - EarnCodeGroup
 
 This entity represents the Earn Code Group which is a grouping of one or three earn codes.
 

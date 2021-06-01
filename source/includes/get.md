@@ -79,6 +79,10 @@ Bad: fields=categories(children)
 
 Bad: fields=owner(categories)
 
+**Note:** The only exception to this is PlacementRateCard's placementRateCardLineGroup and placementRateCardLine fields.
+
+Acceptable: fields=placementRateCardLineGroup(placementRateCardLine(*))
+
 ## Entity metadata
 
 You can include metadata, data that describes the structure of returned entity data, in responses that the REST API returns.
