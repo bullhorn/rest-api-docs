@@ -37,7 +37,7 @@ An Entity representing each individual rate on a Placement
         </tr>
         <tr class="even">
             <td>billCurrencyUnit</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Currency Unit for billing
                 <p>Default fields:</p>
                 <ul>
@@ -79,7 +79,7 @@ An Entity representing each individual rate on a Placement
         </tr>
         <tr class="odd">
             <td>earnCode</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Earn Code associated with the line, based on the EarnCodeGroup </td>
             <td>X</td>
             <td></td>
@@ -124,7 +124,7 @@ An Entity representing each individual rate on a Placement
         </tr>
         <tr class="even">
             <td>payCurrencyUnit</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>CurrencyUnit for payroll
                 <p>Default fields:</p>
                 <ul>
@@ -165,7 +165,7 @@ An Entity representing each individual rate on a Placement
         </tr>
         <tr class="odd">
             <td>placementRateCardLineGroup</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>PlacementRateCardLineGroup
                 <p>Default fields:</p>
                 <ul>
