@@ -126,31 +126,69 @@ Read-only entity that represents a BillMasterTransaction.
 <td> </td>
 </tr>
 <tr class="odd">
+<td>payPeriodEndDate</td>
+<td>Date</td>
+<td><p>Pay period end date.</p></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
 <td>quantity</td>
 <td>Double</td>
 <td>Quantity.</td>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>rate</td>
 <td>BigDecimal</td>
 <td><p>Rate.</p></td>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>recordingDate</td>
 <td>Date</td>
 <td>Recording date.</td>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>reversalOfTransaction</td>
 <td>To-one association</td>
 <td>Associated reversed BillMasterTransaction.</td>
 <td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>timeLaborEvalDiffStatusLookupID</td>
+<td><p>To-one association</p></td>
+<td><p>New transaction type field used by TimeLaborEval.</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>timeLaborEvalUnitID</td>
+<td><p>To-one association</p></td>
+<td><p>Metadata used for TimeLaborEval calculations</p>
+<p>Default fields:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>timestamp</td>
+<td>byte[]</td>
+<td><p>Rowversion.</p></td>
+<td>X</td>
 <td>X</td>
 </tr>
 <tr class="odd">
@@ -205,13 +243,20 @@ Read-only entity that represents a BillMasterTransaction.
 <tr class="odd">
 <td>unitOfMeasure</td>
 <td><p>To-one association</p>
-<p>(String Flag)</p></td>
+<p>(String flag)</p></td>
 <td><p>Associated UnitOfMeasure.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
 <li>label</li>
 </ul></td>
+<td> </td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>version</td>
+<td>Int</td>
+<td><p>To be used by TimeLaborEval in the future.</p></td>
 <td> </td>
 <td>X</td>
 </tr>
