@@ -162,7 +162,7 @@ Read-only entity that represents a PayMasterTransaction.
 </tr>
 <tr class="odd">
 <td>timestamp</td>
-<td>Rowversion</td>
+<td>byte[]</td>
 <td><p>Rowversion.</p></td>
 <td>X</td>
 <td>X</td>
@@ -206,7 +206,7 @@ Read-only entity that represents a PayMasterTransaction.
 <tr class="odd">
 <td>unitOfMeasure</td>
 <td><p>To-one association</p>
-<p>(String Flag)</p></td>
+<p>(String flag)</p></td>
 <td><p>Unit of measure</p>
 <p>Default fields:</p>
 <ul>

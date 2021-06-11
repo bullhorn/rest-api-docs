@@ -186,7 +186,7 @@ Read-only entity that represents a BillMasterTransaction.
 </tr>
 <tr class="even">
 <td>timestamp</td>
-<td>Rowversion</td>
+<td>byte[]</td>
 <td><p>Rowversion.</p></td>
 <td>X</td>
 <td>X</td>
@@ -243,7 +243,7 @@ Read-only entity that represents a BillMasterTransaction.
 <tr class="odd">
 <td>unitOfMeasure</td>
 <td><p>To-one association</p>
-<p>(String Flag)</p></td>
+<p>(String flag)</p></td>
 <td><p>Associated UnitOfMeasure.</p>
 <p>Default fields:</p>
 <ul>
