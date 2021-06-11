@@ -38,6 +38,7 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | fax3 | String(20) | An additional fax number for the Lead. | | | | |
 | firstName | String (50) | Lead's first name. | | |
 | history | To-many association | IDs of LeadHistory entities associated with this Lead. | | |
+| isAnonymized | Boolean | Indicates whether this record is marked as anonymized in the Bullhorn system. | | |
 | isDayLightSavingsTime | Boolean | Indicates whether the Lead's location is using Daylight Saving Time. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as Deleted in the Bullhorn system. | X | |
 | lastName | String (50) | Lead's last name | | |
