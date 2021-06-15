@@ -36,6 +36,7 @@ The ClientContact entity supports the massUpdate operations.
 | fax2 | String (20) | Additional fax number. Typically used for the contact's home or personal fax. | | |
 | fax3 | String (20) | Additional fax number. | | |
 | firstName | String (50) | ClientContact's first name. | | |
+| isAnonymized | Boolean | Indicates whether this record is marked as anonymized in the Bullhorn system. | | |
 | isDayLightSavings | Boolean | Indicates whether the ClientContact's location is using Daylight Saving Time. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system. | X | |
 | lastName | String (50) | ClientContact's last name. | | |

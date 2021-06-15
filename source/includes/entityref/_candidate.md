@@ -60,6 +60,7 @@ The Candidate entity supports the massUpdate operations.
 | hourlyRateLow | BigDecimal | Lowest hourly pay rate the Candidate will accept. | | |
 | i9OnFile | Integer | Indicates whether Candidate's I-9 form has already been filled out and is on file. | | |
 | interviews | To-many association | Interviews for Candidate. This field is populated when you create Appointments where Appointment.candidate is this Candidate and Appointment.type is “Interview”. | X | |
+| isAnonymized | Boolean | Indicates whether this record is marked as anonymized in the Bullhorn system. | | |
 | isDeleted | Boolean | Indicates whether this record is marked as deleted in the Bullhorn system. | X | |
 | isEditable | Boolean | Indicates whether Candidate can edit his or her profile information; applicable to Candidate/Client login. | X |
 | isExempt | Boolean | To claim exemption from withholding, set this to Yes. | | |
