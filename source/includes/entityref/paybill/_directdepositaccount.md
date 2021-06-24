@@ -66,7 +66,7 @@ Entity that represents a candidate's direct deposit account record.
         </tr>
         <tr class="odd">
             <td>bankName</td>
-            <td>String</td>
+            <td>String (200)</td>
             <td>The name of the bank where the account is held</td>
             <td></td>
             <td></td>
@@ -80,14 +80,14 @@ Entity that represents a candidate's direct deposit account record.
         </tr>
         <tr class="odd">
             <td>transitNumber</td>
-            <td>String (???)</td>
+            <td>String (50)</td>
             <td>The transit number for the bank account in question</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>institutionNumber</td>
-            <td>String (???)</td>
+            <td>String (50)</td>
             <td>The institution number for the bank account in question, used internationally</td>
             <td></td>
             <td></td>
