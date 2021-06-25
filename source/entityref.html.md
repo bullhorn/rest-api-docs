@@ -71,6 +71,7 @@ includes:
   - entityref/paybill/calendar
   - entityref/paybill/calendarfrequencylookup
   - entityref/paybill/calendarinstance
+  - entityref/paybill/directdepositaccount
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
   - entityref/paybill/earncode

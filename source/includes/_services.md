@@ -45,6 +45,107 @@ entity | yes | One of: "Candidate", "ClientContact", or "Lead".
 ids | yes | List of IDs of the given type of entity, a maximum of 500 per call.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
+## POST / PUT /services/DirectDepositAccount
+
+The Direct Deposit Account service allows for the creation of direct deposit accounts attached to a single candidate.
+
+``` shell
+curl -X POST / PUT \
+      https://rest.bullhornstaffing.com/rest-services/e999/services/DirectDepositAccount
+
+# Example Request
+{
+    "candidate": {
+        "id": 36432821
+    },
+    "directDepositAccounts": [
+        {
+            "amount": 1000,
+            "remainder": false,
+            "currencyUnit": {
+                "id": 166,
+                "minorUnits": 0
+            },
+            "bankName": "Chase Bank",
+            "accountNumber": "111",
+            "transitNumber": "021000021",
+            "directDepositAccountTypeLookup": {
+                "id": 1,
+                "label": "Checking"
+            },
+            "paymentOrder": 1
+        },
+        {
+            "amount": 500,
+            "remainder": false,
+            "currencyUnit": {
+                "id": 166,
+                "minorUnits": 0
+            },
+            "bankName": "Bank of America",
+            "accountNumber": "112",
+            "transitNumber": "011401533",
+            "directDepositAccountTypeLookup": {
+                "id": 2,
+                "label": "Savings"
+            },
+            "paymentOrder": 2
+        },
+        {
+            "remainder": true,
+            "currencyUnit": {
+                "id": 166,
+                "minorUnits": 0
+            },
+            "bankName": "Wells Fargo",
+            "accountNumber": "113",
+            "transitNumber": "091000019",
+            "directDepositAccountTypeLookup": {
+                "id": 3,
+                "label": "Pay Card"
+            },
+            "paymentOrder": 3
+        }
+    ]
+}
+
+# Example Response
+[
+    {
+        "changedEntityType": "DirectDepositAccount",
+        "changedEntityId": 22538,
+        "changeType": "INSERT",
+        "data": {
+            
+        }
+    },
+    {
+        "changedEntityType": "DirectDepositAccount",
+        "changedEntityId": 22539,
+        "changeType": "INSERT",
+        "data": {
+            
+        }
+    },
+    {
+        "changedEntityType": "DirectDepositAccount",
+        "changedEntityId": 22540,
+        "changeType": "INSERT",
+        "data": {
+            
+        }
+    }
+]
+```
+
+### HTTP Request
+
+`{corpToken}/services/DirectDepositAccount`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
 ## POST /services/IssueReport
 
 The Issue Report service allows for creation of issues to be presented to the user. These user-facing issues will be related to existing entities, and provide data on what the issue is and how to fix it. 
