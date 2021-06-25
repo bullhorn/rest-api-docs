@@ -22,7 +22,7 @@ Entity that represents a candidate's direct deposit account record.
     </thead>
     <tbody>
         <tr class="even">
-            <td>directDepositAccountID</td>
+            <td>id</td>
             <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
