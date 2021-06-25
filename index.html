@@ -4177,6 +4177,115 @@ The search call is performed against a Lucene index. For information about the L
 </tr>
 </tbody></table>
 
+<h2 id="post-put-services-directdepositaccount">POST / PUT /services/DirectDepositAccount</h2>
+
+<p>The Direct Deposit Account service allows for the creation of direct deposit accounts attached to a single candidate.</p>
+<pre class="highlight shell"><code>curl -X POST / PUT <span class="se">\</span>
+      https://rest.bullhornstaffing.com/rest-services/e999/services/DirectDepositAccount
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"candidate"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 36432821
+    <span class="o">}</span>,
+    <span class="s2">"directDepositAccounts"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"amount"</span>: 1000,
+            <span class="s2">"remainder"</span>: <span class="nb">false</span>,
+            <span class="s2">"currencyUnit"</span>: <span class="o">{</span>
+                <span class="s2">"id"</span>: 166,
+                <span class="s2">"minorUnits"</span>: 0
+            <span class="o">}</span>,
+            <span class="s2">"bankName"</span>: <span class="s2">"Chase Bank"</span>,
+            <span class="s2">"accountNumber"</span>: <span class="s2">"111"</span>,
+            <span class="s2">"transitNumber"</span>: <span class="s2">"021000021"</span>,
+            <span class="s2">"directDepositAccountTypeLookup"</span>: <span class="o">{</span>
+                <span class="s2">"id"</span>: 1,
+                <span class="s2">"label"</span>: <span class="s2">"Checking"</span>
+            <span class="o">}</span>,
+            <span class="s2">"paymentOrder"</span>: 1
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"amount"</span>: 500,
+            <span class="s2">"remainder"</span>: <span class="nb">false</span>,
+            <span class="s2">"currencyUnit"</span>: <span class="o">{</span>
+                <span class="s2">"id"</span>: 166,
+                <span class="s2">"minorUnits"</span>: 0
+            <span class="o">}</span>,
+            <span class="s2">"bankName"</span>: <span class="s2">"Bank of America"</span>,
+            <span class="s2">"accountNumber"</span>: <span class="s2">"112"</span>,
+            <span class="s2">"transitNumber"</span>: <span class="s2">"011401533"</span>,
+            <span class="s2">"directDepositAccountTypeLookup"</span>: <span class="o">{</span>
+                <span class="s2">"id"</span>: 2,
+                <span class="s2">"label"</span>: <span class="s2">"Savings"</span>
+            <span class="o">}</span>,
+            <span class="s2">"paymentOrder"</span>: 2
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"remainder"</span>: <span class="nb">true</span>,
+            <span class="s2">"currencyUnit"</span>: <span class="o">{</span>
+                <span class="s2">"id"</span>: 166,
+                <span class="s2">"minorUnits"</span>: 0
+            <span class="o">}</span>,
+            <span class="s2">"bankName"</span>: <span class="s2">"Wells Fargo"</span>,
+            <span class="s2">"accountNumber"</span>: <span class="s2">"113"</span>,
+            <span class="s2">"transitNumber"</span>: <span class="s2">"091000019"</span>,
+            <span class="s2">"directDepositAccountTypeLookup"</span>: <span class="o">{</span>
+                <span class="s2">"id"</span>: 3,
+                <span class="s2">"label"</span>: <span class="s2">"Pay Card"</span>
+            <span class="o">}</span>,
+            <span class="s2">"paymentOrder"</span>: 3
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+
+<span class="c"># Example Response</span>
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"changedEntityType"</span>: <span class="s2">"DirectDepositAccount"</span>,
+        <span class="s2">"changedEntityId"</span>: 22538,
+        <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>,
+        <span class="s2">"data"</span>: <span class="o">{</span>
+
+        <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"changedEntityType"</span>: <span class="s2">"DirectDepositAccount"</span>,
+        <span class="s2">"changedEntityId"</span>: 22539,
+        <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>,
+        <span class="s2">"data"</span>: <span class="o">{</span>
+
+        <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"changedEntityType"</span>: <span class="s2">"DirectDepositAccount"</span>,
+        <span class="s2">"changedEntityId"</span>: 22540,
+        <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>,
+        <span class="s2">"data"</span>: <span class="o">{</span>
+
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/DirectDepositAccount</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
 <h2 id="post-services-issuereport">POST /services/IssueReport</h2>
 
 <p>The Issue Report service allows for creation of issues to be presented to the user. These user-facing issues will be related to existing entities, and provide data on what the issue is and how to fix it. </p>
