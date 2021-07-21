@@ -57,9 +57,17 @@ Entitlements - Add Sales Tax Group, Edit Sales Tax Group, Read Sales Tax Group, 
             <td><p>Many-To-One association</p>
                 <div>(TaxStatusLookup)</div>
             </td>
-            <td><p>TaxStatusLookup associated with SalesTaxGroup:</p>
+            <td>
+                <p>Status of this entity.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Active</li>
+                    <li>Inactive</li>
+                </ol>
+                <p>Default fields:</p>
                 <ul>
                     <li>id</li>
+                    <li>label</li>
                 </ul>
             </td>
             <td><br/></td>

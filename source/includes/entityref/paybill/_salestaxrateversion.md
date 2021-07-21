@@ -120,6 +120,11 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
             <td>To One Association (TaxStatusLookup)</td>
             <td>
                 <p>Status of this entity.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Active</li>
+                    <li>Inactive</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -133,7 +138,12 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
             <td>taxType</td>
             <td>To One Association (TaxTypeLookup)</td>
             <td>
-                <p>The tax type of this entity. This is used to help map V1 of taxes to V2 by storing what type of tax the user intended to create.</p>
+                <p>The tax type of this entity.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Amount</li>
+                    <li>Percent</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

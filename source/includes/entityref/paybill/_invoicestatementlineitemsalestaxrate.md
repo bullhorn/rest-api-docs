@@ -24,28 +24,28 @@ Entitlements - View Any Invoice Statement
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="odd">
             <td>id</td>
             <td>Integer</td>
             <td>Unique Identifier for this entity.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr>
+        <tr class="even">
             <td>allSalesTaxRate</td>
             <td>To-one association</td>
             <td>Associated AllSalesTaxRate</td>
             <td>X</td>
             <td><br/></td>
         </tr>
-        <tr>
+        <tr class="odd">
             <td>baseAmount</td>
             <td>BigDecimal</td>
             <td><br/></td>
             <td> X</td>
             <td><br/></td>
         </tr>
-        <tr>
+        <tr class="even">
             <td>billMasterTransactionSalesTaxDetail</td>
             <td>To-one association</td>
             <td><p>Associated BillMasterTransactionSalesTaxDetail</p>
@@ -57,7 +57,7 @@ Entitlements - View Any Invoice Statement
             <td><br/></td>
             <td><br/></td>
         </tr>
-        <tr>
+        <tr class="odd">
             <td>externalSalesTaxRate</td>
             <td>To-one association</td>
             <td>Associated ExternalSalesTaxRate (should be populated if salesTaxRate is
@@ -66,7 +66,7 @@ Entitlements - View Any Invoice Statement
             <td><br/></td>
             <td><br/></td>
         </tr>
-        <tr>
+        <tr class="even">
             <td><span>invoiceStatementLineItem</span></td>
             <td><p>To-one association</p>
                 <p>(InvoiceStatementLineItem)</p></td>
@@ -74,14 +74,14 @@ Entitlements - View Any Invoice Statement
             <td><br/></td>
             <td><br/></td>
         </tr>
-        <tr>
+        <tr class="odd">
             <td>jurisdictionName</td>
             <td>String (200)</td>
             <td><br/></td>
             <td>X</td>
             <td><br/></td>
         </tr>
-        <tr>
+        <tr class="even">
             <td>jurisdictionType</td>
             <td><p>Many-To-One association</p>
                 <p>(TaxJurisdictionTypeLookup)</p></td>
@@ -95,14 +95,14 @@ Entitlements - View Any Invoice Statement
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr>
+        <tr class="odd">
             <td>rate</td>
             <td>BigDecimal</td>
             <td><br/></td>
             <td>X</td>
             <td><br/></td>
         </tr>
-        <tr>
+        <tr class="even">
             <td>salesTaxRate</td>
             <td><p>To-one association</p>
                 <p>(SalesTaxRate)</p></td>
@@ -121,7 +121,7 @@ Entitlements - View Any Invoice Statement
             <td><br/></td>
             <td><br/></td>
         </tr>
-        <tr>
+        <tr class="odd">
             <td>taxAmount</td>
             <td>BigDecimal</td>
             <td><br/></td>

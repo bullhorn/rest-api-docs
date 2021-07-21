@@ -246,7 +246,14 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>type</td>
             <td><p>To-one association</p>
                 <p>(SurchargeRateTypeLookup)</p></td>
-            <td><p>Default fields:</p>
+            <td>
+                <p>Options are:</p>
+                <ol>
+                    <li>$ / Unit of Measure</li>
+                    <li>Percentage</li>
+                    <li>Legacy surcharge</li>
+                </ol>
+                <p>Default fields:</p>
                 <ul>
                     <li>id</li>
                     <li>label</li>
