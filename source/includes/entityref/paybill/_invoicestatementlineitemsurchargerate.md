@@ -1,6 +1,10 @@
 # Pay and Bill - InvoiceStatementLineItemSurchargeRate
 
-description
+Represents the rounded subtotals for unique surcharge rates tied to an invoice statement line item
+
+CRUD Access - READ
+
+Entitlements - View Any Invoice Statement
 
 <table>
     <colgroup>
@@ -20,3 +24,73 @@ description
         </tr>
     </thead>
     <tbody>
+        <tr class="odd">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique Identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>baseAmount</td>
+            <td>BigDecimal</td>
+            <td><br/></td>
+            <td> X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billMasterTransactionSurchargeDetail</td>
+            <td>To-one association</td>
+            <td><p>Associated BillMasterTransactionSurchargeDetail</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>surchargetAmount</td>
+            <td>BigDecimal</td>
+            <td><br/></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>surchargeRate</td>
+            <td>To-one association</td>
+            <td><p>Associated surcharge Rate.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementLineItem</td>
+            <td><p>To-One association</p>
+                <p>(InvoiceStatementLineItem)</p></td>
+            <td>The Invoice Statement Line Item object tied to this entity</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>rate</td>
+            <td>BigDecimal</td>
+            <td><br/></td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>title</td>
+            <td>String (200)</td>
+            <td><br/></td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+    </tbody>
+</table>
