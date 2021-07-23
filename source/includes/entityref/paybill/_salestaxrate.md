@@ -192,7 +192,16 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>jurisdictionType</td>
             <td>To One Association (TaxJurisdictionTypeLookup)</td>
             <td>
-                <p>Jurisdiction type. (Ex: city, state, district, special, other)</p>
+                <p>Jurisdiction type.</p>
+                <p>Options are:</p>
+                    <ol>
+                        <li>City</li>
+                        <li>County</li>
+                        <li>District</li>
+                        <li>State</li>
+                        <li>Other</li>
+                        <li>MTA</li>
+                    </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -243,6 +252,10 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>To One Association (SalesTaxRateSourceLookup)</td>
             <td>
                 <p>The source of this entity.</p>
+                <p>Options:</p>
+                <ol>
+                    <li>Manual (default)</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -264,6 +277,11 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>To One Association (TaxStatusLookup)</td>
             <td>
                 <p>Status of this entity.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Active</li>
+                    <li>Inactive</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -277,7 +295,12 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>taxType</td>
             <td>To One Association (TaxTypeLookup)</td>
             <td>
-                <p>The tax type of this entity. This is used to help map V1 of taxes to V2 by storing what type of tax the user intended to create.</p>
+                <p>The tax type of this entity.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Amount</li>
+                    <li>Percent</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -291,7 +314,12 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>type</td>
             <td>To One Association (SalesTaxRateTypeLookup)</td>
             <td>
-                </p>Type of entity.</p>
+                </p>Type of SalesTaxRate.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Location Based Tax</li>
+                    <li>Invoice Tax</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

@@ -32,6 +32,7 @@ The ClientCorporation entity supports the massUpdate operations.
 | dateLastModified | Timestamp | Date on which the ClientCorporation was last modified. | X | X |
 | department | To-one association | Department in the ClientCorporation that has primary responsibility for this client (for example, a regional office). Default value is primary department of user who adds the ClientCorporation. | | |
 | externalID | String (30) | External identifier for the record, used for migrations and back-office Integration. | | |
+| exemptionStatus | ClientCorporationTaxExemptionStatusLookup | Tax exemption status for the ClientCorporation. Options are: 1=Exempt, 2=Non-Exempt, 3=Self-Pay | | |
 | feeArrangement | Double | Fee, expressed as a percentage, that this ClientCorporation will pay for each Placement. | X | |
 | funding | String (2147483647) | Current funding status of the ClientCorporation. | | |
 | industryList | String (2147483647) | Comma-separated list of industries in which the company operates. See field map data for the list used by a particular company. | | |

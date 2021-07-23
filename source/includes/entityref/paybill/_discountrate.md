@@ -89,6 +89,14 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
                     <li>id</li>
                     <li>label</li>
                 </ul>
+                <p>Options are:</p>
+                <ol>
+                    <li>Discount</li>
+                    <li>Rebate</li>
+                    <li>VMS Fee</li>
+                    <li>Other</li>
+                    <li>Legacy discount</li>
+                </ol>
             </td>
             <td>X</td>
             <td></td>
