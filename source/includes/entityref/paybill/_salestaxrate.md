@@ -314,7 +314,12 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>type</td>
             <td>To One Association (SalesTaxRateTypeLookup)</td>
             <td>
-                </p>Type of entity.</p>
+                </p>Type of SalesTaxRate.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Location Based Tax</li>
+                    <li>Invoice Tax</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
