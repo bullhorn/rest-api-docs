@@ -87,14 +87,14 @@ Entitlements - View Any Invoice Statement
                 <p>(TaxJurisdictionTypeLookup)</p></td>
             <td><p>Jurisdiction type.</p>
                 <p>Options are:</p>
-                    <ol>
-                        <li>City</li>
-                        <li>County</li>
-                        <li>District</li>
-                        <li>State</li>
-                        <li>Other</li>
-                        <li>MTA</li>
-                    </ol>
+                <ol>
+                    <li>City</li>
+                    <li>County</li>
+                    <li>District</li>
+                    <li>State</li>
+                    <li>Other</li>
+                    <li>MTA</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
