@@ -85,7 +85,16 @@ Entitlements - View Any Invoice Statement
             <td>jurisdictionType</td>
             <td><p>Many-To-One association</p>
                 <p>(TaxJurisdictionTypeLookup)</p></td>
-            <td><p>Jurisdiction type. (Ex: city, state, district, special, other)</p>
+            <td><p>Jurisdiction type.</p>
+                <p>Options are:</p>
+                    <ol>
+                        <li>City</li>
+                        <li>County</li>
+                        <li>District</li>
+                        <li>State</li>
+                        <li>Other</li>
+                        <li>MTA</li>
+                    </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
