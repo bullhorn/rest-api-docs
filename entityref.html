@@ -3829,6 +3829,13 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td></td>
 </tr>
 <tr>
+<td>exemptionStatus</td>
+<td>ClientCorporationTaxExemptionStatusLookup</td>
+<td>Tax exemption status for the ClientCorporation. Options are: 1=Exempt, 2=Non-Exempt, 3=Self-Pay</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>feeArrangement</td>
 <td>Double</td>
 <td>Fee, expressed as a percentage, that this ClientCorporation will pay for each Placement.</td>
@@ -11254,6 +11261,14 @@ CRUD Access - READ</p>
                     <li>id</li>
                     <li>label</li>
                 </ul>
+                <p>Options are:</p>
+                <ol>
+                    <li>Discount</li>
+                    <li>Rebate</li>
+                    <li>VMS Fee</li>
+                    <li>Other</li>
+                    <li>Legacy discount</li>
+                </ol>
             </td>
             <td>X</td>
             <td></td>
@@ -14299,7 +14314,16 @@ CRUD Access - READ</p>
             <td>jurisdictionType</td>
             <td>To One Association (TaxJurisdictionTypeLookup)</td>
             <td>
-                <p>Jurisdiction type. (Ex: city, state, district, special, other)</p>
+                <p>Jurisdiction type.</p>
+                <p>Options are:</p>
+                    <ol>
+                        <li>City</li>
+                        <li>County</li>
+                        <li>District</li>
+                        <li>State</li>
+                        <li>Other</li>
+                        <li>MTA</li>
+                    </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -14350,6 +14374,10 @@ CRUD Access - READ</p>
             <td>To One Association (SalesTaxRateSourceLookup)</td>
             <td>
                 <p>The source of this entity.</p>
+                <p>Options:</p>
+                <ol>
+                    <li>Manual (default)</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -14371,6 +14399,11 @@ CRUD Access - READ</p>
             <td>To One Association (TaxStatusLookup)</td>
             <td>
                 <p>Status of this entity.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Active</li>
+                    <li>Inactive</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -14384,7 +14417,12 @@ CRUD Access - READ</p>
             <td>taxType</td>
             <td>To One Association (TaxTypeLookup)</td>
             <td>
-                <p>The tax type of this entity. This is used to help map V1 of taxes to V2 by storing what type of tax the user intended to create.</p>
+                <p>The tax type of this entity.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Amount</li>
+                    <li>Percent</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -14398,7 +14436,12 @@ CRUD Access - READ</p>
             <td>type</td>
             <td>To One Association (SalesTaxRateTypeLookup)</td>
             <td>
-                </p>Type of entity.</p>
+                </p>Type of SalesTaxRate.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Location Based Tax</li>
+                    <li>Invoice Tax</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -14547,6 +14590,11 @@ CRUD Access - READ</p>
             <td>To One Association (TaxStatusLookup)</td>
             <td>
                 <p>Status of this entity.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Active</li>
+                    <li>Inactive</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -14560,7 +14608,12 @@ CRUD Access - READ</p>
             <td>taxType</td>
             <td>To One Association (TaxTypeLookup)</td>
             <td>
-                <p>The tax type of this entity. This is used to help map V1 of taxes to V2 by storing what type of tax the user intended to create.</p>
+                <p>The tax type of this entity.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Amount</li>
+                    <li>Percent</li>
+                </ol>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -15095,13 +15148,6 @@ CRUD Access - READ</p>
 <td></td>
 </tr>
 <tr>
-<td>expiringCredentials</td>
-<td>Integer</td>
-<td>Number of credentials on requirements of this placement that are expiring within the next 30 days or already expired.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>employmentStartDate</td>
 <td>Timestamp</td>
 <td>Indicates the date on which paid employment begins for this placement. Can be different from placement start date. Used for payroll integrations.</td>
@@ -15114,6 +15160,20 @@ CRUD Access - READ</p>
 <td>Employment type.</td>
 <td>X</td>
 <td>X</td>
+</tr>
+<tr>
+<td>expiringCredentials</td>
+<td>Integer</td>
+<td>Number of credentials on requirements of this placement that are expiring within the next 30 days or already expired.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>exemptionStatus</td>
+<td>PlacementTaxExemptionStatusLookup</td>
+<td>Tax exemption status for the Placement. Options are: 1=Exempt, 2=Non-Exempt, 3=Self-Pay</td>
+<td>&mdash;</td>
+<td>&mdash;</td>
 </tr>
 <tr>
 <td>fee</td>
