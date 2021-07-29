@@ -146,12 +146,12 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-## POST /services/IssueReport
+## PUT /services/IssueReport
 
 The Issue Report service allows for creation of issues to be presented to the user. These user-facing issues will be related to existing entities, and provide data on what the issue is and how to fix it. 
 
 ``` shell
-curl -X POST \
+curl -X PUT \
       https://rest.bullhornstaffing.com/rest-services/e999/services/IssueReport
 
 # Example Request
