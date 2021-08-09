@@ -79,7 +79,7 @@ Bad: fields=categories(children)
 
 Bad: fields=owner(categories)
 
-**Note:** The only exception to this is PlacementRateCard's placementRateCardLineGroup and placementRateCardLine fields.
+**Note:** The only exception to this is PlacementRateCard's placementRateCardLineGroup and placementRateCardLine & JobOrderRateCard's jobOrderRateCardLineGroup and jobOrderRateCardLine fields.
 
 Acceptable: fields=placementRateCardLineGroup(placementRateCardLine(*))
 
