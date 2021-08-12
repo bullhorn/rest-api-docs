@@ -23,7 +23,7 @@ An Entity representing each individual rate on a Job Order
     <tbody>
         <tr class="even">
             <td>id</td>
-            <td>ID</td>
+            <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
             <td>X</td>
@@ -32,7 +32,7 @@ An Entity representing each individual rate on a Job Order
             <td>alias</td>
             <td>String (100)</td>
             <td>Name of Earn Code that will be displayed in Time and Expense and on the Invoice Statement</td>
-            <td>X</td>
+            <td></td>
             <td></td>
         </tr>
         <tr class="even">
@@ -80,18 +80,30 @@ An Entity representing each individual rate on a Job Order
         <tr class="odd">
             <td>earnCode</td>
             <td>To-one association</td>
-            <td>Earn Code associated with the line, based on the EarnCodeGroup </td>
+            <td>EarnCode</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>externalID</td>
             <td>String (100)</td>
-            <td>Customer defined identifier</td>
+            <td></td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
+            <td>jobOrderRateCardLineGroup</td>
+            <td>To-one association</td>
+            <td>JobOrderRateCardLineGroup
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>                              
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>markupPercent</td>
             <td>BigDecimal</td>
             <td>
@@ -103,26 +115,21 @@ An Entity representing each individual rate on a Job Order
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>markupValue</td>
             <td>BigDecimal</td>
-            <td>
-                <p>Used to indicate what the difference is between payRate and billRate displayed as money.</p>
-                <p>= billRate - payRate</p>
-                <p>(For example, there's a $10.00 difference between billRate = $20.00 and payRate = $10.00.)</p>
-                <p>markups get automatically calculated in code based off their respective billRate and payRate.</p>
-            </td>
             <td></td>
-            <td>X</td>
+            <td></td>
+            <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>migrateGUID</td>
             <td>String (36)</td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>payCurrencyUnit</td>
             <td>To-one association</td>
             <td>CurrencyUnit for payroll
@@ -136,7 +143,7 @@ An Entity representing each individual rate on a Job Order
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>payMultiplier</td>
             <td>BigDecimal</td>
             <td>
@@ -153,24 +160,12 @@ An Entity representing each individual rate on a Job Order
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>payRate</td>
             <td>BigDecimal</td>
             <td>
                 <p>Pay Rate (stored as an hourly rate).</p>
                 <p>payRate can get automatically calculated in code based off its respective billRate and markupPercent.</p>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>jobOrderRateCardLineGroup</td>
-            <td>To-one association</td>
-            <td>JobOrderRateCardLineGroup
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                </ul>                              
             </td>
             <td></td>
             <td></td>

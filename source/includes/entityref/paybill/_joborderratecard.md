@@ -27,7 +27,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
     <tbody>
         <tr class="even">
             <td>id</td>
-            <td>ID</td>
+            <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
             <td>X</td>
@@ -42,9 +42,9 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td>Date last modified.</td>
-            <td>X</td>
-            <td>X</td>
+            <td>Date last modified</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>effectiveDate</td>
@@ -56,85 +56,72 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         <tr class="even">
             <td>effectiveEndDate</td>
             <td>Date</td>
-            <td>This is the date until when the record is effective.</td>
+            <td>This is the date until when the record is effective</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td></td>
-            <td></td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
             <td>X</td>
+            <td></td>
         </tr>
         <tr class="even">
-            <td>owner</td>
-            <td>To One Association</td>
-            <td>CorporateUser who is the owner of this entity. The default value is user who created the entity.
+            <td>jobOrderRateCardLineGroups</td>
+            <td>To-many association</td>
+            <td>JobOrderRateCardLineGroup - list of IDs of the associated rate groups.
                 <p>Default fields:</p>
-                    <ul><li>id</li>
-                    <li>firstName</li>
-                    <li>firstName</li>
-                </ul>
-            </td>
+                <ul>
+                    <li>id</li>
+                </ul></td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>jobPosting</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td><p>JobPosting.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
                     <li>title</li>
-                </ul>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>jobOrderRateCardLineGroups</td>
-            <td>To-many Association</td>
-            <td>JobOrderRateCardLineGroup - list of IDs of the associated rate groups.
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                </ul>
-            </td>
-            <td></td>
+                </ul></td>
+            <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>rootExternalID</td>
             <td>String (100)</td>
             <td></td>
             <td></td>
-            <td>X</td>
+            <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>rootMigrateGUID</td>
             <td>String (36)</td>
             <td></td>
             <td></td>
-            <td>X</td>
+            <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>versionID</td>
             <td>Integer</td>
             <td>Unique Identifier for the current version</td>
-            <td></td>
+            <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>versions</td>
-            <td>To-many Association</td>
+            <td>To-many association</td>
             <td>IDs of associated JobOrderRateCardVersion records</td>
             <td></td>
             <td>X</td>
         </tr>
     </tbody>
 </table>
+
 
 
 

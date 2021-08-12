@@ -24,7 +24,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
     <tbody>
         <tr class="even">
             <td>id</td>
-            <td>ID</td>
+            <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
             <td>X</td>
@@ -34,14 +34,14 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
             <td>Timestamp</td>
             <td>Date the entity was added.</td>
             <td>X</td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td>Date last modified.</td>
+            <td></td>
             <td>X</td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>effectiveDate</td>
@@ -55,18 +55,18 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
             <td>Date</td>
             <td></td>
             <td></td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>isFirst</td>
             <td>Boolean</td>
             <td></td>
-            <td></td>
             <td>X</td>
+            <td></td>
         </tr>
         <tr class="even">
             <td>jobOrderRateCardLineGroups</td>
-            <td>To-many Association</td>
+            <td>To-many association</td>
             <td>JobOrderRateCardLineGroup
                 <p>Default fields:</p>
                 <ul>
@@ -78,7 +78,6 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
         </tr>
     </tbody>
 </table>
-
 
 
 
