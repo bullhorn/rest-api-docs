@@ -66,7 +66,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
         </tr>
         <tr class="even">
             <td>jobOrderRateCardLineGroups</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>JobOrderRateCardLineGroup
                 <p>Default fields:</p>
                 <ul>

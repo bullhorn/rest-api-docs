@@ -1,6 +1,6 @@
 # Pay and Bill - JobOrderRateCardLineGroup
 
-An Entity representing a group of rates on a Job Order
+Represents a group of rates on a Job Order
 
 
 <table>
@@ -77,7 +77,7 @@ An Entity representing a group of rates on a Job Order
         </tr>
         <tr class="even">
             <td>jobOrderRateCardLines</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>JobOrderRateCardLine - (No more than there are EarnCodes for the given EarnCodeGroup)
                 <p>Default fields:</p>
                 <ul>

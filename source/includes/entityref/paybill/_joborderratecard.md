@@ -1,6 +1,9 @@
 # Pay and Bill - JobOrderRateCard
 
-An Effective Dated Entity that represents all of the rates on a Job Order. JobOrderRateCard is the flattened entity. When making PUT and POST calls to JobOrderRateCard, the child entities (JobOrderRateCardLineGroup - JobOrderRateCardLine) can be passed as well with all associated data.
+An effective-dated entity that represents all the rates on a JobOrder. 
+JobOrderRateCard is the flattened entity. When making PUT and POST calls 
+to JobOrderRateCard, the child entities, JobOrderRateCardLineGroup and JobOrderRateCardLine, 
+can be passed as well with all associated data.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 
@@ -92,7 +95,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         </tr>
         <tr class="even">
             <td>jobOrderRateCardLineGroups</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>JobOrderRateCardLineGroup - list of IDs of the associated rate groups.
                 <p>Default fields:</p>
                 <ul>
@@ -125,7 +128,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         </tr>
         <tr class="even">
             <td>versions</td>
-            <td>To Many Association</td>
+            <td>To-many Association</td>
             <td>IDs of associated JobOrderRateCardVersion records</td>
             <td></td>
             <td>X</td>
