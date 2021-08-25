@@ -175,5 +175,12 @@ An Entity representing each individual rate on a Placement
             <td></td>
             <td></td>
         </tr>
+        <tr class="even">
+            <td>taxableMargin</td>
+            <td>BigDecimal</td>
+            <td>Configurable field to store percentage based value that will calculate taxes on transactions. Only used in conjunction with taxOnMarginEnabled on Sales Tax Group.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
     </tbody>
 </table>
