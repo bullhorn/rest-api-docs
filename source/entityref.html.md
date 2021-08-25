@@ -98,6 +98,10 @@ includes:
   - entityref/paybill/invoiceterm
   - entityref/paybill/invoicetermversion
   - entityref/paybill/jobcode
+  - entityref/paybill/joborderratecard
+  - entityref/paybill/joborderratecardline
+  - entityref/paybill/joborderratecardlinegroup
+  - entityref/paybill/joborderratecardversion
   - entityref/paybill/legalBusinessEntity
   - entityref/paybill/othersalestaxrate
   - entityref/paybill/payablecharge
