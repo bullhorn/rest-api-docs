@@ -118,5 +118,12 @@ Entitlements - None
             <td>X</td>
             <td>X</td>
         </tr>
+        <tr class="even">
+            <td>taxableMargin</td>
+            <td>BigDecimal</td>
+            <td>Configurable field on Placement Rate Card Line to store percentage based value that will calculate taxes on transactions. Only used in conjunction with taxOnMarginEnabled on Sales Tax Group.</td>
+            <td></br></td>
+            <td> X</td>
+        </tr>
     </tbody>
 </table>

@@ -177,5 +177,19 @@ Entitlements - Add Billable Charge, Edit Billable Charge, View Billable Charge.
             <td>X</td>
             <td><br/></td>
         </tr>
+        <tr class="odd">
+            <td>discountAmount</td>
+            <td>BigDecimal</td>
+            <td>Rounded total for unique discount rates tied to transactions represented by invoice statement line</td>
+            <td></br></td>
+            <td> X</td>
+        </tr>
+        <tr class="even">
+            <td>surchargeAmount</td>
+            <td>BigDecimal</td>
+            <td>Rounded total for unique surcharge rates tied to transactions represented by invoice statement line</td>
+            <td></td>
+            <td> X</td>
+        </tr>
     </tbody>
 </table>
