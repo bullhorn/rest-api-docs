@@ -188,7 +188,7 @@ Entitlements - Add Sales Tax Group, Edit Sales Tax Group, Read Sales Tax Group, 
             <td>taxOnMarginEnabled</td>
             <td>Boolean</td>
             <td>Field marks the Sales Tax Group to utilize taxable margins. If configured to true, will be used in conjunction with taxableMargin field on Placement Rate Card Line to determine appropriate level of taxes for transactions.</td>
-            <td><br/></td>
+            <td>X</td>
             <td><br/></td>
         </tr>
     </tbody>
