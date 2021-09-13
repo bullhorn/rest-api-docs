@@ -104,3 +104,4 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | workersCompensationRateID | Integer (100) | **Not supported in this release.** Id of the WorkersCompensationRate associated with this Placement. | | |
 | workWeekStart | Integer | Day of the week on which the work week begins for this Placement. 1 = Sunday, 2 = Monday, and so forth. | | |
 | venderClientCorporation | To-one association | Umbrella company associated with this Placement. | | |
+| isWorkFromHome | Boolean | Indicates whether the job is going to be remote or work from home. | | |
