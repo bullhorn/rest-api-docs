@@ -1,6 +1,6 @@
 # Pay and Bill - SalesTaxRate
 
-An Effective Dated Entity that represents a sales tax rate
+An Effective Dated Entity that represents a sales tax rate.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 

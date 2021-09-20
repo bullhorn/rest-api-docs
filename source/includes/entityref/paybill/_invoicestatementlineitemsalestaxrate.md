@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceStatementLineItemSalesTaxRate
 
-Represents the rounded subtotals for unique sales tax rates to an invoice statement line item
+Represents the rounded subtotals for unique sales tax rates to an invoice statement line item.
 
 CRUD Access - READ
 

@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceStatementSurchargeRate
 
-Represents the rounded subtotals for unique surcharge rates tied to an invoice statement
+Represents the rounded subtotals for unique surcharge rates tied to an invoice statement.
 
 CRUD Access - READ
 

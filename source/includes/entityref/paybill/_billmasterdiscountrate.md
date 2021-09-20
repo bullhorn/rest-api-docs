@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterDiscountRate
 
-Represents an association between BillMaster and a DiscountRate
+Represents an association between BillMaster and a DiscountRate.
 
 CRUD Access - READ
 

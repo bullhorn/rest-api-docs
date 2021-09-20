@@ -1,6 +1,6 @@
 # Pay and Bill - DiscountRate
 
-An effective dated entity that represents a Discount Rate
+An effective dated entity that represents a Discount Rate.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 

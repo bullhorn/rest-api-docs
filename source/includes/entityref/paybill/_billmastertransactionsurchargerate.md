@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionSurchargeRate
 
-Represents an association between a bill master transaction and surcharge rate
+Represents an association between a bill master transaction and surcharge rate.
 
 CRUD Access - READ
 

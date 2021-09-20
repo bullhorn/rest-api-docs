@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceStatementDiscountRate
 
-Represents the rounded subtotals for unique discount rates tied to an invoice statement
+Represents the rounded subtotals for unique discount rates tied to an invoice statement.
 
 CRUD Access - READ
 
