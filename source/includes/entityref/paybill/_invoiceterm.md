@@ -247,7 +247,7 @@ Entity that represents a customer invoice terms record.
         </tr>
         <tr class="even">
             <td>surchargeRates</td>
-            <td>To-many Association</td>
+            <td>To-many association</td>
             <td>SurchargeRate</td>
             <td></td>
             <td></td>

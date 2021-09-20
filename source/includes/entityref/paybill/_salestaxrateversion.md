@@ -103,7 +103,7 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         </tr>
         <tr class="odd">
             <td>source</td>
-            <td>To One Association (SalesTaxRateSourceLookup)</td>
+            <td>To-one association (SalesTaxRateSourceLookup)</td>
             <td>
                 <p>The source of this entity.</p>
                 <p>Default fields:</p>
@@ -117,7 +117,7 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         </tr>
         <tr class="even">
             <td>status</td>
-            <td>To One Association (TaxStatusLookup)</td>
+            <td>To-one association (TaxStatusLookup)</td>
             <td>
                 <p>Status of this entity.</p>
                 <p>Options are:</p>
@@ -136,7 +136,7 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         </tr>
         <tr class="odd">
             <td>taxType</td>
-            <td>To One Association (TaxTypeLookup)</td>
+            <td>To-one association (TaxTypeLookup)</td>
             <td>
                 <p>The tax type of this entity.</p>
                 <p>Options are:</p>

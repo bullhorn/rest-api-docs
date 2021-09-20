@@ -33,7 +33,7 @@ Entitlements - None
         </tr>
         <tr class="odd">
             <td>billMaster</td>
-            <td>To One Association (BillMaster)</td>
+            <td>To-one association (BillMaster)</td>
             <td>
                 <p>Associated Bill Master</p>
                 <p>Default fields:</p>
@@ -53,7 +53,7 @@ Entitlements - None
         </tr>
         <tr class="odd">
             <td>discountRate</td>
-            <td>To One Association (DiscountRate)</td>
+            <td>To-one association (DiscountRate)</td>
             <td>
                 <p>Associated Discount Rate.</p>
                 <p>Default fields:</p>
@@ -70,7 +70,7 @@ Entitlements - None
         </tr>
         <tr class="even">
             <td>owner</td>
-            <td>To One Association (CorporateUser)</td>
+            <td>To-one association (CorporateUser)</td>
             <td>
                 <p>CorporateUser</p>
                 <p>Associated Corporate User.</p>

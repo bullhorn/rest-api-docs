@@ -1,6 +1,6 @@
 # Pay and Bill - PlacementRateCardLine
 
-An Entity representing each individual rate on a Placement
+Represents each individual rate on a Placement.
 
 
 <table>
@@ -97,7 +97,7 @@ An Entity representing each individual rate on a Placement
             <td>
                 <p>Used to indicate what the difference is between the payRate and billRate as a percentage.</p>
                 <p>= (billRate - payRate) / payRate</p>
-                <p>(For example, if payRate = 20 and billRate = 28 then there is a 40% markup.)</p>
+                <p>For example, if payRate = 20 and billRate = 28 then there is a 40% markup.</p>
                 <p>markups get automatically calculated in code based off their respective billRate and payRate.</p>
             </td>
             <td></td>
@@ -109,7 +109,7 @@ An Entity representing each individual rate on a Placement
             <td>
                 <p>Used to indicate what the difference is between payRate and billRate displayed as money.</p>
                 <p>= billRate - payRate</p>
-                <p>(For example, there's a $10.00 difference between billRate = $20.00 and payRate = $10.00.)</p>
+                <p>For example, there's a $10.00 difference between billRate = $20.00 and payRate = $10.00.</p>
                 <p>markups get automatically calculated in code based off their respective billRate and payRate.</p>
             </td>
             <td></td>

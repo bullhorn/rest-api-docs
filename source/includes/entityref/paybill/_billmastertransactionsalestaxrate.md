@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionSalesTaxRate
 
-Represents an association between a BillMasterTransaction and SalesTaxRate
+Represents an association between a BillMasterTransaction and SalesTaxRate.
 
 CRUD Access - READ
 
@@ -47,7 +47,7 @@ Entitlements - None
         </tr>
         <tr class="odd">
             <td>billMasterTransaction</td>
-            <td>To One Association (BillMasterTransaction)</td>
+            <td>To-one association (BillMasterTransaction)</td>
             <td>
                 <p>Associated Bill Master Transaction</p>
                 <p>Default fields:</p>
@@ -60,7 +60,7 @@ Entitlements - None
         </tr>
         <tr class="even">
             <td>currencyUnit</td>
-            <td>To One Association (CurrencyUnit)</td>
+            <td>To-one association (CurrencyUnit)</td>
             <td>
                 <p>Associated Currency Unit.</p>
                 <p>Default fields:</p>
@@ -81,14 +81,14 @@ Entitlements - None
         </tr>
         <tr class="even">
             <td>reversalOfTransactionSalesTaxRate</td>
-            <td>To One Association (BillMasterTransactionSalesTaxRate)</td>
-            <td>Associated reversed Bill Master Transaction Sales Tax Rate. (Only applies if a reversal happened.)</td>
+            <td>To-one association (BillMasterTransactionSalesTaxRate)</td>
+            <td>Associated reversed Bill Master Transaction Sales Tax Rate (only applies if a reversal happened).</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>salesTaxRate</td>
-            <td>To One Association (SalesTaxRate)</td>
+            <td>To-one association (SalesTaxRate)</td>
             <td>
                 <p>Associated Sales Tax Rate; used to calculate taxAmount in conjunction with baseAmount.</p>
                 <p>Default fields:</p>

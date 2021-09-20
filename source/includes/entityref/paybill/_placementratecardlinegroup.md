@@ -30,7 +30,7 @@ An Entity representing a group of rates on a Placement
         </tr>
         <tr class="odd">
             <td>earnCodeGroup</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Earn Code Group for all of the rates
                 <p>Default fields:</p>
                 <ul>
@@ -63,7 +63,7 @@ An Entity representing a group of rates on a Placement
         </tr>
         <tr class="odd">
             <td>placementRateCard</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>PlacementRateCard
                 <p>Default fields:</p>
                 <ul>
@@ -77,7 +77,7 @@ An Entity representing a group of rates on a Placement
         </tr>
         <tr class="even">
             <td>placementRateCardLines</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>PlacementRateCardLine - (No more than there are EarnCodes for the given EarnCodeGroup)
                 <p>Default fields:</p>
                 <ul>
@@ -89,7 +89,7 @@ An Entity representing a group of rates on a Placement
         </tr>
         <tr class="odd">
             <td>placementRateCardVersion</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>PlacementRateCardVersion
                 <p>Default fields:</p>
                 <ul>

@@ -429,7 +429,7 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>summaryTransactions</td>
-            <td>To Many association</td>
+            <td>To-many association</td>
             <td>BillableChargeSummaryTransaction</td>
             <td></td>
             <td>X</td>

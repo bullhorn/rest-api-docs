@@ -1,6 +1,6 @@
 # Pay and Bill - SalesTaxGroup
 
-Represents various taxes (city, state, other, etc) associated with a zip+4 range.
+Represents various taxes (city, state, other, and so forth) associated with a zip+4 range.
 
 CRUD Access - CREATE, READ, UPDATE
 
