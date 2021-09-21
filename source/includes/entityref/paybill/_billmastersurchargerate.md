@@ -77,7 +77,7 @@ Entitlements - None
                     <li>lastName</li>
                 </ul>
             </td>
-            <td>X</td>
+            <td></td>
             <td>X</td>
         </tr>
     </tbody>
