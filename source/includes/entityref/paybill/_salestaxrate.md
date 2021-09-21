@@ -251,7 +251,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>source</td>
             <td>To-one association (SalesTaxRateSourceLookup)</td>
             <td>
-                <p>The source of this entity.</p>
+                <p>Source of this entity.</p>
                 <p>Options:</p>
                 <ol>
                     <li>Manual (default)</li>

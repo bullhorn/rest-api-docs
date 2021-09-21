@@ -105,7 +105,7 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
             <td>source</td>
             <td>To-one association (SalesTaxRateSourceLookup)</td>
             <td>
-                <p>The source of this entity.</p>
+                <p>Source of this entity.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

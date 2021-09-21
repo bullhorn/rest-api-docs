@@ -112,7 +112,7 @@ Entitlements - Add Sales Tax Group, Edit Sales Tax Group, Read Sales Tax Group, 
             <td>salesTaxRateSourceLookup</td>
             <td><p>Many-To-One association</p>
                 <p>(SalesTaxRateSourceLookup)</p></td>
-            <td><p>The source for the sales tax group.</p>
+            <td><p>Source for the sales tax group.</p>
                 <ul>
                     <li>id</li>
                 </ul>
