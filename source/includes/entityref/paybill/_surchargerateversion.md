@@ -34,7 +34,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
         <tr class="even">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>Amount of discount</td>
+            <td>Amount of discount.</td>
             <td><br/></td>
             <td><br/></td>
         </tr>
@@ -56,7 +56,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>earnCodes</td>
             <td><p>To-many association</p>
                 <p>(SurchargeRateVersionEarnCode)</p></td>
-            <td>Earn codes tied to this surcharge rate</td>
+            <td>Earn codes tied to this surcharge rate.</td>
             <td><br/></td>
             <td><br/></td>
         </tr>

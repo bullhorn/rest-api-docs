@@ -34,7 +34,7 @@ Entitlements - View Any Invoice Statement
         <tr class="even">
             <td>allSalesTaxRate</td>
             <td>To-one association</td>
-            <td>Associated AllSalesTaxRate</td>
+            <td>Associated AllSalesTaxRate.</td>
             <td>X</td>
             <td><br/></td>
         </tr>
@@ -48,7 +48,7 @@ Entitlements - View Any Invoice Statement
         <tr class="even">
             <td>billMasterTransactionSalesTaxDetail</td>
             <td>To-one association</td>
-            <td><p>Associated BillMasterTransactionSalesTaxDetail</p>
+            <td><p>Associated BillMasterTransactionSalesTaxDetail.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -61,7 +61,7 @@ Entitlements - View Any Invoice Statement
             <td>externalSalesTaxRate</td>
             <td>To-one association</td>
             <td>Associated ExternalSalesTaxRate (should be populated if salesTaxRate is
-                null)
+                null).
             </td>
             <td><br/></td>
             <td><br/></td>
@@ -70,7 +70,7 @@ Entitlements - View Any Invoice Statement
             <td><span>invoiceStatementLineItem</span></td>
             <td><p>To-one association</p>
                 <p>(InvoiceStatementLineItem)</p></td>
-            <td>The Invoice Statement object tied to this Invoice Statement Sales Tax Rate</td>
+            <td>The Invoice Statement object tied to this Invoice Statement Sales Tax Rate.</td>
             <td><br/></td>
             <td><br/></td>
         </tr>
@@ -116,7 +116,7 @@ Entitlements - View Any Invoice Statement
             <td><p>To-one association</p>
                 <p>(SalesTaxRate)</p></td>
             <td><p>Associated Sales Tax Rate. (should be populated
-                if externalSalesTaxRateID is null)</p>
+                if externalSalesTaxRateID is null).</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

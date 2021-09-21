@@ -55,7 +55,7 @@ Entitlements - None
         <tr class="odd">
             <td>billMasterTransaction</td>
             <td>To-one association</td>
-            <td><p>Associated Bill Master Transaction</p>
+            <td><p>Associated Bill Master Transaction.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

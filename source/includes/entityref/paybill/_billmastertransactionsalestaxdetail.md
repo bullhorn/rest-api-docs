@@ -34,14 +34,14 @@ Entitlements - View Billable Charge
     <tr class="even">
         <td>allSalesTaxRate</td>
         <td>To-one association</td>
-        <td>Associated AllSalesTaxRate</td>
+        <td>Associated AllSalesTaxRate.</td>
         <td>X</td>
         <td><br/></td>
     </tr>
     <tr class="odd">
         <td>billMasterTransactionSalesTaxRates</td>
         <td>To-many association</td>
-        <td><p>Associated BillMasterTransactionSalesTaxRates</p>
+        <td><p>Associated BillMasterTransactionSalesTaxRates.</p>
             <p>Default fields:</p>
             <ul>
                 <li>id</li>

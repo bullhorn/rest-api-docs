@@ -30,7 +30,7 @@ Read-only entity that represents a transaction type.
 <tr class="even">
 <td>name</td>
 <td>String (100)</td>
-<td>Name</td>
+<td>Name.</td>
 <td> </td>
 <td> </td>
 </tr>

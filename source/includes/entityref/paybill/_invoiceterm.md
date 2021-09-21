@@ -38,14 +38,14 @@ Entity that represents a customer invoice terms record.
         <tr class="even">
             <td>clientCorporation</td>
             <td>To-one association</td>
-            <td>ClientCorporation</td>
+            <td>ClientCorporation.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>currencyUnit</td>
             <td>To-one association</td>
-            <td>CurrencyUnit</td>
+            <td>CurrencyUnit.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -108,7 +108,7 @@ Entity that represents a customer invoice terms record.
         <tr class="even">
             <td>discountRates</td>
             <td>To-many association</td>
-            <td>DiscountRate</td>
+            <td>DiscountRate.</td>
             <td></td>
             <td></td>
         </tr>
@@ -136,14 +136,14 @@ Entity that represents a customer invoice terms record.
         <tr class="even">
             <td>fileTypesForInvoicing</td>
             <td>To-many association</td>
-            <td>BillingSyncBatchFileTypeLookup</td>
+            <td>BillingSyncBatchFileTypeLookup.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>generalLedgerAccountsReceivable</td>
             <td>To-one association</td>
-            <td>GeneralLedgerAccountsReceivable</td>
+            <td>GeneralLedgerAccountsReceivable.</td>
             <td></td>
             <td></td>
         </tr>
@@ -178,7 +178,7 @@ Entity that represents a customer invoice terms record.
         <tr class="even">
             <td>invoiceStatementTemplate</td>
             <td>To-one association</td>
-            <td>InvoiceStatementTemplate</td>
+            <td>InvoiceStatementTemplate.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -206,14 +206,14 @@ Entity that represents a customer invoice terms record.
         <tr class="even">
             <td>owner</td>
             <td>To-one association</td>
-            <td>CorporateUser</td>
+            <td>CorporateUser.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>payBillCycle</td>
             <td>To-one association</td>
-            <td>PayBillCycle</td>
+            <td>PayBillCycle.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -248,7 +248,7 @@ Entity that represents a customer invoice terms record.
         <tr class="even">
             <td>surchargeRates</td>
             <td>To-many association</td>
-            <td>SurchargeRate</td>
+            <td>SurchargeRate.</td>
             <td></td>
             <td></td>
         </tr>
@@ -269,7 +269,7 @@ Entity that represents a customer invoice terms record.
         <tr class="odd">
             <td>versions</td>
             <td>To-many association</td>
-            <td>InvoiceTermVersion</td>
+            <td>InvoiceTermVersion.</td>
             <td></td>
             <td>X</td>
         </tr>

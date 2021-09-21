@@ -34,7 +34,7 @@ Entitlements - None
         <tr class="even">
             <td>billMaster</td>
             <td>To-one association</td>
-            <td><p>Associated Bill Master</p>
+            <td><p>Associated Bill Master.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -69,7 +69,7 @@ Entitlements - None
         <tr class="odd">
             <td>owner</td>
             <td>To-one association</td>
-            <td><p>Associated Corporate User</p>
+            <td><p>Associated Corporate User.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

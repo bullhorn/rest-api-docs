@@ -49,7 +49,7 @@ Entitlements - None
             <td>billMasterTransaction</td>
             <td>To-one association (BillMasterTransaction)</td>
             <td>
-                <p>Associated Bill Master Transaction</p>
+                <p>Associated Bill Master Transaction.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

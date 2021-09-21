@@ -118,14 +118,14 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         <tr class="odd">
             <td>versionID</td>
             <td>Integer</td>
-            <td>Unique Identifier for the current version</td>
+            <td>Unique Identifier for the current version.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>versions</td>
             <td>To-many association</td>
-            <td>IDs of associated PlacementRateCardVersion records</td>
+            <td>IDs of associated PlacementRateCardVersion records.</td>
             <td></td>
             <td>X</td>
         </tr>

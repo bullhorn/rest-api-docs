@@ -31,14 +31,14 @@ Represents each individual rate on a Placement.
         <tr class="odd">
             <td>alias</td>
             <td>String (100)</td>
-            <td>Name of Earn Code that will be displayed in Time and Expense and on the Invoice Statement</td>
+            <td>Name of Earn Code that will be displayed in Time and Expense and on the Invoice Statement.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>billCurrencyUnit</td>
             <td>To-one association</td>
-            <td>Currency Unit for billing
+            <td>Currency Unit for billing.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -80,14 +80,14 @@ Represents each individual rate on a Placement.
         <tr class="odd">
             <td>earnCode</td>
             <td>To-one association</td>
-            <td>Earn Code associated with the line, based on the EarnCodeGroup </td>
+            <td>Earn Code associated with the line, based on the EarnCodeGroup.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>externalID</td>
             <td>String (100)</td>
-            <td>Customer defined identifier</td>
+            <td>Customer defined identifier.</td>
             <td></td>
             <td></td>
         </tr>
@@ -125,7 +125,7 @@ Represents each individual rate on a Placement.
         <tr class="even">
             <td>payCurrencyUnit</td>
             <td>To-one association</td>
-            <td>CurrencyUnit for payroll
+            <td>CurrencyUnit for payroll.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -166,7 +166,7 @@ Represents each individual rate on a Placement.
         <tr class="odd">
             <td>placementRateCardLineGroup</td>
             <td>To-one association</td>
-            <td>PlacementRateCardLineGroup
+            <td>PlacementRateCardLineGroup.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

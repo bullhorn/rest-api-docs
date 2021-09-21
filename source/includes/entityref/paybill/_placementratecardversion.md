@@ -67,7 +67,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
         <tr class="even">
             <td>placementRateCardLineGroups</td>
             <td>To-many association</td>
-            <td>PlacementRateCardLineGroup
+            <td>PlacementRateCardLineGroup.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

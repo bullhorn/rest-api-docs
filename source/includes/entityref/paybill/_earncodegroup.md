@@ -72,7 +72,7 @@ This entity represents the Earn Code Group which is a grouping of one or three e
         <tr class="even">
             <td>defaultEarnCode</td>
             <td>To-one association</td>
-            <td>DefaultEarnCode - The default Earn Code of this group, EarnCode.earnCodeTypeLookup = REG</td>
+            <td>DefaultEarnCode - The default Earn Code of this group, EarnCode.earnCodeTypeLookup = REG.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -86,7 +86,7 @@ This entity represents the Earn Code Group which is a grouping of one or three e
         <tr class="even">
             <td>earnCodeGroupStatusLookup</td>
             <td>To-one association</td>
-            <td>EarnCodeGroupStatusLookup - status of the earn code grpup. Options are Active or Inactive</td>
+            <td>EarnCodeGroupStatusLookup - status of the earn code grpup. Options are Active or Inactive.</td>
             <td>X</td>
             <td></td>
         </tr>

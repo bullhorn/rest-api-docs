@@ -34,7 +34,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000</td>
+            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -70,7 +70,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>generalLedgerAccount</td>
             <td>To-one association (GeneralLedgerAccount)</td>
             <td>
-                <p>GeneralLedgerAccount</p>
+                <p>GeneralLedgerAccount.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -236,7 +236,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         <tr class="even">
             <td>rate</td>
             <td>BigDecimal</td>
-            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000</td>
+            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -332,14 +332,14 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         <tr class="odd">
             <td>versionID</td>
             <td>Integer</td>
-            <td>Unique Identifier for the current version</td>
+            <td>Unique Identifier for the current version.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>versions</td>
             <td>To-many association (SalesTaxRateVersion)</td>
-            <td>Versions of this entity</td>
+            <td>Versions of this entity.</td>
             <td></td>
             <td>X</td>
         </tr>

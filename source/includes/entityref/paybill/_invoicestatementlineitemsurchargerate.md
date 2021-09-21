@@ -41,7 +41,7 @@ Entitlements - View Any Invoice Statement
         <tr class="odd">
             <td>billMasterTransactionSurchargeDetail</td>
             <td>To-one association</td>
-            <td><p>Associated BillMasterTransactionSurchargeDetail</p>
+            <td><p>Associated BillMasterTransactionSurchargeDetail.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -74,7 +74,7 @@ Entitlements - View Any Invoice Statement
             <td>invoiceStatementLineItem</td>
             <td><p>To-One association</p>
                 <p>(InvoiceStatementLineItem)</p></td>
-            <td>The Invoice Statement Line Item object tied to this entity</td>
+            <td>The Invoice Statement Line Item object tied to this entity.</td>
             <td><br/></td>
             <td><br/></td>
         </tr>

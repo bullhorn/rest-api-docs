@@ -34,7 +34,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>Amount of discount</td>
+            <td>Amount of discount.</td>
             <td></td>
             <td></td>
         </tr>
@@ -83,7 +83,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td>discountTypeLookup</td>
             <td>To-one association (DiscountTypeLookup)</td>
             <td>
-                <p>Type of the discount rate</p>
+                <p>Type of the discount rate.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -104,7 +104,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>earnCodes</td>
             <td>To-many association (EarnCode)</td>
-            <td>EarnCodes associated with this DiscountRate</td>
+            <td>EarnCodes associated with this DiscountRate.</td>
             <td></td>
             <td></td>
         </tr>
@@ -229,7 +229,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>ignoreForSalesTaxCalculations</td>
             <td>Boolean</td>
-            <td>Flag determining whether to apply the discount rate before taxes are calculated</td>
+            <td>Flag determining whether to apply the discount rate before taxes are calculated.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -264,7 +264,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>rate</td>
             <td>BigDecimal</td>
-            <td>The rate per quantity to apply</td>
+            <td>The rate per quantity to apply.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -279,7 +279,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td>statusLookup</td>
             <td>To-one association (StatusLookup)</td>
             <td>
-                <p>Status of the DiscountRate</p>
+                <p>Status of the DiscountRate.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

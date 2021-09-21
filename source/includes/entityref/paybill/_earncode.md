@@ -94,7 +94,7 @@ Represents an earn code.
         <tr class="even">
             <td>earnCodeGroup</td>
             <td>To-one association</td>
-            <td>EarnCodeGroup</td>
+            <td>EarnCodeGroup.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -135,35 +135,35 @@ Represents an earn code.
         <tr class="odd">
             <td>generalLedgerSegment1</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment1</td>
+            <td>GeneralLedgerSegment1.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerSegment2</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment2</td>
+            <td>GeneralLedgerSegment2.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment3</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment3</td>
+            <td>GeneralLedgerSegment3.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerSegment4</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment4</td>
+            <td>GeneralLedgerSegment4.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment5</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment5</td>
+            <td>GeneralLedgerSegment5.</td>
             <td></td>
             <td></td>
         </tr>

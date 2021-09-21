@@ -34,7 +34,7 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000</td>
+            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -76,21 +76,21 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         <tr class="odd">
             <td>jurisdictionName</td>
             <td>String (200)</td>
-            <td>Jurisdiction name</td>
+            <td>Jurisdiction name.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>label</td>
             <td>String (200)</td>
-            <td>Label</td>
+            <td>Label.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>rate</td>
             <td>BigDecimal</td>
-            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000</td>
+            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000.</td>
             <td>X</td>
             <td>X</td>
         </tr>

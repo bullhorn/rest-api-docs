@@ -35,7 +35,7 @@ Entitlements - None
             <td>billMaster</td>
             <td>To-one association (BillMaster)</td>
             <td>
-                <p>Associated Bill Master</p>
+                <p>Associated Bill Master.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -72,7 +72,6 @@ Entitlements - None
             <td>owner</td>
             <td>To-one association (CorporateUser)</td>
             <td>
-                <p>CorporateUser</p>
                 <p>Associated Corporate User.</p>
                 <p>Default fields:</p>
                 <ul>

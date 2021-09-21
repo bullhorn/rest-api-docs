@@ -27,7 +27,7 @@ Entitlements - None
         <tr class="odd">
             <td>id</td>
             <td>Integer</td>
-            <td>Unique Identifier for this entity</td>
+            <td>Unique Identifier for this entity.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -50,7 +50,7 @@ Entitlements - None
             <td>earnCode</td>
             <td><p>To-one association</p>
                 <p>(EarnCode)</p></td>
-            <td>EarnCode associated with this entity</td>
+            <td>EarnCode associated with this entity.</td>
             <td>X</td>
             <td><br/></td>
         </tr>
@@ -58,21 +58,21 @@ Entitlements - None
             <td>owner</td>
             <td><p>To-one association</p>
                 <p>(CorporateUser)</p></td>
-            <td>CorporateUser who created this entity</td>
+            <td>CorporateUser who created this entity.</td>
             <td>X</td>
             <td><br/></td>
         </tr>
         <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td>Date this entity was added</td>
+            <td>Date this entity was added.</td>
             <td>X</td>
             <td><br/></td>
         </tr>
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td>Date this <span>entity</span> was modified</td>
+            <td>Date this <span>entity</span> was modified.</td>
             <td>X</td>
             <td><br/></td>
         </tr>

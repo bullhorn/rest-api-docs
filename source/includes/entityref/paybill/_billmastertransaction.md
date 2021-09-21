@@ -175,7 +175,7 @@ Read-only entity that represents a BillMasterTransaction.
 <tr class="odd">
 <td>timeLaborEvalUnitID</td>
 <td><p>To-one association</p></td>
-<td><p>Metadata used for TimeLaborEval calculations</p>
+<td><p>Metadata used for TimeLaborEval calculations.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
