@@ -92,7 +92,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>generalLedgerSegment1</td>
             <td><p>To-one association</p>
                 <p>(GeneralLedgerSegment1)</p></td>
-            <td><p>&quot;Class&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -107,7 +107,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>generalLedgerSegment2</td>
             <td><p>To-one association</p>
                 <p>(GeneralLedgerSegment2)</p></td>
-            <td><p>&quot;Division&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -122,7 +122,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>generalLedgerSegment3</td>
             <td><p>To-one association</p>
                 <p>(GeneralLedgerSegment3)</p></td>
-            <td><p>&quot;Department&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -137,7 +137,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>generalLedgerSegment4</td>
             <td><p>To-one association</p>
                 <p>(GeneralLedgerSegment4)</p></td>
-            <td><p>&quot;Country&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -152,7 +152,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>generalLedgerSegment5</td>
             <td><p>To-one association</p>
                 <p>(GeneralLedgerSegment5)</p></td>
-            <td><p>&quot;Location&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -167,7 +167,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>generalLedgerServiceCode</td>
             <td><p>To-one association</p>
                 <p>(GeneralLedgerServiceCode)</p></td>
-            <td><p>&quot;Product/Service Code&quot;</p>
+            <td><p>Product/Service Code.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

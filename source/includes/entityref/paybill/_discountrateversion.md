@@ -127,7 +127,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td>generalLedgerSegment1</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Class"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -142,7 +142,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td>generalLedgerSegment2</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Division"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -157,7 +157,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td>generalLedgerSegment3</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Department"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -172,7 +172,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td>generalLedgerSegment4</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Country"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -187,7 +187,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td>generalLedgerSegment5</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Location"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -202,7 +202,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td>generalLedgerServiceCode</td>
             <td>To-one association (GeneralLedgerServiceCode)</td>
             <td>
-                <p>"Product/Service Code"</p>
+                <p>Product/Service Code.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
