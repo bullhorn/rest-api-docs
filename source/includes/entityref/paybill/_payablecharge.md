@@ -118,7 +118,7 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <tr class="odd">
 <td><p>generalLedgerSegment1</p></td>
 <td><span>To-one association</span></td>
-<td><p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
+<td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -131,7 +131,7 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <tr class="even">
 <td><p><span>generalLedgerSegment2</span></p></td>
 <td><span>To-one association</span></td>
-<td><p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
+<td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -144,7 +144,7 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <tr class="odd">
 <td><p><span>generalLedgerSegment3</span></p></td>
 <td><span>To-one association</span></td>
-<td><p>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
+<td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -157,7 +157,7 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <tr class="even">
 <td><p><span>generalLedgerSegment4</span></p></td>
 <td><span>To-one association</span></td>
-<td>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.
+<td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -170,7 +170,7 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <tr class="odd">
 <td><p><span>generalLedgerSegment5</span></p></td>
 <td><span>To-one association</span></td>
-<td><span>General Ledger Segments are part of the Chart of Accounts structure. By default Bullhorn's generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</span>
+<td><span>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</span>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
