@@ -29,8 +29,8 @@ Represents a Job Code.
         </tr>
         <tr class="odd">
             <td>businessSectors</td>
-            <td>To Many Association</td>
-            <td>BusinessSector<p>Default fields:</p>
+            <td>To-many association</td>
+            <td>BusinessSector.<p>Default fields:</p>
 <ul><li>id</li>
 <li>name</li></ul></td>
             <td></td>
@@ -38,8 +38,8 @@ Represents a Job Code.
         </tr>
         <tr class="even">
             <td>categories</td>
-            <td>To Many Association</td>
-            <td>Category<p>Default fields:</p>
+            <td>To-many association</td>
+            <td>Category.<p>Default fields:</p>
 <ul><li>id</li>
 <li>name</li></ul></td>
             <td></td>
@@ -96,8 +96,8 @@ Represents a Job Code.
         </tr>
         <tr class="even">
             <td>departments</td>
-            <td>To Many Association</td>
-            <td>CorporationDepartment<p>Default fields:</p>
+            <td>To-many association</td>
+            <td>CorporationDepartment.<p>Default fields:</p>
 <ul><li>id</li>
 <li>name</li></ul></td>
             <td></td>
@@ -126,7 +126,7 @@ Represents a Job Code.
         </tr>
         <tr class="even">
             <td>owner</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>CorporateUser who is the owner of this entity. The default value is user who created the entity.
                 <p>Default fields:</p>
                     <ul><li>id</li>
@@ -140,7 +140,7 @@ Represents a Job Code.
         <tr class="odd">
             <td>status</td>
             <td>String (100)</td>
-            <td>Options are Active or Inactive</td>
+            <td>Options are Active or Inactive.</td>
             <td>X</td>
             <td></td>
         </tr>

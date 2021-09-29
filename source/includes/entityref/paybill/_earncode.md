@@ -94,7 +94,7 @@ Represents an earn code.
         <tr class="even">
             <td>earnCodeGroup</td>
             <td>To-one association</td>
-            <td>EarnCodeGroup</td>
+            <td>EarnCodeGroup.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -135,35 +135,35 @@ Represents an earn code.
         <tr class="odd">
             <td>generalLedgerSegment1</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment1</td>
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerSegment2</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment2</td>
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment3</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment3</td>
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerSegment4</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment4</td>
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment5</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment5</td>
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</td>
             <td></td>
             <td></td>
         </tr>

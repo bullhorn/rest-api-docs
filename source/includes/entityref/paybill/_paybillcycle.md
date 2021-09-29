@@ -38,7 +38,7 @@ Entity that represents a billing cycle record.
         <tr class="even">
             <td>billingCalendarFrequencyLookup</td>
             <td>To-one association</td>
-            <td>CalendarFrequencyLookup</td>
+            <td>CalendarFrequencyLookup.</td>
             <td>X</td>
             <td></td>
         </tr>

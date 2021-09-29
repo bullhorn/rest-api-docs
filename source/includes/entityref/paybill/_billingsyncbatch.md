@@ -99,7 +99,7 @@ Read-only entity that represents a billing-sync batch. Dynamic insert and update
 <tr class="even">
 <td>periodEndDate</td>
 <td>Date</td>
-<td>Period end date</td>
+<td>Period end date.</td>
 <td> </td>
 <td>X</td>
 </tr>

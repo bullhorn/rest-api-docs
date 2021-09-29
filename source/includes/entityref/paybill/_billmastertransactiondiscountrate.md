@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionDiscountRate
 
-Represents an association between a BillMasterTransaction and DiscountRate
+Represents an association between a BillMasterTransaction and DiscountRate.
 
 CRUD Access - READ
 
@@ -47,9 +47,9 @@ Entitlements - None
         </tr>
         <tr class="odd">
             <td>billMasterTransaction</td>
-            <td>To One Association (BillMasterTransaction)</td>
+            <td>To-one association (BillMasterTransaction)</td>
             <td>
-                <p>Associated Bill Master Transaction</p>
+                <p>Associated Bill Master Transaction.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -59,9 +59,9 @@ Entitlements - None
             <td>X</td>
         </tr><tr class="even">
             <td>billMasterTransactionDiscountDetail</td>
-            <td>To One Association (BillMasterTransactionDiscountDetail)</td>
+            <td>To-one association (BillMasterTransactionDiscountDetail)</td>
             <td>
-             <p>Associated BillMasterTransactionDiscountDetail</p>
+             <p>Associated BillMasterTransactionDiscountDetail.</p>
              <p>Default fields:</p>
              <ul>
                  <li>id</li>
@@ -72,7 +72,7 @@ Entitlements - None
         </tr>
         <tr class="odd">
             <td>currencyUnit</td>
-            <td>To One Association (CurrencyUnit)</td>
+            <td>To-one association (CurrencyUnit)</td>
             <td>
                 <p>Associated Currency Unit.</p>
                 <p>Default fields:</p>
@@ -99,7 +99,7 @@ Entitlements - None
         </tr>
         <tr class="even">
             <td>discountRate</td>
-            <td>To One Association (DiscountRate)</td>
+            <td>To-one association (DiscountRate)</td>
             <td>
                 <p>Associated Discount Rate; used to calculate discountAmount in conjunction with baseAmount.</p>
                 <p>Default fields:</p>
@@ -123,7 +123,7 @@ Entitlements - None
         </tr>
         <tr class="even">
             <td>reversalOfTransactionDiscountRate</td>
-            <td>To One Association (BillMasterTransactionDiscountRate)</td>
+            <td>To-one association (BillMasterTransactionDiscountRate)</td>
             <td>
                 <p>Associated reversed Bill Master Transaction Discount Rate.</p>
             </td>

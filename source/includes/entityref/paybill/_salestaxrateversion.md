@@ -34,7 +34,7 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000</td>
+            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -76,21 +76,21 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         <tr class="odd">
             <td>jurisdictionName</td>
             <td>String (200)</td>
-            <td>Jurisdiction name</td>
+            <td>Jurisdiction name.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>label</td>
             <td>String (200)</td>
-            <td>Label</td>
+            <td>Label.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>rate</td>
             <td>BigDecimal</td>
-            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000</td>
+            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -103,9 +103,9 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         </tr>
         <tr class="odd">
             <td>source</td>
-            <td>To One Association (SalesTaxRateSourceLookup)</td>
+            <td>To-one association (SalesTaxRateSourceLookup)</td>
             <td>
-                <p>The source of this entity.</p>
+                <p>Source of this entity.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -117,7 +117,7 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         </tr>
         <tr class="even">
             <td>status</td>
-            <td>To One Association (TaxStatusLookup)</td>
+            <td>To-one association (TaxStatusLookup)</td>
             <td>
                 <p>Status of this entity.</p>
                 <p>Options are:</p>
@@ -136,7 +136,7 @@ Entitlements - Edit Any Invoice Statement (in future: Add Sales Tax Rate, Add Sa
         </tr>
         <tr class="odd">
             <td>taxType</td>
-            <td>To One Association (TaxTypeLookup)</td>
+            <td>To-one association (TaxTypeLookup)</td>
             <td>
                 <p>The tax type of this entity.</p>
                 <p>Options are:</p>

@@ -43,7 +43,7 @@ Represents a billable charge.
         <tr class="even">
             <td>billMasterTransactionDistributionBatches</td>
             <td>To-many association</td>
-            <td>BillMasterTransactionDistributionBatch - list of associated bill master transaction distribution batches</td>
+            <td>BillMasterTransactionDistributionBatch - list of associated bill master transaction distribution batches.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -68,7 +68,7 @@ Represents a billable charge.
         <tr class="odd">
             <td>billingCalendarInstances</td>
             <td>To-many association - list of associated billing calendar instances.</td>
-            <td>CalendarInstance</td>
+            <td>CalendarInstance.</td>
             <td></td>
             <td></td>
         </tr>
@@ -234,7 +234,7 @@ Represents a billable charge.
         <tr class="even">
             <td>generalLedgerSegment1</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment1
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -247,7 +247,7 @@ Represents a billable charge.
         <tr class="odd">
             <td>generalLedgerSegment2</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment2
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.
             	<p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -261,7 +261,7 @@ Represents a billable charge.
         <tr class="even">
             <td>generalLedgerSegment3</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment3
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.
             <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -274,7 +274,7 @@ Represents a billable charge.
         <tr class="odd">
             <td>generalLedgerSegment4</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment4
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -287,7 +287,7 @@ Represents a billable charge.
         <tr class="even">
             <td>generalLedgerSegment5</td>
             <td>To-one association</td>
-            <td>GeneralLedgerSegment5
+            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -299,7 +299,7 @@ Represents a billable charge.
         <tr class="odd">
             <td>generalLedgerServiceCode</td>
             <td>To-one association</td>
-            <td>GeneralLedgerServiceCode</td>
+            <td>GeneralLedgerServiceCode.</td>
             <td></td>
             <td></td>
         </tr>
@@ -341,7 +341,7 @@ Represents a billable charge.
         <tr class="even">
             <td>invoicedTransactions</td>
             <td>To-many association</td>
-            <td>InvoicedTransactions - lists IDs of invoiced transactions</td>
+            <td>InvoicedTransactions - lists IDs of invoiced transactions.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -382,7 +382,7 @@ Represents a billable charge.
         <tr class="even">
             <td>periodEndDate</td>
             <td>Date</td>
-            <td>Period end date</td>
+            <td>Period end date.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -429,7 +429,7 @@ Represents a billable charge.
         </tr>
         <tr class="odd">
             <td>summaryTransactions</td>
-            <td>To Many association</td>
+            <td>To-many association</td>
             <td>BillableChargeSummaryTransaction</td>
             <td></td>
             <td>X</td>
@@ -462,7 +462,7 @@ Represents a billable charge.
         <tr class="even">
             <td>unbillableTransactions</td>
             <td>To-many association</td>
-            <td>BillableChargeUnbillableTransaction</td>
+            <td>BillableChargeUnbillableTransaction.</td>
             <td></td>
             <td>X</td>
         </tr>

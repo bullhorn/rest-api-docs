@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionSurchargeDetail
 
-Represents the denormalized details of a surcharge rate for a BillMasterTransactionSurchargeRate
+Represents the denormalized details of a surcharge rate for a BillMasterTransactionSurchargeRate.
 
 CRUD Access - READ
 
@@ -34,7 +34,7 @@ Entitlements - View Billable Charge
         <tr class="even">
             <td>billMasterTransactionSurchargeRates</td>
             <td>To-many association</td>
-            <td><p>Associated BillMasterTransactionSurchargeRates</p>
+            <td><p>Associated BillMasterTransactionSurchargeRates.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

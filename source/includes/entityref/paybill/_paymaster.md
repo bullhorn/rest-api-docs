@@ -23,14 +23,14 @@ Read-only entity that represents a PayMaster record.
 <tr class="odd">
 <td>id</td>
 <td>Integer</td>
-<td>Unique identifier for this entity</td>
+<td>Unique identifier for this entity.</td>
 <td>X</td>
 <td>X</td>
 </tr>
 <tr class="even">
 <td>billingSyncBatch</td>
 <td>To-one association</td>
-<td><p>Billing sync batch</p>
+<td><p>Billing sync batch.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -48,7 +48,7 @@ Read-only entity that represents a PayMaster record.
 <tr class="even">
 <td>earnCode</td>
 <td>To-one association</td>
-<td><p>Earn code</p>
+<td><p>Earn code.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -61,7 +61,7 @@ Read-only entity that represents a PayMaster record.
 <tr class="odd">
 <td>payMasterTransactions</td>
 <td>To-many association</td>
-<td><p>Pay master transaction</p>
+<td><p>Pay master transaction.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -72,7 +72,7 @@ Read-only entity that represents a PayMaster record.
 <tr class="even">
 <td>payableCharge</td>
 <td>To-one association</td>
-<td><p>Payable charge</p>
+<td><p>Payable charge.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -83,7 +83,7 @@ Read-only entity that represents a PayMaster record.
 <tr class="odd">
 <td>transactionDate</td>
 <td><p>Date</p></td>
-<td><p>Transaction date</p></td>
+<td><p>Transaction date.</p></td>
 <td>X</td>
 <td> </td>
 </tr>

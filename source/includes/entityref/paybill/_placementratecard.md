@@ -66,7 +66,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         </tr>
         <tr class="even">
             <td>owner</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>CorporateUser who is the owner of this entity. The default value is user who created the entity.
                 <p>Default fields:</p>
                     <ul><li>id</li>
@@ -79,7 +79,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         </tr>
         <tr class="odd">
             <td>placement</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td><p>Placement.</p>
                 <p>Default fields:</p>
                 <ul>
@@ -91,7 +91,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         </tr>
         <tr class="even">
             <td>placementRateCardLineGroups</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>PlacementRateCardLineGroup - list of IDs of the associated rate groups.
                 <p>Default fields:</p>
                 <ul>
@@ -118,14 +118,14 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         <tr class="odd">
             <td>versionID</td>
             <td>Integer</td>
-            <td>Unique Identifier for the current version</td>
+            <td>Unique Identifier for the current version.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>versions</td>
-            <td>To Many Association</td>
-            <td>IDs of associated PlacementRateCardVersion records</td>
+            <td>To-many association</td>
+            <td>IDs of associated PlacementRateCardVersion records.</td>
             <td></td>
             <td>X</td>
         </tr>

@@ -34,7 +34,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>Amount of discount</td>
+            <td>Amount of discount.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -69,15 +69,15 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>discountRateID</td>
             <td>Integer</td>
-            <td>The ID of the DiscountRate this version is applicable to</td>
+            <td>The ID of the DiscountRate this version is applicable to.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>discountTypeLookup</td>
-            <td>To One Association (DiscountTypeLookup)</td>
+            <td>To-one association (DiscountTypeLookup)</td>
             <td>
-                <p>The Discount type</p>
+                <p>The Discount type.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -89,8 +89,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>earnCodes</td>
-            <td>To Many Association (EarnCode)</td>
-            <td>EarnCodes associated with this DiscountRate</td>
+            <td>To-many association (EarnCode)</td>
+            <td>EarnCodes associated with this DiscountRate.</td>
             <td></td>
             <td></td>
         </tr>
@@ -104,15 +104,15 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>effectiveEndDate</td>
             <td>Date</td>
-            <td>The latest date that this discount should apply to. </td>
+            <td>The latest date that this discount should apply to.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>generalLedgerAccount</td>
-            <td>To One Association (GeneralLedgerAccount)</td>
+            <td>To-one association (GeneralLedgerAccount)</td>
             <td>
-                <p>GeneralLedgerAccount</p>
+                <p>GeneralLedgerAccount.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -125,9 +125,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>generalLedgerSegment1</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Class"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -140,9 +140,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment2</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Division"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -155,9 +155,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>generalLedgerSegment3</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Department"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -170,9 +170,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment4</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Country"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -185,9 +185,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>generalLedgerSegment5</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Location"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -200,9 +200,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerServiceCode</td>
-            <td>To One Association (GeneralLedgerServiceCode)</td>
+            <td>To-one association (GeneralLedgerServiceCode)</td>
             <td>
-                <p>"Product/Service Code"</p>
+                <p>Product/Service Code.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -230,7 +230,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>rate</td>
             <td>BigDecimal</td>
-            <td>The rate per quantity to apply</td>
+            <td>The rate per quantity to apply.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -243,9 +243,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>statusLookup</td>
-            <td>To One Association (StatusLookup)</td>
+            <td>To-one association (StatusLookup)</td>
             <td>
-                <p>Status of the DiscountRateVersion</p>
+                <p>Status of the DiscountRateVersion.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

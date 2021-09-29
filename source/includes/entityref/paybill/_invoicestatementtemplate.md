@@ -80,7 +80,7 @@ Entity that represents an Invoice Statement Template record.
         <tr class="even">
             <td>fileOwner</td>
             <td>To-one Association</td>
-            <td>CorporateUser</td>
+            <td>CorporateUser.</td>
             <td></td>
             <td></td>
         </tr>

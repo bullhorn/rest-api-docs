@@ -140,7 +140,7 @@ Read-only entity that represents a BillMaster record.
         <tr class="even">
             <td>location</td>
             <td>To-one association</td>
-            <td>Location
+            <td>Location.
                 <p>Default fields:</p>
                 <ul>
                         <li>id</li>
@@ -159,7 +159,7 @@ Read-only entity that represents a BillMaster record.
         <tr class="odd">
             <td>owner</td>
             <td>To-one association</td>
-            <td>CorporateUser</td>
+            <td>CorporateUser.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -178,7 +178,7 @@ Read-only entity that represents a BillMaster record.
         <tr class="odd">
             <td>transactionDate</td>
             <td>Date</td>
-            <td><p>Transaction date</p></td>
+            <td><p>Transaction date.</p></td>
             <td></td>
             <td>X</td>
         </tr>

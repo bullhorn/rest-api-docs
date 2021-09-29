@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionDiscountDetail
 
-Represents the denormalized details of a discount rate version for a BillMasterTransactionDiscountRate
+Represents the denormalized details of a discount rate version for a BillMasterTransactionDiscountRate.
 
 CRUD Access - READ
 
@@ -34,7 +34,7 @@ Entitlements - View Billable Charge
         <tr class="even">
             <td>billMasterTransactionDiscountRates</td>
             <td>To-many association</td>
-            <td><p>Associated BillMasterTransactionDiscountRates</p>
+            <td><p>Associated BillMasterTransactionDiscountRates.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -55,7 +55,7 @@ Entitlements - View Billable Charge
             <td>calculateAndDisplayOnInvoice</td>
             <td>Boolean</td>
             <td>If true, discount will be applied to the InvoiceStatement.discountAmount
-                calculation
+                calculation.
             </td>
             <td>X</td>
             <td><br/></td>
@@ -87,7 +87,7 @@ Entitlements - View Billable Charge
             <td>ignoreForSalesTaxCalculations</td>
             <td>Boolean</td>
             <td>If false, discount will be applied to the base amount used for tax
-                calculations
+                calculations.
             </td>
             <td>X</td>
             <td><br/></td>

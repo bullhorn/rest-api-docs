@@ -1,6 +1,6 @@
 # Pay and Bill - GeneralLedgerSegment
 
-Represents a general ledger segment for assignment to Placement, BillableCharge, and PayableCharge
+Represents a general ledger segment for assignment to Placement, BillableCharge, and PayableCharge.
 
 <table>
 <colgroup>

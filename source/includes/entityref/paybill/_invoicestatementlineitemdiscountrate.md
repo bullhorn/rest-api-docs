@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceStatementLineItemDiscountRate
 
-Represents the rounded subtotals for unique discount rates tied to an invoice statement line item
+Represents the rounded subtotals for unique discount rates tied to an invoice statement line item.
 
 CRUD Access - READ
 
@@ -41,7 +41,7 @@ Entitlements - View Any Invoice Statement
         <tr class="odd">
             <td>billMasterTransactionDiscountDetail</td>
             <td>To-one association</td>
-            <td><p>Associated BillMasterTransactionDiscountDetail</p>
+            <td><p>Associated BillMasterTransactionDiscountDetail.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -62,7 +62,7 @@ Entitlements - View Any Invoice Statement
         <tr class="odd">
             <td>calculateAndDisplayOnInvoice</td>
             <td>Boolean</td>
-            <td>If true, discount will be applied to the InvoiceStatement.discountAmount calculation
+            <td>If true, discount will be applied to the InvoiceStatement.discountAmount calculation.
             </td>
             <td>X</td>
             <td><br/></td>
@@ -93,7 +93,7 @@ Entitlements - View Any Invoice Statement
         <tr class="even">
             <td>ignoreForSalesTaxCalculations</td>
             <td>Boolean</td>
-            <td>If false, discount will be applied to the base amount used for tax calculations</td>
+            <td>If false, discount will be applied to the base amount used for tax calculations.</td>
             <td>X</td>
             <td><br/></td>
         </tr>
@@ -101,7 +101,7 @@ Entitlements - View Any Invoice Statement
             <td>invoiceStatementLineItem</td>
             <td><p>To-One association</p>
                 <p>(InvoiceStatementLineItem)</p></td>
-            <td>The Invoice Statement Line Item object tied to this entity</td>
+            <td>The Invoice Statement Line Item object tied to this entity.</td>
             <td><br/></td>
             <td><br/></td>
         </tr>

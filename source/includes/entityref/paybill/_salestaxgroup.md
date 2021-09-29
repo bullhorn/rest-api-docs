@@ -1,6 +1,6 @@
 # Pay and Bill - SalesTaxGroup
 
-Represents various taxes (city, state, other, etc) associated with a zip+4 range.
+Represents various taxes (city, state, other, and so forth) associated with a zip+4 range.
 
 CRUD Access - CREATE, READ, UPDATE
 
@@ -34,21 +34,21 @@ Entitlements - Add Sales Tax Group, Edit Sales Tax Group, Read Sales Tax Group, 
         <tr>
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td>Date the entity was added</td>
+            <td>Date the entity was added.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr>
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td>Date last modified</td>
+            <td>Date last modified.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr>
             <td>stateID</td>
             <td>Integer</td>
-            <td>State id of tax group userd for validation with zip code</td>
+            <td>State id of tax group userd for validation with zip code.</td>
             <td>X</td>
             <td><br/></td>
         </tr>
@@ -76,28 +76,28 @@ Entitlements - Add Sales Tax Group, Edit Sales Tax Group, Read Sales Tax Group, 
         <tr>
             <td>label</td>
             <td>String</td>
-            <td>label of tax group</td>
+            <td>Label of tax group.</td>
             <td>X</td>
             <td><br/></td>
         </tr>
         <tr>
             <td>zipcode</td>
             <td>String</td>
-            <td>zipcode of tax group</td>
+            <td>Zipcode of tax group.</td>
             <td>X</td>
             <td><br/></td>
         </tr>
         <tr>
             <td>zipPlus4Low</td>
             <td>String</td>
-            <td>Provides a range of zipcodes within the tax group</td>
+            <td>Provides a range of zipcodes within the tax group.</td>
             <td><br/></td>
             <td><br/></td>
         </tr>
         <tr>
             <td>zipPlus4High</td>
             <td><span>String</span></td>
-            <td><span>Provides a range of zipcodes within the tax group</span></td>
+            <td><span>Provides a range of zipcodes within the tax group.</span></td>
             <td><br/></td>
             <td><br/></td>
         </tr>
@@ -112,7 +112,7 @@ Entitlements - Add Sales Tax Group, Edit Sales Tax Group, Read Sales Tax Group, 
             <td>salesTaxRateSourceLookup</td>
             <td><p>Many-To-One association</p>
                 <p>(SalesTaxRateSourceLookup)</p></td>
-            <td><p>The source for the sales tax group</p>
+            <td><p>Source for the sales tax group.</p>
                 <ul>
                     <li>id</li>
                 </ul>
@@ -180,9 +180,16 @@ Entitlements - Add Sales Tax Group, Edit Sales Tax Group, Read Sales Tax Group, 
         <tr>
             <td>totalRate</td>
             <td>BigDecimal</td>
-            <td>Sum of all rates of associated tax rates</td>
+            <td>Sum of all rates of associated tax rates.</td>
             <td><br/></td>
             <td>X</td>
+        </tr>
+        <tr>
+            <td>taxOnMarginEnabled</td>
+            <td>Boolean</td>
+            <td>Field marks the Sales Tax Group to utilize taxable margins. If configured to true, will be used in conjunction with taxableMargin field on Placement Rate Card Line to determine appropriate level of taxes for transactions.</td>
+            <td>X</td>
+            <td><br/></td>
         </tr>
     </tbody>
 </table>

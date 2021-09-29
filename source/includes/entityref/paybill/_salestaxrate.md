@@ -1,6 +1,6 @@
 # Pay and Bill - SalesTaxRate
 
-An Effective Dated Entity that represents a sales tax rate
+An Effective Dated Entity that represents a sales tax rate.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 
@@ -34,7 +34,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000</td>
+            <td>The amount for this entity - used for a fixed/amount type tax. The default value is 0.000000.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -68,9 +68,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>generalLedgerAccount</td>
-            <td>To One Association (GeneralLedgerAccount)</td>
+            <td>To-one association (GeneralLedgerAccount)</td>
             <td>
-                <p>GeneralLedgerAccount</p>
+                <p>GeneralLedgerAccount.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -83,9 +83,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment1</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Class"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -98,9 +98,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>generalLedgerSegment2</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Division"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -113,9 +113,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment3</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Department"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -128,9 +128,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>generalLedgerSegment4</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Country"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -143,9 +143,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment5</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Location"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -158,9 +158,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>generalLedgerServiceCode</td>
-            <td>To One Association (GeneralLedgerServiceCode)</td>
+            <td>To-one association (GeneralLedgerServiceCode)</td>
             <td>
-                <p>"Product/Service Code"</p>
+                <p>Product/Service Code.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -190,7 +190,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>jurisdictionType</td>
-            <td>To One Association (TaxJurisdictionTypeLookup)</td>
+            <td>To-one association (TaxJurisdictionTypeLookup)</td>
             <td>
                 <p>Jurisdiction type.</p>
                 <p>Options are:</p>
@@ -220,7 +220,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>owner</td>
-            <td>To One Association (CorporateUser)</td>
+            <td>To-one association (CorporateUser)</td>
             <td>
                 <p>Corporate User who is the owner of this entity. The default value is the user who created the entity.</p>
                 <p>Default fields:</p>
@@ -236,7 +236,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         <tr class="even">
             <td>rate</td>
             <td>BigDecimal</td>
-            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000</td>
+            <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -249,9 +249,9 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>source</td>
-            <td>To One Association (SalesTaxRateSourceLookup)</td>
+            <td>To-one association (SalesTaxRateSourceLookup)</td>
             <td>
-                <p>The source of this entity.</p>
+                <p>Source of this entity.</p>
                 <p>Options:</p>
                 <ol>
                     <li>Manual (default)</li>
@@ -274,7 +274,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>status</td>
-            <td>To One Association (TaxStatusLookup)</td>
+            <td>To-one association (TaxStatusLookup)</td>
             <td>
                 <p>Status of this entity.</p>
                 <p>Options are:</p>
@@ -293,7 +293,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="odd">
             <td>taxType</td>
-            <td>To One Association (TaxTypeLookup)</td>
+            <td>To-one association (TaxTypeLookup)</td>
             <td>
                 <p>The tax type of this entity.</p>
                 <p>Options are:</p>
@@ -312,7 +312,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         </tr>
         <tr class="even">
             <td>type</td>
-            <td>To One Association (SalesTaxRateTypeLookup)</td>
+            <td>To-one association (SalesTaxRateTypeLookup)</td>
             <td>
                 </p>Type of SalesTaxRate.</p>
                 <p>Options are:</p>
@@ -332,14 +332,14 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
         <tr class="odd">
             <td>versionID</td>
             <td>Integer</td>
-            <td>Unique Identifier for the current version</td>
+            <td>Unique Identifier for the current version.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>versions</td>
-            <td>To Many Association (SalesTaxRateVersion)</td>
-            <td>Versions of this entity</td>
+            <td>To-many association (SalesTaxRateVersion)</td>
+            <td>Versions of this entity.</td>
             <td></td>
             <td>X</td>
         </tr>

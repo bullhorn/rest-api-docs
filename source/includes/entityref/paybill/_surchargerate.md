@@ -34,7 +34,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
         <tr class="even">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>Amount of surcharge</td>
+            <td>Amount of surcharge.</td>
             <td><br/></td>
             <td><br/></td>
         </tr>
@@ -56,7 +56,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>earnCodes</td>
             <td><p>To-many association</p>
                 <p>(SurchargeRateVersionEarnCode)</p></td>
-            <td>Earn codes tied to this surcharge rate</td>
+            <td>Earn codes tied to this surcharge rate.</td>
             <td><br/></td>
             <td><br/></td>
         </tr>
@@ -96,7 +96,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td><p>To-one association</p>
                 <p><span>(GeneralLedgerSegment1)</span>
                 </p></td>
-            <td><p>&quot;Class&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -112,7 +112,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td><p>To-one association</p>
                 <p><span>(GeneralLedgerSegment2)</span>
                 </p></td>
-            <td><p>&quot;Division&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -128,7 +128,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td><p>To-one association</p>
                 <p><span>(GeneralLedgerSegment3)</span>
                 </p></td>
-            <td><p>&quot;Department&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -144,7 +144,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td><p>To-one association</p>
                 <p><span>(GeneralLedgerSegment4)</span>
                 </p></td>
-            <td><p>&quot;Country&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -160,7 +160,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td><p>To-one association</p>
                 <p><span>(GeneralLedgerSegment5)</span>
                 </p></td>
-            <td><p>&quot;Location&quot;</p>
+            <td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -175,7 +175,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>generalLedgerServiceCode</td>
             <td><p>To-one association</p>
                 <p>(GeneralLedgerServiceCode)</p></td>
-            <td><p>&quot;Product/Service Code&quot;</p>
+            <td><p>Product/Service Code.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

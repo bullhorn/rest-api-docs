@@ -1,6 +1,6 @@
 # Pay and Bill - DiscountRate
 
-An effective dated entity that represents a Discount Rate
+An effective dated entity that represents a Discount Rate.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 
@@ -34,7 +34,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>Amount of discount</td>
+            <td>Amount of discount.</td>
             <td></td>
             <td></td>
         </tr>
@@ -54,7 +54,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
-            <td>To One Association (ClientCorporation)</td>
+            <td>To-one association (ClientCorporation)</td>
             <td>
                 <p>Default fields:</p>
                 <ul>
@@ -81,9 +81,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>discountTypeLookup</td>
-            <td>To One Association (DiscountTypeLookup)</td>
+            <td>To-one association (DiscountTypeLookup)</td>
             <td>
-                <p>Type of the discount rate</p>
+                <p>Type of the discount rate.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -103,8 +103,8 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>earnCodes</td>
-            <td>To Many Association (EarnCode)</td>
-            <td>EarnCodes associated with this DiscountRate</td>
+            <td>To-many association (EarnCode)</td>
+            <td>EarnCodes associated with this DiscountRate.</td>
             <td></td>
             <td></td>
         </tr>
@@ -124,7 +124,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerAccount</td>
-            <td>To One Association (GeneralLedgerAccount)</td>
+            <td>To-one association (GeneralLedgerAccount)</td>
             <td>
                 <p>Default fields:</p>
                 <ul>
@@ -138,9 +138,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>generalLedgerSegment1</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Class"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -153,9 +153,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment2</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Division"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -168,9 +168,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>generalLedgerSegment3</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Department"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -183,9 +183,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment4</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Country"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -198,9 +198,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>generalLedgerSegment5</td>
-            <td>To One Association (GeneralLedgerSegment)</td>
+            <td>To-one association (GeneralLedgerSegment)</td>
             <td>
-                <p>"Location"</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -213,9 +213,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>generalLedgerServiceCode</td>
-            <td>To One Association (GeneralLedgerServiceCode)</td>
+            <td>To-one association (GeneralLedgerServiceCode)</td>
             <td>
-                <p>"Product/Service Code"</p>
+                <p>Product/Service Code.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -229,7 +229,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>ignoreForSalesTaxCalculations</td>
             <td>Boolean</td>
-            <td>Flag determining whether to apply the discount rate before taxes are calculated</td>
+            <td>Flag determining whether to apply the discount rate before taxes are calculated.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -249,7 +249,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>owner</td>
-            <td>To One Association (CorporateUser)</td>
+            <td>To-one association (CorporateUser)</td>
             <td>
                 <p>Default fields:</p>
                 <ul>
@@ -264,7 +264,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         <tr class="even">
             <td>rate</td>
             <td>BigDecimal</td>
-            <td>The rate per quantity to apply</td>
+            <td>The rate per quantity to apply.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -277,9 +277,9 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="even">
             <td>statusLookup</td>
-            <td>To One Association (StatusLookup)</td>
+            <td>To-one association (StatusLookup)</td>
             <td>
-                <p>Status of the DiscountRate</p>
+                <p>Status of the DiscountRate.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -305,7 +305,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
         </tr>
         <tr class="odd">
             <td>versions</td>
-            <td>To Many Association (DiscountRateVersion)</td>
+            <td>To-many association (DiscountRateVersion)</td>
             <td>
                 <p>Versions.</p>
                 <p>Default fields:</p>
