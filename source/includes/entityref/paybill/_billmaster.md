@@ -4,7 +4,7 @@ Represents a Bill Master record.
 
 CRUD Access - READ, UPDATE.
 
-Entitlements - View Bill Maaster, Edit Billable Charge
+Entitlements - View Bill Master, Edit Billable Charge
 
 <table>
     <colgroup>
