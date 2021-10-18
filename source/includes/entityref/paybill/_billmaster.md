@@ -1,6 +1,6 @@
 # Pay and Bill - BillMaster
 
-Represents a Bill Master record.
+Represents a BillMaster record.
 
 CRUD Access - READ, UPDATE.
 
