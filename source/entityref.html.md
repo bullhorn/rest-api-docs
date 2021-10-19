@@ -41,6 +41,7 @@ includes:
   - entityref/entityedithistoryfieldchange
   - entityref/entityfileattachment
   - entityref/estaffmappableflowback
+  - entityref/federaltaxform  
   - entityref/housingcomplex
   - entityref/housingcomplexfurnituredelivery
   - entityref/housingcomplexunit
@@ -54,6 +55,7 @@ includes:
   - entityref/jobsubmissionhistory
   - entityref/lead
   - entityref/leadhistory
+  - entityref/localtaxform
   - entityref/location
   - entityref/locationversion
   - entityref/note
@@ -131,6 +133,7 @@ includes:
   - entityref/skill
   - entityref/specialty
   - entityref/state
+  - entityref/statetaxform
   - entityref/task
   - entityref/tearsheet
   - entityref/tearsheetmember
