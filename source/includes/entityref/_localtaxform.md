@@ -1,8 +1,8 @@
 # LocalTaxForm
 
-This entity represents a tax form that is added to a candidate at the local level.
+Represents a tax form that is added to a candidate at the local level.
 
-This will only be used in the user interface if the corporation setting "novoTaxInfoTab" is enabled
+The LocalTaxForm entity is only available in the user interface if the novoTaxInfoTab corporation setting is enabled.
 
 
 
@@ -35,7 +35,7 @@ This will only be used in the user interface if the corporation setting "novoTax
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td>Candidate</td>
+            <td>Candidate to which the LocalTaxForm applies.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -84,29 +84,27 @@ This will only be used in the user interface if the corporation setting "novoTax
         <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td><p><span>Whether entity is deleted.</span></p>
-<p><span> <span>The default value is false.</span> </span></p></td>
-            <td>X</td>
+            <td>Whether entity is deleted or the default value is false.</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>isExempt</td>
             <td>Boolean</td>
-            <td>To claim exemption from withholding, set this to Yes.</td>
+            <td>To claim exemption from withholding, set this to withholding.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>localAdditionalWithholdingsAmount</td>
             <td>BigDecimal</td>
-            <td>Number of local withholdings the Candidate has selected on his or her W-2 tax form.</td>
+            <td>Number of local withholdings the Candidate has selected on W-2 tax form.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>localExemptions</td>
             <td>Integer</td>
-            <td>Number of local exemptions Candidate has indicated on his or her W-2 tax form.</td>
+            <td>Number of local exemptions Candidate has indicated on W-2 tax form.</td>
             <td></td>
             <td></td>
         </tr>
