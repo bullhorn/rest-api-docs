@@ -1,7 +1,10 @@
 # Pay and Bill - BillMaster
 
-Read-only entity that represents a BillMaster record.
+Represents a BillMaster record.
 
+CRUD Access - READ, UPDATE.
+
+Entitlements - View Bill Master, Edit Billable Charge
 
 <table>
     <colgroup>
@@ -154,7 +157,7 @@ Read-only entity that represents a BillMaster record.
                 </ul>
             </td>
             <td></td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>owner</td>
@@ -191,6 +194,46 @@ Read-only entity that represents a BillMaster record.
                     <li>2 = Submitted</li>
                     <li>3 = Payment Approved</li>
                     <li>4 = Approved</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>discountRates</td>
+            <td>To-many association</td>
+            <td>
+                <p>Associated Discount Rate(s).</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>title</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                    <li>versionID</li>
+                    <li>rate</li>
+                    <li>amount</li>
+                    <li>discountTypeLookup</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>surchargeRates</td>
+            <td>To-many association</td>
+            <td>
+                <p>Associated Surcharge Rate(s).</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>title</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                    <li>versionID</li>
+                    <li>rate</li>
+                    <li>amount</li>
+                    <li>type</li>
                 </ul>
             </td>
             <td></td>
