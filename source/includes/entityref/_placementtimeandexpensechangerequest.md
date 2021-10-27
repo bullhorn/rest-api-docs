@@ -1,6 +1,6 @@
 # PlacementTimeAndExpenseChangeRequest
 
-Represents a change request that is submitted for a particular Placement. Placements cannot be directly modified; a user must submit a PlacementChangeRequest for approval. Supports create, update, and delete operations.
+Represents a change request that is submitted for a particular Placement regarding employee time and expense data. Placement time and expense information cannot be directly modified; a user must submit a PlacementTimeAndExpenseChangeRequest for approval. Supports create, update, and delete operations.
 
 | **PlacementTimeAndExpenseChangeRequest field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
@@ -8,7 +8,7 @@ Represents a change request that is submitted for a particular Placement. Placem
 | timeAndExpenseSource | String (1) | Indicates type of assignment. Expected values are C=Clock, W=Web or V=VMS Provider. | | |
 | employeeBadge | Integer | If cards are used by locations, then pass a unique badge/card number. Maps to Employee Badge field. | | |
 | departmentMapping | String (100) | Used to map to a Peoplenet Department for clocks. Not used by web. | | |
-| departmentAbbr | String (8) | Used to create the short department name that is displayed on clocks | | |
+| departmentAbbr | String (8) | Used to create the short department name that is displayed on clocks. | | |
 | departmentName | String (30) | Used to create the long department name that is displayed on TMC, reporting, and so forth. | | |
 | clientDepartmentCode | String (100) | Used to expand Peoplenet Department mapping for clocks, not used by web. | | |
 | dtBillingFactor | BigDecimal | If not provided, the default is 2.00000. | | |
