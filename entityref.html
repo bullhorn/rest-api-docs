@@ -19510,6 +19510,273 @@ can be passed as well with all associated data.</p>
 </tr>
 </tbody></table>
 
+          <h1 id="placementtimeandexpensechangerequest">PlacementTimeAndExpenseChangeRequest</h1>
+
+<p>Represents a change request that is submitted for a particular Placement regarding employee time and expense data. Placement time and expense information cannot be directly modified; a user must submit a PlacementTimeAndExpenseChangeRequest for approval. Supports create, update, and delete operations.</p>
+
+<table><thead>
+<tr>
+<th><strong>PlacementTimeAndExpenseChangeRequest field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>timeAndExpenseSource</td>
+<td>String (1)</td>
+<td>Indicates type of assignment.<br/> C=Clock, W=Web or V=VMS Provider.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>employeeBadge</td>
+<td>Integer</td>
+<td>If cards are used by locations, then pass a unique badge/card number. Maps to Employee Badge field.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>departmentMapping</td>
+<td>String (100)</td>
+<td>Used to map to a Peoplenet Department for clocks. Not used by web.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>departmentAbbr</td>
+<td>String (8)</td>
+<td>Used to create the short department name that is displayed on clocks.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>departmentName</td>
+<td>String (30)</td>
+<td>Used to create the long department name that is displayed on TMC, reporting, and so forth.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientDepartmentCode</td>
+<td>String (100)</td>
+<td>Used to expand Peoplenet Department mapping for clocks, not used by web.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dtBillingFactor</td>
+<td>BigDecimal</td>
+<td>If not provided, the default is 2.00000.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>inOutIndicator</td>
+<td>String (1)</td>
+<td>Indicates how in and out times are implemented.<br/> Blank=Default, 0=Hours per day, 1=In/Out template</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>proxyCPAFlag</td>
+<td>String (1)</td>
+<td>Enables Closed Period Adjustment for Proxy (Admin).<br/> 0 = Off, 1 =On</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>employeeCPAFlag</td>
+<td>String (1)</td>
+<td>Enables Closed Period Adjustment for Employee.<br/> 0 = Off, 1 = On</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>employeeOtType</td>
+<td>Integer</td>
+<td>Indicates whether or not to search for and apply pay rules to the time card.<br/> 0 = Default OT Rules, 1=No OT calculated, 2=Exempt</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expenseApproverFName</td>
+<td>String (20)</td>
+<td>First name of the expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expenseApproverLName</td>
+<td>String (20)</td>
+<td>Last name of the expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expenseApproverEmail</td>
+<td>String (132)</td>
+<td>Email address name of the expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>backupExpenseApproverFName</td>
+<td>String (20)</td>
+<td>First name of the backup expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>backupExpenseApproverLName</td>
+<td>String (20)</td>
+<td>Last name of the backup expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>backupExpenseApproverEmail</td>
+<td>String (132)</td>
+<td>Email address of the backup expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>approvalMethod</td>
+<td>String (32)</td>
+<td>Indicates the method used for approval.<br/> ELEC = Email/Electronic Approval, ASAP = Fax Approver/ASAP, NAR = No Approval Required</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expenseIndicator</td>
+<td>String (1)</td>
+<td>Indicates if this is an expense.<br/> 0 = Off, 1 = On</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clockMapping</td>
+<td>String (32)</td>
+<td>Location code used for Clocks.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rounding</td>
+<td>String (10)</td>
+<td>Designates the rounding compensating adjustment to then round the whole day to the &frac14; hour, or 1/10 hour, as opposed to rounding each transaction individually.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>branding</td>
+<td>String (32)</td>
+<td>Designates the branding.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>payRules</td>
+<td>String (50)</td>
+<td>Pay rule type.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vmsEmployeeID</td>
+<td>String (20)</td>
+<td>VMS employee identification number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vmsAssignmentNumber</td>
+<td>String (32)</td>
+<td>VMS assignment identification number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vmsCostCenter</td>
+<td>String (32)</td>
+<td>Name of the cost center associated with this job. This cost center flows to the placement record and drives invoice grouping.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vmsRequisitionID</td>
+<td>String (32)</td>
+<td>VMS requisition identification number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>alternateWorkSchedule</td>
+<td>String (50)</td>
+<td>Used to designate alternate work schedule.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>noBillExpenseApproverFirstName</td>
+<td>String (20)</td>
+<td>First name of the no bill expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>noBillExpenseApproverLastName</td>
+<td>String (20)</td>
+<td>Last name of the no bill expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>noBillExpenseApproverEmail</td>
+<td>String (132)</td>
+<td>Email address of the no bill expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>backupNoBillExpenseApproverFirstName</td>
+<td>String (20)</td>
+<td>First name of the backup no bill expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>backupNoBillExpenseApproverLastName</td>
+<td>String (20)</td>
+<td>Last name of the backup no bill expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>backupNoBillExpenseApproverEmail</td>
+<td>String (132)</td>
+<td>Email address of the backup no bill expense approver.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeAndExpenseBranch</td>
+<td>String (33)</td>
+<td>Name or code of the time and expense branch.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
           <h1 id="placementcommission">PlacementCommission</h1>
 
 <p>Represents a commission payment that is paid upon successful placement of a Candidate in a job. Each PlacementCommission instance is associated with exactly one Placement instance; a Placement may have multiple PlacementCommissions associated with it.</p>
