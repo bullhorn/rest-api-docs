@@ -128,6 +128,7 @@ includes:
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest
+  - entityref/placementtimeandexpensechangerequest
   - entityref/placementcommission
   - entityref/sendout
   - entityref/skill
