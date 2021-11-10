@@ -5,7 +5,7 @@ Represents a change request that is submitted for a particular Placement regardi
 | **PlacementTimeAndExpenseChangeRequest field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
-| timeAndExpenseSource | String (1) | Indicates type of assignment. Expected values are C=Clock, W=Web or V=VMS Provider. | | |
+| timeAndExpenseSource | String (1) | Indicates type of assignment.<br/> C=Clock, W=Web or V=VMS Provider. | | |
 | employeeBadge | Integer | If cards are used by locations, then pass a unique badge/card number. Maps to Employee Badge field. | | |
 | departmentMapping | String (100) | Used to map to a Peoplenet Department for clocks. Not used by web. | | |
 | departmentAbbr | String (8) | Used to create the short department name that is displayed on clocks. | | |
