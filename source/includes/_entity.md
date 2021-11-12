@@ -397,7 +397,7 @@ There are multiple ways to read an Effective Dated Entity and/or the Versions on
 
 When going against the Root entity, we return both ids to the user - the id and the versionId. These ids are important when making updates to this Version. By default, the viewableStartDate, effectiveDate, and effectiveEndDate fields are also returned to the user.
 
-#####Today’s Version
+##### Today’s Version
 When making a normal entity/ GET request against an entity, we return the Version that is effective today according to the user's PC time.
 
 ``` shell
@@ -468,3 +468,22 @@ data: [{
 }
 }]
 ```
+
+### Associated Effective Dated Entity Fields
+Effective Dated Entity fields requested via an associated object can be specified by a specific date by using the effectiveOn parameter.  Every Effective Dated Entity field requested in this way will be requested based on the specified date.
+
+``` shell
+curl -X GET \
+    https://rest.bullhornstaffing.com/rest-services/e999/entity/Placement/1?fields=location&effectiveOn=2021-12-31
+```
+
+``` shell
+curl -X GET \
+    https://rest.bullhornstaffing.com/rest-services/e999/query/Placement?where=firstName='Bob'&fields=location&effectiveOn=2027-12-31
+```
+
+``` shell
+curl -X GET \
+    https://rest.bullhornstaffing.com/rest-services/e999/search/Placement?fields=location&effectiveOn=2021-12-31&query=id>0
+```
+In the above examples, Location is an Effective Dated Entity field being requested from an associated Placement.  The effectiveOn date will be applied to the Location being requested. 
