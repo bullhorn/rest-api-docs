@@ -308,9 +308,9 @@ Effective Dated Entities are entities that are versioned by a specific date (the
 
 An API user can use HTTP PUT requests to create new Effective Dated Entities much like normal entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body.
 
-All Effective Dated Entities have a required effectiveDate field. The effectiveEndDate and viewableStartDate fields are calculated based what Versions exist on this Root entity.
+All Effective Dated Entities have a required effectiveDate field. The effectiveEndDate and viewableStartDate fields are calculated based on what Versions exist on this Root entity.
 
-One key difference between Effective Dated Entities and normal entities is that Effective Data Entities return both a changedEntityId and changedVersionId in the response. This is because an update to an Effective Data Entity involves two entities - the Location(container) and the LocationVersion
+One key difference between Effective Dated Entities and normal entities is that Effective Dated Entities return both a changedEntityId and changedVersionId in the response. This is because an update to an Effective Dated Entity involves two entities - the Location(container/Root) and the LocationVersion.
 
 ``` shell
 curl -X PUT \
@@ -365,7 +365,7 @@ Sample Request Body
 
 Updating an existing Version requires the use of an HTTP POST request. The URL and JSON body look exactly the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body.
 
-Due to the double-entity nature of Effective Data Entities, you must pass both the entityId and versionId that you wish to update in this request.
+Due to the double-entity nature of Effective Dated Entities, you must pass both the entityId and versionId that you wish to update in this request.
 
 ``` shell
 curl -X POST \
@@ -380,7 +380,7 @@ Sample Request Body
 
 ### How to Delete a Version
 
-Deleting a Version on an Effective Data Entity requires the use of an HTTP DELETE request. When you delete a Version, it is hard-deleted from the Database (Edit History for that Version remains). When attempting to delete the only Version(s) of an EDE, we block the hard-delete and instead cause the Root entity to be soft-deleted to remove it from the user's view in the UI while still maintaining historical context for how it was used.
+Deleting a Version on an Effective Dated Entity requires the use of an HTTP DELETE request. When you delete a Version, it is hard-deleted from the Database (Edit History for that Version remains). When attempting to delete the only Version(s) of an EDE, we block the hard-delete and instead cause the Root entity to be soft-deleted to remove it from the user's view in the UI while still maintaining historical context for how it was used.
 
 ``` shell
 curl -X DELETE \
@@ -426,7 +426,7 @@ Sample Response
 This effectiveOn param defaults to today but can be passed as a query param to return a different Version.
 ``` shell
 curl -X GET \
-     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields=address&effectiveOn=2027-1-1
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields=address&effectiveOn=2027-12-31
 ```
 
 ### All Versions - ToMany
