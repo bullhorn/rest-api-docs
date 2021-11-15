@@ -300,13 +300,13 @@ Removes or "disassociates" a to-many association relationship on an entity.
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
-## <span class="tag">Effective Dated Entity</span>
+## Effective Dated Entity
 
 Effective Dated Entities are entities that are versioned by a specific date (the version’s effectiveDate). By maintaining multiple versions of an entity, users can track historical data and the context of an entity on a specific date.
 
 ### How to Create the First Version
 
-An API user can use HTTP PUT requests to create new Effective Dated Entities much like normal entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body.
+An API user can use HTTP PUT requests to create new Effective Dated Entities much like normal entities. The URL looks the same as a GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body.
 
 All Effective Dated Entities have a required effectiveDate field. The effectiveEndDate and viewableStartDate fields are calculated based on what Versions exist on this Root entity.
 
