@@ -300,3 +300,190 @@ Removes or "disassociates" a to-many association relationship on an entity.
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
+## Effective Dated Entity
+
+Effective Dated Entities are entities that are versioned by a specific date (the version’s effectiveDate). By maintaining multiple versions of an entity, users can track historical data and the context of an entity on a specific date.
+
+### How to Create the First Version
+
+An API user can use HTTP PUT requests to create new Effective Dated Entities much like normal entities. The URL looks the same as a GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body.
+
+All Effective Dated Entities have a required effectiveDate field. The effectiveEndDate and viewableStartDate fields are calculated based on what Versions exist on this Root entity.
+
+One key difference between Effective Dated Entities and normal entities is that Effective Dated Entities return both a changedEntityId and changedVersionId in the response. This is because an update to an Effective Dated Entity involves two entities - the Location(container/Root) and the LocationVersion.
+
+``` shell
+curl -X PUT \
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location
+
+Sample Request Body
+{
+  "clientCorporation" : { "id": 123 },
+  "effectiveDate" : "2020-1-1",
+  "title" : "My location title",
+  "address" : {
+    "address1" : "200 S Main",
+    "address2" : "",
+    "city" : "Clayton",
+    "state" : "MO",
+    "zip" : "",
+    "countryID" : 1
+  },
+    "customText1": "my custom text"
+}
+```
+
+### How to Create Subsequent Versions
+
+Creating additional Versions on an existing EDE is considered as both an Update and Create action as you are updating the Location(container/Root) while creating a new Version(the details).
+
+To create an additional version, you can use an HTTP POST request. The URL looks the same as a PUT request URL, but includes the id of the Location you are updating much like the POST and GET calls as the last path element of the URL. The JSON data is also identical to the PUT request and no versionId should be included.
+
+Not all fields in the JSON are unique to the Version entity, so requests against these fields will cause an Update to the Location(container/Root) instead of creating a new Version. Location's clientCorporation is an example and thus is a required field on initial Root create but not on subsequent create calls for Versions.
+
+``` shell
+curl -X POST \
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234
+
+Sample Request Body
+{
+  "effectiveDate" : "2020-1-1",
+  "title" : "My location title",
+  "address" : {
+    "address1" : "200 S Main",
+    "address2" : "",
+    "city" : "Clayton",
+    "state" : "MO",
+    "zip" : "",
+    "countryID" : 1
+  },
+    "customText1": "my custom text"
+}
+```
+
+### How to Update a Specific Version
+
+Updating an existing Version requires the use of an HTTP POST request. The URL and JSON body look exactly the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body.
+
+Due to the double-entity nature of Effective Dated Entities, you must pass both the entityId and versionId that you wish to update in this request.
+
+``` shell
+curl -X POST \
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234
+
+Sample Request Body
+{
+  "versionID": 7654,
+  "customText1": "my custom text"
+}
+```
+
+### How to Delete a Version
+
+Deleting a Version on an Effective Dated Entity requires the use of an HTTP DELETE request. When you delete a Version, it is hard-deleted from the Database (Edit History for that Version remains). When attempting to delete the only Version(s) of an EDE, we block the hard-delete and instead cause the Root entity to be soft-deleted to remove it from the user's view in the UI while still maintaining historical context for how it was used.
+
+``` shell
+curl -X DELETE \
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234
+
+Sample Response
+{
+   "message": "Successfully deleted 1 Location entities."
+}
+```
+
+### How to Read a Version
+There are multiple ways to read an Effective Dated Entity and/or the Versions on it. All of these ways involve making a HTTP GET request as outlined below.
+
+When going against the Root entity, we return both ids to the user - the id and the versionId. These ids are important when making updates to this Version. By default, the viewableStartDate, effectiveDate, and effectiveEndDate fields are also returned to the user.
+
+##### Today’s Version
+When making a normal entity/ GET request against an entity, we return the Version that is effective today according to the user's PC time.
+
+``` shell
+curl -X GET \
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields=address
+
+Sample Response
+{
+  "id" : 5059165,
+  "versionId" : 123,
+  "viewableStartDate" : '2020-1-1',
+  "effectiveDate" : '2020-1-1',
+  "effectiveEndDate" : '2021-1-1',
+  "address" : {
+    "address1" : "",
+    "address2" : "",
+    "city" : "Sacramento",
+    "state" : "ca",
+    "zip" : "",
+    "countryID" : 1
+  }
+}
+```
+
+### Version that is effectiveOn a Given Date
+This effectiveOn param defaults to today but can be passed as a query param to return a different Version.
+``` shell
+curl -X GET \
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields=address&effectiveOn=2027-12-31
+```
+
+### All Versions - ToMany
+A user can also request all the Versions that exist on the Effective Dated Entity
+``` shell
+curl -X GET \
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234/versions?fields=address
+
+Sample Response
+data: [{
+  "id" : 5059165,
+  "versionId" : 123,
+  "viewableStartDate" : '1900-1-1',
+  "effectiveDate" : '2020-1-1',
+  "effectiveEndDate" : '2024-12-31',
+  "address" : {
+    "address1" : "",
+    "address2" : "",
+    "city" : "Clayton",
+    "state" : "MO",
+    "zip" : "",
+    "countryID" : 1
+  }
+},
+{
+  "id" : 5059165,
+  "versionId" : 124,
+  "viewableStartDate" : '2025-1-1',
+  "effectiveDate" : '2025-1-1',
+  "effectiveEndDate" : '2030-1-1',
+  "address" : {
+    "address1" : "",
+    "address2" : "",
+    "city" : "Sacramento",
+    "state" : "CA",
+    "zip" : "",
+    "countryID" : 1
+  }
+}
+}]
+```
+
+### Associated Effective Dated Entity Fields
+Effective Dated Entity fields requested via an associated object can be specified by a specific date by using the effectiveOn parameter.  Every Effective Dated Entity field requested in this way will be requested based on the specified date.
+
+``` shell
+curl -X GET \
+    https://rest.bullhornstaffing.com/rest-services/e999/entity/Placement/1?fields=location&effectiveOn=2021-12-31
+```
+
+``` shell
+curl -X GET \
+    https://rest.bullhornstaffing.com/rest-services/e999/query/Placement?where=firstName='Bob'&fields=location&effectiveOn=2027-12-31
+```
+
+``` shell
+curl -X GET \
+    https://rest.bullhornstaffing.com/rest-services/e999/search/Placement?fields=location&effectiveOn=2021-12-31&query=id>0
+```
+In the above examples, Location is an Effective Dated Entity field being requested from an associated Placement.  The effectiveOn date will be applied to the Location being requested. 
