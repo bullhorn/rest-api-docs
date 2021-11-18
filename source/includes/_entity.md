@@ -323,13 +323,8 @@ Sample Request Body
   "title" : "My location title",
   "address" : {
     "address1" : "200 S Main",
-    "address2" : "",
-    "city" : "Clayton",
-    "state" : "MO",
-    "zip" : "",
-    "countryID" : 1
-  },
-    "customText1": "my custom text"
+    "city" : "Clayton"
+  }
 }
 ```
 
@@ -351,13 +346,8 @@ Sample Request Body
   "title" : "My location title",
   "address" : {
     "address1" : "200 S Main",
-    "address2" : "",
-    "city" : "Clayton",
-    "state" : "MO",
-    "zip" : "",
-    "countryID" : 1
-  },
-    "customText1": "my custom text"
+    "city" : "Clayton"
+  }
 }
 ```
 
@@ -412,18 +402,14 @@ Sample Response
   "effectiveDate" : '2020-1-1',
   "effectiveEndDate" : '2021-1-1',
   "address" : {
-    "address1" : "",
-    "address2" : "",
-    "city" : "Sacramento",
-    "state" : "ca",
-    "zip" : "",
-    "countryID" : 1
+    "address1" : "123 Whatever St"
   }
 }
 ```
 
 ### Version effective on specific date
 This effectiveOn value defaults to today but you can use the effectiveOn query parameter to return a different version.
+
 ``` shell
 curl -X GET \
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields=address&effectiveOn=2027-12-31
@@ -431,6 +417,7 @@ curl -X GET \
 
 ### All versions
 You can request all versions that exist on the effective-dated entity.
+
 ``` shell
 curl -X GET \
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234/versions?fields=address
@@ -443,12 +430,7 @@ data: [{
   "effectiveDate" : '2020-1-1',
   "effectiveEndDate" : '2024-12-31',
   "address" : {
-    "address1" : "",
-    "address2" : "",
-    "city" : "Clayton",
-    "state" : "MO",
-    "zip" : "",
-    "countryID" : 1
+    "address1" : "1234 Whatever St."
   }
 },
 {
@@ -458,19 +440,14 @@ data: [{
   "effectiveDate" : '2025-1-1',
   "effectiveEndDate" : '2030-1-1',
   "address" : {
-    "address1" : "",
-    "address2" : "",
-    "city" : "Sacramento",
-    "state" : "CA",
-    "zip" : "",
-    "countryID" : 1
+    "address1" : "1234 Whatever St."
   }
 }
 }]
 ```
 
 ### Associated effective-dated entity fields
-When requesting effective-dated entity fields via an associated object, use the efectiveOn parameter to limit the request to a specific date.
+When requesting effective-dated entity fields via an associated object, use the effectiveOn parameter to limit the request to a specific date.
 
 In the examples, Location is an effective-dated entity field requested from an associated Placement. The effectiveOn value is applied to the requested Location. 
 
