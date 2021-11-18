@@ -306,12 +306,6 @@ Effective-dated entities are entities that are versioned by a specific date (the
 
 ### Create first version
 
-You can use HTTP PUT requests to create new effective-dated entities much like standard entities. The URL looks the same as a GET request URL, but without the last path element that contains an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body.
-
-All effective-dated entities have a required effectiveDate field. The effectiveEndDate and viewableStartDate fields are calculated based on the versions that exist on this root entity.
-
-One key difference between effective-dated entities and standard entities is that effective-dated entities return both a changedEntityId and a changedVersionId in the response. This is because an update to an effective-dated entity involves two entities. For example, the Location entity involves the root Location entity and the LocationVersion version entity.
-
 ``` shell
 curl -X PUT \
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location
@@ -328,13 +322,14 @@ Sample Request Body
 }
 ```
 
+You can use HTTP PUT requests to create new effective-dated entities much like standard entities. The URL looks the same as a GET request URL, but without the last path element that contains an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body.
+
+All effective-dated entities have a required effectiveDate field. The effectiveEndDate and viewableStartDate fields are calculated based on the versions that exist on this root entity.
+
+One key difference between effective-dated entities and standard entities is that effective-dated entities return both a changedEntityId and a changedVersionId in the response. This is because an update to an effective-dated entity involves two entities. For example, the Location entity involves the root Location entity and the LocationVersion version entity.
+
+
 ### Create subsequent versions
-
-Creating additional versions on an existing effective-dated entity is considered both an update and create action because you update the root entity while creating a new version.
-
-Use a POST request to create one or more additional versions. The URL looks the same as a PUT request URL, but includes the ID of the root entity you are updating as the last path parameter of the URL. The JSON data is the same as that of the PUT request and no version ID is included.
-
-Not all fields in the JSON are unique to the version entity, so requests against these fields update the root entity rather than create a new version. The Location clientCorporation field is an example of this. It is a required field on initial Root create but not on subsequent create calls for Versions.
 
 ``` shell
 curl -X POST \
@@ -351,11 +346,14 @@ Sample Request Body
 }
 ```
 
+Creating additional versions on an existing effective-dated entity is considered both an update and create action because you update the root entity while creating a new version.
+
+Use a POST request to create one or more additional versions. The URL looks the same as a PUT request URL, but includes the ID of the root entity you are updating as the last path parameter of the URL. The JSON data is the same as that of the PUT request and no version ID is included.
+
+Not all fields in the JSON are unique to the version entity, so requests against these fields update the root entity rather than create a new version. The Location clientCorporation field is an example of this. It is a required field on initial Root create but not on subsequent create calls for Versions.
+
+
 ### Update specific version
-
-Use a POST request to update an existing version. Place the data comprising the entity fields in JSON format in the request body.
-
-Due to the double-entity nature of effective-dated entities, you must pass both the entity ID and version ID that you want to update in this request.
 
 ``` shell
 curl -X POST \
@@ -368,9 +366,12 @@ Sample Request Body
 }
 ```
 
-### Delete a version
+Use a POST request to update an existing version. Place the data comprising the entity fields in JSON format in the request body.
 
-Use a DELETE request to delete a version on an effective-dated entity. When you delete a version, it is hard-deleted from the database but edit history for that version is not deleted. When attempting to delete the only version(s) of an effective-dated entity, we block the hard deletion and instead cause the root entity to be soft-deleted to remove it from the user's view in the user interface while maintaining historical context for how it was used.
+Due to the double-entity nature of effective-dated entities, you must pass both the entity ID and version ID that you want to update in this request.
+
+
+### Delete a version
 
 ``` shell
 curl -X DELETE \
@@ -382,6 +383,9 @@ Sample Response
 }
 ```
 
+Use a DELETE request to delete a version on an effective-dated entity. When you delete a version, it is hard-deleted from the database but edit history for that version is not deleted. When attempting to delete the only version(s) of an effective-dated entity, we block the hard deletion and instead cause the root entity to be soft-deleted to remove it from the user's view in the user interface while maintaining historical context for how it was used.
+
+
 ### Read a version
 There are multiple ways to read an effective-dated entity and the versions on it. All of these involve making a GET request as described below.
 
@@ -390,7 +394,7 @@ When requesting the root entity, we return the root entity ID and the version ID
 ##### Today’s version
 When making a GET request for an entity, the version that is effective today according to the user's local computer time is returned.
 
-~~~ shell
+``` shell
 curl -X GET \
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields=address
 
@@ -405,7 +409,7 @@ Sample Response
     "address1" : "123 Whatever St"
   }
 }
-~~~
+```
 
 ### Version effective on specific date
 This effectiveOn value defaults to today but you can use the effectiveOn query parameter to return a different version.
@@ -416,7 +420,6 @@ curl -X GET \
 ```
 
 ### All versions
-You can request all versions that exist on the effective-dated entity.
 
 ``` shell
 curl -X GET \
@@ -446,22 +449,29 @@ data: [{
 }]
 ```
 
-### Associated effective-dated entity fields
-When requesting effective-dated entity fields via an associated object, use the effectiveOn parameter to limit the request to a specific date.
+You can request all versions that exist on the effective-dated entity.
 
-In the examples, Location is an effective-dated entity field requested from an associated Placement. The effectiveOn value is applied to the requested Location. 
+
+
+### Associated effective-dated entity fields
 
 ``` shell
 curl -X GET \
     https://rest.bullhornstaffing.com/rest-services/e999/entity/Placement/1?fields=location&effectiveOn=2021-12-31
 ```
 
-~~~ shell
+``` shell
 curl -X GET \
     https://rest.bullhornstaffing.com/rest-services/e999/query/Placement?where=firstName='Bob'&fields=location&effectiveOn=2027-12-31
-~~~
+```
 
 ``` shell
 curl -X GET \
     https://rest.bullhornstaffing.com/rest-services/e999/search/Placement?fields=location&effectiveOn=2021-12-31&query=id>0
 ```
+
+When requesting effective-dated entity fields via an associated object, use the effectiveOn parameter to limit the request to a specific date.
+
+In the examples, Location is an effective-dated entity field requested from an associated Placement. The effectiveOn value is applied to the requested Location. 
+
+
