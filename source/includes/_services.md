@@ -316,6 +316,37 @@ curl -X POST \
 
 ### HTTP Request
 
+`{corpToken}/services/BillMasterSyncBatch`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+## PUT /services/BillMasterSyncBatch
+
+Allows the API user to sync the Invoice Term information for one or more BillMasters.
+
+``` shell
+curl -X PUT \
+      https://rest.bullhorn.com/rest-services/e999/services/BillMasterSyncBatch
+
+# Example Request
+{
+    "billableChargeIds": [1,2,3]
+}
+
+# Example Response
+{
+    "changedEntityType": "BillMasterSyncBatch",
+    "changedEntityId": 123,
+    "changeType": "INSERT",
+    "data": {
+     }
+}
+```
+
+### HTTP Request
+
 `{corpToken}/services/RevenueRecognition/UpdateTransactionExportStatus`
 
 Parameter | Required | Description

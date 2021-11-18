@@ -92,34 +92,47 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>billMasterStatus</td>
+            <td>To-one association</td>
+            <td>BillMasterStatus. Options are:
+                <ul>
+                    <li>1 = Syncing</li>
+                    <li>2 = Sync Failed</li>
+                    <li>3 = Synced</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>canInvoice</td>
             <td>Boolean</td>
             <td>Indicates whether can invoice.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>chargeTypeLookup</td>
             <td>To-one association</td>
             <td>ChargeTypeLookup - options are Timesheet or Expense Report.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
             <td></td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td></td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>earnCode</td>
             <td>To-one association</td>
             <td><p>Associated EarnCode.</p>
@@ -133,14 +146,14 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>externalID</td>
             <td>String (100)</td>
             <td></td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>location</td>
             <td>To-one association</td>
             <td>Location.
@@ -159,14 +172,14 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>owner</td>
             <td>To-one association</td>
             <td>CorporateUser.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>payBillCycle</td>
             <td>To-one association</td>
             <td>PayBillCycle - this is the associated billing cycle. 
@@ -178,14 +191,14 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>transactionDate</td>
             <td>Date</td>
             <td><p>Transaction date.</p></td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>transactionStatus</td>
             <td>To-one association</td>
             <td>TransactionStatus. Options are:
