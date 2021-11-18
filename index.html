@@ -1302,13 +1302,8 @@ Sample Request Body
   <span class="s2">"title"</span> : <span class="s2">"My location title"</span>,
   <span class="s2">"address"</span> : <span class="o">{</span>
     <span class="s2">"address1"</span> : <span class="s2">"200 S Main"</span>,
-    <span class="s2">"address2"</span> : <span class="s2">""</span>,
-    <span class="s2">"city"</span> : <span class="s2">"Clayton"</span>,
-    <span class="s2">"state"</span> : <span class="s2">"MO"</span>,
-    <span class="s2">"zip"</span> : <span class="s2">""</span>,
-    <span class="s2">"countryID"</span> : 1
-  <span class="o">}</span>,
-    <span class="s2">"customText1"</span>: <span class="s2">"my custom text"</span>
+    <span class="s2">"city"</span> : <span class="s2">"Clayton"</span>
+  <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 
@@ -1328,13 +1323,8 @@ Sample Request Body
   <span class="s2">"title"</span> : <span class="s2">"My location title"</span>,
   <span class="s2">"address"</span> : <span class="o">{</span>
     <span class="s2">"address1"</span> : <span class="s2">"200 S Main"</span>,
-    <span class="s2">"address2"</span> : <span class="s2">""</span>,
-    <span class="s2">"city"</span> : <span class="s2">"Clayton"</span>,
-    <span class="s2">"state"</span> : <span class="s2">"MO"</span>,
-    <span class="s2">"zip"</span> : <span class="s2">""</span>,
-    <span class="s2">"countryID"</span> : 1
-  <span class="o">}</span>,
-    <span class="s2">"customText1"</span>: <span class="s2">"my custom text"</span>
+    <span class="s2">"city"</span> : <span class="s2">"Clayton"</span>
+  <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 
@@ -1385,68 +1375,51 @@ Sample Response
   <span class="s2">"effectiveDate"</span> : <span class="s1">'2020-1-1'</span>,
   <span class="s2">"effectiveEndDate"</span> : <span class="s1">'2021-1-1'</span>,
   <span class="s2">"address"</span> : <span class="o">{</span>
-    <span class="s2">"address1"</span> : <span class="s2">""</span>,
-    <span class="s2">"address2"</span> : <span class="s2">""</span>,
-    <span class="s2">"city"</span> : <span class="s2">"Sacramento"</span>,
-    <span class="s2">"state"</span> : <span class="s2">"ca"</span>,
-    <span class="s2">"zip"</span> : <span class="s2">""</span>,
-    <span class="s2">"countryID"</span> : 1
+    <span class="s2">"address1"</span> : <span class="s2">"123 Whatever St"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 
 <h3 id="version-effective-on-specific-date">Version effective on specific date</h3>
 
-<p>This effectiveOn value defaults to today but you can use the effectiveOn query parameter to return a different version.
-<code class="prettyprint">shell
-curl -X GET \
-     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields=address&amp;effectiveOn=2027-12-31
-</code></p>
+<p>This effectiveOn value defaults to today but you can use the effectiveOn query parameter to return a different version.</p>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields<span class="o">=</span>address&amp;effectiveOn<span class="o">=</span>2027-12-31
+</code></pre>
 
 <h3 id="all-versions">All versions</h3>
 
-<p>You can request all versions that exist on the effective-dated entity.
-&ldquo;` shell
-curl -X GET \
-     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234/versions?fields=address</p>
+<p>You can request all versions that exist on the effective-dated entity.</p>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
+     https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234/versions?fields<span class="o">=</span>address
 
-<p>Sample Response
-data: [{
-  &quot;id&rdquo; : 5059165,
-  &ldquo;versionId&rdquo; : 123,
-  &ldquo;viewableStartDate&rdquo; : &#39;1900-1-1&rsquo;,
-  &ldquo;effectiveDate&rdquo; : &#39;2020-1-1&rsquo;,
-  &ldquo;effectiveEndDate&rdquo; : &#39;2024-12-31&rsquo;,
-  &ldquo;address&rdquo; : {
-    &ldquo;address1&rdquo; : &ldquo;&rdquo;,
-    &ldquo;address2&rdquo; : &ldquo;&rdquo;,
-    &ldquo;city&rdquo; : &ldquo;Clayton&rdquo;,
-    &ldquo;state&rdquo; : &ldquo;MO&rdquo;,
-    &ldquo;zip&rdquo; : &ldquo;&rdquo;,
-    &ldquo;countryID&rdquo; : 1
-  }
-},
-{
-  &ldquo;id&rdquo; : 5059165,
-  &ldquo;versionId&rdquo; : 124,
-  &ldquo;viewableStartDate&rdquo; : &#39;2025-1-1&rsquo;,
-  &ldquo;effectiveDate&rdquo; : &#39;2025-1-1&rsquo;,
-  &ldquo;effectiveEndDate&rdquo; : &#39;2030-1-1&rsquo;,
-  &ldquo;address&rdquo; : {
-    &ldquo;address1&rdquo; : &ldquo;&rdquo;,
-    &ldquo;address2&rdquo; : &ldquo;&rdquo;,
-    &ldquo;city&rdquo; : &ldquo;Sacramento&rdquo;,
-    &ldquo;state&rdquo; : &ldquo;CA&rdquo;,
-    &ldquo;zip&rdquo; : &ldquo;&rdquo;,
-    &ldquo;countryID&rdquo; : 1
-  }
-}
-}]
-&ldquo;`</p>
+Sample Response
+data: <span class="o">[{</span>
+  <span class="s2">"id"</span> : 5059165,
+  <span class="s2">"versionId"</span> : 123,
+  <span class="s2">"viewableStartDate"</span> : <span class="s1">'1900-1-1'</span>,
+  <span class="s2">"effectiveDate"</span> : <span class="s1">'2020-1-1'</span>,
+  <span class="s2">"effectiveEndDate"</span> : <span class="s1">'2024-12-31'</span>,
+  <span class="s2">"address"</span> : <span class="o">{</span>
+    <span class="s2">"address1"</span> : <span class="s2">"1234 Whatever St."</span>
+  <span class="o">}</span>
+<span class="o">}</span>,
+<span class="o">{</span>
+  <span class="s2">"id"</span> : 5059165,
+  <span class="s2">"versionId"</span> : 124,
+  <span class="s2">"viewableStartDate"</span> : <span class="s1">'2025-1-1'</span>,
+  <span class="s2">"effectiveDate"</span> : <span class="s1">'2025-1-1'</span>,
+  <span class="s2">"effectiveEndDate"</span> : <span class="s1">'2030-1-1'</span>,
+  <span class="s2">"address"</span> : <span class="o">{</span>
+    <span class="s2">"address1"</span> : <span class="s2">"1234 Whatever St."</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="o">}]</span>
+</code></pre>
 
 <h3 id="associated-effective-dated-entity-fields">Associated effective-dated entity fields</h3>
 
-<p>When requesting effective-dated entity fields via an associated object, use the efectiveOn parameter to limit the request to a specific date.</p>
+<p>When requesting effective-dated entity fields via an associated object, use the effectiveOn parameter to limit the request to a specific date.</p>
 
 <p>In the examples, Location is an effective-dated entity field requested from an associated Placement. The effectiveOn value is applied to the requested Location. </p>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
