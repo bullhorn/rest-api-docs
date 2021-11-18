@@ -390,7 +390,7 @@ When requesting the root entity, we return the root entity ID and the version ID
 ##### Today’s version
 When making a GET request for an entity, the version that is effective today according to the user's local computer time is returned.
 
-``` shell
+~~~ shell
 curl -X GET \
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields=address
 
@@ -405,7 +405,7 @@ Sample Response
     "address1" : "123 Whatever St"
   }
 }
-```
+~~~
 
 ### Version effective on specific date
 This effectiveOn value defaults to today but you can use the effectiveOn query parameter to return a different version.
@@ -456,10 +456,10 @@ curl -X GET \
     https://rest.bullhornstaffing.com/rest-services/e999/entity/Placement/1?fields=location&effectiveOn=2021-12-31
 ```
 
-``` shell
+~~~ shell
 curl -X GET \
     https://rest.bullhornstaffing.com/rest-services/e999/query/Placement?where=firstName='Bob'&fields=location&effectiveOn=2027-12-31
-```
+~~~
 
 ``` shell
 curl -X GET \
