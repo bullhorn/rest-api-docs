@@ -308,7 +308,7 @@ Effective-dated entities are entities that are versioned by a specific date (the
 
 You can use HTTP PUT requests to create new effective-dated entities much like standard entities. The URL looks the same as a GET request URL, but without the last path element that contains an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body.
 
-All effective-dated entities have a required effectiveDate field. The effectiveEndDate and viewableStartDate fields are calculated based on the versions exist on this root entity.
+All effective-dated entities have a required effectiveDate field. The effectiveEndDate and viewableStartDate fields are calculated based on the versions that exist on this root entity.
 
 One key difference between effective-dated entities and standard entities is that effective-dated entities return both a changedEntityId and a changedVersionId in the response. This is because an update to an effective-dated entity involves two entities. For example, the Location entity involves the root Location entity and the LocationVersion version entity.
 
@@ -337,7 +337,7 @@ Sample Request Body
 
 Creating additional versions on an existing effective-dated entity is considered both an update and create action because you update the root entity while creating a new version.
 
-Use an POST request to create one or more additional versions. The URL looks the same as a PUT request URL, but includes the ID of the root entity you are updating as the last path parameter of the URL. The JSON data is the same as that of the PUT request and no version ID is included.
+Use a POST request to create one or more additional versions. The URL looks the same as a PUT request URL, but includes the ID of the root entity you are updating as the last path parameter of the URL. The JSON data is the same as that of the PUT request and no version ID is included.
 
 Not all fields in the JSON are unique to the version entity, so requests against these fields update the root entity rather than create a new version. The Location clientCorporation field is an example of this. It is a required field on initial Root create but not on subsequent create calls for Versions.
 
