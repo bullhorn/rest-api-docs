@@ -322,8 +322,6 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-
-
 ## POST /services/PayExportBatch/batchExportStatus
 
 Allows a user to update the status of a PayExportBatch.
