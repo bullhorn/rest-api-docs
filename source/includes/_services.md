@@ -369,11 +369,11 @@ curl -X POST \
                         "externalEntityName": "Charles HR",
                         "referenceUrlStatusCode": "200",
                         "errorType": "SYSTEM-ERROR",
-                        "description": "Acme HR has failed this entire PayExportBatch because we couldn't find the placement in our system.",
+                        "description": "Fake Description.",
                         "referenceUrl": "https://www.google.com",
                         "referenceUrlMethod": "POST",
                         "externalEntityId": "104",
-                        "referenceUrlResponse": "Charles HR is a fictitious HR provider created by Bullhorn for testing point-to-point payroll exports",
+                        "referenceUrlResponse": "Fake Response",
                         "fieldReference": ""
                       }
                     ],
