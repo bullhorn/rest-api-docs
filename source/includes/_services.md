@@ -321,3 +321,94 @@ curl -X POST \
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+## POST /services/PayExportBatch/batchExportStatus
+
+Allows a user to update the status of a PayExportBatch.
+
+NOTE: If you submit a batch export status update where there is only a single failed record with an entity name of PayExportBatch and the entityId matches the sourceBatchId, then we will treat the request as if you had asked our system to fail every PayMasterTransaction associated with that PayExportBatch. Issue creation logic will be unaffected.
+
+``` shell
+curl -X POST \
+      https://rest.bullhorn.com/rest-services/e999/services/PayExportBatch/batchExportStatus
+
+# Example Request
+{
+    "exportType": "payroll",
+    "sourceBatchID": 5577,
+    "successfulRecords": [
+        {
+            "status": "ACME_SUCCESS",
+            "entityName": "~PayrollTimeSheet",
+            "entityIds": [
+                100, 101
+            ],
+            "externalBatchID": "BULLHORN_BATCH_ID_5577"
+        }
+    ],
+    "failedRecords": [
+        {
+            "entityName": "~PayrollTimeSheet",
+            "entityId": 102,
+            "exception": "Some exception",
+            "issues": [
+                {
+                    "severity": "Error",
+                    "externalSystemName": "Charles HR",
+                    "actionEntity": "PayExportBatch",
+                    "actionEntityId": 1084,
+                    "issueItems": [
+                      {
+                        "sourceEntity": "Placement",
+                        "sourceEntityId": 57,
+                        "severity": "Error",
+                        "fixableByUser": false,
+                        "process": "Payroll Export",
+                        "comments": "PayExportBatch #1084",
+                        "fixInBullhorn": false,
+                        "externalEntityName": "Charles HR",
+                        "referenceUrlStatusCode": "200",
+                        "errorType": "SYSTEM-ERROR",
+                        "description": "Fake Description.",
+                        "referenceUrl": "https://www.google.com",
+                        "referenceUrlMethod": "POST",
+                        "externalEntityId": "104",
+                        "referenceUrlResponse": "Fake Response",
+                        "fieldReference": ""
+                      }
+                    ],
+                    "action": "Payroll Export"
+            }
+        ]
+        },
+        {
+            "entityName": "~PayrollTimeSheet",
+            "entityId": 103,
+            "error": "Some exception"
+        }
+    ]
+}
+
+# Example Response
+{
+    "changedEntityType": "ExternalBatchStatusRequest",
+    "changedEntityId": 28,
+    "changeType": "INSERT",
+    "messages": [
+        {
+            "detailMessage": "ExternalBatchStatusRequest is queued up for processing",
+            "severity": "WARNING",
+            "type": "LOCALIZED_PERSISTENCE_MESSAGE"
+        }
+    ],
+    "data": {}
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/RevenueRecognition/UpdateTransactionExportStatus`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
