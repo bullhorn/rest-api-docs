@@ -4653,6 +4653,105 @@ The search call is performed against a Lucene index. For information about the L
 </tr>
 </tbody></table>
 
+<h2 id="post-services-payexportbatch-batchexportstatus">POST /services/PayExportBatch/batchExportStatus</h2>
+
+<p>Allows a user to update the status of a PayExportBatch.</p>
+
+<p>NOTE: If you submit a batch export status update where there is only a single failed record with an entity name of PayExportBatch and the entityId matches the sourceBatchId, then we will treat the request as if you had asked our system to fail every PayMasterTransaction associated with that PayExportBatch. Issue creation logic will be unaffected.</p>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+      https://rest.bullhorn.com/rest-services/e999/services/PayExportBatch/batchExportStatus
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"exportType"</span>: <span class="s2">"payroll"</span>,
+    <span class="s2">"sourceBatchID"</span>: 5577,
+    <span class="s2">"successfulRecords"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"status"</span>: <span class="s2">"ACME_SUCCESS"</span>,
+            <span class="s2">"entityName"</span>: <span class="s2">"~PayrollTimeSheet"</span>,
+            <span class="s2">"entityIds"</span>: <span class="o">[</span>
+                100, 101
+            <span class="o">]</span>,
+            <span class="s2">"externalBatchID"</span>: <span class="s2">"BULLHORN_BATCH_ID_5577"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">"failedRecords"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"entityName"</span>: <span class="s2">"~PayrollTimeSheet"</span>,
+            <span class="s2">"entityId"</span>: 102,
+            <span class="s2">"exception"</span>: <span class="s2">"Some exception"</span>,
+            <span class="s2">"issues"</span>: <span class="o">[</span>
+                <span class="o">{</span>
+                    <span class="s2">"severity"</span>: <span class="s2">"Error"</span>,
+                    <span class="s2">"externalSystemName"</span>: <span class="s2">"Charles HR"</span>,
+                    <span class="s2">"actionEntity"</span>: <span class="s2">"PayExportBatch"</span>,
+                    <span class="s2">"actionEntityId"</span>: 1084,
+                    <span class="s2">"issueItems"</span>: <span class="o">[</span>
+                      <span class="o">{</span>
+                        <span class="s2">"sourceEntity"</span>: <span class="s2">"Placement"</span>,
+                        <span class="s2">"sourceEntityId"</span>: 57,
+                        <span class="s2">"severity"</span>: <span class="s2">"Error"</span>,
+                        <span class="s2">"fixableByUser"</span>: <span class="nb">false</span>,
+                        <span class="s2">"process"</span>: <span class="s2">"Payroll Export"</span>,
+                        <span class="s2">"comments"</span>: <span class="s2">"PayExportBatch #1084"</span>,
+                        <span class="s2">"fixInBullhorn"</span>: <span class="nb">false</span>,
+                        <span class="s2">"externalEntityName"</span>: <span class="s2">"Charles HR"</span>,
+                        <span class="s2">"referenceUrlStatusCode"</span>: <span class="s2">"200"</span>,
+                        <span class="s2">"errorType"</span>: <span class="s2">"SYSTEM-ERROR"</span>,
+                        <span class="s2">"description"</span>: <span class="s2">"Fake Description."</span>,
+                        <span class="s2">"referenceUrl"</span>: <span class="s2">"https://www.google.com"</span>,
+                        <span class="s2">"referenceUrlMethod"</span>: <span class="s2">"POST"</span>,
+                        <span class="s2">"externalEntityId"</span>: <span class="s2">"104"</span>,
+                        <span class="s2">"referenceUrlResponse"</span>: <span class="s2">"Fake Response"</span>,
+                        <span class="s2">"fieldReference"</span>: <span class="s2">""</span>
+                      <span class="o">}</span>
+                    <span class="o">]</span>,
+                    <span class="s2">"action"</span>: <span class="s2">"Payroll Export"</span>
+            <span class="o">}</span>
+        <span class="o">]</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"entityName"</span>: <span class="s2">"~PayrollTimeSheet"</span>,
+            <span class="s2">"entityId"</span>: 103,
+            <span class="s2">"error"</span>: <span class="s2">"Some exception"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"ExternalBatchStatusRequest"</span>,
+    <span class="s2">"changedEntityId"</span>: 28,
+    <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>,
+    <span class="s2">"messages"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"detailMessage"</span>: <span class="s2">"ExternalBatchStatusRequest is queued up for processing"</span>,
+            <span class="s2">"severity"</span>: <span class="s2">"WARNING"</span>,
+            <span class="s2">"type"</span>: <span class="s2">"LOCALIZED_PERSISTENCE_MESSAGE"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">"data"</span>: <span class="o">{}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/RevenueRecognition/UpdateTransactionExportStatus</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
           <h1 id="settings">Settings</h1>
 
 <h2 id="get-settings-setting1-setting2">GET /settings/setting1[,setting2&hellip;]</h2>
