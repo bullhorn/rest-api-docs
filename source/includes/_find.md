@@ -16,7 +16,7 @@ curl https://rest.bullhornstaffing.com/rest-services/e999/find?query=smith&count
 }
 ```
 
-FastFind is anized type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.
+FastFind is a type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.
 
 (FastFind) Searches the following entity types given a string containing search terms:
 
