@@ -4309,9 +4309,16 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td></td>
 </tr>
 <tr>
+<td>departmentIdList</td>
+<td>String (255)</td>
+<td>Ids of departments to which the CorporateUser belongs.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>departments</td>
 <td>To-many association</td>
-<td>Ids of departments to which the CorporateUser belongs.</td>
+<td>Departments to which the CorporateUser belongs.</td>
 <td></td>
 <td></td>
 </tr>
@@ -4494,6 +4501,13 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td>phone to phone3</td>
 <td>String (20)</td>
 <td>Phone number of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>primaryDepartment</td>
+<td>To-one association</td>
+<td>Primary department of the CorporateUser.</td>
 <td></td>
 <td></td>
 </tr>
