@@ -102,7 +102,7 @@ This entity represents the required certifications for a Job Submission.
         <tr class="odd">
             <td>lastModifiedAtUtc</td>
             <td>Timestamp</td>
-            <td>Record of when Timesheet was most recently modified</td>
+            <td>Record of when Timesheet was most recently modified </td>
             <td>X</td>
             <td></td>
         </tr>

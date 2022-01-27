@@ -137,7 +137,7 @@ This entity represents the required certifications for a Job Submission.
         <tr class="even">
             <td>timeLaborEvalRuleTypeLookup</td>
             <td>To-one association</td>
-            <td>TimeLaborEvalRuleTypeLookup: All rule types under the categories listed in the Category Lookup.</td>
+            <td>TimeLaborEvalRuleTypeLookup: All rule types under the categories listed in the Category Lookup. </td>
             <td>X</td>
             <td></td>
         </tr>

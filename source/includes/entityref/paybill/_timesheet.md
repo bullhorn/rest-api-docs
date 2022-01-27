@@ -158,7 +158,7 @@ This entity represents the required certifications for a Job Submission.
         <tr class="odd">
             <td>units</td>
             <td>Boolean</td>
-            <td>Whether or not this Timesheet is measured in units</td>
+            <td>Whether or not this Timesheet is measured in units </td>
             <td></td>
             <td>X</td>
         </tr>
