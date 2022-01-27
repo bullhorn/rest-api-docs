@@ -165,7 +165,7 @@ This entity represents the required certifications for a Job Submission.
         <tr class="even">
             <td>unitOfMeasure</td>
             <td>To-one association</td>
-            <td>UnitOfMeasure fields: id, label </td>
+            <td>UnitOfMeasure fields: id, label</td>
             <td>X</td>
             <td>X</td>
         </tr>

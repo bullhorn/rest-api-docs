@@ -95,7 +95,7 @@ This entity represents the required certifications for a Job Submission.
         <tr class="even">
             <td>timeLaborEvalRulesCategories</td>
             <td>To-many association</td>
-            <td>TimeLaborEvalRuleCategoryLookup options: Holiday, Threshold, Exempt, Per Diem, PeriodBasedRate, Surplus, Penalties, Validation, Orientation, and any combination of those categories. </td>
+            <td>TimeLaborEvalRuleCategoryLookup options: Holiday, Threshold, Exempt, Per Diem, PeriodBasedRate, Surplus, Penalties, Validation, Orientation, and any combination of those categories.</td>
             <td></td>
             <td></td>
         </tr>

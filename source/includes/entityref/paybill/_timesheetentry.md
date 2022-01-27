@@ -214,7 +214,7 @@ This entity represents the required certifications for a Job Submission.
         <tr class="odd">
             <td>voidingTimesheetEntry</td>
             <td>To-one association</td>
-            <td>TimesheetEntry fields: id </td>
+            <td>TimesheetEntry fields: id</td>
             <td></td>
             <td>X</td>
         </tr>
