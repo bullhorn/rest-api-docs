@@ -1,6 +1,6 @@
 # TimeLaborEvalRule
 
-This entity represents the required certifications for a Job Submission.
+This entity represents the required certifications for a TimeLaborEvalRule.
 
 
 
@@ -39,7 +39,11 @@ This entity represents the required certifications for a Job Submission.
         <tr class="even">
             <td>addedByUser</td>
             <td>To-one association</td>
-            <td>CorporateUser default fields: id, firstName, lastName</td>
+            <td>CorporateUser default fields: 
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li>
+            </td>
             <td></td>
             <td></td>
         </tr>
@@ -53,7 +57,10 @@ This entity represents the required certifications for a Job Submission.
         <tr class="even">
             <td>holidays</td>
             <td>To-many association</td>
-            <td>Holiday fields: id, label. Rule is associate to a Holiday for certain specified dates on the calendar.</td>
+            <td>Holiday fields: 
+                <li>id</li>
+                <li>label</li>
+            Rule is associate to a Holiday for certain specified dates on the calendar.</td>
             <td></td>
             <td></td>
         </tr>
@@ -74,7 +81,10 @@ This entity represents the required certifications for a Job Submission.
         <tr class="odd">
             <td>modifyingUser</td>
             <td>To-one association</td>
-            <td>CorporateUser default fields: id, firstName, lastName</td>
+            <td>CorporateUser default fields:  
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li></td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -102,28 +112,35 @@ This entity represents the required certifications for a Job Submission.
         <tr class="odd">
             <td>timeLaborCalcTypeLookup</td>
             <td>To-one association</td>
-            <td>TimeLaborCalcTypeLookup options: Pay, Bill, Pay & Bill.</td>
+            <td>TimeLaborCalcTypeLookup options:
+                <li>Pay</li>
+                <li>Bill</li>
+                <li>Pay & Bill.</li>
+            </td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>timeLaborEvalRuleCategoryLookup</td>
             <td>To-one association</td>
-            <td>TimeLaborEvalRuleCategoryLookup options: Holiday, Threshold, Exempt, Per Diem, PeriodBasedRate, Surplus, Penalties, Validation, Orientation.</td>
+            <td>TimeLaborEvalRuleCategoryLookup options: 
+                <li>Holiday</li> <li>Threshold <li>Exempt <li>Per Diem <li>PeriodBasedRate <li>Surplus <li>Penalties <li>Validation <li>Orientation</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>timeLaborEvalRuleCombineCriteriaLookup</td>
             <td>To-one association</td>
-            <td>TimeLaborEvalRuleCombineCriteriaLookup options: Candidate, placement, sheet.</td>
+            <td>TimeLaborEvalRuleCombineCriteriaLookup options: 
+                <li>Candidate</li> <li>Placement</li> <li>Sheet</li></td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>timeLaborEvalRuleStatusLookup</td>
             <td>To-one association</td>
-            <td>TimeLaborEvalRuleStatusLookup options: Active or Inactive.</td>
+            <td>TimeLaborEvalRuleStatusLookup options: 
+                <li>Active <li>Inactive.</td>
             <td>X</td>
             <td></td>
         </tr>
