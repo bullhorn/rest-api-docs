@@ -224,7 +224,7 @@ This entity represents the required certifications for a TimesheetEntry.
             <td>voidingTimesheetEntry</td>
             <td>To-one association</td>
             <td>TimesheetEntry fields: 
-                <li>id</td>
+                <li>id </td>
             <td></td>
             <td>X</td>
         </tr>

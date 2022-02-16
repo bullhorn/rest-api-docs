@@ -146,7 +146,7 @@ This entity represents the required certifications for a ExpenseSheet.
             <td>timeLaborEvalSheetStatusLookup</td>
             <td>To-one association</td>
             <td>TimeLaborEvalSheetStatusLookup options: 
-                <li>No evaluation required<li>Evaluation required<li>Evaluation failed</td>
+                <li>No evaluation required<li>Evaluation required <li>Evaluation failed</td>
             <td>X</td>
             <td>X</td>
         </tr>

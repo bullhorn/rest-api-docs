@@ -183,7 +183,7 @@ This entity represents the required certifications for a Timesheet.
                 <li>Submitted</li>
                 <li>Approved</li>
                 <li>Completed</li>
-                <li>Rejected</li>
+                <li>Rejected </li>
             </td>
             <td>X</td>
             <td>X</td>

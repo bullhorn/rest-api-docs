@@ -180,7 +180,7 @@ This entity represents the required certifications for a ExpenseSheetEntry.
             <td>voidingExpenseSheetEntry</td>
             <td>To-one association</td>
             <td>ExpenseSheetEntry fields: 
-                <li>id</td>
+                <li>id </td>
             <td></td>
             <td>X</td>
         </tr>

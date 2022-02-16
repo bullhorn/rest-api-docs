@@ -99,7 +99,7 @@ This entity represents the required certifications for a TimeLaborEvalRuleTempla
             <td>timeLaborEvalRulesCategories</td>
             <td>To-many association</td>
             <td>TimeLaborEvalRuleCategoryLookup options: 
-                <li>Holiday <li>Threshold <li>Exempt <li>Per Diem <li>PeriodBasedRate <li>Surplus <li>Penalties <li>Validation <li>Orientation, and any combination of those categories.</td>
+                <li>Holiday <li>Threshold <li>Exempt <li>Per Diem <li>PeriodBasedRate <li>Surplus <li>Penalties <li>Validation <li>Orientation, and any combination of those categories. </td>
             <td></td>
             <td></td>
         </tr>

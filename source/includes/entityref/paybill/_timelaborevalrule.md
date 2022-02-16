@@ -140,7 +140,7 @@ This entity represents the required certifications for a TimeLaborEvalRule.
             <td>timeLaborEvalRuleStatusLookup</td>
             <td>To-one association</td>
             <td>TimeLaborEvalRuleStatusLookup options: 
-                <li>Active <li>Inactive.</td>
+                <li>Active <li>Inactive. </td>
             <td>X</td>
             <td></td>
         </tr>
