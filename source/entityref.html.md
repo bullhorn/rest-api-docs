@@ -88,6 +88,8 @@ includes:
   - entityref/paybill/districtsalestaxrate
   - entityref/paybill/earncode
   - entityref/paybill/earncodegroup
+  - entityref/paybill/expensesheet
+  - entityref/paybill/expensesheetentry
   - entityref/paybill/generalledgeraccount
   - entityref/paybill/generalledgersegment
   - entityref/paybill/generalledgersegmenttype
@@ -121,6 +123,10 @@ includes:
   - entityref/paybill/surchargerate
   - entityref/paybill/surchargerateversion
   - entityref/paybill/surchargerateversionearncode
+  - entityref/paybill/timelaborevalrule
+  - entityref/paybill/timelaborevalruletemplate
+  - entityref/paybill/timesheet 
+  - entityref/paybill/timesheetentry
   - entityref/paybill/transactionorigin
   - entityref/paybill/transactionstatus
   - entityref/paybill/transactiontype
