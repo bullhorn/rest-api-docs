@@ -1,6 +1,6 @@
 # ExpenseSheet
 
-This entity represents the required certifications for a ExpenseSheet.
+This entity represents the required certifications for an ExpenseSheet.
 
 
 
@@ -47,7 +47,7 @@ This entity represents the required certifications for a ExpenseSheet.
         <tr class="odd">
             <td>approvalDate</td>
             <td>Timestamp</td>
-            <td>Record of when the Expense Sheet was approved.</td>
+            <td>Record of when the ExpenseSheet was approved.</td>
             <td>X</td>
             <td></td>
         </tr>
