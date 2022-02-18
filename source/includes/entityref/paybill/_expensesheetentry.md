@@ -1,6 +1,6 @@
 # ExpenseSheetEntry
 
-This entity represents the required certifications for a ExpenseSheetEntry.
+This entity represents the required certifications for an ExpenseSheetEntry.
 
 
 
