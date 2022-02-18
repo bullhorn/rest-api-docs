@@ -13098,6 +13098,346 @@ CRUD Access - READ</p>
     </tbody>
 </table>
 
+          <h1 id="expensesheet">ExpenseSheet</h1>
+
+<p>This entity represents the required certifications for an ExpenseSheet.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>ExpenseSheet fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>addedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was created.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id<li>firstName<li>lastName</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>approvalDate</td>
+            <td>Timestamp</td>
+            <td>Record of when the ExpenseSheet was approved.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billed</td>
+            <td>BigDecimal</td>
+            <td>Amount to be billed.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>calendarInstance</td>
+            <td>To-one association</td>
+            <td>CalendarInstance default fields: 
+                <li>id<li>label</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>candidate</td>
+            <td>To-one association</td>
+            <td>Candidate default fields: 
+                <li>id<li>firstName<li>lastName</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>ClientCorporation default fields: 
+                <li>id<li>name</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>expenseSheetEntryApprovalStatusLookup</td>
+            <td>To-one association</td>
+            <td>ExpenseSheetEntryApprovalStatusLookup options: 
+                <li>Draft<li>Submitted<li>Approved<li>Completed<li>Rejected</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>Concatenation of BTE ExpenseReportID EmplNames RecordID with an underscore and PlacementID.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jobOrder</td>
+            <td>To-one association</td>
+            <td>JobOrder default fields: 
+                <li>id<li>title</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>lastModifiedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was most recently modified.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>lastVersion</td>
+            <td>Integer</td>
+            <td>ID of the most recent version of this Timesheet.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id<li>firstName<li>lastName</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>paid</td>
+            <td>BigDecimal</td>
+            <td>Amount to be paid.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>placement</td>
+            <td>To-one association</td>
+            <td>Placement default fields: 
+                <li>id</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalSheetStatusLookup</td>
+            <td>To-one association</td>
+            <td>TimeLaborEvalSheetStatusLookup options: 
+                <li>No evaluation required<li>Evaluation required <li>Evaluation failed</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="expensesheetentry">ExpenseSheetEntry</h1>
+
+<p>This entity represents the required certifications for an ExpenseSheetEntry.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>ExpenseSheetEntry fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>addedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id<li>firstName<li>lastName</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billEvalDate</td>
+            <td>Date</td>
+            <td>Date when &ldquo;billed&rdquo; field is evaluated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>billed</td>
+            <td>BigDecimal</td>
+            <td>Amount to be billed.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>comment</td>
+            <td>String (2000)</td>
+            <td>A short comment to be added by the user to the ExpenseSheetEntry.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>currencyUnit</td>
+            <td>To-one association</td>
+            <td>CurrencyUnit fields: 
+                <li>id<li>alphabeticCode<li>name</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>earnCode</td>
+            <td>To-one association</td>
+            <td>EarnCode default fields: 
+                <li>id<li>code<li>externalID<li>title<br>Refer to the EarnCode entity for more details.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>expenseSheet</td>
+            <td>To-one association</td>
+            <td>ExpenseSheet field: 
+                <li>id</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>expenseSheetDay</td>
+            <td>Date</td>
+            <td>Date with which the ExpenseSheetEntry is associated with.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>expenseSheetEntryApprovalStatusLookup</td>
+            <td>To-one association</td>
+            <td>ExpenseSheetEntryApprovalStatusLookup options: 
+                <li>Draft<li>Submitted<li>Approved<li>Completed<li>Rejected</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>expenseSheetVersion</td>
+            <td>Integer</td>
+            <td>Integer to store which version of the expenseSheet this entry is associated with.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>externalExpenseSheetEntryID</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>externalTimestamp</td>
+            <td>Long</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>lastModifiedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was most recently modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id<li>firstName<li>lastName</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>paid</td>
+            <td>BigDecimal</td>
+            <td>Amount to be paid.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>payEvalDate</td>
+            <td>Date</td>
+            <td>Date when &ldquo;paid&rdquo; field is evaluated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>quantity</td>
+            <td>BigDecimal</td>
+            <td>Total amount.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>timestamp</td>
+            <td>Byte[]</td>
+            <td>Time stored in byte format.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>unitOfMeasure</td>
+            <td>To-one association</td>
+            <td>UnitOfMeasure fields: 
+                <li>id<li>label</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>voidingExpenseSheetEntry</td>
+            <td>To-one association</td>
+            <td>ExpenseSheetEntry fields: 
+                <li>id </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-generalledgeraccount">Pay and Bill - GeneralLedgerAccount</h1>
 
 <p>Represents a general ledger account for use with billing information, including earn codes and invoice terms.</p>
@@ -17864,6 +18204,702 @@ can be passed as well with all associated data.</p>
             <td>Date this <span>entity</span> was modified.</td>
             <td>X</td>
             <td><br/></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="timelaborevalrule">TimeLaborEvalRule</h1>
+
+<p>This entity represents the required certifications for a TimeLaborEvalRule.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>TimeLaborEvalRule fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>addedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Rule was created.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (4000)</td>
+            <td>A short description of the Rule.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>holidays</td>
+            <td>To-many association</td>
+            <td>Holiday fields: 
+                <li>id</li>
+                <li>label</li>
+            Rule is associate to a Holiday for certain specified dates on the calendar.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isRun</td>
+            <td>Boolean</td>
+            <td>Whether or not the rule has been run. If it has been run, the rule cannot be deleted, only set to inactive.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>lastModifiedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when the rule was most recently modified.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields:  
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>name</td>
+            <td>String (100)</td>
+            <td>The user given name of the rule.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>parameters</td>
+            <td>Map</td>
+            <td>Variable Rule Type Information that appears based on what Rule Type is selected.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>states</td>
+            <td>To-many association</td>
+            <td>NorthAmericaState. All 50 states and any combination of them are available to choose.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timeLaborCalcTypeLookup</td>
+            <td>To-one association</td>
+            <td>TimeLaborCalcTypeLookup options:
+                <li>Pay</li>
+                <li>Bill</li>
+                <li>Pay & Bill.</li>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRuleCategoryLookup</td>
+            <td>To-one association</td>
+            <td>TimeLaborEvalRuleCategoryLookup options: 
+                <li>Holiday</li> <li>Threshold <li>Exempt <li>Per Diem <li>PeriodBasedRate <li>Surplus <li>Penalties <li>Validation <li>Orientation</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timeLaborEvalRuleCombineCriteriaLookup</td>
+            <td>To-one association</td>
+            <td>TimeLaborEvalRuleCombineCriteriaLookup options: 
+                <li>Candidate</li> <li>Placement</li> <li>Sheet</li></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRuleStatusLookup</td>
+            <td>To-one association</td>
+            <td>TimeLaborEvalRuleStatusLookup options: 
+                <li>Active <li>Inactive. </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timeLaborEvalRuleTemplates</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRuleTemplate: Displays on UI as Used on Templates, could be on multiple templates. Points to which templates the rule is used on.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRuleTypeLookup</td>
+            <td>To-one association</td>
+            <td>TimeLaborEvalRuleTypeLookup: All rule types under the categories listed in the Category Lookup.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="timelaborevalruletemplate">TimeLaborEvalRuleTemplate</h1>
+
+<p>This entity represents the required certifications for a TimeLaborEvalRuleTemplate.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>TimeLaborEvalRuleTemplate fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>addedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Rule was created.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id <li>firstName <li>lastName</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (500)</td>
+            <td>A short description of the Rule Template.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isDefault</td>
+            <td>Boolean</td>
+            <td>Whether or not this is the default template for the company.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>lastModifiedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when the rule was most recently modified.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id <li>firstName <li>lastName</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>name</td>
+            <td>String (100)</td>
+            <td>User given name of the Rule Template.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRules associated with this Template.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timeLaborEvalRulesCalcTypes</td>
+            <td>To-many association</td>
+            <td>TimeLaborCalcTypeLookup options: 
+                <li>Pay <li>Bill <li>Pay & Bill, and any combination of these three.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRulesCategories</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRuleCategoryLookup options: 
+                <li>Holiday <li>Threshold <li>Exempt <li>Per Diem <li>PeriodBasedRate <li>Surplus <li>Penalties <li>Validation <li>Orientation, and any combination of those categories. </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="timesheet">Timesheet</h1>
+
+<p>This entity represents the required certifications for a Timesheet.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Timesheet fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>addedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>additionalBillAmount</td>
+            <td>BigDecimal</td>
+            <td>Amount added to be billed.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>additionalPayAmount</td>
+            <td>BigDecimal</td>
+            <td>Amount added to be paid.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billed</td>
+            <td>BigDecimal</td>
+            <td>Amount to be billed.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>calendarInstance</td>
+            <td>To-one association</td>
+            <td>CalendarInstance default fields: 
+                <li>id</li>
+                <li>label</li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>candidate</td>
+            <td>To-one association</td>
+            <td>Candidate default fields: 
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>ClientCorporation default fields: 
+                <li>id</li>
+                <li>name</li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>Concatenation of BTE TimeHistory EmplNames RecordID with and underscore and PlacementID.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>hoursWorked</td>
+            <td>BigDecimal</td>
+            <td>Number of hours worked.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>jobOrder</td>
+            <td>To-one association</td>
+            <td>JobOrder default fields: 
+                <li>id</li>
+                <li>title</li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>lastModifiedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was most recently modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>lastVersion</td>
+            <td>Integer</td>
+            <td>ID of the most recent version of this Timesheet.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>paid</td>
+            <td>BigDecimal</td>
+            <td>Amount to be paid.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>placement</td>
+            <td>To-one association</td>
+            <td>Placement default fields: 
+                <li>id</li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>timeLaborEvalSheetStatusLookup</td>
+            <td>To-one association</td>
+            <td>TimeLaborEvalSheetStatusLookup options: 
+                <li>No evaluation required</li>
+                <li>Evaluation required</li>
+                <li>Evaluation failed</li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>timesheetEntryApprovalStatusLookup</td>
+            <td>To-one association</td>
+            <td>TimesheetEntryApprovalStatusLookup options: 
+                <li>Draft</li>
+                <li>Submitted</li>
+                <li>Approved</li>
+                <li>Completed</li>
+                <li>Rejected </li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>units</td>
+            <td>Boolean</td>
+            <td>Whether or not this Timesheet is measured in units.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="timesheetentry">TimesheetEntry</h1>
+
+<p>This entity represents the required certifications for a TimesheetEntry.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>TimesheetEntry fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>addedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id<li>firstName<li>lastName</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>applicableFrom</td>
+            <td>Date</td>
+            <td>Day when TimesheetEntry starts.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>applicableTo</td>
+            <td>Date</td>
+            <td>Day when TimesheetEntry ends.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>approvalDate</td>
+            <td>Timestamp</td>
+            <td>Record of when TimesheetEntry was approved.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>billEvalDate</td>
+            <td>Date</td>
+            <td>Date when &ldquo;billed&rdquo; field is evaluated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>comment</td>
+            <td>String (2000)</td>
+            <td>A short comment to be added by the user to the TimesheetEntry.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>currencyUnit</td>
+            <td>To-one association</td>
+            <td>CurrencyUnit fields: 
+                <li>id<li>alphabeticCode<li>name</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>earnCode</td>
+            <td>To-one association</td>
+            <td>EarnCode default fields: 
+                <li>id<li>code<li>externalID<li>title<br>Refer to the EarnCode entity for more details.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>endedAt</td>
+            <td>Timestamp</td>
+            <td>Record of when the TimesheetEntry ends.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>externalTimesheetEntryID</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>externalTimesheetID</td>
+            <td>String (20)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>externalTimestamp</td>
+            <td>Long</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>lastModifiedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was most recently modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id<li>firstName<li>lastName</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>payEvalDate</td>
+            <td>Date</td>
+            <td>Date when &ldquo;paid&rdquo; field is evaluated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>quantity</td>
+            <td>BigDecimal</td>
+            <td>Total amount.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>startedAt</td>
+            <td>Timestamp</td>
+            <td>Record of when TimesheetEntry started.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>timeLaborEvalSheetTypeLookup</td>
+            <td>To-one association</td>
+            <td>TimeLaborEvalSheetEntryTypeLookup options: 
+                <li>Time<li>Labor<li>AdditionalPay<li>Expense</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborSystemTypeLookupID</td>
+            <td>To-one association</td>
+            <td>TimeLaborSystemTypeLookup options: 
+                <li>Unknown<li>WTE<li>System<li>Admin<li>VMS<li>Clock<li>Mobile<li>VTC<li>IVR<li>Expense</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>timesheet</td>
+            <td>To-one association</td>
+            <td>Timesheet fields: 
+                <li>id<li>calendarInstance<li>candidate</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>timesheetDay</td>
+            <td>Date</td>
+            <td>Day associated with TimesheetEntry.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>timesheetEntryApprovalStatusLookup</td>
+            <td>To-one association</td>
+            <td>TimesheetEntryApprovalStatusLookup options: 
+                <li>Draft<li>Submitted<li>Approved<li>Completed<li>Rejected</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>timesheetVersion</td>
+            <td>Integer</td>
+            <td>Integer of which version of timesheet this entry is associated with.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>timestamp</td>
+            <td>Byte[]</td>
+            <td>Record stored in byte format.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>unitOfMeasure</td>
+            <td>To-one association</td>
+            <td>UnitOfMeasure fields: 
+                <li>id<li>label</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>voidingTimesheetEntry</td>
+            <td>To-one association</td>
+            <td>TimesheetEntry fields: 
+                <li>id </td>
+            <td></td>
+            <td>X</td>
         </tr>
     </tbody>
 </table>
