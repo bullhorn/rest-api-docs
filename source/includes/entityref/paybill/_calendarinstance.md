@@ -52,21 +52,21 @@ Entity that represents a Calendar Instance record.
         <tr class="even">
             <td>endDate</td>
             <td>Date</td>
-            <td></td>
+            <td>End date of the calendar instance.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>label</td>
             <td>String (150)</td>
-            <td></td>
+            <td>Title for the calendar instance.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>startDate</td>
             <td>Date</td>
-            <td></td>
+            <td>Start date of the calendar instance.</td>
             <td>X</td>
             <td></td>
         </tr>

@@ -31,7 +31,7 @@ Entity that represents a Calendar record.
         <tr class="odd">
             <td>calendarFrequencyLookup</td>
             <td>To-one association</td>
-            <td>CalendarFrequencyLookup.</td>
+            <td>CalendarFrequencyLookup</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -52,7 +52,7 @@ Entity that represents a Calendar record.
         <tr class="even">
             <td>isCustom</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Designates a customer generated calendar</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -66,7 +66,7 @@ Entity that represents a Calendar record.
         <tr class="even">
             <td>offset</td>
             <td>Integer</td>
-            <td></td>
+            <td>Beginning day for a calendar frequency pattern</td>
             <td></td>
             <td></td>
         </tr>
