@@ -38,7 +38,7 @@ Represents an invoice term version.
         <tr class="even">
             <td>currencyUnit</td>
             <td>To-one association</td>
-            <td>CurrencyUnit</td>
+            <td>CurrencyUnit.</td>
             <td>X</td>
             <td></td>
         </tr>

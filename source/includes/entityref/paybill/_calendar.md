@@ -31,7 +31,7 @@ Entity that represents a Calendar record.
         <tr class="odd">
             <td>calendarFrequencyLookup</td>
             <td>To-one association</td>
-            <td>CalendarFrequencyLookup</td>
+            <td>CalendarFrequencyLookup.</td>
             <td>X</td>
             <td></td>
         </tr>

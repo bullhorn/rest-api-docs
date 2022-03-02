@@ -36,21 +36,21 @@ Read-only entity used to track which BillMasterTransactions are ready for revenu
         </tr>
         <tr class="odd">
             <td>batchStatus</td>
-            <td>To One Association (BatchStatusLookup)</td>
+            <td>To-one association (BatchStatusLookup)</td>
             <td>Status of this entity.</td>
             <td>X</td>
             <td> </td>
         </tr>
         <tr class="even">
             <td>billableCharges</td>
-            <td>To Many Association (BillableCharge)</td>
+            <td>To-many association (BillableCharge)</td>
             <td>Billable Charges associated to this entity.</td>
             <td> </td>
             <td> </td>
         </tr>
         <tr class="odd">
             <td>billMasterTransactions</td>
-            <td>To Many Association (Bill Master Transaction)</td>
+            <td>To-many association (Bill Master Transaction)</td>
             <td>Bill Master Transactions associated to this entity.</td>
             <td> </td>
             <td> </td>
@@ -71,7 +71,7 @@ Read-only entity used to track which BillMasterTransactions are ready for revenu
         </tr>
         <tr class="even">
             <td>owner</td>
-            <td>To One Association (CorporateUser)</td>
+            <td>To-one association (CorporateUser)</td>
             <td>
                 <p>Corporate User who is the owner of this entity. The default value is the user who created the entity.</p>
                 <p>Default fields:</p>

@@ -19,6 +19,8 @@ includes:
   - entityref/candidatecertificationrequirement
   - entityref/candidateeducation
   - entityref/candidatereference
+  - entityref/candidatereferencequestion
+  - entityref/candidatereferenceresponse
   - entityref/candidateworkhistory
   - entityref/category
   - entityref/certification
@@ -39,6 +41,7 @@ includes:
   - entityref/entityedithistoryfieldchange
   - entityref/entityfileattachment
   - entityref/estaffmappableflowback
+  - entityref/federaltaxform  
   - entityref/housingcomplex
   - entityref/housingcomplexfurnituredelivery
   - entityref/housingcomplexunit
@@ -52,6 +55,7 @@ includes:
   - entityref/jobsubmissionhistory
   - entityref/lead
   - entityref/leadhistory
+  - entityref/localtaxform
   - entityref/location
   - entityref/locationversion
   - entityref/note
@@ -64,33 +68,65 @@ includes:
   - entityref/paybill/billingsyncerror
   - entityref/paybill/billmaster
   - entityref/paybill/billmasterdiscountrate
+  - entityref/paybill/billmastersurchargerate
   - entityref/paybill/billmastertransaction
+  - entityref/paybill/billmastertransactiondiscountdetail
   - entityref/paybill/billmastertransactiondiscountrate
   - entityref/paybill/billmastertransactiondistributionbatch
+  - entityref/paybill/billmastertransactionsalestaxdetail
   - entityref/paybill/billmastertransactionsalestaxrate
+  - entityref/paybill/billmastertransactionsurchargedetail
+  - entityref/paybill/billmastertransactionsurchargerate
   - entityref/paybill/calendar
   - entityref/paybill/calendarfrequencylookup
   - entityref/paybill/calendarinstance
+  - entityref/paybill/citysalestaxrate
+  - entityref/paybill/countysalestaxrate
+  - entityref/paybill/directdepositaccount
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
+  - entityref/paybill/districtsalestaxrate
   - entityref/paybill/earncode
   - entityref/paybill/earncodegroup
+  - entityref/paybill/expensesheet
+  - entityref/paybill/expensesheetentry
   - entityref/paybill/generalledgeraccount
   - entityref/paybill/generalledgersegment
   - entityref/paybill/generalledgersegmenttype
   - entityref/paybill/generalledgerservicecode
+  - entityref/paybill/invoicestatementdiscountrate
+  - entityref/paybill/invoicestatementlineitem
+  - entityref/paybill/invoicestatementlineitemdiscountrate
+  - entityref/paybill/invoicestatementlineitemsalestaxrate
+  - entityref/paybill/invoicestatementlineitemsurchargerate
+  - entityref/paybill/invoicestatementsalestaxrate
+  - entityref/paybill/invoicestatementsurchargerate
   - entityref/paybill/invoiceterm
   - entityref/paybill/invoicetermversion
   - entityref/paybill/jobcode
+  - entityref/paybill/joborderratecard
+  - entityref/paybill/joborderratecardline
+  - entityref/paybill/joborderratecardlinegroup
+  - entityref/paybill/joborderratecardversion
   - entityref/paybill/legalBusinessEntity
+  - entityref/paybill/othersalestaxrate
   - entityref/paybill/payablecharge
   - entityref/paybill/paymaster
   - entityref/paybill/paymastertransaction
   - entityref/paybill/placementratecard
   - entityref/paybill/placementratecardline
   - entityref/paybill/placementratecardversion
+  - entityref/paybill/salestaxgroup
   - entityref/paybill/salestaxrate
   - entityref/paybill/salestaxrateversion
+  - entityref/paybill/statesalestaxrate
+  - entityref/paybill/surchargerate
+  - entityref/paybill/surchargerateversion
+  - entityref/paybill/surchargerateversionearncode
+  - entityref/paybill/timelaborevalrule
+  - entityref/paybill/timelaborevalruletemplate
+  - entityref/paybill/timesheet 
+  - entityref/paybill/timesheetentry
   - entityref/paybill/transactionorigin
   - entityref/paybill/transactionstatus
   - entityref/paybill/transactiontype
@@ -98,11 +134,13 @@ includes:
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest
+  - entityref/placementtimeandexpensechangerequest
   - entityref/placementcommission
   - entityref/sendout
   - entityref/skill
   - entityref/specialty
   - entityref/state
+  - entityref/statetaxform
   - entityref/task
   - entityref/tearsheet
   - entityref/tearsheetmember

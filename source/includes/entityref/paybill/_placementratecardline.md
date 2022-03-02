@@ -1,6 +1,6 @@
 # Pay and Bill - PlacementRateCardLine
 
-An Entity representing each individual rate on a Placement
+Represents each individual rate on a Placement.
 
 
 <table>
@@ -31,14 +31,14 @@ An Entity representing each individual rate on a Placement
         <tr class="odd">
             <td>alias</td>
             <td>String (100)</td>
-            <td>Name of Earn Code that will be displayed in Time and Expense and on the Invoice Statement</td>
+            <td>Name of Earn Code that will be displayed in Time and Expense and on the Invoice Statement.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>billCurrencyUnit</td>
             <td>To-one association</td>
-            <td>Currency Unit for billing
+            <td>Currency Unit for billing.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -80,14 +80,14 @@ An Entity representing each individual rate on a Placement
         <tr class="odd">
             <td>earnCode</td>
             <td>To-one association</td>
-            <td>Earn Code associated with the line, based on the EarnCodeGroup </td>
+            <td>Earn Code associated with the line, based on the EarnCodeGroup.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>externalID</td>
             <td>String (100)</td>
-            <td>Customer defined identifier</td>
+            <td>Customer defined identifier.</td>
             <td></td>
             <td></td>
         </tr>
@@ -97,7 +97,7 @@ An Entity representing each individual rate on a Placement
             <td>
                 <p>Used to indicate what the difference is between the payRate and billRate as a percentage.</p>
                 <p>= (billRate - payRate) / payRate</p>
-                <p>(For example, if payRate = 20 and billRate = 28 then there is a 40% markup.)</p>
+                <p>For example, if payRate = 20 and billRate = 28 then there is a 40% markup.</p>
                 <p>markups get automatically calculated in code based off their respective billRate and payRate.</p>
             </td>
             <td></td>
@@ -109,7 +109,7 @@ An Entity representing each individual rate on a Placement
             <td>
                 <p>Used to indicate what the difference is between payRate and billRate displayed as money.</p>
                 <p>= billRate - payRate</p>
-                <p>(For example, there's a $10.00 difference between billRate = $20.00 and payRate = $10.00.)</p>
+                <p>For example, there's a $10.00 difference between billRate = $20.00 and payRate = $10.00.</p>
                 <p>markups get automatically calculated in code based off their respective billRate and payRate.</p>
             </td>
             <td></td>
@@ -125,7 +125,7 @@ An Entity representing each individual rate on a Placement
         <tr class="even">
             <td>payCurrencyUnit</td>
             <td>To-one association</td>
-            <td>CurrencyUnit for payroll
+            <td>CurrencyUnit for payroll.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -166,7 +166,7 @@ An Entity representing each individual rate on a Placement
         <tr class="odd">
             <td>placementRateCardLineGroup</td>
             <td>To-one association</td>
-            <td>PlacementRateCardLineGroup
+            <td>PlacementRateCardLineGroup.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -174,6 +174,13 @@ An Entity representing each individual rate on a Placement
             </td>
             <td></td>
             <td></td>
+        </tr>
+        <tr class="even">
+            <td>taxableMargin</td>
+            <td>BigDecimal</td>
+            <td>Configurable field to store percentage based value that will calculate taxes on transactions. Only used in conjunction with taxOnMarginEnabled on Sales Tax Group.</td>
+            <td><br/></td>
+            <td><br/></td>
         </tr>
     </tbody>
 </table>

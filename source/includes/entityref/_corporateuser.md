@@ -10,7 +10,8 @@ Represents an Internal user at your organization. CorporateUser is read-only. 
 | customInt1 to 3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customText1 to 20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateLastComment | Timestamp | Date on which CorporateUser’s last comment was made. | | |
-| departments | To-many association | Ids of departments to which the CorporateUser belongs. | | |
+| departmentIdList | String (255) | Ids of departments to which the CorporateUser belongs. | | |
+| departments | To-many association | Departments to which the CorporateUser belongs. | | |
 | address | Address | CorporateUser’s main  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/CorporateUser?fields=address(countryID) | X | |
 | email | String (100) | Primary email address. | | |
 | email2 | String (100) | Additional email address 2. | | |
@@ -37,6 +38,7 @@ Represents an Internal user at your organization. CorporateUser is read-only. 
 | occupation | String (50) | Occupation of the CorporateUser. | | |
 | pager | String (20) | Pager number of the CorporateUser. | | |
 | phone to phone3 | String (20) | Phone number of the CorporateUser. | | |
+| primaryDepartment | To-one association | Primary department of the CorporateUser. | | |
 | smsOptIn | Boolean | Indicates whether the CorporateUser has granted permission to be sent messages via SMS. | | |
 | taskAssignments | Task | Tasks that have been assigned to this CorporateUser, including those owned by the CorporateUser. | | |
 | timeZoneOffsetEST | Integer | Indicates the number of hours by which the CorporateUser’s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |

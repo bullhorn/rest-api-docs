@@ -44,9 +44,10 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | daysProRated | Integer | Indicates how many days the Candidate must work before the Client Corporation will be expected to pay a pro-rated portion of the fee. Used for Permanent placements. For example, if daysGuaranteed = 90 and daysProRated = 30, then if the Candidate works 29 days no fee is due, but if the Candidate works 30-89 days the Client Corporation must pay a percentage of the fee, and if the Candidate works 90 days or more, the full fee is due. | X | |
 | durationWeeks | Double | Duration of the job in weeks. You can use this property in addition to dateEnd. | X | |
 | employeeType | String (30) | Type of employee. For example, W2, 1099, Employee, Contractor, and so forth. | | |
-| expiringCredentials | Integer | Number of credentials on requirements of this placement that are expiring within the next 30 days or already expired. | | |
 | employmentStartDate | Timestamp | Indicates the date on which paid employment begins for this placement. Can be different from placement start date. Used for payroll integrations. | | |
 | employmentType | String (30) | Employment type. | X | X |
+| expiringCredentials | Integer | Number of credentials on requirements of this placement that are expiring within the next 30 days or already expired. | | |
+| exemptionStatus | PlacementTaxExemptionStatusLookup | Tax exemption status for the Placement. Options are: 1=Exempt, 2=Non-Exempt, 3=Self-Pay | --- | --- |
 | fee | Double | Fee (expressed as a decimal) that the company will receive for this placement. | X | |
 | hoursOfOperation | String (100) | Hours during which the employee will work. | | |
 | hoursPerDay | Double | Number of hours per day that the employee will work. | X | |
