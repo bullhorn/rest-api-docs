@@ -40,24 +40,46 @@ Entity that represents a Calendar record.
             <td>Timestamp</td>
             <td></td>
             <td>X</td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td></td>
-            <td>X</td>
+            <td></td>
             <td></td>
         </tr>
         <tr class="even">
+            <td>isCustom</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>label</td>
             <td>String (100)</td>
             <td></td>
             <td>X</td>
             <td></td>
         </tr>
+        <tr class="even">
+            <td>offset</td>
+            <td>Integer</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>startDate</td>
+            <td>Date</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
+
 
 
      

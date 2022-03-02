@@ -29,36 +29,64 @@ Entity that represents a billing cycle record.
             <td>X</td>
         </tr>
         <tr class="odd">
+            <td>billEvalEnabled</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>billingCalendar</td>
             <td>To-one association</td>
-            <td>Calendar - the billing calendar that is associated with the billing cycle.</td>
+            <td>Calendar</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billingCalendarFrequencyLookup</td>
+            <td>To-one association</td>
+            <td>CalendarFrequencyLookup</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>billingCalendarFrequencyLookup</td>
-            <td>To-one association</td>
-            <td>CalendarFrequencyLookup</td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
             <td></td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceCycleEnabled</td>
+            <td>Boolean</td>
+            <td></td>
             <td>X</td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>label</td>
             <td>String (100)</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>payEvalEnabled</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timesheetEnabled</td>
+            <td>Boolean</td>
             <td></td>
             <td>X</td>
             <td></td>

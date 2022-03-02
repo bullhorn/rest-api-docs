@@ -31,12 +31,7 @@ Entity that represents a Calendar Instance record.
         <tr class="odd">
             <td>calendar</td>
             <td>To-one association</td>
-            <td>Calendar - each calendar instance record is linked to a Calendar record.
-                <p>Default Fields:</p>
-                <ul>
-                    <li>id</li>
-                </ul>
-            </td>
+            <td>Calendar</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -45,33 +40,33 @@ Entity that represents a Calendar Instance record.
             <td>Timestamp</td>
             <td></td>
             <td>X</td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td></td>
-            <td>X</td>
+            <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>endDate</td>
             <td>Date</td>
-            <td>End date of the calendar instance.</td>
+            <td></td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>label</td>
             <td>String (150)</td>
-            <td>Title for the calendar instance.</td>
+            <td></td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>startDate</td>
             <td>Date</td>
-            <td>Start date of the calendar instance.</td>
+            <td></td>
             <td>X</td>
             <td></td>
         </tr>
