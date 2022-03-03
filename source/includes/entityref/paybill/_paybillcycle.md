@@ -52,14 +52,14 @@ Entity that represents a billing cycle record.
         <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date the entity was added.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date the entity was last modified.</td>
             <td></td>
             <td></td>
         </tr>
@@ -73,7 +73,7 @@ Entity that represents a billing cycle record.
         <tr class="odd">
             <td>label</td>
             <td>String (100)</td>
-            <td></td>
+            <td>Label</td>
             <td>X</td>
             <td></td>
         </tr>
