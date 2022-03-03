@@ -61,7 +61,7 @@ Entity that represents a billing cycle record.
             <td>Timestamp</td>
             <td>Date the entity was last modified.</td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="even">
             <td>invoiceCycleEnabled</td>
