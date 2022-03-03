@@ -47,7 +47,7 @@ Entity that represents a Calendar record.
             <td>Timestamp</td>
             <td>Date the entity was last modified.</td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="even">
             <td>isCustom</td>
