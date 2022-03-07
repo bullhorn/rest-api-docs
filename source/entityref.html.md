@@ -15,12 +15,14 @@ includes:
   - entityref/appointmentattendee
   - entityref/businesssector
   - entityref/candidate
+  - entityref/candidateavailability
   - entityref/candidatecertification
   - entityref/candidatecertificationrequirement
   - entityref/candidateeducation
   - entityref/candidatereference
   - entityref/candidatereferencequestion
   - entityref/candidatereferenceresponse
+  - entityref/candidateshiftpreference
   - entityref/candidateworkhistory
   - entityref/category
   - entityref/certification
@@ -50,6 +52,9 @@ includes:
   - entityref/issueitems
   - entityref/jobboardpost
   - entityref/joborder
+  - entityref/jobshift
+  - entityref/jobshiftsubmission
+  - entityref/jobshiftassignment
   - entityref/jobsubmission
   - entityref/jobsubmissioncertificationrequirement
   - entityref/jobsubmissionhistory
@@ -137,6 +142,9 @@ includes:
   - entityref/placementtimeandexpensechangerequest
   - entityref/placementcommission
   - entityref/sendout
+  - entityref/shift
+  - entityref/shiftposition
+  - entityref/shifttype
   - entityref/skill
   - entityref/specialty
   - entityref/state
