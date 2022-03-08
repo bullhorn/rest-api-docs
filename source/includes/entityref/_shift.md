@@ -1,6 +1,6 @@
 # Shift
 
-
+Shift Definition allows for setup of default start and end times at the clientCorporation level.
 
 <table>
     <colgroup>

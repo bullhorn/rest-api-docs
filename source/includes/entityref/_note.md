@@ -1,6 +1,6 @@
 # Note
 
-Represents a note (comment) associated with a Candidate, ClientContact, CorporateUser, JobOrder, Lead, or Opportunity. Notes can be accessed via the "Notes" tab on the person's record in the Bullhorn application.
+Represents a note (comment) associated with a Candidate, ClientContact, CorporateUser, JobOrder, JobShift, Lead, or Opportunity. Notes can be accessed via the "Notes" tab on the person's record in the Bullhorn application.
 
 If you include a commentingPerson value and a personReference value when you create a Note, the association to an entity is made automatically and you do not need to make a separate call to create a NoteEntity.
 

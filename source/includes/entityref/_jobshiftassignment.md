@@ -1,6 +1,6 @@
 # JobShiftAssignment
 
-
+JobShiftAssignment ties the candidate to a JobShift and also allows for storing time capture details (such as actualStartTime and actualEndTime).
 
 <table>
     <colgroup>

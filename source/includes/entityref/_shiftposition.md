@@ -1,6 +1,6 @@
 # ShiftPosition
 
-
+ShiftPosition is used to create more specific shifts tied to a single job. Also can be used for storing rate information that is tied to the jobShift.
 
 <table>
     <colgroup>

@@ -1,6 +1,6 @@
 # ShiftType
 
-
+ShiftType is an entity set at the corporation level to define various shift time intervals (Morning, Afternoon, Evening, Overnight, etc.) - used for setting candidatePreferences.
 
 <table>
     <colgroup>

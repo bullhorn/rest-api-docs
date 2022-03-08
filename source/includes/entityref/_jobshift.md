@@ -1,6 +1,6 @@
 # JobShift
 
-
+JobShift is the main entity for shift scheduling and is used for storing start & end times, references to the clientCorporation, job, and other details for the shift (such as location, name, etc).
 
 <table>
     <colgroup>

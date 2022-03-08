@@ -1,6 +1,6 @@
 # JobShiftSubmission
 
-
+Similar to a job submission, shift submissions contain status and allow for a workflow of assigning a candidate to a jobshift without a JobShiftAssignment.
 
 <table>
     <colgroup>

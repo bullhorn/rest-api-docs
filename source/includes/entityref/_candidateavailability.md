@@ -1,6 +1,6 @@
 # CandidateAvailability
 
-
+CandidateAvailability allows for viewing and updating specific availability for a candidate on an explicit date/time.
 
 <table>
     <colgroup>
