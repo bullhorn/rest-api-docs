@@ -29,37 +29,65 @@ Entity that represents a billing cycle record.
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>billingCalendar</td>
-            <td>To-one association</td>
-            <td>Calendar - the billing calendar that is associated with the billing cycle.</td>
-            <td></td>
+            <td>billEvalEnabled</td>
+            <td>Boolean</td>
+            <td>Enabled for billing cycle.</td>
+            <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>billingCalendarFrequencyLookup</td>
+            <td>billingCalendar</td>
             <td>To-one association</td>
-            <td>CalendarFrequencyLookup.</td>
-            <td>X</td>
+            <td>Calendar.</td>
+            <td></td>
             <td></td>
         </tr>
         <tr class="odd">
+            <td>billingCalendarFrequencyLookup</td>
+            <td>To-one association</td>
+            <td>CalendarFrequencyLookup.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date the entity was added.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
             <td></td>
             <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>invoiceCycleEnabled</td>
+            <td>Boolean</td>
+            <td>Enabled for invoice cycle.</td>
             <td>X</td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>label</td>
             <td>String (100)</td>
+            <td>Label</td>
+            <td>X</td>
             <td></td>
+        </tr>
+        <tr class="even">
+            <td>payEvalEnabled</td>
+            <td>Boolean</td>
+            <td>Enabled for pay cycle.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timesheetEnabled</td>
+            <td>Boolean</td>
+            <td>Enabled for timesheet cycle.</td>
             <td>X</td>
             <td></td>
         </tr>
