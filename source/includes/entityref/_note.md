@@ -39,7 +39,7 @@ If you include a commentingPerson value and a personReference value when you cre
         <tr class="even">
             <td>bhTimeStamp</td>
             <td>byte[]</td>
-            <td></td>
+            <td>Timestamp for this Note. </td>
             <td>X</td>
             <td></td>
         </tr>
@@ -108,8 +108,8 @@ If you include a commentingPerson value and a personReference value when you cre
         </tr>
         <tr class="even">
             <td>isDeleted</td>
+            <td>Boolean</td>
             <td>Indicates whether this record has been marked as Deleted in the Bullhorn system.</td>
-            <td></td>
             <td>X</td>
             <td></td>
         </tr>
@@ -130,7 +130,7 @@ If you include a commentingPerson value and a personReference value when you cre
         <tr class="odd">
             <td>jobShifts</td>
             <td>To-many association</td>
-            <td>JobShift</td>
+            <td>JobShift's associated with this Note.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -144,14 +144,14 @@ If you include a commentingPerson value and a personReference value when you cre
         <tr class="odd">
             <td>linkedInID</td>
             <td>String (200)</td>
-            <td></td>
+            <td>LinkedIn ID associated with this Note.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>migrateGUID</td>
             <td>String (36)</td>
-            <td></td>
+            <td>Unused.</td>
             <td></td>
             <td></td>
         </tr>
@@ -165,14 +165,14 @@ If you include a commentingPerson value and a personReference value when you cre
         <tr class="even">
             <td>opportunities</td>
             <td>To-many association</td>
-            <td>Opportunity</td>
+            <td>Opportunities associated with this Note.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>people</td>
             <td>To-many association</td>
-            <td>Person</td>
+            <td>People with whom this Note is associated.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -193,14 +193,14 @@ If you include a commentingPerson value and a personReference value when you cre
         <tr class="even">
             <td>primaryDepartmentName</td>
             <td>String (0)</td>
-            <td></td>
+            <td>Primary department name associated with the owner of this Note.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>truestDateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Time at which a record was added to the database.</td>
             <td></td>
             <td></td>
         </tr>
