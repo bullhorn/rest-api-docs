@@ -31,7 +31,7 @@ Entity that represents a Calendar Instance record.
         <tr class="odd">
             <td>calendar</td>
             <td>To-one association</td>
-            <td>Calendar</td>
+            <td>Calendar.</td>
             <td>X</td>
             <td>X</td>
         </tr>

@@ -31,21 +31,21 @@ Entity that represents a billing cycle record.
         <tr class="odd">
             <td>billEvalEnabled</td>
             <td>Boolean</td>
-            <td>Enabled for billing cycle</td>
+            <td>Enabled for billing cycle.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>billingCalendar</td>
             <td>To-one association</td>
-            <td>Calendar</td>
+            <td>Calendar.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>billingCalendarFrequencyLookup</td>
             <td>To-one association</td>
-            <td>CalendarFrequencyLookup</td>
+            <td>CalendarFrequencyLookup.</td>
             <td></td>
             <td></td>
         </tr>
@@ -66,7 +66,7 @@ Entity that represents a billing cycle record.
         <tr class="even">
             <td>invoiceCycleEnabled</td>
             <td>Boolean</td>
-            <td>Enabled for invoice cycle</td>
+            <td>Enabled for invoice cycle.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -80,14 +80,14 @@ Entity that represents a billing cycle record.
         <tr class="even">
             <td>payEvalEnabled</td>
             <td>Boolean</td>
-            <td>Enabled for pay cycle</td>
+            <td>Enabled for pay cycle.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>timesheetEnabled</td>
             <td>Boolean</td>
-            <td>Enabled for timesheet cycle</td>
+            <td>Enabled for timesheet cycle.</td>
             <td>X</td>
             <td></td>
         </tr>
