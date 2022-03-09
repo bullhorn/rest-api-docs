@@ -34,28 +34,28 @@ Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge
         <tr class="odd">
             <td>billMaster</td>
             <td>To-one association</td>
-            <td>BillMaster</td>
+            <td>Bill Master the file is associated with.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>billableCharge</td>
             <td>To-one association</td>
-            <td>BillableCharge</td>
+            <td>Billable Charge the file is associated with.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>billingSyncBatch</td>
             <td>BillingSyncBatch</td>
-            <td>Billing Sync Batch the file is associated with.	</td>
+            <td>Billing Sync Batch the file is associated with.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>billingSyncBatchFileTypeLookup</td>
             <td>To-one association</td>
-            <td>BillingSyncBatchFileTypeLookup</td>
+            <td>Billing Sync Batch File Type Lookup the file is associated with.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -83,7 +83,7 @@ Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date last modified.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -104,14 +104,14 @@ Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge
         <tr class="odd">
             <td>expenseSheet</td>
             <td>To-one association</td>
-            <td>ExpenseSheet</td>
+            <td>Expense Sheet the file is associated with.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>expenseSheetEntry</td>
             <td>To-one association</td>
-            <td>ExpenseSheetEntry</td>
+            <td>Expense Sheet Entry the file is associated with.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -194,14 +194,14 @@ Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge
         <tr class="odd">
             <td>timesheet</td>
             <td>To-one association</td>
-            <td>Timesheet.</td>
+            <td>Timesheet the file is associated with.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>transactionOrigin</td>
             <td>To-one association</td>
-            <td>TransactionOrigin.</td>
+            <td>TransactionOrigin the file is associated with.</td>
             <td>X</td>
             <td></td>
         </tr>
