@@ -59,7 +59,7 @@ Entity that represents a Calendar record.
         <tr class="odd">
             <td>label</td>
             <td>String (100)</td>
-            <td></td>
+            <td>Title for the calendar</td>
             <td>X</td>
             <td></td>
         </tr>
