@@ -65,6 +65,7 @@ includes:
   - entityref/paybill/batchgroup
   - entityref/paybill/billablecharge
   - entityref/paybill/billingsyncbatch
+  - entityref/paybill/billingsyncbatchfileattachment
   - entityref/paybill/billingsyncerror
   - entityref/paybill/billmaster
   - entityref/paybill/billmasterdiscountrate
