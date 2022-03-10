@@ -1,6 +1,6 @@
 # Pay & Bill - BillingSyncBatchFileAttachment
 
-File attachments which can be associated with a Billing Sync Batch.
+File attachments that can be associated with a BillingSyncBatch.
 
 CRUD Access - READ.
 
@@ -34,28 +34,28 @@ Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge
         <tr class="odd">
             <td>billMaster</td>
             <td>To-one association</td>
-            <td>Bill Master the file is associated with.</td>
+            <td>BillMaster the file is associated with.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>billableCharge</td>
             <td>To-one association</td>
-            <td>Billable Charge the file is associated with.</td>
+            <td>BillableCharge the file is associated with.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>billingSyncBatch</td>
             <td>BillingSyncBatch</td>
-            <td>Billing Sync Batch the file is associated with.</td>
+            <td>BillingSyncBatch the file is associated with.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>billingSyncBatchFileTypeLookup</td>
             <td>To-one association</td>
-            <td>Billing Sync Batch File Type Lookup the file is associated with.</td>
+            <td>BillingSyncBatchFileTypeLookup the file is associated with.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -104,14 +104,14 @@ Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge
         <tr class="odd">
             <td>expenseSheet</td>
             <td>To-one association</td>
-            <td>Expense Sheet the file is associated with.</td>
+            <td>ExpenseSheet the file is associated with.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>expenseSheetEntry</td>
             <td>To-one association</td>
-            <td>Expense Sheet Entry the file is associated with.</td>
+            <td>ExpenseSheetEntry the file is associated with.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -125,7 +125,7 @@ Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge
         <tr class="even">
             <td>fileExtension</td>
             <td>String (10)</td>
-            <td>File extension of this file (will always be PDF at this time).</td>
+            <td>File extension of this file. Currently, always PDF.</td>
             <td>X</td>
             <td></td>
         </tr>
