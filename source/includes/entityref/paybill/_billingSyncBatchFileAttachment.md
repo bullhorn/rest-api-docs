@@ -2,7 +2,7 @@
 
 File attachments which can be associated with a Billing Sync Batch.
 
-CRUD Access - READ. Insert by billing-sync-service.
+CRUD Access - READ.
 
 Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge.
 
