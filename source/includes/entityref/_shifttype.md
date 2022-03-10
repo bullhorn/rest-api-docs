@@ -30,35 +30,35 @@ ShiftType is an entity set at the corporation level to define various shift time
         <tr class="odd">
             <td>endTime</td>
             <td>String (16)</td>
-            <td></td>
+            <td>The end time for the associated Shift Type.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>icon</td>
             <td>String (50)</td>
-            <td></td>
+            <td>Icon associated to the Shift Type.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Indicates whether this Shift Type has been marked as deleted in the Bullhorn system.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>name</td>
             <td>String (50)</td>
-            <td></td>
+            <td>Name of the associated Shift Type.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>startTime</td>
             <td>String (16)</td>
-            <td></td>
+            <td>The start time for the associated Shift Type.</td>
             <td>X</td>
             <td></td>
         </tr>

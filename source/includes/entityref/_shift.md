@@ -30,91 +30,91 @@ Shift Definition allows for setup of default start and end times at the clientCo
         <tr class="odd">
             <td>clientCorporation</td>
             <td>To-one association</td>
-            <td>ClientCorporation</td>
+            <td>Client Corporation associated to the Shift Defintion.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date when this record was last modified in the Bullhorn system.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>dayOfWeek</td>
             <td>Integer</td>
-            <td></td>
+            <td>Day of week associated to Shift Definition.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>endTime</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>End time designated to the Shift Definition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>htmlColorCode</td>
             <td>String (50)</td>
-            <td></td>
+            <td>Html color of the Shift Definition.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>isDefault</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Whether or not this is the default Shift Definition for the company.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>lastModifyingUser</td>
             <td>To-one association</td>
-            <td>CorporateUser</td>
+            <td>User that last modified the Shift Definition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>migrateGUID</td>
             <td>String (36)</td>
-            <td></td>
+            <td>Unused.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>name</td>
             <td>String (150)</td>
-            <td></td>
+            <td>Name of the Shift Definition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>shortName</td>
             <td>String (150)</td>
-            <td></td>
+            <td>Short name for the Shift Definition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>startTime</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Start time designated to the Shift Definition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>type</td>
             <td>String (150)</td>
-            <td></td>
+            <td>Type of the Shift Definition.</td>
             <td></td>
             <td></td>
         </tr>

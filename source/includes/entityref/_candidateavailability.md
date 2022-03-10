@@ -30,42 +30,42 @@ CandidateAvailability allows for viewing and updating specific availability for 
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td>Candidate</td>
+            <td>Candidate associated to this availability.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date when this record was created in the Bullhorn system.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>endTime</td>
             <td>OffsetDateTime</td>
-            <td></td>
+            <td>Time the associated Candidate Availability ends.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>isAvailable</td>
             <td>Boolean</td>
-            <td></td>
+            <td>If associated Candidate is available or not.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>startTime</td>
             <td>OffsetDateTime</td>
-            <td></td>
+            <td>Time the associated Candidate Availability starts.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>type</td>
             <td>String (50)</td>
-            <td></td>
+            <td>Type of Candidate Availability.</td>
             <td></td>
             <td></td>
         </tr>

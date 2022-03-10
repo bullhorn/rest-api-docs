@@ -30,49 +30,49 @@ Similar to a job submission, shift submissions contain status and allow for a wo
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td>Candidate</td>
+            <td>Candidate associated to Job Shift Submission</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date when this record was created in the Bullhorn system.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date when this record was last modified in the Bullhorn system.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>isPublished</td>
             <td>Boolean</td>
-            <td></td>
+            <td>True when Submission is promoted to Shift Assignment.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>jobShift</td>
             <td>To-one association</td>
-            <td>JobShift</td>
+            <td>JobShift associated with Submission.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>jobShiftOfferContext</td>
             <td>To-one association</td>
-            <td>JobShiftOfferContext</td>
+            <td>Context within the Job Shift Offer.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>status</td>
             <td>String (50)</td>
-            <td></td>
+            <td>Status of Shift Submission.</td>
             <td></td>
             <td></td>
         </tr>
