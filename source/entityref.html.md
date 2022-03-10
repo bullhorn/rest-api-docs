@@ -111,6 +111,7 @@ includes:
   - entityref/paybill/legalBusinessEntity
   - entityref/paybill/othersalestaxrate
   - entityref/paybill/payablecharge
+  - entityref/paybill/paybillcycle
   - entityref/paybill/paymaster
   - entityref/paybill/paymastertransaction
   - entityref/paybill/placementratecard
