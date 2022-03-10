@@ -30,7 +30,7 @@ Similar to a job submission, shift submissions contain status and allow for a wo
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td>Candidate associated to Job Shift Submission</td>
+            <td>Candidate associated to Job Shift Submission.</td>
             <td>X</td>
             <td></td>
         </tr>
