@@ -1,6 +1,6 @@
 # Shift
 
-Shift Definition allows for setup of default start and end times at the clientCorporation level.
+Represents a Shift Definition. Allows for setup of default start and end times at the clientCorporation level. 
 
 <table>
     <colgroup>
@@ -30,7 +30,7 @@ Shift Definition allows for setup of default start and end times at the clientCo
         <tr class="odd">
             <td>clientCorporation</td>
             <td>To-one association</td>
-            <td>Client Corporation associated to the Shift Defintion.</td>
+            <td>ClientCorporation associated to the Shift.</td>
             <td></td>
             <td></td>
         </tr>
@@ -44,28 +44,28 @@ Shift Definition allows for setup of default start and end times at the clientCo
         <tr class="odd">
             <td>dayOfWeek</td>
             <td>Integer</td>
-            <td>Day of week associated to Shift Definition.</td>
+            <td>Day of week associated to Shift.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>endTime</td>
             <td>Timestamp</td>
-            <td>End time designated to the Shift Definition.</td>
+            <td>End time designated to the Shift.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>htmlColorCode</td>
             <td>String (50)</td>
-            <td>Html color of the Shift Definition.</td>
+            <td>Html color of the Shift.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>isDefault</td>
             <td>Boolean</td>
-            <td>Whether or not this is the default Shift Definition for the company.</td>
+            <td>Indicates if this is a default Shift for the ClientCorporation.</td>
             <td></td>
             <td></td>
         </tr>
@@ -79,7 +79,7 @@ Shift Definition allows for setup of default start and end times at the clientCo
         <tr class="even">
             <td>lastModifyingUser</td>
             <td>To-one association</td>
-            <td>User that last modified the Shift Definition.</td>
+            <td>User that last modified the Shift.</td>
             <td></td>
             <td></td>
         </tr>
@@ -93,28 +93,28 @@ Shift Definition allows for setup of default start and end times at the clientCo
         <tr class="even">
             <td>name</td>
             <td>String (150)</td>
-            <td>Name of the Shift Definition.</td>
+            <td>Name of the Shift.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>shortName</td>
             <td>String (150)</td>
-            <td>Short name for the Shift Definition.</td>
+            <td>Short name for the Shift.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>startTime</td>
             <td>Timestamp</td>
-            <td>Start time designated to the Shift Definition.</td>
+            <td>Start time designated to the Shift.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>type</td>
             <td>String (150)</td>
-            <td>Type of the Shift Definition.</td>
+            <td>Type of the Shift.</td>
             <td></td>
             <td></td>
         </tr>
