@@ -97,7 +97,7 @@ Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge
         <tr class="even">
             <td>directory</td>
             <td>String (50)</td>
-            <td>File Server directory of this file.</td>
+            <td>File server directory of this file.</td>
             <td></td>
             <td></td>
         </tr>
@@ -187,7 +187,7 @@ Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge
         <tr class="even">
             <td>name</td>
             <td>String (255)</td>
-            <td>Name of File. Set at time of generation according to business rules.</td>
+            <td>Name of file. Set at time of generation according to business rules.</td>
             <td>X</td>
             <td></td>
         </tr>
