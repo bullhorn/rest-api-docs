@@ -1,6 +1,6 @@
 # Shift
 
-Represents a Shift Definition. Allows for setup of default start and end times at the clientCorporation level. 
+Represents a Shift Definition. Allows for setup of default start and end times at the ClientCorporation level. 
 
 <table>
     <colgroup>

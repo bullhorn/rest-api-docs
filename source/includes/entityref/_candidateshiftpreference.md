@@ -1,6 +1,6 @@
 # CandidateShiftPreference
 
-Stores a candidate's preferences for times and days when they want to work in association with the ShiftTypes that are configured.
+Stores a Candidate's preferences for times and days when they want to work in association with the ShiftTypes that are configured.
 
 <table>
     <colgroup>
