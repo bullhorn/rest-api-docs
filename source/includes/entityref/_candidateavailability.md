@@ -30,7 +30,7 @@ Allows for viewing and updating specific availability for a Candidate on an expl
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td>Candidate associated to this candidateAvailability.</td>
+            <td>Candidate associated to this CandidateAvailability.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -44,7 +44,7 @@ Allows for viewing and updating specific availability for a Candidate on an expl
         <tr class="odd">
             <td>endTime</td>
             <td>OffsetDateTime</td>
-            <td>Time the associated candidateAvailability ends.</td>
+            <td>Time the associated CandidateAvailability ends.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -58,14 +58,14 @@ Allows for viewing and updating specific availability for a Candidate on an expl
         <tr class="odd">
             <td>startTime</td>
             <td>OffsetDateTime</td>
-            <td>Time the associated candidateAvailability starts.</td>
+            <td>Time the associated CandidateAvailability starts.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>type</td>
             <td>String (50)</td>
-            <td>Type of candidateAvailability.</td>
+            <td>Type of CandidateAvailability.</td>
             <td></td>
             <td></td>
         </tr>

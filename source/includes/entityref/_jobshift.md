@@ -1,6 +1,6 @@
 # JobShift
 
-The main entity for shift scheduling and is used for storing start & end times, references to the ClientCorporation, JobOrder, and other details for the JobShift (such as location, name, etc).
+The main entity for Shift scheduling and is used for storing start & end times, references to the ClientCorporation, JobOrder, and other details for the JobShift (such as location, name, etc).
 
 <table>
     <colgroup>
@@ -135,21 +135,21 @@ The main entity for shift scheduling and is used for storing start & end times, 
         <tr class="even">
             <td>shift</td>
             <td>To-one association</td>
-            <td>The shiftDefinition associated with the JobShift.</td>
+            <td>The Shift associated with the JobShift.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>shiftPosition</td>
             <td>To-one association</td>
-            <td>The shiftPosition associated with the JobShift.</td>
+            <td>The ShiftPosition associated with the JobShift.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>shiftTypes</td>
             <td>To-many association</td>
-            <td>The shiftTypes over which the associated JobShift spans.</td>
+            <td>The ShiftTypes over which the associated JobShift spans.</td>
             <td></td>
             <td></td>
         </tr>

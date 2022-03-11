@@ -30,7 +30,7 @@ Stores a Candidate's preferences for times and days when they want to work in as
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td>Candidate associated to candidateShiftPreference.</td>
+            <td>Candidate associated to CandidateShiftPreference.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -65,7 +65,7 @@ Stores a Candidate's preferences for times and days when they want to work in as
         <tr class="even">
             <td>shiftType</td>
             <td>To-one association</td>
-            <td>shiftType associated to candidateShiftPreference. </td>
+            <td>ShiftType associated to CandidateShiftPreference. </td>
             <td>X</td>
             <td></td>
         </tr>

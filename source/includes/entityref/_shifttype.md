@@ -1,6 +1,6 @@
 # ShiftType
 
-Is set at the corporation level to define various shift time intervals (Morning, Afternoon, Evening, Overnight). Used for setting candidatePreferences.
+Is set at the corporation level to define various Shift time intervals (Morning, Afternoon, Evening, Overnight). Used for setting candidatePreferences.
 
 <table>
     <colgroup>
@@ -30,14 +30,14 @@ Is set at the corporation level to define various shift time intervals (Morning,
         <tr class="odd">
             <td>endTime</td>
             <td>String (16)</td>
-            <td>The end time for the associated shiftType.</td>
+            <td>The end time for the associated ShiftType.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>icon</td>
             <td>String (50)</td>
-            <td>Icon associated to the shiftType.</td>
+            <td>Icon associated to the ShiftType.</td>
             <td></td>
             <td></td>
         </tr>
@@ -51,14 +51,14 @@ Is set at the corporation level to define various shift time intervals (Morning,
         <tr class="even">
             <td>name</td>
             <td>String (50)</td>
-            <td>Name of the associated shiftType.</td>
+            <td>Name of the associated ShiftType.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>startTime</td>
             <td>String (16)</td>
-            <td>The start time for the associated shiftType.</td>
+            <td>The start time for the associated ShiftType.</td>
             <td>X</td>
             <td></td>
         </tr>

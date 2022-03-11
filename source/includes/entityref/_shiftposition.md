@@ -30,49 +30,49 @@ Used to create more specific Shifts tied to a single JobOrder. Also can be used 
         <tr class="odd">
             <td>billRate</td>
             <td>BigDecimal</td>
-            <td>Bill rate associated to shiftPosition.</td>
+            <td>Bill rate associated to ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>category</td>
             <td>To-one association</td>
-            <td>Category associated to shiftPosition.</td>
+            <td>Category associated to ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>certificationGroups</td>
             <td>To-many association</td>
-            <td>CertificationGroup associated to shiftPosition.</td>
+            <td>CertificationGroup associated to ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>certificationList</td>
             <td>To-many association</td>
-            <td>Certification associated to shiftPosition.</td>
+            <td>Certification associated to ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>certifications</td>
             <td>String (2147483647)</td>
-            <td>Certification associated to shiftPosition.</td>
+            <td>Certification associated to ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
             <td>To-one association</td>
-            <td>ClientCorporation the shiftPosition is associated to.</td>
+            <td>ClientCorporation the ShiftPosition is associated to.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>comments</td>
             <td>String (2147483647)</td>
-            <td>Comments associated to shiftPosition.</td>
+            <td>Comments associated to ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
@@ -177,49 +177,49 @@ Used to create more specific Shifts tied to a single JobOrder. Also can be used 
         <tr class="even">
             <td>name</td>
             <td>String (150)</td>
-            <td>Name of the shiftPosition.</td>
+            <td>Name of the ShiftPosition.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>overtimeBillRate</td>
             <td>BigDecimal</td>
-            <td>The overtime bill rate associated to the shiftPosition.</td>
+            <td>The overtime bill rate associated to the ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>payRate</td>
             <td>BigDecimal</td>
-            <td>The pay rate associated to the shiftPosition.</td>
+            <td>The pay rate associated to the ShiftPosition.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>salaryUnit</td>
             <td>String (12)</td>
-            <td>The salary unit associated to the shiftPosition.</td>
+            <td>The salary unit associated to the ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>skills</td>
             <td>To-many association</td>
-            <td>The skill associated to the shiftPosition.</td>
+            <td>The skill associated to the ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>specialties</td>
             <td>To-many association</td>
-            <td>The specialties associated to the shiftPosition.</td>
+            <td>The specialties associated to the ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>yearsExperience</td>
             <td>Integer</td>
-            <td>The years experience associated to the shiftPosition.</td>
+            <td>The years experience associated to the ShiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
