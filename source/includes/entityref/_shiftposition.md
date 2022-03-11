@@ -1,6 +1,6 @@
 # ShiftPosition
 
-ShiftPosition is used to create more specific shifts tied to a single job. Also can be used for storing rate information that is tied to the jobShift.
+Used to create more specific Shifts tied to a single JobOrder. Also can be used for storing rate information that is tied to the JobShift.
 
 <table>
     <colgroup>
@@ -30,49 +30,49 @@ ShiftPosition is used to create more specific shifts tied to a single job. Also 
         <tr class="odd">
             <td>billRate</td>
             <td>BigDecimal</td>
-            <td>Bill rate associated to Shift Position.</td>
+            <td>Bill rate associated to shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>category</td>
             <td>To-one association</td>
-            <td>Category associated to Shift Position.</td>
+            <td>Category associated to shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>certificationGroups</td>
             <td>To-many association</td>
-            <td>Certification Group associated to Shift Position.</td>
+            <td>CertificationGroup associated to shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>certificationList</td>
             <td>To-many association</td>
-            <td>Certification associated to Shift Position.</td>
+            <td>Certification associated to shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>certifications</td>
             <td>String (2147483647)</td>
-            <td>Certification associated to Shift Position.</td>
+            <td>Certification associated to shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
             <td>To-one association</td>
-            <td>Client Corporation the Shift Position is associated to.</td>
+            <td>ClientCorporation the shiftPosition is associated to.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>comments</td>
             <td>String (2147483647)</td>
-            <td>Comments associated to Shift Position.</td>
+            <td>Comments associated to shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
@@ -149,21 +149,21 @@ ShiftPosition is used to create more specific shifts tied to a single job. Also 
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td>Date when this Shift Position was last modified in the Bullhorn system.</td>
+            <td>Date when this record was last modified in the Bullhorn system.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td>Indicates whether this Shift Type has been marked as deleted in the Bullhorn system.</td>
+            <td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>isPriorShiftRequired</td>
             <td>Boolean</td>
-            <td>Indicates whether the prior shift is required or not.</td>
+            <td>Indicates whether the prior Shift is required or not.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -177,49 +177,49 @@ ShiftPosition is used to create more specific shifts tied to a single job. Also 
         <tr class="even">
             <td>name</td>
             <td>String (150)</td>
-            <td>Name of the Shift Position.</td>
+            <td>Name of the shiftPosition.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>overtimeBillRate</td>
             <td>BigDecimal</td>
-            <td>The overtime billrate associated to the Shift Position./td>
+            <td>The overtime bill rate associated to the shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>payRate</td>
             <td>BigDecimal</td>
-            <td>The pay rate associated to the Shift Position.</td>
+            <td>The pay rate associated to the shiftPosition.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>salaryUnit</td>
             <td>String (12)</td>
-            <td>The salary unit associated to the Shift Position.</td>
+            <td>The salary unit associated to the shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>skills</td>
             <td>To-many association</td>
-            <td>The skill associated to the Shift Position.</td>
+            <td>The skill associated to the shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>specialties</td>
             <td>To-many association</td>
-            <td>The Specialties associated to the Shift Position.</td>
+            <td>The specialties associated to the shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>yearsExperience</td>
             <td>Integer</td>
-            <td>The years experience associated to the Shift Position.</td>
+            <td>The years experience associated to the shiftPosition.</td>
             <td></td>
             <td></td>
         </tr>

@@ -1,6 +1,6 @@
 # JobShift
 
-JobShift is the main entity for shift scheduling and is used for storing start & end times, references to the clientCorporation, job, and other details for the shift (such as location, name, etc).
+The main entity for shift scheduling and is used for storing start & end times, references to the clientCorporation, job, and other details for the JobShift (such as location, name, etc).
 
 <table>
     <colgroup>
@@ -44,14 +44,14 @@ JobShift is the main entity for shift scheduling and is used for storing start &
         <tr class="odd">
             <td>endTime</td>
             <td>OffsetDateTime</td>
-            <td>Time the Job Shift Ends.</td>
+            <td>Time the JobShift Ends.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>fillRatio</td>
             <td>Double</td>
-            <td>Ratio of Assigned Candidates to Openings on the Job Shift.</td>
+            <td>Ratio of assigned Candidates to Openings on the JobShift.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -65,63 +65,63 @@ JobShift is the main entity for shift scheduling and is used for storing start &
         <tr class="even">
             <td>jobOrder</td>
             <td>To-one association</td>
-            <td>Job Order associated to the Job Shift.</td>
+            <td>JobOrder associated to the JobShift.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>jobShiftAssignments</td>
             <td>To-many association</td>
-            <td>Job Shift Assignments associated to the Job Shift.</td>
+            <td>JobShiftAssignments associated to the JobShift.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>jobShiftSubmissions</td>
             <td>To-many association</td>
-            <td>Job Shift Submission associated to a shift. Job Shift Submission is created when Offering a Candidate a Shift, before the Shift Submission is promoted to a Shift Assignment.</td>
+            <td>JobShiftSubmission associated to a JobShift. JobShiftSubmission is created when offering a Candidate a JobShift.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>location</td>
             <td>To-one association</td>
-            <td>Location associated to Job Shift sourced from the Client Corporation.</td>
+            <td>Location associated to JobShift sourced from the ClientCorporation.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>name</td>
             <td>String (150)</td>
-            <td>Desired Name for the Job Shift.</td>
+            <td>Name of the JobShift.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>notes</td>
             <td>To-many association</td>
-            <td>Note associated with Job Shift.</td>
+            <td>Note associated with JobShift.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>numAssigned</td>
             <td>Integer</td>
-            <td>Number of assigned Candidates associated to the Job Shift.</td>
+            <td>Indicates the number of assigned Candidates associated to the JobShift.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>openings</td>
             <td>Integer</td>
-            <td>Total Openings to be filled on the Job Shift.</td>
+            <td>Indicates the total openings to be filled on the JobShift.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>reasonClosed</td>
             <td>String (150)</td>
-            <td>The reason provided when canceling a Job Shift.</td>
+            <td>Indicates the reason the JobShift was closed.</td>
             <td></td>
             <td></td>
         </tr>
@@ -135,28 +135,28 @@ JobShift is the main entity for shift scheduling and is used for storing start &
         <tr class="even">
             <td>shift</td>
             <td>To-one association</td>
-            <td>Shift Definition associated with the Job Shift.</td>
+            <td>The shiftDefinition associated with the JobShift.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>shiftPosition</td>
             <td>To-one association</td>
-            <td>Shift Position associated with the Job Shift.</td>
+            <td>The shiftPosition associated with the JobShift.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>shiftTypes</td>
             <td>To-many association</td>
-            <td>The shift types the associated Job Shift spans over. Shift Types are designated in Shift Admin.</td>
+            <td>The shiftTypes over which the associated JobShift spans.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>startTime</td>
             <td>OffsetDateTime</td>
-            <td>Time the Job Shift Starts.</td>
+            <td>Time the JobShift Starts.</td>
             <td>X</td>
             <td></td>
         </tr>

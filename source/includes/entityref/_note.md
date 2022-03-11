@@ -144,7 +144,7 @@ If you include a commentingPerson value and a personReference value when you cre
         <tr class="odd">
             <td>linkedInID</td>
             <td>String (200)</td>
-            <td>LinkedIn ID associated with this Note.</td>
+            <td>LinkedInID associated with this Note.</td>
             <td></td>
             <td></td>
         </tr>

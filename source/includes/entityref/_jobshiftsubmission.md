@@ -1,6 +1,6 @@
 # JobShiftSubmission
 
-Similar to a job submission, shift submissions contain status and allow for a workflow of assigning a candidate to a jobshift without a JobShiftAssignment.
+Similar to a JobSubmission, JobShiftSubmissions contain status and allow for a workflow of assigning a Candidate to a JobShift without a JobShiftAssignment.
 
 <table>
     <colgroup>
@@ -30,7 +30,7 @@ Similar to a job submission, shift submissions contain status and allow for a wo
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td>Candidate associated to Job Shift Submission.</td>
+            <td>Candidate associated to JobShiftSubmission.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -51,28 +51,28 @@ Similar to a job submission, shift submissions contain status and allow for a wo
         <tr class="even">
             <td>isPublished</td>
             <td>Boolean</td>
-            <td>True when Submission is promoted to Shift Assignment.</td>
+            <td>Indicates when JobShiftSubmission is promoted to JobShiftAssignment.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>jobShift</td>
             <td>To-one association</td>
-            <td>JobShift associated with Submission.</td>
+            <td>JobShift associated with JobShiftSubmission.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>jobShiftOfferContext</td>
             <td>To-one association</td>
-            <td>Context within the Job Shift Offer.</td>
+            <td>Context within the JobShift Offer.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>status</td>
             <td>String (50)</td>
-            <td>Status of Shift Submission.</td>
+            <td>Status of JobShiftSubmission.</td>
             <td></td>
             <td></td>
         </tr>

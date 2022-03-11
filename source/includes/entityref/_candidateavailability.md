@@ -1,6 +1,6 @@
 # CandidateAvailability
 
-CandidateAvailability allows for viewing and updating specific availability for a candidate on an explicit date/time.
+Allows for viewing and updating specific availability for a candidate on an explicit date/time.
 
 <table>
     <colgroup>
@@ -30,7 +30,7 @@ CandidateAvailability allows for viewing and updating specific availability for 
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td>Candidate associated to this availability.</td>
+            <td>Candidate associated to this candidateAvailability.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -44,28 +44,28 @@ CandidateAvailability allows for viewing and updating specific availability for 
         <tr class="odd">
             <td>endTime</td>
             <td>OffsetDateTime</td>
-            <td>Time the associated Candidate Availability ends.</td>
+            <td>Time the associated candidateAvailability ends.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>isAvailable</td>
             <td>Boolean</td>
-            <td>If associated Candidate is available or not.</td>
+            <td>Indicates whether the associated Candidate is available or not.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>startTime</td>
             <td>OffsetDateTime</td>
-            <td>Time the associated Candidate Availability starts.</td>
+            <td>Time the associated candidateAvailability starts.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>type</td>
             <td>String (50)</td>
-            <td>Type of Candidate Availability.</td>
+            <td>Type of candidateAvailability.</td>
             <td></td>
             <td></td>
         </tr>

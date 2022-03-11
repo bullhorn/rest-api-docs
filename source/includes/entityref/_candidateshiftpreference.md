@@ -1,6 +1,6 @@
 # CandidateShiftPreference
 
-CandidatePreferences is used for storing a candidate's preferences for times and days when they want to work in association with the shiftTypes that are configured.
+Stores a candidate's preferences for times and days when they want to work in association with the ShiftTypes that are configured.
 
 <table>
     <colgroup>
@@ -30,7 +30,7 @@ CandidatePreferences is used for storing a candidate's preferences for times and
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td>Candidate associated to Shift Preferences.</td>
+            <td>Candidate associated to candidateShiftPreference.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -44,28 +44,28 @@ CandidatePreferences is used for storing a candidate's preferences for times and
         <tr class="odd">
             <td>dayNumber</td>
             <td>Integer</td>
-            <td>Number of day in the week.</td>
+            <td>Indicates the day number in the week.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>dayOfWeek</td>
             <td>String (255)</td>
-            <td>What day of the week it is (ex. Monday).</td>
+            <td>Indicates the day of the week (ex. Monday).</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>isAvailable</td>
             <td>Boolean</td>
-            <td>If associated Candidate is available to be assigned to a Job Shift or not.</td>
+            <td>Indicates whether the associated Candidate is available to be assigned to a JobShift.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>shiftType</td>
             <td>To-one association</td>
-            <td>Name of the Shift Definition. </td>
+            <td>shiftType associated to candidateShiftPreference. </td>
             <td>X</td>
             <td></td>
         </tr>
