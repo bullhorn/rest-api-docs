@@ -1585,6 +1585,80 @@
 
 <p>Users who have both the ‘View Candidate Viewable Confidential Fields’ and ‘Edit Confidential Fields’ user action entitlements can edit candidate viewable confidential fields.</p>
 
+          <h1 id="candidateavailability">CandidateAvailability</h1>
+
+<p>Allows for viewing and updating specific availability for a Candidate on an explicit date/time.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>CandidateAvailability fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>candidate</td>
+            <td>To-one association</td>
+            <td>Candidate associated to this CandidateAvailability.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date when this record was created in the Bullhorn system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>endTime</td>
+            <td>OffsetDateTime</td>
+            <td>Time the associated CandidateAvailability ends.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isAvailable</td>
+            <td>Boolean</td>
+            <td>Indicates whether the associated Candidate is available or not.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>startTime</td>
+            <td>OffsetDateTime</td>
+            <td>Time the associated CandidateAvailability starts.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>type</td>
+            <td>String (50)</td>
+            <td>Type of CandidateAvailability.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="candidatecertification">CandidateCertification</h1>
 
 <p>This entity represents a certification that a Candidate may have.</p>
@@ -2470,6 +2544,80 @@
         </tr>
     </tbody>
 </table></p>
+
+          <h1 id="candidateshiftpreference">CandidateShiftPreference</h1>
+
+<p>Stores a Candidate&rsquo;s preferences for times and days when they want to work in association with the ShiftTypes that are configured.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>CandidateShiftPreference fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>candidate</td>
+            <td>To-one association</td>
+            <td>Candidate associated to CandidateShiftPreference.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date when this record was created in the Bullhorn system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dayNumber</td>
+            <td>Integer</td>
+            <td>Indicates the day number in the week.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dayOfWeek</td>
+            <td>String (255)</td>
+            <td>Indicates the day of the week. For example, Monday.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isAvailable</td>
+            <td>Boolean</td>
+            <td>Indicates whether the associated Candidate is available to be assigned to a JobShift.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>shiftType</td>
+            <td>To-one association</td>
+            <td>ShiftType associated to CandidateShiftPreference. </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
 
           <h1 id="candidateworkhistory">CandidateWorkHistory</h1>
 
@@ -7238,6 +7386,389 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
     </tbody>
 </table>
 
+          <h1 id="jobshift">JobShift</h1>
+
+<p>The main entity for Shift scheduling and is used for storing start and end times, references to the ClientCorporation, JobOrder, and other details for the JobShift such as location, name, and so forth.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobShift fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date when this record was created in the Bullhorn system.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date when this record was last modified in the Bullhorn system.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>endTime</td>
+            <td>OffsetDateTime</td>
+            <td>Time the JobShift Ends.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>fillRatio</td>
+            <td>Double</td>
+            <td>Ratio of assigned Candidates to openings on the JobShift.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isClosed</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been marked as closed in the Bullhorn system.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jobOrder</td>
+            <td>To-one association</td>
+            <td>JobOrder associated to the JobShift.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jobShiftAssignments</td>
+            <td>To-many association</td>
+            <td>JobShiftAssignments associated to the JobShift.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>jobShiftSubmissions</td>
+            <td>To-many association</td>
+            <td>JobShiftSubmission associated to a JobShift. JobShiftSubmission is created when offering a Candidate a JobShift.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>location</td>
+            <td>To-one association</td>
+            <td>Location associated to JobShift sourced from the ClientCorporation.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>name</td>
+            <td>String (150)</td>
+            <td>Name of the JobShift.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>notes</td>
+            <td>To-many association</td>
+            <td>Note associated with JobShift.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>numAssigned</td>
+            <td>Integer</td>
+            <td>Indicates the number of assigned Candidates associated to the JobShift.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>openings</td>
+            <td>Integer</td>
+            <td>Indicates the total openings to be filled on the JobShift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>reasonClosed</td>
+            <td>String (150)</td>
+            <td>Indicates the reason the JobShift was closed.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>sequenceID</td>
+            <td>String (36)</td>
+            <td>Unused.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>shift</td>
+            <td>To-one association</td>
+            <td>The Shift associated with the JobShift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>shiftPosition</td>
+            <td>To-one association</td>
+            <td>The ShiftPosition associated with the JobShift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>shiftTypes</td>
+            <td>To-many association</td>
+            <td>The ShiftTypes over which the associated JobShift spans.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>startTime</td>
+            <td>OffsetDateTime</td>
+            <td>Time the JobShift Starts.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="jobshiftsubmission">JobShiftSubmission</h1>
+
+<p>Similar to a JobSubmission, JobShiftSubmissions contain status and allow for a workflow of assigning a Candidate to a JobShift without a JobShiftAssignment.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobShiftSubmission fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>candidate</td>
+            <td>To-one association</td>
+            <td>Candidate associated to JobShiftSubmission.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date when this record was created in the Bullhorn system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date when this record was last modified in the Bullhorn system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isPublished</td>
+            <td>Boolean</td>
+            <td>Indicates when JobShiftSubmission is promoted to JobShiftAssignment.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jobShift</td>
+            <td>To-one association</td>
+            <td>JobShift associated with JobShiftSubmission.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jobShiftOfferContext</td>
+            <td>To-one association</td>
+            <td>Context within the JobShift offer.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>status</td>
+            <td>String (50)</td>
+            <td>Status of JobShiftSubmission.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="jobshiftassignment">JobShiftAssignment</h1>
+
+<p>Ties the Candidate to a JobShift and also allows for storing time capture details such as actualStartTime and actualEndTime.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobShiftAssignment fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>actualEndTime</td>
+            <td>OffsetDateTime</td>
+            <td>End time of the associated JobShift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>actualStartTime</td>
+            <td>OffsetDateTime</td>
+            <td>Start time of the associated JobShift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>candidate</td>
+            <td>To-one association</td>
+            <td>Candidate assigned to JobShift.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>ClientCorporation associated to JobShift.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date when this record was created in the Bullhorn system.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date when this record was last modified in the Bullhorn system.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isCancelled</td>
+            <td>Boolean</td>
+            <td>Indicates whether this JobShiftAssignment has been marked as cancelled in the Bullhorn system.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jobShift</td>
+            <td>To-one association</td>
+            <td>JobShift associated to JobShiftAssignment.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>linkedJobShiftSubmission</td>
+            <td>To-one association</td>
+            <td>Link of JobShiftSubmission that was promoted to JobShiftAssignment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>Owner that created the JobShiftAssignment.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>placement</td>
+            <td>To-one association</td>
+            <td>Placement that is associated to the JobShiftAssignment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>reasonCancelled</td>
+            <td>String (150)</td>
+            <td>Indicates reason JobShiftAssignment was cancelled.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>scheduledEndTime</td>
+            <td>OffsetDateTime</td>
+            <td>End Time of the JobShiftAssignment. May reflect different from actualEndTime if JobShiftAssignment End Time was updated.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>scheduledStartTime</td>
+            <td>OffsetDateTime</td>
+            <td>Start Time of the JobShiftAssignment. May reflect different from actualStartTime if JobShiftAssignment Start Time was updated.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>status</td>
+            <td>String (50)</td>
+            <td>Status of the JobShiftAssignment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="jobsubmission">JobSubmission</h1>
 
 <p>Represents a formal submission of a Candidate for a particular job. A job submission occurs after the Candidate has been evaluated, interviewed, and otherwise assessed, and the parties involved have agreed that the Candidate may be suitable. The JobSubmission entity is then created with references to the Candidate and the JobOrder representing the position. If the JobSubmission is approved, a Placement entity is created.</p>
@@ -8858,153 +9389,212 @@ CRUD Access - READ</p>
 
           <h1 id="note">Note</h1>
 
-<p>Represents a note (comment) associated with a Candidate, ClientContact, CorporateUser, JobOrder, Lead, or Opportunity. Notes can be accessed via the &ldquo;Notes&rdquo; tab on the person&rsquo;s record in the Bullhorn application.</p>
+<p>Represents a note (comment) associated with a Candidate, ClientContact, CorporateUser, JobOrder, JobShift, Lead, or Opportunity. Notes can be accessed via the &ldquo;Notes&rdquo; tab on the person&rsquo;s record in the Bullhorn application.</p>
 
 <p>If you include a commentingPerson value and a personReference value when you create a Note, the association to an entity is made automatically and you do not need to make a separate call to create a NoteEntity.</p>
 
-<table><thead>
-<tr>
-<th><strong>Note field</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Not null</strong></th>
-<th><strong>Read-only</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Integer</td>
-<td>Id of this Note.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>action</td>
-<td>String (30)</td>
-<td>Action type associated with Note. The list of values is configured in the private label attribute called commentActionList.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bHTimestamp</td>
-<td>byte[]</td>
-<td>Timestamp for this Note.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>commentingPerson</td>
-<td>To-one association</td>
-<td>Person who created the Note. The default value is user who creates the Note.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>candidates</td>
-<td>To-many association</td>
-<td>Candidates associated with this Note.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>clientContacts</td>
-<td>To-many association</td>
-<td>ClientContacts associated with this Note.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>comments</td>
-<td>String (2147483647)</td>
-<td>Text of this Note.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>corporateUsers</td>
-<td>To-many association</td>
-<td>Ids of CorporateUsers associated with this Note.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>dateAdded</td>
-<td>Timestamp</td>
-<td>Date on which this record was created in the Bullhorn system.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>dateLastModified</td>
-<td>Timestamp</td>
-<td>Date on which the Note was last modified.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr>
-<td>externalID</td>
-<td>String (50)</td>
-<td>External identifier for the record, used for integrations with external datasources or custom imports.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>entities</td>
-<td>To-many association</td>
-<td>Ids of NoteEntities associated with this Note.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>isDeleted</td>
-<td>Boolean</td>
-<td>Indicates whether this record has been marked as Deleted in the Bullhorn system.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>jobOrder</td>
-<td>To-one association</td>
-<td>Primary JobOrder associated with this Note.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>jobOrders</td>
-<td>To-many association</td>
-<td>JobOrders associated with this Note.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>leads</td>
-<td>To-many association</td>
-<td>Leads associated with this Note.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>minutesSpent</td>
-<td>Integer</td>
-<td>Number of minutes spent on actions associated with this note, if applicable.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>personReference</td>
-<td>To-one association</td>
-<td>Person with whom this Note is associated.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>placements</td>
-<td>To-many association</td>
-<td>Ids of Placements associated with this Note.</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Note fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Id of this Note.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>action</td>
+            <td>String (30)</td>
+            <td>Action type associated with Note. The list of values is configured in the private label attribute called commentActionList.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>bhTimeStamp</td>
+            <td>byte[]</td>
+            <td>Timestamp for this Note. </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>candidates</td>
+            <td>To-many association</td>
+            <td>Candidates associated with this Note.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>clientContacts</td>
+            <td>To-many association</td>
+            <td>ClientContacts associated with this Note.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>commentingPerson</td>
+            <td>To-one association</td>
+            <td>Person who created the Note. The default value is user who creates the Note.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>comments</td>
+            <td>String (2147483647)</td>
+            <td>Text of this Note.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>corporateUsers</td>
+            <td>To-many association</td>
+            <td>Ids of CorporateUsers associated with this Note.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date on which this record was created in the Bullhorn system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date on which the Note was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>entities</td>
+            <td>To-many association</td>
+            <td>Ids of NoteEntities associated with this Note.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>External identifier for the record, used for integrations with external datasources or custom imports.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been marked as Deleted in the Bullhorn system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jobOrder</td>
+            <td>To-one association</td>
+            <td>Primary JobOrder associated with this Note.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jobOrders</td>
+            <td>To-many association</td>
+            <td>JobOrders associated with this Note.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>jobShifts</td>
+            <td>To-many association</td>
+            <td>JobShift&rsquo;s associated with this Note.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>leads</td>
+            <td>To-many association</td>
+            <td>Leads associated with this Note.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>linkedInID</td>
+            <td>String (200)</td>
+            <td>LinkedInID associated with this Note.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>migrateGUID</td>
+            <td>String (36)</td>
+            <td>Unused.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>minutesSpent</td>
+            <td>Integer</td>
+            <td>Number of minutes spent on actions associated with this note, if applicable.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>opportunities</td>
+            <td>To-many association</td>
+            <td>Opportunities associated with this Note.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>people</td>
+            <td>To-many association</td>
+            <td>People with whom this Note is associated.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>personReference</td>
+            <td>To-one association</td>
+            <td>Person with whom this Note is associated.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>placements</td>
+            <td>To-many association</td>
+            <td>Ids of Placements associated with this Note.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>primaryDepartmentName</td>
+            <td>String (0)</td>
+            <td>Primary department name associated with the owner of this Note.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>truestDateAdded</td>
+            <td>Timestamp</td>
+            <td>Time at which a record was added to the database.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table> 
 
           
           <h1 id="opportunity">Opportunity</h1>
@@ -21114,6 +21704,424 @@ can be passed as well with all associated data.</p>
 <td></td>
 </tr>
 </tbody></table>
+
+          <h1 id="shift">Shift</h1>
+
+<p>Represents a Shift Definition. Allows for setup of default start and end times at the ClientCorporation level. </p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Shift fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>ClientCorporation associated to the Shift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date when this record was last modified in the Bullhorn system.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dayOfWeek</td>
+            <td>Integer</td>
+            <td>Day of week associated to Shift.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>endTime</td>
+            <td>Timestamp</td>
+            <td>End time designated to the Shift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>htmlColorCode</td>
+            <td>String (50)</td>
+            <td>Html color of the Shift.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>isDefault</td>
+            <td>Boolean</td>
+            <td>Indicates if this is a default Shift for the ClientCorporation.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>lastModifyingUser</td>
+            <td>To-one association</td>
+            <td>User that last modified the Shift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>migrateGUID</td>
+            <td>String (36)</td>
+            <td>Unused.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>name</td>
+            <td>String (150)</td>
+            <td>Name of the Shift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>shortName</td>
+            <td>String (150)</td>
+            <td>Short name for the Shift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>startTime</td>
+            <td>Timestamp</td>
+            <td>Start time designated to the Shift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>type</td>
+            <td>String (150)</td>
+            <td>Type of the Shift.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="shiftposition">ShiftPosition</h1>
+
+<p>Used to create more specific Shifts tied to a single JobOrder. Also can be used for storing rate information that is tied to the JobShift.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>ShiftPosition fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billRate</td>
+            <td>BigDecimal</td>
+            <td>Bill rate associated to ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>category</td>
+            <td>To-one association</td>
+            <td>Category associated to ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>certificationGroups</td>
+            <td>To-many association</td>
+            <td>CertificationGroup associated to ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>certificationList</td>
+            <td>To-many association</td>
+            <td>Certification associated to ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>certifications</td>
+            <td>String (2147483647)</td>
+            <td>Certification associated to ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>ClientCorporation the ShiftPosition is associated to.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>comments</td>
+            <td>String (2147483647)</td>
+            <td>Comments associated to ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customBillRate1</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customBillRate10</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customBillRate2</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customBillRate3</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customBillRate4</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customBillRate5</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customBillRate6</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customBillRate7</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customBillRate8</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customBillRate9</td>
+            <td>BigDecimal</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date when this record was last modified in the Bullhorn system.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>isPriorShiftRequired</td>
+            <td>Boolean</td>
+            <td>Indicates whether the prior Shift is required or not.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>migrateGUID</td>
+            <td>String (36)</td>
+            <td>unused.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>name</td>
+            <td>String (150)</td>
+            <td>Name of the ShiftPosition.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>overtimeBillRate</td>
+            <td>BigDecimal</td>
+            <td>The overtime bill rate associated to the ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>payRate</td>
+            <td>BigDecimal</td>
+            <td>The pay rate associated to the ShiftPosition.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>salaryUnit</td>
+            <td>String (12)</td>
+            <td>The salary unit associated to the ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>skills</td>
+            <td>To-many association</td>
+            <td>The skill associated to the ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>specialties</td>
+            <td>To-many association</td>
+            <td>The specialties associated to the ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>yearsExperience</td>
+            <td>Integer</td>
+            <td>The years experience associated to the ShiftPosition.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="shifttype">ShiftType</h1>
+
+<p>Is set at the corporation level to define various Shift time intervals (Morning, Afternoon, Evening, Overnight). Used for setting candidatePreferences.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>ShiftType fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>endTime</td>
+            <td>String (16)</td>
+            <td>The end time for the associated ShiftType.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>icon</td>
+            <td>String (50)</td>
+            <td>Icon associated to the ShiftType.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>name</td>
+            <td>String (50)</td>
+            <td>Name of the associated ShiftType.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>startTime</td>
+            <td>String (16)</td>
+            <td>The start time for the associated ShiftType.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
 
           <h1 id="skill">Skill</h1>
 
