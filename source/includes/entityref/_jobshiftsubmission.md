@@ -65,7 +65,7 @@ Similar to a JobSubmission, JobShiftSubmissions contain status and allow for a w
         <tr class="even">
             <td>jobShiftOfferContext</td>
             <td>To-one association</td>
-            <td>Context within the JobShift Offer.</td>
+            <td>Context within the JobShift offer.</td>
             <td></td>
             <td></td>
         </tr>
