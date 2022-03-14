@@ -51,7 +51,7 @@ Stores a Candidate's preferences for times and days when they want to work in as
         <tr class="even">
             <td>dayOfWeek</td>
             <td>String (255)</td>
-            <td>Indicates the day of the week (ex. Monday).</td>
+            <td>Indicates the day of the week. For example, Monday.</td>
             <td>X</td>
             <td></td>
         </tr>
