@@ -1,7 +1,7 @@
 # CorporateUser
 Represents an Internal user at your organization.
 | **CorporateUser field** | **Type** | **Description** | **Not null** | **Read-only** |
-|-------------------------|---------------------| --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | address | Address | CorporateUser’s main address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/CorporateUser?fields=address(countryID) | X | |
 | branch | To-one association | Branch | | |
