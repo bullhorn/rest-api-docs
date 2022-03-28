@@ -4,8 +4,8 @@ Represents an Internal user at your organization.
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | address | Address | CorporateUser’s main address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/CorporateUser?fields=address(countryID) | X | |
-| branch | To-one association | Branch | | |
-| branches | Many-To-Many association | Branches | | |
+| branch | To-one association | CorporateUser’s Branch. | | |
+| branches | To-many association | CorporateUser’s Branches. | | |
 | companyName | String (100) | Name of company where the Candidate currently works. | | |
 | corporation | To-one association | Corporation associated with this CorporateUser. | X | X |
 | customDate1 to 3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
@@ -14,7 +14,7 @@ Represents an Internal user at your organization.
 | customText1 to 20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateLastComment | Timestamp | Date on which CorporateUser’s last comment was made. | | |
 | dateLastModified | Timestamp | The last time record was modified. | X | X |
-| delegations | Many-To-Many association | CorporateUsers | | |
+| delegations | To-many association | CorporateUser's delegations. | | |
 | departmentIdList | String (255) | Ids of departments to which the CorporateUser belongs. | | |
 | departments | To-many association | Departments to which the CorporateUser belongs. | | |
 | email | String (100) | Primary email address. | | |
@@ -36,7 +36,7 @@ Represents an Internal user at your organization.
 | lastName | String (50) | CorporateUser’s last name. | | |
 | loginRestrictions | LoginRestrictions | A group of available login restrictions, including time, date, and IP address. | | |
 | massMailOptOut | Boolean | Indicates whether the CorporateUser opted out of mass mailings. | | |
-| masterUserID | Integer | Master User ID | X | X |
+| masterUserID | Integer | Master User ID. | X | X |
 | middleName | String (50) | Middle name of the CorporateUser. | | |
 | mobile | String (20) | Mobile phone number of the CorporateUser. | | |
 | name | String (100) | Name of the CorporateUser. | | |
@@ -48,7 +48,7 @@ Represents an Internal user at your organization.
 | phone to phone3 | String (20) | Phone number of the CorporateUser. | | |
 | primaryDepartment | To-one association | Primary department of the CorporateUser. | | |
 | privateLabel | To-one association | Private Label associated to the CorporateUser. | X | |
-| privateLabels | To-many association | PrivateLabel | | |
+| privateLabels | To-many association | CorporateUser's PrivateLabels. | | |
 | reportToPerson | Person | Person to whom this CorporateUser reports. | | |
 | smsOptIn | Boolean | Indicates whether the CorporateUser has granted permission to be sent messages via SMS. | | |
 | status | String (100) | Status of the CorporateUser. | | |
