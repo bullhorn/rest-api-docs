@@ -11,6 +11,6 @@ Represents a Bullhorn custom action. Custom Actions are read only and must be co
 | componentURL | String (4000) | URL of CustomAction. | | |
 | enabled | Boolean | Indicates whether CustomAction is enabled. | | |
 | entity | String (50) | Entity to which CustomAction applies. | X | |
-| location | Integer | Location of the action within Bullhorn | X | |
+| location | Integer | Location of the action within Bullhorn. | X | |
 | name | String (50) | Name of CustomAction. | | |
-| privateLabel | Many-To-One association | Private Label the custom action is associated with | X | |
+| privateLabel | To-One association | Private Label the custom action is associated with. | X | |
