@@ -36,7 +36,7 @@ Represents an Internal user at your organization.
 | lastName | String (50) | CorporateUser’s last name. | | |
 | loginRestrictions | LoginRestrictions | A group of available login restrictions, including time, date, and IP address. | | |
 | massMailOptOut | Boolean | Indicates whether the CorporateUser opted out of mass mailings. | | |
-| masterUserID | Integer | Master User ID. | X | X |
+| masterUserID | Integer | Master user id. | X | X |
 | middleName | String (50) | Middle name of the CorporateUser. | | |
 | mobile | String (20) | Mobile phone number of the CorporateUser. | | |
 | name | String (100) | Name of the CorporateUser. | | |
@@ -47,7 +47,7 @@ Represents an Internal user at your organization.
 | pager | String (20) | Pager number of the CorporateUser. | | |
 | phone to phone3 | String (20) | Phone number of the CorporateUser. | | |
 | primaryDepartment | To-one association | Primary department of the CorporateUser. | | |
-| privateLabel | To-one association | Private Label associated to the CorporateUser. | X | |
+| privateLabel | To-one association | Private Label | X | |
 | privateLabels | To-many association | CorporateUser's PrivateLabels. | | |
 | reportToPerson | Person | Person to whom this CorporateUser reports. | | |
 | smsOptIn | Boolean | Indicates whether the CorporateUser has granted permission to be sent messages via SMS. | | |
@@ -55,5 +55,5 @@ Represents an Internal user at your organization.
 | taskAssignments | Task | Tasks that have been assigned to this CorporateUser, including those owned by the CorporateUser. | | |
 | timeZoneOffsetEST | Integer | Indicates the number of hours by which the CorporateUser’s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |
 | userDateAdded | Timestamp | Date the record was added to the system. | X | X |
-| userType | To-one association | User Type associated to the CorporateUser. | X | |
+| userType | To-one association | User type | X | |
 | username | String (100) | CorporateUser’s username for logging in to Bullhorn. | X | |
