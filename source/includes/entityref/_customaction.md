@@ -1,7 +1,7 @@
 # CustomAction
 
-Represents a Bullhorn custom action. For more information about custom actions, see:
-<http://developer.bullhorn.com/doc/version_2-0/understanding_custom_components.htm>
+Represents a Bullhorn custom action. Custom Actions are read only and must be configured through the Bullhorn application. For more information about custom actions, see:
+<http://bullhorn.github.io/Custom-Tabs-and-Menu-Actions/>
 
 | **CustomAction field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
@@ -11,4 +11,6 @@ Represents a Bullhorn custom action. For more information about custom actions, 
 | componentURL | String (4000) | URL of CustomAction. | | |
 | enabled | Boolean | Indicates whether CustomAction is enabled. | | |
 | entity | String (50) | Entity to which CustomAction applies. | X | |
+| location | Integer | Location of the action within Bullhorn. | X | |
 | name | String (50) | Name of CustomAction. | | |
+| privateLabel | To-one association | PrivateLabel the custom action is associated with. | X | |
