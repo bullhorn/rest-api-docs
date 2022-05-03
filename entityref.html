@@ -4403,64 +4403,403 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 
           <h1 id="corporateuser">CorporateUser</h1>
 
-<p>Represents an Internal user at your organization.
-| <strong>CorporateUser field</strong> | <strong>Type</strong> | <strong>Description</strong> | <strong>Not null</strong> | <strong>Read-only</strong> |
-| &mdash; | &mdash; | &mdash; | &mdash; | &mdash; |
-| id | Integer | Unique identifier for this entity. | X | X |
-| address | Address | CorporateUser’s main address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/CorporateUser?fields=address(countryID) | X | |
-| branch | To-one association | CorporateUser’s Branch. | | |
-| branches | To-many association | CorporateUser’s Branches. | | |
-| companyName | String (100) | Name of company where the Candidate currently works. | | |
-| corporation | To-one association | Corporation associated with this CorporateUser. | X | X |
-| customDate1 to 3 | Timestamp | Configurable date fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customFloat1 to 3 | Double | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customInt1 to 3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| customText1 to 20 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| dateLastComment | Timestamp | Date on which CorporateUser’s last comment was made. | | |
-| dateLastModified | Timestamp | The last time record was modified. | X | X |
-| delegations | To-many association | CorporateUser&rsquo;s delegations. | | |
-| departmentIdList | String (255) | Ids of departments to which the CorporateUser belongs. | | |
-| departments | To-many association | Departments to which the CorporateUser belongs. | | |
-| email | String (100) | Primary email address. | | |
-| email2 | String (100) | Additional email address 2. | | |
-| email3 | String (100) | Additional email address 3. | | |
-| emailNotify | Boolean | Indicates whether the CorporateUser has chosen to be notified via pop-up in the Bullhorn application when a new email message arrives. | X | |
-| emailSignature | String (2147483647) | Contents of the CorporateUser&rsquo;s email signature. | X | |
-| enabled | Boolean | Indicates whether the CorporateUser may log in to the Bullhorn application. | X | X |
-| externalEmail | String (60) | User’s external (non-Bullhorn) email address. Used for forwarding. | X | |
-| fax1 to 3 | String (50) | CorporateUser’s fax number. | | |
-| firstName | String (50) | First name of the CorporateUser. | | |
-| inboundEmailEnabled | Boolean | Indicates whether the CorporateUser can receive email through the Bullhorn application. | X | |
-| isDayLightSavingsTime | Boolean | Indicates whether it is daylight savings time. | | |
-| isDeleted | Boolean | Indicates whether CorporateUser is deleted. | | |
-| isHidden | Boolean | Indicates whether the record is hidden. | | |
-| isLockedOut | Boolean | Indicates whether the CorporateUser is locked out. | | |
-| isOutboundFaxEnabled | Boolean | Indicates whether the CorporateUser has permission to send faxes. | X | |
-| jobAssignments | To-many association | JobOrders that have been assigned to this CorporateUser. | | |
-| lastName | String (50) | CorporateUser’s last name. | | |
-| loginRestrictions | LoginRestrictions | A group of available login restrictions, including time, date, and IP address. | | |
-| massMailOptOut | Boolean | Indicates whether the CorporateUser opted out of mass mailings. | | |
-| masterUserID | Integer | Master user id. | X | X |
-| middleName | String (50) | Middle name of the CorporateUser. | | |
-| mobile | String (20) | Mobile phone number of the CorporateUser. | | |
-| name | String (100) | Name of the CorporateUser. | | |
-| namePrefix | String (5) | Name prefix of the CorporateUser. | | |
-| nameSuffix | String (5) | Name suffix of the CorporateUser. | | |
-| nickName | String (50) | Nickname of the CorporateUser. | | |
-| occupation | String (50) | Occupation of the CorporateUser. | | |
-| pager | String (20) | Pager number of the CorporateUser. | | |
-| phone to phone3 | String (20) | Phone number of the CorporateUser. | | |
-| primaryDepartment | To-one association | Primary department of the CorporateUser. | | |
-| privateLabel | To-one association | Private Label | X | |
-| privateLabels | To-many association | CorporateUser&rsquo;s PrivateLabels. | | |
-| reportToPerson | Person | Person to whom this CorporateUser reports. | | |
-| smsOptIn | Boolean | Indicates whether the CorporateUser has granted permission to be sent messages via SMS. | | |
-| status | String (100) | Status of the CorporateUser. | | |
-| taskAssignments | Task | Tasks that have been assigned to this CorporateUser, including those owned by the CorporateUser. | | |
-| timeZoneOffsetEST | Integer | Indicates the number of hours by which the CorporateUser’s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |
-| userDateAdded | Timestamp | Date the record was added to the system. | X | X |
-| userType | To-one association | User type | X | |
-| username | String (100) | CorporateUser’s username for logging in to Bullhorn. | X | |</p>
+<p>Represents an Internal user at your organization.</p>
+
+<table><thead>
+<tr>
+<th><strong>CorporateUser field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address</td>
+<td>CorporateUser’s main address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/CorporateUser?fields=address(countryID)</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>branch</td>
+<td>To-one association</td>
+<td>CorporateUser’s Branch.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>branches</td>
+<td>To-many association</td>
+<td>CorporateUser’s Branches.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>companyName</td>
+<td>String (100)</td>
+<td>Name of company where the Candidate currently works.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>corporation</td>
+<td>To-one association</td>
+<td>Corporation associated with this CorporateUser.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>customDate1 to 3</td>
+<td>Timestamp</td>
+<td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customFloat1 to 3</td>
+<td>Double</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customInt1 to 3</td>
+<td>Integer</td>
+<td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customText1 to 20</td>
+<td>String (100)</td>
+<td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastComment</td>
+<td>Timestamp</td>
+<td>Date on which CorporateUser’s last comment was made.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>The last time record was modified.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>delegations</td>
+<td>To-many association</td>
+<td>CorporateUser&rsquo;s delegations.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>departmentIdList</td>
+<td>String (255)</td>
+<td>Ids of departments to which the CorporateUser belongs.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>departments</td>
+<td>To-many association</td>
+<td>Departments to which the CorporateUser belongs.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>String (100)</td>
+<td>Primary email address.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email2</td>
+<td>String (100)</td>
+<td>Additional email address 2.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email3</td>
+<td>String (100)</td>
+<td>Additional email address 3.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>emailNotify</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser has chosen to be notified via pop-up in the Bullhorn application when a new email message arrives.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>emailSignature</td>
+<td>String (2147483647)</td>
+<td>Contents of the CorporateUser&rsquo;s email signature.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser may log in to the Bullhorn application.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>externalEmail</td>
+<td>String (60)</td>
+<td>User’s external (non-Bullhorn) email address. Used for forwarding.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>fax1 to 3</td>
+<td>String (50)</td>
+<td>CorporateUser’s fax number.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>String (50)</td>
+<td>First name of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>inboundEmailEnabled</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser can receive email through the Bullhorn application.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>isDayLightSavingsTime</td>
+<td>Boolean</td>
+<td>Indicates whether it is daylight savings time.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Indicates whether CorporateUser is deleted.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isHidden</td>
+<td>Boolean</td>
+<td>Indicates whether the record is hidden.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isLockedOut</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser is locked out.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isOutboundFaxEnabled</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser has permission to send faxes.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>jobAssignments</td>
+<td>To-many association</td>
+<td>JobOrders that have been assigned to this CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>String (50)</td>
+<td>CorporateUser’s last name.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>loginRestrictions</td>
+<td>LoginRestrictions</td>
+<td>A group of available login restrictions, including time, date, and IP address.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>massMailOptOut</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser opted out of mass mailings.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>masterUserID</td>
+<td>Integer</td>
+<td>Master user id.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>middleName</td>
+<td>String (50)</td>
+<td>Middle name of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mobile</td>
+<td>String (20)</td>
+<td>Mobile phone number of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (100)</td>
+<td>Name of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>namePrefix</td>
+<td>String (5)</td>
+<td>Name prefix of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nameSuffix</td>
+<td>String (5)</td>
+<td>Name suffix of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nickName</td>
+<td>String (50)</td>
+<td>Nickname of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>occupation</td>
+<td>String (50)</td>
+<td>Occupation of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pager</td>
+<td>String (20)</td>
+<td>Pager number of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone to phone3</td>
+<td>String (20)</td>
+<td>Phone number of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>primaryDepartment</td>
+<td>To-one association</td>
+<td>Primary department of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>privateLabel</td>
+<td>To-one association</td>
+<td>Private Label</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>privateLabels</td>
+<td>To-many association</td>
+<td>CorporateUser&rsquo;s PrivateLabels.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reportToPerson</td>
+<td>Person</td>
+<td>Person to whom this CorporateUser reports.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>smsOptIn</td>
+<td>Boolean</td>
+<td>Indicates whether the CorporateUser has granted permission to be sent messages via SMS.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>String (100)</td>
+<td>Status of the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>taskAssignments</td>
+<td>Task</td>
+<td>Tasks that have been assigned to this CorporateUser, including those owned by the CorporateUser.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeZoneOffsetEST</td>
+<td>Integer</td>
+<td>Indicates the number of hours by which the CorporateUser’s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>userDateAdded</td>
+<td>Timestamp</td>
+<td>Date the record was added to the system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>userType</td>
+<td>To-one association</td>
+<td>User type</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>username</td>
+<td>String (100)</td>
+<td>CorporateUser’s username for logging in to Bullhorn.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
 
           <h1 id="corporationdepartment">CorporationDepartment</h1>
 
