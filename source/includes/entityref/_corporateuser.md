@@ -1,5 +1,7 @@
 # CorporateUser
+
 Represents an Internal user at your organization.
+
 | **CorporateUser field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
