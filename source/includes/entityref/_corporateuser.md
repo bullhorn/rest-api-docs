@@ -1,6 +1,6 @@
 # CorporateUser
 
-Represents an Internal user at your organization.
+Read-only entity that represents an internal user at an organization.
 
 | **CorporateUser field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
@@ -25,8 +25,8 @@ Represents an Internal user at your organization.
 | emailNotify | Boolean | Indicates whether the CorporateUser has chosen to be notified via pop-up in the Bullhorn application when a new email message arrives. | X | |
 | emailSignature | String (2147483647) | Contents of the CorporateUser's email signature. | X | |
 | enabled | Boolean | Indicates whether the CorporateUser may log in to the Bullhorn application. | X | X |
-| externalEmail | String (60) | User’s external (non-Bullhorn) email address. Used for forwarding. | X | |
-| fax1 to 3 | String (50) | CorporateUser’s fax number. | | |
+| externalEmail | String (60) |External (non-Bullhorn) email address. Used for forwarding. | X | |
+| fax1 to 3 | String (50) | Fax number. | | |
 | firstName | String (50) | First name of the CorporateUser. | | |
 | inboundEmailEnabled | Boolean | Indicates whether the CorporateUser can receive email through the Bullhorn application. | X | |
 | isDayLightSavingsTime | Boolean | Indicates whether it is daylight savings time. | | |
@@ -50,12 +50,12 @@ Represents an Internal user at your organization.
 | phone to phone3 | String (20) | Phone number of the CorporateUser. | | |
 | primaryDepartment | To-one association | Primary department of the CorporateUser. | | |
 | privateLabel | To-one association | Private Label | X | |
-| privateLabels | To-many association | CorporateUser's PrivateLabels. | | |
+| privateLabels | To-many association | PrivateLabels assigned to the CorporateUser. | | |
 | reportToPerson | Person | Person to whom this CorporateUser reports. | | |
 | smsOptIn | Boolean | Indicates whether the CorporateUser has granted permission to be sent messages via SMS. | | |
 | status | String (100) | Status of the CorporateUser. | | |
-| taskAssignments | Task | Tasks that have been assigned to this CorporateUser, including those owned by the CorporateUser. | | |
+| taskAssignments | Task | Tasks that have been assigned to the CorporateUser, including those owned by the CorporateUser. | | |
 | timeZoneOffsetEST | Integer | Indicates the number of hours by which the CorporateUser’s time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |
 | userDateAdded | Timestamp | Date the record was added to the system. | X | X |
 | userType | To-one association | User type | X | |
-| username | String (100) | CorporateUser’s username for logging in to Bullhorn. | X | |
+| username | String (100) | username for logging in to Bullhorn. | X | |
