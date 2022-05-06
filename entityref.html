@@ -4403,7 +4403,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 
           <h1 id="corporateuser">CorporateUser</h1>
 
-<p>Represents an Internal user at your organization.</p>
+<p>Read-only entity that represents an internal user at an organization.</p>
 
 <table><thead>
 <tr>
@@ -4564,14 +4564,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <tr>
 <td>externalEmail</td>
 <td>String (60)</td>
-<td>User’s external (non-Bullhorn) email address. Used for forwarding.</td>
+<td>External (non-Bullhorn) email address. Used for forwarding.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>fax1 to 3</td>
 <td>String (50)</td>
-<td>CorporateUser’s fax number.</td>
+<td>Fax number.</td>
 <td></td>
 <td></td>
 </tr>
@@ -4739,7 +4739,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <tr>
 <td>privateLabels</td>
 <td>To-many association</td>
-<td>CorporateUser&rsquo;s PrivateLabels.</td>
+<td>PrivateLabels assigned to the CorporateUser.</td>
 <td></td>
 <td></td>
 </tr>
@@ -4767,7 +4767,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <tr>
 <td>taskAssignments</td>
 <td>Task</td>
-<td>Tasks that have been assigned to this CorporateUser, including those owned by the CorporateUser.</td>
+<td>Tasks that have been assigned to the CorporateUser, including those owned by the CorporateUser.</td>
 <td></td>
 <td></td>
 </tr>
@@ -4795,7 +4795,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <tr>
 <td>username</td>
 <td>String (100)</td>
-<td>CorporateUser’s username for logging in to Bullhorn.</td>
+<td>username for logging in to Bullhorn.</td>
 <td>X</td>
 <td></td>
 </tr>
