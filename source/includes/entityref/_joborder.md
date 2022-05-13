@@ -38,29 +38,29 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>appointments</td>
-            <td>To-many Association</td>
-            <td>Appointments associated with this job.</td>
+            <td>To-many association</td>
+            <td>Appointments associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>approvedPlacements</td>
-            <td>To-many Association</td>
-            <td>Approved Placements associated with this job.</td>
+            <td>To-many association</td>
+            <td>Approved Placements associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>assignedUsers</td>
-            <td>To-many Association</td>
-            <td>Internal users assigned to this job.</td>
+            <td>To-many association</td>
+            <td>Internal users assigned to this Joborder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>benefits</td>
             <td>String (2147483647)</td>
-            <td>Text description of benefits offered with this job.</td>
+            <td>Text description of benefits offered with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -81,245 +81,126 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>bonusPackage</td>
             <td>String (2147483647)</td>
-            <td>Text description of the bonus package offered with this job.</td>
+            <td>Text description of the bonus package offered with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>branch</td>
             <td>To-one Association</td>
-            <td>Branch</td>
+            <td>Branch associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>branchCode</td>
             <td>String (100)</td>
-            <td>Code representing the corporate branch where the job is located.</td>
+            <td>Code representing the corporate branch where the JobOrder is located.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>businessSectors</td>
-            <td>To-many Association</td>
-            <td>BusinessSectors associated with this job.</td>
+            <td>To-many association</td>
+            <td>BusinessSectors associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>categories</td>
-            <td>To-many Association</td>
-            <td>Categories associated with this job.</td>
+            <td>To-many association</td>
+            <td>Categories associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>certificationGroups</td>
-            <td>To-many Association</td>
-            <td>CertificationGroup</td>
+            <td>To-many association</td>
+            <td>CertificationGroups associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>certificationList</td>
             <td>String (255)</td>
-            <td>List of Certifications that an applicant should have.</td>
+            <td>List of Certifications that a Candidate should have.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>certifications</td>
-            <td>To-many Association</td>
-            <td>Certifications that applicants should have.</td>
+            <td>To-many association</td>
+            <td>Certifications that Candidates should have.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>clientBillRate</td>
             <td>BigDecimal</td>
-            <td>Amount to be billed to the client for this job when it is filled.</td>
+            <td>Amount to be billed to the client for this JobOrder when it is filled.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>clientContact</td>
             <td>To-one Association</td>
-            <td>ClientContact associated with this job.</td>
+            <td>ClientContact associated with the JobOrder.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
             <td>To-one Association</td>
-            <td>Hiring company.</td>
+            <td>Hiring company associated with the JobOrder.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>clientCorporationLine</td>
             <td>To-one Association</td>
-            <td>AgreementLine</td>
+            <td>AgreementLine associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>correlatedCustomDate1</td>
+            <td>correlatedCustomDate1-3</td>
             <td>Timestamp</td>
             <td></td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>correlatedCustomDate2</td>
-            <td>Timestamp</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomDate3</td>
-            <td>Timestamp</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomFloat1</td>
+            <td>correlatedCustomFloat1-3</td>
             <td>Double</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomFloat2</td>
-            <td>Double</td>
-            <td>CorporateUserText</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomFloat3</td>
-            <td>Double</td>
-            <td></td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>correlatedCustomInt1</td>
+            <td>correlatedCustomInt1-3</td>
             <td>Integer</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
+            <td>X</td>
+        </tr>
+         <tr class="odd">
+            <td>correlatedCustomText1-10</td>
+            <td>String (100)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>correlatedCustomInt2</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomInt3</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomText1</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText10</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomText2</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText3</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomText4</td>
-            <td>String (100)</td>
-            <td>CorporateUserText</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText5</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomText6</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText7</td>
-            <td>String (100)</td>
-            <td>ClientText</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomText8</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText9</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomTextBlock1</td>
+            <td>correlatedCustomTextBlock1-3</td>
             <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomTextBlock2</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomTextBlock3</td>
-            <td>String (2147483647)</td>
-            <td>CorporateUserText</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>costCenter</td>
             <td>String (30)</td>
-            <td>Name of the cost center associated with this job. This cost center flows to the placement record and drives invoice grouping (placements with the same cost center for the same client will be grouped together)</td>
+            <td>Name of the cost center associated with the JobOrder. This cost center flows to the placement record and drives invoice grouping. Placements with the same cost center for the same client will be grouped together.</td>
             <td></td>
             <td></td>
         </tr>
@@ -368,28 +249,28 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>dateClosed</td>
             <td>Timestamp</td>
-            <td>Date when the job was marked as closed.</td>
+            <td>Date when the JobOrder was marked as closed.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>dateEnd</td>
             <td>Timestamp</td>
-            <td>Date when the job will end (if applicable).</td>
+            <td>Date when the JobOrder will end (if applicable).</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>dateLastExported</td>
             <td>Timestamp</td>
-            <td>Date when the job was last exported.</td>
+            <td>Date when the JobOrder was last exported.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td>Date on which the job was last modified.</td>
+            <td>Date on which the JobOrder was last modified.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -403,63 +284,63 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>degreeList</td>
             <td>String (2147483647)</td>
-            <td>List of educational degrees required for this job.</td>
+            <td>List of educational degrees required for this JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>description</td>
             <td>String (2147483647)</td>
-            <td>Text description of the job.</td>
+            <td>Text description of the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>durationWeeks</td>
             <td>Double</td>
-            <td>Expected duration the job. For a permanent position, this is null.</td>
+            <td>Expected duration the JobOrder. For a permanent position, this is null.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>educationDegree</td>
             <td>String (50)</td>
-            <td>Required degree for the job.</td>
+            <td>Required degree for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>employmentType</td>
             <td>String (200)</td>
-            <td>Type of employment offered: for example, contract, permanent, and so forth. Determines which of the five job types are used.</td>
+            <td>Type of employment offered: for example, contract, permanent, and so forth. Determines which of the five JobOrder types is used.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>externalCategoryID</td>
             <td>Integer</td>
-            <td>Category exposed on public job postings to the web.</td>
+            <td>Category exposed on public JobOrder postings to the web.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>externalID</td>
             <td>String (100)</td>
-            <td>Used for migrations or for the job's external/back-office identification number.</td>
+            <td>Used for migrations or for the JobOrder's external/back-office identification number.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>feeArrangement</td>
             <td>Double</td>
-            <td>Fee, expressed as a percentage, that will be paid by the ClientCorporation when the job is filled.</td>
+            <td>Fee, expressed as a percentage, that will be paid by the ClientCorporation when the JobOrder is filled.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>fileAttachments</td>
-            <td>To-many Association</td>
-            <td>JobOrderFileAttachment</td>
+            <td>To-many association</td>
+            <td>JobOrderFileAttachment associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -479,15 +360,15 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>interviews</td>
-            <td>To-many Association</td>
-            <td>Appointment</td>
+            <td>To-many association</td>
+            <td>Appointments associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>isClientEditable</td>
             <td>Boolean</td>
-            <td>Indicates whether a ClientContact can modify the job via the Bullhorn system.</td>
+            <td>Indicates whether a ClientContact can modify the JobOrder via the Bullhorn system.</td>
             <td></td>
             <td></td>
         </tr>
@@ -501,35 +382,35 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>isInterviewRequired</td>
             <td>Boolean</td>
-            <td>Indicates whether applicants are required to Interview for the job.</td>
+            <td>Indicates whether applicants are required to Interview for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>isJobcastPublished</td>
             <td>Boolean</td>
-            <td>Indicates whether the job was published through Jobcast.</td>
+            <td>Indicates whether the JobOrder was published through Jobcast.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>isOpen</td>
             <td>Boolean</td>
-            <td>Indicates whether the job is open.</td>
+            <td>Indicates whether the JobOrder is open.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>isPublic</td>
             <td>Integer</td>
-            <td>Controls whether a job appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1.</td>
+            <td>Controls whether a JobOrder appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>jobBoardList</td>
             <td>String (2147483647)</td>
-            <td>List of job boards on which this job has been posted.</td>
+            <td>List of job boards on which this JobOrder has been posted.</td>
             <td></td>
             <td></td>
         </tr>
@@ -542,7 +423,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>jobOrderIntegrations</td>
-            <td>To-many Association</td>
+            <td>To-many association</td>
             <td>JobOrderIntegration</td>
             <td></td>
             <td>X</td>
@@ -563,15 +444,15 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>notes</td>
-            <td>To-many Association</td>
-            <td>Notes associated with this job.</td>
+            <td>To-many association</td>
+            <td>Notes associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>numOpenings</td>
             <td>Integer</td>
-            <td>Number of openings to be filled for this job.</td>
+            <td>Number of openings to be filled for this JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -585,42 +466,42 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>opportunity</td>
             <td>To-one Association</td>
-            <td>JobOrder</td>
+            <td>Opportunity associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>optionsPackage</td>
             <td>String (2147483647)</td>
-            <td>Text description of the stock options package offered with this job.</td>
+            <td>Text description of the stock options package offered with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>owner</td>
             <td>To-one Association</td>
-            <td>CorporateUser who owns this job. The default value is user who creates the JobOrder.</td>
+            <td>CorporateUser who owns this JobOrder. The default value is user who creates the JobOrder.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>payRate</td>
             <td>BigDecimal</td>
-            <td>Pay rate offered with this job.</td>
+            <td>Pay rate offered with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>placements</td>
-            <td>To-many Association</td>
-            <td>Placements associated with this job.</td>
+            <td>To-many association</td>
+            <td>Placements associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>publicDescription</td>
             <td>String (2147483647)</td>
-            <td>Description of this job for use on public job boards.</td>
+            <td>Description of this JobOrder for use on public job boards.</td>
             <td></td>
             <td></td>
         </tr>
@@ -634,28 +515,28 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>publishedZip</td>
             <td>String (18)</td>
-            <td>Published Zip Code of the job location.</td>
+            <td>Published ZIP code of the job location.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>reasonClosed</td>
             <td>String (2147483647)</td>
-            <td>Text description of the reason this job was closed, if applicable.</td>
+            <td>Text description of the reason this JobOrder was closed, if applicable.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>reportTo</td>
             <td>String (100)</td>
-            <td>Name and/or title of the person this job will report to.</td>
+            <td>Name and/or title of the person this JobOrder will report to.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>reportToClientContact</td>
             <td>To-one Association</td>
-            <td>ClientContact this job reports to.</td>
+            <td>ClientContact this JobOrder reports to.</td>
             <td></td>
             <td></td>
         </tr>
@@ -669,7 +550,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>salary</td>
             <td>BigDecimal</td>
-            <td>Salary offered for this job.</td>
+            <td>Salary offered for this JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -682,8 +563,8 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>sendouts</td>
-            <td>To-many Association</td>
-            <td>Sendouts associated with this job.</td>
+            <td>To-many association</td>
+            <td>Sendouts associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -696,8 +577,8 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>shifts</td>
-            <td>To-many Association</td>
-            <td>Shift</td>
+            <td>To-many association</td>
+            <td>Shift associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -710,22 +591,22 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>skills</td>
-            <td>To-many Association</td>
-            <td>Skills associated with this job.</td>
+            <td>To-many association</td>
+            <td>Skills associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>source</td>
             <td>String (100)</td>
-            <td>Source of the job.</td>
+            <td>Source of the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>specialties</td>
-            <td>To-many Association</td>
-            <td>Specialty</td>
+            <td>To-many association</td>
+            <td>Specialties associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -745,22 +626,22 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>submissions</td>
-            <td>To-many Association</td>
-            <td>JobSubmissions associated with this job.</td>
+            <td>To-many association</td>
+            <td>JobSubmissions associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>tasks</td>
-            <td>To-many Association</td>
-            <td>Tasks associated with this job.</td>
+            <td>To-many association</td>
+            <td>Tasks associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>taxRate</td>
             <td>Double</td>
-            <td>Rate (percentage) at which the person hired for this job will be taxed.</td>
+            <td>Rate (percentage) at which the person hired for this JobOrder will be taxed.</td>
             <td></td>
             <td></td>
         </tr>
@@ -773,15 +654,15 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>tearsheets</td>
-            <td>To-many Association</td>
-            <td>Tearsheets with which this job is associated.</td>
+            <td>To-many association</td>
+            <td>Tearsheets associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>timeUnits</td>
-            <td>To-many Association</td>
-            <td>TimeUnit</td>
+            <td>To-many association</td>
+            <td>TimeUnits associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -795,7 +676,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>travelRequirements</td>
             <td>String (50)</td>
-            <td>Text description of the amount of travel required for this job.</td>
+            <td>Text description of the amount of travel required for this JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -815,8 +696,8 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>webResponses</td>
-            <td>To-many Association</td>
-            <td>Web responses associated with this job. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”.</td>
+            <td>To-many association</td>
+            <td>Web responses associated with the JobOrder. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”.</td>
             <td></td>
             <td></td>
         </tr>
@@ -844,14 +725,14 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>workersCompRate</td>
             <td>To-one Association</td>
-            <td>WorkersCompensationRate entity associated with this job.</td>
+            <td>WorkersCompensationRate entity associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>yearsRequired</td>
             <td>Integer</td>
-            <td>Number of years of experience required for the job.</td>
+            <td>Number of years of experience required for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>

@@ -28,7 +28,7 @@ Represents a CandidateReference's answer to a CandidateReferenceQuestion.
         <tr class="odd">
             <td>migrateGUID</td>
             <td>String (36)</td>
-            <td></td>
+            <td>Unused.</td>
             <td></td>
             <td></td>
         </tr>

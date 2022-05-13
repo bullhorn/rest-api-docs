@@ -1,10 +1,10 @@
 # Location
 
-Represents a Location on a Client Corporation.
+An [effective-dated entity](../index.html#effective-dated-entity) that represents the location of a ClientCorporation.
 
-Flattened entity of LocationVersions. Will display today's version unless you specify the effectiveOn query param(LocationVersion.viewableStartDate < today AND LocationVersion.efffectiveEndDate > today)
+Displays today's version unless you specify the effectiveOn query parameter (LocationVersion.viewableStartDate < today AND LocationVersion.efffectiveEndDate > today).
 
-CRUD Access - CREATE, READ, UPDATE, DELETE.
+CRUD Access - CREATE, READ, UPDATE, DELETE
 
 Entitlements - Add Location, Add Location Version, Delete Location and Version, Manage Current Location Version, Manage Historical Location Version, Manage Future Location Version, View Current and Future Location and Version.
 
@@ -28,7 +28,7 @@ Entitlements - Add Location, Add Location Version, Delete Location and Version, 
     <tbody>
         <tr class="even">
             <td>id</td>
-            <td>ID</td>
+            <td>integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
             <td>X</td>

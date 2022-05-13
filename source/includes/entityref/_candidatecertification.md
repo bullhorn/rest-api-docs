@@ -1,8 +1,6 @@
 # CandidateCertification
 
-This entity represents a certification that a Candidate may have.
-
-
+Represents a certification that a Candidate may have.
 
 <table>
     <colgroup>
@@ -32,27 +30,27 @@ This entity represents a certification that a Candidate may have.
         <tr class="odd">
             <td>boardCertification</td>
             <td>String (100)</td>
-            <td>Set by certificationBoardCertificationList private label attribute</td>
+            <td>Set by certificationBoardCertificationList private label attribute.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>candidate</td>
-            <td>To One Association</td>
-            <td>Candidate linked to CandidateCertification.</td>
+            <td>To-one association</td>
+            <td>Candidate associated with CandidateCertification.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>certification</td>
-            <td>To One Association</td>
-            <td>Certification linked to CandidateCertification.</td>
+            <td>To-one association</td>
+            <td>Certification associated with CandidateCertification.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>certificationFileAttachments</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>CertificationFileAttachments associated to entity.</td>
             <td></td>
             <td></td>
@@ -60,7 +58,7 @@ This entity represents a certification that a Candidate may have.
         <tr class="odd">
             <td>comments</td>
             <td>String (2147483647)</td>
-            <td>Free-text comments on this record.</td>
+            <td>Free-text comments on this entity.</td>
             <td></td>
             <td></td>
         </tr>
@@ -136,8 +134,8 @@ This entity represents a certification that a Candidate may have.
         </tr>
         <tr class="even">
             <td>fileAttachments</td>
-            <td>To Many Association</td>
-            <td>CandidateFileAttachments associated to entity. Association created by adding the ID(s) of the fileAttachment(s) to this field in an association PUT call of the form: {corpToken}/entity/CandidateCertification/{entity-id}/fileAttachments/{entity-id},*}.</td>
+            <td>To-many association</td>
+            <td>CandidateFileAttachments associated to entity. Association created by adding the id(s) of the fileAttachment(s) to this field in an association PUT call of the form: {corpToken}/entity/CandidateCertification/{entity-id}/fileAttachments/{entity-id},*}.</td>
             <td></td>
             <td></td>
         </tr>
@@ -186,13 +184,13 @@ This entity represents a certification that a Candidate may have.
         <tr class="odd">
             <td>migrateGUID</td>
             <td>String (36)</td>
-            <td></td>
+            <td>Unused.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>modifyingUser</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Creator of CandidateCertification.</td>
             <td></td>
             <td></td>

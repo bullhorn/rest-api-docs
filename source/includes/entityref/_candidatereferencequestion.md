@@ -50,7 +50,7 @@ Represents a question that can be asked of a CandidateReference. Answers to thes
         <tr class="even">
             <td>migrateGUID</td>
             <td>String (36)</td>
-            <td></td>
+            <td>Unused.</td>
             <td></td>
             <td></td>
         </tr>

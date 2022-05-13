@@ -1,7 +1,7 @@
 
 # CandidateEducation
 
-Represents an educational degree or course of study that a Candidate lists on his or her resume. Each CandidateEducation instance corresponds to a line item on the "Education" tab of a Candidate in the Bullhorn application.
+Represents an educational degree or course of study that a Candidate lists on his or her resume. Each CandidateEducation instance corresponds to a line item on the Education tab of a Candidate in the Bullhorn application.
 
 | **CandidateEducation field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
@@ -25,4 +25,4 @@ Represents an educational degree or course of study that a Candidate lists on hi
 | major | String (100) | Indicates the field in which Candidate majored. | | |
 | school | String (100) | Name of the educational institute where this education took place. | | |
 | startDate | Timestamp | Date when Candidate began study. | | |
-| state | String (50) | Name of the U.S State in which the education took place. | | |
+| state | String (50) | Name of the U.S. state in which the education took place. | | |

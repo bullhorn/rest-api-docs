@@ -1,8 +1,6 @@
 # CandidateCertificationRequirement
 
-This entity represents the required certifications for a Candidate.
-
-
+Represents the required certifications for a Candidate.
 
 <table>
     <colgroup>
@@ -31,29 +29,29 @@ This entity represents the required certifications for a Candidate.
         </tr>
         <tr class="odd">
             <td>candidate</td>
-            <td>To One Association</td>
-            <td>Candidate</td>
+            <td>To-one association</td>
+            <td>Associated Candidate.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>candidateCertification</td>
-            <td>To One Association</td>
-            <td>CandidateCertification that fulfills this Requirement.</td>
+            <td>To-one association</td>
+            <td>CandidateCertification that fulfills this CandidateCertificationRequirement.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>certification</td>
-            <td>To One Association</td>
-            <td>The Certification that is required.</td>
+            <td>To-one association</td>
+            <td>Certification that is required.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>certificationFileAttachments</td>
-            <td>To Many Association</td>
-            <td>CertificationFileAttachment</td>
+            <td>To-many association</td>
+            <td>Associated CertificationFileAttachments.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -95,21 +93,21 @@ This entity represents the required certifications for a Candidate.
         <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date entity was added.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>dateExpiration</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date CandidateCertificationRequirement expires.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date entity was last modified.</td>
             <td></td>
             <td></td>
         </tr>
@@ -122,8 +120,8 @@ This entity represents the required certifications for a Candidate.
         </tr>
         <tr class="even">
             <td>fileAttachments</td>
-            <td>To Many Association</td>
-            <td>CandidateFileAttachment</td>
+            <td>To-many association</td>
+            <td>Associated CandidateFileAttachment.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -138,35 +136,35 @@ This entity represents the required certifications for a Candidate.
         <tr class="even">
             <td>matchingCredentialCount</td>
             <td>Integer</td>
-            <td></td>
+            <td>Count of matching Credentials.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>migrateGUID</td>
             <td>String (36)</td>
-            <td></td>
+            <td>Unused.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>modifyingUser</td>
-            <td>To One Association</td>
-            <td>CorporateUser</td>
+            <td>To-one association</td>
+            <td>Associated CorporateUser.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>owner</td>
-            <td>To One Association</td>
-            <td>CorporateUser</td>
+            <td>To-one association</td>
+            <td>Associated CorporateUser.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>status</td>
-            <td>To One Association</td>
-            <td>CertificationRequirementStatusLookup</td>
+            <td>To-one association</td>
+            <td>Associated CertificationRequirementStatusLookup.</td>
             <td></td>
             <td></td>
         </tr>
@@ -180,7 +178,7 @@ This entity represents the required certifications for a Candidate.
         <tr class="even">
             <td>userCertificationStatus</td>
             <td>String (30)</td>
-            <td></td>
+            <td>Status of certification.</td>
             <td></td>
             <td>X</td>
         </tr>
