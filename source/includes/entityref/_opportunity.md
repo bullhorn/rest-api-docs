@@ -43,7 +43,7 @@ Represents a possible Opportunity which can be converted to a JobOrder.
 | estimatedBillRate | BigDecimal | Estimated bill rate of this Opportunity. | | |
 | expectedCloseDate | Timestamp | Expected close date of this Opportunity. | | |
 | expectedFee | Double | Fee, expressed as a percentage, that will be paid by the ClientCorporation when the potential JobOrder is filled. | | |
-| expectedParRate | BigDecimal | The expected pay rate of this Opportunity. | | |
+| expectedPayRate | BigDecimal | The expected pay rate of this Opportunity. | | |
 | externalCategoryID | Integer | ID of the external category of this Opportunity. | | |
 | externalID | String (30) | External identifier for the record, used for migrations and back-office integration. | | |
 | history | To-many association | IDs of OpportunityHistory entities associated with this Opportunity. | | |
