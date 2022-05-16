@@ -13,7 +13,7 @@ The Task entity supports the massUpdate operations.
 | childTasks | To-many association | Assignments. You populate this field by creating Tasks where Task.parentTask is this Task. | | |
 | clientContact | To-one association | ClientContact associated with this task, if any. | | |
 | clientContactReferences | To-many association | Associates Tasks to multiple ClientContacts. Can only be accessed from the user interface when the multipleAssigneesAndContactsOnTasks corporation setting is enabled, in which case this field is populated instead of the clientContact field. | | |
-| dateAdded | Timestamp | The date on which this record was created. | X | | 
+| dateAdded | Timestamp | Date on which this record was created. | X | | 
 | dateBegin | Timestamp | The date when the task is due to begin. The default value is current time rounded up to next 15 minutes, or dateEnd if it is provided. | X | |
 | dateCompleted | Timestamp | The date when the task was completed, if applicable. The default value is current time rounded up to next 15 minutes, or dateBegin if it is provided. | | |
 | dateEnd | Timestamp | The date when the task was scheduled to end. Used for recurring tasks. | X | |

@@ -53,7 +53,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>assignedUsers</td>
             <td>To-many association</td>
-            <td>Internal users assigned to this Joborder.</td>
+            <td>Internal users assigned to the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -137,7 +137,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>clientBillRate</td>
             <td>BigDecimal</td>
-            <td>Amount to be billed to the client for this JobOrder when it is filled.</td>
+            <td>Amount to be billed to the client for the JobOrder when it is filled.</td>
             <td></td>
             <td></td>
         </tr>
@@ -284,7 +284,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>degreeList</td>
             <td>String (2147483647)</td>
-            <td>List of educational degrees required for this JobOrder.</td>
+            <td>List of educational degrees required for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -410,7 +410,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>jobBoardList</td>
             <td>String (2147483647)</td>
-            <td>List of job boards on which this JobOrder has been posted.</td>
+            <td>List of job boards on which the JobOrder has been posted.</td>
             <td></td>
             <td></td>
         </tr>
@@ -452,7 +452,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>numOpenings</td>
             <td>Integer</td>
-            <td>Number of openings to be filled for this JobOrder.</td>
+            <td>Number of openings to be filled for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -480,7 +480,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>owner</td>
             <td>To-one Association</td>
-            <td>CorporateUser who owns this JobOrder. The default value is user who creates the JobOrder.</td>
+            <td>CorporateUser who owns the JobOrder. The default value is user who creates the JobOrder.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -501,7 +501,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>publicDescription</td>
             <td>String (2147483647)</td>
-            <td>Description of this JobOrder for use on public job boards.</td>
+            <td>Description of the JobOrder for use on public job boards.</td>
             <td></td>
             <td></td>
         </tr>
@@ -522,21 +522,21 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>reasonClosed</td>
             <td>String (2147483647)</td>
-            <td>Text description of the reason this JobOrder was closed, if applicable.</td>
+            <td>Text description of the reason the JobOrder was closed, if applicable.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>reportTo</td>
             <td>String (100)</td>
-            <td>Name and/or title of the person this JobOrder will report to.</td>
+            <td>Name and/or title of the person the JobOrder will report to.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>reportToClientContact</td>
             <td>To-one Association</td>
-            <td>ClientContact this JobOrder reports to.</td>
+            <td>ClientContact the JobOrder reports to.</td>
             <td></td>
             <td></td>
         </tr>
@@ -550,7 +550,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>salary</td>
             <td>BigDecimal</td>
-            <td>Salary offered for this JobOrder.</td>
+            <td>Salary offered for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -572,13 +572,13 @@ The JobOrder entity supports the massUpdate operations.
             <td>shift</td>
             <td>To-one Association</td>
             <td>Shift</td>
-            <td></td>
+            <td>Primary shift associated with the JobOrder.</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>shifts</td>
             <td>To-many association</td>
-            <td>Shift associated with the JobOrder.</td>
+            <td>Shifts associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
@@ -641,7 +641,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>taxRate</td>
             <td>Double</td>
-            <td>Rate (percentage) at which the person hired for this JobOrder will be taxed.</td>
+            <td>Rate (percentage) at which the person hired for the JobOrder will be taxed.</td>
             <td></td>
             <td></td>
         </tr>
@@ -676,7 +676,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>travelRequirements</td>
             <td>String (50)</td>
-            <td>Text description of the amount of travel required for this JobOrder.</td>
+            <td>Text description of the amount of travel required for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>

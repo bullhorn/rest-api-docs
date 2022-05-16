@@ -6,7 +6,7 @@ Entity representing a Legal Business Entity for use in payroll integrations.
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | countryID | Integer | The ID code representing the country associated with this legal business entity. | X | |
-| dateAdded | Timestamp | The date on which the entity was created. | X | |
+| dateAdded | Timestamp | Date on which the entity was created. | X | |
 | defaultCurrencyUnit | To-one association | The currency unit assigned as the default for this legal business entity. | X | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system.| X | |
 | legalName | String | The long-form legal name of this legal business entity. | X | |

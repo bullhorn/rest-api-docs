@@ -14,7 +14,7 @@ Read-only entity that represents a housing complex unit that a ClientCorporation
 | customInt1 to 3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customText1 to 5 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1 to 5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| dateAdded | Timestamp | The date on which this record was created in the Bullhorn system. | X | |
+| dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
 | dateLeaseBegin | Timestamp | The lease begin date. | | |
 | dateLeaseEnd | Timestamp | The lease end date. | | |
 | dateOfDeposit | Timestamp | The deposit date. | | |

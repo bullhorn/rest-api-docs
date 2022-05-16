@@ -68,14 +68,14 @@ The FederalTaxForm entity is only available in the user interface if the novoTax
         <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td>The date on which this record was created in the Bullhorn system.</td>
+            <td>Date on which this record was created in the Bullhorn system.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td>The date on which this record was last modified.</td>
+            <td>Date on which this record was last modified.</td>
             <td></td>
             <td></td>
         </tr>

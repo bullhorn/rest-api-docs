@@ -93,7 +93,7 @@ Represents the required certifications for a Candidate.
         <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td>Date entity was added.</td>
+            <td>Date on which this record was created in the Bullhorn system.</td>
             <td></td>
             <td>X</td>
         </tr>
