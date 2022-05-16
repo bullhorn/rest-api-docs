@@ -1,6 +1,6 @@
 # ClientCorporationBillRulesetVersion
 
-Represents a client Corporation bill ruleset version.
+Represents a client corporation bill ruleset version.
 
 <table>
     <colgroup>
@@ -58,7 +58,7 @@ Represents a client Corporation bill ruleset version.
         <tr class="odd">
             <td>isFirst</td>
             <td>Boolean</td>
-            <td>True if this is the first client Corporation bill ruleset version.</td>
+            <td>True if this is the first client corporation bill ruleset version.</td>
             <td>X</td>
             <td></td>
         </tr>
