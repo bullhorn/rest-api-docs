@@ -1,6 +1,6 @@
 # PlacementPayRuleset
 
-An effective-dated entity that represents all the rules on a Placement.
+An effective-dated entity that represents all the rules on a placement.
 PlacementPayRuleset is the flattened entity. When making PUT and POST calls
 to PlacementPayRuleset, the child entity, TimeLaborEvalRules,
 can be passed as well with all associated data.
@@ -43,7 +43,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td>Date the entity was last modified.</td>
-            <td></td>
+            <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
@@ -58,7 +58,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
             <td>Date</td>
             <td>This is the date until when the record is effective.</td>
             <td></td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>isDeleted</td>
@@ -72,7 +72,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
             <td>owner</td>
             <td>To-one association</td>
             <td>CorporateUser.</td>
-            <td></td>
+            <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">

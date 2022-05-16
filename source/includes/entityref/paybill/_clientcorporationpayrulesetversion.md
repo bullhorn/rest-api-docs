@@ -1,6 +1,6 @@
-# PlacementPayRulesetVersion
+# ClientCorporationPayRulesetVersion
 
-Represents a placement pay ruleset version.
+Represents a client corporation pay ruleset version.
 
 <table>
     <colgroup>
@@ -12,7 +12,7 @@ Represents a placement pay ruleset version.
     </colgroup>
     <thead>
         <tr class="header">
-            <th>PlacementPayRulesetVersion fields</th>
+            <th>ClientCorporationPayRulesetVersion fields</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -58,7 +58,7 @@ Represents a placement pay ruleset version.
         <tr class="odd">
             <td>isFirst</td>
             <td>Boolean</td>
-            <td>True if this is the first placement pay ruleset version.</td>
+            <td>True if this is the first client corporation pay ruleset version.</td>
             <td>X</td>
             <td></td>
         </tr>

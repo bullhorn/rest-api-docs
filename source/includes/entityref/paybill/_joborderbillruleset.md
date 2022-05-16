@@ -1,6 +1,11 @@
-# PlacementPayRulesetVersion
+# JobOrderBillRuleset
 
-Represents a placement pay ruleset version.
+An effective-dated entity that represents all the rules on a job order.
+JobOrderBillRuleset is the flattened entity. When making PUT and POST calls
+to JobOrderBillRuleset, the child entity, TimeLaborEvalRules,
+can be passed as well with all associated data.
+
+CRUD Access - CREATE, READ, UPDATE, DELETE
 
 <table>
     <colgroup>
@@ -12,7 +17,7 @@ Represents a placement pay ruleset version.
     </colgroup>
     <thead>
         <tr class="header">
-            <th>PlacementPayRulesetVersion fields</th>
+            <th>JobOrderBillRuleset fields</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -56,9 +61,24 @@ Represents a placement pay ruleset version.
             <td></td>
         </tr>
         <tr class="odd">
-            <td>isFirst</td>
+            <td>isDeleted</td>
             <td>Boolean</td>
-            <td>True if this is the first placement pay ruleset version.</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>JobOrder</td>
+            <td>To-one association</td>
+            <td>JobOrder.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -68,6 +88,20 @@ Represents a placement pay ruleset version.
             <td>TimeLaborEvalRule.</td>
             <td></td>
             <td></td>
+        </tr>
+        <tr class="odd">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>JobOrderBillRulesetVersion.</td>
+            <td></td>
+            <td>X</td>
         </tr>
     </tbody>
 </table>
