@@ -1,6 +1,6 @@
 # JobOrderBillRulesetVersion
 
-Represents a job order bill ruleset version.
+Represents a JobOrderBillRuleset version.
 
 <table>
     <colgroup>
