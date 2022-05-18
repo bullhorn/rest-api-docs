@@ -1,6 +1,6 @@
 # JobOrderPayRulesetVersion
 
-Represents a job order pay ruleset version.
+Represents a JobOrderPayRuleset version.
 
 <table>
     <colgroup>
