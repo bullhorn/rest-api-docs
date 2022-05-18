@@ -1,6 +1,6 @@
 # ClientCorporationPayRulesetVersion
 
-Represents a client corporation pay ruleset version.
+Represents a ClientCorporation PayRuleset version.
 
 <table>
     <colgroup>
