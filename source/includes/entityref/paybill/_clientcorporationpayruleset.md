@@ -1,6 +1,6 @@
 # ClientCorporationPayRuleset
 
-An effective-dated entity that represents all the rules on a client corporation.
+An effective-dated entity that represents all the rules on a ClientCorporation.
 ClientCorporationPayRuleset is the flattened entity. When making PUT and POST calls
 to ClientCorporationPayRuleset, the child entity, TimeLaborEvalRules,
 can be passed as well with all associated data.
