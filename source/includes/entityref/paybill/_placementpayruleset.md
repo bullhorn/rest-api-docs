@@ -1,6 +1,6 @@
 # PlacementPayRuleset
 
-An effective-dated entity that represents all the rules on a placement.
+An effective-dated entity that represents all the rules on a Placement.
 PlacementPayRuleset is the flattened entity. When making PUT and POST calls
 to PlacementPayRuleset, the child entity, TimeLaborEvalRules,
 can be passed as well with all associated data.
