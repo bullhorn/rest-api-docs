@@ -1,6 +1,6 @@
 # PlacementPayRulesetVersion
 
-Represents a placement pay ruleset version.
+Represents a PlacementPayRuleset version.
 
 <table>
     <colgroup>
