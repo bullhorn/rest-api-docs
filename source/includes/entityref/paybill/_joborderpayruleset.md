@@ -1,6 +1,6 @@
 # JobOrderPayRuleset
 
-An effective-dated entity that represents all the rules on a job order.
+An effective-dated entity that represents all the rules on a JobOrder.
 JobOrderPayRuleset is the flattened entity. When making PUT and POST calls
 to JobOrderPayRuleset, the child entity, TimeLaborEvalRules,
 can be passed as well with all associated data.
