@@ -1,6 +1,6 @@
 # PlacementBillRulesetVersion
 
-Represents a placement bill ruleset version.
+Represents a PlacementBillRuleset version.
 
 <table>
     <colgroup>
