@@ -116,14 +116,14 @@ Entity that represents a candidate's direct deposit account record.
         <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td>The date on which this account was added to Bullhorn.</td>
+            <td>Date on which this account was added to Bullhorn.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td>The date on which this account was modified in Bullhorn.</td>
+            <td>Date on which this account was modified in Bullhorn.</td>
             <td>X</td>
             <td>X</td>
         </tr>

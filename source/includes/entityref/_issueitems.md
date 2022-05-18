@@ -7,8 +7,8 @@ Entity representing individual reported issues.
 | id | Integer | Unique identifier for this entity. | X | X |
 | comments | String | Comments about the IssueItems to be used for reference. | | |
 | description | String | A text description of the IssueItems. | | |
-| dateAdded | Timestamp | The date on which the entity was created. | X | |
-| dateLateModified | Timestamp | The date on which the entity was last modified. | | |
+| dateAdded | Timestamp | Date on which the entity was created. | X | |
+| dateLateModified | Timestamp | Date on which the entity was last modified. | | |
 | errorType | String | The type of error type being reported.  Valid values are INVALID-DATA, MISSING-DATA, DATA-MISMATCH, SYSTEM-ERROR, or UNKNOWN. | | |
 | externalEntityID | String | A reference to any external entity ID that is related to this issue. | | |
 | externalEntityName | String | A reference to any external entity name that is related to this issue. | | |

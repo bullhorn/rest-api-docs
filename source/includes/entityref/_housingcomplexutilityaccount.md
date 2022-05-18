@@ -16,7 +16,7 @@ Read-only entity that represents a housing complex unit utility account that a C
 | customInt1 to 3 | Integer | Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customText1 to 5 | String (100) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1 to 5 | String (2147483647) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
-| dateAdded | Timestamp | The date on which this record was created in the Bullhorn system. | X | |
+| dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
 | dateConnected | Timestamp | Utility connection date. | | |
 | dateDisconnected | Timestamp | Utility disconnection date. | | |
 | deposit | Double | Deposit amount. | | |

@@ -65,7 +65,7 @@ The main entity for Shift scheduling and is used for storing start and end times
         <tr class="even">
             <td>jobOrder</td>
             <td>To-one association</td>
-            <td>JobOrder associated to the JobShift.</td>
+            <td>JobOrder associated with the JobShift.</td>
             <td>X</td>
             <td></td>
         </tr>

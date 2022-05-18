@@ -93,7 +93,7 @@ The Candidate entity supports the massUpdate operations.
 | pager | String (20) | Candidate's pager number. | | |
 | paperWorkOnFile | String | Configurable field that tracks whether the Candidate's tax paperwork has been received. | | |
 | password | String | Candidate’s password. The default value is a randomly generated string. | X | |
-| payrollClientStartDate  | Timestamp | Indicates the date on which the employee was first on payroll at the staffing company. Used for payroll integrations. | | |
+| payrollClientStartDate  | Timestamp | Indicates Date on which the employee was first on payroll at the staffing company. Used for payroll integrations. | | |
 | payrollStatus | String | Indicates whether the Candidate is currently active on payroll or not. Used for payroll integrations. | | |
 | phone | String (20) | Candidate's home telephone number. | | |
 | phone2 | String (20) | Candidate's telephone number at work. | | |

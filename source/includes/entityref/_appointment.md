@@ -11,10 +11,10 @@ Represents an appointment on a Bullhorn user's calendar. A separate Appointment 
 | clientContactReference | To-one association | The ClientContact with whom this Appointment is associated, if any. | | |
 | childAppointments | To-many association | Child Appointments associated with this Appointment. The ownerID of any child Appointment represents a user who has been invited to this Appointment. | | |
 | communicationMethod | String (30) | Indicates how the appointment will be conducted: phone, on-site, off-site, and so forth. | X | |
-| dateAdded | Timestamp | The date on which this record was created in the Bullhorn system. | X | |
-| dateBegin | Timestamp | The date on which the appointment began/will begin.<br>The default value is current time rounded up to next half hour, or 15 minutes before dateEnd if it is provided. | X | |
-| dateEnd | Timestamp | The date on which the appointment ended/will end.<br>The default value is 15 minutes after dateBegin. | X | |
-| dateLastModified | Timestamp | The date on which this record was last modified. | X | X |
+| dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
+| dateBegin | Timestamp | Date on which the appointment began/will begin.<br>The default value is current time rounded up to next half hour, or 15 minutes before dateEnd if it is provided. | X | |
+| dateEnd | Timestamp | Date on which the appointment ended/will end.<br>The default value is 15 minutes after dateBegin. | X | |
+| dateLastModified | Timestamp | Date on which this record was last modified. | X | X |
 | description | String (2147483647) | Free-text description of the appointment.<br>The default value is “”. | X | |
 | isAllDay | Boolean | Indicates whether the appointment will last all day. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system. | X | |

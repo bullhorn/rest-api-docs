@@ -7,7 +7,7 @@ Lets a user configure an activity goal for use in conjunction with the activity 
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | codeIdentifier | String (100) | Field that determines if a goal is an ActivityGoal or RecordBasedGoal. | X | |
-| dateLastModified | Timestamp | The last time record was modified. | X | X |
+| dateLastModified | Timestamp | Last time record was modified. | X | X |
 | Description | String (2000) | Goal description. | X | |
 | goalPeriodId | Integer | Id of goal time period. | X | |
 | goalTypeId | Integer | Id of goal type. | X  | X |

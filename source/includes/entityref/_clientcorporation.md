@@ -50,6 +50,7 @@ The ClientCorporation entity supports the massUpdate operations.
 | phone | String (20) | Main phone number for the ClientCorporation. | | |
 | rateCards | To-many association | **Not supported in this release.** Rate cards associated with this ClientCorporation. | | |
 | revenue | String (2147483647) | Estimated annual revenue in millions for the company. | | |
+| requirements | To-many association | Certifications that Candidates should have. | | |
 | status | String (30) | Status of the business relationship with this company; for example, Prospect, Active, and so forth. | X | |
 | taxRate | Double | Tax rate for the company expressed in percentage: for example, 28%. Passed to a back-office system if applicable. | | |
 | tickerSymbol | String (20) | Stock market ticker symbol for the company. | | |
