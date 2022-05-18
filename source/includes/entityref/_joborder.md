@@ -572,13 +572,13 @@ The JobOrder entity supports the massUpdate operations.
             <td>shift</td>
             <td>To-one Association</td>
             <td>Shift</td>
-            <td>Primary shift associated with the JobOrder.</td>
+            <td>Deprecated. Shift associated with the JobOrder.</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>shifts</td>
             <td>To-many association</td>
-            <td>Shifts associated with the JobOrder.</td>
+            <td>Deprecated. Shifts associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
