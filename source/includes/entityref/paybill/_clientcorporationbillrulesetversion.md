@@ -1,6 +1,6 @@
 # ClientCorporationBillRulesetVersion
 
-Represents a client corporation bill ruleset version.
+Represents a ClientCorporation BillRuleset version.
 
 <table>
     <colgroup>
