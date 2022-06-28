@@ -13,7 +13,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | billingClientContact | To-one association | ClientContact in charge of processing bills for this Placement.  | | |
 | billingFrequency | String (20) | Frequency with which the client company will be billed for this position, initially copied from the associated ClientCorporation record but can be modified on the Placement record. | | |
 | bonusPackage | String (2147483647) | Text description of the bonus package for this placement. | | |
-| bteSyncStatus | String (100) | Allows for viewing whether a Bullhorn placement was synced to BTE successfully, pending, or if there was an issue. This field should only appear if a corporation is WFR enabled and PeopleNet Front Office Integration enabled. | X | X |
+| bteSyncStatus | String | Allows for viewing whether a Bullhorn placement was synced to BTE successfully, pending, or if there was an issue. This field should only appear if a corporation is WFR enabled and PeopleNet Front Office Integration enabled. | X | X |
 | bteLastSyncDate | Timestamp | Used to store the date and time of the last known sync a Bullhorn placement was synced into Bullhorn Time & Expense.  This field should only appear if a corporation is WFR enabled and PeopleNet Front Office Integration enabled. | | X |
 | candidate | To-one association | Candidate who was placed. Cannot be changed after this record is created. Included fields are id, firstName, lastName. | | X |
 | changeRequests | To-many association | PlacementChangeRequests for this Placement. | | |
