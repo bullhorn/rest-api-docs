@@ -1,4 +1,4 @@
-# Pay & Bill - HolidayInstance
+# Pay and Bill - HolidayInstance
 
 Entity that represents a Holiday Instance record.
 
@@ -62,7 +62,7 @@ Entitlements - Manage Holidays.
         <tr class="odd">
             <td>modifyingUser</td>
             <td>To-one association</td>
-            <td>CorporateUser</td>
+            <td>CorporateUser that modified the entity.</td>
             <td>X</td>
             <td>X</td>
         </tr>

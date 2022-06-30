@@ -1,4 +1,4 @@
-# Pay & Bill - BillingSyncBatchFileAttachment
+# Pay and Bill - BillingSyncBatchFileAttachment
 
 File attachments that can be associated with a BillingSyncBatch.
 

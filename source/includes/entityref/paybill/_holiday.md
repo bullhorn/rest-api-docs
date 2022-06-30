@@ -1,4 +1,4 @@
-# Pay & Bill - Holiday
+# Pay and Bill - Holiday
 
 Entity that represents a Holiday record.
 
@@ -55,7 +55,7 @@ Entitlements - Manage Holidays.
         <tr class="even">
             <td>description</td>
             <td>String (100)</td>
-            <td>Description for this holiday</td>
+            <td>Description for this holiday.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -84,7 +84,7 @@ Entitlements - Manage Holidays.
             <td>holidayStatusLookup</td>
             <td>To-one association</td>
              <td>HolidayStatusLookup options: 
-                <li>Active <li>Inactive. </td>
+                <li>Active <li>Inactive </td>
             <td>X</td>
             <td></td>
         </tr>
@@ -113,7 +113,7 @@ Entitlements - Manage Holidays.
         <tr class="even">
             <td>modifyingUser</td>
             <td>To-one association</td>
-            <td>CorporateUser</td>
+            <td>CorporateUser that modified the entity.</td>
             <td>X</td>
             <td>X</td>
         </tr>

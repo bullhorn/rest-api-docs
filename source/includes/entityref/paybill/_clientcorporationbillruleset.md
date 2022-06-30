@@ -1,4 +1,4 @@
-# Pay & Bill - ClientCorporationBillRuleset
+# Pay and Bill - ClientCorporationBillRuleset
 
 An effective-dated entity that represents all the rules on a ClientCorporation.
 ClientCorporationBillRuleset is the flattened entity. When making PUT and POST calls

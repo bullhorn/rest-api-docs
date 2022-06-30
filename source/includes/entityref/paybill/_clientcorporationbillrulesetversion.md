@@ -1,4 +1,4 @@
-# Pay & Bill - ClientCorporationBillRulesetVersion
+# Pay and Bill - ClientCorporationBillRulesetVersion
 
 Represents a ClientCorporation BillRuleset version.
 

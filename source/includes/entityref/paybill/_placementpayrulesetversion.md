@@ -1,4 +1,4 @@
-# Pay & Bill - PlacementPayRulesetVersion
+# Pay and Bill - PlacementPayRulesetVersion
 
 Represents a PlacementPayRuleset version.
 

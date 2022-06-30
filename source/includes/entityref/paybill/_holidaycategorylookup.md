@@ -1,4 +1,4 @@
-# Pay & Bill - HolidayCategoryLookup
+# Pay and Bill - HolidayCategoryLookup
 
 Entity that represents a Holiday Category Lookup record.
 
@@ -91,7 +91,7 @@ Entitlements - Manage Holidays.
         <tr class="odd">
             <td>modifiedByUser</td>
             <td>To-one association</td>
-            <td>CorporateUser</td>
+            <td>CorporateUser that modified the entity.</td>
             <td></td>
             <td></td>
         </tr>

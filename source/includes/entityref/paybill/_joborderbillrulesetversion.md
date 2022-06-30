@@ -1,4 +1,4 @@
-# Pay & Bill - JobOrderBillRulesetVersion
+# Pay and Bill - JobOrderBillRulesetVersion
 
 Represents a JobOrderBillRuleset version.
 
