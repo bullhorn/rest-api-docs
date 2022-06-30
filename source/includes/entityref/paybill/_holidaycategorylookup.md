@@ -98,7 +98,7 @@ Entitlements - Manage Holidays.
         <tr class="even">
             <td>shouldShowInPicker</td>
             <td>Boolean</td>
-            <td>Indicates whether the holiday category should </td>
+            <td>Whether or not the holiday category should be viewable in category picker.</td>
             <td>X</td>
             <td></td>
         </tr>
