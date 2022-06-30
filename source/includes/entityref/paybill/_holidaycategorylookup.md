@@ -1,4 +1,4 @@
-# HolidayCategoryLookup
+# Pay & Bill - HolidayCategoryLookup
 
 Entity that represents a Holiday Category Lookup record.
 

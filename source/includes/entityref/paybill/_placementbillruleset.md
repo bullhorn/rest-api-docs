@@ -1,4 +1,4 @@
-# PlacementBillRuleset
+# Pay & Bill - PlacementBillRuleset
 
 An effective-dated entity that represents all the rules on a Placement.
 PlacementBillRuleset is the flattened entity. When making PUT and POST calls

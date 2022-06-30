@@ -1,4 +1,4 @@
-# HolidayInstance
+# Pay & Bill - HolidayInstance
 
 Entity that represents a Holiday Instance record.
 

@@ -1,4 +1,4 @@
-# Holiday
+# Pay & Bill - Holiday
 
 Entity that represents a Holiday record.
 
