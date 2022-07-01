@@ -1,6 +1,10 @@
-# Pay and Bill - ClientCorporationBillRulesetVersion
+# Pay and Bill - HolidayInstance
 
-Represents a ClientCorporation BillRuleset version.
+Entity that represents a Holiday Instance record.
+
+CRUD Access - READ.
+
+Entitlements - Manage Holidays.
 
 <table>
     <colgroup>
@@ -12,7 +16,7 @@ Represents a ClientCorporation BillRuleset version.
     </colgroup>
     <thead>
         <tr class="header">
-            <th>ClientCorporationBillRulesetVersion fields</th>
+            <th>HolidayInstance fields</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -38,36 +42,36 @@ Represents a ClientCorporation BillRuleset version.
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td>Date the entity was last modified.</td>
-            <td>X</td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>effectiveDate</td>
-            <td>Date</td>
-            <td>This is the date when the record is effective.</td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>effectiveEndDate</td>
-            <td>Date</td>
-            <td>This is the date until when the record is effective.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>isFirst</td>
-            <td>Boolean</td>
-            <td>True if this is the first client corporation bill ruleset version.</td>
+            <td>endAt</td>
+            <td>Timestamp</td>
+            <td>Date/time when the holiday instance will end.</td>
             <td>X</td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="even">
-            <td>timeLaborEvalRules</td>
-            <td>To-many association</td>
-            <td>TimeLaborEvalRule.</td>
-            <td></td>
-            <td></td>
+            <td>holiday</td>
+            <td>To-one association</td>
+            <td>Holiday associated with the holiday instance.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser that modified the entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>startAt</td>
+            <td>Timestamp</td>
+            <td>Date/time when the holiday instance will start.</td>
+            <td>X</td>
+            <td>X</td>
         </tr>
     </tbody>
 </table>

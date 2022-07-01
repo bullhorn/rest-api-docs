@@ -87,6 +87,10 @@ includes:
   - entityref/paybill/calendarfrequencylookup
   - entityref/paybill/calendarinstance
   - entityref/paybill/citysalestaxrate
+  - entityref/paybill/clientcorporationbillruleset
+  - entityref/paybill/clientcorporationbillrulesetversion
+  - entityref/paybill/clientcorporationpayruleset
+  - entityref/paybill/clientcorporationpayrulesetversion
   - entityref/paybill/countysalestaxrate
   - entityref/paybill/directdepositaccount
   - entityref/paybill/discountrate
@@ -100,6 +104,9 @@ includes:
   - entityref/paybill/generalledgersegment
   - entityref/paybill/generalledgersegmenttype
   - entityref/paybill/generalledgerservicecode
+  - entityref/paybill/holiday
+  - entityref/paybill/holidaycategorylookup
+  - entityref/paybill/holidayinstance
   - entityref/paybill/invoicestatementdiscountrate
   - entityref/paybill/invoicestatementlineitem
   - entityref/paybill/invoicestatementlineitemdiscountrate
@@ -110,6 +117,10 @@ includes:
   - entityref/paybill/invoiceterm
   - entityref/paybill/invoicetermversion
   - entityref/paybill/jobcode
+  - entityref/paybill/joborderbillruleset
+  - entityref/paybill/joborderbillrulesetversion
+  - entityref/paybill/joborderpayruleset
+  - entityref/paybill/joborderpayrulesetversion
   - entityref/paybill/joborderratecard
   - entityref/paybill/joborderratecardline
   - entityref/paybill/joborderratecardlinegroup
@@ -120,6 +131,10 @@ includes:
   - entityref/paybill/paybillcycle
   - entityref/paybill/paymaster
   - entityref/paybill/paymastertransaction
+  - entityref/paybill/placementbillruleset
+  - entityref/paybill/placementbillrulesetversion
+  - entityref/paybill/placementpayruleset
+  - entityref/paybill/placementpayrulesetversion
   - entityref/paybill/placementratecard
   - entityref/paybill/placementratecardline
   - entityref/paybill/placementratecardversion

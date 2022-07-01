@@ -1,11 +1,10 @@
-# Pay and Bill - ClientCorporationPayRuleset
+# Pay and Bill - HolidayCategoryLookup
 
-An effective-dated entity that represents all the rules on a ClientCorporation.
-ClientCorporationPayRuleset is the flattened entity. When making PUT and POST calls
-to ClientCorporationPayRuleset, the child entity, TimeLaborEvalRules,
-can be passed as well with all associated data.
+Entity that represents a Holiday Category Lookup record.
 
-CRUD Access - CREATE, READ, UPDATE, DELETE
+CRUD Access - CREATE, READ, UPDATE, DELETE.
+
+Entitlements - Manage Holidays.
 
 <table>
     <colgroup>
@@ -17,7 +16,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
     </colgroup>
     <thead>
         <tr class="header">
-            <th>ClientCorporationPayRuleset fields</th>
+            <th>HolidayCategoryLookup fields</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -43,22 +42,22 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td>Date the entity was last modified.</td>
-            <td>X</td>
-            <td>X</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr class="odd">
-            <td>effectiveDate</td>
-            <td>Date</td>
-            <td>This is the date when the record is effective.</td>
-            <td>X</td>
+            <td>description</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td></td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>effectiveEndDate</td>
-            <td>Date</td>
-            <td>This is the date until when the record is effective.</td>
+            <td>holidays</td>
+            <td>To-many association</td>
+            <td>Holidays the entity is associated with.</td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="odd">
             <td>isDeleted</td>
@@ -69,39 +68,39 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
             <td></td>
         </tr>
         <tr class="even">
-            <td>owner</td>
-            <td>To-one association</td>
-            <td>CorporateUser.</td>
+            <td>isHidden</td>
+            <td>Boolean</td>
+            <td></td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>clientCorporation</td>
-            <td>To-one association</td>
-            <td>ClientCorporation.</td>
+            <td>isSystem</td>
+            <td>Boolean</td>
+            <td></td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>timeLaborEvalRules</td>
-            <td>To-many association</td>
-            <td>TimeLaborEvalRule.</td>
+            <td>label</td>
+            <td>String (100)</td>
+            <td>Title for the holiday category.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>versionID</td>
-            <td>Integer</td>
-            <td>Unique Identifier for the current version.</td>
-            <td>X</td>
+            <td>modifiedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser that modified the entity.</td>
+            <td></td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>versions</td>
-            <td>To-many association</td>
-            <td>ClientCorporationPayRulesetVersion.</td>
-            <td></td>
+            <td>shouldShowInPicker</td>
+            <td>Boolean</td>
+            <td>Whether or not the holiday category should be viewable in category picker.</td>
             <td>X</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
