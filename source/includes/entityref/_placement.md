@@ -16,7 +16,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | candidate | To-one association | Candidate who was placed. Cannot be changed after this record is created. Included fields are id, firstName, lastName. | | X |
 | changeRequests | To-many association | PlacementChangeRequests for this Placement. | | |
 | clientBillRate | Double | Hourly rate at which the client company will be billed for work done during regular business hours. | | |
-| clientRating | Integer | Placement's client rating. | | |
+| clientRating | Integer | Score from BH Automation Client Rating Tool. | | |
 | clientOvertimeRate | Double | Hourly rate at which the client company will be billed for overtime. | | |
 | comments | String (2147483647) | Text field for entering any comments about the Placement. | | |
 | commissions | To-many association | Ids of PlacementCommissions associated with this Placement. | | |
