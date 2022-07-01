@@ -21561,6 +21561,13 @@ can be passed as well with all associated data.</p>
 <td></td>
 </tr>
 <tr>
+<td>bteSyncStatus</td>
+<td>String (100)</td>
+<td>Pay and Bill corporations only: Allows for viewing whether a Bullhorn placement was synced to BTE successfully, pending, or if there was an issue. This field should only appear if a corporation is WFR enabled and PeopleNet Front Office Integration enabled.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
 <td>candidate</td>
 <td>To-one association</td>
 <td>Candidate who was placed. Cannot be changed after this record is created. Included fields are id, firstName, lastName.</td>
@@ -21902,6 +21909,13 @@ can be passed as well with all associated data.</p>
 <td>JobSubmission associated with this Placement.</td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>lastBteSyncDate</td>
+<td>Timestamp</td>
+<td>Pay and Bill corporations only: Used to store the date and time of the last known sync a Bullhorn placement was synced into Bullhorn Time &amp; Expense. This field should only appear if a corporation is WFR enabled and PeopleNet Front Office Integration enabled.</td>
+<td></td>
+<td>X</td>
 </tr>
 <tr>
 <td>markupPercentage</td>
