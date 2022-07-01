@@ -710,6 +710,13 @@
 <td></td>
 </tr>
 <tr>
+<td>clientRating</td>
+<td>Integer</td>
+<td>Score from BH Automation Client Rating Tool.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>comments</td>
 <td>String (2147483647)</td>
 <td>Free-text comments on Candidate.</td>
@@ -10872,7 +10879,230 @@ CRUD Access - READ</p>
 </tbody>
 </table>
 
-          
+          <h1 id="pay-and-bill-billingsyncbatchfileattachment">Pay and Bill - BillingSyncBatchFileAttachment</h1>
+
+<p>File attachments that can be associated with a BillingSyncBatch.</p>
+
+<p>CRUD Access - READ.</p>
+
+<p>Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>BillingSyncBatchFileAttachment fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billMaster</td>
+            <td>To-one association</td>
+            <td>BillMaster the file is associated with.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billableCharge</td>
+            <td>To-one association</td>
+            <td>BillableCharge the file is associated with.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billingSyncBatch</td>
+            <td>BillingSyncBatch</td>
+            <td>BillingSyncBatch the file is associated with.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billingSyncBatchFileTypeLookup</td>
+            <td>To-one association</td>
+            <td>BillingSyncBatchFileTypeLookup the file is associated with.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>contentSubType</td>
+            <td>String (64)</td>
+            <td>Content subtype of file.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>contentType</td>
+            <td>String (64)</td>
+            <td>Content type of file.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (255)</td>
+            <td>Description for this file.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>directory</td>
+            <td>String (50)</td>
+            <td>File server directory of this file.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>expenseSheet</td>
+            <td>To-one association</td>
+            <td>ExpenseSheet the file is associated with.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>expenseSheetEntry</td>
+            <td>To-one association</td>
+            <td>ExpenseSheetEntry the file is associated with.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>The 3rd party id of the file.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>fileExtension</td>
+            <td>String (10)</td>
+            <td>File extension of this file. Currently, always PDF.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>fileOwner</td>
+            <td>To-one association</td>
+            <td><p>CorporateUser who is the owner of the entity to which this file is attached. The default value is user who created the entity.</p>
+                <p>Default fields:</p>
+                <ul>
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li>
+                </ul></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>fileSize</td>
+            <td>Integer</td>
+            <td>Size of this file.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Whether entity is deleted.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isEncrypted</td>
+            <td>Boolean</td>
+            <td>Whether file is encrypted.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isExternal</td>
+            <td>Boolean</td>
+            <td>Determines if directory is a path to a local file or a URL to an external file.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isPrivate</td>
+            <td>Boolean</td>
+            <td>Determines if file is private or not.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>keyVersionEncryptedWith</td>
+            <td>String (100)</td>
+            <td>If encrypted this say what version of the key was used.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>name</td>
+            <td>String (255)</td>
+            <td>Name of file. Set at time of generation according to business rules.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timesheet</td>
+            <td>To-one association</td>
+            <td>Timesheet the file is associated with.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>transactionOrigin</td>
+            <td>To-one association</td>
+            <td>TransactionOrigin the file is associated with.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>type</td>
+            <td>String (50)</td>
+            <td>Type of this file.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>uuid</td>
+            <td>String (36)</td>
+            <td>Globally unique random ID.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-billingsyncerror">Pay and Bill - BillingSyncError</h1>
 
 <p>Read-only entity that represents a billing-sync error. Dynamic insert and update via billing-sync-services.</p>
@@ -12654,6 +12884,370 @@ CRUD Access - READ</p>
 
 <p>A SalesTaxRate with TaxJurisdictionTypeLookup = City</p>
 
+          <h1 id="pay-and-bill-clientcorporationbillruleset">Pay and Bill - ClientCorporationBillRuleset</h1>
+
+<p>An effective-dated entity that represents all the rules on a ClientCorporation.
+ClientCorporationBillRuleset is the flattened entity. When making PUT and POST calls
+to ClientCorporationBillRuleset, the child entity, TimeLaborEvalRules,
+can be passed as well with all associated data.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>ClientCorporationBillRuleset fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>ClientCorporation.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>ClientCorporationBillRulesetVersion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-clientcorporationbillrulesetversion">Pay and Bill - ClientCorporationBillRulesetVersion</h1>
+
+<p>Represents a ClientCorporation BillRuleset version.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>ClientCorporationBillRulesetVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>True if this is the first client corporation bill ruleset version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-clientcorporationpayruleset">Pay and Bill - ClientCorporationPayRuleset</h1>
+
+<p>An effective-dated entity that represents all the rules on a ClientCorporation.
+ClientCorporationPayRuleset is the flattened entity. When making PUT and POST calls
+to ClientCorporationPayRuleset, the child entity, TimeLaborEvalRules,
+can be passed as well with all associated data.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>ClientCorporationPayRuleset fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>ClientCorporation.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>ClientCorporationPayRulesetVersion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-clientcorporationpayrulesetversion">Pay and Bill - ClientCorporationPayRulesetVersion</h1>
+
+<p>Represents a ClientCorporation PayRuleset version.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>ClientCorporationPayRulesetVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>True if this is the first client corporation pay ruleset version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-countysalestaxrate">Pay and Bill - CountySalesTaxRate</h1>
 
 <p>A SalesTaxRate with TaxJurisdictionTypeLookup = County</p>
@@ -14338,6 +14932,327 @@ CRUD Access - READ</p>
 </tbody>
 </table>
 
+          <h1 id="pay-and-bill-holiday">Pay and Bill - Holiday</h1>
+
+<p>Entity that represents a Holiday record.</p>
+
+<p>CRUD Access - READ, DELETE.</p>
+
+<p>Entitlements - Manage Holidays.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Holiday fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>cronExpression</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>description</td>
+            <td>String (100)</td>
+            <td>Description for this holiday.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>duration</td>
+            <td>Integer</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>holidayCategoryLookup</td>
+            <td>To-one association</td>
+            <td>HolidayCategoryLookup the holiday is associated with.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>holidayInstances</td>
+            <td>To-many association</td>
+            <td>Holiday instances associated with this holiday.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>holidayStatusLookup</td>
+            <td>To-one association</td>
+             <td>HolidayStatusLookup options: 
+                <li>Active <li>Inactive </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isRun</td>
+            <td>Boolean</td>
+            <td>Whether or not the holiday rule has been run. If it has been run, the rule cannot be deleted, only set to inactive.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>label</td>
+            <td>String (100)</td>
+            <td>Title for the holiday.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser that modified the entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>nextOccurrence</td>
+            <td>Timestamp</td>
+            <td>The next holiday instance that is greater than or equal to today.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRules associated with this holiday.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-holidaycategorylookup">Pay and Bill - HolidayCategoryLookup</h1>
+
+<p>Entity that represents a Holiday Category Lookup record.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE.</p>
+
+<p>Entitlements - Manage Holidays.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>HolidayCategoryLookup fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (2147483647)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>holidays</td>
+            <td>To-many association</td>
+            <td>Holidays the entity is associated with.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isHidden</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isSystem</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>label</td>
+            <td>String (100)</td>
+            <td>Title for the holiday category.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>modifiedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser that modified the entity.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>shouldShowInPicker</td>
+            <td>Boolean</td>
+            <td>Whether or not the holiday category should be viewable in category picker.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-holidayinstance">Pay and Bill - HolidayInstance</h1>
+
+<p>Entity that represents a Holiday Instance record.</p>
+
+<p>CRUD Access - READ.</p>
+
+<p>Entitlements - Manage Holidays.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>HolidayInstance fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>endAt</td>
+            <td>Timestamp</td>
+            <td>Date/time when the holiday instance will end.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>holiday</td>
+            <td>To-one association</td>
+            <td>Holiday associated with the holiday instance.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser that modified the entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>startAt</td>
+            <td>Timestamp</td>
+            <td>Date/time when the holiday instance will start.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-invoicestatementdiscountrate">Pay and Bill - InvoiceStatementDiscountRate</h1>
 
 <p>Represents the rounded subtotals for unique discount rates tied to an invoice statement.</p>
@@ -15949,6 +16864,370 @@ CRUD Access - READ</p>
     </tbody>
 </table>
 
+          <h1 id="pay-and-bill-joborderbillruleset">Pay and Bill - JobOrderBillRuleset</h1>
+
+<p>An effective-dated entity that represents all the rules on a job order.
+JobOrderBillRuleset is the flattened entity. When making PUT and POST calls
+to JobOrderBillRuleset, the child entity, TimeLaborEvalRules,
+can be passed as well with all associated data.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobOrderBillRuleset fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>JobOrder</td>
+            <td>To-one association</td>
+            <td>JobOrder.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>JobOrderBillRulesetVersion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-joborderbillrulesetversion">Pay and Bill - JobOrderBillRulesetVersion</h1>
+
+<p>Represents a JobOrderBillRuleset version.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobOrderBillRulesetVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>True if this is the first job order bill ruleset version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-joborderpayruleset">Pay and Bill - JobOrderPayRuleset</h1>
+
+<p>An effective-dated entity that represents all the rules on a JobOrder.
+JobOrderPayRuleset is the flattened entity. When making PUT and POST calls
+to JobOrderPayRuleset, the child entity, TimeLaborEvalRules,
+can be passed as well with all associated data.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobOrderPayRuleset fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>JobOrder</td>
+            <td>To-one association</td>
+            <td>JobOrder.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>JobOrderPayRulesetVersion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-joborderpayrulesetversion">Pay and Bill - JobOrderPayRulesetVersion</h1>
+
+<p>Represents a JobOrderPayRuleset version.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobOrderPayRulesetVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>True if this is the first job order pay ruleset version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-joborderratecard">Pay and Bill - JobOrderRateCard</h1>
 
 <p>An effective-dated entity that represents all the rates on a JobOrder. 
@@ -17206,6 +18485,370 @@ can be passed as well with all associated data.</p>
 <td>X</td>
 </tr>
 </tbody>
+</table>
+
+          <h1 id="pay-and-bill-placementbillruleset">Pay and Bill - PlacementBillRuleset</h1>
+
+<p>An effective-dated entity that represents all the rules on a Placement.
+PlacementBillRuleset is the flattened entity. When making PUT and POST calls
+to PlacementBillRuleset, the child entity, TimeLaborEvalRules,
+can be passed as well with all associated data.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PlacementBillRuleset fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>placement</td>
+            <td>To-one association</td>
+            <td>Placement.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>PlacementBillRulesetVersion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-placementbillrulesetversion">Pay and Bill - PlacementBillRulesetVersion</h1>
+
+<p>Represents a PlacementBillRuleset version.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PlacementBillRulesetVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>True if this is the first placement bill ruleset version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-placementpayruleset">Pay and Bill - PlacementPayRuleset</h1>
+
+<p>An effective-dated entity that represents all the rules on a Placement.
+PlacementPayRuleset is the flattened entity. When making PUT and POST calls
+to PlacementPayRuleset, the child entity, TimeLaborEvalRules,
+can be passed as well with all associated data.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PlacementPayRuleset fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td><p><span>Whether entity is deleted.</span></p>
+<p><span> <span>The default value is false.</span> </span></p></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>CorporateUser.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>placement</td>
+            <td>To-one association</td>
+            <td>Placement.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for the current version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>PlacementPayRulesetVersion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-placementpayrulesetversion">Pay and Bill - PlacementPayRulesetVersion</h1>
+
+<p>Represents a PlacementPayRuleset version.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PlacementPayRulesetVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date the entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>This is the date when the record is effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>This is the date until when the record is effective.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>True if this is the first placement pay ruleset version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeLaborEvalRules</td>
+            <td>To-many association</td>
+            <td>TimeLaborEvalRule.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
 </table>
 
           <h1 id="pay-and-bill-placementratecard">Pay and Bill - PlacementRateCard</h1>
@@ -19935,6 +21578,13 @@ can be passed as well with all associated data.</p>
 <td>clientBillRate</td>
 <td>Double</td>
 <td>Hourly rate at which the client company will be billed for work done during regular business hours.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientRating</td>
+<td>Integer</td>
+<td>Score from BH Automation Client Rating Tool.</td>
 <td></td>
 <td></td>
 </tr>
