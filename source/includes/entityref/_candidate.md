@@ -14,6 +14,7 @@ The Candidate entity supports the massUpdate operations.
 | category | To-one association | Candidate's primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category.<br>**Note:** This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below). | X | |
 | categories | To-many association | Categories assigned to Candidate. | | |
 | certifications | String (2147483647) | Candidate's certifications. | | |
+| clientRating | Integer | Candidate's client rating. | | |
 | comments | String (2147483647) | Free-text comments on Candidate. | X | |
 | companyName | String (100) | Name of company where the Candidate currently works. | | |
 | companyURL | String (100) | Candidate's personal URL. | | |
