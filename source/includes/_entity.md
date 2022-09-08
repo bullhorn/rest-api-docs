@@ -41,6 +41,7 @@ fields | yes | Comma-separated list of field names. fields or layout is required
 layout | yes | Name of a configured layout. fields or layout is required.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see [Meta](#meta).
+privateLabelId | no | Integer. Default is primary private label id. Filters results based on the specified private label id. Must be a primary or secondary private label ID.
 showEditable | no | (true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed.
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
