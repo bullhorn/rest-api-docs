@@ -48,6 +48,7 @@ count | no | Limit on the number of records to return. If the set of matched res
 start | no | From the set of matched results, return record numbers start through (start + count)
 sort | no | Field to sort result on. Default sort order is ascending. Precede with minus sign to perform descending sort. 
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see
+privateLabelId | no | Integer. Default is primary private label ID. Filters results based on the specified primary or secondary private label ID.
 showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
@@ -94,6 +95,7 @@ count | no | Limit on the number of records to return. If the set of matched res
 start | no | From the set of matched results, return record numbers start through (start + count)
 sort | no | Field to sort result on. Default sort order is ascending. Precede with minus sign to perform descending sort. 
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see
+privateLabelId | no | Integer. Default is primary private label ID. Filters results based on the specified primary or secondary private label ID.
 showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
