@@ -41,7 +41,7 @@ fields | yes | Comma-separated list of field names. fields or layout is required
 layout | yes | Name of a configured layout. fields or layout is required.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see [Meta](#meta).
-privateLabelId | no | Integer. Default is primary private label id. Filters results based on the specified private label id. Must be a primary or secondary private label ID.
+privateLabelId | no | Integer. Default is primary private label ID. Filters results based on the specified primary or secondary private label ID.
 showEditable | no | (true/false) Default value is false. Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Setting showEditable to true results in slower performance; use this setting sparingly and only when needed.
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
@@ -80,6 +80,7 @@ layout | yes | Name of a configured layout.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 showReadOnly | no | (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see [Meta](#meta).
+privateLabelId | no | Integer. Default is primary private label ID. Filters results based on the specified primary or secondary private label ID.
 showEditable | no | (true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.
 
 <aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
@@ -109,6 +110,7 @@ count  | no  | Limit on the number of records to return. If the set of matched r
 orderBy | no | Name of property on which to base the order of returned entities.
 showReadOnly | no | (true/false) Whether to show read-only fields. Only applies when the layout parameter is used. NOTE: Read-only fields inside of composite properties (Address is the only instance of a composite property) do not obey visibility rules right now. They will always show, regardless of this setting. This is a known issue and there are plans to fix it in a future release.}}
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see [Meta](#meta).
+privateLabelId | no | Integer. Default is primary private label ID. Filters results based on the specified primary or secondary private label ID.
 showEditable | no | (true/false) Whether to show the editable field in responses. The editable field indicates whether an entity is editable. Default value is false.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 

@@ -68,8 +68,8 @@ Parameter | Required | Description
 ------ | -------- | -----
 fields | yes | Comma-separated list of field names.
 layout | yes | Name of a configured layout. A field list, layout name or both may be specified.
-privateLabelId | no | Integer. Default is primary private label id. Filters results based on the specified primary or secondary private label id.
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data. For more information, see
+privateLabelId | no | Integer. Default is primary private label ID. Filters results based on the specified primary or secondary private label ID.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
