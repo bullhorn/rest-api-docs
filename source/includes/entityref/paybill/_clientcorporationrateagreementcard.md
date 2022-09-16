@@ -3,7 +3,7 @@
 An effective-dated entity that represents all the rates on a Client Corporation.
 ClientCorporationRateAgreementCard is the flattened entity. When making PUT and POST calls
 to ClientCorporationRateAgreementCard, the child entities, ClientCorporationRateAgreementCardLineGroup and ClientCorporationRateAgreementCardLine,
-can be passed as well with all associated data.
+can be passed as well with all associated data. This data can also flow down into JobOrderRateCard.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 
