@@ -1,6 +1,6 @@
 # Pay and Bill - ClientCorporationRateAgreementCard
 
-An effective-dated entity that represents all the rates on a Client Corporation.
+An effective-dated entity that represents all the rates on a ClientCorporation.
 ClientCorporationRateAgreementCard is the flattened entity. When making PUT and POST calls
 to ClientCorporationRateAgreementCard, the child entities, ClientCorporationRateAgreementCardLineGroup and ClientCorporationRateAgreementCardLine,
 can be passed as well with all associated data. This data can also flow down into JobOrderRateCard.
@@ -35,84 +35,93 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         <tr class="odd">
             <td>clientCorporation</td>
             <td>To-one association</td>
-            <td>ClientCorporation</td>
+            <td><p>ClientCorporation.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>title</li>
+                </ul></td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>clientCorporationRateAgreementCardLineGroups</td>
             <td>To-many association</td>
-            <td>ClientCorporationRateAgreementCardLineGroup</td>
+            <td>clientCorporationRateAgreementCardLineGroup - list of IDs of the associated rate groups.
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul></td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date on which this record was created in the Bullhorn system.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date on which this record was last modified.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>effectiveDate</td>
             <td>Date</td>
-            <td></td>
+            <td>This is the date when the record is effective.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>effectiveEndDate</td>
             <td>Date</td>
-            <td></td>
+            <td>This is the date until when the record is effective.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Whether entity is deleted.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>name</td>
             <td>String (100)</td>
-            <td></td>
+            <td>Name of the rate card.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>rootExternalID</td>
             <td>String (100)</td>
-            <td></td>
+            <td>The root external ID.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>rootMigrateGUID</td>
             <td>String (36)</td>
-            <td></td>
+            <td>The root migrate GUID.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>versionID</td>
             <td>Integer</td>
-            <td></td>
+            <td>Unique Identifier for the current version.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>versions</td>
             <td>To-many association</td>
-            <td>ClientCorporationRateAgreementCardVersion</td>
+            <td>IDs of associated ClientCorporationRateAgreementCardVersion records.</td>
             <td></td>
             <td>X</td>
         </tr>

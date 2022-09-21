@@ -1,6 +1,6 @@
 # Pay and Bill - ClientCorporationRateAgreementCardVersion
 
-Represents a Client Corporation rate card version.
+Represents a ClientCorporation rate card version.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.
 
@@ -32,7 +32,12 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
         <tr class="odd">
             <td>clientCorporationRateAgreementCardLineGroups</td>
             <td>To-many association</td>
-            <td>ClientCorporationRateAgreementCardLineGroup</td>
+            <td>ClientCorporationRateAgreementCardLineGroup
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
@@ -67,35 +72,35 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
         <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date the entity was added.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date last modified.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>effectiveDate</td>
             <td>Date</td>
-            <td></td>
+            <td>This is the date when the record is effective.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>effectiveEndDate</td>
             <td>Date</td>
-            <td></td>
+            <td>This is the date until when the record is effective.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>isFirst</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Indicates if this is the first version.</td>
             <td>X</td>
             <td></td>
         </tr>
