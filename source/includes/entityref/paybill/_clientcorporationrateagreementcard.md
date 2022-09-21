@@ -72,14 +72,14 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         <tr class="odd">
             <td>effectiveDate</td>
             <td>Date</td>
-            <td>This is the date when the record is effective.</td>
+            <td>Date when the record is effective.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>effectiveEndDate</td>
             <td>Date</td>
-            <td>This is the date until when the record is effective.</td>
+            <td>Date until when the record is effective.</td>
             <td></td>
             <td>X</td>
         </tr>

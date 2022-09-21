@@ -97,7 +97,7 @@ Represents a group of rates on a ClientCorporation
         <tr class="odd">
             <td>migrateGUID</td>
             <td>String (36)</td>
-            <td>The Migrate GUID.</td>
+            <td>Unused.</td>
             <td></td>
             <td>X</td>
         </tr>
