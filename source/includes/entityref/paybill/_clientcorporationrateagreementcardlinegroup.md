@@ -31,7 +31,7 @@ Represents a group of rates on a ClientCorporation
         <tr class="odd">
             <td>clientCorporationRateAgreementCard</td>
             <td>To-one association</td>
-            <td>ClientCorporationRateAgreementCard
+            <td>ClientCorporationRateAgreementCard.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -57,7 +57,7 @@ Represents a group of rates on a ClientCorporation
         <tr class="odd">
             <td>clientCorporationRateAgreementCardVersion</td>
             <td>To-one association</td>
-            <td>ClientCorporationRateAgreementCardVersion
+            <td>ClientCorporationRateAgreementCardVersion.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

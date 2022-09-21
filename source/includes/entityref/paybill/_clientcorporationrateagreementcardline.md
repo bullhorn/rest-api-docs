@@ -79,7 +79,7 @@ An entity representing each individual rate on a ClientCorporation.
         <tr class="odd">
             <td>clientCorporationRateAgreementCardLineGroup</td>
             <td>To-one association</td>
-            <td>ClientCorporationRateAgreementCardLineGroup
+            <td>ClientCorporationRateAgreementCardLineGroup.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

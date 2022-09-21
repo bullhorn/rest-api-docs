@@ -32,7 +32,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE.
         <tr class="odd">
             <td>clientCorporationRateAgreementCardLineGroups</td>
             <td>To-many association</td>
-            <td>ClientCorporationRateAgreementCardLineGroup
+            <td>ClientCorporationRateAgreementCardLineGroup.
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
