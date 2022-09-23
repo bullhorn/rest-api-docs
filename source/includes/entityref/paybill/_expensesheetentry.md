@@ -32,7 +32,7 @@ This entity represents the required certifications for an ExpenseSheetEntry.
         <tr class="odd">
             <td>addedAtUtc</td>
             <td>Timestamp</td>
-            <td>Record of when Timesheet was created.</td>
+            <td>Record of when ExpenseSheetEntry was created.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -40,14 +40,14 @@ This entity represents the required certifications for an ExpenseSheetEntry.
             <td>addedByUser</td>
             <td>To-one association</td>
             <td>CorporateUser default fields: 
-                <li>id<li>firstName<li>lastName</td>
+                <li>id</li><li>firstName</li><li>lastName</li></td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>billEvalDate</td>
             <td>Date</td>
-            <td>Date when "billed" field is evaluated.</td>
+            <td>Date when &quot;billed&quot; field is evaluated.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -69,7 +69,7 @@ This entity represents the required certifications for an ExpenseSheetEntry.
             <td>currencyUnit</td>
             <td>To-one association</td>
             <td>CurrencyUnit fields: 
-                <li>id<li>alphabeticCode<li>name</td>
+                <li>id</li><li>alphabeticCode</li><li>name</li></td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -77,7 +77,7 @@ This entity represents the required certifications for an ExpenseSheetEntry.
             <td>earnCode</td>
             <td>To-one association</td>
             <td>EarnCode default fields: 
-                <li>id<li>code<li>externalID<li>title<br>Refer to the EarnCode entity for more details.</td>
+                <li>id</li><li>code</li><li>externalID</li><li>title<br>Refer to the EarnCode entity for more details.</li></td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -85,7 +85,7 @@ This entity represents the required certifications for an ExpenseSheetEntry.
             <td>expenseSheet</td>
             <td>To-one association</td>
             <td>ExpenseSheet field: 
-                <li>id</td>
+                <li>id</li></td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -100,7 +100,7 @@ This entity represents the required certifications for an ExpenseSheetEntry.
             <td>expenseSheetEntryApprovalStatusLookup</td>
             <td>To-one association</td>
             <td>ExpenseSheetEntryApprovalStatusLookup options: 
-                <li>Draft<li>Submitted<li>Approved<li>Completed<li>Rejected</td>
+                <li>Draft</li><li>Submitted</li><li>Approved</li><li>Completed</li><li>Rejected</li></td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -112,9 +112,9 @@ This entity represents the required certifications for an ExpenseSheetEntry.
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>externalExpenseSheetEntryID</td>
+            <td>externalID</td>
             <td>String (100)</td>
-            <td></td>
+            <td>User facing unique identifier.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -126,61 +126,68 @@ This entity represents the required certifications for an ExpenseSheetEntry.
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>lastModifiedAtUtc</td>
-            <td>Timestamp</td>
-            <td>Record of when Timesheet was most recently modified.</td>
-            <td>X</td>
-            <td>X</td>
+            <td>fileID</td>
+            <td>String (10)</td>
+            <td>File associated with the ExpenseSheetEntry.</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr class="odd">
-            <td>modifyingUser</td>
-            <td>To-one association</td>
-            <td>CorporateUser default fields: 
-                <li>id<li>firstName<li>lastName</td>
+            <td>lastModifiedAtUtc</td>
+            <td>Timestamp</td>
+            <td>Record of when the ExpenseSheetEntry was most recently modified.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>modifyingUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id</li><li>firstName</li><li>lastName</li></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>paid</td>
             <td>BigDecimal</td>
             <td>Amount to be paid.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>payEvalDate</td>
             <td>Date</td>
-            <td>Date when "paid" field is evaluated.</td>
+            <td>Date when &quot;paid&quot; field is evaluated.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>quantity</td>
             <td>BigDecimal</td>
             <td>Total amount.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>timestamp</td>
             <td>Byte[]</td>
             <td>Time stored in byte format.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>unitOfMeasure</td>
             <td>To-one association</td>
             <td>UnitOfMeasure fields: 
-                <li>id<li>label</td>
+                <li>id</li><li>label</li></td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>voidingExpenseSheetEntry</td>
             <td>To-one association</td>
             <td>ExpenseSheetEntry fields: 
-                <li>id </td>
+                <li>id </li></td>
             <td></td>
             <td>X</td>
         </tr>
