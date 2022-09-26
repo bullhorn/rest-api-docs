@@ -127,7 +127,7 @@ This entity represents the required certifications for an ExpenseSheetEntry.
         </tr>
         <tr class="even">
             <td>fileID</td>
-            <td>String (10)</td>
+            <td>Integer</td>
             <td>File associated with the ExpenseSheetEntry.</td>
             <td></td>
             <td></td>
