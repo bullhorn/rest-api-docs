@@ -62,6 +62,20 @@ This entity represents the required certifications for a Timesheet.
             <td>X</td>
         </tr>
         <tr class="odd">
+            <td>approvedBy</td>
+            <td>String (101)</td>
+            <td>User the Timesheet was approved by.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>approvedDate</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was approved.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>billed</td>
             <td>BigDecimal</td>
             <td>Amount to be billed.</td>
@@ -131,11 +145,11 @@ This entity represents the required certifications for a Timesheet.
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>lastVersion</td>
-            <td>Integer</td>
-            <td>ID of the most recent version of this Timesheet.</td>
-            <td>X</td>
-            <td>X</td>
+            <td>lastProcessedOn</td>
+            <td>Timestamp</td>
+            <td>Record of when Timesheet was most recently processed.</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr class="even">
             <td>modifyingUser</td>
@@ -165,6 +179,19 @@ This entity represents the required certifications for a Timesheet.
             <td>X</td>
         </tr>
         <tr class="odd">
+            <td>processingStatus</td>
+            <td>To-one association</td>
+            <td>TimeAndExpenseSheetProcessingStatusLookup options:
+                <li>Pending</li>
+                <li>Evaluating</li>
+                <li>Processing</li>
+                <li>Completed</li>
+                <li>Failed</li>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>timeLaborEvalSheetStatusLookup</td>
             <td>To-one association</td>
             <td>TimeLaborEvalSheetStatusLookup options: 
@@ -175,7 +202,7 @@ This entity represents the required certifications for a Timesheet.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>timesheetEntryApprovalStatusLookup</td>
             <td>To-one association</td>
             <td>TimesheetEntryApprovalStatusLookup options: 
@@ -188,7 +215,7 @@ This entity represents the required certifications for a Timesheet.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>units</td>
             <td>Boolean</td>
             <td>Whether or not this Timesheet is measured in units.</td>
