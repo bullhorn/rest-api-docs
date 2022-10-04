@@ -49,8 +49,6 @@ Read-only entity that represents an internal user at an organization.
 | pager | String (20) | Pager number of the CorporateUser. | | |
 | phone to phone3 | String (20) | Phone number of the CorporateUser. | | |
 | primaryDepartment | To-one association | Primary department of the CorporateUser. | | |
-| privateLabel | To-one association | Private Label | X | |
-| privateLabels | To-many association | PrivateLabels assigned to the CorporateUser. | | |
 | reportToPerson | Person | Person to whom this CorporateUser reports. | | |
 | smsOptIn | Boolean | Indicates whether the CorporateUser has granted permission to be sent messages via SMS. | | |
 | status | String (100) | Status of the CorporateUser. | | |
