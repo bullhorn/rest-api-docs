@@ -62,5 +62,12 @@
             <td>X</td>
             <td></td>
         </tr>
+        <tr class="even">
+            <td>privateLabelID</td>
+            <td>Integer</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
