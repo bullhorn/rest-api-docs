@@ -2,7 +2,7 @@
 
 Represents a person seeking a job.
 
-The Candidate entity supports the massUpdate operations.
+The Candidate entity supports the massUpdate operations. It does not support String values for Timestamps.
 
 | **Candidate field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
