@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  slate:
+    image: slatedocs/slate:v2.13.0
+    ports:
+    - "4567:4567"
+    volumes:
+    - "./source:/srv/slate/source"
+    command: serve

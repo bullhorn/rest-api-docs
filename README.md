@@ -14,12 +14,18 @@ You're going to need:
 ### Getting Set Up
 
 ```shell
-# either run this to run locally
+# Option 1: Local Run
+# Requires Local Installation
 bundle install
 bundle exec middleman server
 
-# OR run this to run with vagrant
+# Option 2: Run inside Vagrant VM
+# Requires Vagrant installation
 vagrant up
+
+# Option 3: Run with docker
+# Requires docker installation with Rancher Desktop (https://rancherdesktop.io/)
+docker compose up
 ```
 
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
