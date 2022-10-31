@@ -3128,6 +3128,11 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
 </tr>
 <tr>
+<td>totalOnly</td>
+<td>no</td>
+<td>(true/false) When set to true, only the total count of records matching the where parameter is returned. In this scenario, only the where parameter is required and all others are ignored.</td>
+</tr>
+<tr>
 <td>BhRestToken</td>
 <td>no</td>
 <td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
@@ -3206,6 +3211,11 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <td>showEditable</td>
 <td>no</td>
 <td>(true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.</td>
+</tr>
+<tr>
+<td>totalOnly</td>
+<td>no</td>
+<td>(true/false) When set to true, only the total count of records matching the where body is returned. In this scenario, only the where body is required and all other parameters are ignored.</td>
 </tr>
 <tr>
 <td>BhRestToken</td>
