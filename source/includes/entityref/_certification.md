@@ -86,7 +86,7 @@
         <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date on which this record was created in the Bullhorn system.</td>
             <td></td>
             <td></td>
         </tr>
