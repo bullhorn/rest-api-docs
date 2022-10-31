@@ -75,7 +75,7 @@ start | no | From the set of matched results, return record numbers start throug
 orderBy | no | Name of property on which to base the order of returned entities.
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.
 showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
-totalOnly | no | (true/false) When set to true, only the total count of records matching the where body will be returned. In this scenario, only the where body is required and all other parameters will be ignored.
+totalOnly | no | (true/false) When set to true, only the total count of records matching the where body is returned. In this scenario, only the where body is required and all other parameters are ignored.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
