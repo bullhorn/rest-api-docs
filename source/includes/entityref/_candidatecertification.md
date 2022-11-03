@@ -100,7 +100,7 @@ Represents a certification that a Candidate may have.
         <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date on which this record was created in the Bullhorn system.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -128,7 +128,7 @@ Represents a certification that a Candidate may have.
         <tr class="odd">
             <td>displayStatus</td>
             <td>String (30)</td>
-            <td></td>
+            <td>Computed status of entity like expired and archived.</td>
             <td></td>
             <td></td>
         </tr>
@@ -142,14 +142,14 @@ Represents a certification that a Candidate may have.
         <tr class="odd">
             <td>isComplete</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Indicates whether the certification is populated.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
             <td></td>
             <td></td>
         </tr>
