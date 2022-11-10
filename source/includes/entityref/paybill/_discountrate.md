@@ -319,5 +319,14 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td></td>
             <td>X</td>
         </tr>
+        <tr class="even">
+            <td>migrateGUID</td>
+            <td>String (36)</td>
+            <td>
+                <p></p>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
