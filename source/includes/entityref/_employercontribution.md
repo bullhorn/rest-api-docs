@@ -25,7 +25,7 @@ Entity that represents the Payroll Provider's Employer Contributions. Available 
             <td>payCheckID</td>
             <td>Integer</td>
             <td>The Payroll Provider’s identifier for the employee paycheck. This is required to update the Paycheck UI for your client.</td>
-            <td></td>
+            <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
