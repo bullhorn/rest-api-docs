@@ -66,7 +66,7 @@ Entity that represents the Payroll Provider's Employee Tax Deduction information
             <td>taxAmount</td>
             <td>BigDecimal</td>
             <td>The total dollar amount of taxes deducted from the paycheck. This is required to update the Paycheck UI for your client.</td>
-            <td></td>
+            <td>X</td>
             <td></td>
         </tr>
     </tbody>

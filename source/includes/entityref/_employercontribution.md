@@ -1,7 +1,6 @@
 # EmployerContribution
 
-Entity that represents the Payroll Provider's Employer Contributions. Available on candidate entities only.
-
+Entity that represents the Payroll Provider's Employer Contributions.
 
 <table>
     <colgroup>
@@ -21,10 +20,17 @@ Entity that represents the Payroll Provider's Employer Contributions. Available 
         </tr>
     </thead>
     <tbody>
-        <tr class="even">
-            <td>payCheckID</td>
+        <tr class="odd">
+            <td>id</td>
             <td>Integer</td>
-            <td>The Payroll Provider’s identifier for the employee paycheck. This is required to update the Paycheck UI for your client.</td>
+            <td>The Payroll Provider’s identifier for the contributions made by the employer.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>The total employer contribution dollar amount. This is required to update the Paycheck UI for your client.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -43,9 +49,9 @@ Entity that represents the Payroll Provider's Employer Contributions. Available 
             <td></td>
         </tr>
         <tr class="odd">
-            <td>amount</td>
-            <td>BigDecimal</td>
-            <td>The total employer contribution dollar amount. This is required to update the Paycheck UI for your client.</td>
+            <td>payCheck</td>
+            <td>To-one association</td>
+            <td>The Payroll Provider’s paycheck IDs for the employee paycheck. This is required to update the Paycheck UI for your client.</td>
             <td>X</td>
             <td></td>
         </tr>
