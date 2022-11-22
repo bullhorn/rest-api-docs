@@ -23,14 +23,14 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="even">
             <td>id</td>
             <td>Integer</td>
-            <td>The Payroll Provider’s identifier for the employee’s payment. This would be separate from Check ID or Check Number. This is required to update the Paycheck UI for your client.</td>
+            <td>The Payroll Provider’s identifier for the employee’s payment. This would be separate from Check ID or Check Number. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>The paid dollar amount associated with the earnings. This is required to update the Paycheck UI for your client.</td>
+            <td>The paid dollar amount associated with the earnings. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -65,14 +65,14 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="even">
             <td>hoursUnits</td>
             <td>BigDecimal</td>
-            <td>The number of hours or units paid for the paycheck. This is required to update the Paycheck UI for your client.</td>
+            <td>The number of hours or units paid for the paycheck. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>hoursWorked</td>
             <td>BigDecimal</td>
-            <td>The total number of hours worked from the timesheet. This is required to update the Paycheck UI for your client.</td>
+            <td>The total number of hours worked from the timesheet. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -86,7 +86,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="odd">
             <td>location</td>
             <td>To-one association</td>
-            <td>The location IDs associated with the employee’s earnings as synced with the Bullhorn ATS. This is required to update the Paycheck UI for your client.</td>
+            <td>The location IDs associated with the employee’s earnings as synced with the Bullhorn ATS. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
