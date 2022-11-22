@@ -51,44 +51,44 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td>The date that the Paycheck was added into the Bullhorn ATS. </td>
+            <td>The date that the Paycheck was added into the Bullhorn ATS.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date on which this record was modified in the Bullhorn ATS.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>earnAmount</td>
             <td>BigDecimal</td>
-            <td></td>
+            <td>The amount of all earnings during the pay period for hours worked. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>employeePays</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>To-many association</td>
+            <td>The employee payment from the employee paycheck for the pay period.</td>
+            <td>X</td>
+            <td>X</td>
         </tr>
         <tr class="even">
             <td>employeeTaxDeductions</td>
             <td>To-many association</td>
             <td>The total dollar amount of the tax deductions from the employee paycheck for the pay period.</td>
             <td>X</td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="even">
             <td>employerContributions</td>
             <td>To-many association</td>
             <td>The total dollar amount the employer is contributing to the employee paycheck for the pay period</td>
             <td>X</td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="odd">
             <td>externalPayrollEmployeeID</td>
@@ -156,21 +156,21 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="odd">
             <td>payPeriod</td>
             <td>String (50)</td>
-            <td></td>
+            <td>The date for the pay period for which the employee is going to be paid.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>periodStartDate</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>The date the pay period started for the paycheck. This is required to update the Paycheck UI for your client.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>periodEndDate</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>The date the pay period ended for the paycheck. This is required to update the Paycheck UI for your client.</td>
             <td>X</td>
             <td></td>
         </tr>
