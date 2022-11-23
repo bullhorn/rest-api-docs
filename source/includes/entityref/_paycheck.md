@@ -149,7 +149,7 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="even">
             <td>payExportBatchExternal</td>
             <td>To-one association</td>
-            <td>This is used to identify the payroll providers' export that will get submitted as a batch to the Bullhorn API.</td>
+            <td>This is used to identify the payroll provider's export that will get submitted as a batch to the Bullhorn API.</td>
             <td></td>
             <td></td>
         </tr>
@@ -184,7 +184,7 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="odd">
             <td>type</td>
             <td>String (50)</td>
-            <td>The method in which the employee was paid for this paycheck. ACH, Check, Cash, etc. This is required to update the Paycheck UI for your client.s</td>
+            <td>The method in which the employee was paid for this paycheck. ACH, Check, Cash, etc. This is required to update the Paycheck UI for your clients.</td>
             <td></td>
             <td></td>
         </tr>
