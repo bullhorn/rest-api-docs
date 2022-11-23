@@ -37,7 +37,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="even">
             <td>chargeDate</td>
             <td>Timestamp</td>
-            <td>The charge date seen on the employee timesheet. This is required to update the Paycheck UI for your client.</td>
+            <td>The charge date seen on the employee timesheet. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -72,7 +72,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="odd">
             <td>hoursWorked</td>
             <td>BigDecimal</td>
-            <td>The total number of hours worked from the timesheet. This is a required field.</td>
+            <td>The total number of hours worked from the timesheet. This is required to update the Paycheck UI for your client.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -121,7 +121,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="even">
             <td>unitRate</td>
             <td>BigDecimal</td>
-            <td>The number of hours or units paid for the paycheck. This is required to update the Paycheck UI for your client.</td>
+            <td>The number of hours or units paid for the paycheck. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>

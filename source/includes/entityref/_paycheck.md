@@ -156,7 +156,7 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="odd">
             <td>payPeriod</td>
             <td>String (50)</td>
-            <td>The date for the pay period for which the employee is going to be paid.</td>
+            <td>The date for the pay period for which the employee is going to be paid. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -177,14 +177,14 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="even">
             <td>taxAmount</td>
             <td>BigDecimal</td>
-            <td>The sum of the taxAmount field from the EmployeePays table that correlates to that paycheck. </td>
+            <td>The sum of the taxAmount field from the EmployeePay table that correlates to that paycheck. </td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>type</td>
             <td>String (50)</td>
-            <td>The method in which the employee was paid for this paycheck. ACH, Check, Cash, etc</td>
+            <td>The method in which the employee was paid for this paycheck. ACH, Check, Cash, etc. This is required to update the Paycheck UI for your client.s</td>
             <td></td>
             <td></td>
         </tr>
