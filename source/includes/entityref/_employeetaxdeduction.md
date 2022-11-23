@@ -37,35 +37,35 @@ Entity that represents the Payroll Provider's Employee Tax Deduction information
         <tr class="even">
             <td>description</td>
             <td>String (2147483647)</td>
-            <td>The description of the tax deduction. This is required to update the Paycheck UI for your client.</td>
+            <td>The description of the tax deduction. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>overLimitAmount</td>
             <td>BigDecimal</td>
-            <td>The amount of taxes over the taxable limit. This is required to update the Paycheck UI for your client.</td>
+            <td>This would be the amount of wages for a check where a maximum amount of taxable income has been met. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>payCheck</td>
             <td>To-one association</td>
-            <td>The Payroll Provider’s paycheck IDs for the employee paycheck. This is required to update the Paycheck UI for your client.</td>
+            <td>The Payroll Provider’s paycheck IDs for the employee paycheck. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>taxableAmount</td>
             <td>BigDecimal</td>
-            <td>The total dollar amount of the paycheck that is taxable. This is required to update the Paycheck UI for your client.</td>
+            <td>The total dollar amount of the paycheck that is taxable. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>taxAmount</td>
             <td>BigDecimal</td>
-            <td>The total dollar amount of taxes deducted from the paycheck. This is required to update the Paycheck UI for your client.</td>
+            <td>The total dollar amount of taxes deducted from the paycheck. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
