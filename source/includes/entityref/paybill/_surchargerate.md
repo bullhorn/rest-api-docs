@@ -286,7 +286,7 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>migrateGUID</td>
+            <td>rootMigrateGUID</td>
             <td>String (36)</td>
             <td></td>
             <td><br/></td>

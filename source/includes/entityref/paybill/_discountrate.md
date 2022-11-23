@@ -320,7 +320,7 @@ Entitlements - Add Discount Rate, Add Discount Rate Version, Delete Discount Rat
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>migrateGUID</td>
+            <td>rootMigrateGUID</td>
             <td>String (36)</td>
             <td>
                 <p></p>
