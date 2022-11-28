@@ -285,5 +285,12 @@ Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surch
             <td><br/></td>
             <td>X</td>
         </tr>
+        <tr class="even">
+            <td>rootMigrateGUID</td>
+            <td>String (36)</td>
+            <td></td>
+            <td><br/></td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
