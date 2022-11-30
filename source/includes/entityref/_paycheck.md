@@ -100,7 +100,7 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="even">
             <td>fitTaxableAmount</td>
             <td>BigDecimal</td>
-            <td>Federal income taxable amount. This is a required field.</td>
+            <td>Federal income taxable amount.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -121,7 +121,7 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="even">
             <td>isVoid</td>
             <td>Boolean</td>
-            <td>Whether or not the paycheck has been voided. This is a required field.</td>
+            <td>Whether or not the paycheck has been voided.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -142,7 +142,7 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="even">
             <td>payDate</td>
             <td>Timestamp</td>
-            <td>Date the employee received payment to their payment method type. This is a required field.</td>
+            <td>Date the employee received payment to their payment method type.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -156,7 +156,7 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="odd">
             <td>payPeriod</td>
             <td>String (50)</td>
-            <td>Date for the pay period for which the employee is going to be paid. This is a required field.</td>
+            <td>Date for the pay period for which the employee is going to be paid.</td>
             <td>X</td>
             <td></td>
         </tr>

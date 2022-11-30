@@ -44,28 +44,28 @@ Entity that represents the Payroll provider's Employee Tax Deduction information
         <tr class="odd">
             <td>overLimitAmount</td>
             <td>BigDecimal</td>
-            <td>Amount of wages for a check where a maximum amount of taxable income has been met. This is a required field.</td>
+            <td>Amount of wages for a check where a maximum amount of taxable income has been met.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>payCheck</td>
             <td>To-one association</td>
-            <td>Payroll provider’s paycheck IDs for the employee paycheck. This is a required field.</td>
+            <td>Payroll provider’s paycheck IDs for the employee paycheck.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>taxableAmount</td>
             <td>BigDecimal</td>
-            <td>Total dollar amount of the paycheck that is taxable. This is a required field.</td>
+            <td>Total dollar amount of the paycheck that is taxable.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>taxAmount</td>
             <td>BigDecimal</td>
-            <td>Total dollar amount of taxes deducted from the paycheck. This is a required field.</td>
+            <td>Total dollar amount of taxes deducted from the paycheck.</td>
             <td>X</td>
             <td></td>
         </tr>
