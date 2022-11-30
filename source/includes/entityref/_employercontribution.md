@@ -30,21 +30,21 @@ Entity that represents the Payroll provider's Employer Contributions.
         <tr class="even">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>Total employer contribution dollar amount. This is a required field.</td>
+            <td>Total employer contribution dollar amount.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>code</td>
             <td>String (100)</td>
-            <td>Payroll provider’s employer contribution code. This is a required field.</td>
+            <td>Payroll provider’s employer contribution code.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>description</td>
             <td>String (2147483647)</td>
-            <td>Description of the employer contribution. This is a required field.</td>
+            <td>Description of the employer contribution.</td>
             <td>X</td>
             <td></td>
         </tr>

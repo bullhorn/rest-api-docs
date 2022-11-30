@@ -23,21 +23,21 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="even">
             <td>id</td>
             <td>Integer</td>
-            <td>Payroll provider’s identifier for the employee’s payment. This would be separate from Check ID or Check Number. This is a required field.</td>
+            <td>Payroll provider’s identifier for the employee’s payment. This would be separate from Check ID or Check Number.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>Paid dollar amount associated with the earnings. This is a required field.</td>
+            <td>Paid dollar amount associated with the earnings.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>chargeDate</td>
             <td>Timestamp</td>
-            <td>Charge date seen on the employee timesheet. This is a required field.</td>
+            <td>Charge date seen on the employee timesheet.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -65,7 +65,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="even">
             <td>hoursUnits</td>
             <td>BigDecimal</td>
-            <td>The number of hours or units paid for the paycheck. This is a required field.</td>
+            <td>The number of hours or units paid for the paycheck.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -86,7 +86,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="odd">
             <td>location</td>
             <td>To-one association</td>
-            <td>Location IDs associated with the employee’s earnings as synced with the Bullhorn ATS. This is a required field.</td>
+            <td>Location IDs associated with the employee’s earnings as synced with the Bullhorn ATS.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -121,7 +121,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="even">
             <td>unitRate</td>
             <td>BigDecimal</td>
-            <td>Number of hours or units paid for the paycheck. This is a required field.</td>
+            <td>Number of hours or units paid for the paycheck.</td>
             <td>X</td>
             <td></td>
         </tr>
