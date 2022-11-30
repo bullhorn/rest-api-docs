@@ -1,6 +1,6 @@
 # EmployeeTaxDeduction
 
-Entity that represents the Payroll Provider's Employee Tax Deduction information.
+Entity that represents the Payroll provider's Employee Tax Deduction information.
 
 <table>
     <colgroup>
@@ -23,49 +23,49 @@ Entity that represents the Payroll Provider's Employee Tax Deduction information
         <tr class="even">
             <td>id</td>
             <td>Integer</td>
-            <td>The Payroll Provider’s identifier for the tax deductions made by the employer. </td>
+            <td>Payroll provider’s identifier for the tax deductions made by the employer. </td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>code</td>
             <td>String (100)</td>
-            <td>The  Payroll Provider’s employee tax deduction code. This is required to update the Paycheck UI for your client.</td>
+            <td>Payroll provider’s employee tax deduction code. Required to update the paycheck user interface for your client.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>description</td>
             <td>String (2147483647)</td>
-            <td>The description of the tax deduction. This is a required field.</td>
+            <td>Required description of the tax deduction.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>overLimitAmount</td>
             <td>BigDecimal</td>
-            <td>This would be the amount of wages for a check where a maximum amount of taxable income has been met. This is a required field.</td>
+            <td>Amount of wages for a check where a maximum amount of taxable income has been met. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>payCheck</td>
             <td>To-one association</td>
-            <td>The Payroll Provider’s paycheck IDs for the employee paycheck. This is a required field.</td>
+            <td>Payroll provider’s paycheck IDs for the employee paycheck. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>taxableAmount</td>
             <td>BigDecimal</td>
-            <td>The total dollar amount of the paycheck that is taxable. This is a required field.</td>
+            <td>Total dollar amount of the paycheck that is taxable. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>taxAmount</td>
             <td>BigDecimal</td>
-            <td>The total dollar amount of taxes deducted from the paycheck. This is a required field.</td>
+            <td>Total dollar amount of taxes deducted from the paycheck. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>

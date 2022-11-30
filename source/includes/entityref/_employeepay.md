@@ -23,42 +23,42 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="even">
             <td>id</td>
             <td>Integer</td>
-            <td>The Payroll Provider’s identifier for the employee’s payment. This would be separate from Check ID or Check Number. This is a required field.</td>
+            <td>Payroll provider’s identifier for the employee’s payment. This would be separate from Check ID or Check Number. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>amount</td>
             <td>BigDecimal</td>
-            <td>The paid dollar amount associated with the earnings. This is a required field.</td>
+            <td>Paid dollar amount associated with the earnings. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>chargeDate</td>
             <td>Timestamp</td>
-            <td>The charge date seen on the employee timesheet. This is a required field.</td>
+            <td>Charge date seen on the employee timesheet. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>department</td>
             <td>String (100)</td>
-            <td>The department code associated with the earnings.</td>
+            <td>Department code associated with the earnings.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>earnCodeName</td>
             <td>String (100)</td>
-            <td>The name of the earn code associated with the earnings for this company.</td>
+            <td>Name of the earn code associated with the earnings for this company.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>glCode</td>
             <td>String (100)</td>
-            <td>The General Ledger (G/L) account code from the time sheet.</td>
+            <td>General Ledger (G/L) account code from the time sheet.</td>
             <td></td>
             <td></td>
         </tr>
@@ -72,7 +72,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="odd">
             <td>hoursWorked</td>
             <td>BigDecimal</td>
-            <td>The total number of hours worked from the timesheet. This is required to update the Paycheck UI for your client.</td>
+            <td>The total number of hours worked from the timesheet. This is required to update the paycheck user interface for your client.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -86,14 +86,14 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="odd">
             <td>location</td>
             <td>To-one association</td>
-            <td>The location IDs associated with the employee’s earnings as synced with the Bullhorn ATS. This is a required field.</td>
+            <td>Location IDs associated with the employee’s earnings as synced with the Bullhorn ATS. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>payCheck</td>
             <td>To-one association</td>
-            <td>The Payroll Provider’s paycheck IDs for the employee paycheck. This is required to update the Paycheck UI for your client.</td>
+            <td>Payroll provider’s paycheck IDs for the employee paycheck. This is required to update the paycheck user interface for your client.</td>
             <td></td>
             <td></td>
         </tr>
@@ -114,21 +114,21 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="odd">
             <td>shift</td>
             <td>String (100)</td>
-            <td>The shift code associated with the earnings.</td>
+            <td>Shift code associated with the earnings.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>unitRate</td>
             <td>BigDecimal</td>
-            <td>The number of hours or units paid for the paycheck. This is a required field.</td>
+            <td>Number of hours or units paid for the paycheck. This is a required field.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>workCompID</td>
             <td>String (100)</td>
-            <td>The Payroll Provider’s identifier for the workers' compensation from the time sheet.</td>
+            <td>Payroll provider’s identifier for the workers' compensation from the time sheet.</td>
             <td></td>
             <td></td>
         </tr>
