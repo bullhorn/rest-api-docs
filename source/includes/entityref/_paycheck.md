@@ -84,6 +84,13 @@ Entity that represents paycheck and payroll information to be displayed on a can
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>employeeTotalDeduction</td>
+            <td>BigDecimal</td>
+            <td>Amount of all deductions for the employee. This is a required field.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>employerContributions</td>
             <td>To-many association</td>
             <td>Total dollar amount the employer is contributing to the employee paycheck for the pay period</td>
