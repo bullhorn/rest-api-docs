@@ -42,6 +42,20 @@ Entity that represents the Payroll provider's Employee Tax Deduction information
             <td></td>
         </tr>
         <tr class="odd">
+            <td>deductionCategoryLookupID</td>
+            <td>Integer</td>
+            <td>Payroll Provider's identifier for the deduction category.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>oneTimeSwitch</td>
+            <td>String (100)</td>
+            <td>[tbd]</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>overLimitAmount</td>
             <td>BigDecimal</td>
             <td>Amount of wages for a check where a maximum amount of taxable income has been met.</td>
@@ -67,6 +81,20 @@ Entity that represents the Payroll provider's Employee Tax Deduction information
             <td>BigDecimal</td>
             <td>Total dollar amount of taxes deducted from the paycheck.</td>
             <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>type</td>
+            <td>String (100)</td>
+            <td>Type of the employee tax deduction.</td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>unionID</td>
+            <td>String (100)</td>
+            <td> [tbd] </td></td>
+            <td></td>
             <td></td>
         </tr>
     </tbody>
