@@ -1,6 +1,6 @@
-# Deduction
+# EmployeeTaxDeduction
 
-Entity that represents the Payroll provider's Deduction information.
+Entity that represents the Payroll provider's Employee Tax Deduction information.
 
 <table>
     <colgroup>
@@ -35,23 +35,23 @@ Entity that represents the Payroll provider's Deduction information.
             <td></td>
         </tr>
         <tr class="even">
-            <td>deductionCategoryLookupID</td>
-            <td>Integer</td>
-            <td>ID of the lookup deduction category.</td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="odd">
             <td>description</td>
             <td>String (2147483647)</td>
             <td>Required description of the tax deduction.</td>
             <td>X</td>
             <td></td>
         </tr>
+        <tr class="odd">
+            <td>deductionCategoryLookupID</td>
+            <td>Integer</td>
+            <td>Payroll Provider's identifier for the deduction category.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
         <tr class="even">
             <td>oneTimeSwitch</td>
             <td>String (100)</td>
-            <td>One Time Switch.</td>
+            <td>[tbd]</td>
             <td></td>
             <td></td>
         </tr>
@@ -83,17 +83,17 @@ Entity that represents the Payroll provider's Deduction information.
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>type</td>
-            <td>String(100)</td>
-            <td>Type of deduction.</td>
+            <td>String (100)</td>
+            <td>Type of the employee tax deduction.</td></td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>unionID</td>
-            <td>String(100)</td>
-            <td>ID of the union of the deduction.</td>
+            <td>String (100)</td>
+            <td> [tbd] </td></td>
             <td></td>
             <td></td>
         </tr>
