@@ -1,6 +1,6 @@
-# EmployeeTaxDeduction
+# DeductionCategoryLookup
 
-Entity that represents the Payroll provider's Employee Tax Deduction information.
+Entity that represents the deduction categories available.
 
 <table>
     <colgroup>
@@ -12,7 +12,7 @@ Entity that represents the Payroll provider's Employee Tax Deduction information
     </colgroup>
     <thead>
         <tr class="header">
-            <th>EmployerContribution fields</th>
+            <th>DeductionCategoryLookup fields</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
