@@ -1,4 +1,4 @@
-# paycheck
+# PayCheck
 
 Entity that represents paycheck and payroll information to be displayed on a candidate record. These fields are displayed on the UI.
 

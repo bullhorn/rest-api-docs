@@ -1,6 +1,6 @@
-# EmployeeTaxDeduction
+# Deduction
 
-Entity that represents the Payroll provider's Employee Tax Deduction information.
+Entity that represents the Payroll provider's Deduction information.
 
 <table>
     <colgroup>
@@ -35,10 +35,24 @@ Entity that represents the Payroll provider's Employee Tax Deduction information
             <td></td>
         </tr>
         <tr class="even">
+            <td>deductionCategoryLookupID</td>
+            <td>Integer</td>
+            <td>ID of the lookup deduction category.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>description</td>
             <td>String (2147483647)</td>
             <td>Required description of the tax deduction.</td>
             <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>oneTimeSwitch</td>
+            <td>String (100)</td>
+            <td>One Time Switch.</td>
+            <td></td>
             <td></td>
         </tr>
         <tr class="odd">
@@ -67,6 +81,20 @@ Entity that represents the Payroll provider's Employee Tax Deduction information
             <td>BigDecimal</td>
             <td>Total dollar amount of taxes deducted from the paycheck.</td>
             <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>type</td>
+            <td>String(100)</td>
+            <td>Type of deduction.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>unionID</td>
+            <td>String(100)</td>
+            <td>ID of the union of the deduction.</td>
+            <td></td>
             <td></td>
         </tr>
     </tbody>
