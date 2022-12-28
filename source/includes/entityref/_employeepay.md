@@ -86,7 +86,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="odd">
             <td>location</td>
             <td>String (100)</td>
-            <td>Location IDs associated with the employee’s earnings as synced with the Bullhorn ATS.</td>
+            <td>Location associated with the employee’s earnings as synced with the Bullhorn ATS.</td>
             <td>X</td>
             <td></td>
         </tr>

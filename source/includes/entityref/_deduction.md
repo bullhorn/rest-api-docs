@@ -1,4 +1,4 @@
-# EmployeeTaxDeduction
+# Deduction
 
 Entity that represents the Payroll provider's Employee Tax Deduction information.
 
@@ -44,14 +44,14 @@ Entity that represents the Payroll provider's Employee Tax Deduction information
         <tr class="odd">
             <td>deductionCategoryLookupID</td>
             <td>Integer</td>
-            <td>Payroll Provider's identifier for the deduction category.</td>
+            <td>Auto-generated field used to identify existing or payroll provider additions to deduction categories.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>oneTimeSwitch</td>
             <td>String (100)</td>
-            <td>[tbd]</td>
+            <td>Payroll Provider Identifier to indicate if the deduction is used a single time.</td>
             <td></td>
             <td></td>
         </tr>
@@ -86,14 +86,14 @@ Entity that represents the Payroll provider's Employee Tax Deduction information
         <tr class="even">
             <td>type</td>
             <td>String (100)</td>
-            <td>Type of the employee tax deduction.</td></td>
+            <td>Used to identify the type of deduction being utlized in the paycheck. This field, along with ‘label’ in the DeductionCategoryLookup table should be used to display deduction type on the UI.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>unionID</td>
             <td>String (100)</td>
-            <td> [tbd] </td></td>
+            <td>Payroll Provider Identifier for the labor union code associated with the deduction.</td>
             <td></td>
             <td></td>
         </tr>

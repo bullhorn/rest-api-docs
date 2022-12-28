@@ -23,15 +23,15 @@ Entity that represents the Payroll provider's Employee Tax Deduction information
         <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td>Whether or not the deduction is deleted.</td>
+            <td>Whether or not deduction label is deleted.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>label</td>
             <td>String (100)</td>
-            <td>Payroll provider’s label for the tax deduction code.</td>
-            <td>X</td>
+            <td>This field is used in the UI to display the deducation category type indicated by the payroll provider. Payroll Provider can choose a default value of Tax, Deduction, Other, or simply add new deduction types and labels.</td>
+            <td></td>
             <td></td>
         </tr>
     </tbody>
