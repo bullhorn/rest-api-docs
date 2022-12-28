@@ -12,7 +12,7 @@ Entity that represents paycheck and payroll information to be displayed on a can
     </colgroup>
     <thead>
         <tr class="header">
-            <th>paycheck fields</th>
+            <th>PayCheck fields</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
