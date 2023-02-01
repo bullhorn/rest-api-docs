@@ -1,6 +1,6 @@
 # PayCheck
 
-Entity that represents paycheck and payroll information to be displayed on a candidate record. These fields are displayed on the UI.
+Entity that represents paycheck and payroll information to be displayed on a candidate record. These fields are displayed in the user interface.
 
 <table>
     <colgroup>
@@ -121,7 +121,7 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="odd">
             <td>hoursWorked</td>
             <td>BigDecimal</td>
-            <td>Total number of hours worked from the timesheet. This is a calculated field housing the amount of all hours worked from the Employee Pay entity. </td>
+            <td>Total number of hours worked from the timesheet. This is a calculated field housing the amount of all hours worked from the EmployeePay entity. </td>
             <td></td>
             <td>X</td>
         </tr>
@@ -184,14 +184,14 @@ Entity that represents paycheck and payroll information to be displayed on a can
         <tr class="even">
             <td>taxAmount</td>
             <td>BigDecimal</td>
-            <td>Sum of the taxAmount field from the EmployeePay table that correlates to that paycheck. </td>
+            <td>Sum of the taxAmount field from the EmployeePay entity that correlates to that paycheck. </td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>type</td>
             <td>String (50)</td>
-            <td>Method in which the employee was paid for this paycheck. ACH, Check, Cash, and so forth. This is required to update the paycheck user interface for your clients.</td>
+            <td>Method in which the employee was paid for this paycheck. Methods include ACH, Check, Cash, and so forth. This is required to update the paycheck user interface for your clients.</td>
             <td></td>
             <td></td>
         </tr>
