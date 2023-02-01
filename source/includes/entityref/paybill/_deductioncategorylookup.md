@@ -30,7 +30,7 @@ Entity that represents the deduction categories available.
         <tr class="odd">
             <td>label</td>
             <td>String (100)</td>
-            <td>This field is used in the UI to display the deducation category type indicated by the payroll provider. Payroll Provider can choose a default value of Tax, Deduction, Other, or simply add new deduction types and labels.</td>
+            <td>This field is used in the UI to display the deducation category type indicated by the payroll provider. Payroll provider can choose a default value of Tax, Deduction, Other, or simply add new deduction types and labels.</td>
             <td></td>
             <td></td>
         </tr>

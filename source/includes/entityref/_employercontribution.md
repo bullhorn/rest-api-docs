@@ -1,6 +1,6 @@
 # EmployerContribution
 
-Entity that represents the Payroll provider's Employer Contributions.
+Entity that represents the payroll provider's employer contributions.
 
 <table>
     <colgroup>

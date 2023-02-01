@@ -23,7 +23,7 @@ Entity that houses the data necessary to represent paycheck and payroll informat
         <tr class="even">
             <td>id</td>
             <td>Integer</td>
-            <td>Payroll provider’s identifier for the employee’s payment. This would be separate from Check ID or Check Number.</td>
+            <td>Payroll provider’s identifier for the employee’s payment. This would be separate from check ID or check number.</td>
             <td>X</td>
             <td></td>
         </tr>

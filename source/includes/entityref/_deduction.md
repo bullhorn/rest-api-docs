@@ -1,6 +1,6 @@
 # Deduction
 
-Entity that represents the Payroll provider's Deduction information.
+Entity that represents the payroll provider's Deduction information.
 
 <table>
     <colgroup>
@@ -51,7 +51,7 @@ Entity that represents the Payroll provider's Deduction information.
         <tr class="even">
             <td>oneTimeSwitch</td>
             <td>String (100)</td>
-            <td>Payroll Provider Identifier to indicate if the deduction is used a single time.</td>
+            <td>Payroll provider identifier to indicate if the deduction is used a single time.</td>
             <td></td>
             <td></td>
         </tr>
@@ -86,14 +86,14 @@ Entity that represents the Payroll provider's Deduction information.
         <tr class="even">
             <td>type</td>
             <td>String (100)</td>
-            <td>Used to identify the type of deduction being utlized in the paycheck. This field, along with ‘label’ in the DeductionCategoryLookup table should be used to display deduction type on the UI.</td>
+            <td>Used to identify the type of deduction being utlized in the paycheck. This field, along with ‘label’ in the DeductionCategoryLookup entity should be used to display deduction type in the user interface.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>unionID</td>
             <td>String (100)</td>
-            <td>Payroll Provider Identifier for the labor union code associated with the deduction.</td>
+            <td>Payroll provider identifier for the labor union code associated with the deduction.</td>
             <td></td>
             <td></td>
         </tr>
