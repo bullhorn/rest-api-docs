@@ -38,7 +38,11 @@ includes:
   - entityref/corporationdepartment
   - entityref/country
   - entityref/customaction
+  - entityref/deduction
+  - entityref/deductioncategorylookup
   - entityref/department
+  - entityref/employeepay
+  - entityref/employercontribution
   - entityref/entityedithistory
   - entityref/entityedithistoryfieldchange
   - entityref/entityfileattachment
@@ -153,6 +157,7 @@ includes:
   - entityref/paybill/transactionstatus
   - entityref/paybill/transactiontype
   - entityref/paybill/unbilledrevenuedistributionbatch
+  - entityref/paycheck
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest
