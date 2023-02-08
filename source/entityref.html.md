@@ -39,6 +39,7 @@ includes:
   - entityref/country
   - entityref/customaction
   - entityref/deduction
+  - entityref/deductioncategorylookup
   - entityref/department
   - entityref/employeepay
   - entityref/employercontribution
@@ -95,7 +96,6 @@ includes:
   - entityref/paybill/clientcorporationpayruleset
   - entityref/paybill/clientcorporationpayrulesetversion
   - entityref/paybill/countysalestaxrate
-  - entityref/paybill/deductioncategorylookup
   - entityref/paybill/directdepositaccount
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
