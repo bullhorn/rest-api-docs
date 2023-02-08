@@ -38,7 +38,10 @@ includes:
   - entityref/corporationdepartment
   - entityref/country
   - entityref/customaction
+  - entityref/deduction
   - entityref/department
+  - entityref/employeepay
+  - entityref/employercontribution
   - entityref/entityedithistory
   - entityref/entityedithistoryfieldchange
   - entityref/entityfileattachment
@@ -92,6 +95,7 @@ includes:
   - entityref/paybill/clientcorporationpayruleset
   - entityref/paybill/clientcorporationpayrulesetversion
   - entityref/paybill/countysalestaxrate
+  - entityref/paybill/deductioncategorylookup
   - entityref/paybill/directdepositaccount
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
@@ -153,6 +157,7 @@ includes:
   - entityref/paybill/transactionstatus
   - entityref/paybill/transactiontype
   - entityref/paybill/unbilledrevenuedistributionbatch
+  - entityref/paycheck
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest
