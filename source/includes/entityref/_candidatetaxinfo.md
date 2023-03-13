@@ -44,7 +44,7 @@ Allows for viewing and updating tax information for a Candidate.
         <tr class="odd">
             <td>ssn</td>
             <td>String</td>
-            <td>Candidate's social security number.</td>
+            <td>Candidate’s Social Security Number.</td>
             <td></td>
             <td></td>
         </tr>
