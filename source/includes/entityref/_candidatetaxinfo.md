@@ -98,7 +98,7 @@ Allows for viewing and updating tax information for a Candidate.
             <td></td>
         </tr>
         <tr class="odd">
-            <td>customInt1 to 5</td>
+            <td>customInt1 to 3</td>
             <td>Integer</td>
             <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
