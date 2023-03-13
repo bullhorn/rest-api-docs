@@ -37,7 +37,7 @@ Allows for viewing and updating tax information for a Candidate.
         <tr class="even">
             <td>taxID</td>
             <td>String</td>
-            <td>Candidate's taxID.</td>
+            <td>Id that Candidate uses for tax purposes if not SSN.</td>
             <td></td>
             <td></td>
         </tr>
