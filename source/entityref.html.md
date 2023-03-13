@@ -23,6 +23,7 @@ includes:
   - entityref/candidatereferencequestion
   - entityref/candidatereferenceresponse
   - entityref/candidateshiftpreference
+  - entityref/candidatetaxinfo  
   - entityref/candidateworkhistory
   - entityref/category
   - entityref/certification
