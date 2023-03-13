@@ -36,7 +36,7 @@ Allows for viewing and updating tax information for a Candidate.
         </tr>
         <tr class="even">
             <td>taxID</td>
-            <td>Integer</td>
+            <td>String</td>
             <td>Candidate's taxID.</td>
             <td></td>
             <td></td>
