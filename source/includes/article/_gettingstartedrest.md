@@ -28,7 +28,7 @@ Your application must complete these steps to get an authorization code. These s
 
 1. Access the following URL, substituting your actual values for the placeholders in the query parameters:
 
-    `https://auth.bullhornstaffing.com/oauth/authorize?client_id={client_id}&response_type=code&redirect_uri={optional redirect_uri}&state={recommended state value}`
+    `https://auth-east.bullhornstaffing.com/oauth/authorize?client_id={client_id}&response_type=code&redirect_uri={optional redirect_uri}&state={recommended state value}`
 
     A login page is displayed.  
 
@@ -52,7 +52,7 @@ Your application uses the authorization code to get an access token. A valid acc
 Make a **POST** request with the following URL, substituting your actual values for the placeholders in the query parameters. If you specified a redirect_uri in the oauth/authorize request, you must specify the same redirect_uri in this request.
 
 ~~~ http
-https://auth.bullhornstaffing.com/oauth/token?grant_type=authorization_code&code={auth_code}&client_id={client_id}&client_secret={client_secret}&redirect_uri={optional redirect_uri}
+https://auth-east.bullhornstaffing.com/oauth/token?grant_type=authorization_code&code={auth_code}&client_id={client_id}&client_secret={client_secret}&redirect_uri={optional redirect_uri}
 ~~~
 
 The **POST** response contains an access token that you use in REST API /login requests to obtain a Bullhorn session token and a base REST URL. The access token is valid for 10 minutes.
@@ -63,7 +63,7 @@ If Bullhorn has provided you with the ability to generate refresh tokens, the **
 To obtain an access token with a refresh token, make a **POST** request with the following URL, substituting your actual values for the placeholders in the query parameters:
 
 ~~~ http
-https://auth.bullhornstaffing.com/oauth/token?grant_type=refresh_token&refresh_token={refresh_token}&client_id={client_id}&client_secret={client_secret}
+https://auth-east.bullhornstaffing.com/oauth/token?grant_type=refresh_token&refresh_token={refresh_token}&client_id={client_id}&client_secret={client_secret}
 ~~~
 
 ## Familiarize yourself with the REST API
@@ -86,21 +86,21 @@ The first call you make with the Bullhorn REST API is a login call. The login ca
 Using version=* to get the latest version:
 
 ~~~ http
-POST https://rest.bullhornstaffing.com/rest-services/login?version=*&access_token={xxxxxxxx}
+POST https://rest-east.bullhornstaffing.com/rest-services/login?version=*&access_token={xxxxxxxx}
 ~~~
 
 Using version=2.0 to get the current version:
 
 ~~~ http
-POST https://rest.bullhornstaffing.com/rest-services/login?version=2.0&access_token={xxxxxxxx}
+POST https://rest-east.bullhornstaffing.com/rest-services/login?version=2.0&access_token={xxxxxxxx}
 ~~~
 
 The login URL uses HTTPS and includes the following components:
 
-| rest.bullhornstaffing.com   | Bullhorn server name |
-| /rest-services              | Context root of the Bullhorn web application |
-| /login                      | login command |
-| version=*                   | version query parameter:, where * indicates the latest version and 2.0 indicates the current version.|
+| rest-east.bullhornstaffing.com   | Bullhorn server name |
+| /rest-services                   | Context root of the Bullhorn web application |
+| /login                           | login command |
+| version=*                        | version query parameter:, where * indicates the latest version and 2.0 indicates the current version.|
 
 
 A successful login response looks like this:
@@ -108,7 +108,7 @@ A successful login response looks like this:
 ~~~ json
 {
    "BhRestToken": "a33da348-d562-4211-a48c-8d8cac14a38e",
-   "restUrl": "https://rest.bullhornstaffing.com/rest-services/{corpToken}/"
+   "restUrl": "https://rest-east.bullhornstaffing.com/rest-services/{corpToken}/"
 }
 ~~~
 
@@ -119,12 +119,12 @@ The login response contains a session key named BhRestToken as well as the base 
 After obtaining a session key you can make REST calls that get data or perform CRUD operations on the Bullhorn server. For example, a request to get a specific Candidate looks like this:
 
 ~~~ http
-GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/{id}?BhRestToken={session_key}&fields=firstName,lastName,address
+GET https://rest-east.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/{id}?BhRestToken={session_key}&fields=firstName,lastName,address
 ~~~
 
 The get entity by id URL uses HTTPS and includes the following components:
 
-| rest.bullhornstaffing.com	        | Bullhorn server name |
+| rest-east.bullhornstaffing.com  | Bullhorn server name |
 | /rest-services	                | Context root of the Bullhorn web application |
 | /entity	                        | entity command |
 | Candidate	                        | Type of entity to get |
@@ -158,7 +158,7 @@ A REST request to create a new entity is very similar to a request to get an ent
 For example, the URL of a **PUT** request to create a new Candidate entity looks like this:
 
 ~~~ http
-PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate?BhRestToken={session_key}
+PUT https://rest-east.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate?BhRestToken={session_key}
 ~~~
 
 The **PUT** request body looks like this, where the xxxx values would be real values:
