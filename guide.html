@@ -154,7 +154,7 @@
 <ol>
 <li><p>Access the following URL, substituting your actual values for the placeholders in the query parameters:</p>
 
-<p><code class="prettyprint">https://auth.bullhornstaffing.com/oauth/authorize?client_id={client_id}&amp;response_type=code&amp;redirect_uri={optional redirect_uri}&amp;state={recommended state value}</code></p>
+<p><code class="prettyprint">https://auth-east.bullhornstaffing.com/oauth/authorize?client_id={client_id}&amp;response_type=code&amp;redirect_uri={optional redirect_uri}&amp;state={recommended state value}</code></p>
 
 <p>A login page is displayed.  </p>
 
@@ -175,7 +175,7 @@ A Terms of Service page is displayed.</p></li>
 <p><strong>Note:</strong> To get an access token, your application must make a <strong>POST</strong> request. For learning purposes, you can make manual <strong>POST</strong>, PUT, and DELETE requests in your web browser after installing an extension. On Google Chrome, install the Postman extension. On Mozilla Firefox, install the HTTP Resource Test extension.</p>
 
 <p>Make a <strong>POST</strong> request with the following URL, substituting your actual values for the placeholders in the query parameters. If you specified a redirect_uri in the oauth/authorize request, you must specify the same redirect_uri in this request.</p>
-<pre class="highlight http"><code><span class="err">https://auth.bullhornstaffing.com/oauth/token?grant_type=authorization_code&amp;code={auth_code}&amp;client_id={client_id}&amp;client_secret={client_secret}&amp;redirect_uri={optional redirect_uri}
+<pre class="highlight http"><code><span class="err">https://auth-east.bullhornstaffing.com/oauth/token?grant_type=authorization_code&amp;code={auth_code}&amp;client_id={client_id}&amp;client_secret={client_secret}&amp;redirect_uri={optional redirect_uri}
 </span></code></pre>
 
 <p>The <strong>POST</strong> response contains an access token that you use in REST API /login requests to obtain a Bullhorn session token and a base REST URL. The access token is valid for 10 minutes.</p>
@@ -185,7 +185,7 @@ A Terms of Service page is displayed.</p></li>
 <h3 id="use-a-refresh-token-to-get-a-new-access-token">Use a refresh token to get a new access token</h3>
 
 <p>To obtain an access token with a refresh token, make a <strong>POST</strong> request with the following URL, substituting your actual values for the placeholders in the query parameters:</p>
-<pre class="highlight http"><code><span class="err">https://auth.bullhornstaffing.com/oauth/token?grant_type=refresh_token&amp;refresh_token={refresh_token}&amp;client_id={client_id}&amp;client_secret={client_secret}
+<pre class="highlight http"><code><span class="err">https://auth-east.bullhornstaffing.com/oauth/token?grant_type=refresh_token&amp;refresh_token={refresh_token}&amp;client_id={client_id}&amp;client_secret={client_secret}
 </span></code></pre>
 
 <h2 id="familiarize-yourself-with-the-rest-api">Familiarize yourself with the REST API</h2>
@@ -206,24 +206,24 @@ A Terms of Service page is displayed.</p></li>
 <p>The first call you make with the Bullhorn REST API is a login call. The login call returns a session key that you can use for subsequent requests. The login call is an HTTP <strong>GET</strong> request that looks like this:</p>
 
 <p>Using version=* to get the latest version:</p>
-<pre class="highlight http"><code><span class="err">POST https://rest.bullhornstaffing.com/rest-services/login?version=*&amp;access_token={xxxxxxxx}
+<pre class="highlight http"><code><span class="err">POST https://rest-east.bullhornstaffing.com/rest-services/login?version=*&amp;access_token={xxxxxxxx}
 </span></code></pre>
 
 <p>Using version=2.0 to get the current version:</p>
-<pre class="highlight http"><code><span class="err">POST https://rest.bullhornstaffing.com/rest-services/login?version=2.0&amp;access_token={xxxxxxxx}
+<pre class="highlight http"><code><span class="err">POST https://rest-east.bullhornstaffing.com/rest-services/login?version=2.0&amp;access_token={xxxxxxxx}
 </span></code></pre>
 
 <p>The login URL uses HTTPS and includes the following components:</p>
 
-<p>| rest.bullhornstaffing.com   | Bullhorn server name |
-| /rest-services              | Context root of the Bullhorn web application |
-| /login                      | login command |
-| version=*                   | version query parameter:, where * indicates the latest version and 2.0 indicates the current version.|</p>
+<p>| rest-east.bullhornstaffing.com   | Bullhorn server name |
+| /rest-services                   | Context root of the Bullhorn web application |
+| /login                           | login command |
+| version=*                        | version query parameter:, where * indicates the latest version and 2.0 indicates the current version.|</p>
 
 <p>A successful login response looks like this:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"BhRestToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a33da348-d562-4211-a48c-8d8cac14a38e"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"restUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest.bullhornstaffing.com/rest-services/{corpToken}/"</span><span class="w">
+   </span><span class="nt">"restUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://rest-east.bullhornstaffing.com/rest-services/{corpToken}/"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -232,12 +232,12 @@ A Terms of Service page is displayed.</p></li>
 <h2 id="make-a-rest-call-to-get-a-bullhorn-entity">Make a REST call to get a Bullhorn entity</h2>
 
 <p>After obtaining a session key you can make REST calls that get data or perform CRUD operations on the Bullhorn server. For example, a request to get a specific Candidate looks like this:</p>
-<pre class="highlight http"><code><span class="err">GET https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/{id}?BhRestToken={session_key}&amp;fields=firstName,lastName,address
+<pre class="highlight http"><code><span class="err">GET https://rest-east.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate/{id}?BhRestToken={session_key}&amp;fields=firstName,lastName,address
 </span></code></pre>
 
 <p>The get entity by id URL uses HTTPS and includes the following components:</p>
 
-<p>| rest.bullhornstaffing.com         | Bullhorn server name |
+<p>| rest-east.bullhornstaffing.com  | Bullhorn server name |
 | /rest-services                    | Context root of the Bullhorn web application |
 | /entity                           | entity command |
 | Candidate                         | Type of entity to get |
@@ -267,7 +267,7 @@ A Terms of Service page is displayed.</p></li>
 <p>A REST request to create a new entity is very similar to a request to get an entity. The differences are that the request is an HTTP <strong>POST</strong> rather than an HTTP <strong>GET</strong>, no id parameter is specified on the URL, and the body of the HTTP request contains field values for the new entity.</p>
 
 <p>For example, the URL of a <strong>PUT</strong> request to create a new Candidate entity looks like this:</p>
-<pre class="highlight http"><code><span class="err">PUT https://rest.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate?BhRestToken={session_key}
+<pre class="highlight http"><code><span class="err">PUT https://rest-east.bullhornstaffing.com/rest-services/{corpToken}/entity/Candidate?BhRestToken={session_key}
 </span></code></pre>
 
 <p>The <strong>PUT</strong> request body looks like this, where the xxxx values would be real values:</p>
