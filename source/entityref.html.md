@@ -96,6 +96,10 @@ includes:
   - entityref/paybill/clientcorporationbillrulesetversion
   - entityref/paybill/clientcorporationpayruleset
   - entityref/paybill/clientcorporationpayrulesetversion
+  - entityref/paybill/clientcorporationrateagreementcard
+  - entityref/paybill/clientcorporationrateagreementcardline
+  - entityref/paybill/clientcorporationrateagreementcardlinegroup
+  - entityref/paybill/clientcorporationrateagreementcardversion
   - entityref/paybill/countysalestaxrate
   - entityref/paybill/directdepositaccount
   - entityref/paybill/discountrate
