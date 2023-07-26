@@ -480,7 +480,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>owner</td>
             <td>To-one Association</td>
-            <td>CorporateUser who owns the JobOrder. The default value is user who creates the JobOrder.</td>
+            <td>CorporateUser who owns the JobOrder. The default value is user who creates the JobOrder. The field map name shown in ATS for owner will be userID.</td>
             <td>X</td>
             <td></td>
         </tr>
