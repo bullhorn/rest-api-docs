@@ -431,7 +431,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>location</td>
             <td>To-one Association</td>
-            <td>Location associated to JobOrder, can be sourced from the ClientCorporation via the Location entity.</td>
+            <td>Location sourced from the associated ClientCorporation record by way of the Location entity.</td>
             <td></td>
             <td></td>
         </tr>
