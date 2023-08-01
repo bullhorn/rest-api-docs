@@ -431,7 +431,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>location</td>
             <td>To-one Association</td>
-            <td>Location</td>
+            <td>Location sourced from the associated ClientCorporation record by way of the Location entity.</td>
             <td></td>
             <td></td>
         </tr>
@@ -480,7 +480,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>owner</td>
             <td>To-one Association</td>
-            <td>CorporateUser who owns the JobOrder. The default value is user who creates the JobOrder.</td>
+            <td>CorporateUser who owns the JobOrder. The default value is the user who creates the JobOrder. The field name in ATS for owner is listed in field maps as userID.</td>
             <td>X</td>
             <td></td>
         </tr>

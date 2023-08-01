@@ -61,9 +61,11 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | invoiceGroupName | String (100) | Name of the invoice group associated with this Placement. | | |
 | invoiceID | Integer | **Not supported in this release.** Id of the Invoice object associated with this Placement. This field is used for Permanent placements since only a single invoice is needed. | | |
 | invoiceItems | To-many association | **Not supported in this release.** Invoice Items associated with this Placement. | | |
+| jobLocation | To-one association | Location sourced from the associated JobOrder record. | | |
 | jobOrder | To-one association | JobOrder associated with this Placement. Cannot be changed after this record is created. | X | |
 | jobSubmission | To-one association | JobSubmission associated with this Placement. | | |
 | lastBteSyncDate | Timestamp | Pay and Bill corporations only: Used to store the date and time of the last known sync a Bullhorn placement was synced into Bullhorn Time & Expense. This field should only appear if a corporation is WFR enabled and PeopleNet Front Office Integration enabled. | | X |
+| location | To-one association | Location sourced from the ClientCorporation record associated to this Placement by way of the Location entity. | | |
 | markupPercentage | Double | markupPercentage = (clientBillRate - payRate) / payRate. Multiply by 100 to get actual percentage. | | |
 | notes | To-many association | Notes associated with this Placement. | | |
 | onboardingDocumentReceivedCount | Integer |  Number of eStaff onboarding documents that have been received by the Candidate. | | |
@@ -77,6 +79,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | otherHourlyFeeComments | String (2147483647) | Free text field for comments on additional hourly fees. | | |
 | overtimeMarkupPercentage | Double | overtimeMarkupPercentage = (clientOvertimeRate - overtimeRate) / overtimeRate. Multiply by 100 to get actual percentage. | | |
 | overtimeRate | Double | Hourly rate at which the employee will be paid for overtime work. | | |
+| owner | To-one association | CorporateUser who owns the JobOrder. The default value is the user who creates the JobOrder and is also the default owner of Placement records created from this JobOrder. The field name in ATS for owner is listed in field maps as jobUserID. | | |
 | payGroup | String | Indicates the frequency with which the placement is paid. Used for payroll integrations. | | |
 | payRate | BigDecimal | Rate at which the employee will be paid during regular business hours. This may or may not be used depending on the job type. | X | |
 | payrollEmployeeType | String | Indicates the type of employee for payroll purposes. | | |
