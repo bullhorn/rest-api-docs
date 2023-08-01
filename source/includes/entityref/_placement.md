@@ -65,7 +65,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
 | jobOrder | To-one association | JobOrder associated with this Placement. Cannot be changed after this record is created. | X | |
 | jobSubmission | To-one association | JobSubmission associated with this Placement. | | |
 | lastBteSyncDate | Timestamp | Pay and Bill corporations only: Used to store the date and time of the last known sync a Bullhorn placement was synced into Bullhorn Time & Expense. This field should only appear if a corporation is WFR enabled and PeopleNet Front Office Integration enabled. | | X |
-| location | To-one association | Location sourced from the associated ClientCorporation record associated to this Placement by way of the Location entity. | | |
+| location | To-one association | Location sourced from the ClientCorporation record associated to this Placement by way of the Location entity. | | |
 | markupPercentage | Double | markupPercentage = (clientBillRate - payRate) / payRate. Multiply by 100 to get actual percentage. | | |
 | notes | To-many association | Notes associated with this Placement. | | |
 | onboardingDocumentReceivedCount | Integer |  Number of eStaff onboarding documents that have been received by the Candidate. | | |
