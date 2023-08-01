@@ -7539,7 +7539,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         <tr class="odd">
             <td>location</td>
             <td>To-one Association</td>
-            <td>Location</td>
+            <td>Location sourced from the associated ClientCorporation record by way of the Location entity.</td>
             <td></td>
             <td></td>
         </tr>
@@ -7588,7 +7588,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         <tr class="even">
             <td>owner</td>
             <td>To-one Association</td>
-            <td>CorporateUser who owns the JobOrder. The default value is user who creates the JobOrder.</td>
+            <td>CorporateUser who owns the JobOrder. The default value is the user who creates the JobOrder. The field name in ATS for owner is listed in field maps as userID.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -23185,6 +23185,13 @@ can be passed as well with all associated data.</p>
 <td></td>
 </tr>
 <tr>
+<td>jobLocation</td>
+<td>To-one association</td>
+<td>Location sourced from the associated JobOrder record.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>jobOrder</td>
 <td>To-one association</td>
 <td>JobOrder associated with this Placement. Cannot be changed after this record is created.</td>
@@ -23204,6 +23211,13 @@ can be passed as well with all associated data.</p>
 <td>Pay and Bill corporations only: Used to store the date and time of the last known sync a Bullhorn placement was synced into Bullhorn Time &amp; Expense. This field should only appear if a corporation is WFR enabled and PeopleNet Front Office Integration enabled.</td>
 <td></td>
 <td>X</td>
+</tr>
+<tr>
+<td>location</td>
+<td>To-one association</td>
+<td>Location sourced from the ClientCorporation record associated to this Placement by way of the Location entity.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>markupPercentage</td>
@@ -23293,6 +23307,13 @@ can be passed as well with all associated data.</p>
 <td>overtimeRate</td>
 <td>Double</td>
 <td>Hourly rate at which the employee will be paid for overtime work.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>owner</td>
+<td>To-one association</td>
+<td>CorporateUser who owns the JobOrder. The default value is the user who creates the JobOrder and is also the default owner of Placement records created from this JobOrder. The field name in ATS for owner is listed in field maps as jobUserID.</td>
 <td></td>
 <td></td>
 </tr>
