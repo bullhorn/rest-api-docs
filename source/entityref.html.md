@@ -101,6 +101,11 @@ includes:
   - entityref/paybill/clientcorporationrateagreementcardlinegroup
   - entityref/paybill/clientcorporationrateagreementcardversion
   - entityref/paybill/countysalestaxrate
+  - entityref/paybill/customerrequiredfieldconfiguration
+  - entityref/paybill/customerrequiredfieldconfigurationversion
+  - entityref/paybill/customerrequiredfieldconfigurationversionoption
+  - entityref/paybill/customerrequiredfieldmeta
+  - entityref/paybill/customerrequiredfieldoption
   - entityref/paybill/directdepositaccount
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
