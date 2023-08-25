@@ -1,6 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldConfigurationVersionOption
 
-An entity that represents the CRF(Customer Required Field) options available for a particular (CRF)Customer Required Field version.
+An entity that represents the Customer Required Field options available for a particular Customer Required Field version.
 
 CRUD ACCESS - CREATE, READ, UPDATE, DELETE
 
@@ -33,7 +33,7 @@ CRUD ACCESS - CREATE, READ, UPDATE, DELETE
             <td>customerRequiredFieldConfigurationVersion</td>
             <td>Many-to-one association</td>
             <td>
-                <p>The associated CRF version.</p>
+                <p>The associated Customer Required Field version.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -48,7 +48,7 @@ CRUD ACCESS - CREATE, READ, UPDATE, DELETE
             <td>customerRequiredFieldOption</td>
             <td>One-to-One association</td>
             <td>
-                <p>The associated CRF option.</p>
+                <p>The associated Customer Required Field option.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

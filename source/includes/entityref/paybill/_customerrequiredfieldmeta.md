@@ -1,11 +1,10 @@
 # Pay and Bill - CustomerRequiredFieldMeta
 
-Customer Required Field Meta defines what a Customer Required should be labeled as and how long it should be viewable. Represents metadata for a Customer Required Field.
+Represents metadata for a Customer Required Field (CRF).
 
 CRUD Access - CREATE, READ, UPDATE
 
 Entitlements - Add Client Customer Required Field, View Client Customer Required Field, Update Client Customer Required Field
-
 
 <table>
     <colgroup>

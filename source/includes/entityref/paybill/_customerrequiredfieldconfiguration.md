@@ -1,6 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldConfiguration
 
-An entity that represents the primary view for the CRF EDE. CustomerRequiredFieldConfiguration is an EDE entity designed to associate a CustomerRequiredField to a Placement. They have a 1:1 relationship with Placements signifying that only one Placement can have that specific Customer Required Field Configuration.
+An entity that represents the primary view for the Customer Required Field (CRF) Effective Dated Entity (EDE). CustomerRequiredFieldConfiguration (CRFC) is an EDE entity designed to associate a CustomerRequiredField to a Placement. They have a 1:1 relationship with Placements signifying that only one Placement can have that specific Customer Required Field Configuration.
 
 CRUD Access- CREATE, READ, UPDATE, DELETE
 
@@ -133,7 +133,7 @@ Entitlements - Add Customer Required Field Configuration, Edit Customer Required
             <td>placement</td>
             <td>Many-to-one association</td>
             <td>
-                <p>The placement associated with the CRF. (Connected using the BH_PlacementCustomerRequiredField table)</p>
+                <p>The placement associated with the CRF.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -145,7 +145,7 @@ Entitlements - Add Customer Required Field Configuration, Edit Customer Required
         <tr class="even">
             <td>customerRequiredFieldConfigurationVersionOptions</td>
             <td>One-to-Many association</td>
-            <td>Collection of CustomerRequiredFieldConfigurationVersionOption objects tied to this Customer Required Field Configuration</td>
+            <td>Collection of CustomerRequiredFieldConfigurationVersionOption objects tied to this CRFC</td>
             <td></td>
             <td></td>
         </tr>

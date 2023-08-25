@@ -1,6 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldConfigurationVersion
 
-An entity that represents the version entity for the CRF(Customer Required Fields) EDE.
+An entity that represents the version entity for the Customer Required Field (CRF) Effective Dated Entity (EDE).
 
 CRUD Access - READ
 

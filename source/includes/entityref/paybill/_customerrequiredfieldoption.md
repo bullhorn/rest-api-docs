@@ -1,6 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldOption
 
-These options define what options a user will be able to choose from when filling in the Customer Required Field. Each option can have its own value, label, and start and end dates.
+These options define what options a user will be able to choose from when filling in the Customer Required Field (CRF). Each option can have its own value, label, and start and end dates.
 
 CRUD Access - CREATE, READ, UPDATE
 
@@ -48,28 +48,28 @@ Entitlements - Add Client Customer Required Field, View Client Customer Required
         <tr class="even">
             <td>value</td>
             <td>String (255)</td>
-            <td>The value for the CRF(Customer Required Field) option</td>
+            <td>The value for the Customer Required Field option</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>displayLabel</td>
             <td>String (255)</td>
-            <td>How the CRF(Customer Required Field) will display in the UI</td>
+            <td>How the CRF will display in the UI</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>viewableStartDate</td>
             <td>Date</td>
-            <td>Date when the CRF(Customer Required Field) will become viewable.</td>
+            <td>Date when the CRF will become viewable.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>viewableEndDate</td>
             <td>Date</td>
-            <td>Date when the CRF(Customer Required Field) will stop becoming viewable.</td>
+            <td>Date when the CRF will stop becoming viewable.</td>
             <td></td>
             <td></td>
         </tr>
