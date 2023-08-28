@@ -14243,6 +14243,603 @@ can be passed as well with all associated data. This data can also flow down int
 
 <p>A SalesTaxRate with TaxJurisdictionTypeLookup = County</p>
 
+          <h1 id="pay-and-bill-customerrequiredfieldconfiguration">Pay and Bill - CustomerRequiredFieldConfiguration</h1>
+
+<p>An entity that represents the primary view for the Customer Required Field (CRF) Effective Dated Entity (EDE). CustomerRequiredFieldConfiguration (CRFC) is an EDE entity designed to associate a CustomerRequiredField to a Placement. They have a 1:1 relationship with Placements signifying that only one Placement can have that specific CRFC.</p>
+
+<p>CRUD Access- CREATE, READ, UPDATE, DELETE</p>
+
+<p>Entitlements - Add Customer Required Field Configuration, Edit Customer Required Field Configuration, Delete Customer Required Field Configuration, View Customer Required Field Configuration</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Customer Required Field Configuration fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>customerRequiredFieldConfigurationID</td>
+            <td>Integer</td>
+            <td>Unique Identifier for this entity. Sourced from the CRFC root.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customerRequiredFieldMeta</td>
+            <td>Many-to-one association</td>
+            <td>
+                <p>The CRF associated with the root.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>Many-to-one association</td>
+            <td>
+                <p>The user who owns the root.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Represents if the root has been deleted or not.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>viewableStartDate</td>
+            <td>Date</td>
+            <td>Date when the CRF will become viewable.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customerRequiredFieldConfigurationVersionID</td>
+            <td>Integer</td>
+            <td>ID of the current CRF version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>defaultCustomerRequiredFieldOption</td>
+            <td>One-to-One association</td>
+            <td>The default option. Sourced from the CRF version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>The date the EDE begins being effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>The date the EDE stops being effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>TimeStamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>TimeStamp</td>
+            <td>Date entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isActive</td>
+            <td>Boolean</td>
+            <td>States if the current version is active.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>States if the current version is the first one.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>placement</td>
+            <td>Many-to-one association</td>
+            <td>
+                <p>The placement associated with the CRF.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customerRequiredFieldConfigurationVersionOptions</td>
+            <td>One-to-Many association</td>
+            <td>Collection of CustomerRequiredFieldConfigurationVersionOption objects tied to this CRFC</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-customerrequiredfieldconfigurationversion">Pay and Bill - CustomerRequiredFieldConfigurationVersion</h1>
+
+<p>An entity that represents the version entity for the Customer Required Field (CRF) Effective Dated Entity (EDE).</p>
+
+<p>CRUD Access - READ</p>
+
+<p>Entitlements - View Customer Required Field Configuration</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Customer Required Field Configuration Version fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>customerRequiredFieldConfigurationVersionID</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customerRequiredFieldConfiguration</td>
+            <td>Many-to-one association</td>
+            <td>
+                <p>The CRF root.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>defaultCustomerRequiredFieldOption</td>
+            <td>One-to-One association</td>
+            <td>The default option.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>The date the EDE begins being effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>The date the EDE stops being effective.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>TimeStamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>TimeStamp</td>
+            <td>Date the entity was modified last.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isActive</td>
+            <td>Boolean</td>
+            <td>States if the current version is active.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>States if the current version is the first one.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customerRequiredFieldConfigurationVersionOptions</td>
+            <td>One-to-Many association</td>
+            <td>Collection of CustomerRequiredFieldConfigurationVersionOption objects tied to this Customer Required Field Configuration Version</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-customerrequiredfieldconfigurationversionoption">Pay and Bill - CustomerRequiredFieldConfigurationVersionOption</h1>
+
+<p>An entity that represents the Customer Required Field options available for a particular Customer Required Field version.</p>
+
+<p>CRUD ACCESS - CREATE, READ, UPDATE, DELETE</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Customer Required Field Configuration Version Option fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>customerRequiredFieldConfigurationVersionOptionId</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customerRequiredFieldConfigurationVersion</td>
+            <td>Many-to-one association</td>
+            <td>
+                <p>The associated Customer Required Field version.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customerRequiredFieldOption</td>
+            <td>One-to-One association</td>
+            <td>
+                <p>The associated Customer Required Field option.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>TimeStamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>TimeStamp</td>
+            <td>Date the entity was modified last.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>sortOrder</td>
+            <td>Integer</td>
+            <td>The order this versionOption will use for sorting.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-customerrequiredfieldmeta">Pay and Bill - CustomerRequiredFieldMeta</h1>
+
+<p>Represents metadata for a Customer Required Field (CRF).</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE</p>
+
+<p>Entitlements - Add Client Customer Required Field, View Client Customer Required Field, Update Client Customer Required Field</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Customer Required Field Meta fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>
+                <p>Client Corporation which the CRF belongs to.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>label</td>
+            <td>String (255)</td>
+            <td>Label (or title) for the CRF</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>valueType</td>
+            <td>To-one association</td>
+            <td>
+                <p>The types of values the CRF will have.</p>
+                <p>Options:</p>
+                <ul>
+                    <li>Text (1)</li>
+                    <li>Custom Picker (2)</li>
+                    <li>Purchase Order (3)</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>viewableStartDate</td>
+            <td>Date</td>
+            <td>Date when the CRF will become viewable.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>viewableEndDate</td>
+            <td>Date</td>
+            <td>Date when the CRF will stop becoming viewable.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isRequiredOnTimesheet</td>
+            <td>Boolean</td>
+            <td>Indicates the CRF should be required on Timesheet.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isVisibleOnTimeSheet</td>
+            <td>Boolean</td>
+            <td>Indicates the CRF should be visible on Timesheet.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>doesFlowToNewJobs</td>
+            <td>Boolean</td>
+            <td>Indicates the CRF will exist on newly created jobs.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateAdded</td>
+            <td>TimeStamp</td>
+            <td>Date on which this record was created in the Bullhorn system.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>TimeStamp</td>
+            <td>Date entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customText1-5</td>
+            <td>String (100)</td>
+            <td>Configurable text fields that can be used to store custom data.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customInt1-5</td>
+            <td>Integer</td>
+            <td>Configurable Integer fields that can be used to store custom data.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customDate1-3</td>
+            <td>TimeStamp</td>
+            <td>Configurable Date fields that can be used to store custom data.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>options</td>
+            <td>One-to-Many association</td>
+            <td>Collection of CustomerRequiredFieldOption objects tied to this Customer Required Field Meta.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="pay-and-bill-customerrequiredfieldoption">Pay and Bill - CustomerRequiredFieldOption</h1>
+
+<p>These options define what options a user will be able to choose from when filling in the Customer Required Field (CRF). Each option can have its own value, label, and start and end dates.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE</p>
+
+<p>Entitlements - Add Client Customer Required Field, View Client Customer Required Field, Update Client Customer Required Field</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>Customer Required Field Meta fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customerRequiredFieldMetaID</td>
+            <td>To-one association</td>
+            <td>
+                <p>Customer Required Field Meta that this Option is part of.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>value</td>
+            <td>String (255)</td>
+            <td>The value for the Customer Required Field option</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>displayLabel</td>
+            <td>String (255)</td>
+            <td>How the CRF will display in the UI</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>viewableStartDate</td>
+            <td>Date</td>
+            <td>Date when the CRF will become viewable.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>viewableEndDate</td>
+            <td>Date</td>
+            <td>Date when the CRF will stop becoming viewable.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>TimeStamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>TimeStamp</td>
+            <td>Date entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>isClientDefault</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>associatedEntityID</td>
+            <td>Integer</td>
+            <td>Association between a Purchase Order entity and Customer Required Field through the “associatedEntityID” column.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-directdepositaccount">Pay and Bill - DirectDepositAccount</h1>
 
 <p>Entity that represents a candidate&rsquo;s direct deposit account record.</p>
