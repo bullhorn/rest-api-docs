@@ -14,6 +14,8 @@ Whenever possible, the REST API will follow specifications, conventions and prac
 API users should use data-center-specific URLs for login workflows based on the results of making a GET rest-services/loginInfo request with the API_Username to return the list of correct URLs for that user:
 https://rest.bullhornstaffing.com/rest-services/loginInfo?username={API_Username}
 
+If you do not use the correct URLs for a user, you will receive a 307 redirect to the correct data center. Your code must be written to handle that 307 redirect.
+
 
 Web URLs are case-sensitive, except for machine names. All REST API URLs should be considered case-sensitive.
 
