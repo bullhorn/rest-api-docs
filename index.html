@@ -131,13 +131,16 @@
 
 <h3 id="urls">URLs</h3>
 
-<p>API users should use <a href="http://bullhorn.github.io/Data-Center-URLs/">data-center-specific base URLs</a> data-center-specific base URLs for the Bullhorn OAuth, REST, and SOAP APIs.</p>
+<p>API users should use data-center-specific URLs for login workflows based on the results of making a GET rest-services/loginInfo request with the API_Username to return the list of correct URLs for that user:
+https://rest.bullhornstaffing.com/rest-services/loginInfo?username={API_Username}</p>
+
+<p>If you do not use the correct URLs for a user, you will receive a 307 redirect to the correct data center. Your code must be written to handle that 307 redirect.</p>
 
 <p>Web URLs are case-sensitive, except for machine names. All REST API URLs should be considered case-sensitive.</p>
 
 <p>All URLs are namespaced by corporation. The first path element of all API URLs, after any context root, will be an identifier for a corporation. For example:</p>
 
-<p><code class="prettyprint">https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate</code></p>
+<p><code class="prettyprint">https://rest{swimlane#}.bullhornstaffing.com/rest-services/{corptoken}/entity/Candidate</code></p>
 
 <p>Where <code class="prettyprint">e999</code> is the corporation identifier.</p>
 
