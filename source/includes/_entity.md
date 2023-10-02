@@ -167,6 +167,13 @@ You can add to-many associations to an entity with a PUT request in which you sp
 
 `{corpToken}/entity/{entityType}/{entity-id}/{to-many-association-name}/{entity-id},*}`
 
+**Note:** You cannot update `owners` to-many association on the `ClientCorporation` entity if [Company Ownership of Records](https://help.bullhorn.com/bhatsTopics/s/article/ATS-Company-Ownership-of-Records) is **NOT** enabled. 
+TBD: can you update it with PUT to
+``` shell
+`{corpToken}/entity/ClientCorporation/{entity-id}/owners/{owner-id},*}`
+```
+when the feature is enabled?
+
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
