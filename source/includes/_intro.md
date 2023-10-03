@@ -23,7 +23,7 @@ All URLs are namespaced by corporation. The first path element of all API URLs, 
 
 `https://rest{swimlane#}.bullhornstaffing.com/rest-services/{corptoken}/entity/Candidate`
 
-Where `e999` is the corporation identifier.
+Where `{corptoken}` is the corporation identifier.
 
 ### Entities
 Bullhorn uses the term entity to refer to a type represented in the Bullhorn system. Candidate, ClientContact, JobOrder, and Placement are examples of entities. Entities capture the core concepts within the Bullhorn system and provide an organization for storing staffing data and applying the rules and processing that comprise the Bullhorn system.
