@@ -322,6 +322,20 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
+<tr class="odd">
+            <td>hasAdjustment</td>
+            <td>Boolean</td>
+            <td>Indicates whether billable charge has an adjustment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>hasRebill</td>
+            <td>Boolean</td>
+            <td>Indicates whether billable charge has been rebilled.</td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="odd">
             <td>invoiceTerm</td>
             <td>To-one association</td>

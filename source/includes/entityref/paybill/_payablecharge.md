@@ -181,6 +181,13 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <td> </td>
 </tr>
 <tr class="even">
+<td>hasAdjustment</td>
+<td>Boolean</td>
+<td>Indicates whether payable charge has an adjustment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>jobOrder</td>
 <td><p>To-one association</p></td>
 <td><p>Job Order.</p>
@@ -193,7 +200,7 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <td> </td>
 <td> X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>payMasters</td>
 <td>To-Many association</td>
 <td><p>Associated PayMasters.</p>
@@ -204,14 +211,14 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>periodEndDate</td>
 <td>Date</td>
 <td>Period end date.</td>
 <td>X</td>
 <td> </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>placement</td>
 <td>To-one association</td>
 <td><p>Placement.</p>
@@ -222,14 +229,14 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>readyToPayOverride</td>
 <td>Boolean</td>
 <td>Ready to pay status override.</td>
 <td>X</td>
 <td>X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>status</td>
 <td>To-one association</td>
 <td><p>PayableChargeStatusLookup.</p>
@@ -242,14 +249,14 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <td>X</td>
 <td> </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>subtotal</td>
 <td>BigDecimal</td>
 <td>Subtotal.</td>
 <td> </td>
 <td> </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>transactionStatus</td>
 <td><p>To-one association</p></td>
 <td><p>Transaction status.</p>
@@ -261,7 +268,7 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>transactionType</td>
 <td><p>To-one association</p></td>
 <td><p>Transaction origin.</p>
