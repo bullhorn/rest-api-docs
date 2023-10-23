@@ -325,7 +325,8 @@ Represents a billable charge.
 <tr class="odd">
             <td>hasAdjustment</td>
             <td>Boolean</td>
-            <td>Indicates whether billable charge has an adjustment.</td>
+            <td>Indicates whether billable charge has an adjustment. 
+            This field is set automatically when an adjustment has occurred in the system, and it can also be manually overridden later if the charge needs to be manually adjusted.</td>
             <td></td>
             <td></td>
         </tr>
