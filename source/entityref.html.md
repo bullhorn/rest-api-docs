@@ -156,6 +156,7 @@ includes:
   - entityref/placement
   - entityref/placementcertification
   - entityref/placementchangerequest
+  - entityref/placementtimeandexpense
   - entityref/placementtimeandexpensechangerequest
   - entityref/placementcommission
   - entityref/sendout
