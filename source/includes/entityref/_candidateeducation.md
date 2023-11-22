@@ -16,6 +16,9 @@ Represents an educational degree or course of study that a Candidate lists on hi
 | customText1 to 5 | String (500)| Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1 to 3 | String (255) | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | |
+| dateLastModified | Timestamp | Date on which this record was last updated in the Bullhorn system.                                                   | X | |
+
+
 | degree | String (100) | Indicates what educational degree the Candidate received; for example, B.A., M.A., Ph.D., and so forth. | | |
 | endDate | Timestamp | Date when Candidate finished this education. | | |
 | expirationDate | Timestamp | Expiration date for a certificate or other credential that needs to be periodically renewed. | | |

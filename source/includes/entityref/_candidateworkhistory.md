@@ -17,6 +17,8 @@ Represents a single entry in the "Work History" section of a Candidate's resume:
 | customText1 to 5 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | customTextBlock1 to 3 | String | Configurable text fields that can be used to store custom data depending on the needs of a particular deployment. | | |
 | dateAdded | Timestamp | Date on which this record was created in the Bullhorn system. | X | X |
+| dateLastModified | Timestamp | Date on which this record was last updated in the Bullhorn system.| X | |
+
 | endDate | Timestamp | Date on which job ended, if applicable. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system. | X | |
 | isLastJob | Boolean | Indicates whether this was the Candidate's most recent job. | X | |

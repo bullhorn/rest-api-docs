@@ -75,5 +75,19 @@ Represents a question that can be asked of a CandidateReference. Answers to thes
             <td>X</td>
             <td></td>
         </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
     </tbody>
 </table>
