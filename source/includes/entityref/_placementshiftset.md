@@ -1,6 +1,7 @@
 # PlacementShiftSet
 
-Represents a Placement Shift Set. Allows Shift Definitions to be linked to specific Placements
+An [effective-dated entity](../index.html#effective-dated-entity) that represents the Placement shift set.
+Allows Shift definitions to be linked to specific Placements
 
 <table>
     <colgroup>
