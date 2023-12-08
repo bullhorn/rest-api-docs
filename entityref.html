@@ -11050,6 +11050,21 @@ CRUD Access - READ</p>
             <td></td>
             <td>X</td>
         </tr>
+<tr class="odd">
+            <td>hasAdjustment</td>
+            <td>Boolean</td>
+            <td>Indicates whether billable charge has an adjustment. 
+            This field is set automatically when an adjustment has occurred in the system, and it can also be manually overridden later if the charge needs to be manually adjusted.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>hasRebill</td>
+            <td>Boolean</td>
+            <td>Indicates whether billable charge has been rebilled.</td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="odd">
             <td>invoiceTerm</td>
             <td>To-one association</td>
@@ -19621,6 +19636,13 @@ can be passed as well with all associated data.</p>
 <td> </td>
 </tr>
 <tr class="even">
+<td>hasAdjustment</td>
+<td>Boolean</td>
+<td>Indicates whether payable charge has an adjustment.</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>jobOrder</td>
 <td><p>To-one association</p></td>
 <td><p>Job Order.</p>
@@ -19633,7 +19655,7 @@ can be passed as well with all associated data.</p>
 <td> </td>
 <td> X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>payMasters</td>
 <td>To-Many association</td>
 <td><p>Associated PayMasters.</p>
@@ -19644,14 +19666,14 @@ can be passed as well with all associated data.</p>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>periodEndDate</td>
 <td>Date</td>
 <td>Period end date.</td>
 <td>X</td>
 <td> </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>placement</td>
 <td>To-one association</td>
 <td><p>Placement.</p>
@@ -19662,14 +19684,14 @@ can be passed as well with all associated data.</p>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>readyToPayOverride</td>
 <td>Boolean</td>
 <td>Ready to pay status override.</td>
 <td>X</td>
 <td>X</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>status</td>
 <td>To-one association</td>
 <td><p>PayableChargeStatusLookup.</p>
@@ -19682,14 +19704,14 @@ can be passed as well with all associated data.</p>
 <td>X</td>
 <td> </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>subtotal</td>
 <td>BigDecimal</td>
 <td>Subtotal.</td>
 <td> </td>
 <td> </td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>transactionStatus</td>
 <td><p>To-one association</p></td>
 <td><p>Transaction status.</p>
@@ -19701,7 +19723,7 @@ can be passed as well with all associated data.</p>
 <td> </td>
 <td>X</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>transactionType</td>
 <td><p>To-one association</p></td>
 <td><p>Transaction origin.</p>
@@ -25486,6 +25508,115 @@ can be passed as well with all associated data.</p>
 </tr>
 </tbody></table>
 
+          <h1 id="placementshiftset">PlacementShiftSet</h1>
+
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that represents the Placement shift set.
+Allows Shift definitions to be linked to specific Placements</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PlacementShiftSet fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>Id of the associated PlacementShiftSetVersion</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>PlacementShiftSetVersions associated to PlacementShiftSet</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>Placement</td>
+            <td>To-one Association</td>
+            <td>Placement associated to PlacementShiftSet.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one Association</td>
+            <td>CorporateUser who is the owner of this entity. The default value is user who created the entity.
+                <p>Default fields:</p>
+                    <ul><li>id</li>
+                    <li>firstName</li>
+                    <li>firstName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>rootMigrateGUID</td>
+            <td>String (36)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>versionMigrateGUID</td>
+            <td>String (36)</td>
+            <td></td>
+            <td><br/></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>viewableStartDate</td>
+            <td>Date</td>
+            <td>Date when the PlacementShiftSet will become viewable.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>shifts</td>
+            <td>To-many association</td>
+            <td>Shifts associated with the PlacementShiftSet.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="sendout">Sendout</h1>
 
 <p>Represents a sendout, which occurs when a Candidate&rsquo;s information is sent to a ClientCorporation to be evaluated for a particular job.</p>
@@ -26894,6 +27025,20 @@ can be passed as well with all associated data.</p>
 <td></td>
 </tr>
 <tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the WorkersCompensation was last modified.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
 <td>description</td>
 <td>String</td>
 <td>Description text about the WorkersCompensation.</td>
@@ -26949,6 +27094,20 @@ can be passed as well with all associated data.</p>
 <td>WorkersCompensation entity related to this rate.</td>
 <td>X</td>
 <td></td>
+</tr>
+<tr>
+<td>dateAdded</td>
+<td>Timestamp</td>
+<td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which the WorkersCompensationRate was last modified.</td>
+<td>X</td>
+<td>X</td>
 </tr>
 <tr>
 <td>endDate</td>
