@@ -9,3 +9,4 @@ gem "middleman-sprockets", "~> 4.0.0.rc"
 gem 'rouge', '~> 1.10.1'
 gem 'redcarpet', '~> 3.3.2'
 gem 'therubyracer'
+gem 'libv8', '~> 3.16', '>= 3.16.14.19.1'
