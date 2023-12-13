@@ -1011,7 +1011,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
         <tr class="even">
             <td>otExemption</td>
             <td>Integer</td>
-            <td>Indicates whether the employee is eligible for hours over 40 to automatically be classified as Overtime. Boolean: 0 = Eligible, 1 = Exempt.</td>
+            <td>Indicates whether the employee is eligible for hours over 40 to automatically be classified as Overtime. 0 = Eligible, 1 = Exempt.</td>
             <td></td>
             <td></td>
         </tr>
