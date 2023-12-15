@@ -42,13 +42,6 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
-            <td>approvedPlacementRateCardChangeRequests</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
         <tr class="even">
             <td>approvingClientContact</td>
             <td>To-one association</td>
@@ -84,32 +77,11 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
-            <td>billingProfile</td>
-            <td>To-one association</td>
-            <td>BillingProfile</td>
-            <td></td>
-            <td></td>
-        </tr>
         <tr class="even">
             <td>bonusPackage</td>
             <td>String (2147483647)</td>
             <td>Text description of the bonus package for this placement.</td>
             <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>branch</td>
-            <td>To-one association</td>
-            <td>Branch</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>canEnterTime</td>
-            <td>Boolean</td>
-            <td></td>
-            <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
@@ -130,27 +102,6 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td>clientBillRate</td>
             <td>Double</td>
             <td>Hourly rate at which the client company will be billed for work done during regular business hours.</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>clientContact</td>
-            <td>To-one association</td>
-            <td>ClientContact</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>clientCorporation</td>
-            <td>To-one association</td>
-            <td>ClientCorporation</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>clientCorporationLine</td>
-            <td>To-one association</td>
-            <td>AgreementLine</td>
             <td></td>
             <td></td>
         </tr>
@@ -182,164 +133,38 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
-            <td>completed</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
         <tr class="even">
-            <td>correlatedCustomDate1</td>
+            <td>correlatedCustomDate1-3</td>
             <td>Timestamp</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomDate2</td>
-            <td>Timestamp</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomDate3</td>
-            <td>Timestamp</td>
-            <td></td>
+            <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>correlatedCustomFloat1</td>
+            <td>correlatedCustomFloat1-3</td>
             <td>Double</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomFloat2</td>
-            <td>Double</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomFloat3</td>
-            <td>Double</td>
-            <td></td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>correlatedCustomInt1</td>
+            <td>correlatedCustomInt1-3</td>
             <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomInt2</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomInt3</td>
-            <td>Integer</td>
-            <td></td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>correlatedCustomText1</td>
+            <td>correlatedCustomText1-10</td>
             <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText10</td>
-            <td>String (100)</td>
-            <td></td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>correlatedCustomText2</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText3</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomText4</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText5</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomText6</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText7</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomText8</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomText9</td>
-            <td>String (100)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomTextBlock1</td>
+            <td>correlatedCustomTextBlock1-3</td>
             <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>correlatedCustomTextBlock2</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>correlatedCustomTextBlock3</td>
-            <td>String (2147483647)</td>
-            <td></td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -350,80 +175,10 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
-            <td>credentialSpecialistUserID</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
         <tr class="even">
-            <td>customBillRate1</td>
+            <td>customBillRate1-10</td>
             <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customBillRate10</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>customBillRate2</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customBillRate3</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>customBillRate4</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customBillRate5</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>customBillRate6</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customBillRate7</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>customBillRate8</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customBillRate9</td>
-            <td>BigDecimal</td>
-            <td></td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td></td>
         </tr>
@@ -435,72 +190,9 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
         </tr>
         <tr class="odd">
-            <td>customEncryptedText1</td>
+            <td>customEncryptedText1-10</td>
             <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>customEncryptedText10</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>customEncryptedText2</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>customEncryptedText3</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>customEncryptedText4</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>customEncryptedText5</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>customEncryptedText6</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>customEncryptedText7</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>customEncryptedText8</td>
-            <td>String (2147483647)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>customEncryptedText9</td>
-            <td>String (2147483647)</td>
-            <td></td>
+            <td>Configurable encrypted text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -519,93 +211,17 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
         </tr>
         <tr class="odd">
-            <td>customObject1s</td>
-            <td>To-many association</td>
-            <td>PlacementCustomObjectInstance1</td>
+            <td>customObject1s to 10s</td>
+            <td>CustomObject</td>
+            <td>Fields to which custom objects can be assigned. For more information about custom objects, see the Bullhorn Resource Center and the following article on using the REST API with custom objects:
+            <br><a href="https://bullhorn.github.io/Custom-Objects/">https://bullhorn.github.io/Custom-Objects</a></td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>customObject2s</td>
-            <td>To-many association</td>
-            <td>PlacementCustomObjectInstance2</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>customObject3s</td>
-            <td>To-many association</td>
-            <td>PlacementCustomObjectInstance3</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>customPayRate1</td>
+            <td>customPayRate1-10</td>
             <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customPayRate10</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>customPayRate2</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customPayRate3</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>customPayRate4</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customPayRate5</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>customPayRate6</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customPayRate7</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>customPayRate8</td>
-            <td>BigDecimal</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>customPayRate9</td>
-            <td>BigDecimal</td>
-            <td></td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td></td>
         </tr>
@@ -625,7 +241,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
         </tr>
         <tr class="even">
             <td>dateAdded</td>
-            <td>Timestamp</td>
+            <td>Timestamp (5)</td>
             <td>Indicates when this Placement was created in the Bullhorn system.</td>
             <td>X</td>
             <td></td>
@@ -675,22 +291,8 @@ Represents a successfully filled job; for example, a placement of a candidate in
         <tr class="odd">
             <td>daysProRated</td>
             <td>Integer</td>
-            <td>Indicates how many days the Candidate must work before the Client Corporation will be expected to pay a pro-rated portion of the fee. Used for Permanent placements. For example, if daysGuaranteed = 90 and daysProRated = 30, then if the Candidate works 29 days no fee is due, but if the Candidate works 30-89 days the Client Corporation must pay a percentage of the fee, and if the Candidate works 90 days or more, the full fee is due.</td>
+            <td>Indicates how many days the Candidate must work before the Client Corporation will be expected to pay a prorated portion of the fee. Used for Permanent placements. For example, if daysGuaranteed = 90 and daysProRated = 30, then if the Candidate works 29 days no fee is due, but if the Candidate works 30-89 days the Client Corporation must pay a percentage of the fee, and if the Candidate works 90 days or more, the full fee is due.</td>
             <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>documentDeadline</td>
-            <td>Date</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>draftPlacementRateCardChangeRequests</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
             <td></td>
         </tr>
         <tr class="even">
@@ -722,22 +324,8 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>estaffGUID</td>
-            <td>String (36)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>estimatedEndDate</td>
-            <td>Date</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
             <td>exemptionStatus</td>
-            <td>To-one association</td>
+            <td>PlacementTaxExemptionStatusLookup</td>
             <td>Tax exemption status for the Placement. Options are: 1=Exempt, 2=Non-Exempt, 3=Self-Pay</td>
             <td></td>
             <td></td>
@@ -749,74 +337,11 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
-            <td>expiringRequirements</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
         <tr class="odd">
             <td>fee</td>
             <td>Double</td>
             <td>Fee (expressed as a decimal) that the company will receive for this placement.</td>
             <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>fileAttachments</td>
-            <td>To-many association</td>
-            <td>PlacementFileAttachment</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>flatFee</td>
-            <td>Double</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment1</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment1</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment2</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment2</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment3</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment3</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerSegment4</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment4</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment5</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerSegment5</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>generalLedgerServiceCode</td>
-            <td>To-one association</td>
-            <td>GeneralLedgerServiceCode</td>
-            <td></td>
             <td></td>
         </tr>
         <tr class="even">
@@ -855,23 +380,16 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
         </tr>
         <tr class="odd">
-            <td>inProgress</td>
+            <td>incompleteRequirements</td>
             <td>Integer</td>
-            <td></td>
+            <td>Number of requirements on this placement that are incomplete.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>incomplete</td>
+            <td>invoiceGroupID</td>
             <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>incompleteRequirements</td>
-            <td>Integer</td>
-            <td>Number of requirements on this placements that are incomplete.</td>
+            <td><strong>Not supported in this release.</strong> Id of the InvoiceGroup object associated with this Placement.</td>
             <td></td>
             <td></td>
         </tr>
@@ -882,24 +400,17 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
-            <td>isMultirate</td>
-            <td>Boolean</td>
-            <td></td>
+        <tr class="even">
+            <td>invoiceID</td>
+            <td>Integer</td>
+            <td><strong>Not supported in this release.</strong> Id of the Invoice object associated with this Placement. This field is used for Permanent placements since only a single invoice is needed.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>isWorkFromHome</td>
-            <td>Boolean</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>jobCode</td>
-            <td>To-one association</td>
-            <td>JobCode</td>
+            <td>invoiceItems</td>
+            <td>To-many association</td>
+            <td><strong>Not supported in this release.</strong> Invoice Items associated with this Placement.</td>
             <td></td>
             <td></td>
         </tr>
@@ -924,12 +435,12 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
-            <td>lastApprovedPlacementChangeRequest</td>
-            <td>To-one association</td>
-            <td>PlacementChangeRequest</td>
+        <tr class="even">
+            <td>lastBteSyncDate</td>
+            <td>Timestamp</td>
+            <td>Pay and Bill corporations only: Used to store the date and time of the last known sync a Bullhorn placement was synced into Bullhorn Time & Expense. This field should only appear if a corporation is WFR enabled and PeopleNet Front Office Integration enabled.</td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="even">
             <td>location</td>
@@ -941,16 +452,9 @@ Represents a successfully filled job; for example, a placement of a candidate in
         <tr class="odd">
             <td>markUpPercentage</td>
             <td>Double</td>
+            <td>markupPercentage = (clientBillRate - payRate) / payRate. Multiply by 100 to get actual percentage.</td>
             <td></td>
             <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>migrateGUID</td>
-            <td>String (36)</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
         </tr>
         <tr class="odd">
             <td>notes</td>
@@ -1032,7 +536,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
         <tr class="odd">
             <td>overtimeMarkUpPercentage</td>
             <td>Double</td>
-            <td></td>
+            <td>overtimeMarkupPercentage = (clientOvertimeRate - overtimeRate) / overtimeRate. Multiply by 100 to get actual percentage.</td>
             <td></td>
             <td></td>
         </tr>
@@ -1047,13 +551,6 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td>owner</td>
             <td>To-one association</td>
             <td>CorporateUser who owns the JobOrder. The default value is the user who creates the JobOrder and is also the default owner of Placement records created from this JobOrder. The field name in ATS for owner is listed in field maps as jobUserID.</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>owners</td>
-            <td>To-many association</td>
-            <td>CorporateUser</td>
             <td></td>
             <td></td>
         </tr>
@@ -1092,13 +589,6 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
-            <td>pendingPlacementRateCardChangeRequests</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
         <tr class="odd">
             <td>placementCertifications</td>
             <td>To-many association</td>
@@ -1107,60 +597,11 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
         </tr>
         <tr class="even">
-            <td>placementDocumentDeadline</td>
-            <td>Date</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>placementHistories</td>
-            <td>To-many association</td>
-            <td>PlacementHistory</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>placementRateCardID</td>
-            <td>Integer</td>
-            <td></td>
-            <td>X</td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>placementRateCardStatus</td>
-            <td>To-one association</td>
-            <td>PlacementRateCardStatusLookup</td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
             <td>positionCode</td>
             <td>String (100)</td>
             <td>Indicates a code for the position. Used in payroll integrations.</td>
             <td></td>
             <td></td>
-        </tr>
-        <tr class="odd">
-            <td>projectCodeList</td>
-            <td>String (255)</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>quitJob</td>
-            <td>Boolean</td>
-            <td></td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>readyForReviewPlacementRateCardChangeRequests</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
         </tr>
         <tr class="even">
             <td>recruitingManagerPercentGrossMargin</td>
@@ -1183,13 +624,6 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
-            <td>rejectedPlacementRateCardChangeRequests</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
         <tr class="even">
             <td>reportTo</td>
             <td>String (100)</td>
@@ -1201,20 +635,6 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td>reportedMargin</td>
             <td>Double</td>
             <td>Hourly margin in dollars, calculated using burden and other costs.</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>requestRevisionPlacementRateCardChangeRequests</td>
-            <td>Integer</td>
-            <td></td>
-            <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>requirementCompleted</td>
-            <td>Double</td>
-            <td></td>
             <td></td>
             <td></td>
         </tr>
@@ -1260,6 +680,13 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td>X</td>
             <td></td>
         </tr>
+        <tr class="odd">
+            <td>surveys</td>
+            <td>Survey</td>
+            <td><strong>Not supported in this release.</strong> Surveys associated with this Placement.</td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="even">
             <td>tasks</td>
             <td>To-many association</td>
@@ -1290,43 +717,36 @@ Represents a successfully filled job; for example, a placement of a candidate in
         </tr>
         <tr class="even">
             <td>timeUnits</td>
-            <td>To-many association</td>
+            <td>TimeUnit</td>
             <td>TimeUnit associated with this Placement.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>timesheetCycle</td>
-            <td>To-one association</td>
-            <td>TimesheetCycle</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>totalRequirements</td>
-            <td>Integer</td>
-            <td></td>
+            <td>timeCard</td>
+            <td>TimeCard</td>
+            <td><strong>Not supported in this release.</strong> Timecards associated with this Placement.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>updated</td>
-            <td>Integer</td>
+            <td>timecardExpenses</td>
+            <td>TimecardExpense</td>
+            <td><strong>Not supported in this release.</strong> Expenses incurred in relation to this Placement, for which the employee wishes to be reimbursed.</td>
             <td></td>
             <td></td>
-            <td>X</td>
-        </tr>
-        <tr class="even">
-            <td>userHousingComplexUnits</td>
-            <td>To-many association</td>
-            <td>UserHousingComplexUnit</td>
-            <td></td>
-            <td>X</td>
         </tr>
         <tr class="odd">
-            <td>vendorClientCorporation</td>
-            <td>To-one association</td>
-            <td>ClientCorporation</td>
+            <td>timecardTimes</td>
+            <td>TimecardTime</td>
+            <td><strong>Not supported in this release.</strong> Timecard entries associated with this Placement.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>workersCompensationRateID</td>
+            <td></td>
+            <td><strong>Not supported in this release.</strong> Id of the WorkersCompensationRate associated with this Placement.</td>
             <td></td>
             <td></td>
         </tr>
@@ -1338,9 +758,9 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
         </tr>
         <tr class="odd">
-            <td>workersCompensationRate</td>
+            <td>vendorClientCorporation</td>
             <td>To-one association</td>
-            <td>WorkersComp</td>
+            <td>Umbrella company associated with this Placement.</td>
             <td></td>
             <td></td>
         </tr>
