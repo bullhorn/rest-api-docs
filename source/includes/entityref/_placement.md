@@ -745,7 +745,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
         </tr>
         <tr class="odd">
             <td>workersCompensationRateID</td>
-            <td></td>
+            <td>Integer (100)</td>
             <td><strong>Not supported in this release.</strong> Id of the WorkersCompensationRate associated with this Placement.</td>
             <td></td>
             <td></td>
