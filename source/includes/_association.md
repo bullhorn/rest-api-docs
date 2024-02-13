@@ -33,7 +33,7 @@ Retrieves a list of to-many associations for a given entity.
 
 ### HTTP Request
 
-`{corpToken}/query/{entity}?fields={fields}&orderBy={fields}&count={count}&start={start}`
+`{corpToken}/association/{entity}/{field}`
 
 Parameter | Required | Description
 ------ | -------- | -----
