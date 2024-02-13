@@ -29,7 +29,6 @@ curl -X POST \
 
 Retrieves a list of to-many associations for a given entity.
 
-<aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
 
 ### HTTP Request
 
@@ -37,15 +36,9 @@ Retrieves a list of to-many associations for a given entity.
 
 Parameter | Required | Description
 ------ | -------- | -----
-fields | yes* | Comma-separated list of field names. Use fields or layout, but not both.
-layout | yes* | Name of a configured layout. Use fields or layout, but not both.
-ids | no | List of entity ids. This is only required in the body of the POST call.
-showReadOnly (optional) | no | (true/false) Whether to show read-only fields. Only applies when the layout parameter is used.
+ids | yes | List of entity ids. These cannot be set in the URL and are only required in the body of the POST call.
 count | no | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count. Max allowed count 10k. This is only required in the body of the POST call.
 start | no | From the set of matched results, return record numbers start through (start + count). This is only required in the body of the POST call.
-meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.
-showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
-showtotalcount| no | (true/false) When set to true, only the total count of records matching the where body is returned. In this scenario, only the where body is required and all other parameters are ignored.
+showTotalMatched (optional)| no | (true/false) When set to true, only the total count of records matching the where body is returned. In this scenario, only the where body is required and all other parameters are ignored.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-<aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
