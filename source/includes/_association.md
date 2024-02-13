@@ -39,6 +39,6 @@ Parameter | Required | Description
 ids | yes | List of entity ids. These cannot be set in the URL and are only required in the body of the POST call.
 count | no | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count. The Max allowed count is 10000. This parameter is only required in the body of the POST call.
 start | no | From the set of matched results, return record numbers start through (start + count). This parameter is only required in the body of the POST call.
-showTotalMatched (optional)| no | 
+showTotalMatched (optional)| no | (true/false) When set to true, the total count of matching items is returned.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
