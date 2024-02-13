@@ -43,7 +43,6 @@ ids | no | List of entity ids. This is only required in the body of the POST cal
 showReadOnly (optional) | no | (true/false) Whether to show read-only fields. Only applies when the layout parameter is used.
 count | no | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count. Max allowed count 10k. This is only required in the body of the POST call.
 start | no | From the set of matched results, return record numbers start through (start + count). This is only required in the body of the POST call.
-orderBy | no | Name of property on which to base the order of returned entities.
 meta | no | off, basic, or full. Default is off (no meta). Returns metadata that describes the structure of returned entity data.
 showEditable | no | (true/false) Whether to show the _editable field in responses. The _editable field indicates whether an entity is editable. Default value is false.
 showtotalcount| no | (true/false) When set to true, only the total count of records matching the where body is returned. In this scenario, only the where body is required and all other parameters are ignored.
