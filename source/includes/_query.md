@@ -128,11 +128,3 @@ willingToRelocate = false
 
 ### Datetime values 
 - UNIX long millis. For example, dateAdded > 1324579022
-
-- ISO 8601 Date Time String. For example, dateAdded > '1997-07-16T19:20:30.45+01:00'
-
-- Date Time String without Time Zone (default is America/New_York). In the format 'yyyy-MM-dd hh:mm:ss.SSS'
-
-- Date Time String with Time Zone 'yyyy-MM-dd hh:mm:ss.SSS TZ' where TZ may be specified as:
- - Full TZ name, such as 'Asia/Tokyo'
- - An offset [-]hh:mm. For example, 3:00 or -5:00
