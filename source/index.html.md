@@ -12,6 +12,7 @@ includes:
   - get
   - errors
   - allcorpnotes
+  - association
   - entitlements
   - entity
   - departmententities
