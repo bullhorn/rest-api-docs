@@ -1,4 +1,4 @@
-# Entitlements
+# entitlements
 
 ## <span class="tag">GET</span> /entitlements
 

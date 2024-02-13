@@ -1,4 +1,4 @@
-# User Headshot File
+# userHeadshotFile
 
 ## <span class="tag">GET</span> /userHeadshotFile
 

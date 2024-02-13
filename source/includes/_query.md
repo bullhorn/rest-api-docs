@@ -1,4 +1,4 @@
-# Query
+# query
 
 ## <span class="tag">GET</span> /query
 

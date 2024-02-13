@@ -1,4 +1,4 @@
-# Saved Search
+# savedSearch
 
 ## <span class="tag">GET</span> /savedSearch
 

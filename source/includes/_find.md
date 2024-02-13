@@ -1,5 +1,5 @@
 
-# Find
+# find
 
 ## <span class="tag">GET</span> /find
 

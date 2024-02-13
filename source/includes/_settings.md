@@ -1,4 +1,4 @@
-# Settings
+# settings
 
 ## GET /settings/setting1[,setting2...]
 

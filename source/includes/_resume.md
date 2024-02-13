@@ -1,4 +1,4 @@
-# Resume
+# resume
 
 ## <span class="tag">POST</span> /resume/parseToCandidate
 

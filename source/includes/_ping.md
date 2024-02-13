@@ -1,4 +1,4 @@
-# Ping
+# ping
 
 ## <span class="tag">GET</span> /ping
 

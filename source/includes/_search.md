@@ -1,4 +1,4 @@
-# Search
+# sSearch
 
 ## <span class="tag">GET</span> /search
 

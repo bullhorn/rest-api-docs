@@ -1,4 +1,4 @@
-# Services
+# services
 
 ## POST /services/CCPA/notifyOnCapture
 

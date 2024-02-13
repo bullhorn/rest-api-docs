@@ -1,4 +1,4 @@
-# Options
+# options
 
 ## <span class="tag">GET</span> /options
 

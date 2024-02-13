@@ -1,4 +1,4 @@
-# Query
+# association
 
 ## <span class="tag">POST</span> /association
 ``` shell

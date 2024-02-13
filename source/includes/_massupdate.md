@@ -1,4 +1,4 @@
-# Mass Update
+# massUpdate
 
 ## <span class="tag">GET</span> /massUpdate
 

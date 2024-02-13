@@ -1,4 +1,4 @@
-# Meta
+# meta
 
 ## <span class="tag">GET</span> /meta
 

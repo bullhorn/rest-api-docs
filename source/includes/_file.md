@@ -1,4 +1,4 @@
-# File
+# file
 
 ## <span class="tag">GET</span> /file
 

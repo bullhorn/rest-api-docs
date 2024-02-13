@@ -1,4 +1,4 @@
-# Entity
+# entity
 
 ## <span class="tag">GET</span> /entity
 
