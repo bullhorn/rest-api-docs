@@ -35,7 +35,7 @@ Retrieves a list of associated entity ids for a given entity. The association fi
 
 Parameter | Required | Description
 ------ | -------- | -----
-ids | yes | List of entity ids. List of entity ids. Must be set in the body of the request rather than in a URL query parameter.
+ids | yes | List of entity ids. Must be set in the body of the request rather than in a URL query parameter.
 count | no | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count. The Max allowed count is 10000. Must be set in the body of the request rather than in a URL query parameter.
 start | no | From the set of matched results, return record numbers start through (start + count). Must be set in the body of the request rather than in a URL query parameter.
 showTotalMatched | no | (true/false) When set to true, the total count of matching items is returned. Must be set in the body of the request rather than in a URL query parameter.
