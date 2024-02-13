@@ -37,7 +37,7 @@ Retrieves a list of to-many associations for a given entity.
 Parameter | Required | Description
 ------ | -------- | -----
 ids | yes | List of entity ids. These cannot be set in the URL and are only required in the body of the POST call.
-count | no | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count. Max allowed count 10k. This is only required in the body of the POST call.
+count | no | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count. The Max allowed count is 10000. This is only required in the body of the POST call.
 start | no | From the set of matched results, return record numbers start through (start + count). This is only required in the body of the POST call.
 showTotalMatched (optional)| no | (true/false) When set to true, only the total count of records matching the where body is returned. In this scenario, only the where body is required and all other parameters are ignored.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
