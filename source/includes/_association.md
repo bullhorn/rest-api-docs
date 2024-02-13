@@ -4,7 +4,7 @@
 ``` shell
 curl -X POST \
      -H "Content-Type: application/json" \
-     -d '{ "ids": [7681,2625,1464,6548,6978,3654], "showTotalMatched": true, "start": 0, "count": 3}' \
+     -d '{ "ids": [7681,2625,1464], "showTotalMatched": true, "start": 0, "count": 3}' \
       https://rest.bullhornstaffing.com/rest-services/e999/association/Candidate/primarySkills
 
 # Example Response
@@ -12,15 +12,15 @@ curl -X POST \
     "total": 24,
     "data": [
         [
-            7451268,
+            7681,
             10115
         ],
         [
-            7451268,
+            2625,
             19739
         ],
         [
-            7451268,
+            1464,
             241506
         ]
     ]
