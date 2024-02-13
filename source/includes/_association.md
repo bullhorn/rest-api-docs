@@ -1,6 +1,6 @@
 # Query
 
-## <span class="tag">POST</span> /query
+## <span class="tag">POST</span> /association
 ``` shell
 curl -X POST \
      -H "Content-Type: application/json" \
