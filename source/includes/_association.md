@@ -27,18 +27,17 @@ curl -X POST \
 }
 ```
 
-Retrieves a list of to-many associations for a given entity.
-
+Retrieves a list of associated entity ids for a given entity. The association field can be a to-many or to-one association.
 
 ### HTTP Request
 
-`{corpToken}/association/{entity}/{field}`
+`{corpToken}/association/{entity}/{association field}`
 
 Parameter | Required | Description
 ------ | -------- | -----
-ids | yes | List of entity ids. These cannot be set in the URL and are only required in the body of the POST call.
-count | no | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count. The Max allowed count is 10000. This parameter is only required in the body of the POST call.
-start | no | From the set of matched results, return record numbers start through (start + count). This parameter is only required in the body of the POST call.
-showTotalMatched (optional)| no | (true/false) When set to true, the total count of matching items is returned.
+ids | yes | List of entity ids. List of entity ids. Must be set in the body of the request rather than in a URL query parameter.
+count | no | Limit on the number of records to return. If the set of matched results is larger than count, cap the returned results at size count. The Max allowed count is 10000. Must be set in the body of the request rather than in a URL query parameter.
+start | no | From the set of matched results, return record numbers start through (start + count). Must be set in the body of the request rather than in a URL query parameter.
+showTotalMatched | no | (true/false) When set to true, the total count of matching items is returned. Must be set in the body of the request rather than in a URL query parameter.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
