@@ -3,7 +3,7 @@
 ## Partner login using OAuth
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/login?access_token=xxx&version=*
+curl https://rest.bullhornstaffing.com/login?access_token=xxx&version=*
 
 # Example Response
 {
