@@ -3,7 +3,7 @@
 ## GET /settings/setting1[,setting2...]
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
 
 # Example Response
 {

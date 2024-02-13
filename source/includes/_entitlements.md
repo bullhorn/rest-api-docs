@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /entitlements
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/entitlements/Candidate
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/entitlements/Candidate
 
 # Example Response
 [

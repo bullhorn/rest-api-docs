@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /options
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/options
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/options
 
 # Example Response
 {
@@ -41,7 +41,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /options/{optionsType}
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/options/Country
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/options/Country
 
 # Example Response
 {

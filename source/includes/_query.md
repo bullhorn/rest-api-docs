@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /query
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields=firstName,lastName&where=lastName='smith'&count=3
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields=firstName,lastName&where=lastName='smith'&count=3
 
 # Example Response
 {

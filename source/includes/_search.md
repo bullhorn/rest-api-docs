@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /search
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/search/Candidate?query=lastName:Smith&fields=id,firstName,lastname&count=3
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/search/Candidate?query=lastName:Smith&fields=id,firstName,lastname&count=3
 
 # Example Response
 {
@@ -26,7 +26,7 @@ Note that the response contains a _score field. This is the Lucene score. Also, 
 <aside class="notice">If parameter "fields" or "layout" is not present, the search will return the list of found entity ids in the returned "data".</aside>
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/search/Candidate?query=isDeleted:0
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/search/Candidate?query=isDeleted:0
 
 # Example Response
 {

@@ -53,11 +53,11 @@ Your choice depends on whether you prefer to work with names that reflect the bu
     "confidential" : false,
     "label" : "Custom Object9s",
     "optionsType" : "PersonCustomObjectInstance9",
-    "optionsUrl" : "https://rest.bullhornstaffing.com/rest-services/1yg8p/options/PersonCustomObjectInstance9",
+    "optionsUrl" : "https://rest{swimlane#}.bullhornstaffing.com/rest-services/1yg8p/options/PersonCustomObjectInstance9",
     "hideFromSearch" : false,
     "associatedEntity" : {
       "entity" : "PersonCustomObjectInstance9",
-      "entityMetaUrl" : "https://rest.bullhornstaffing.com/rest-services/1yg8p/meta/PersonCustomObjectInstance9?fields=*",
+      "entityMetaUrl" : "https://rest{swimlane#}.bullhornstaffing.com/rest-services/1yg8p/meta/PersonCustomObjectInstance9?fields=*",
       "label" : "ClientDefinedCO",
       "dateLastModified" : "1505885678477",
       "fields" : [ {
@@ -126,11 +126,11 @@ Response:
         "confidential" : false,
         "label" : "Person",
         "optionsType" : "Person",
-        "optionsUrl" : "https://rest.bullhornstaffing.com/rest-services/1yg8p/options/Person",
+        "optionsUrl" : "https://rest{swimlane#}.bullhornstaffing.com/rest-services/1yg8p/options/Person",
         "hideFromSearch" : false,
         "associatedEntity" : {
           "entity" : "Person",
-          "entityMetaUrl" : "https://rest.bullhornstaffing.com/rest-services/1yg8p/meta/Person?fields=*",
+          "entityMetaUrl" : "https://rest{swimlane#}.bullhornstaffing.com/rest-services/1yg8p/meta/Person?fields=*",
           "label" : "Person",
           "dateLastModified" : "1505885679669",
           "fields" : [ {
@@ -168,7 +168,7 @@ Response:
         "confidential" : false,
         "label" : "clientDefinedText",
         "optionsType" : "$PersonclientDefinedText",
-        "optionsUrl" : "https://rest.bullhornstaffing.com/rest-services/1yg8p/options/$PersonclientDefinedText",
+        "optionsUrl" : "https://rest{swimlane#}.bullhornstaffing.com/rest-services/1yg8p/options/$PersonclientDefinedText",
         "hideFromSearch" : false
       } ],
       "staticTemplateName" : "ClientDefinedCO",
@@ -199,11 +199,11 @@ Response:
     "confidential" : false,
     "label" : "Custom Object2s",
     "optionsType" : "PersonCustomObjectInstance2",
-    "optionsUrl" : "https://rest.bullhornstaffing.com/rest-services/1yg8p/options/PersonCustomObjectInstance2",
+    "optionsUrl" : "https://rest{swimlane#}.bullhornstaffing.com/rest-services/1yg8p/options/PersonCustomObjectInstance2",
     "hideFromSearch" : false,
     "associatedEntity" : {
       "entity" : "PersonCustomObjectInstance2",
-      "entityMetaUrl" : "https://rest.bullhornstaffing.com/rest-services/1yg8p/meta/PersonCustomObjectInstance2?fields=*",
+      "entityMetaUrl" : "https://rest{swimlane#}.bullhornstaffing.com/rest-services/1yg8p/meta/PersonCustomObjectInstance2?fields=*",
       "label" : "RestAutomation1",
       "fields" : [ {
         "name" : "date1",

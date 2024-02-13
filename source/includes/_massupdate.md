@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /massUpdate
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/massUpdate
 
 # Example Response
 [
@@ -33,7 +33,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /massUpdate/{entityType}
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/massUpdate/JobOrder
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/massUpdate/JobOrder
 
 # Example Response
 [ {

@@ -1,7 +1,7 @@
 # allCorpNotes
 ##<span class="tag">GET</span> /allCorpNotes
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/allCorpNotes?clientCorpId=4&fields=start=0&count=5
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/allCorpNotes?clientCorpId=4&fields=start=0&count=5
 
 # Example Response
 {

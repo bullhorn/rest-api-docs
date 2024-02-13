@@ -3,11 +3,11 @@
 ## <span class="tag">GET</span> /savedSearch
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/savedSearch
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/savedSearch
 
 or:
 
-curl https://rest.bullhorn.com/rest-services/e999/savedSearch?entity=Candidate&entityId=20
+curl https://rest{{swimlane#}.bullhorn.com/rest-services/e999/savedSearch?entity=Candidate&entityId=20
 
 # Example Response
 {
@@ -55,11 +55,11 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /mySavedSearch
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/mySavedSearch
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/mySavedSearch
 
 or:
 
-curl https://rest.bullhorn.com/rest-services/e999/mySavedSearch?entity=Candidate&entityId=20
+curl https://rest{{swimlane#}.bullhorn.com/rest-services/e999/mySavedSearch?entity=Candidate&entityId=20
 
 # Example Response
 {
@@ -97,7 +97,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /savedSearch/{savedSearchId}
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/esavedSearch/4
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/esavedSearch/4
 
 # Example Response
 {
@@ -263,7 +263,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /savedSearchGrants
 
 ``` shell
-curl https://rest.bullhorn.com/rest-services/e999/savedSearchGrants/4
+curl https://rest{{swimlane#}.bullhorn.com/rest-services/e999/savedSearchGrants/4
 
 # Example Response
 [
@@ -288,7 +288,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">DELETE</span> /savedSearchGrant
 
 ``` shell
-curl https://rest.bullhorn.com/rest-services/e999/savedSearchGrant/4/CORP
+curl https://rest{{swimlane#}.bullhorn.com/rest-services/e999/savedSearchGrant/4/CORP
 ```
 Deletes entitlements for a saved search.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside>
