@@ -2165,6 +2165,13 @@
 <td></td>
 </tr>
 <tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which this record was last updated in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
 <td>degree</td>
 <td>String (100)</td>
 <td>Indicates what educational degree the Candidate received; for example, B.A., M.A., Ph.D., and so forth.</td>
@@ -2323,6 +2330,13 @@
 <td>dateAdded</td>
 <td>Timestamp</td>
 <td>Date on which this record was created in the Bullhorn system.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>dateLastModified</td>
+<td>Timestamp</td>
+<td>Date on which this record was last updated in the Bullhorn system.</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -2490,6 +2504,20 @@
             <td>X</td>
             <td></td>
         </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
     </tbody>
 </table></p>
 
@@ -2548,6 +2576,20 @@
             <td>Text of this CandidateReferenceResponse.</td>
             <td></td>
             <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
         </tr>
     </tbody>
 </table></p>
@@ -2847,83 +2889,25 @@
 <td>X</td>
 </tr>
 <tr>
-<td>endDate</td>
+<td>dateLastModified</td>
 <td>Timestamp</td>
-<td>Date on which job ended, if applicable.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>isDeleted</td>
-<td>Boolean</td>
-<td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+<td>Date on which this record was last updated in the Bullhorn system.</td>
 <td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>isLastJob</td>
-<td>Boolean</td>
-<td>Indicates whether this was the Candidate&rsquo;s most recent job.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td>jobOrder</td>
-<td>To-one association</td>
-<td>JobOrder associated with the CandidateWorkHistory, if applicable.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>placement</td>
-<td>To-one association</td>
-<td>Placement representing the Candidate&rsquo;s placement in a job, if applicable. </td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>salary1</td>
-<td>BigDecimal</td>
-<td>Candidate&rsquo;s starting salary at this position.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>salary2</td>
-<td>BigDecimal</td>
-<td>Candidate&rsquo;s final salary at this position.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>salaryType</td>
-<td>String (20)</td>
-<td>Indicates how the Candidate was paid: Hourly, Yearly, and so forth.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>startDate</td>
-<td>Timestamp</td>
-<td>Date on which Candidate began working at this position.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>terminationReason</td>
-<td>String (100)</td>
-<td>Reason for the Candidate&rsquo;s termination from this position, if applicable.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>title</td>
-<td>String (50)</td>
-<td>Candidate&rsquo;s job title in this position.</td>
-<td></td>
 <td></td>
 </tr>
 </tbody></table>
+
+<p>| endDate | Timestamp | Date on which job ended, if applicable. | | |
+| isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system. | X | |
+| isLastJob | Boolean | Indicates whether this was the Candidate&rsquo;s most recent job. | X | |
+| jobOrder | To-one association | JobOrder associated with the CandidateWorkHistory, if applicable. | | |
+| placement | To-one association | Placement representing the Candidate&rsquo;s placement in a job, if applicable.  | | |
+| salary1 | BigDecimal | Candidate&rsquo;s starting salary at this position. | | |
+| salary2 | BigDecimal | Candidate&rsquo;s final salary at this position. | | |
+| salaryType | String (20) | Indicates how the Candidate was paid: Hourly, Yearly, and so forth. | | |
+| startDate | Timestamp | Date on which Candidate began working at this position. | | |
+| terminationReason | String (100) | Reason for the Candidate&rsquo;s termination from this position, if applicable. | | |
+| title | String (50) | Candidate&rsquo;s job title in this position. | | |</p>
 
           <h1 id="category">Category</h1>
 

@@ -2466,6 +2466,12 @@ clientCorporation.name</td>
 
 <p>Log in and get a REST session. This is the only supported login process in a production environment.</p>
 
+<ul>
+<li>Never assume that a REST session will not expire.</li>
+<li>Perform a <a href="#ping">ping</a> request to return the timestamp of the REST session expiration.</li>
+<li>Perform a refresh token request when a REST API request returns a 401 status code that indicates the session is expired. See <em>Use a refresh token to get a new access token</em> in <a href="/Getting-Started-with-REST">Getting Started with REST</a>.</li>
+</ul>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
