@@ -14,6 +14,10 @@ curl https://rest.bullhornstaffing.com/login?access_token=xxx&version=*
 
 Log in and get a REST session. This is the only supported login process in a production environment.
 
+- Never assume that a REST session will not expire.
+- Perform a [ping](#ping) request to return the timestamp of the REST session expiration.
+- Perform a refresh token request when a REST API request returns a 401 status code, which indicates the session is expired. See *Use a refresh token to get a new access token* in [Getting Started with REST](/Getting-Started-with-REST).
+
 Parameter | Required | Description
 ------ | -------- | -----
 access_token | yes | Access token obtained from OAuth authorization |
