@@ -1,9 +1,9 @@
-# Ping
+# ping
 
 ## <span class="tag">GET</span> /ping
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/ping
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/ping
 
 # Example Response
 {

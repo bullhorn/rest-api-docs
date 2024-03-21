@@ -1,27 +1,27 @@
-# Options
+# options
 
 ## <span class="tag">GET</span> /options
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/options
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/options
 
 # Example Response
 {
   "data" : [ {
     "optionsType" : "BillRateCategory",
-    "optionsUrl" : "https://rest.bullhorn.com/rest-services/e999/options/BillRateCategory"
+    "optionsUrl" : "https://rest{swimlane#}.bullhorn.com/rest-services/e999/options/BillRateCategory"
   }, {
     "optionsType" : "BusinessSector",
-    "optionsUrl" : "https://rest.bullhorn.com/rest-services/e999/options/BusinessSector"
+    "optionsUrl" : "https://rest{swimlane#}.bullhorn.com/rest-services/e999/options/BusinessSector"
   }, {
     "optionsType" : "BusinessSectorText",
-    "optionsUrl" : "https://rest.bullhorn.com/rest-services/e999/options/BusinessSectorText"
+    "optionsUrl" : "https://rest{swimlane#}.bullhorn.com/rest-services/e999/options/BusinessSectorText"
   }, {
     "optionsType" : "Candidate",
-    "optionsUrl" : "https://rest.bullhorn.com/rest-services/e999/options/Candidate"
+    "optionsUrl" : "https://rest{swimlane#}.bullhorn.com/rest-services/e999/options/Candidate"
   }, {
     "optionsType" : "CandidateText",
-    "optionsUrl" : "https://rest.bullhorn.com/rest-services/e999/options/CandidateText"
+    "optionsUrl" : "https://rest{swimlane#}.bullhorn.com/rest-services/e999/options/CandidateText"
   },
 ...
 ]
@@ -41,7 +41,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">GET</span> /options/{optionsType}
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/options/Country
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/options/Country
 
 # Example Response
 {

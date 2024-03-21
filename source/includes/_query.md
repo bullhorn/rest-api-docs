@@ -1,9 +1,9 @@
-# Query
+# query
 
 ## <span class="tag">GET</span> /query
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields=firstName,lastName&where=lastName='smith'&count=3
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields=firstName,lastName&where=lastName='smith'&count=3
 
 # Example Response
 {
@@ -45,7 +45,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 curl -X POST \
      -H "Content-Type: application/json" \
      -d '{"where": "id IN (10125, 10126, 10127, 10128, 10129, 10130, 10131, 10132, 10133, 10134, 10135, 10136, 10137, 10138, 17376, 26865, 67604, 67605, 80203, 80204, 80205, 80206, 80207, 80208, 80209, 80210, 80211, 80212, 80213, 80214)"}' \
-      https://rest.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields=id,firstName,lastname&count=3
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields=id,firstName,lastname&count=3
 
 # Example Response
 {
@@ -128,11 +128,3 @@ willingToRelocate = false
 
 ### Datetime values 
 - UNIX long millis. For example, dateAdded > 1324579022
-
-- ISO 8601 Date Time String. For example, dateAdded > '1997-07-16T19:20:30.45+01:00'
-
-- Date Time String without Time Zone (default is America/New_York). In the format 'yyyy-MM-dd hh:mm:ss.SSS'
-
-- Date Time String with Time Zone 'yyyy-MM-dd hh:mm:ss.SSS TZ' where TZ may be specified as:
- - Full TZ name, such as 'Asia/Tokyo'
- - An offset [-]hh:mm. For example, 3:00 or -5:00

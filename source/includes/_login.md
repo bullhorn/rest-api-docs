@@ -1,4 +1,4 @@
-# Login
+# login
 
 ## Partner login using OAuth
 
@@ -8,7 +8,7 @@ curl https://rest.bullhornstaffing.com/login?access_token=xxx&version=*
 # Example Response
 {
   "BhRestToken" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-  "restUrl" : "https://rest.bullhornstaffing.com/rest-services/{corpToken}/"
+  "restUrl" : "https://rest{swimlane#}.bullhornstaffing.com/rest-services/{corpToken}/"
 }
 ```
 
@@ -29,7 +29,7 @@ ttl          | no  | Session time-to-live in minutes. |
 ## Logout
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/logout
+curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/logout
 
 # Example Response
 {

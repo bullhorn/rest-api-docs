@@ -1,4 +1,4 @@
-# Services
+# services
 
 ## POST /services/CCPA/notifyOnCapture
 
@@ -14,7 +14,7 @@ After the email is successfully sent a note is added to the person record with a
 
 ``` shell
 curl -X POST \
-      https://rest.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
 
 # Example Response
 {
@@ -51,7 +51,7 @@ The Direct Deposit Account service allows for the creation of direct deposit acc
 
 ``` shell
 curl -X POST / PUT \
-      https://rest.bullhornstaffing.com/rest-services/e999/services/DirectDepositAccount
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/DirectDepositAccount
 
 # Example Request
 {
@@ -152,7 +152,7 @@ The Issue Report service allows for creation of issues to be presented to the us
 
 ``` shell
 curl -X PUT \
-      https://rest.bullhornstaffing.com/rest-services/e999/services/IssueReport
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/IssueReport
 
 # Example Request
 {
@@ -203,7 +203,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 curl -X POST \
-      https://rest.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
 
 # Example Response
 {
@@ -234,7 +234,7 @@ Handles the creation of a BillMasterTransactionDistributionBatch and its subsequ
 
 ``` shell
 curl -X PUT \
-      https://rest.bullhornstaffing.com/rest-services/e999/services/RevenueRecognition/BillMasterTransactionDistributionBatch
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/RevenueRecognition/BillMasterTransactionDistributionBatch
 
 # Example Request
 {
@@ -264,7 +264,7 @@ Handles the creation of an UnbilledRevenueDistributionBatch and its subsequent a
 
 ``` shell
 curl -X PUT \
-      https://rest.bullhorn.com/rest-services/e999/services/RevenueRecognition/UnbilledRevenueDistributionBatch 
+      https://rest{swimlane#}.bullhorn.com/rest-services/e999/services/RevenueRecognition/UnbilledRevenueDistributionBatch 
 
 # Example Request
 {
@@ -294,7 +294,7 @@ Allows the API user to update the unbilledRevenueGeneralLedgerExportStatus for o
 
 ``` shell
 curl -X POST \
-      https://rest.bullhorn.com/rest-services/e999/services/RevenueRecognition/UpdateTransactionExportStatus 
+      https://rest{swimlane#}.bullhorn.com/rest-services/e999/services/RevenueRecognition/UpdateTransactionExportStatus 
 
 # Example Request
 {
@@ -330,7 +330,7 @@ NOTE: If you submit a batch export status update where there is only a single fa
 
 ``` shell
 curl -X POST \
-      https://rest.bullhorn.com/rest-services/e999/services/PayExportBatch/batchExportStatus
+      https://rest{swimlane#}.bullhorn.com/rest-services/e999/services/PayExportBatch/batchExportStatus
 
 # Example Request
 {

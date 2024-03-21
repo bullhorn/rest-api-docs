@@ -1,10 +1,10 @@
 
-# Find
+# find
 
 ## <span class="tag">GET</span> /find
 
 ``` shell
-curl https://rest.bullhornstaffing.com/rest-services/e999/find?query=smith&countPerEntity=3
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/find?query=smith&countPerEntity=3
 
 # Example Response
 {

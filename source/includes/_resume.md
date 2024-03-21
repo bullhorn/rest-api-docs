@@ -1,11 +1,11 @@
-# Resume
+# resume
 
 ## <span class="tag">POST</span> /resume/parseToCandidate
 
 ``` shell
 curl -X POST \
      -F "file=@sampleresume.html" \
-     https://rest.bullhorn.com/rest-services/e999/resume/parseToCandidate?format=text&populateDescription=html
+     https://rest{swimlane#}.bullhorn.com/rest-services/e999/resume/parseToCandidate?format=text&populateDescription=html
 
 # Example Response
 {
@@ -72,7 +72,7 @@ curl -X POST \
      -H "Content-Type: application/json" \
      -d '{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}' \
      \
-     https://rest.bullhorn.com/rest-services/e999/resume/parseToCandidateViaJson?format=text&populateDescription=html
+     https://rest{swimlane#}.bullhorn.com/rest-services/e999/resume/parseToCandidateViaJson?format=text&populateDescription=html
 
 # Example Response
 {
@@ -134,7 +134,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ``` shell
 curl -X POST \
      -F "file=@sampleresume.pdf" \
-     https://rest.bullhorn.com/rest-services/e999/resume/parseToHrXml?format=pdf
+     https://rest{swimlane#}.bullhorn.com/rest-services/e999/resume/parseToHrXml?format=pdf
 # Example Response
 {"hrXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Resume \
  xmlns=\"http://ns.hr-xml.org\" xmlns:hr=\"http://ns.hr-xml.org/PersonDescriptors\" \
@@ -169,7 +169,7 @@ curl -X POST \
      Telephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\n \
      Fax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}' \
      \
-     https://rest.bullhorn.com/rest-services/e999/resume/parseToHrXmlViaJson?format=text&format=html
+     https://rest{swimlane#}.bullhorn.com/rest-services/e999/resume/parseToHrXmlViaJson?format=text&format=html
 
 # Example Response
 {"hrXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Resume \
@@ -200,7 +200,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ``` shell
 curl -X POST \
      -F "file=@sampleresume.pdf" \
-     https://rest.bullhornstaffing.com/rest-services/e999/resume/convertToHtml?format=pdf
+     https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/resume/convertToHtml?format=pdf
 
 # Example Response
 {
@@ -245,7 +245,7 @@ curl -X POST \
      -H "Content-Type: application/json" \
      -d '{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}' \
      \
-     https://rest.bullhorn.com/rest-services/e999/resume/convertToTextViaJson?format=html
+     https://rest{swimlane#}.bullhorn.com/rest-services/e999/resume/convertToTextViaJson?format=html
 
 # Example Response
 {"text": "\r\n\r\nDr. Minun Keskimmäinen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, \
