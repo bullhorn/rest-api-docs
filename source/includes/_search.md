@@ -1,9 +1,9 @@
-# sSearch
+# search
 
 ## <span class="tag">GET</span> /search
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/search/Candidate?query=lastName:Smith&fields=id,firstName,lastname&count=3
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/search/Candidate?query=lastName:Smith&fields=id,firstName,lastname&count=3
 
 # Example Response
 {
@@ -26,7 +26,7 @@ Note that the response contains a _score field. This is the Lucene score. Also, 
 <aside class="notice">If parameter "fields" or "layout" is not present, the search will return the list of found entity ids in the returned "data".</aside>
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/search/Candidate?query=isDeleted:0
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/search/Candidate?query=isDeleted:0
 
 # Example Response
 {
@@ -60,7 +60,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 curl -X POST \
      -H "Content-Type: application/json" \
      -d '{"query": "id:10125 10126 10127 10128 10129 10130 10131 10132 10133 10134 10135 10136 10137 10138 17376 26865 67604 67605 80203 80204 80205 80206 80207 80208 80209 80210 80211 80212 80213 80214"}' \
-      https://rest.bullhornstaffing.com/rest-services/e999/search/Candidate?fields=id,firstName,lastname&count=3
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/search/Candidate?fields=id,firstName,lastname&count=3
 
 # Example Response
 {

@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /userHeadshotFile
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
 
 # Example Response
 <A multipart-encoded version of the file>
@@ -42,7 +42,7 @@ curl -X PUT \
 
 curl -X PUT \
     -F "file=@headshotfile.jpg" \
-    https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909/raw?filetype=SAMPLE&externalID=portfolio
+    https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909/raw?filetype=SAMPLE&externalID=portfolio
 
 # Example Response
 {"fileId": 178}
@@ -107,7 +107,7 @@ curl -X POST \
 
 curl -X POST \
     -F "file=@headshotfile.jpg" \
-    https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909/raw?filetype=SAMPLE&externalID=portfolio
+    https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909/raw?filetype=SAMPLE&externalID=portfolio
 
 # Example Response
 {"fileId": 179}
@@ -157,7 +157,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ``` shell
 curl -X DELETE \
-     https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
+     https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
 
 # Example Response
 {

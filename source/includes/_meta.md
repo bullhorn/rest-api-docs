@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /meta
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/meta
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/meta
 
 # Example Response
 [
@@ -42,7 +42,7 @@ Read-only system fields ( fields with names prefixed with _ ) are not represente
 ##  <span class="tag">GET</span> /meta/{Entity}
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields=*
 # Example Response
 {
   "entity" : "Candidate",

@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /event/subscription
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?maxEvents=100
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?maxEvents=100
 
 # Example Response
 {{
@@ -57,7 +57,7 @@ updatedProperties | If the event type is UPDATED, this parameter indicates which
 ## <span class="tag">GET</span> /event/subscription/lastRequestId
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/event/subscriptioN/Abcde/lastRequestId
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/event/subscriptioN/Abcde/lastRequestId
 
 # Example Response
 {'result': 1}
@@ -78,7 +78,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ``` shell
 curl -X PUT \
      -H "Content-Type: application/json" \
-     https://rest.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type=entity&names=Candidate
+     https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type=entity&names=Candidate
 &eventTypes=INSERTED,UPDATED,DELETED
 
 # Example Response
@@ -105,7 +105,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 ## <span class="tag">DELETE</span> /event/subscription
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde
 &eventTypes=INSERTED,UPDATED,DELETED
 
 # Example Response

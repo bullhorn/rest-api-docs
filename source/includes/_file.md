@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /file
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/file/Candidate/3835/231
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/file/Candidate/3835/231
 
 # Example Response
 {"File": {
@@ -41,7 +41,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 (deprecated; replaced by /entity/{entityType}/{entityId}/fileAttachments)
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/entityFiles/Candidate/203866
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/entityFiles/Candidate/203866
 
 # Example Response
 {"EntityFiles": [

@@ -3,7 +3,7 @@
 ## <span class="tag">GET</span> /entity
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/entity/Candidate/5059165?fields=firstName,lastName,address
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/entity/Candidate/5059165?fields=firstName,lastName,address
 
 # Example Response
 {
@@ -49,7 +49,7 @@ showEditable | no | (true/false) Default value is false. Whether to show the _ed
 ## Multiple Entities
 
 ``` shell
-curl https://rest{{swimlane#}.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields=id,firstName,lastName
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields=id,firstName,lastName
 
 # Example Response
 {
