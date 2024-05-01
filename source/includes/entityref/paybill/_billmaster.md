@@ -239,6 +239,17 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td></td>
             <td></td>
         </tr>
+        <tr class="odd">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
     </tbody>
 </table>
 
