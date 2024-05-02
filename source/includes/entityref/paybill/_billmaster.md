@@ -162,7 +162,15 @@ Entitlements - View Bill Master, Edit Billable Charge
         <tr class="odd">
             <td>owner</td>
             <td>To-one association</td>
-            <td>CorporateUser.</td>
+            <td>
+                <p>CorporateUser.</p> 
+                <p>Default fields:</p>
+                <ul> 
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
@@ -242,10 +250,14 @@ Entitlements - View Bill Master, Edit Billable Charge
         <tr class="odd">
             <td>addedByUser</td>
             <td>To-one association</td>
-            <td>CorporateUser default fields: 
-                <li>id</li>
-                <li>firstName</li>
-                <li>lastName</li>
+            <td>
+                <p>CorporateUser.</p> 
+                <p>Default fields:</p>
+                <ul> 
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
             </td>
             <td>X</td>
             <td>X</td>
