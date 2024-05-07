@@ -46,7 +46,7 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="odd"> 
             <td>billMasterTransactions</td>
             <td>To-many association</td>
             <td><p>Associated BillMasterTransactions.</p>
