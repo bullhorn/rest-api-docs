@@ -32,6 +32,21 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td>X</td>
         </tr>
         <tr class="odd">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>
+                <p>CorporateUser.</p> 
+                <p>Default fields:</p>
+                <ul> 
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd"> 
             <td>billMasterTransactions</td>
             <td>To-many association</td>
             <td><p>Associated BillMasterTransactions.</p>
@@ -246,21 +261,6 @@ Entitlements - View Bill Master, Edit Billable Charge
             </td>
             <td></td>
             <td></td>
-        </tr>
-        <tr class="odd">
-            <td>addedByUser</td>
-            <td>To-one association</td>
-            <td>
-                <p>CorporateUser.</p> 
-                <p>Default fields:</p>
-                <ul> 
-                    <li>id</li>
-                    <li>firstName</li>
-                    <li>lastName</li>
-                </ul>
-            </td>
-            <td>X</td>
-            <td>X</td>
         </tr>
     </tbody>
 </table>
