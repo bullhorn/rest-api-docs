@@ -1,5 +1,5 @@
 <h1 id="rest-api-changes-by-bullhorn-release">REST API changes by Bullhorn release</h1>
 
-<h2 id="release-5-0">Release 5.0</h2>
+<h2 id="release-2024-5-0">Release 2024.5.0</h2>
 
 <p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmaster">BillMaster addedByUser field</a> |</p>
