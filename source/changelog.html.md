@@ -1,5 +1,5 @@
 ---
-title: Rest API Change Log
+title: REST API Change Log
 
 language_tabs: false
 page_classes: no-langs
