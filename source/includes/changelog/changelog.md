@@ -1,4 +1,4 @@
-# REST API changes by Bullhorn release
+# REST API Change Log
 
 ## Release 2024.5.0
 

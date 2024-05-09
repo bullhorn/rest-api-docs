@@ -1,5 +1,5 @@
 ---
-title: Rest API Changes by Bullhorn Release
+title: Rest API Change Log
 
 language_tabs: false
 page_classes: no-langs
