@@ -8,7 +8,7 @@ mystyle: no-langs
 toc_footers:
 
 includes:
-  - changelog
+  - changelog/changelog
 
 search: true
 ---
