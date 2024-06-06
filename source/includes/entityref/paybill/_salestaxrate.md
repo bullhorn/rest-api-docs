@@ -67,6 +67,13 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>externalID</td>
+            <td>String</td>
+            <td>Update SalesTaxRate so that API users can associate internal and external data</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>generalLedgerAccount</td>
             <td>To-one association (GeneralLedgerAccount)</td>
             <td>
@@ -81,7 +88,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment1</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -96,7 +103,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerSegment2</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -111,7 +118,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment3</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -126,7 +133,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerSegment4</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -141,7 +148,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment5</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -156,7 +163,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerServiceCode</td>
             <td>To-one association (GeneralLedgerServiceCode)</td>
             <td>
@@ -171,7 +178,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td>          	
@@ -181,14 +188,14 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>jurisdictionName</td>
             <td>String (200)</td>
             <td>Jurisdiction name.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jurisdictionType</td>
             <td>To-one association (TaxJurisdictionTypeLookup)</td>
             <td>
@@ -211,14 +218,14 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>label</td>
             <td>String (200)</td>
             <td>Label.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>owner</td>
             <td>To-one association (CorporateUser)</td>
             <td>
@@ -233,21 +240,21 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>rate</td>
             <td>BigDecimal</td>
             <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>reportingCodeName</td>
             <td>String (100)</td>
             <td>Reporting code name.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>source</td>
             <td>To-one association (SalesTaxRateSourceLookup)</td>
             <td>
@@ -265,14 +272,14 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>stateID</td>
             <td>Integer</td>
             <td>State ID from internal database table.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>status</td>
             <td>To-one association (TaxStatusLookup)</td>
             <td>
@@ -291,7 +298,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>taxType</td>
             <td>To-one association (TaxTypeLookup)</td>
             <td>
@@ -310,7 +317,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>type</td>
             <td>To-one association (SalesTaxRateTypeLookup)</td>
             <td>
@@ -329,14 +336,14 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>versionID</td>
             <td>Integer</td>
             <td>Unique Identifier for the current version.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>versions</td>
             <td>To-many association (SalesTaxRateVersion)</td>
             <td>Versions of this entity.</td>
