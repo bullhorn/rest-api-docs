@@ -167,7 +167,7 @@ Entitlements - Add Sales Tax Rate, Add Sales Tax Rate Version, Delete Sales Tax 
             <td>generalLedgerServiceCode</td>
             <td>To-one association (GeneralLedgerServiceCode)</td>
             <td>
-                <p>Product/Service Code.</p>
+                <p>Product/service code.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
