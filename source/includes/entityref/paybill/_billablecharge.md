@@ -415,14 +415,28 @@ Represents a billable charge.
         <tr class="odd">
             <td>maxAccountingPeriod</td>
             <td>To-one association</td>
-            <td>Maximum Accounting Period of all transactions on billable charge.</td>
+            <td>
+                <p>Maximum Accounting Period of all transactions on billable charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>minAccountingPeriod</td>
             <td>To-one association</td>
-            <td>Minimum Accounting Period of all transactions on billable charge.</td>
+            <td>
+                <p>Minimum Accounting Period of all transactions on billable charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
@@ -433,8 +447,8 @@ Represents a billable charge.
                 <p>PayBillCycles - displays the associated Billing Cycle(s).</p>
                 <p>Default fields:</p>
                 <ul>
-                <li>id</li>
-                <li>label</li>
+                    <li>id</li>
+                    <li>label</li>
                 </ul>
             </td>
             <td></td>
@@ -514,7 +528,14 @@ Represents a billable charge.
         <tr class="even">
             <td>transactionAccountingPeriods</td>
             <td>To-many association</td>
-            <td>Accounting Periods of all transactions.</td>
+            <td>
+                <p>List of Accounting Periods of all transactions.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>

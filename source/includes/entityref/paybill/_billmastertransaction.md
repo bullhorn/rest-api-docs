@@ -30,7 +30,14 @@ Read-only entity that represents a BillMasterTransaction.
         <tr class="odd">
             <td>accountingPeriod</td>
             <td>To-one association</td>
-            <td>Accounting Period.</td>
+            <td>
+                <p>Accounting Period.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>

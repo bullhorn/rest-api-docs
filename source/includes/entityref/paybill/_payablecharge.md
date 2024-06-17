@@ -269,14 +269,28 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
         <tr class="even">
             <td>maxAccountingPeriod</td>
             <td>To-one association</td>
-            <td>Maximum Accounting Period of all transactions on payable charge.</td>
+            <td>
+                <p>Maximum Accounting Period of all transactions on billable charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>minAccountingPeriod</td>
             <td>To-one association</td>
-            <td>Minimum Accounting Period of all transactions on payable charge.</td>
+            <td>
+                <p>Minimum Accounting Period of all transactions on billable charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
@@ -429,7 +443,14 @@ Read-only entity that represents a payable charge. Dynamic insert and update via
         <tr class="even">
             <td>transactionAccountingPeriods</td>
             <td>To-many association</td>
-            <td>Accounting Periods of all transactions.</td>
+            <td>
+                <p>List of Accounting Periods of all transactions.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
