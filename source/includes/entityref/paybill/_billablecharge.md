@@ -132,7 +132,7 @@ Represents a billable charge.
             <td>To-one association</td>
             <td>
                 <p>Billing profile.</p>
-                <p>Default Fields:</p>
+                <p>Default fields:</p>
                 <ul>
                     <li>id</li>
                     <li>clientCorporation</li>
@@ -265,7 +265,7 @@ Represents a billable charge.
             <td>generalLedgerSegment2</td>
             <td>To-one association</td>
             <td>
-                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Class, which allows users to specify the type of the ledger.</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -280,7 +280,7 @@ Represents a billable charge.
             <td>generalLedgerSegment3</td>
             <td>To-one association</td>
             <td>
-                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Class, which allows users to specify the type of the ledger.</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -295,7 +295,7 @@ Represents a billable charge.
             <td>generalLedgerSegment4</td>
             <td>To-one association</td>
             <td>
-                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Class, which allows users to specify the type of the ledger.</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -310,7 +310,7 @@ Represents a billable charge.
             <td>generalLedgerSegment5</td>
             <td>To-one association</td>
             <td>
-                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Class, which allows users to specify the type of the ledger.</p>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
