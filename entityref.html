@@ -10663,6 +10663,45 @@ CRUD Access - READ</p>
 </tr>
 </tbody></table>
 
+          <h1 id="pay-and-bill-accountingperiod">Pay and Bill - AccountingPeriod</h1>
+
+<p>Represents an accounting period.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>AccountingPeriod fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>accountingPeriodDate</td>
+            <td>Date</td>
+            <td>Accounting Period date.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-batchgroup">Pay and Bill - BatchGroup</h1>
 
 <p>Read-only entity that represents a batch group. Dynamic insert via billing-sync-services.</p>
@@ -10737,7 +10776,7 @@ CRUD Access - READ</p>
     <tbody>
         <tr class="even">
             <td>id</td>
-            <td>ID</td>
+            <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
             <td>X</td>
@@ -10745,13 +10784,15 @@ CRUD Access - READ</p>
         <tr class="odd">
             <td>addedByUser</td>
             <td>To-one association</td>
-            <td><p>CorporateUser - this is the internal user who added the record.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>firstName</li>
-<li>lastName</li>
-</ul></td>
+            <td>
+                <p>CorporateUser - this is the internal user who added the record.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
         </tr>
@@ -10765,11 +10806,13 @@ CRUD Access - READ</p>
         <tr class="odd">
             <td>billMasters</td>
             <td>To-many association</td>
-            <td><p>BillMaster - list of associated bill master records.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
+            <td>
+                <p>BillMaster - list of associated bill master records.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
@@ -10785,44 +10828,49 @@ CRUD Access - READ</p>
             <td>To-many association - list of associated billing calendar instances.</td>
             <td>CalendarInstance.</td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="even">
             <td>billingClientContact</td>
             <td>To-one association</td>
-            <td><p>Billing contact - the client contact associated with this billable charge.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>firstName</li>
-<li>lastName</li>
-</ul>
-<p>&#xA0;</p></td>
+            <td>
+                <p>Billing contact - the client contact associated with this billable charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>billingClientCorporation</td>
             <td>To-one association</td>
-            <td><p>ClientCorporation - this is the bill-to company.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
+            <td>
+                <p>ClientCorporation - this is the bill-to company.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>billingCorporateUser</td>
             <td>To-one association</td>
-            <td><p>CorporateUser.</p>
-<p><span>Default fields:</span></p>
-<ul>
-<li>id</li>
-<li>firstName</li>
-<li>lastName</li>
-</ul></td>
+            <td>
+                <p>CorporateUser.</p>
+                <p><span>Default fields:</span></p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
@@ -10836,17 +10884,19 @@ CRUD Access - READ</p>
         <tr class="even">
             <td>billingProfile</td>
             <td>To-one association</td>
-            <td><p>Billing profile.</p>
-<p>Default Fields:</p>
-<ul>
-<li>id</li>
-<li>clientCorporation</li>
-<li>title</li>
-<li>effectiveDate</li>
-<li>effectiveEndDate</li>
-<li>versionID</li>
-<li>billingClientCorporation</li>
-</ul></td>
+            <td>
+                <p>Billing profile.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>clientCorporation</li>
+                    <li>title</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                    <li>versionID</li>
+                    <li>billingClientCorporation</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
         </tr>
@@ -10867,40 +10917,44 @@ CRUD Access - READ</p>
         <tr class="odd">
             <td>candidate</td>
             <td>To-one association</td>
-            <td><p>Candidate.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>firstName</li>
-<li>lastName</li>
-</ul>
-<p>&#xA0;</p></td>
+            <td>
+                <p>Candidate.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
             <td>To-one association</td>
-            <td><p>ClientCorporation.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul>
-<p>&#xA0;</p></td>
+            <td>
+                <p>ClientCorporation.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>currencyUnit</td>
             <td>To-one association</td>
-            <td><p>Currency unit.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>alphabeticCode</li>
-<li>name</li>
-</ul></td>
+            <td>
+                <p>Currency unit.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>alphabeticCode</li>
+                    <li>name</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
@@ -10928,86 +10982,96 @@ CRUD Access - READ</p>
         <tr class="odd">
             <td>entryTypeLookup</td>
             <td>To-one association</td>
-            <td>entryTypeLookup - options are Timesheet or Expense.</td>
+            <td>EntryTypeLookup - options are Timesheet or Expense.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>externalID</td>
-            <td>String (100)</td>
-            <td></td>
+            <td>expenseSheet</td>
+            <td>To-one association</td>
+            <td>Expense sheet.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>fileAttachments</td>
-            <td>To-many association</td>
-            <td>Use BillingSyncBatchFileAttachment instead.</td>
+            <td>externalID</td>
+            <td>String (100)</td>
             <td></td>
-            <td>X</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerSegment1</td>
             <td>To-one association</td>
-            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li>
-</ul>               
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>   
+            </td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment2</td>
             <td>To-one association</td>
-            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li>
-</ul> 
-        </td>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>   
+            </td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerSegment3</td>
             <td>To-one association</td>
-            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.
-            <p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li>
-</ul> </td>
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>   
+            </td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>generalLedgerSegment4</td>
             <td>To-one association</td>
-            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li>
-</ul> </td>
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>   
+            </td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerSegment5</td>
             <td>To-one association</td>
-            <td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li></td>
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>   
+            </td>
             <td></td>
             <td></td>
         </tr>
@@ -11021,23 +11085,24 @@ CRUD Access - READ</p>
         <tr class="even">
             <td>generalLedgerStatus</td>
             <td>To-one association</td>
-            <td>UnbilledRevenueGeneralLedgerExportStatusLookup - General Ledger Exports Status.
-<p>Options are:</p>
-<ol>
-    <li>Export Failed</li>
-    <li>Ready for Distribution</li>
-    <li>Stamped for Distribution</li>
-    <li>Creating Distribution</li>
-    <li>Ready for Export</li>
-    <li>Export Queued</li>
-    <li>Export in progress</li>
-    <li>Export Successful</li>
-</ol>
+            <td>
+                <p>UnbilledRevenueGeneralLedgerExportStatusLookup - General Ledger Exports Status.</p>
+                <p>Options are:</p>
+                <ol>
+                    <li>Export Failed</li>
+                    <li>Ready for Distribution</li>
+                    <li>Stamped for Distribution</li>
+                    <li>Creating Distribution</li>
+                    <li>Ready for Export</li>
+                    <li>Export Queued</li>
+                    <li>Export in progress</li>
+                    <li>Export Successful</li>
+                </ol>
             </td>
             <td></td>
             <td>X</td>
         </tr>
-<tr class="odd">
+        <tr class="odd">
             <td>hasAdjustment</td>
             <td>Boolean</td>
             <td>Indicates whether billable charge has an adjustment. 
@@ -11053,61 +11118,107 @@ CRUD Access - READ</p>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>invoiceTerm</td>
-            <td>To-one association</td>
-            <td><p>InvoiceTerms.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>clientCorporation</li>
-<li>title</li>
-<li>effectiveDate</li>
-<li>effectiveEndDate</li>
-<li>versionID</li>
-</ul></td>
+            <td>invoiceStatements</td>
+            <td>To-many association</td>
+            <td>Invoice statements.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>invoiceTerm</td>
+            <td>To-one association</td>
+            <td>
+                <p>InvoiceTerm.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>clientCorporation</li>
+                    <li>title</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                    <li>versionID</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>invoicedTransactions</td>
             <td>To-many association</td>
             <td>InvoicedTransactions - lists IDs of invoiced transactions.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isInvoiced</td>
             <td>Boolean</td>
             <td>Indicates whether billable charge is invoiced.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>jobOrder</td>
             <td>To-one association</td>
-            <td><p>Job.</p>
-
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>title</li>
-</ul></td>
-
+            <td>
+                <p>Job.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>title</li>
+                </ul>
+            </td>
             <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>markAsReadyEligible</td>
+            <td>Boolean</td>
+            <td>Indicates whether billable charge is ready eligible.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>maxAccountingPeriod</td>
+            <td>To-one association</td>
+            <td>
+                <p>Maximum Accounting Period of all transactions on billable charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
             <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>minAccountingPeriod</td>
+            <td>To-one association</td>
+            <td>
+                <p>Minimum Accounting Period of all transactions on billable charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
         </tr>
         <tr class="odd">
             <td>payBillCycles</td>
             <td>To-many association</td>
-            <td>PayBillCycles - displays the associated Billing Cycle(s)
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>label</li>
-</ul>
-                </td>
+            <td>
+                <p>PayBillCycles - displays the associated Billing Cycle(s).</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
+            <td>X</td>
         </tr>
         <tr class="even">
             <td>periodEndDate</td>
@@ -11119,12 +11230,13 @@ CRUD Access - READ</p>
         <tr class="odd">
             <td>placement</td>
             <td>To-one association</td>
-            <td><p>Placement.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-
+            <td>
+                <p>Placement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
         </tr>
@@ -11132,64 +11244,95 @@ CRUD Access - READ</p>
             <td>readyToBillOverride</td>
             <td>Boolean</td>
             <td>Ready to bill override.</td>
-            <td></td>
+            <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>status</td>
             <td>To-one association</td>
-            <td><p>BillableChargeStatusLookup.</p>
-
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>label</li>
-<li>readOnly</li>
-</ul></td>
-
+            <td>
+                <p>BillableChargeStatusLookup.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                    <li>readOnly</li>
+                </ul>
+            </td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>subtotal</td>
             <td>BigDecimal</td>
-            <td></td>
+            <td>Subtotal.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>summaryTransactions</td>
             <td>To-many association</td>
-            <td>BillableChargeSummaryTransaction</td>
+            <td>BillableChargeSummaryTransactions.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>transactionStatus</td>
+            <td>timeAndExpenseBranch</td>
+            <td>String (32)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timesheet</td>
             <td>To-one association</td>
-            <td><p>TransactionStatus.</p>
-
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
+            <td>Timesheet.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>transactionAccountingPeriods</td>
+            <td>To-many association</td>
+            <td>
+                <p>List of Accounting Periods of all transactions.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>transactionType</td>
+            <td>transactionStatus</td>
             <td>To-one association</td>
-            <td><p>Transaction type.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
+            <td>
+                <p>TransactionStatus.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>transactionType</td>
+            <td>To-one association</td>
+            <td>
+                <p>Transaction type.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>unbillableTransactions</td>
             <td>To-many association</td>
             <td>BillableChargeUnbillableTransaction.</td>
@@ -12099,264 +12242,322 @@ CRUD Access - READ</p>
 <p>Read-only entity that represents a BillMasterTransaction.</p>
 
 <table>
-<colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>BillMasterTransaction fields</th>
-<th>Type</th>
-<th>Description</th>
-<th>Not null</th>
-<th>Read-only</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td>Integer</td>
-<td>Unique identifier for this entity.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>adjustmentSequenceNumber</td>
-<td><p>Integer</p></td>
-<td><p>Adjustment sequence number.</p></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>amount</td>
-<td>BigDecimal</td>
-<td>Amount.</td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>billMaster</td>
-<td>To-one association</td>
-<td><p>Associated BillMaster.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>comments</td>
-<td>String (2147483647)</td>
-<td>Comments.</td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>currencyUnit</td>
-<td>To-one association</td>
-<td><p>Associated CurrencyUnit.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>dateAdded</td>
-<td>Timestamp</td>
-<td>Date the entity was added.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>dateLastModified</td>
-<td>Timestamp</td>
-<td>Date last modified.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>invoiceStatement</td>
-<td>To-one association</td>
-<td><p>Associated InvoiceStatement.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>invoiceStatementBatch</td>
-<td>To-one association</td>
-<td><p>Associated InvoiceStatementBatch.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>invoiceStatementLineItem</td>
-<td>To-one association</td>
-<td><p>Associated InvoiceStatementLineItem.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>needsReview</td>
-<td>Boolean</td>
-<td>Whether transaction needs review.</td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="odd">
-<td>payPeriodEndDate</td>
-<td>Date</td>
-<td><p>Pay period end date.</p></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>quantity</td>
-<td>Double</td>
-<td>Quantity.</td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>rate</td>
-<td>BigDecimal</td>
-<td><p>Rate.</p></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>recordingDate</td>
-<td>Date</td>
-<td>Recording date.</td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>reversalOfTransaction</td>
-<td>To-one association</td>
-<td>Associated reversed BillMasterTransaction.</td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>timeLaborEvalDiffStatusLookupID</td>
-<td><p>To-one association</p></td>
-<td><p>New transaction type field used by TimeLaborEval.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>timeLaborEvalUnitID</td>
-<td><p>To-one association</p></td>
-<td><p>Metadata used for TimeLaborEval calculations.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>timestamp</td>
-<td>byte[]</td>
-<td><p>Rowversion.</p></td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>transactionOrigin</td>
-<td><p>To-one association</p></td>
-<td><p>Associated TransactionOrigin.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>transactionStatus</td>
-<td><p>To-one association</p></td>
-<td><p>Associated TransactionStatus.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>transactionType</td>
-<td><p>To-one association</p></td>
-<td><p>Associated TransactionOrigin.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>unbilledRevenueGeneralLedgerExportStatusLookup</td>
-<td><p>To-one association</p></td>
-<td><p>Associated UnbilledRevenueGeneralLedgerExportStatusLookup.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>label</li>
-</ul>
-<p>Value defaulted to &lsquo;Ready for Distribution&rsquo;</p></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>unitOfMeasure</td>
-<td><p>To-one association</p>
-<p>(String flag)</p></td>
-<td><p>Associated UnitOfMeasure.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>label</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>version</td>
-<td>Int</td>
-<td><p>To be used by TimeLaborEval in the future.</p></td>
-<td> </td>
-<td>X</td>
-</tr>
-</tbody>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>BillMasterTransaction fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>accountingPeriod</td>
+            <td>To-one association</td>
+            <td>
+                <p>Accounting Period.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>adjustmentSequenceNumber</td>
+            <td>Integer</td>
+            <td>Adjustment sequence number.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>Amount.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billMaster</td>
+            <td>To-one association</td>
+            <td>
+                <p>Associated BillMaster.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billMasterTransactionDistributionBatch</td>
+            <td>To-one association</td>
+            <td>BillMasterTransactionDistributionBatch.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>comment</td>
+            <td>String (2147483647)</td>
+            <td>Comment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>currencyUnit</td>
+            <td>To-one association</td>
+            <td>
+                <p>Associated CurrencyUnit.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>editHistories</td>
+            <td>To-many association</td>
+            <td>BillMasterTransactionEditHistory.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatement</td>
+            <td>To-one association</td>
+            <td>
+                <p>Associated InvoiceStatement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementBatch</td>
+            <td>To-one association</td>
+            <td>
+                <p>Associated InvoiceStatementBatch.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementLineItem</td>
+            <td>To-one association</td>
+            <td>
+                <p>Associated InvoiceStatementLineItem.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>isCustomRate</td>
+            <td>Boolean</td>
+            <td>Whether transaction is a custom rate.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Whether transaction is deleted.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isUnbillable</td>
+            <td>Boolean</td>
+            <td>Whether transaction is marked as unbillable.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>needsReview</td>
+            <td>Boolean</td>
+            <td>Whether transaction needs review.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>netAmount</td>
+            <td>BigDecimal</td>
+            <td>Net amount.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>netQuantity</td>
+            <td>BigDecimal</td>
+            <td>Net quantity.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>payPeriodEndDate</td>
+            <td>Date</td>
+            <td>Pay period end date.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>quantity</td>
+            <td>BigDecimal</td>
+            <td>Quantity.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>rate</td>
+            <td>BigDecimal</td>
+            <td>Rate.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>recordingDate</td>
+            <td>Date</td>
+            <td>Recording date.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>reversalOfTransaction</td>
+            <td>To-one association</td>
+            <td>Associated reversed BillMasterTransaction.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>timestamp</td>
+            <td>byte[]</td>
+            <td>Rowversion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>transactionOrigin</td>
+            <td>To-one association</td>
+            <td>
+                <p>Associated TransactionOrigin.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>transactionType</td>
+            <td>To-one association</td>
+            <td>
+                <p>Associated TransactionOrigin.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>unbilledRevenueDistributions</td>
+            <td>To-many association</td>
+            <td>UnbilledRevenueDistribution.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>unbilledRevenueGeneralLedgerExportStatusLookup</td>
+            <td>To-one association</td>
+            <td>
+                <p>Associated UnbilledRevenueGeneralLedgerExportStatusLookup.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+                <p>Value defaulted to &lsquo;Ready for Distribution&rsquo;</p>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>unitOfMeasure</td>
+            <td>To-one association</td>
+            <td>
+                <p>Associated UnitOfMeasure.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>version</td>
+            <td>Integer</td>
+            <td>To be used by TimeLaborEval in the future.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>wasUnbilled</td>
+            <td>Boolean</td>
+            <td>Whether transaction was unbilled.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+    </tbody>
 </table>
 
           <h1 id="pay-and-bill-billmastertransactiondiscountdetail">Pay and Bill - BillMasterTransactionDiscountDetail</h1>
@@ -19468,284 +19669,486 @@ can be passed as well with all associated data.</p>
 <p>Read-only entity that represents a payable charge. Dynamic insert and update via billing-sync-services.</p>
 
 <table>
-<colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>PayableCharge fields</th>
-<th>Type</th>
-<th>Description</th>
-<th>Not null</th>
-<th>Read-only</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td>Integer</td>
-<td>Unique identifier for this entity.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>addedByUser</td>
-<td>To-one association</td>
-<td><p>Corporate User.</p>
-<p>Default Fields:</p>
-<ul>
-<li>id</li>
-<li>firstName</li>
-<li>lastName</li>
-</ul></td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="odd">
-<td>canExport</td>
-<td>Boolean</td>
-<td> </td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>candidate</td>
-<td><p>To-one association</p></td>
-<td><p>Candidate.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>firstName</li>
-<li>lastName</li>
-</ul>
-<p> </p></td>
-<td> </td>
-<td> X</td>
-</tr>
-<tr class="odd">
-<td>clientCorporation</td>
-<td><p>To-one association</p></td>
-<td><p>Client Corporation.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul>
-<p> </p></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>currencyUnit</td>
-<td>To-one association</td>
-<td><p>Currency unit.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>alphabeticCode</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>dateAdded</td>
-<td>Timestamp</td>
-<td>Date the entity was added.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>dateLastModified</td>
-<td>Timestamp</td>
-<td>Date last modified.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>description</td>
-<td>String (MAX)</td>
-<td>Description.</td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="even">
-<td>employeeType</td>
-<td>String (30)</td>
-<td>Tax form type.</td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="odd">
-<td><p>generalLedgerSegment1</p></td>
-<td><span>To-one association</span></td>
-<td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li>
-</ul></td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="even">
-<td><p><span>generalLedgerSegment2</span></p></td>
-<td><span>To-one association</span></td>
-<td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li>
-</ul></td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="odd">
-<td><p><span>generalLedgerSegment3</span></p></td>
-<td><span>To-one association</span></td>
-<td><p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li>
-</ul></td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="even">
-<td><p><span>generalLedgerSegment4</span></p></td>
-<td><span>To-one association</span></td>
-<td>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li>
-</ul></td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="odd">
-<td><p><span>generalLedgerSegment5</span></p></td>
-<td><span>To-one association</span></td>
-<td><span>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</span>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>externalSegmentNumber</li>
-<li>externalSegmentName</li>
-</ul></td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="even">
-<td>hasAdjustment</td>
-<td>Boolean</td>
-<td>Indicates whether payable charge has an adjustment.</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>jobOrder</td>
-<td><p>To-one association</p></td>
-<td><p>Job Order.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>title</li>
-</ul>
-<p> </p></td>
-<td> </td>
-<td> X</td>
-</tr>
-<tr class="even">
-<td>payMasters</td>
-<td>To-Many association</td>
-<td><p>Associated PayMasters.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>periodEndDate</td>
-<td>Date</td>
-<td>Period end date.</td>
-<td>X</td>
-<td> </td>
-</tr>
-<tr class="even">
-<td>placement</td>
-<td>To-one association</td>
-<td><p>Placement.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>readyToPayOverride</td>
-<td>Boolean</td>
-<td>Ready to pay status override.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>status</td>
-<td>To-one association</td>
-<td><p>PayableChargeStatusLookup.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>label</li>
-<li>readOnly</li>
-</ul></td>
-<td>X</td>
-<td> </td>
-</tr>
-<tr class="odd">
-<td>subtotal</td>
-<td>BigDecimal</td>
-<td>Subtotal.</td>
-<td> </td>
-<td> </td>
-</tr>
-<tr class="even">
-<td>transactionStatus</td>
-<td><p>To-one association</p></td>
-<td><p>Transaction status.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>transactionType</td>
-<td><p>To-one association</p></td>
-<td><p>Transaction origin.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-</tbody>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PayableCharge fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>
+                <p>Corporate User.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>canExport</td>
+            <td>Boolean</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>candidate</td>
+            <td>To-one association</td>
+            <td>
+                <p>Candidate.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>
+                <p>Client Corporation.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>currencyUnit</td>
+            <td>To-one association</td>
+            <td>
+                <p>Currency unit.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>alphabeticCode</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>department</td>
+            <td>String (100)</td>
+            <td>Department.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (2147483647)</td>
+            <td>Description.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>employeeType</td>
+            <td>String (30)</td>
+            <td>Tax form type.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>entryTypeLookup</td>
+            <td>To-one association</td>
+            <td>EntryTypeLookup.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>expenseSheet</td>
+            <td>To-one association</td>
+            <td>ExpenseSheet.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>exportedTransactions</td>
+            <td>To-many association</td>
+            <td>PayableChargeExportedTransactions.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment1</td>
+            <td>To-one association</td>
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment2</td>
+            <td>To-one association</td>
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment3</td>
+            <td>To-one association</td>
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerSegment4</td>
+            <td>To-one association</td>
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerSegment5</td>
+            <td>To-one association</td>
+            <td>
+                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>generalLedgerServiceCode</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerServiceCode.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>hasAdjustment</td>
+            <td>Boolean</td>
+            <td>Indicates whether payable charge has an adjustment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jobOrder</td>
+            <td>To-one association</td>
+            <td>
+                <p>Job Order.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>title</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>locationState</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>maxAccountingPeriod</td>
+            <td>To-one association</td>
+            <td>
+                <p>Maximum Accounting Period of all transactions on billable charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>minAccountingPeriod</td>
+            <td>To-one association</td>
+            <td>
+                <p>Minimum Accounting Period of all transactions on billable charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>payGroup</td>
+            <td>String (255)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>payMasters</td>
+            <td>To-many association</td>
+            <td>
+                <p>Associated PayMasters.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>payableTransactions</td>
+            <td>To-many association</td>
+            <td>PayableChargePayableTransactions.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>periodEndDate</td>
+            <td>Date</td>
+            <td>Period end date.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>persistedDepartment</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>persistedEmployeeType</td>
+            <td>String (30)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>persistedLocation</td>
+            <td>To-one association</td>
+            <td>Location</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>persistedLocationState</td>
+            <td>String (100)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>persistedPayGroup</td>
+            <td>String (255)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>persistedTimeAndExpenseBranch</td>
+            <td>String (32)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>persistedTimeAndExpenseSource</td>
+            <td>String (1)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>placement</td>
+            <td>To-one association</td>
+            <td>
+                <p>Placement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>readyToPayOverride</td>
+            <td>Boolean</td>
+            <td>Ready to pay status override.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>status</td>
+            <td>To-one association</td>
+            <td>
+                <p>PayableChargeStatusLookup.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                    <li>readOnly</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>subtotal</td>
+            <td>BigDecimal</td>
+            <td>Subtotal.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timeAndExpenseBranch</td>
+            <td>String (32)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>timeAndExpenseSource</td>
+            <td>String (1)</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>timesheet</td>
+            <td>To-one association</td>
+            <td>Timesheet</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>transactionAccountingPeriods</td>
+            <td>To-many association</td>
+            <td>
+                <p>List of Accounting Periods of all transactions.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>transactionStatus</td>
+            <td>To-one association</td>
+            <td>
+                <p>Transaction status.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>transactionType</td>
+            <td>To-one association</td>
+            <td>
+                <p>Transaction origin.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
 </table>
 
           <h1 id="pay-and-bill-paybillcycle">Pay and Bill - PayBillCycle</h1>
@@ -19940,227 +20343,260 @@ can be passed as well with all associated data.</p>
 <p>Read-only entity that represents a PayMasterTransaction.</p>
 
 <table>
-<colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>PayMasterTransaction fields</th>
-<th>Type</th>
-<th>Description</th>
-<th>Not null</th>
-<th>Read-only</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td>Integer</td>
-<td>Unique identifier for this entity.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>adjustmentSequenceNumber</td>
-<td><p>Integer</p></td>
-<td><p>Adjustment sequence number.</p></td>
-<td><span>X</span></td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>amount</td>
-<td>BigDecimal</td>
-<td>Amount.</td>
-<td>X</td>
-<td> </td>
-</tr>
-<tr class="even">
-<td>comment</td>
-<td>String (2147483647)</td>
-<td>Comment.</td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>currencyUnit</td>
-<td>To-one association</td>
-<td><p>Currency unit.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>alphabeticCode</li>
-<li>name</li>
-</ul></td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>dateAdded</td>
-<td>Timestamp</td>
-<td>Date the entity was added.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>dateLastModified</td>
-<td>Timestamp</td>
-<td>Date last modified.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>payExportBatch</td>
-<td>To-one association</td>
-<td><p>Pay Export Batch.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>payMaster</td>
-<td>To-one association</td>
-<td><p>Pay master.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td><span>X</span></td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>payPeriodEndDate</td>
-<td>Date</td>
-<td><p>Pay period end date.</p></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>quantity</td>
-<td>BigDecimal</td>
-<td>Quantity.</td>
-<td>X</td>
-<td> </td>
-</tr>
-<tr class="even">
-<td>rate</td>
-<td>BigDecimal</td>
-<td><p>Rate.</p></td>
-<td>X</td>
-<td> </td>
-</tr>
-<tr class="odd">
-<td>recordingDate</td>
-<td>Date</td>
-<td>Recording date.</td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>reversalOfTransaction</td>
-<td>To-one association</td>
-<td><p>Pay Master Transaction.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>timeLaborEvalDiffStatusLookupID</td>
-<td><p>To-one association</p></td>
-<td><p>New transaction type field used by TimeLaborEval.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>timeLaborEvalUnitID</td>
-<td><p>To-one association</p></td>
-<td><p>Metadata used for TimeLaborEval calculations.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td> </td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>timestamp</td>
-<td>byte[]</td>
-<td><p>Rowversion.</p></td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>transactionOrigin</td>
-<td><p>To-one association</p></td>
-<td><p>Transaction origin.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>transactionStatus</td>
-<td><p>To-one association</p></td>
-<td><p>Transaction status.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="even">
-<td>transactionType</td>
-<td><p>To-one association</p></td>
-<td><p>Transaction type.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>name</li>
-</ul></td>
-<td>X</td>
-<td>X</td>
-</tr>
-<tr class="odd">
-<td>unitOfMeasure</td>
-<td><p>To-one association</p>
-<p>(String flag)</p></td>
-<td><p>Unit of measure.</p>
-<p>Default fields:</p>
-<ul>
-<li>id</li>
-<li>label</li>
-</ul></td>
-<td>X</td>
-<td> </td>
-</tr>
-<tr class="even">
-<td>version</td>
-<td>Int</td>
-<td><p>To be used by TimeLaborEval in the future.</p></td>
-<td> </td>
-<td>X</td>
-</tr>
-</tbody>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>PayMasterTransaction fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>accountingPeriod</td>
+            <td>To-one association</td>
+            <td>
+                <p>Accounting Period.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>adjustmentSequenceNumber</td>
+            <td>Integer</td>
+            <td>Adjustment sequence number.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>Amount.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>comment</td>
+            <td>String (2147483647)</td>
+            <td>Comment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>currencyUnit</td>
+            <td>To-one association</td>
+            <td>
+                <p>Currency unit.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>alphabeticCode</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date the entity was added.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>editHistories</td>
+            <td>To-many association</td>
+            <td>PayMasterTransactionEditHistory.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isCustomRate</td>
+            <td>Boolean</td>
+            <td>Whether transaction is a custom rate.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Whether transaction is deleted.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>netAmount</td>
+            <td>BigDecimal</td>
+            <td>Net amount.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>netQuantity</td>
+            <td>BigDecimal</td>
+            <td>Net quantity.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>payExportBatch</td>
+            <td>To-one association</td>
+            <td>
+                <p>Pay Export Batch.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>payExportBatches</td>
+            <td>To-many association</td>
+            <td>PayExportBatches.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>payMaster</td>
+            <td>To-one association</td>
+            <td>
+                <p>Pay master.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>payPeriodEndDate</td>
+            <td>Date</td>
+            <td>Pay period end date.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>quantity</td>
+            <td>BigDecimal</td>
+            <td>Quantity.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>rate</td>
+            <td>BigDecimal</td>
+            <td>Rate.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>recordingDate</td>
+            <td>Date</td>
+            <td>Recording date.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>reversalOfTransaction</td>
+            <td>To-one association</td>
+            <td>
+                <p>Pay Master Transaction.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>timestamp</td>
+            <td>byte[]</td>
+            <td>Rowversion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>transactionOrigin</td>
+            <td>To-one association</td>
+            <td>
+                <p>Transaction origin.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>transactionType</td>
+            <td>To-one association</td>
+            <td>
+                <p>Transaction type.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>unitOfMeasure</td>
+            <td>To-one association</td>
+            <td>
+                <p>Unit of measure.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>version</td>
+            <td>Integer</td>
+            <td>To be used by TimeLaborEval in the future.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+    </tbody>
 </table>
 
           <h1 id="pay-and-bill-placementbillruleset">Pay and Bill - PlacementBillRuleset</h1>
@@ -21193,6 +21629,13 @@ can be passed as well with all associated data.</p>
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>externalID</td>
+            <td>String</td>
+            <td>Update SalesTaxRate so that API users can associate internal and external data</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>generalLedgerAccount</td>
             <td>To-one association (GeneralLedgerAccount)</td>
             <td>
@@ -21207,7 +21650,7 @@ can be passed as well with all associated data.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment1</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -21222,7 +21665,7 @@ can be passed as well with all associated data.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerSegment2</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -21237,7 +21680,7 @@ can be passed as well with all associated data.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment3</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -21252,7 +21695,7 @@ can be passed as well with all associated data.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerSegment4</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -21267,7 +21710,7 @@ can be passed as well with all associated data.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment5</td>
             <td>To-one association (GeneralLedgerSegment)</td>
             <td>
@@ -21282,11 +21725,11 @@ can be passed as well with all associated data.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerServiceCode</td>
             <td>To-one association (GeneralLedgerServiceCode)</td>
             <td>
-                <p>Product/Service Code.</p>
+                <p>Product/service code.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -21297,7 +21740,7 @@ can be passed as well with all associated data.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td>            
@@ -21307,14 +21750,14 @@ can be passed as well with all associated data.</p>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>jurisdictionName</td>
             <td>String (200)</td>
             <td>Jurisdiction name.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jurisdictionType</td>
             <td>To-one association (TaxJurisdictionTypeLookup)</td>
             <td>
@@ -21337,14 +21780,14 @@ can be passed as well with all associated data.</p>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>label</td>
             <td>String (200)</td>
             <td>Label.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>owner</td>
             <td>To-one association (CorporateUser)</td>
             <td>
@@ -21359,21 +21802,21 @@ can be passed as well with all associated data.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>rate</td>
             <td>BigDecimal</td>
             <td>The rate for this entity (i.e. 0.075 to indicate 7.5%). The default value is 0.000000.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>reportingCodeName</td>
             <td>String (100)</td>
             <td>Reporting code name.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>source</td>
             <td>To-one association (SalesTaxRateSourceLookup)</td>
             <td>
@@ -21391,14 +21834,14 @@ can be passed as well with all associated data.</p>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>stateID</td>
             <td>Integer</td>
             <td>State ID from internal database table.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>status</td>
             <td>To-one association (TaxStatusLookup)</td>
             <td>
@@ -21417,7 +21860,7 @@ can be passed as well with all associated data.</p>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>taxType</td>
             <td>To-one association (TaxTypeLookup)</td>
             <td>
@@ -21436,7 +21879,7 @@ can be passed as well with all associated data.</p>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>type</td>
             <td>To-one association (SalesTaxRateTypeLookup)</td>
             <td>
@@ -21455,14 +21898,14 @@ can be passed as well with all associated data.</p>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>versionID</td>
             <td>Integer</td>
             <td>Unique Identifier for the current version.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>versions</td>
             <td>To-many association (SalesTaxRateVersion)</td>
             <td>Versions of this entity.</td>
