@@ -72,6 +72,7 @@ includes:
   - entityref/notentity
   - entityref/opportunity
   - entityref/opportunityhistory
+  - entityref/paybill/accountingperiod
   - entityref/paybill/batchgroup
   - entityref/paybill/billablecharge
   - entityref/paybill/billingsyncbatch
