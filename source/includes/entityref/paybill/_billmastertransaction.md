@@ -78,7 +78,7 @@ Read-only entity that represents a BillMasterTransaction.
         <tr class="even">
             <td>comment</td>
             <td>String (2147483647)</td>
-            <td>Comments.</td>
+            <td>Comment.</td>
             <td></td>
             <td>X</td>
         </tr>

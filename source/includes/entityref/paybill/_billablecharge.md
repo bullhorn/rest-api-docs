@@ -373,7 +373,18 @@ Represents a billable charge.
         <tr class="even">
             <td>invoiceTerm</td>
             <td>To-one association</td>
-            <td>Invoice term.</td>
+            <td>
+                <p>InvoiceTerm.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>clientCorporation</li>
+                    <li>title</li>
+                    <li>effectiveDate</li>
+                    <li>effectiveEndDate</li>
+                    <li>versionID</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
         </tr>
