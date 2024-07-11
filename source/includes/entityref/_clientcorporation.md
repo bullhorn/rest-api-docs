@@ -44,7 +44,7 @@ The ClientCorporation entity supports the massUpdate operations.
 | notes | String (2147483647) | Free text field for entering any comments or notes about the company. | | |
 | numEmployees | Integer | Total number of people employed by the company. | X | |
 | numOffices | Integer | Total number of offices for the ClientCorporation. | X | |
-| owners | To-many association | Owners of the ClientContacts for this ClientCorporation. | | |
+| owners | To-many association | Owners of the ClientContacts for this ClientCorporation. | | X |
 | ownerShip | String (30) | Status of the ClientCorporation's current ownership (for example, Public, Private). | | |
 | parentClientCorporation | To-one association | ClientCorporation that is a parent of this one. | | |
 | phone | String (20) | Main phone number for the ClientCorporation. | | |
