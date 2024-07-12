@@ -460,7 +460,7 @@ The JobOrder entity supports the massUpdate operations.
             <td>onSite</td>
             <td>String (20)</td>
             <td>Location requirements; for example, on-site, off-site, no preference.</td>
-            <td></td>
+            <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
