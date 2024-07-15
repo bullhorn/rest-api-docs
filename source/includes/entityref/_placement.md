@@ -414,7 +414,7 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
-            <tr class="even">
+            <tr class="odd">
             <td>isWorkFromHome</td>
             <td>Boolean</td>
             <td>Work from Home sourced from the associated JobOrder record. Can be changed if not set on JobOrder.</td>
