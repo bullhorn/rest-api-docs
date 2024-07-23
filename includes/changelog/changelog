@@ -2,6 +2,12 @@
 
 <p>This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.</p>
 
+<h2 id="july-2024-release-2024-7">July 2024 Release (2024.7)</h2>
+
+<p>| ADDED <code class="prettyprint">|</code> <a href="http://bullhorn.github.io/rest-api-docs/entityref.html#joborder">JobOrder isWorkFromHome field</a> |</p>
+
+<p>| ADDED <code class="prettyprint">|</code> <a href="http://bullhorn.github.io/rest-api-docs/entityref.html#placement">Placement isWorkFromHome field</a> |</p>
+
 <h2 id="june-2024-release-2024-6">June 2024 Release (2024.6)</h2>
 
 <p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-salestaxrate">SalesTaxRate externalID field</a> |</p>
