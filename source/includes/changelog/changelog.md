@@ -2,6 +2,10 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## August 2024 Release (2024.9)
+
+| ADDED ```|``` [DirectDepositAccount isDeleted, deletedByUserID field](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccount) |
+
 ## July 2024 Release (2024.7)
 
 | ADDED ```|``` [JobOrder isWorkFromHome field](http://bullhorn.github.io/rest-api-docs/entityref.html#joborder) |
