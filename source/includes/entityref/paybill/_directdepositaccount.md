@@ -116,14 +116,14 @@ Entity that represents a candidate's direct deposit account record.
         <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td>Soft deleted flag.</td>
+            <td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>deletedByUserID</td>
             <td>Integer</td>
-            <td>User that soft deleted this Direct Deposit Account.</td>
+            <td>User who deleted this DirectDepositAccount.</td>
             <td></td>
             <td></td>
         </tr>
