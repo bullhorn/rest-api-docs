@@ -1,6 +1,9 @@
 # REST API Change Log
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
+## August 2024 Release (2024.8)
+
+| ADDED ```|``` [TimesheetEntry approvedBy, billRate, customerRequiredFields, dateAdded, dateLastModified, payRate, timesheetEntryApprovalStatusLogEntry fields](http://bullhorn.github.io/rest-api-docs/entityref.html#timesheetentry) |
 
 ## July 2024 Release (2024.7)
 
