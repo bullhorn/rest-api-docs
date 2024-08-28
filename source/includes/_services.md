@@ -1,12 +1,60 @@
 # services
 
-## PUT services/CorporateUser
+## POST /services/CCPA/notifyOnCapture
+
+The California Consumer Privacy Act (CCPA) is a bill meant to enhance privacy rights and consumer protection for residents of California and goes into effect on January, 2020. Notify on Capture is a feature of this bill that notifies a person in the system that their data is being captured for the purposes of serving them as a staffing agency. An email is sent and a note is added to the person record for tracking. The staffing agency is responsible for knowing if and when to send Notify on Capture emails.
+
+The email body and subject line are pulled from system settings (private label attributes) that are specific to the person record:
+
+* `candidateDataCaptureNotificationEmailBody` / `candidateDataCaptureNotificationEmailSubjectLine`
+* `contactDataCaptureNotificationEmailBody` / `contactDataCaptureNotificationEmailSubjectLine`
+* `leadDataCaptureNotificationEmailBody` / `leadDataCaptureNotificationEmailSubjectLine`
+
+After the email is successfully sent a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting.
+
+``` shell
+curl -X POST \
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
+
+# Example Response
+{
+    "results": {
+        "SUCCESS": [
+            123,
+            456
+        ],
+        "FAILURE": []
+    },
+    "overallStatus": "SUCCESS",
+    "message": "Notify on capture email has been sent and note added.",
+    "successIds": [
+        123,
+        456
+    ],
+    "failureIds": []
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/CCPA/notifyOnCapture`
+
+Parameter | Required | Description
+--------- | -------- | -----------
+entity | yes | One of: "Candidate", "ClientContact", or "Lead".
+ids | yes | List of IDs of the given type of entity, a maximum of 500 per call.
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+## POST / PUT /services/CorporateUser
 
 With appropriate access, you can add or update users. Adding users may incur additional user fees. For questions about your account and billing, please contact Support or your Account Manager.
 
 ``` shell
 curl -X PUT \
       https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CorporateUser
+
+curl -X POST \
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CorporateUser/{corporateUserID}
 
 # Example Request
 {
@@ -15,6 +63,12 @@ curl -X PUT \
         },
         "privateLabel": {
             "id": 987654
+        },
+        "userSettings": {
+            "openOutboundMailInDefaultClient": "FALSE",
+            "sendAppointmentReminder": "FALSE",
+            "sendInvitationsToOwner": "FALSE",
+            "mobileEnabled": "0"
         },
         "firstName": "Jane",
         "middleName": "Francine",
@@ -29,11 +83,10 @@ curl -X PUT \
         "address": {
             "address1": "Fake Address 1",
             "address2": "Fake Address 2",
-            "city": "Albany",
+            "city": "Boston",
             "countryID": 1,
-            "state": "ny",
-            "timezone": null,
-            "zip": "11752"
+            "state": "MA",
+            "zip": "02108"
         },
         "userDateAdded": 1550874742177,
         "dateLastComment": 1607036876320,
@@ -104,7 +157,7 @@ curl -X PUT \
         "massMailOptOut": false,
         "smsOptIn": false,
         "loginRestrictions": {
-            "ipAddress": null,
+            "ipAddress": "149.176.114.106",
             "timeStart": "23:30:00",
             "timeEnd": "00:30:00",
             "weekDays": [
@@ -120,145 +173,15 @@ curl -X PUT \
         }
 }
 
-# Example Response
+# Example Response for PUT
 {
     "changedEntityType": "CorporateUser",
     "changedEntityId": 123456,
     "changeType": "INSERT",
     "data": {}
 }
-```
 
-### HTTP Request
-
-`{corpToken}/services/CorporateUser`
-
-Parameter | Required | Description
---------- |----------| -----------
-BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
-
-
-## POST /services/CorporateUser
-
-With appropriate access, you can add or update users. Adding users may incur additional user fees. For questions about your account and billing, please contact Support or your Account Manager.
-
-``` shell
-curl -X POST \
-      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CorporateUser/{corporateUserID}
-
-# Example Request
-{
-    "userType": {
-            "id": 456789
-    },
-    "privateLabel": {
-        "id": 987654
-    },
-    "firstName": "Jane",
-    "middleName": "Francine",
-    "lastName": "Doe",
-    "name": "Jane Doe",
-    "username": "JaneDoe",
-    "nickName": "Janey",
-    "password": "FakePassword",
-    "enabled": true,
-    "emailNotify": false,
-    "timeZoneOffsetEST": 600,
-    "address": {
-        "address1": "Fake Address 1",
-        "address2": "Fake Address 2",
-        "city": "Albany",
-        "countryID": 1,
-        "state": "ny",
-        "timezone": null,
-        "zip": "11752"
-    },
-    "userDateAdded": 1550874742177,
-    "dateLastComment": 1607036876320,
-    "departments": [
-        {
-            "id": 123456,
-            "isPrimary": true
-        },
-        {
-            "id": 456789,
-            "isPrimary": false
-        }
-    ],
-    "email": "fakeEmail@fakeEmail.com",
-    "email2": "fakeEmail2@fakeEmail.com",
-    "email3": "fakeEmail3@fakeEmail.com",
-    "emailSignature": "Jane Doe",
-    "externalEmail": "fakeExternalEmail@fakeExternalEmail.com",
-    "phone": "12345678912",
-    "phone2": "45612378894",
-    "phone3": "12346512384",
-    "mobile": "13216549456",
-    "pager": "456987412512",
-    "fax": "12345678912",
-    "fax2": "45612378894",
-    "fax3": "12346512384",
-    "occupation": "HR",
-    "companyName": "Fake Company",
-    "addressSourceLocation": {
-        "id": 7
-    },
-    "namePrefix": "Ms",
-    "nameSuffix": "ii",
-    "isDayLightSavings": false,
-    "isLockedOut": false,
-    "isOutboundFaxEnabled": false,
-    "inboundEmailEnabled": false,
-    "customText1": "Custom Text",
-    "customText2": "Custom Text",
-    "customText3": "Custom Text",
-    "customText4": "Custom Text",
-    "customText5": "Custom Text",
-    "customText6": "Custom Text",
-    "customText7": "Custom Text",
-    "customText8": "Custom Text",
-    "customText9": "Custom Text",
-    "customText10": "Custom Text",
-    "customText11": "Custom Text",
-    "customText12": "Custom Text",
-    "customText13": "Custom Text",
-    "customText14": "Custom Text",
-    "customText15": "Custom Text",
-    "customText16": "Custom Text",
-    "customText17": "Custom Text",
-    "customText18": "Custom Text",
-    "customText19": "Custom Text",
-    "customText20": "Custom Text",
-    "customDate1": "1550874742177",
-    "customDate2": "1550874742177",
-    "customDate3": "1550874742177",
-    "customFloat1": 1.3,
-    "customFloat2": 0.4,
-    "customFloat3": 10.5,
-    "customInt1": 100,
-    "customInt2": 450,
-    "customInt3": 30,
-    "isDeleted": false,
-    "massMailOptOut": false,
-    "smsOptIn": false,
-    "loginRestrictions": {
-        "ipAddress": null,
-        "timeStart": "23:30:00",
-        "timeEnd": "00:30:00",
-        "weekDays": [
-            "SUN",
-            "MON",
-            "FRI"
-        ]
-    },
-    "samlInfo": {
-        "samlIdpID": 456,
-        "nameID": "ssoEmail@email.com",
-        "idpType": 1
-    }
-}
-
-# Example Response
+# Example Response for POST
 {
     "changedEntityType": "CorporateUser",
     "changedEntityId": 123456,
@@ -269,57 +192,11 @@ curl -X POST \
 
 ### HTTP Request
 
-`{corpToken}/services/CorporateUser/{corporateUserID}`
+`{corpToken}/services/CorporateUser` and `{corpToken}/services/CorporateUser/{corporateUserID}`
 
 Parameter | Required | Description
 --------- |----------| -----------
 BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
-
-
-## POST /services/CCPA/notifyOnCapture
-
-The California Consumer Privacy Act (CCPA) is a bill meant to enhance privacy rights and consumer protection for residents of California and goes into effect on January, 2020. Notify on Capture is a feature of this bill that notifies a person in the system that their data is being captured for the purposes of serving them as a staffing agency. An email is sent and a note is added to the person record for tracking. The staffing agency is responsible for knowing if and when to send Notify on Capture emails.
-
-The email body and subject line are pulled from system settings (private label attributes) that are specific to the person record:
-
-* `candidateDataCaptureNotificationEmailBody` / `candidateDataCaptureNotificationEmailSubjectLine`
-* `contactDataCaptureNotificationEmailBody` / `contactDataCaptureNotificationEmailSubjectLine`
-* `leadDataCaptureNotificationEmailBody` / `leadDataCaptureNotificationEmailSubjectLine`
-
-After the email is successfully sent a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting.
-
-``` shell
-curl -X POST \
-      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
-
-# Example Response
-{
-    "results": {
-        "SUCCESS": [
-            123,
-            456
-        ],
-        "FAILURE": []
-    },
-    "overallStatus": "SUCCESS",
-    "message": "Notify on capture email has been sent and note added.",
-    "successIds": [
-        123,
-        456
-    ],
-    "failureIds": []
-}
-```
-
-### HTTP Request
-
-`{corpToken}/services/CCPA/notifyOnCapture`
-
-Parameter | Required | Description
---------- | -------- | -----------
-entity | yes | One of: "Candidate", "ClientContact", or "Lead".
-ids | yes | List of IDs of the given type of entity, a maximum of 500 per call.
-BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ## POST / PUT /services/DirectDepositAccount
 
