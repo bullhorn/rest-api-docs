@@ -161,9 +161,9 @@ curl -X POST \
             "timeStart": "23:30:00",
             "timeEnd": "00:30:00",
             "weekDays": [
-                "SUN",
-                "MON",
-                "FRI"
+                1,
+                2,
+                6
             ]
         },
         "samlInfo": {
