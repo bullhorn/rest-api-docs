@@ -6,6 +6,10 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [DirectDepositAccount isDeleted, deletedByUserID fields](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccount) |
 
+| ADDED ```|``` [Timesheet approvingClientContact, backupApprovingClientContact, dateAdded, dateLastModified, endDate, evaluationState, externalSource, isPreEvaluated, isWorkFromHome, lastTimeSheetVersion, timeAndExpenseBranch, timeSheetEntryApprovalStatusLogID fields](http://bullhorn.github.io/rest-api-docs/entityref.html#timesheet) |
+
+| ADDED ```|``` [TimesheetEntry timeLaborCalcTypeLookup field](http://bullhorn.github.io/rest-api-docs/entityref.html#timesheetentry) |
+
 ## July 2024 Release (2024.7)
 
 | ADDED ```|``` [JobOrder isWorkFromHome field](http://bullhorn.github.io/rest-api-docs/entityref.html#joborder) |
