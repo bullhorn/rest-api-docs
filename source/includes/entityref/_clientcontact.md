@@ -50,7 +50,7 @@ customObject1s to 35s | CustomObject | Fields to which custom objects can be ass
 | nameSuffix | String (5) | ClientContact's name suffix, for example Jr. | | |
 | nickName | String | ClientContact's nickname. | | |
 | numEmployees | Integer | Number of employees who report to this Contact. | X | |
-| occupation | String (50) | ClientContact's job title. | | |
+| occupation | String (100) | ClientContact's job title. | | |
 | office | String (40) | For companies with multiple locations, this field can be used to indicate which office this contact works out of. | | |
 | owner | To-one association | CorporateUser who is the owner of this Contact record. The default value is user who creates the ClientContact. | X | |
 | pager | String (20) | ClientContact's pager number. | | |
