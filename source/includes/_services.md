@@ -358,6 +358,23 @@ BhRestToken | no | Token that represents a session established by the login proc
 curl -X POST \
       https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
 
+# Example Request
+# No body is necessary
+{
+    "approvingUser": {
+        "id": 24
+    },
+    "correlatedCustomText1": "another test 2",
+    "customText18": "test custom 18 zzz 2",
+    "customText29": "test custom 29 zzzz 2",
+    "dateApproved": 1716523200001,
+    "requestCustomText10": "test 10 zzz 2",
+    "requestStatus": "testing yep 2",
+    "requestingUser": {
+        "id": 10
+    }
+}
+
 # Example Response
 {
     "message": "success",
@@ -371,7 +388,19 @@ curl -X POST \
 
 Approves a PlacementChangeRequest and updates the associated placement with the fields changes specified on the PlacementChangeRequest.
 
-The PlacementChangeRequest requestStatus is changed to the value stored in the placementApprovalStatus private label attribute.
+This request can be made _**without**_ any request body.
+
+This request can be made with a request body that contains any PlacementChangeRequest fields, including `dateApproved`.
+If PlacementChangeRequest fields are included, then updates will be made to the PlacementChangeRequest entity.
+
+If nothing is provided in the request body for the following fields, the system will automatically set a value:
+
+* approvingUser 
+  * This will be set to the CorporateUser who made the service call. 
+* dateApproved 
+  * This will be set to the timestamp of request.
+* requestStatus
+  * This will be set to the localized value stored in the `placementApprovalStatus` private label attribute.
 
 ### HTTP Request
 
