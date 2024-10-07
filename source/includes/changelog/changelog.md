@@ -2,6 +2,11 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## November 2024 Release (2024.11)
+
+| UPDATED ```|``` [PlacementChangeRequest approve service](http://bullhorn.github.io/rest-api-docs/#post-services-placementchangerequest-approve) |
+
+
 ## September 2024 Release (2024.9)
 
 | ADDED ```|``` [DirectDepositAccount isDeleted, deletedByUserID fields](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccount) |
