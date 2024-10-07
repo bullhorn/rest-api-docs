@@ -358,29 +358,41 @@ BhRestToken | no | Token that represents a session established by the login proc
 curl -X POST \
       https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
 
-# Example Request
-# No body is necessary
-{
-    "approvingUser": {
-        "id": 24
-    },
-    "correlatedCustomText1": "another test 2",
-    "customText18": "test custom 18 zzz 2",
-    "customText29": "test custom 29 zzzz 2",
-    "dateApproved": 1716523200001,
-    "requestCustomText10": "test 10 zzz 2",
-    "requestStatus": "testing yep 2",
-    "requestingUser": {
-        "id": 10
-    }
-}
+# Example Request 1
+# No Request Body
 
-# Example Response
+# Example Response 1
 {
     "message": "success",
     "placementID": 70695,
     "placementChangeRequest": {
         "requestStatus": "Approved",
+        "id": 123
+    }
+}
+
+# Example Request 2
+{
+    "approvingUser": {
+        "id": 24
+    },
+    "correlatedCustomText1": "correlated custom text 1",
+    "customText18": "custom text 18",
+    "customText29": "custom text 29",
+    "dateApproved": 1716523200001,
+    "requestCustomText10": "request custom text 10",
+    "requestStatus": "Test Status",
+    "requestingUser": {
+        "id": 10
+    }
+}
+
+# Example Response 2
+{
+    "message": "success",
+    "placementID": 70695,
+    "placementChangeRequest": {
+        "requestStatus": "Test Status",
         "id": 123
     }
 }
