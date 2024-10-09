@@ -82,7 +82,7 @@ The Candidate entity supports the massUpdate operations. It does not support Str
 | nickName | String (50) | Candidate's nickname. | | |
 | numCategories | Integer | Number of Category objects associated with Candidate. | | |
 | numOwners | Integer | Number of CorporateUsers that are listed as owner of Candidate. | | |
-| occupation | String (50) | Candidate's current occupation or job title. | | |
+| occupation | String (100) | Candidate's current occupation or job title. | | |
 | onboardingDocumentReceivedCount | Integer |  Number of eStaff onboarding documents that have been received by the Candidate. | | |
 | onboardingDocumentSentCount | Integer | Number of eStaff onboarding documents that have been sent and completed by the Candidate. | | |
 | onboardingPercentComplete | Integer | Percentage of eStaff onboarding documents that a Candidate has completed. | | |

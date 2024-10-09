@@ -114,13 +114,27 @@ Entity that represents a candidate's direct deposit account record.
             <td></td>
         </tr>
         <tr class="even">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>deletedByUserID</td>
+            <td>Integer</td>
+            <td>User who deleted this DirectDepositAccount.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
             <td>Date on which this account was added to Bullhorn.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td>Date on which this account was modified in Bullhorn.</td>
