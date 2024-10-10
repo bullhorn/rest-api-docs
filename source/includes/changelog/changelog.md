@@ -1,6 +1,7 @@
 # REST API Change Log
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
+
 ## November 2024 Release (2024.11)
 
 | ADDED ```|``` [CorporateUser service POST](http://bullhorn.github.io/rest-api-docs/index.html#post-services-corporateuser) |

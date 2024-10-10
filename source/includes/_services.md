@@ -47,7 +47,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ## POST / PUT /services/CorporateUser
 
-With appropriate access, you can add or update users. Adding users may incur additional user fees. For questions about your account and billing, please contact Support or your Account Manager.
+With appropriate access, you can add or update users. Adding users may incur additional user fees. For questions about your account and billing, please contact Bullhorn Support or your Account Manager.
 
 ``` shell
 curl -X PUT \
