@@ -606,3 +606,109 @@ curl -X POST \
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+
+### PUT /services/BillableCharge
+
+Allows a user to create a billable charge.
+
+At least one of either a placement or a billing profile is required. If only a placement is provided, it must have a billing profile. A description is required.
+
+```shell
+curl -X PUT \
+      https://rest{swimlane#}.bullhorn.com/rest-services/e999/services/BillableCharge
+
+# Example Request
+{
+    "description": "BillableCharge Test",
+    "periodEndDate": "2024-04-27",
+    "placement": {
+        "id": 272
+    },
+    "billMasters": [
+        {
+            "quantity": 30.0,
+            "transactionDate": "2024-04-27",
+            "amount": 1500.0,
+            "earnCode": {
+                "id": 5
+            },
+            "rate": 50,
+            "customerRequiredFields": [
+                {
+                    "customerRequiredFieldMeta": {
+                        "id": 2
+                    },
+                    "customerRequiredFieldOption": {
+                        "id": 14
+                    }
+                },
+                {
+                    "customerRequiredFieldMeta": {
+                        "id": 1
+                    },
+                    "textValue": "Meta Text Value!"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/BillableCharge`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+
+### POST /services/BillableCharge
+
+Allows a user to update a billable charge.
+
+```shell
+curl -X PUT \
+      https://rest{swimlane#}.bullhorn.com/rest-services/e999/services/BillableCharge
+
+# Example Request
+{
+    "billMasters": [
+        {
+            "quantity": 30.0,
+            "transactionDate": "2024-04-27",
+            "amount": 1500.0,
+            "earnCode": {
+                "id": 5
+            },
+            "rate": 50,
+            "customerRequiredFields": [
+                {
+                    "customerRequiredFieldMeta": {
+                        "id": 2
+                    },
+                    "customerRequiredFieldOption": {
+                        "id": 14
+                    }
+                },
+                {
+                    "customerRequiredFieldMeta": {
+                        "id": 1
+                    },
+                    "textValue": "Meta Text Value!"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/BillableCharge/{billableChargeId}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
