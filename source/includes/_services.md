@@ -410,7 +410,7 @@ If nothing is provided in the request body for the following fields, the system 
 * approvingUser 
   * This will be set to the CorporateUser who made the service call. 
 * dateApproved 
-  * This will be set to the timestamp of request.
+  * This will be set to the timestamp of the request.
 * requestStatus
   * This will be set to the localized value stored in the `placementApprovalStatus` private label attribute.
 
