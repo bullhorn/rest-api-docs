@@ -2,7 +2,7 @@
 
 Read-only entity that represents a file associated with an entity. The GET /entity/{EntityType}\]/{entityID}/fileAttachments call returns a list of files associated with that entity. Entity can be ClientCorporation, JobOrder, Candidate, ClientContact, Opportunity, or Placement.
 
-| **{Entity}FileAttachement field** | **Type** | **Description** | **Not null** | **Read-only** |
+| **{Entity}FileAttachment field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for the entity. | X | X |
 | contentSubType | String (64) | Content subtype for the file. | X | |
