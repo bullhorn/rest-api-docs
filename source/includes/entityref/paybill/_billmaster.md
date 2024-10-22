@@ -1,4 +1,4 @@
-# Pay and Bill - BillMaster
+# BillMaster
 
 Represents a BillMaster record.
 
@@ -46,7 +46,7 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd"> 
+        <tr class="even"> 
             <td>billMasterTransactions</td>
             <td>To-many association</td>
             <td><p>Associated BillMasterTransactions.</p>
@@ -57,7 +57,7 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billableCharge</td>
             <td>To-one association</td>
             <td><p>Associated BillableCharge.</p>
@@ -69,7 +69,7 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingCalendarInstance</td>
             <td>To-one association</td>
             <td>CalendarInstance - list of associated billing calendar instances.
@@ -82,7 +82,7 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billingSyncBatch</td>
             <td>To-one association</td>
             <td><p>Associated BillingSyncBatch.</p>
@@ -94,7 +94,7 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingSyncBatchFileAttachments</td>
             <td>To-many association</td>
             <td>BillingSyncBatchFileAttachment - list of files associated with the record.
@@ -106,18 +106,25 @@ Entitlements - View Bill Master, Edit Billable Charge
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>canInvoice</td>
             <td>Boolean</td>
             <td>Indicates whether can invoice.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>chargeTypeLookup</td>
             <td>To-one association</td>
             <td>ChargeTypeLookup - options are Timesheet or Expense Report.</td>
             <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customerRequiredFields</td>
+            <td>To-many association</td>
+            <td>BillMasterCustomerRequiredField</td>
+            <td></td>
             <td>X</td>
         </tr>
         <tr class="even">

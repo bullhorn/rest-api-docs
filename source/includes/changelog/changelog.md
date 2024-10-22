@@ -12,6 +12,12 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | UPDATED ```|``` [PlacementChangeRequest approve service](http://bullhorn.github.io/rest-api-docs/#post-services-placementchangerequest-approve) |
 
+| ADDED ```|``` [BillableCharge service POST](http://bullhorn.github.io/rest-api-docs/index.html#post-services-billablecharge) |
+
+| ADDED ```|``` [BillableCharge service PUT](http://bullhorn.github.io/rest-api-docs/index.html#put-services-billablecharge) |
+
+| ADDED ```|``` [BillMaster customerRequiredFields field](http://bullhorn.github.io/rest-api-docs/entityref.html#billmaster) |
+
 ## September 2024 Release (2024.9)
 
 | ADDED ```|``` [DirectDepositAccount isDeleted, deletedByUserID fields](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccount) |
