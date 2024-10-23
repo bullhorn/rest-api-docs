@@ -69,7 +69,7 @@ includes:
   - entityref/location
   - entityref/locationversion
   - entityref/note
-  - entityref/notentity
+  - entityref/noteentity
   - entityref/opportunity
   - entityref/opportunityhistory
   - entityref/paybill/accountingperiod
