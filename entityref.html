@@ -5600,7 +5600,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 
 <table><thead>
 <tr>
-<th><strong>{Entity}FileAttachement field</strong></th>
+<th><strong>{Entity}FileAttachment field</strong></th>
 <th><strong>Type</strong></th>
 <th><strong>Description</strong></th>
 <th><strong>Not null</strong></th>
@@ -10058,7 +10058,51 @@ CRUD Access - READ</p>
     </tbody>
 </table> 
 
-          
+          <h1 id="noteentity">NoteEntity</h1>
+
+<p>Represents the Candidate, ClientContact, CorporateUser, JobOrder, or Placement associated with a Note.</p>
+
+<p>If you include a commentingPerson value and a personReference value when you create a Note, the association to an entity is made automatically and you do not need to make a separate call to create a NoteEntity.</p>
+
+<table><thead>
+<tr>
+<th><strong>NoteEntity field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Not null</strong></th>
+<th><strong>Read-only</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>Unique identifier for this entity.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>note</td>
+<td>To-one association</td>
+<td>Note associated with this NoteEntity.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>targetEntityID</td>
+<td>Integer</td>
+<td>Id of target entity to which the associated Note applies.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>targetEntityName</td>
+<td>String (50)</td>
+<td>Name of target entity type. For Candidates ClientContacts, and CorporateUsers, specify “User” as the targetEntityName value. For JobOrders and Placements, specify the actual entity name as the targetEntityName value.</td>
+<td>X</td>
+<td></td>
+</tr>
+</tbody></table>
+
           <h1 id="opportunity">Opportunity</h1>
 
 <p>Represents a possible Opportunity which can be converted to a JobOrder.</p>
