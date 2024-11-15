@@ -18,6 +18,9 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [BillMaster customerRequiredFields field](http://bullhorn.github.io/rest-api-docs/entityref.html#billmaster) |
 
+## October 2024 Release (2024.10)
+| ADDED ```|``` [Candidate parsedResumeFile field](https://bullhorn.github.io/rest-api-docs/entityref.html#candidate) |
+
 ## September 2024 Release (2024.9)
 
 | ADDED ```|``` [DirectDepositAccount isDeleted, deletedByUserID fields](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccount) |
