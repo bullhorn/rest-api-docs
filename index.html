@@ -4400,7 +4400,7 @@ The search call is performed against a Lucene index. For information about the L
 <li><code class="prettyprint">leadDataCaptureNotificationEmailBody</code> / <code class="prettyprint">leadDataCaptureNotificationEmailSubjectLine</code></li>
 </ul>
 
-<p>After the email is successfully sent a note is added to the person record with an action type from the: <code class="prettyprint">dataCaptureNotificationNoteType</code> system setting. </p>
+<p>After the email is successfully sent a note is added to the person record with an action type from the: <code class="prettyprint">dataCaptureNotificationNoteType</code> system setting.</p>
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
 
@@ -4447,6 +4447,167 @@ The search call is performed against a Lucene index. For information about the L
 <tr>
 <td>BhRestToken</td>
 <td>no</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-put-services-corporateuser">POST / PUT /services/CorporateUser</h2>
+
+<p>With appropriate access, you can add or update users. Adding users may incur additional user fees. For questions about your account and billing, please contact Bullhorn Support or your Account Manager.</p>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CorporateUser
+
+curl -X POST <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CorporateUser/<span class="o">{</span>corporateUserID<span class="o">}</span>
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"userType"</span>: <span class="o">{</span>
+            <span class="s2">"id"</span>: 456789
+        <span class="o">}</span>,
+        <span class="s2">"privateLabel"</span>: <span class="o">{</span>
+            <span class="s2">"id"</span>: 987654
+        <span class="o">}</span>,
+        <span class="s2">"userSettings"</span>: <span class="o">{</span>
+            <span class="s2">"openOutboundMailInDefaultClient"</span>: <span class="s2">"FALSE"</span>,
+            <span class="s2">"sendAppointmentReminder"</span>: <span class="s2">"FALSE"</span>,
+            <span class="s2">"sendInvitationsToOwner"</span>: <span class="s2">"FALSE"</span>,
+            <span class="s2">"mobileEnabled"</span>: <span class="s2">"0"</span>
+        <span class="o">}</span>,
+        <span class="s2">"firstName"</span>: <span class="s2">"Jane"</span>,
+        <span class="s2">"middleName"</span>: <span class="s2">"Francine"</span>,
+        <span class="s2">"lastName"</span>: <span class="s2">"Doe"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"Jane Doe"</span>,
+        <span class="s2">"username"</span>: <span class="s2">"JaneDoe"</span>,
+        <span class="s2">"nickName"</span>: <span class="s2">"Janey"</span>,
+        <span class="s2">"password"</span>: <span class="s2">"FakePassword"</span>,
+        <span class="s2">"enabled"</span>: <span class="nb">true</span>,
+        <span class="s2">"emailNotify"</span>: <span class="nb">false</span>,
+        <span class="s2">"timeZoneOffsetEST"</span>: 600,
+        <span class="s2">"address"</span>: <span class="o">{</span>
+            <span class="s2">"address1"</span>: <span class="s2">"Fake Address 1"</span>,
+            <span class="s2">"address2"</span>: <span class="s2">"Fake Address 2"</span>,
+            <span class="s2">"city"</span>: <span class="s2">"Boston"</span>,
+            <span class="s2">"countryID"</span>: 1,
+            <span class="s2">"state"</span>: <span class="s2">"MA"</span>,
+            <span class="s2">"zip"</span>: <span class="s2">"02108"</span>
+        <span class="o">}</span>,
+        <span class="s2">"userDateAdded"</span>: 1550874742177,
+        <span class="s2">"dateLastComment"</span>: 1607036876320,
+        <span class="s2">"departments"</span>: <span class="o">[</span>
+            <span class="o">{</span>
+                <span class="s2">"id"</span>: 123456,
+                <span class="s2">"isPrimary"</span>: <span class="nb">true</span>
+            <span class="o">}</span>,
+            <span class="o">{</span>
+                <span class="s2">"id"</span>: 456789,
+                <span class="s2">"isPrimary"</span>: <span class="nb">false</span>
+            <span class="o">}</span>
+        <span class="o">]</span>,
+        <span class="s2">"email"</span>: <span class="s2">"fakeEmail@fakeEmail.com"</span>,
+        <span class="s2">"email2"</span>: <span class="s2">"fakeEmail2@fakeEmail.com"</span>,
+        <span class="s2">"email3"</span>: <span class="s2">"fakeEmail3@fakeEmail.com"</span>,
+        <span class="s2">"emailSignature"</span>: <span class="s2">"Jane Doe"</span>,
+        <span class="s2">"externalEmail"</span>: <span class="s2">"fakeExternalEmail@fakeExternalEmail.com"</span>,
+        <span class="s2">"phone"</span>: <span class="s2">"12345678912"</span>,
+        <span class="s2">"phone2"</span>: <span class="s2">"45612378894"</span>,
+        <span class="s2">"phone3"</span>: <span class="s2">"12346512384"</span>,
+        <span class="s2">"mobile"</span>: <span class="s2">"13216549456"</span>,
+        <span class="s2">"pager"</span>: <span class="s2">"456987412512"</span>,
+        <span class="s2">"fax"</span>: <span class="s2">"12345678912"</span>,
+        <span class="s2">"fax2"</span>: <span class="s2">"45612378894"</span>,
+        <span class="s2">"fax3"</span>: <span class="s2">"12346512384"</span>,
+        <span class="s2">"occupation"</span>: <span class="s2">"HR"</span>,
+        <span class="s2">"companyName"</span>: <span class="s2">"Fake Company"</span>,
+        <span class="s2">"addressSourceLocation"</span>: <span class="o">{</span>
+            <span class="s2">"id"</span>: 7
+        <span class="o">}</span>,
+        <span class="s2">"namePrefix"</span>: <span class="s2">"Ms"</span>,
+        <span class="s2">"nameSuffix"</span>: <span class="s2">"ii"</span>,
+        <span class="s2">"isDayLightSavings"</span>: <span class="nb">false</span>,
+        <span class="s2">"isLockedOut"</span>: <span class="nb">false</span>,
+        <span class="s2">"isOutboundFaxEnabled"</span>: <span class="nb">false</span>,
+        <span class="s2">"inboundEmailEnabled"</span>: <span class="nb">false</span>,
+        <span class="s2">"customText1"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText2"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText3"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText4"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText5"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText6"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText7"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText8"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText9"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText10"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText11"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText12"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText13"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText14"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText15"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText16"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText17"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText18"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText19"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customText20"</span>: <span class="s2">"Custom Text"</span>,
+        <span class="s2">"customDate1"</span>: <span class="s2">"1550874742177"</span>,
+        <span class="s2">"customDate2"</span>: <span class="s2">"1550874742177"</span>,
+        <span class="s2">"customDate3"</span>: <span class="s2">"1550874742177"</span>,
+        <span class="s2">"customFloat1"</span>: 1.3,
+        <span class="s2">"customFloat2"</span>: 0.4,
+        <span class="s2">"customFloat3"</span>: 10.5,
+        <span class="s2">"customInt1"</span>: 100,
+        <span class="s2">"customInt2"</span>: 450,
+        <span class="s2">"customInt3"</span>: 30,
+        <span class="s2">"isDeleted"</span>: <span class="nb">false</span>,
+        <span class="s2">"massMailOptOut"</span>: <span class="nb">false</span>,
+        <span class="s2">"smsOptIn"</span>: <span class="nb">false</span>,
+        <span class="s2">"loginRestrictions"</span>: <span class="o">{</span>
+            <span class="s2">"ipAddress"</span>: <span class="s2">"149.176.114.106"</span>,
+            <span class="s2">"timeStart"</span>: <span class="s2">"23:30:00"</span>,
+            <span class="s2">"timeEnd"</span>: <span class="s2">"00:30:00"</span>,
+            <span class="s2">"weekDays"</span>: <span class="o">[</span>
+                1,
+                2,
+                6
+            <span class="o">]</span>
+        <span class="o">}</span>,
+        <span class="s2">"samlInfo"</span>: <span class="o">{</span>
+            <span class="s2">"samlIdpID"</span>: 456,
+            <span class="s2">"nameID"</span>: <span class="s2">"ssoEmail@email.com"</span>,
+            <span class="s2">"idpType"</span>: 1
+        <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c"># Example Response for PUT</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"CorporateUser"</span>,
+    <span class="s2">"changedEntityId"</span>: 123456,
+    <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>,
+    <span class="s2">"data"</span>: <span class="o">{}</span>
+<span class="o">}</span>
+
+<span class="c"># Example Response for POST</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"CorporateUser"</span>,
+    <span class="s2">"changedEntityId"</span>: 123456,
+    <span class="s2">"changeType"</span>: <span class="s2">"UPDATE"</span>,
+    <span class="s2">"data"</span>: <span class="o">{}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/CorporateUser</code> and <code class="prettyprint">{corpToken}/services/CorporateUser/{corporateUserID}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
 <td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
 </tr>
 </tbody></table>
@@ -4562,7 +4723,7 @@ The search call is performed against a Lucene index. For information about the L
 
 <h2 id="put-services-issuereport">PUT /services/IssueReport</h2>
 
-<p>The Issue Report service allows for creation of issues to be presented to the user. These user-facing issues will be related to existing entities, and provide data on what the issue is and how to fix it. </p>
+<p>The Issue Report service allows for creation of issues to be presented to the user. These user-facing issues will be related to existing entities, and provide data on what the issue is and how to fix it.</p>
 <pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/IssueReport
 
@@ -4625,7 +4786,10 @@ The search call is performed against a Lucene index. For information about the L
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
 
-<span class="c"># Example Response</span>
+<span class="c"># Example Request 1</span>
+<span class="c"># No Request Body</span>
+
+<span class="c"># Example Response 1</span>
 <span class="o">{</span>
     <span class="s2">"message"</span>: <span class="s2">"success"</span>,
     <span class="s2">"placementID"</span>: 70695,
@@ -4634,11 +4798,60 @@ The search call is performed against a Lucene index. For information about the L
         <span class="s2">"id"</span>: 123
     <span class="o">}</span>
 <span class="o">}</span>
+
+<span class="c"># Example Request 2</span>
+<span class="o">{</span>
+    <span class="s2">"approvingUser"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 24
+    <span class="o">}</span>,
+    <span class="s2">"correlatedCustomText1"</span>: <span class="s2">"correlated custom text 1"</span>,
+    <span class="s2">"customText18"</span>: <span class="s2">"custom text 18"</span>,
+    <span class="s2">"customText29"</span>: <span class="s2">"custom text 29"</span>,
+    <span class="s2">"dateApproved"</span>: 1716523200001,
+    <span class="s2">"requestCustomText10"</span>: <span class="s2">"request custom text 10"</span>,
+    <span class="s2">"requestStatus"</span>: <span class="s2">"Test Status"</span>,
+    <span class="s2">"requestingUser"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 10
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c"># Example Response 2</span>
+<span class="o">{</span>
+    <span class="s2">"message"</span>: <span class="s2">"success"</span>,
+    <span class="s2">"placementID"</span>: 70695,
+    <span class="s2">"placementChangeRequest"</span>: <span class="o">{</span>
+        <span class="s2">"requestStatus"</span>: <span class="s2">"Test Status"</span>,
+        <span class="s2">"id"</span>: 123
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
 
 <p>Approves a PlacementChangeRequest and updates the associated placement with the fields changes specified on the PlacementChangeRequest.</p>
 
-<p>The PlacementChangeRequest requestStatus is changed to the value stored in the placementApprovalStatus private label attribute.</p>
+<p>This request can be made <em><strong>without</strong></em> any request body.</p>
+
+<p>This request can be made with a request body that contains any PlacementChangeRequest fields, including <code class="prettyprint">dateApproved</code>.
+If PlacementChangeRequest fields are included, then updates will be made to the PlacementChangeRequest entity.</p>
+
+<p>If nothing is provided in the request body for the following fields, the system will automatically set a value:</p>
+
+<ul>
+<li>approvingUser 
+
+<ul>
+<li>This will be set to the CorporateUser who made the service call. </li>
+</ul></li>
+<li>dateApproved 
+
+<ul>
+<li>This will be set to the timestamp of the request.</li>
+</ul></li>
+<li>requestStatus
+
+<ul>
+<li>This will be set to the localized value stored in the <code class="prettyprint">placementApprovalStatus</code> private label attribute.</li>
+</ul></li>
+</ul>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -4860,6 +5073,125 @@ The search call is performed against a Lucene index. For information about the L
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/RevenueRecognition/UpdateTransactionExportStatus</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="put-services-billablecharge">PUT /services/BillableCharge</h3>
+
+<p>Allows a user to create a billable charge.</p>
+
+<p>At least one of either a placement or a billing profile is required. If only a placement is provided, it must have a billing profile. A description is required.</p>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/services/BillableCharge
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"description"</span>: <span class="s2">"BillableCharge Test"</span>,
+    <span class="s2">"periodEndDate"</span>: <span class="s2">"2024-04-27"</span>,
+    <span class="s2">"placement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 272
+    <span class="o">}</span>,
+    <span class="s2">"billMasters"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"quantity"</span>: 30.0,
+            <span class="s2">"transactionDate"</span>: <span class="s2">"2024-04-27"</span>,
+            <span class="s2">"amount"</span>: 1500.0,
+            <span class="s2">"earnCode"</span>: <span class="o">{</span>
+                <span class="s2">"id"</span>: 5
+            <span class="o">}</span>,
+            <span class="s2">"rate"</span>: 50,
+            <span class="s2">"customerRequiredFields"</span>: <span class="o">[</span>
+                <span class="o">{</span>
+                    <span class="s2">"customerRequiredFieldMeta"</span>: <span class="o">{</span>
+                        <span class="s2">"id"</span>: 2
+                    <span class="o">}</span>,
+                    <span class="s2">"customerRequiredFieldOption"</span>: <span class="o">{</span>
+                        <span class="s2">"id"</span>: 14
+                    <span class="o">}</span>
+                <span class="o">}</span>,
+                <span class="o">{</span>
+                    <span class="s2">"customerRequiredFieldMeta"</span>: <span class="o">{</span>
+                        <span class="s2">"id"</span>: 1
+                    <span class="o">}</span>,
+                    <span class="s2">"textValue"</span>: <span class="s2">"Meta Text Value!"</span>
+                <span class="o">}</span>
+            <span class="o">]</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/BillableCharge</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="post-services-billablecharge">POST /services/BillableCharge</h3>
+
+<p>Allows a user to update a billable charge.</p>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/services/BillableCharge
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"billMasters"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"quantity"</span>: 30.0,
+            <span class="s2">"transactionDate"</span>: <span class="s2">"2024-04-27"</span>,
+            <span class="s2">"amount"</span>: 1500.0,
+            <span class="s2">"earnCode"</span>: <span class="o">{</span>
+                <span class="s2">"id"</span>: 5
+            <span class="o">}</span>,
+            <span class="s2">"rate"</span>: 50,
+            <span class="s2">"customerRequiredFields"</span>: <span class="o">[</span>
+                <span class="o">{</span>
+                    <span class="s2">"customerRequiredFieldMeta"</span>: <span class="o">{</span>
+                        <span class="s2">"id"</span>: 2
+                    <span class="o">}</span>,
+                    <span class="s2">"customerRequiredFieldOption"</span>: <span class="o">{</span>
+                        <span class="s2">"id"</span>: 14
+                    <span class="o">}</span>
+                <span class="o">}</span>,
+                <span class="o">{</span>
+                    <span class="s2">"customerRequiredFieldMeta"</span>: <span class="o">{</span>
+                        <span class="s2">"id"</span>: 1
+                    <span class="o">}</span>,
+                    <span class="s2">"textValue"</span>: <span class="s2">"Meta Text Value!"</span>
+                <span class="o">}</span>
+            <span class="o">]</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/BillableCharge/{billableChargeId}</code></p>
 
 <table><thead>
 <tr>

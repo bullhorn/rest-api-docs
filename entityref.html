@@ -4529,6 +4529,8 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 
 <p>Read-only entity that represents an internal user at an organization.</p>
 
+<p>With appropriate access, you can add or update users. Adding users may incur additional user fees. For questions about your account and billing, please contact Bullhorn Support or your Account Manager.</p>
+
 <table><thead>
 <tr>
 <th><strong>CorporateUser field</strong></th>
@@ -11903,7 +11905,7 @@ CRUD Access - READ</p>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd"> 
+        <tr class="even"> 
             <td>billMasterTransactions</td>
             <td>To-many association</td>
             <td><p>Associated BillMasterTransactions.</p>
@@ -11914,7 +11916,7 @@ CRUD Access - READ</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billableCharge</td>
             <td>To-one association</td>
             <td><p>Associated BillableCharge.</p>
@@ -11926,7 +11928,7 @@ CRUD Access - READ</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingCalendarInstance</td>
             <td>To-one association</td>
             <td>CalendarInstance - list of associated billing calendar instances.
@@ -11939,7 +11941,7 @@ CRUD Access - READ</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billingSyncBatch</td>
             <td>To-one association</td>
             <td><p>Associated BillingSyncBatch.</p>
@@ -11951,7 +11953,7 @@ CRUD Access - READ</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingSyncBatchFileAttachments</td>
             <td>To-many association</td>
             <td>BillingSyncBatchFileAttachment - list of files associated with the record.
@@ -11963,18 +11965,25 @@ CRUD Access - READ</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>canInvoice</td>
             <td>Boolean</td>
             <td>Indicates whether can invoice.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>chargeTypeLookup</td>
             <td>To-one association</td>
             <td>ChargeTypeLookup - options are Timesheet or Expense Report.</td>
             <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customerRequiredFields</td>
+            <td>To-many association</td>
+            <td>BillMasterCustomerRequiredField</td>
+            <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
@@ -15146,11 +15155,18 @@ can be passed as well with all associated data. This data can also flow down int
         </tr>
     </thead>
     <tbody>
-        <tr class="even">
+        <tr class="odd">
             <td>id</td>
             <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>allocationMethod</td>
+            <td>String(10)</td>
+            <td>Method of allocation for this account (either &ldquo;Amount&rdquo; or &ldquo;Percent&rdquo;).</td>
+            <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
@@ -24955,7 +24971,7 @@ can be passed as well with all associated data.</p>
         <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date the PlacementCertification was last updated.</td>
             <td>X</td>
             <td>X</td>
         </tr>
