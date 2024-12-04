@@ -196,6 +196,33 @@ curl -X POST \
 
 Parameter | Required | Description
 --------- |----------| -----------
+BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header._
+
+## PUT /services/CorporateUser/{corporateUserID}/delegation
+
+With appropriate access, you can add delegates to users.
+
+``` shell
+curl -X PUT \
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CorporateUser/{corporateUserID}/delegation
+
+# Example Request
+{
+    "delegate": 1
+}
+
+# Example Response for PUT
+{
+    "delegate": 1
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/CorporateUser/{corporateUserID}/delegation` and `{corpToken}/services/CorporateUser/{corporateUserID}/delegation`
+
+Parameter | Required | Description
+--------- |----------| -----------
 BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ## POST / PUT /services/DirectDepositAccount
