@@ -2,6 +2,8 @@
 
 Read-only entity that represents an internal user at an organization.
 
+With appropriate access, you can add or update users. Adding users may incur additional user fees. For questions about your account and billing, please contact Bullhorn Support or your Account Manager.
+
 | **CorporateUser field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |

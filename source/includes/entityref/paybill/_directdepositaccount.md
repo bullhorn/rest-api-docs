@@ -21,11 +21,18 @@ Entity that represents a candidate's direct deposit account record.
         </tr>
     </thead>
     <tbody>
-        <tr class="even">
+        <tr class="odd">
             <td>id</td>
             <td>Integer</td>
             <td>Unique identifier for this entity.</td>
             <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>allocationMethod</td>
+            <td>String(10)</td>
+            <td>Method of allocation for this account (either "Amount" or "Percent").</td>
+            <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">

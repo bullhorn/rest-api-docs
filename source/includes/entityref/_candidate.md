@@ -93,6 +93,7 @@ The Candidate entity supports the massUpdate operations. It does not support Str
 | owner | To-one association | CorporateUser who is the primary owner of Candidate. The default value is user who creates the Candidate. | X | |
 | pager | String (20) | Candidate's pager number. | | |
 | paperWorkOnFile | String | Configurable field that tracks whether the Candidate's tax paperwork has been received. | | |
+| parsedResumeFile | To-one association | Id of the CandidateFileAttachment that is associated with the resume in the Candidate record | | |
 | password | String | Candidate’s password. The default value is a randomly generated string. | X | |
 | payrollClientStartDate  | Timestamp | Indicates Date on which the employee was first on payroll at the staffing company. Used for payroll integrations. | | |
 | payrollStatus | String | Indicates whether the Candidate is currently active on payroll or not. Used for payroll integrations. | | |
