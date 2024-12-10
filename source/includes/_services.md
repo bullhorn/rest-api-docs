@@ -5,12 +5,12 @@
 The California Consumer Privacy Act (CCPA) is a bill meant to enhance privacy rights and consumer protection for residents of California and goes into effect on January, 2020. Notify on Capture is a feature of this bill that notifies a person in the system that their data is being captured for the purposes of serving them as a staffing agency. An email is sent and a note is added to the person record for tracking. The staffing agency is responsible for knowing if and when to send Notify on Capture emails.
 
 The email body and subject line are pulled from system settings (private label attributes) that are specific to the person record:
- 
- * `candidateDataCaptureNotificationEmailBody` / `candidateDataCaptureNotificationEmailSubjectLine`
- * `contactDataCaptureNotificationEmailBody` / `contactDataCaptureNotificationEmailSubjectLine`
- * `leadDataCaptureNotificationEmailBody` / `leadDataCaptureNotificationEmailSubjectLine`
 
-After the email is successfully sent a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting. 
+* `candidateDataCaptureNotificationEmailBody` / `candidateDataCaptureNotificationEmailSubjectLine`
+* `contactDataCaptureNotificationEmailBody` / `contactDataCaptureNotificationEmailSubjectLine`
+* `leadDataCaptureNotificationEmailBody` / `leadDataCaptureNotificationEmailSubjectLine`
+
+After the email is successfully sent, a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting.
 
 ``` shell
 curl -X POST \
@@ -44,6 +44,186 @@ Parameter | Required | Description
 entity | yes | One of: "Candidate", "ClientContact", or "Lead".
 ids | yes | List of IDs of the given type of entity, a maximum of 500 per call.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+## POST / PUT /services/CorporateUser
+
+With appropriate access, you can add or update users. Adding users may incur additional user fees. For questions about your account and billing, please contact Bullhorn Support or your Account Manager.
+
+``` shell
+curl -X PUT \
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CorporateUser
+
+curl -X POST \
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CorporateUser/{corporateUserID}
+
+# Example Request
+{
+    "userType": {
+            "id": 456789
+        },
+        "privateLabel": {
+            "id": 987654
+        },
+        "userSettings": {
+            "openOutboundMailInDefaultClient": "FALSE",
+            "sendAppointmentReminder": "FALSE",
+            "sendInvitationsToOwner": "FALSE",
+            "mobileEnabled": "0"
+        },
+        "firstName": "Jane",
+        "middleName": "Francine",
+        "lastName": "Doe",
+        "name": "Jane Doe",
+        "username": "JaneDoe",
+        "nickName": "Janey",
+        "password": "FakePassword",
+        "enabled": true,
+        "emailNotify": false,
+        "timeZoneOffsetEST": 600,
+        "address": {
+            "address1": "Fake Address 1",
+            "address2": "Fake Address 2",
+            "city": "Boston",
+            "countryID": 1,
+            "state": "MA",
+            "zip": "02108"
+        },
+        "userDateAdded": 1550874742177,
+        "dateLastComment": 1607036876320,
+        "departments": [
+            {
+                "id": 123456,
+                "isPrimary": true
+            },
+            {
+                "id": 456789,
+                "isPrimary": false
+            }
+        ],
+        "email": "fakeEmail@fakeEmail.com",
+        "email2": "fakeEmail2@fakeEmail.com",
+        "email3": "fakeEmail3@fakeEmail.com",
+        "emailSignature": "Jane Doe",
+        "externalEmail": "fakeExternalEmail@fakeExternalEmail.com",
+        "phone": "12345678912",
+        "phone2": "45612378894",
+        "phone3": "12346512384",
+        "mobile": "13216549456",
+        "pager": "456987412512",
+        "fax": "12345678912",
+        "fax2": "45612378894",
+        "fax3": "12346512384",
+        "occupation": "HR",
+        "companyName": "Fake Company",
+        "addressSourceLocation": {
+            "id": 7
+        },
+        "namePrefix": "Ms",
+        "nameSuffix": "ii",
+        "isDayLightSavings": false,
+        "isLockedOut": false,
+        "isOutboundFaxEnabled": false,
+        "inboundEmailEnabled": false,
+        "customText1": "Custom Text",
+        "customText2": "Custom Text",
+        "customText3": "Custom Text",
+        "customText4": "Custom Text",
+        "customText5": "Custom Text",
+        "customText6": "Custom Text",
+        "customText7": "Custom Text",
+        "customText8": "Custom Text",
+        "customText9": "Custom Text",
+        "customText10": "Custom Text",
+        "customText11": "Custom Text",
+        "customText12": "Custom Text",
+        "customText13": "Custom Text",
+        "customText14": "Custom Text",
+        "customText15": "Custom Text",
+        "customText16": "Custom Text",
+        "customText17": "Custom Text",
+        "customText18": "Custom Text",
+        "customText19": "Custom Text",
+        "customText20": "Custom Text",
+        "customDate1": "1550874742177",
+        "customDate2": "1550874742177",
+        "customDate3": "1550874742177",
+        "customFloat1": 1.3,
+        "customFloat2": 0.4,
+        "customFloat3": 10.5,
+        "customInt1": 100,
+        "customInt2": 450,
+        "customInt3": 30,
+        "isDeleted": false,
+        "massMailOptOut": false,
+        "smsOptIn": false,
+        "loginRestrictions": {
+            "ipAddress": "149.176.114.106",
+            "timeStart": "23:30:00",
+            "timeEnd": "00:30:00",
+            "weekDays": [
+                1,
+                2,
+                6
+            ]
+        },
+        "samlInfo": {
+            "samlIdpID": 456,
+            "nameID": "ssoEmail@email.com",
+            "idpType": 1
+        }
+}
+
+# Example Response for PUT
+{
+    "changedEntityType": "CorporateUser",
+    "changedEntityId": 123456,
+    "changeType": "INSERT",
+    "data": {}
+}
+
+# Example Response for POST
+{
+    "changedEntityType": "CorporateUser",
+    "changedEntityId": 123456,
+    "changeType": "UPDATE",
+    "data": {}
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/CorporateUser` and `{corpToken}/services/CorporateUser/{corporateUserID}`
+
+Parameter | Required | Description
+--------- |----------| -----------
+BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header._
+
+## PUT /services/CorporateUser/{corporateUserID}/delegation
+
+With appropriate access, you can add delegates to users.
+
+``` shell
+curl -X PUT \
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CorporateUser/{corporateUserID}/delegation
+
+# Example Request
+{
+    "delegate": 1
+}
+
+# Example Response for PUT
+{
+    "delegate": 1
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/CorporateUser/{corporateUserID}/delegation` and `{corpToken}/services/CorporateUser/{corporateUserID}/delegation`
+
+Parameter | Required | Description
+--------- |----------| -----------
+BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ## POST / PUT /services/DirectDepositAccount
 
@@ -148,7 +328,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 
 ## PUT /services/IssueReport
 
-The Issue Report service allows for creation of issues to be presented to the user. These user-facing issues will be related to existing entities, and provide data on what the issue is and how to fix it. 
+The Issue Report service allows for creation of issues to be presented to the user. These user-facing issues will be related to existing entities, and provide data on what the issue is and how to fix it.
 
 ``` shell
 curl -X PUT \
@@ -205,7 +385,10 @@ BhRestToken | no | Token that represents a session established by the login proc
 curl -X POST \
       https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
 
-# Example Response
+# Example Request 1
+# No Request Body
+
+# Example Response 1
 {
     "message": "success",
     "placementID": 70695,
@@ -214,11 +397,49 @@ curl -X POST \
         "id": 123
     }
 }
+
+# Example Request 2
+{
+    "approvingUser": {
+        "id": 24
+    },
+    "correlatedCustomText1": "correlated custom text 1",
+    "customText18": "custom text 18",
+    "customText29": "custom text 29",
+    "dateApproved": 1716523200001,
+    "requestCustomText10": "request custom text 10",
+    "requestStatus": "Test Status",
+    "requestingUser": {
+        "id": 10
+    }
+}
+
+# Example Response 2
+{
+    "message": "success",
+    "placementID": 70695,
+    "placementChangeRequest": {
+        "requestStatus": "Test Status",
+        "id": 123
+    }
+}
 ```
 
 Approves a PlacementChangeRequest and updates the associated placement with the fields changes specified on the PlacementChangeRequest.
 
-The PlacementChangeRequest requestStatus is changed to the value stored in the placementApprovalStatus private label attribute.
+This request can be made _**without**_ any request body.
+
+This request can be made with a request body that contains any PlacementChangeRequest fields, including `dateApproved`.
+If PlacementChangeRequest fields are included, then updates will be made to the PlacementChangeRequest entity.
+
+If nothing is provided in the request body for the following fields, the system will automatically set a value:
+
+* approvingUser 
+  * This will be set to the CorporateUser who made the service call. 
+* dateApproved 
+  * This will be set to the timestamp of the request.
+* requestStatus
+  * This will be set to the localized value stored in the `placementApprovalStatus` private label attribute.
 
 ### HTTP Request
 
@@ -258,7 +479,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-## PUT /services/RevenueRecognition/UnbilledRevenueDistributionBatch 
+## PUT /services/RevenueRecognition/UnbilledRevenueDistributionBatch
 
 Handles the creation of an UnbilledRevenueDistributionBatch and its subsequent association to UnbilledRevenueDistributions.
 
@@ -412,3 +633,109 @@ curl -X POST \
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+
+### PUT /services/BillableCharge
+
+Allows a user to create a billable charge.
+
+At least one of either a placement or a billing profile is required. If only a placement is provided, it must have a billing profile. A description is required.
+
+```shell
+curl -X PUT \
+      https://rest{swimlane#}.bullhorn.com/rest-services/e999/services/BillableCharge
+
+# Example Request
+{
+    "description": "BillableCharge Test",
+    "periodEndDate": "2024-04-27",
+    "placement": {
+        "id": 272
+    },
+    "billMasters": [
+        {
+            "quantity": 30.0,
+            "transactionDate": "2024-04-27",
+            "amount": 1500.0,
+            "earnCode": {
+                "id": 5
+            },
+            "rate": 50,
+            "customerRequiredFields": [
+                {
+                    "customerRequiredFieldMeta": {
+                        "id": 2
+                    },
+                    "customerRequiredFieldOption": {
+                        "id": 14
+                    }
+                },
+                {
+                    "customerRequiredFieldMeta": {
+                        "id": 1
+                    },
+                    "textValue": "Meta Text Value!"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/BillableCharge`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+
+### POST /services/BillableCharge
+
+Allows a user to update a billable charge.
+
+```shell
+curl -X PUT \
+      https://rest{swimlane#}.bullhorn.com/rest-services/e999/services/BillableCharge
+
+# Example Request
+{
+    "billMasters": [
+        {
+            "quantity": 30.0,
+            "transactionDate": "2024-04-27",
+            "amount": 1500.0,
+            "earnCode": {
+                "id": 5
+            },
+            "rate": 50,
+            "customerRequiredFields": [
+                {
+                    "customerRequiredFieldMeta": {
+                        "id": 2
+                    },
+                    "customerRequiredFieldOption": {
+                        "id": 14
+                    }
+                },
+                {
+                    "customerRequiredFieldMeta": {
+                        "id": 1
+                    },
+                    "textValue": "Meta Text Value!"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/BillableCharge/{billableChargeId}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
