@@ -10,7 +10,7 @@ The email body and subject line are pulled from system settings (private label a
 * `contactDataCaptureNotificationEmailBody` / `contactDataCaptureNotificationEmailSubjectLine`
 * `leadDataCaptureNotificationEmailBody` / `leadDataCaptureNotificationEmailSubjectLine`
 
-After the email is successfully sent a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting.
+After the email is successfully sent, a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting.
 
 ``` shell
 curl -X POST \
