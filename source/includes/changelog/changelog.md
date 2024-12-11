@@ -2,6 +2,10 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## January 2025 Release (2025.1)
+
+| UPDATED ```|``` [TimeLaborEvalRule countryId field](https://bullhorn.github.io/rest-api-docs/entityref.html#timelaborevalrule) |
+
 ## November 2024 Release (2024.11)
 
 | ADDED ```|``` [CorporateUser service POST](http://bullhorn.github.io/rest-api-docs/index.html#post-services-corporateuser) |

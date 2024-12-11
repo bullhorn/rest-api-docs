@@ -158,5 +158,12 @@ This entity represents the required certifications for a TimeLaborEvalRule.
             <td>X</td>
             <td></td>
         </tr>
+        <tr class="odd">
+            <td>countryId</td>
+            <td>integer</td>
+            <td>The ID code representing the country associated with the Rule.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
