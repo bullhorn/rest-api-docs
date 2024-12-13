@@ -10,7 +10,7 @@ The email body and subject line are pulled from system settings (private label a
 * `contactDataCaptureNotificationEmailBody` / `contactDataCaptureNotificationEmailSubjectLine`
 * `leadDataCaptureNotificationEmailBody` / `leadDataCaptureNotificationEmailSubjectLine`
 
-After the email is successfully sent, a note is added to the person record with an action type from the: `dataCaptureNotificationNoteType` system setting.
+After the email is successfully sent, a note is added to the person record with an action type from the `dataCaptureNotificationNoteType` system setting.
 
 ``` shell
 curl -X POST \
@@ -223,6 +223,7 @@ curl -X PUT \
 
 Parameter | Required | Description
 --------- |----------| -----------
+
 BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ## POST / PUT /services/DirectDepositAccount
