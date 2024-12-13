@@ -4400,7 +4400,7 @@ The search call is performed against a Lucene index. For information about the L
 <li><code class="prettyprint">leadDataCaptureNotificationEmailBody</code> / <code class="prettyprint">leadDataCaptureNotificationEmailSubjectLine</code></li>
 </ul>
 
-<p>After the email is successfully sent a note is added to the person record with an action type from the: <code class="prettyprint">dataCaptureNotificationNoteType</code> system setting.</p>
+<p>After the email is successfully sent, a note is added to the person record with an action type from the <code class="prettyprint">dataCaptureNotificationNoteType</code> system setting.</p>
 <pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
 
@@ -4608,9 +4608,41 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td>BhRestToken</td>
 <td>yes</td>
-<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header._</td>
 </tr>
 </tbody></table>
+
+<h2 id="put-services-corporateuser-corporateuserid-delegation">PUT /services/CorporateUser/{corporateUserID}/delegation</h2>
+
+<p>With appropriate access, you can add delegates to users.</p>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CorporateUser/<span class="o">{</span>corporateUserID<span class="o">}</span>/delegation
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"delegate"</span>: 1
+<span class="o">}</span>
+
+<span class="c"># Example Response for PUT</span>
+<span class="o">{</span>
+    <span class="s2">"delegate"</span>: 1
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/CorporateUser/{corporateUserID}/delegation</code> and <code class="prettyprint">{corpToken}/services/CorporateUser/{corporateUserID}/delegation</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</p>
 
 <h2 id="post-put-services-directdepositaccount">POST / PUT /services/DirectDepositAccount</h2>
 
