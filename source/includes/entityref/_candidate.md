@@ -82,7 +82,7 @@ The Candidate entity supports the massUpdate operations. It does not support Str
 | nickName | String (50) | Candidate's nickname. | | |
 | numCategories | Integer | Number of Category objects associated with Candidate. | | |
 | numOwners | Integer | Number of CorporateUsers that are listed as owner of Candidate. | | |
-| occupation | String (50) | Candidate's current occupation or job title. | | |
+| occupation | String (100) | Candidate's current occupation or job title. | | |
 | onboardingDocumentReceivedCount | Integer |  Number of eStaff onboarding documents that have been received by the Candidate. | | |
 | onboardingDocumentSentCount | Integer | Number of eStaff onboarding documents that have been sent and completed by the Candidate. | | |
 | onboardingPercentComplete | Integer | Percentage of eStaff onboarding documents that a Candidate has completed. | | |
@@ -93,6 +93,7 @@ The Candidate entity supports the massUpdate operations. It does not support Str
 | owner | To-one association | CorporateUser who is the primary owner of Candidate. The default value is user who creates the Candidate. | X | |
 | pager | String (20) | Candidate's pager number. | | |
 | paperWorkOnFile | String | Configurable field that tracks whether the Candidate's tax paperwork has been received. | | |
+| parsedResumeFile | To-one association | Id of the CandidateFileAttachment that is associated with the resume in the Candidate record | | |
 | password | String | Candidate’s password. The default value is a randomly generated string. | X | |
 | payrollClientStartDate  | Timestamp | Indicates Date on which the employee was first on payroll at the staffing company. Used for payroll integrations. | | |
 | payrollStatus | String | Indicates whether the Candidate is currently active on payroll or not. Used for payroll integrations. | | |

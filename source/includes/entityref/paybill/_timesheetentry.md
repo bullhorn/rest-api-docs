@@ -4,6 +4,7 @@ This entity represents the required certifications for a TimesheetEntry.
 
 
 
+
 <table>
     <colgroup>
         <col width="20%" />
@@ -66,10 +67,24 @@ This entity represents the required certifications for a TimesheetEntry.
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>approvedBy</td>
+            <td>String (255)</td>
+            <td>Name of the user who approved the TimesheetEntry.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>billEvalDate</td>
             <td>Date</td>
             <td>Date when &quot;billed&quot; field is evaluated.</td>
             <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>billRate</td>
+            <td>BigDecimal</td>
+            <td>Custom bill rate of the TimesheetEntry.</td>
+            <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
@@ -88,6 +103,27 @@ This entity represents the required certifications for a TimesheetEntry.
             <td></td>
         </tr>
         <tr class="odd">
+            <td>customerRequiredFields</td>
+            <td>To-many association</td>
+            <td>TimesheetEntryCustomerRequiredFields associated with the TimesheetEntry.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td></td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
             <td>earnCode</td>
             <td>To-one association</td>
             <td>EarnCode default fields: 
@@ -95,35 +131,35 @@ This entity represents the required certifications for a TimesheetEntry.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>endedAt</td>
-            <td>Timestamp</td>
+            <td>OffsetDateTime</td>
             <td>Record of when the TimesheetEntry ends.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>externalID</td>
             <td>String (100)</td>
             <td>User facing unique identifier.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>externalTimestamp</td>
             <td>Long</td>
             <td></td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>lastModifiedAtUtc</td>
             <td>Timestamp</td>
             <td>Record of when Timesheet was most recently modified.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>modifyingUser</td>
             <td>To-one association</td>
             <td>CorporateUser default fields: 
@@ -131,11 +167,18 @@ This entity represents the required certifications for a TimesheetEntry.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>payEvalDate</td>
             <td>Date</td>
             <td>Date when &quot;paid&quot; field is evaluated.</td>
             <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>payRate</td>
+            <td>BigDecimal</td>
+            <td>Custom pay rate of the TimesheetEntry.</td>
+            <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
@@ -147,12 +190,20 @@ This entity represents the required certifications for a TimesheetEntry.
         </tr>
         <tr class="odd">
             <td>startedAt</td>
-            <td>Timestamp</td>
+            <td>OffsetDateTime</td>
             <td>Record of when TimesheetEntry started.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>timeLaborCalcTypeLookup</td>
+            <td>To-one association</td>
+            <td>TimeLaborCalcTypeLookup options: 
+                <li>Pay</li><li>Bill</li><li>Pay & Bill</li></td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>timeLaborEvalSheetTypeLookup</td>
             <td>To-one association</td>
             <td>TimeLaborEvalSheetEntryTypeLookup options: 
@@ -160,7 +211,7 @@ This entity represents the required certifications for a TimesheetEntry.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>timeLaborSystemTypeLookupID</td>
             <td>To-one association</td>
             <td>TimeLaborSystemTypeLookup options: 
@@ -168,7 +219,7 @@ This entity represents the required certifications for a TimesheetEntry.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>timesheet</td>
             <td>To-one association</td>
             <td>Timesheet fields: 
@@ -176,14 +227,28 @@ This entity represents the required certifications for a TimesheetEntry.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>timesheetDay</td>
             <td>Date</td>
             <td>Day associated with TimesheetEntry.</td>
             <td>X</td>
             <td>X</td>
         </tr>
+        <tr class="odd">
+            <td>timesheetEntryApprovalStatusLogEntry</td>
+            <td>To-one association</td>
+            <td>TimesheetEntryApprovalStatusLogEntry associated with the TimesheetEntry.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
         <tr class="even">
+            <td>timesheetEntryApprovalStatusLogEntry</td>
+            <td>To-one association</td>
+            <td>TimesheetEntryApprovalStatusLogEntry associated with the TimesheetEntry.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>timesheetEntryApprovalStatusLookup</td>
             <td>To-one association</td>
             <td>TimesheetEntryApprovalStatusLookup options: 
@@ -191,21 +256,21 @@ This entity represents the required certifications for a TimesheetEntry.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>timesheetVersion</td>
             <td>Integer</td>
             <td>Integer of which version of timesheet this entry is associated with.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>timestamp</td>
             <td>Byte[]</td>
             <td>Record stored in byte format.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>unitOfMeasure</td>
             <td>To-one association</td>
             <td>UnitOfMeasure fields: 
@@ -213,7 +278,7 @@ This entity represents the required certifications for a TimesheetEntry.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>voidingTimesheetEntry</td>
             <td>To-one association</td>
             <td>TimesheetEntry fields: 

@@ -4,6 +4,7 @@ This entity represents the required certifications for a Timesheet.
 
 
 
+
 <table>
     <colgroup>
         <col width="20%" />
@@ -63,7 +64,7 @@ This entity represents the required certifications for a Timesheet.
         </tr>
         <tr class="odd">
             <td>approvedBy</td>
-            <td>String (101)</td>
+            <td>String (255)</td>
             <td>User the Timesheet was approved by.</td>
             <td></td>
             <td></td>
@@ -74,6 +75,20 @@ This entity represents the required certifications for a Timesheet.
             <td>Record of when Timesheet was approved.</td>
             <td></td>
             <td></td>
+        </tr>
+        <tr class="odd">
+            <td>approvingClientContact</td>
+            <td>To-one association</td>
+            <td>ClientContact of the approver of the Timesheet</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>backupApprovingClientContact</td>
+            <td>To-one association</td>
+            <td>ClientContact of the back up approver of the Timesheet</td>
+            <td></td>
+            <td>X</td>
         </tr>
         <tr class="odd">
             <td>billed</td>
@@ -114,6 +129,34 @@ This entity represents the required certifications for a Timesheet.
             <td>X</td>
         </tr>
         <tr class="odd">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date when this record was created in the Bullhorn system.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date when this record was last modified in the Bullhorn system.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>endDate</td>
+            <td>Date</td>
+            <td>End Date of the Timesheet Period.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>evaluationState</td>
+            <td>To-one association</td>
+            <td>State that is used for evaluating the Timesheet.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>externalID</td>
             <td>String (100)</td>
             <td>Concatenation of BTE TimeHistory EmplNames RecordID with and underscore and PlacementID.</td>
@@ -121,13 +164,34 @@ This entity represents the required certifications for a Timesheet.
             <td></td>
         </tr>
         <tr class="even">
+            <td>externalSource</td>
+            <td>String (50)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>hoursWorked</td>
             <td>BigDecimal</td>
             <td>Number of hours worked.</td>
             <td></td>
             <td>X</td>
         </tr>
+        <tr class="even">
+            <td>isPreEvaluated</td>
+            <td>Boolean</td>
+            <td>Indicates whether the Timesheet has been pre-evaulated.</td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="odd">
+            <td>isWorkFromHome</td>
+            <td>Boolean</td>
+            <td>Work from Home sourced from the associated Placement record. Can be changed if not set on Placement.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>jobOrder</td>
             <td>To-one association</td>
             <td>JobOrder default fields: 
@@ -137,18 +201,25 @@ This entity represents the required certifications for a Timesheet.
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>lastModifiedAtUtc</td>
             <td>Timestamp</td>
             <td>Record of when Timesheet was most recently modified.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>lastProcessedOn</td>
             <td>Timestamp</td>
             <td>Record of when Timesheet was most recently processed.</td>
             <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>lastTimeSheetVersion</td>
+            <td>To-one association</td>
+            <td>TimesheetVersion</td>
+            <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
@@ -192,6 +263,13 @@ This entity represents the required certifications for a Timesheet.
             <td></td>
         </tr>
         <tr class="even">
+            <td>timeAndExpenseBranch</td>
+            <td>String (32)</td>
+            <td>Name or code of the time and expense branch.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>timeLaborEvalSheetStatusLookup</td>
             <td>To-one association</td>
             <td>TimeLaborEvalSheetStatusLookup options: 
@@ -201,6 +279,13 @@ This entity represents the required certifications for a Timesheet.
             </td>
             <td>X</td>
             <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>timeSheetEntryApprovalStatusLogID</td>
+            <td>Integer</td>
+            <td>TimesheetEntryApprovalStatusLog associated with the Timesheet.</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>timesheetEntryApprovalStatusLookup</td>
