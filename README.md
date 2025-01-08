@@ -31,8 +31,15 @@ Now that Slate is all set up your machine, you'll probably want to learn more ab
 
 ### Generating Documentation
 
-Import `Code Generation.postman_collection.json` to postman
+- Import `Code Generation.postman_collection.json` to postman
 
-Paste in your current documentation to pre-request scripts (or specify the new entity)  
+- Fill out the script parameters under the 'Pre-request scripts' tab as follows:
+  - If documentation has already been generated for your entity, copy and paste the full file contents as the `currentDocumentation` parameter
+  - If generating documentation for a new entity, fill out the `originalEntity` parameter with the name of the entity (no spaces)
+  - For either of the above cases, if the entity belongs to a specific mission, fill out the `originalEntityMission` parameter with the mission name
+    - Currently only implemented by Pay/Bill, but may be expanded soon after the time of this writing
 
-View your postman console to copy the new documentation
+- Send the request
+
+- View your postman console (`View -> Show Postman Console`, or `Ctrl+Alt+C` on Windows) and copy the new documentation
+- Paste the new documentation in the corresponding file in this repository

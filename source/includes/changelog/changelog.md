@@ -5,6 +5,10 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [CorporateUserDelegation service PUT](http://bullhorn.github.io/rest-api-docs/index.html#put-services-corporateuser-corporateuserid-delegation) |
 
+## January 2025 Release (2025.1)
+
+| UPDATED ```|``` [TimeLaborEvalRule countryId field](https://bullhorn.github.io/rest-api-docs/entityref.html#timelaborevalrule) |
+
 ## November 2024 Release (2024.11)
 
 | ADDED ```|``` [CorporateUser service POST](http://bullhorn.github.io/rest-api-docs/index.html#post-put-services-corporateuser) |
