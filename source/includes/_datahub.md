@@ -233,7 +233,7 @@ Represents the structure of data for an Entity Type.
         <tr class="even">
             <td>schema</td>
             <td>String</td>
-            <td>Add text</td>
+            <td>The structure of data for an Entity Type.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -276,31 +276,150 @@ Represents an individual data entry identified by Entity Type ID and Source ID.
     </thead>
     <tbody>
         <tr class="even">
-            <td>sourceSystem</td>
+            <td>sourceId</td>
+            <td>String(64)</td>
+            <td>Add text.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>entityType</td>
             <td>To-one association</td>
             <td>Entity type associated with data record.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>entityType</td>
-            <td>String</td>
-            <td>Add text</td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>schemaVersion</td>
-            <td>String</td>
-            <td>Description of the schema version.</td>
+            <td>entityTypeSchemaVersion</td>
+            <td>To-one association</td>
+            <td>Schema version associated with data record.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>name</td>
+            <td>sourceId</td>
             <td>String(64)</td>
-            <td>Name of the schema version.</td>
+            <td>Unique identifier for records within a Source System.</td>
             <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateAddedInSourceSystem</td>
+            <td>Timestamp</td>
+            <td>Date the record was added in source system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModifiedInSourceSystem</td>
+            <td>Timestamp</td>
+            <td>Date the record was last updated in source system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>payload</td>
+            <td>String</td>
+            <td>JSON object defined by entity type schema.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+         <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been marked as deleted.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>placementId</td>
+            <td>Integer</td>
+            <td>Identifier for Placement.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>candidateId</td>
+            <td>Integer</td>
+            <td>Identifier for Candidate.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>clientContactId</td>
+            <td>Integer</td>
+            <td>Identifier for Contact.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>clientCorporationId</td>
+            <td>Integer</td>
+            <td>Identifier for Corporation.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jobOrderId</td>
+            <td>Integer</td>
+            <td>Identifier for Job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jobSubmissionId</td>
+            <td>Integer</td>
+            <td>Identifier for Job Submission.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>leadId</td>
+            <td>Integer</td>
+            <td>Identifier for Lead.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>opportunityId</td>
+            <td>Integer</td>
+            <td>Identifier for Opportunity.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>corporateUserId</td>
+            <td>Integer</td>
+            <td>Identifier for Corporate User.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>noteId</td>
+            <td>Integer</td>
+            <td>Identifier for Note.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>appointmentId</td>
+            <td>Integer</td>
+            <td>Identifier for Appointment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>payableChargeId</td>
+            <td>Integer</td>
+            <td>Identifier for Payable Charge.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billableChargeId</td>
+            <td>Integer</td>
+            <td>Identifier for Billable Charge.</td>
+            <td></td>
             <td></td>
         </tr>
     </tbody>
