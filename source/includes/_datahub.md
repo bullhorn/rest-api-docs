@@ -501,3 +501,7 @@ Represents an individual data entry identified by Entity Type ID and Source ID.
         </tr>
     </tbody>
 </table>
+
+<br>
+
+For more information on how to use Data Hub see the [Using Data Hub Guide](https://bullhorn.github.io/Data-Hub/)
