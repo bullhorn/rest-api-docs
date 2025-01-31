@@ -5,6 +5,7 @@ Bullhorn Data Hub is a flexible data structure to store data for reporting, and 
 # Data Hub API
 The Data Hub API allows partners to pass customer data to Data Hub where it is replicated onwards to Bullhorn Analytics and Data Replicator.
 All Data Hub API calls must be made with a valid BH REST Token. This section lists examples all the Data Hub endpoints.
+
 ##<span class="tag">POST</span> /data-hub/data
 
 ``` shell
