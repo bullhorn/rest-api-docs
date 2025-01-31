@@ -4,7 +4,7 @@ Bullhorn Data Hub is a flexible data structure to store data for reporting, and 
 
 # Data Hub API
 The Data Hub API allows partners to pass customer data to Data Hub where it is replicated onwards to Bullhorn Analytics and Data Replicator.
-All Data Hub API calls must be made with a valid BH REST Token. This section lists examples all the Data Hub endpoints.
+All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8 encoded JSON via HTTP. This section lists examples all the Data Hub endpoints.
 
 ##<span class="tag">POST</span> /data-hub/data
 
@@ -90,11 +90,88 @@ Upserts up to 100 records to datahub. Payload must be formatted according to sch
 
 ### HTTP Request
 
-`{corpToken}/data-hub/data/`
+`{corpToken}/data-hub/data`
 
-Parameter | Required | Description
------- | -------- | -----
-BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+##<span class="tag">POST</span> /data-hub/data/find
+
+``` shell
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/data-hub/data/find
+
+# Example Request
+{
+    "criteria": {
+        "and": [
+            {
+                "entityType.name": {
+                    "equalTo": "entityTypeName"
+                }
+            },
+            {
+                "sourceId": {
+                   "in": ["2","7"] 
+                }
+            },
+            {
+                "entityType.sourceSystem.name": {
+                    "equalTo": "sourceSystemName"
+                }
+            }
+        ]
+    }
+}
+
+# Example Response
+{
+    "statusCode": 200,
+    "messages": null,
+    "data": {
+        "start": 0,
+        "count": 1,
+        "total": 1,
+        "data": [
+            {
+                "dataId": 1234,
+                "sourceId": "2",
+                "entityType": {
+                    "entityTypeId": 241,
+                    "name": "sourceSystemName"
+                },
+                "entityTypeSchemaVersion": {
+                    "entityTypeSchemaVersionId": 441,
+                    "name": "schemaVersionName"
+                },
+                "dateAdded": "2025-01-10T22:56:18.012+00:00",
+                "dateLastModified": "2025-01-10T22:56:18.012+00:00",
+                "dateAddedInSourceSystem": "2024-12-01T17:48:17.000+00:00",
+                "dateLastModifiedInSourceSystem": "2024-12-01T17:48:17.000+00:00",
+                "payload": "{ \"name\": \"Update Again\", \"age\": 25, \"address\": { \"street\": \"789 Main St\", \"city\": \"New York\", \"state\": \"NY\", \"postalCode\": \"10001\" }, \"hobbies\": [\"reading\", \"running\"] }",
+                "isDeleted": false,
+                "candidateId": 123,
+                "clientContactId": 10,
+                "clientCorporationId": 1105,
+                "jobOrderId": 123,
+                "jobSubmissionId": 123,
+                "placementId": 123,
+                "leadId": 123,
+                "opportunityId": 123,
+                "corporateUserId": 123,
+                "noteId": 123,
+                "appointmentId": 123,
+                "payableChargeId": 123,
+                "billableChargeId": 134,
+                "entityId": 1234
+            }
+        ]
+    }
+}
+```
+Used to lookup and view Data Hub records using adaptive query.
+
+### HTTP Request
+
+`{corpToken}/data-hub/data/find`
+
+
 
 
 ## Errors
