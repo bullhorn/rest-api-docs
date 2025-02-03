@@ -4,7 +4,7 @@ Bullhorn Data Hub is a flexible data structure to store data for reporting, and 
 
 # Data Hub API
 The Data Hub API allows partners to pass customer data to Data Hub where it is replicated onwards to Bullhorn Analytics and Data Replicator.
-All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8 encoded JSON via HTTP. This section lists examples all the Data Hub endpoints.
+All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8 encoded JSON via HTTP. This section lists examples of all the Data Hub endpoints.
 
 ##<span class="tag">POST</span> /data-hub/data
 
@@ -169,10 +169,155 @@ Used to lookup and view Data Hub records using adaptive query.
 
 ### HTTP Request
 
-`{corpToken}/data-hub/data/find`
+`{corpToken}/data-hub/sourceSystem`
+
+##<span class="tag"> POST / PUT </span> /data-hub/sourceSystem
+
+``` shell
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/data-hub/sourceSystem
+
+# Example Request
+{
+    "name": "sourceSystemName",
+    "display": "sourceSystemDisplay"
+}
+
+# Example Response
+{
+    "changedEntityType": "SourceSystem",
+    "changedEntityId": 293,
+    "changeType": "INSERT",
+    "data": {
+        "name": "sourceSystemName",
+        "display": "sourceSystemDisplay"
+    }
+}
+```
+Used to add or update source systems.
+
+### HTTP Request
+
+`{corpToken}/data-hub/sourceSystem` and `{corpToken}/data-hub/sourceSystem/{sourceSystemId}`
+
+##<span class="tag"> POST / PUT </span> /data-hub/entityType
+
+``` shell
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/data-hub/entityType
+
+# Example Request
+{
+    "sourceSystem": {
+        "id": 293 // Can also associate source system using sourceSystem.name
+    },
+    "name": "entityTypeName",
+    "display": "entityTypeDisplay",
+    "isPrivate": true
+}
+
+# Example POST Response
+{
+    "changedEntityType": "EntityType",
+    "changedEntityId": 311,
+    "changeType": "INSERT",
+    "data": {
+        "display": "TiffTests33",
+        "name": "TiffTestLetsGO!CertVid-2234",
+        "sourceSystem": {
+            "id": 293
+        },
+        "isPrivate": true
+    }
+}
+```
+Used to add or update entity types.
+
+### HTTP Request
+
+`{corpToken}/data-hub/entityType` and `{corpToken}/data-hub/entityType/{entityTypeId}`
+
+##<span class="tag"> POST / PUT </span> /data-hub/entityTypeSchemaVersion
+
+``` shell
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/data-hub/entityTypeSchemaVersion
+
+# Example Request associating entity type by entityTypeId
+{
+    "entityType": {
+        "id": 311
+    },
+    "schema": "{\n  \"$id\": \"https://example.com/person.schema.json\",\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"description\": \"Schema for a person with name, age, address, and hobbies\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\": {\n      \"type\": \"string\",\n      \"description\": \"Name of the person\"\n    },\n    \"age\": {\n      \"type\": \"integer\",\n      \"description\": \"Age of the person\"\n    },\n    \"address\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"street\": {\n          \"type\": \"string\",\n          \"description\": \"Street address\"\n        },\n        \"city\": {\n          \"type\": \"string\",\n          \"description\": \"City name\"\n        },\n        \"state\": {\n          \"type\": \"string\",\n          \"description\": \"State abbreviation\"\n        },\n        \"postalCode\": {\n          \"type\": \"string\",\n          \"description\": \"Postal code\"\n        }\n      },\n      \"required\": [\"street\", \"city\", \"state\", \"postalCode\"],\n      \"description\": \"Address of the person\"\n    },\n    \"hobbies\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"description\": \"List of hobbies\"\n    }\n  },\n  \"required\": [\"name\", \"age\", \"address\", \"hobbies\"]\n}",
+    "description": "New Schema Version",
+    "name":"schemaVersionName"
+}
+
+# Example Request associating entity type by entityTypeName and sourceSystemName
+{
+    "entityType": {
+        "name": "entityTypeName",
+         "sourceSystem": {
+            "name": "sourceSystemName"
+        }
+    },
+    "schema": "{\n  \"$id\": \"https://example.com/person.schema.json\",\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"description\": \"Schema for a person with name, age, address, and hobbies\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\": {\n      \"type\": \"string\",\n      \"description\": \"Name of the person\"\n    },\n    \"age\": {\n      \"type\": \"integer\",\n      \"description\": \"Age of the person\"\n    },\n    \"address\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"street\": {\n          \"type\": \"string\",\n          \"description\": \"Street address\"\n        },\n        \"city\": {\n          \"type\": \"string\",\n          \"description\": \"City name\"\n        },\n        \"state\": {\n          \"type\": \"string\",\n          \"description\": \"State abbreviation\"\n        },\n        \"postalCode\": {\n          \"type\": \"string\",\n          \"description\": \"Postal code\"\n        }\n      },\n      \"required\": [\"street\", \"city\", \"state\", \"postalCode\"],\n      \"description\": \"Address of the person\"\n    },\n    \"hobbies\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"description\": \"List of hobbies\"\n    }\n  },\n  \"required\": [\"name\", \"age\", \"address\", \"hobbies\"]\n}",
+    "description": "New Schema Version",
+    "name":"schemaVersionName"
+}
 
 
+# Example POST Response
+{
+    "changedEntityType": "EntityTypeSchemaVersion",
+    "changedEntityId": 507,
+    "changeType": "INSERT",
+    "data": {
+        "schema": "{\n  \"$id\": \"https://example.com/person.schema.json\",\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"description\": \"Schema for a person with name, age, address, and hobbies\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\": {\n      \"type\": \"string\",\n      \"description\": \"Name of the person\"\n    },\n    \"age\": {\n      \"type\": \"integer\",\n      \"description\": \"Age of the person\"\n    },\n    \"address\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"street\": {\n          \"type\": \"string\",\n          \"description\": \"Street address\"\n        },\n        \"city\": {\n          \"type\": \"string\",\n          \"description\": \"City name\"\n        },\n        \"state\": {\n          \"type\": \"string\",\n          \"description\": \"State abbreviation\"\n        },\n        \"postalCode\": {\n          \"type\": \"string\",\n          \"description\": \"Postal code\"\n        }\n      },\n      \"required\": [\"street\", \"city\", \"state\", \"postalCode\"],\n      \"description\": \"Address of the person\"\n    },\n    \"hobbies\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"description\": \"List of hobbies\"\n    }\n  },\n  \"required\": [\"name\", \"age\", \"address\", \"hobbies\"]\n}",
+        "description": "New Schema Version",
+        "name": "schemaVersionName",
+        "entityType": {
+            "id": 311
+        }
+    }
+}
+```
+Used to add or update entity type schema versions.
 
+### HTTP Request
+
+`{corpToken}/data-hub/entityTypeSchemaVersion` and `{corpToken}/data-hub/entityTypeSchemaVersion/{schemaVersionId}`
+
+
+##<span class="tag"> GET </span> /data-hub
+
+``` shell
+curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/data-hub/entityType/311
+
+# Example Response
+{
+    "data": {
+        "entityTypeId": 311,
+        "display": "entityTypeDisplay",
+        "name": "entityTypeName",
+        "sourceSystem": {
+            "id": 293,
+            "name": "sourceSystemName"
+        },
+        "isPrivate": true,
+        "entityTypesSchemaVersions": {
+            "data": [],
+            "count": 1
+        },
+        "data": {
+            "data": [],
+            "count": 2
+        }
+    }
+}
+```
+Used to retrieve information about a source system, entity type, or schema version.
+
+### HTTP Request
+
+`{corpToken}/data-hub/{entityName}/{entityId}`
 
 ## Errors
 
@@ -355,7 +500,7 @@ Represents an individual data entry identified by Entity Type ID and Source ID.
         <tr class="even">
             <td>sourceId</td>
             <td>String(64)</td>
-            <td>Add text.</td>
+            <td>Unique identifier for records within a Source System.</td>
             <td>X</td>
             <td></td>
         </tr>
