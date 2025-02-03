@@ -411,6 +411,10 @@ Upserts up to 100 records to datahub. Payload must be formatted according to sch
 
 `{corpToken}/data-hub/data`
 
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
 ##<span class="tag">POST</span> /data-hub/data/find
 
 ``` shell
@@ -453,7 +457,7 @@ curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/data-hub/da
                 "sourceId": "2",
                 "entityType": {
                     "entityTypeId": 241,
-                    "name": "sourceSystemName"
+                    "name": "entityTypeName"
                 },
                 "entityTypeSchemaVersion": {
                     "entityTypeSchemaVersionId": 441,
@@ -463,11 +467,11 @@ curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/data-hub/da
                 "dateLastModified": "2025-01-10T22:56:18.012+00:00",
                 "dateAddedInSourceSystem": "2024-12-01T17:48:17.000+00:00",
                 "dateLastModifiedInSourceSystem": "2024-12-01T17:48:17.000+00:00",
-                "payload": "{ \"name\": \"Update Again\", \"age\": 25, \"address\": { \"street\": \"789 Main St\", \"city\": \"New York\", \"state\": \"NY\", \"postalCode\": \"10001\" }, \"hobbies\": [\"reading\", \"running\"] }",
+                "payload": "{ \"name\": \"John Smith\", \"age\": 25, \"address\": { \"street\": \"789 Main St\", \"city\": \"New York\", \"state\": \"NY\", \"postalCode\": \"10001\" }, \"hobbies\": [\"reading\", \"running\"] }",
                 "isDeleted": false,
                 "candidateId": 123,
                 "clientContactId": 10,
-                "clientCorporationId": 1105,
+                "clientCorporationId": 456,
                 "jobOrderId": 123,
                 "jobSubmissionId": 123,
                 "placementId": 123,
@@ -478,7 +482,7 @@ curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/data-hub/da
                 "appointmentId": 123,
                 "payableChargeId": 123,
                 "billableChargeId": 134,
-                "entityId": 1234
+                "entityId": 342
             }
         ]
     }
@@ -489,6 +493,10 @@ Used to lookup and view Data Hub records using adaptive query.
 ### HTTP Request
 
 `{corpToken}/data-hub/sourceSystem`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ##<span class="tag"> POST / PUT </span> /data-hub/sourceSystem
 
@@ -517,6 +525,10 @@ Used to add or update source systems.
 ### HTTP Request
 
 `{corpToken}/data-hub/sourceSystem` and `{corpToken}/data-hub/sourceSystem/{sourceSystemId}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ##<span class="tag"> POST / PUT </span> /data-hub/entityType
 
@@ -553,6 +565,10 @@ Used to add or update entity types.
 ### HTTP Request
 
 `{corpToken}/data-hub/entityType` and `{corpToken}/data-hub/entityType/{entityTypeId}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ##<span class="tag"> POST / PUT </span> /data-hub/entityTypeSchemaVersion
 
@@ -604,6 +620,10 @@ Used to add or update entity type schema versions.
 
 `{corpToken}/data-hub/entityTypeSchemaVersion` and `{corpToken}/data-hub/entityTypeSchemaVersion/{schemaVersionId}`
 
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
 
 ##<span class="tag"> GET </span> /data-hub
 
@@ -637,6 +657,10 @@ Used to retrieve information about a source system, entity type, or schema versi
 ### HTTP Request
 
 `{corpToken}/data-hub/{entityName}/{entityId}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 # Errors
 
