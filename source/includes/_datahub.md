@@ -1,11 +1,11 @@
-# Data Hub Reference Guide
+# Introduction
 
-Bullhorn Data Hub is a flexible data structure to store data for reporting, and analytics across Bullhorn, Marketplace Partner and external sources. This reference guide provides information about each API operation and supported entity type.
+Bullhorn Data Hub is a flexible data structure to store data for reporting, and analytics across Bullhorn, Marketplace Partner and external sources. It is built directly within the Bullhorn ATS Platform to help customers consolidate their staffing and relevant business data in a single location. This reference guide provides information about each Data Hub API operation and supported entity type.
 
 # Data Hub Entities
 
-### EdsSourceSystem
-Represents the external system sending data.
+## EdsSourceSystem
+Represents the external system sending data. This entity's name is represented as `sourceSystem` when making Data Hub API requests.
 
 <table>
     <colgroup>
@@ -42,8 +42,8 @@ Represents the external system sending data.
     </tbody>
 </table>
 
-### EdsEntityType
-Represents a category of data in the Source System.
+## EdsEntityType
+Represents a category of data in the Source System. This entity's name is represented as `entityType` when making Data Hub API requests.
 
 <table>
     <colgroup>
@@ -94,8 +94,8 @@ Represents a category of data in the Source System.
     </tbody>
 </table>
 
-### EdsEntityTypeSchemaVersion
-Represents the structure of data for an Entity Type.
+## EdsEntityTypeSchemaVersion
+Represents the structure of data for an Entity Type. This entity's name is represented as `entityTypeSchemaVersion` when making Data Hub API requests.
 
 <table>
     <colgroup>
@@ -146,8 +146,8 @@ Represents the structure of data for an Entity Type.
     </tbody>
 </table>
 
-### EdsData
-Represents an individual data entry identified by Entity Type ID and Source ID.
+## EdsData
+Represents an individual data entry identified by Entity Type ID and Source ID. This entity's name is represented as `data` when making Data Hub API requests.
 
 <table>
     <colgroup>
@@ -318,8 +318,12 @@ Represents an individual data entry identified by Entity Type ID and Source ID.
 </table>
 
 # Data Hub API
+
 The Data Hub API allows partners to pass customer data to Data Hub where it is replicated onwards to Bullhorn Analytics and Data Replicator.
-All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8 encoded JSON via HTTP. This section lists examples of all the Data Hub endpoints.
+All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8 encoded JSON via HTTP. This will section list examples of all the Data Hub endpoints.
+
+The Data Hub API is secured in the same manner as the Bullhorn REST API. For a full guide on logging into the API and authorizing a request please follow this documentation: [Authorization](http://bullhorn.github.io/rest-api-docs/index.html#authorization)
+
 
 ##<span class="tag">POST</span> /data-hub/data
 
@@ -646,7 +650,3 @@ Error Code | Meaning
 401 | Unauthorized -- Your API key is wrong or expired
 404 | Not Found -- The specified entity could not be found
 500 | Internal Server Error -- We had a problem with our server.
-
-<br>
-
-For more information on how to use Data Hub see the [Using Data Hub Guide](https://bullhorn.github.io/Data-Hub/)
