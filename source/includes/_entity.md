@@ -21,8 +21,6 @@ curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/entity/Cand
 }
 ```
 
- [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/80f333ee09c6763dad68#?env%5BDefault%5D=W3sia2V5Ijoic2VydmVyIiwidmFsdWUiOiJyb2hpdC1iYWNrZW5kIiwidHlwZSI6InRleHQiLCJuYW1lIjoic2VydmVyIiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoidG9rZW4iLCJ0eXBlIjoidGV4dCIsInZhbHVlIjoiODQwMWRhZmMtN2U5OS00M2E1LTgyYzEtMTdkYWY2YWRlZTNjIiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoicmVzdHVybCIsInR5cGUiOiJ0ZXh0IiwidmFsdWUiOiJyb2hpdC1iYWNrZW5kOjgxODEvcmVzdC1zZXJ2aWNlcy8xaHMvIiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoiQ0FORElEQVRFX0lEIiwidHlwZSI6InRleHQiLCJ2YWx1ZSI6IjU0NjgyMzgiLCJlbmFibGVkIjp0cnVlLCJob3ZlcmVkIjpmYWxzZX1d)
-
 Gets one or more entities or to-many associations.
 
 Individual entity records are manifested as resources, where the entity type and id form the last two parts of the resource path.
