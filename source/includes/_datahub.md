@@ -1,6 +1,6 @@
 # Introduction
 
-Bullhorn Data Hub is a flexible data structure to store data for reporting, and analytics across Bullhorn, Marketplace Partner and external sources. It is built directly within the Bullhorn ATS Platform to help customers consolidate their staffing and relevant business data in a single location. This reference guide provides information about each Data Hub API operation and supported entity type.
+Bullhorn Data Hub is a flexible data structure to store data for reporting and analytics across Bullhorn, Marketplace Partners and external sources. It is built directly within the Bullhorn ATS Platform to help customers consolidate their staffing and relevant business data in a single location. This reference guide provides information about each Data Hub API operation and supported entity type.
 
 # Data Hub Entities
 
