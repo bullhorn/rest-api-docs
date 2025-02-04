@@ -4,7 +4,7 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 ## March 2025 Release (2025.3)
 
-| UPDATED ```|``` [Data Hub Reference Guide](https://bullhorn.github.io/rest-api-docs/datahubref.html) |
+| ADDED ```|``` [Data Hub Reference Guide](https://bullhorn.github.io/rest-api-docs/datahubref.html) |
 
 ## January 2025 Release (2025.1)
 
