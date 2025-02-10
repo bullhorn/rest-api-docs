@@ -2,7 +2,7 @@
 
 An entity that represents the Customer Required Field options available for a particular Customer Required Field version.
 
-CRUD ACCESS - CREATE, READ, UPDATE, DELETE
+CRUD ACCESS - READ ONLY
 
 <table>
     <colgroup>
