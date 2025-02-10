@@ -17,7 +17,7 @@ Represents the external system sending data. This entity's name is represented a
     </colgroup>
     <thead>
         <tr class="header">
-            <th>SourceSystem field</th>
+            <th>EdsSourceSystem field</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -43,7 +43,7 @@ Represents the external system sending data. This entity's name is represented a
 </table>
 
 ## EdsEntityType
-Represents a category of data in the Source System. This entity's name is represented as `entityType` when making Data Hub API requests. See [POST / PUT /data-hub/entityType](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-entitytype) section of Data Hub API for more details.
+Represents a category of data in the source system. This entity's name is represented as `entityType` when making Data Hub API requests. See [POST / PUT /data-hub/entityType](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-entitytype) section of Data Hub API for more details.
 
 <table>
     <colgroup>
@@ -55,7 +55,7 @@ Represents a category of data in the Source System. This entity's name is repres
     </colgroup>
     <thead>
         <tr class="header">
-            <th>EntityType field</th>
+            <th>EdsEntityType field</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -95,7 +95,7 @@ Represents a category of data in the Source System. This entity's name is repres
 </table>
 
 ## EdsEntityTypeSchemaVersion
-Represents the structure of data for an Entity Type. This entity's name is represented as `entityTypeSchemaVersion` when making Data Hub API requests. See [POST / PUT /data-hub/entityTypeSchemaVersion](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-entitytypeschemaversion) section of Data Hub API for more details.
+Represents the structure of data for an entity type. This entity's name is represented as `entityTypeSchemaVersion` when making Data Hub API requests. See [POST / PUT /data-hub/entityTypeSchemaVersion](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-entitytypeschemaversion) section of Data Hub API for more details.
 
 <table>
     <colgroup>
@@ -107,7 +107,7 @@ Represents the structure of data for an Entity Type. This entity's name is repre
     </colgroup>
     <thead>
         <tr class="header">
-            <th>EntityTypeSchemaVersion field</th>
+            <th>EdsEntityTypeSchemaVersion field</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -125,7 +125,7 @@ Represents the structure of data for an Entity Type. This entity's name is repre
         <tr class="even">
             <td>schema</td>
             <td>String</td>
-            <td>The structure of data for an Entity Type.</td>
+            <td>The structure of data for an entity type.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -147,7 +147,7 @@ Represents the structure of data for an Entity Type. This entity's name is repre
 </table>
 
 ## EdsData
-Represents an individual data entry identified by Entity Type ID and Source ID. This entity's name is represented as `data` when making Data Hub API requests. See [POST /data-hub/data](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-data-hub-data) section of Data Hub API for more details.
+Represents an individual data entry identified by entity type ID and source ID. This entity's name is represented as `data` when making Data Hub API requests. See [POST /data-hub/data](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-data-hub-data) section of Data Hub API for more details.
 
 <table>
     <colgroup>
@@ -170,7 +170,7 @@ Represents an individual data entry identified by Entity Type ID and Source ID. 
         <tr class="even">
             <td>sourceId</td>
             <td>String(64)</td>
-            <td>Unique identifier for records within a Source System.</td>
+            <td>Unique identifier for records within a source system.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -191,7 +191,7 @@ Represents an individual data entry identified by Entity Type ID and Source ID. 
         <tr class="odd">
             <td>sourceId</td>
             <td>String(64)</td>
-            <td>Unique identifier for records within a Source System.</td>
+            <td>Unique identifier for records within a source system.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -226,91 +226,91 @@ Represents an individual data entry identified by Entity Type ID and Source ID. 
         <tr class="odd">
             <td>placementId</td>
             <td>Integer</td>
-            <td>Identifier for Placement.</td>
+            <td>Identifier for placement.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>candidateId</td>
             <td>Integer</td>
-            <td>Identifier for Candidate.</td>
+            <td>Identifier for candidate.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>clientContactId</td>
             <td>Integer</td>
-            <td>Identifier for Contact.</td>
+            <td>Identifier for contact.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>clientCorporationId</td>
             <td>Integer</td>
-            <td>Identifier for Corporation.</td>
+            <td>Identifier for corporation.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>jobOrderId</td>
             <td>Integer</td>
-            <td>Identifier for Job.</td>
+            <td>Identifier for job.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>jobSubmissionId</td>
             <td>Integer</td>
-            <td>Identifier for Job Submission.</td>
+            <td>Identifier for job submission.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>leadId</td>
             <td>Integer</td>
-            <td>Identifier for Lead.</td>
+            <td>Identifier for lead.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>opportunityId</td>
             <td>Integer</td>
-            <td>Identifier for Opportunity.</td>
+            <td>Identifier for opportunity.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>corporateUserId</td>
             <td>Integer</td>
-            <td>Identifier for Corporate User.</td>
+            <td>Identifier for corporate user.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>noteId</td>
             <td>Integer</td>
-            <td>Identifier for Note.</td>
+            <td>Identifier for note.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>appointmentId</td>
             <td>Integer</td>
-            <td>Identifier for Appointment.</td>
+            <td>Identifier for appointment.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>payableChargeId</td>
             <td>Integer</td>
-            <td>Identifier for Payable Charge.</td>
+            <td>Identifier for payable charge.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>billableChargeId</td>
             <td>Integer</td>
-            <td>Identifier for Billable Charge.</td>
+            <td>Identifier for billable charge.</td>
             <td></td>
             <td></td>
         </tr>
