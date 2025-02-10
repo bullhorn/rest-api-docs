@@ -5,7 +5,7 @@ Bullhorn Data Hub is a flexible data structure to store data for reporting and a
 # Data Hub Entities
 
 ## EdsSourceSystem
-Represents the external system sending data. This entity's name is represented as `sourceSystem` when making Data Hub API requests.
+Represents the external system sending data. This entity's name is represented as `sourceSystem` when making Data Hub API requests. See [POST / PUT /data-hub/sourceSystem](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-sourcesystem) section of Data Hub API for more details.
 
 <table>
     <colgroup>
@@ -43,7 +43,7 @@ Represents the external system sending data. This entity's name is represented a
 </table>
 
 ## EdsEntityType
-Represents a category of data in the Source System. This entity's name is represented as `entityType` when making Data Hub API requests.
+Represents a category of data in the Source System. This entity's name is represented as `entityType` when making Data Hub API requests. See [POST / PUT /data-hub/entityType](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-entitytype) section of Data Hub API for more details.
 
 <table>
     <colgroup>
@@ -95,7 +95,7 @@ Represents a category of data in the Source System. This entity's name is repres
 </table>
 
 ## EdsEntityTypeSchemaVersion
-Represents the structure of data for an Entity Type. This entity's name is represented as `entityTypeSchemaVersion` when making Data Hub API requests.
+Represents the structure of data for an Entity Type. This entity's name is represented as `entityTypeSchemaVersion` when making Data Hub API requests. See [POST / PUT /data-hub/entityTypeSchemaVersion](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-entitytypeschemaversion) section of Data Hub API for more details.
 
 <table>
     <colgroup>
@@ -147,7 +147,7 @@ Represents the structure of data for an Entity Type. This entity's name is repre
 </table>
 
 ## EdsData
-Represents an individual data entry identified by Entity Type ID and Source ID. This entity's name is represented as `data` when making Data Hub API requests.
+Represents an individual data entry identified by Entity Type ID and Source ID. This entity's name is represented as `data` when making Data Hub API requests. See [POST /data-hub/data](https://bullhorn.github.io/rest-api-docs/datahubref.html#post-data-hub-data) section of Data Hub API for more details.
 
 <table>
     <colgroup>
@@ -405,7 +405,7 @@ curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/data-hub/da
     ]
 }
 ```
-Upserts up to 100 records to datahub. Payload must be formatted according to schema definition setup for the corporation.
+Upserts up to 100 records to Data Hub. Payload must be formatted according to schema definition setup for the corporation.
 
 ### HTTP Request
 
