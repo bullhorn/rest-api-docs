@@ -854,7 +854,14 @@ curl -X POST \ PUT \ GET
 
 # Example Request
 {
-    // Request JSON placeholder  
+    "versionID": 230,
+    "effectiveDate": "2023-02-28",
+    "isActive": true,
+    "defaultCustomerRequiredFieldOption": {
+        "id": 96
+    },
+	"options": {
+	    "replaceAll": [96, 97, 98]
 }
 
 ```
