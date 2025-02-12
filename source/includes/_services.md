@@ -744,7 +744,7 @@ BhRestToken | yes | Token that represents a session established by the login pro
 
 ### POST /services/CustomerRequiredField
 
-Creates and updates client Customer Required Fields, manages CRF options, and sets default options.
+Creates and updates client Customer Required Fields (CRFs), manages CRF options, and sets default options.
 
 Utilizes:
 * Add Client Customer Required Field
@@ -791,7 +791,7 @@ BhRestToken | yes | Token that represents a session established by the login pro
 
 ### POST /services/PlacementCustomerRequiredField
 
-Creates, updates and removes Customer Required Fields on placements and manages CRF options.
+Creates, updates and removes Customer Required Fields (CRFs) on placements and manages CRF options.
 
 Utilizes:
 * Add Customer Required Field Configuration
@@ -833,7 +833,7 @@ BhRestToken | yes | Token that represents a session established by the login pro
 
 ### POST /services/JobOrderCustomerRequiredField
 
-Creates, updates and removes Customer Required Fields on jobs and manages CRF options.
+Creates, updates and removes Customer Required Fields (CRFs) on jobs and manages CRF options.
 
 Utilizes:
 
@@ -876,7 +876,7 @@ Parameter | Required | Description
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ### DELETE /services/PlacementCustomerRequiredField/version
-Manages versions for Placement Customer Required Fields.
+Manages versions for Placement Customer Required Fields (CRFs).
 
 
 * 10 CRFs per Placement
@@ -907,7 +907,7 @@ Parameter | Required | Description
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ### DELETE /services/JobOrderCustomerRequiredField/version
-Manages versions for Job Customer Required Fields.
+Manages versions for Job Customer Required Fields (CRFs).
 
 * 10 CRFs per Job
 * 50 CRF Options per Version
