@@ -743,7 +743,8 @@ BhRestToken | yes | Token that represents a session established by the login pro
 
 
 ### POST /services/CustomerRequiredField
-Creates and updates client CRFs, manages CRF options, and sets default options.
+
+Creates and updates client Customer Required Fields, manages CRF options, and sets default options.
 
 Utilizes:
 * Add Client Customer Required Field
@@ -764,7 +765,7 @@ Validates:
 
 ```shell
 curl -X POST \ PUT
-https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CustomerRequiredField/{id?}
+https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CustomerRequiredField/{id}
 
 # Example Request
 {
@@ -782,22 +783,22 @@ https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/Custome
 ```
 
 ### HTTP Request
-`{corpToken}/services/CustomerRequiredField/{id?}`
+`{corpToken}/services/CustomerRequiredField/{id}`
 
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ### POST /services/PlacementCustomerRequiredField
-Creates, updates and removes CRFs on placements and manages CRF options.
-Utilizes:
 
+Creates, updates and removes Customer Required Fields on placements and manages CRF options.
+
+Utilizes:
 * Add Customer Required Field Configuration
 * Edit Customer Required Field Configuration
 * Delete Customer Required Field Configuration
 
 Validates:
-
 * Meta exists
 * Default option ID exists
 * Options exist and relate to the Meta
@@ -808,7 +809,7 @@ Validates:
 
 ```shell  
 curl -X POST \ PUT \ GET
-      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/{id?}
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/{id}
 
 # Example Request
 {
@@ -824,14 +825,16 @@ curl -X POST \ PUT \ GET
 ```
 
 ### HTTP Request
-`{corpToken}/services/PlacementCustomerRequiredField/{id?}`
+`{corpToken}/services/PlacementCustomerRequiredField/{id}`
 
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ### POST /services/JobOrderCustomerRequiredField
-Creates, updates and removes CRFs on jobs and manages CRF options.
+
+Creates, updates and removes Customer Required Fields on jobs and manages CRF options.
+
 Utilizes:
 
 * Add Job Customer Required Field Configuration
@@ -850,7 +853,7 @@ Validates:
 
 ```shell    
 curl -X POST \ PUT \ GET
-      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/{id?}
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/{id}
 
 # Example Request
 {
@@ -866,14 +869,14 @@ curl -X POST \ PUT \ GET
 
 ```
 ### HTTP Request
-`{corpToken}/services/JobOrderCustomerRequiredField/{id?}`
+`{corpToken}/services/JobOrderCustomerRequiredField/{id}`
 
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ### DELETE /services/PlacementCustomerRequiredField/version
-Manages versions for Placement CRFs.
+Manages versions for Placement Customer Required Fields.
 
 
 * 10 CRFs per Placement
@@ -881,7 +884,7 @@ Manages versions for Placement CRFs.
 
 ```shell   
 curl -X DELETE \
-      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/{id?}/version/{id?}
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/{id}/version/{id}
 
 # Example Request
 {
@@ -897,14 +900,14 @@ curl -X DELETE \
 
 ```
 ### HTTP Request
-`{corpToken}/services/PlacementCustomerRequiredField/{id?}/version/{id?}`
+`{corpToken}/services/PlacementCustomerRequiredField/{id}/version/{id}`
 
 Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 ### DELETE /services/JobOrderCustomerRequiredField/version
-Manages versions for Job CRFs.
+Manages versions for Job Customer Required Fields.
 
 * 10 CRFs per Job
 * 50 CRF Options per Version
@@ -912,7 +915,7 @@ Manages versions for Job CRFs.
 
 ```shell   
 curl -X DELETE \
-      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/{id?}/version/{id?}
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/{id}/version/{id}
 
 # Example Request
 {
@@ -927,7 +930,7 @@ curl -X DELETE \
 }
 ```
 ### HTTP Request
-`{corpToken}/services/JobOrderCustomerRequiredField/{id?}/version/{id?}`
+`{corpToken}/services/JobOrderCustomerRequiredField/{id}/version/{id}`
 
 Parameter | Required | Description
 ------ | -------- | -----
