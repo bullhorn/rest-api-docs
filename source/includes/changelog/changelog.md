@@ -2,6 +2,39 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## March 2025 Release (2025.3)
+
+| ADDED ```|``` [CustomerRequiredFieldMeta Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-customerrequiredfieldmeta) |
+
+| ADDED ```|``` [PlacementCustomerRequiredField Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-placementcustomerrequiredfield) |
+
+| ADDED ```|``` [JobCustomerRequiredField Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-jobcustomerrequiredfield) |
+
+| ADDED ```|``` [PlacementCustomerRequiredFieldConfiguration version Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-placementcustomerrequiredfieldconfiguration) |
+
+| ADDED ```|``` [JobCustomerRequiredFieldConfiguration version Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-jobCustomerrequiredfieldconfiguration) |
+
+| ADDED ```|``` [CustomerRequiredFieldValueTypeLookup entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldvaluetypelookup) |
+
+| ADDED ```|``` [CustomerRequiredFieldPlacementConfiguration entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldplacementconfiguration) |
+
+| ADDED ```|``` [CustomerRequiredFieldJobConfiguration entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldjobconfiguration) |
+
+| ADDED ```|``` [BillMasterCustomerRequiredField entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastercustomerrequiredField) |
+
+| UPDATED ```|``` [CustomerRequiredFieldMeta entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldmeta) |
+
+| UPDATED ```|``` [CustomerRequiredFieldOption entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldoption) |
+
+| UPDATED ```|``` [CustomerRequiredFieldConfiguration entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldconfiguration) |
+
+| UPDATED ```|``` [CustomerRequiredFieldConfigurationVersion entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldconfigurationversion) |
+
+| UPDATED ```|``` [CustomerRequiredFieldConfigurationVersionOption entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldconfigurationversionoption) |
+
+| ADDED ```|``` [Data Hub Reference Guide](https://bullhorn.github.io/rest-api-docs/datahubref.html) |
+
+
 ## February 2025 Release (2025.2)
 
 NO CHANGES

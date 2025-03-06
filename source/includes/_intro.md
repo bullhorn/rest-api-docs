@@ -5,6 +5,7 @@ This reference guide provides general information about the Bullhorn REST API an
 Related:
 
 * [Entity Reference Guide](./entityref.html)
+* [Data Hub Reference Guide](./datahubref.html)
 * [REST API Change Log](./changelog.html)
 
 ## General Conventions

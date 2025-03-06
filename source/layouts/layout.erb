@@ -49,8 +49,11 @@
         <ul class="search-results"></ul>
       <% end %>
       <% if current_page.data.title == "API Reference" %>
-        <div class="guide-link">
+       <div class="guide-link">
           <a href="./entityref.html">Entity Reference Guide</a>
+      </div>
+      <div class="guide-link">
+          <a href="./datahubref.html">Data Hub Reference Guide</a>
       </div>
       <div class="guide-link">
           <a href="./changelog.html">REST API Change Log</a>
@@ -61,16 +64,33 @@
           <a href="./index.html">API Reference Guide</a>
       </div>
       <div class="guide-link">
+          <a href="./datahubref.html">Data Hub Reference Guide</a>
+      </div>
+      <div class="guide-link">
           <a href="./changelog.html">REST API Change Log</a>
       </div>
       <% end %>
       <% if current_page.data.title == "REST API Change Log" %>
       <div class="guide-link">
-      <a href="./index.html">API Reference Guide</a>
+          <a href="./index.html">API Reference Guide</a>
       </div>
       <div class="guide-link">
-      <a href="./entityref.html">Entity Reference Guide</a>
+          <a href="./entityref.html">Entity Reference Guide</a>
      </div>
+     <div class="guide-link">
+          <a href="./datahubref.html">Data Hub Reference Guide</a>
+      </div>
+      <% end %>
+      <% if current_page.data.title == "Data Hub Reference" %>
+      <div class="guide-link">
+          <a href="./index.html">API Reference Guide</a>
+       </div>
+       <div class="guide-link">
+           <a href="./entityref.html">Entity Reference Guide</a>
+       </div>
+       <div class="guide-link">
+           <a href="./changelog.html">REST API Change Log</a>
+        </div>
       <% end %>
       <div id="toc">
       </div>

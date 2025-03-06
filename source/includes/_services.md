@@ -740,3 +740,198 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
+
+
+### POST /services/CustomerRequiredField
+
+Creates and updates client Customer Required Fields (CRFs), manages CRF options, and sets default options.
+
+Utilizes:
+* Add Client Customer Required Field
+* Update Client Customer Required Field
+
+
+Validates:
+* Start date must be before end date
+* Client ID must exist
+* Client has ≤10 Metas
+* Meta has ≤50 Options
+* CRF Type exists
+* Meta has a label
+* Only 1 option is marked default
+* Requires booleans for doesFlowToNewJobs, requiredOntimesheet, visibleOnTimesheet
+* If PO then requires entityID in message and PO ID exists
+
+
+```shell
+curl -X POST \ PUT
+https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CustomerRequiredField/{id}
+
+# Example Request
+{
+    "options": [
+        {
+            "displayLabel": "NEW OPTION",
+            "associatedEntityID": {{purchaseOrderId3}}
+        },
+        {
+            "id": {{customerRequiredFieldOptionId}},
+            "displayLabel": "UPDATE display label"
+        }
+    ]
+}
+```
+
+### HTTP Request
+`{corpToken}/services/CustomerRequiredField/{id}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+### POST /services/PlacementCustomerRequiredField
+
+Creates, updates, and removes Customer Required Fields (CRFs) on placements and manages CRF options.
+
+Utilizes:
+* Add Customer Required Field Configuration
+* Edit Customer Required Field Configuration
+* Delete Customer Required Field Configuration
+
+Validates:
+* Meta exists
+* Default option ID exists
+* Options exist and relate to the Meta
+* Requires effective date
+* Effective date is unique
+* Requires isActive
+* Root ID matches version parent ID
+
+```shell  
+curl -X POST \ PUT \ GET
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/{id}
+
+# Example Request
+{
+    "versionID": 230,
+    "effectiveDate": "2023-02-28",
+    "isActive": true,
+    "defaultCustomerRequiredFieldOption": {
+        "id": 96
+    },
+	"options": {
+	    "replaceAll": [96, 97, 98]
+}
+```
+
+### HTTP Request
+`{corpToken}/services/PlacementCustomerRequiredField/{id}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+### POST /services/JobOrderCustomerRequiredField
+
+Creates, updates, and removes Customer Required Fields (CRFs) on jobs and manages CRF options.
+
+Utilizes:
+
+* Add Job Customer Required Field Configuration
+* Edit Job Customer Required Field Configuration
+* Delete Job Customer Required Field Configuration
+
+Validates:
+
+* Meta exists
+* Default option ID exists
+* Options exist and relate to the Meta
+* Requires effective date
+* Effective date is unique
+* Requires isActive
+* Root ID matches version parent ID
+
+```shell    
+curl -X POST \ PUT \ GET
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/{id}
+
+# Example Request
+{
+    "versionID": 230,
+    "effectiveDate": "2023-02-28",
+    "isActive": true,
+    "defaultCustomerRequiredFieldOption": {
+        "id": 96
+    },
+	"options": {
+	    "replaceAll": [96, 97, 98]
+}
+
+```
+### HTTP Request
+`{corpToken}/services/JobOrderCustomerRequiredField/{id}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+### DELETE /services/PlacementCustomerRequiredField/version
+Manages versions for Placement Customer Required Fields (CRFs).
+
+
+* 10 CRFs per Placement
+* 50 CRF Options per Version
+
+```shell   
+curl -X DELETE \
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/{id}/version/{id}
+
+# Example Request
+{
+    "effectiveDate": "2023-02-28",
+    "isActive": true,
+    "defaultCustomerRequiredFieldOption": {
+        "id": 236
+    },
+	"options": {
+	    "replaceAll": [236, 237, 238, 239, 240, 241, 242, 243, 244, 245]
+	}
+}
+
+```
+### HTTP Request
+`{corpToken}/services/PlacementCustomerRequiredField/{id}/version/{id}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+### DELETE /services/JobOrderCustomerRequiredField/version
+Manages versions for Job Customer Required Fields (CRFs).
+
+* 10 CRFs per Job
+* 50 CRF Options per Version
+* Version
+
+```shell   
+curl -X DELETE \
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/{id}/version/{id}
+
+# Example Request
+{
+    "effectiveDate": "2023-02-28",
+    "isActive": true,
+    "defaultCustomerRequiredFieldOption": {
+        "id": 236
+    },
+	"options": {
+	    "replaceAll": [236, 237, 238, 239, 240, 241, 242, 243, 244, 245]
+	}
+}
+```
+### HTTP Request
+`{corpToken}/services/JobOrderCustomerRequiredField/{id}/version/{id}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.

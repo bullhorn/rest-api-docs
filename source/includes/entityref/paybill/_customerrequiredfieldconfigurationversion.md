@@ -2,7 +2,7 @@
 
 An entity that represents the version entity for the Customer Required Field (CRF) Effective Dated Entity (EDE).
 
-CRUD Access - READ
+CRUD Access - READ ONLY
 
 Entitlements - View Customer Required Field Configuration
 
