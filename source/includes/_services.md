@@ -791,7 +791,7 @@ BhRestToken | yes | Token that represents a session established by the login pro
 
 ### POST /services/PlacementCustomerRequiredField
 
-Creates, updates and removes Customer Required Fields (CRFs) on placements and manages CRF options.
+Creates, updates, and removes Customer Required Fields (CRFs) on placements and manages CRF options.
 
 Utilizes:
 * Add Customer Required Field Configuration
@@ -833,7 +833,7 @@ BhRestToken | yes | Token that represents a session established by the login pro
 
 ### POST /services/JobOrderCustomerRequiredField
 
-Creates, updates and removes Customer Required Fields (CRFs) on jobs and manages CRF options.
+Creates, updates, and removes Customer Required Fields (CRFs) on jobs and manages CRF options.
 
 Utilizes:
 
