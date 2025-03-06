@@ -109,6 +109,9 @@
           <a href="./index.html">API Reference Guide</a>
       </div>
       <div class="guide-link">
+          <a href="./datahubref.html">Data Hub Reference Guide</a>
+      </div>
+      <div class="guide-link">
           <a href="./changelog.html">REST API Change Log</a>
       </div>
       <div id="toc">
@@ -14540,7 +14543,7 @@ can be passed as well with all associated data. This data can also flow down int
 
 <p>An entity that represents the primary view for the Customer Required Field (CRF) Effective Dated Entity (EDE). CustomerRequiredFieldConfiguration (CRFC) is an EDE entity designed to associate a CustomerRequiredField to a Placement. They have a 1:1 relationship with Placements signifying that only one Placement can have that specific CRFC.</p>
 
-<p>CRUD Access- CREATE, READ, UPDATE, DELETE</p>
+<p>CRUD Access- CREATE, READ, UPDATE, DELETE <a href="./#effective-dated-entity">effective-dated entity</a> DEPRECATED <a href="../_services.md#post-servicescustomerrequiredfieldmeta">see service endpoint</a></p>
 
 <p>Entitlements - Add Customer Required Field Configuration, Edit Customer Required Field Configuration, Delete Customer Required Field Configuration, View Customer Required Field Configuration</p>
 
@@ -14694,7 +14697,7 @@ can be passed as well with all associated data. This data can also flow down int
 
 <p>An entity that represents the version entity for the Customer Required Field (CRF) Effective Dated Entity (EDE).</p>
 
-<p>CRUD Access - READ</p>
+<p>CRUD Access - READ ONLY</p>
 
 <p>Entitlements - View Customer Required Field Configuration</p>
 
@@ -14799,7 +14802,7 @@ can be passed as well with all associated data. This data can also flow down int
 
 <p>An entity that represents the Customer Required Field options available for a particular Customer Required Field version.</p>
 
-<p>CRUD ACCESS - CREATE, READ, UPDATE, DELETE</p>
+<p>CRUD ACCESS - READ ONLY</p>
 
 <table>
     <colgroup>
@@ -14882,7 +14885,7 @@ can be passed as well with all associated data. This data can also flow down int
 
 <p>Represents metadata for a Customer Required Field (CRF).</p>
 
-<p>CRUD Access - CREATE, READ, UPDATE</p>
+<p>CRUD Access - READ ONLY</p>
 
 <p>Entitlements - Add Client Customer Required Field, View Client Customer Required Field, Update Client Customer Required Field</p>
 
@@ -15031,7 +15034,7 @@ can be passed as well with all associated data. This data can also flow down int
 
 <p>These options define what options a user will be able to choose from when filling in the Customer Required Field (CRF). Each option can have its own value, label, and start and end dates.</p>
 
-<p>CRUD Access - CREATE, READ, UPDATE</p>
+<p>CRUD Access - READ ONLY</p>
 
 <p>Entitlements - Add Client Customer Required Field, View Client Customer Required Field, Update Client Customer Required Field</p>
 

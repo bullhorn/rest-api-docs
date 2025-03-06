@@ -1,0 +1,893 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Data Hub Reference</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div class="guide-link">
+          <a href="./index.html">API Reference Guide</a>
+       </div>
+       <div class="guide-link">
+           <a href="./entityref.html">Entity Reference Guide</a>
+       </div>
+       <div class="guide-link">
+           <a href="./changelog.html">REST API Change Log</a>
+        </div>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="introduction">Introduction</h1>
+
+<p>Bullhorn Data Hub is a flexible data structure to store data for reporting and analytics across Bullhorn, marketplace partners, and external sources. It is built directly within the Bullhorn ATS Platform to help customers consolidate their staffing and relevant business data in a single location. This reference guide provides information about each Data Hub API operation and supported entity type.</p>
+
+<h1 id="data-hub-entities">Data Hub Entities</h1>
+
+<h2 id="edssourcesystem">EdsSourceSystem</h2>
+
+<p>Represents the external system sending data. This entity&rsquo;s name is represented as <code class="prettyprint">sourceSystem</code> when making Data Hub API requests. See <a href="https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-sourcesystem">POST / PUT /data-hub/sourceSystem</a> section of Data Hub API for more details.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>EdsSourceSystem field</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td>name</td>
+            <td>String(64)</td>
+            <td>Name of the source system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>display</td>
+            <td>String(64)</td>
+            <td>How the source system will be displayed.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="edsentitytype">EdsEntityType</h2>
+
+<p>Represents a category of data in the source system. This entity&rsquo;s name is represented as <code class="prettyprint">entityType</code> when making Data Hub API requests. See <a href="https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-entitytype">POST / PUT /data-hub/entityType</a> section of Data Hub API for more details.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>EdsEntityType field</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td>sourceSystem</td>
+            <td>To-one association</td>
+            <td>Source system associated with entity type.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>name</td>
+            <td>String(64)</td>
+            <td>Name of the entity type.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>display</td>
+            <td>String(64)</td>
+            <td>How the entity type will be displayed.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isPrivate</td>
+            <td>Boolean</td>
+            <td>Determines whether an entity type is private or not.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="edsentitytypeschemaversion">EdsEntityTypeSchemaVersion</h2>
+
+<p>Represents the structure of data for an entity type. This entity&rsquo;s name is represented as <code class="prettyprint">entityTypeSchemaVersion</code> when making Data Hub API requests. See <a href="https://bullhorn.github.io/rest-api-docs/datahubref.html#post-put-data-hub-entitytypeschemaversion">POST / PUT /data-hub/entityTypeSchemaVersion</a> section of Data Hub API for more details.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>EdsEntityTypeSchemaVersion field</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>entityType</td>
+            <td>To-one association</td>
+            <td>Entity type associated with schema version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>schema</td>
+            <td>String</td>
+            <td>The structure of data for an entity type.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>description</td>
+            <td>String</td>
+            <td>Description of the schema version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>name</td>
+            <td>String(64)</td>
+            <td>Name of the schema version.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="edsdata">EdsData</h2>
+
+<p>Represents an individual data entry identified by entity type ID and source ID. This entity&rsquo;s name is represented as <code class="prettyprint">data</code> when making Data Hub API requests. See <a href="https://bullhorn.github.io/rest-api-docs/datahubref.html#post-data-hub-data">POST /data-hub/data</a> section of Data Hub API for more details.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>EdsData field</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>sourceId</td>
+            <td>String(64)</td>
+            <td>Unique identifier for records within a source system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>entityType</td>
+            <td>To-one association</td>
+            <td>Entity type associated with data record.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>entityTypeSchemaVersion</td>
+            <td>To-one association</td>
+            <td>Schema version associated with data record.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>sourceId</td>
+            <td>String(64)</td>
+            <td>Unique identifier for records within a source system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateAddedInSourceSystem</td>
+            <td>Timestamp</td>
+            <td>Date the record was added in source system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModifiedInSourceSystem</td>
+            <td>Timestamp</td>
+            <td>Date the record was last updated in source system.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>payload</td>
+            <td>String</td>
+            <td>JSON object defined by entity type schema.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+         <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been marked as deleted.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>placementId</td>
+            <td>Integer</td>
+            <td>Identifier for placement.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>candidateId</td>
+            <td>Integer</td>
+            <td>Identifier for candidate.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>clientContactId</td>
+            <td>Integer</td>
+            <td>Identifier for contact.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>clientCorporationId</td>
+            <td>Integer</td>
+            <td>Identifier for corporation.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jobOrderId</td>
+            <td>Integer</td>
+            <td>Identifier for job.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jobSubmissionId</td>
+            <td>Integer</td>
+            <td>Identifier for job submission.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>leadId</td>
+            <td>Integer</td>
+            <td>Identifier for lead.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>opportunityId</td>
+            <td>Integer</td>
+            <td>Identifier for opportunity.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>corporateUserId</td>
+            <td>Integer</td>
+            <td>Identifier for corporate user.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>noteId</td>
+            <td>Integer</td>
+            <td>Identifier for note.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>appointmentId</td>
+            <td>Integer</td>
+            <td>Identifier for appointment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>payableChargeId</td>
+            <td>Integer</td>
+            <td>Identifier for payable charge.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billableChargeId</td>
+            <td>Integer</td>
+            <td>Identifier for billable charge.</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h1 id="data-hub-api">Data Hub API</h1>
+
+<p>The Data Hub API allows partners to pass customer data to Data Hub where it is replicated onwards to Bullhorn Analytics and Data Replicator.
+All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8 encoded JSON via HTTP. This will section list examples of all the Data Hub endpoints.</p>
+
+<p>The Data Hub API is secured in the same manner as the Bullhorn REST API. For a full guide on logging into the API and authorizing a request please follow this documentation: <a href="http://bullhorn.github.io/rest-api-docs/index.html#authorization">Authorization</a></p>
+
+<h2 id="post-data-hub-data"><span class="tag">POST</span> /data-hub/data</h2>
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/data
+
+<span class="c"># Example Request</span>
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"sourceSystem"</span>: <span class="s2">"sourceSystemName"</span>,
+        <span class="s2">"entityType"</span>: <span class="s2">"entityTypeName"</span>,
+        <span class="s2">"schemaVersion"</span>: <span class="s2">"schemaVersionName"</span>,
+        <span class="s2">"items"</span>: <span class="o">[</span>
+            <span class="o">{</span>
+                <span class="s2">"sourceId"</span>: 1,
+                <span class="s2">"dateAddedInSourceSystem"</span>: <span class="s2">"2024-11-31T17:48:17.182+00:00"</span>,
+                <span class="s2">"dateLastModifiedInSourceSystem"</span>: <span class="s2">"2024-11-31T17:48:17.182+00:00"</span>,
+                <span class="s2">"payload"</span>: <span class="s2">"{ </span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">bob</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">: 25, </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: { </span><span class="se">\"</span><span class="s2">street</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">789 Main St</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">New York</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">NY</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">postalCode</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">10001</span><span class="se">\"</span><span class="s2"> }, </span><span class="se">\"</span><span class="s2">hobbies</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">reading</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">running</span><span class="se">\"</span><span class="s2">] }"</span>,
+                <span class="s2">"isDeleted"</span>: <span class="nb">false</span>,
+                <span class="s2">"placementId"</span>: 107,
+                <span class="s2">"candidateId"</span>: 123,
+                <span class="s2">"clientContactId"</span>: 55,
+                <span class="s2">"clientCorporationId"</span>: 55,
+                <span class="s2">"jobOrderId"</span>: 123,
+                <span class="s2">"jobSubmissionId"</span>: 123,
+                <span class="s2">"leadId"</span>: 123,
+                <span class="s2">"opportunityId"</span>: 465,
+                <span class="s2">"corporateUserId"</span>: 123,
+                <span class="s2">"noteId"</span>: 123,
+                <span class="s2">"appointmentId"</span>: 123,
+                <span class="s2">"payableChargeId"</span>: 123,
+                <span class="s2">"billableChargeId"</span>: 134
+            <span class="o">}</span>,
+            <span class="o">{</span>
+                <span class="s2">"sourceId"</span>: 2,
+                <span class="s2">"dateAddedInSourceSystem"</span>: <span class="s2">"2024-11-31T17:48:17.182+00:00"</span>,
+                <span class="s2">"dateLastModifiedInSourceSystem"</span>: <span class="s2">"2024-11-31T17:48:17.182+00:00"</span>,
+                <span class="s2">"payload"</span>: <span class="s2">"{ </span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">sam</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">: 30, </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: { </span><span class="se">\"</span><span class="s2">street</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">123 Main St</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Dallas</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">TX</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">postalCode</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">75001</span><span class="se">\"</span><span class="s2"> }, </span><span class="se">\"</span><span class="s2">hobbies</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">gaming</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">running</span><span class="se">\"</span><span class="s2">] }"</span>,
+                <span class="s2">"isDeleted"</span>: <span class="nb">false</span>,
+                <span class="s2">"placementId"</span>: 107,
+                <span class="s2">"candidateId"</span>: 123,
+                <span class="s2">"clientContactId"</span>: 55,
+                <span class="s2">"clientCorporationId"</span>: 55,
+                <span class="s2">"jobOrderId"</span>: 123,
+                <span class="s2">"jobSubmissionId"</span>: 123,
+                <span class="s2">"leadId"</span>: 123,
+                <span class="s2">"opportunityId"</span>: 465,
+                <span class="s2">"corporateUserId"</span>: 123,
+                <span class="s2">"noteId"</span>: 123,
+                <span class="s2">"appointmentId"</span>: 123,
+                <span class="s2">"payableChargeId"</span>: 123,
+                <span class="s2">"billableChargeId"</span>: 134
+            <span class="o">}</span>
+            // up to 100 items
+        <span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"statusCode"</span>: 200,
+    <span class="s2">"messages"</span>: <span class="o">[]</span>,
+    <span class="s2">"data"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"entityType"</span>: <span class="s2">"entityTypeName"</span>,
+            <span class="s2">"sourceSystem"</span>: <span class="s2">"sourceSystemName"</span>,
+            <span class="s2">"totalSuccessfulItems"</span>: 1,
+            <span class="s2">"successfulItems"</span>: <span class="o">[</span>
+                <span class="o">{</span>
+                    <span class="s2">"sourceId"</span>: <span class="s2">"1"</span>,
+                    <span class="s2">"dataId"</span>: 1234
+                <span class="o">}</span>,
+                <span class="o">{</span>
+                    <span class="s2">"sourceId"</span>: <span class="s2">"2"</span>,
+                    <span class="s2">"dataId"</span>: 1235
+                <span class="o">}</span>
+            <span class="o">]</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Upserts up to 100 records to Data Hub. Payload must be formatted according to schema definition setup for the corporation.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/data-hub/data</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-data-hub-data-find"><span class="tag">POST</span> /data-hub/data/find</h2>
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/data/find
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"criteria"</span>: <span class="o">{</span>
+        <span class="s2">"and"</span>: <span class="o">[</span>
+            <span class="o">{</span>
+                <span class="s2">"entityType.name"</span>: <span class="o">{</span>
+                    <span class="s2">"equalTo"</span>: <span class="s2">"entityTypeName"</span>
+                <span class="o">}</span>
+            <span class="o">}</span>,
+            <span class="o">{</span>
+                <span class="s2">"sourceId"</span>: <span class="o">{</span>
+                   <span class="s2">"in"</span>: <span class="o">[</span><span class="s2">"2"</span>,<span class="s2">"7"</span><span class="o">]</span> 
+                <span class="o">}</span>
+            <span class="o">}</span>,
+            <span class="o">{</span>
+                <span class="s2">"entityType.sourceSystem.name"</span>: <span class="o">{</span>
+                    <span class="s2">"equalTo"</span>: <span class="s2">"sourceSystemName"</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"statusCode"</span>: 200,
+    <span class="s2">"messages"</span>: null,
+    <span class="s2">"data"</span>: <span class="o">{</span>
+        <span class="s2">"start"</span>: 0,
+        <span class="s2">"count"</span>: 1,
+        <span class="s2">"total"</span>: 1,
+        <span class="s2">"data"</span>: <span class="o">[</span>
+            <span class="o">{</span>
+                <span class="s2">"dataId"</span>: 1234,
+                <span class="s2">"sourceId"</span>: <span class="s2">"2"</span>,
+                <span class="s2">"entityType"</span>: <span class="o">{</span>
+                    <span class="s2">"entityTypeId"</span>: 241,
+                    <span class="s2">"name"</span>: <span class="s2">"entityTypeName"</span>
+                <span class="o">}</span>,
+                <span class="s2">"entityTypeSchemaVersion"</span>: <span class="o">{</span>
+                    <span class="s2">"entityTypeSchemaVersionId"</span>: 441,
+                    <span class="s2">"name"</span>: <span class="s2">"schemaVersionName"</span>
+                <span class="o">}</span>,
+                <span class="s2">"dateAdded"</span>: <span class="s2">"2025-01-10T22:56:18.012+00:00"</span>,
+                <span class="s2">"dateLastModified"</span>: <span class="s2">"2025-01-10T22:56:18.012+00:00"</span>,
+                <span class="s2">"dateAddedInSourceSystem"</span>: <span class="s2">"2024-12-01T17:48:17.000+00:00"</span>,
+                <span class="s2">"dateLastModifiedInSourceSystem"</span>: <span class="s2">"2024-12-01T17:48:17.000+00:00"</span>,
+                <span class="s2">"payload"</span>: <span class="s2">"{ </span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">John Smith</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">: 25, </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: { </span><span class="se">\"</span><span class="s2">street</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">789 Main St</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">New York</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">NY</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">postalCode</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">10001</span><span class="se">\"</span><span class="s2"> }, </span><span class="se">\"</span><span class="s2">hobbies</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">reading</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">running</span><span class="se">\"</span><span class="s2">] }"</span>,
+                <span class="s2">"isDeleted"</span>: <span class="nb">false</span>,
+                <span class="s2">"candidateId"</span>: 123,
+                <span class="s2">"clientContactId"</span>: 10,
+                <span class="s2">"clientCorporationId"</span>: 456,
+                <span class="s2">"jobOrderId"</span>: 123,
+                <span class="s2">"jobSubmissionId"</span>: 123,
+                <span class="s2">"placementId"</span>: 123,
+                <span class="s2">"leadId"</span>: 123,
+                <span class="s2">"opportunityId"</span>: 123,
+                <span class="s2">"corporateUserId"</span>: 123,
+                <span class="s2">"noteId"</span>: 123,
+                <span class="s2">"appointmentId"</span>: 123,
+                <span class="s2">"payableChargeId"</span>: 123,
+                <span class="s2">"billableChargeId"</span>: 134,
+                <span class="s2">"entityId"</span>: 342
+            <span class="o">}</span>
+        <span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Used to lookup and view Data Hub records using adaptive query.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/data-hub/sourceSystem</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-put-data-hub-sourcesystem"><span class="tag"> POST / PUT </span> /data-hub/sourceSystem</h2>
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/sourceSystem
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"name"</span>: <span class="s2">"sourceSystemName"</span>,
+    <span class="s2">"display"</span>: <span class="s2">"sourceSystemDisplay"</span>
+<span class="o">}</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"SourceSystem"</span>,
+    <span class="s2">"changedEntityId"</span>: 293,
+    <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>,
+    <span class="s2">"data"</span>: <span class="o">{</span>
+        <span class="s2">"name"</span>: <span class="s2">"sourceSystemName"</span>,
+        <span class="s2">"display"</span>: <span class="s2">"sourceSystemDisplay"</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Used to add or update source systems.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/data-hub/sourceSystem</code> and <code class="prettyprint">{corpToken}/data-hub/sourceSystem/{sourceSystemId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-put-data-hub-entitytype"><span class="tag"> POST / PUT </span> /data-hub/entityType</h2>
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/entityType
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"sourceSystem"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 293 // Can also associate <span class="nb">source </span>system using sourceSystem.name
+    <span class="o">}</span>,
+    <span class="s2">"name"</span>: <span class="s2">"entityTypeName"</span>,
+    <span class="s2">"display"</span>: <span class="s2">"entityTypeDisplay"</span>,
+    <span class="s2">"isPrivate"</span>: <span class="nb">true</span>
+<span class="o">}</span>
+
+<span class="c"># Example POST Response</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"EntityType"</span>,
+    <span class="s2">"changedEntityId"</span>: 311,
+    <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>,
+    <span class="s2">"data"</span>: <span class="o">{</span>
+        <span class="s2">"display"</span>: <span class="s2">"TiffTests33"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"TiffTestLetsGO!CertVid-2234"</span>,
+        <span class="s2">"sourceSystem"</span>: <span class="o">{</span>
+            <span class="s2">"id"</span>: 293
+        <span class="o">}</span>,
+        <span class="s2">"isPrivate"</span>: <span class="nb">true</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Used to add or update entity types.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/data-hub/entityType</code> and <code class="prettyprint">{corpToken}/data-hub/entityType/{entityTypeId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="post-put-data-hub-entitytypeschemaversion"><span class="tag"> POST / PUT </span> /data-hub/entityTypeSchemaVersion</h2>
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/entityTypeSchemaVersion
+
+<span class="c"># Example Request associating entity type by entityTypeId</span>
+<span class="o">{</span>
+    <span class="s2">"entityType"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 311
+    <span class="o">}</span>,
+    <span class="s2">"schema"</span>: <span class="s2">"{</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="nv">$id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">https://example.com/person.schema.json</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="nv">$schema</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">https://json-schema.org/draft/2020-12/schema</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Schema for a person with name, age, address, and hobbies</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">object</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">properties</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Name of the person</span><span class="se">\"\n</span><span class="s2">    },</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">integer</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Age of the person</span><span class="se">\"\n</span><span class="s2">    },</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">object</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">properties</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">street</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Street address</span><span class="se">\"\n</span><span class="s2">        },</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">City name</span><span class="se">\"\n</span><span class="s2">        },</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">State abbreviation</span><span class="se">\"\n</span><span class="s2">        },</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">postalCode</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Postal code</span><span class="se">\"\n</span><span class="s2">        }</span><span class="se">\n</span><span class="s2">      },</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">required</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">street</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">postalCode</span><span class="se">\"</span><span class="s2">],</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Address of the person</span><span class="se">\"\n</span><span class="s2">    },</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">hobbies</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">array</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">items</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"\n</span><span class="s2">      },</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">List of hobbies</span><span class="se">\"\n</span><span class="s2">    }</span><span class="se">\n</span><span class="s2">  },</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">required</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">hobbies</span><span class="se">\"</span><span class="s2">]</span><span class="se">\n</span><span class="s2">}"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"New Schema Version"</span>,
+    <span class="s2">"name"</span>:<span class="s2">"schemaVersionName"</span>
+<span class="o">}</span>
+
+<span class="c"># Example Request associating entity type by entityTypeName and sourceSystemName</span>
+<span class="o">{</span>
+    <span class="s2">"entityType"</span>: <span class="o">{</span>
+        <span class="s2">"name"</span>: <span class="s2">"entityTypeName"</span>,
+         <span class="s2">"sourceSystem"</span>: <span class="o">{</span>
+            <span class="s2">"name"</span>: <span class="s2">"sourceSystemName"</span>
+        <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="s2">"schema"</span>: <span class="s2">"{</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="nv">$id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">https://example.com/person.schema.json</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="nv">$schema</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">https://json-schema.org/draft/2020-12/schema</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Schema for a person with name, age, address, and hobbies</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">object</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">properties</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Name of the person</span><span class="se">\"\n</span><span class="s2">    },</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">integer</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Age of the person</span><span class="se">\"\n</span><span class="s2">    },</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">object</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">properties</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">street</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Street address</span><span class="se">\"\n</span><span class="s2">        },</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">City name</span><span class="se">\"\n</span><span class="s2">        },</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">State abbreviation</span><span class="se">\"\n</span><span class="s2">        },</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">postalCode</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Postal code</span><span class="se">\"\n</span><span class="s2">        }</span><span class="se">\n</span><span class="s2">      },</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">required</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">street</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">postalCode</span><span class="se">\"</span><span class="s2">],</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Address of the person</span><span class="se">\"\n</span><span class="s2">    },</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">hobbies</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">array</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">items</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"\n</span><span class="s2">      },</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">List of hobbies</span><span class="se">\"\n</span><span class="s2">    }</span><span class="se">\n</span><span class="s2">  },</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">required</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">hobbies</span><span class="se">\"</span><span class="s2">]</span><span class="se">\n</span><span class="s2">}"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"New Schema Version"</span>,
+    <span class="s2">"name"</span>:<span class="s2">"schemaVersionName"</span>
+<span class="o">}</span>
+
+
+<span class="c"># Example POST Response</span>
+<span class="o">{</span>
+    <span class="s2">"changedEntityType"</span>: <span class="s2">"EntityTypeSchemaVersion"</span>,
+    <span class="s2">"changedEntityId"</span>: 507,
+    <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>,
+    <span class="s2">"data"</span>: <span class="o">{</span>
+        <span class="s2">"schema"</span>: <span class="s2">"{</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="nv">$id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">https://example.com/person.schema.json</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="nv">$schema</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">https://json-schema.org/draft/2020-12/schema</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Schema for a person with name, age, address, and hobbies</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">object</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">properties</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Name of the person</span><span class="se">\"\n</span><span class="s2">    },</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">integer</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Age of the person</span><span class="se">\"\n</span><span class="s2">    },</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">object</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">properties</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">street</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Street address</span><span class="se">\"\n</span><span class="s2">        },</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">City name</span><span class="se">\"\n</span><span class="s2">        },</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">State abbreviation</span><span class="se">\"\n</span><span class="s2">        },</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">postalCode</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">          </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Postal code</span><span class="se">\"\n</span><span class="s2">        }</span><span class="se">\n</span><span class="s2">      },</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">required</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">street</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">state</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">postalCode</span><span class="se">\"</span><span class="s2">],</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Address of the person</span><span class="se">\"\n</span><span class="s2">    },</span><span class="se">\n</span><span class="s2">    </span><span class="se">\"</span><span class="s2">hobbies</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">array</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">items</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\n</span><span class="s2">        </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"\n</span><span class="s2">      },</span><span class="se">\n</span><span class="s2">      </span><span class="se">\"</span><span class="s2">description</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">List of hobbies</span><span class="se">\"\n</span><span class="s2">    }</span><span class="se">\n</span><span class="s2">  },</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">required</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">age</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">address</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">hobbies</span><span class="se">\"</span><span class="s2">]</span><span class="se">\n</span><span class="s2">}"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"New Schema Version"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"schemaVersionName"</span>,
+        <span class="s2">"entityType"</span>: <span class="o">{</span>
+            <span class="s2">"id"</span>: 311
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Used to add or update entity type schema versions.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/data-hub/entityTypeSchemaVersion</code> and <code class="prettyprint">{corpToken}/data-hub/entityTypeSchemaVersion/{schemaVersionId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-data-hub"><span class="tag"> GET </span> /data-hub</h2>
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/entityType/311
+
+<span class="c"># Example Response</span>
+<span class="o">{</span>
+    <span class="s2">"data"</span>: <span class="o">{</span>
+        <span class="s2">"entityTypeId"</span>: 311,
+        <span class="s2">"display"</span>: <span class="s2">"entityTypeDisplay"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"entityTypeName"</span>,
+        <span class="s2">"sourceSystem"</span>: <span class="o">{</span>
+            <span class="s2">"id"</span>: 293,
+            <span class="s2">"name"</span>: <span class="s2">"sourceSystemName"</span>
+        <span class="o">}</span>,
+        <span class="s2">"isPrivate"</span>: <span class="nb">true</span>,
+        <span class="s2">"entityTypesSchemaVersions"</span>: <span class="o">{</span>
+            <span class="s2">"data"</span>: <span class="o">[]</span>,
+            <span class="s2">"count"</span>: 1
+        <span class="o">}</span>,
+        <span class="s2">"data"</span>: <span class="o">{</span>
+            <span class="s2">"data"</span>: <span class="o">[]</span>,
+            <span class="s2">"count"</span>: 2
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Used to retrieve information about a source system, entity type, or schema version.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/data-hub/{entityName}/{entityId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h1 id="errors">Errors</h1>
+
+<p>The Data Hub API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>206</td>
+<td>Partial Content &ndash; The request has only partially succeeded. One or more of the records in the request failed to be stored in Data Hub.</td>
+</tr>
+<tr>
+<td>413</td>
+<td>Request Entity Too Large &ndash; The request has more than 100 items and Data Hub will only process 100 records at a time.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; The request was unsuccessful. All records failed to be processed.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong or expired</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified entity could not be found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server.</td>
+</tr>
+</tbody></table>
+
+<p><br><br><br></p>
+
+      </div>
+        <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

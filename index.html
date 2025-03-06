@@ -108,8 +108,11 @@
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
-        <div class="guide-link">
+       <div class="guide-link">
           <a href="./entityref.html">Entity Reference Guide</a>
+      </div>
+      <div class="guide-link">
+          <a href="./datahubref.html">Data Hub Reference Guide</a>
       </div>
       <div class="guide-link">
           <a href="./changelog.html">REST API Change Log</a>
@@ -129,6 +132,7 @@
 
 <ul>
 <li><a href="entityref.html">Entity Reference Guide</a></li>
+<li><a href="datahubref.html">Data Hub Reference Guide</a></li>
 <li><a href="changelog.html">REST API Change Log</a></li>
 </ul>
 
@@ -5222,6 +5226,255 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/BillableCharge/{billableChargeId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="post-services-customerrequiredfield">POST /services/CustomerRequiredField</h3>
+
+<p>Creates and updates client Customer Required Fields (CRFs), manages CRF options, and sets default options.</p>
+
+<p>Utilizes:
+* Add Client Customer Required Field
+* Update Client Customer Required Field</p>
+
+<p>Validates:
+* Start date must be before end date
+* Client ID must exist
+* Client has ≤10 Metas
+* Meta has ≤50 Options
+* CRF Type exists
+* Meta has a label
+* Only 1 option is marked default
+* Requires booleans for doesFlowToNewJobs, requiredOntimesheet, visibleOnTimesheet
+* If PO then requires entityID in message and PO ID exists</p>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\ </span>PUT
+https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"options"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"displayLabel"</span>: <span class="s2">"NEW OPTION"</span>,
+            <span class="s2">"associatedEntityID"</span>: <span class="o">{{</span>purchaseOrderId3<span class="o">}}</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"id"</span>: <span class="o">{{</span>customerRequiredFieldOptionId<span class="o">}}</span>,
+            <span class="s2">"displayLabel"</span>: <span class="s2">"UPDATE display label"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/CustomerRequiredField/{id}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="post-services-placementcustomerrequiredfield">POST /services/PlacementCustomerRequiredField</h3>
+
+<p>Creates, updates, and removes Customer Required Fields (CRFs) on placements and manages CRF options.</p>
+
+<p>Utilizes:
+* Add Customer Required Field Configuration
+* Edit Customer Required Field Configuration
+* Delete Customer Required Field Configuration</p>
+
+<p>Validates:
+* Meta exists
+* Default option ID exists
+* Options exist and relate to the Meta
+* Requires effective date
+* Effective date is unique
+* Requires isActive
+* Root ID matches version parent ID</p>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\ </span>PUT <span class="se">\ </span>GET
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"versionID"</span>: 230,
+    <span class="s2">"effectiveDate"</span>: <span class="s2">"2023-02-28"</span>,
+    <span class="s2">"isActive"</span>: <span class="nb">true</span>,
+    <span class="s2">"defaultCustomerRequiredFieldOption"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 96
+    <span class="o">}</span>,
+    <span class="s2">"options"</span>: <span class="o">{</span>
+        <span class="s2">"replaceAll"</span>: <span class="o">[</span>96, 97, 98]
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/PlacementCustomerRequiredField/{id}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="post-services-jobordercustomerrequiredfield">POST /services/JobOrderCustomerRequiredField</h3>
+
+<p>Creates, updates, and removes Customer Required Fields (CRFs) on jobs and manages CRF options.</p>
+
+<p>Utilizes:</p>
+
+<ul>
+<li>Add Job Customer Required Field Configuration</li>
+<li>Edit Job Customer Required Field Configuration</li>
+<li>Delete Job Customer Required Field Configuration</li>
+</ul>
+
+<p>Validates:</p>
+
+<ul>
+<li>Meta exists</li>
+<li>Default option ID exists</li>
+<li>Options exist and relate to the Meta</li>
+<li>Requires effective date</li>
+<li>Effective date is unique</li>
+<li>Requires isActive</li>
+<li>Root ID matches version parent ID</li>
+</ul>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\ </span>PUT <span class="se">\ </span>GET
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"versionID"</span>: 230,
+    <span class="s2">"effectiveDate"</span>: <span class="s2">"2023-02-28"</span>,
+    <span class="s2">"isActive"</span>: <span class="nb">true</span>,
+    <span class="s2">"defaultCustomerRequiredFieldOption"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 96
+    <span class="o">}</span>,
+    <span class="s2">"options"</span>: <span class="o">{</span>
+        <span class="s2">"replaceAll"</span>: <span class="o">[</span>96, 97, 98]
+<span class="o">}</span>
+
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/JobOrderCustomerRequiredField/{id}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-services-placementcustomerrequiredfield-version">DELETE /services/PlacementCustomerRequiredField/version</h3>
+
+<p>Manages versions for Placement Customer Required Fields (CRFs).</p>
+
+<ul>
+<li>10 CRFs per Placement</li>
+<li>50 CRF Options per Version</li>
+</ul>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>/version/<span class="o">{</span>id<span class="o">}</span>
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"effectiveDate"</span>: <span class="s2">"2023-02-28"</span>,
+    <span class="s2">"isActive"</span>: <span class="nb">true</span>,
+    <span class="s2">"defaultCustomerRequiredFieldOption"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 236
+    <span class="o">}</span>,
+    <span class="s2">"options"</span>: <span class="o">{</span>
+        <span class="s2">"replaceAll"</span>: <span class="o">[</span>236, 237, 238, 239, 240, 241, 242, 243, 244, 245]
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/PlacementCustomerRequiredField/{id}/version/{id}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-services-jobordercustomerrequiredfield-version">DELETE /services/JobOrderCustomerRequiredField/version</h3>
+
+<p>Manages versions for Job Customer Required Fields (CRFs).</p>
+
+<ul>
+<li>10 CRFs per Job</li>
+<li>50 CRF Options per Version</li>
+<li>Version</li>
+</ul>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>/version/<span class="o">{</span>id<span class="o">}</span>
+
+<span class="c"># Example Request</span>
+<span class="o">{</span>
+    <span class="s2">"effectiveDate"</span>: <span class="s2">"2023-02-28"</span>,
+    <span class="s2">"isActive"</span>: <span class="nb">true</span>,
+    <span class="s2">"defaultCustomerRequiredFieldOption"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 236
+    <span class="o">}</span>,
+    <span class="s2">"options"</span>: <span class="o">{</span>
+        <span class="s2">"replaceAll"</span>: <span class="o">[</span>236, 237, 238, 239, 240, 241, 242, 243, 244, 245]
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/JobOrderCustomerRequiredField/{id}/version/{id}</code></p>
 
 <table><thead>
 <tr>
