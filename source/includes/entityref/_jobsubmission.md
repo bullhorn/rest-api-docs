@@ -131,6 +131,13 @@ The JobSubmission entity supports the massUpdate operations.
             <td></td>
         </tr>
         <tr class="odd">
+            <td>history</td>
+            <td>To Many Association</td>
+            <td>JobSubmissionHistory</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
