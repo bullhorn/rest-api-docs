@@ -636,7 +636,7 @@ Parameter | Required | Description
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 
-### PUT /services/BillableCharge
+## PUT /services/BillableCharge
 
 Allows a user to create a billable charge.
 
@@ -692,7 +692,7 @@ Parameter | Required | Description
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 
-### POST /services/BillableCharge
+## POST /services/BillableCharge
 
 Allows a user to update a billable charge.
 
@@ -742,7 +742,7 @@ BhRestToken | yes | Token that represents a session established by the login pro
 
 
 
-### POST /services/CustomerRequiredField
+## POST /services/CustomerRequiredField
 
 Creates and updates client Customer Required Fields (CRFs), manages CRF options, and sets default options.
 
@@ -789,7 +789,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-### POST /services/PlacementCustomerRequiredField
+## POST /services/PlacementCustomerRequiredField
 
 Creates, updates, and removes Customer Required Fields (CRFs) on placements and manages CRF options.
 
@@ -831,7 +831,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-### POST /services/JobOrderCustomerRequiredField
+## POST /services/JobOrderCustomerRequiredField
 
 Creates, updates, and removes Customer Required Fields (CRFs) on jobs and manages CRF options.
 
@@ -906,7 +906,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-### DELETE /services/JobOrderCustomerRequiredField/version
+## DELETE /services/JobOrderCustomerRequiredField/version
 Manages versions for Job Customer Required Fields (CRFs).
 
 * 10 CRFs per Job

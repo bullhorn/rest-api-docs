@@ -36,100 +36,107 @@ Represents an invoice term version.
             <td></td>
         </tr>
         <tr class="even">
+            <td>billableChargeHoldStatusLookup</td>
+            <td>To-one association</td>
+            <td>BillableChargeHoldStatusLookup.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>currencyUnit</td>
             <td>To-one association</td>
             <td>CurrencyUnit.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>customDate1-3</td>
             <td>Timestamp</td>
             <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>customFloat1-3</td>
             <td>Double</td>
             <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>customInt1-3</td>
             <td>Integer</td>
             <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>customText1-20</td>
             <td>String (100)</td>
             <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>customTextBlock1-3</td>
             <td>String (2147483647)</td>
             <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
             <td></td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td></td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>description</td>
             <td>String (255)</td>
             <td></td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>effectiveDate</td>
             <td>Date</td>
             <td></td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>effectiveEndDate</td>
             <td>Date</td>
             <td></td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>externalID</td>
             <td>String (100)</td>
             <td>Customer defined identifier.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>fileTypesForInvoicing</td>
             <td>To-many association</td>
             <td>BillingSyncBatchFileTypeLookup - Indicates what types of attachments should be included in Invoice Statement PDF. </td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerAccountsReceivable</td>
             <td>To-one association</td>
-            <td>GeneralLedgerAccountsReceivable - General Ledger Account (with isAccountsReceivable = 'true') associated with this InvoiceTerm.</td>
+            <td>GeneralLedgerAccountsReceivable - General Ledger Account (with isAccountsReceivable = &apos;true&apos;) associated with this InvoiceTerm.</td>
             <td></td>
             <td></td>
         </tr>
