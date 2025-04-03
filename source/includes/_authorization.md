@@ -16,6 +16,6 @@ The REST API has the concept of a client "session". This is essentially a method
 
 This key must be provided in HTTP requests in at least one of the following places:
 
-1. A query parameter named `BHRestToken` on the request URL.
-2. An HTTP header named `BHRestToken`.
-3. A cookie named `BHRestToken`. This cookie is set by the API at login time as a convenience for browser-based clients.
+1. A query parameter named `BhRestToken` on the request URL.
+2. An HTTP header named `BhRestToken` or `BHRestToken`.
+3. A cookie named `BhRestToken`. This cookie is set by the API at login time as a convenience for browser-based clients.
