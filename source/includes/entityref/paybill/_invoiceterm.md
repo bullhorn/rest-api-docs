@@ -38,7 +38,13 @@ Entity that represents a customer invoice terms record.
         <tr class="even">
             <td>billableChargeHoldStatusLookup</td>
             <td>To-one association</td>
-            <td>BillableChargeHoldStatusLookup.</td>
+             <td><p>BillableChargeHoldStatusLookup.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
         </tr>
