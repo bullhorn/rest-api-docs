@@ -65,7 +65,7 @@ Represents a billable charge.
         <tr class="even">
             <td>billableChargeHoldStatusLookup</td>
             <td>To-one association</td>
-            <td>BillableChargeHoldStatusLookup</td>
+            <td>BillableChargeHoldStatusLookup.</td>
             <td></td>
             <td></td>
         </tr>
