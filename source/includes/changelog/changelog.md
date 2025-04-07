@@ -9,6 +9,8 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [InvoiceTermVersion billableChargeHoldStatusLookup field](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicetermversion) |
 
+| ADDED ```|``` [BillableCharge UpdateInvoicingHold Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-billablecharge) |
+
 ## March 2025 Release (2025.3)
 
 | ADDED ```|``` [CustomerRequiredFieldMeta Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-customerrequiredfieldmeta) |
