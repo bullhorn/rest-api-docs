@@ -65,7 +65,7 @@ Represents a billable charge.
         <tr class="even">
             <td>billableChargeHoldStatusLookup</td>
             <td>To-one association</td>
-            <td><p>BillableChargeHoldStatusLookup.</p>
+            <td><p>BillableChargeHoldStatusLookup - this is the hold status lookup for the BillableCharge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -84,7 +84,7 @@ Represents a billable charge.
         </tr>
         <tr class="even">
             <td>billingCalendarInstances</td>
-            <td>To-many association</td>
+            <td>To-many association - list of associated billing calendar instances.</td>
             <td>CalendarInstance.</td>
             <td></td>
             <td>X</td>
@@ -467,7 +467,7 @@ Represents a billable charge.
         <tr class="even">
             <td>onHoldComment</td>
             <td>String (2147483647)</td>
-            <td></td>
+            <td>This is the comment associated with the billableChargeHoldStatusLookup.</td>
             <td></td>
             <td></td>
         </tr>
@@ -483,7 +483,7 @@ Represents a billable charge.
                 </ul>
             </td>
             <td></td>
-            <td></td>
+            <td>X</td>
         </tr>
         <tr class="even">
             <td>periodEndDate</td>
