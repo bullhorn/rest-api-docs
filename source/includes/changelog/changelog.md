@@ -1,6 +1,15 @@
 # REST API Change Log
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
+## May 2025 Release (2025.5)
+
+| ADDED ```|``` [BillableCharge billableChargeHoldStatusLookup, onHoldComment fields](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billablecharge) |
+
+| ADDED ```|``` [InvoiceTerm billableChargeHoldStatusLookup field](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoiceterm) |
+
+| ADDED ```|``` [InvoiceTermVersion billableChargeHoldStatusLookup field](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicetermversion) |
+
+| ADDED ```|``` [BillableCharge UpdateInvoicingHold Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-billablecharge) |
 
 ## May 2025 Release (2025.5)
 

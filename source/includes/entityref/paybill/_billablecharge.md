@@ -63,20 +63,33 @@ Represents a billable charge.
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>billableChargeHoldStatusLookup</td>
+            <td>To-one association</td>
+            <td><p>BillableChargeHoldStatusLookup - this is the hold status lookup for the BillableCharge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>label</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>billableTransactions</td>
             <td>To-many association</td>
             <td>BillableChargeBillableTransaction - list of associated billable charge transactions.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingCalendarInstances</td>
             <td>To-many association - list of associated billing calendar instances.</td>
             <td>CalendarInstance.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billingClientContact</td>
             <td>To-one association</td>
             <td>
@@ -91,7 +104,7 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingClientCorporation</td>
             <td>To-one association</td>
             <td>
@@ -105,7 +118,7 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billingCorporateUser</td>
             <td>To-one association</td>
             <td>
@@ -120,14 +133,14 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingFrequency</td>
             <td>String (20)</td>
             <td>Billing frequency.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billingProfile</td>
             <td>To-one association</td>
             <td>
@@ -146,21 +159,21 @@ Represents a billable charge.
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingSchedule</td>
             <td>Integer</td>
             <td>Billing schedule.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billingSyncBatchFileAttachments</td>
             <td>To-many association</td>
             <td>BillingSyncBatchFileAttachment - list of associated billing sync batch file attachments.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>candidate</td>
             <td>To-one association</td>
             <td>
@@ -175,7 +188,7 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>clientCorporation</td>
             <td>To-one association</td>
             <td>
@@ -189,7 +202,7 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>currencyUnit</td>
             <td>To-one association</td>
             <td>
@@ -204,49 +217,49 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
             <td>Date the entity was added.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td>Date last modified.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>description</td>
             <td>String (2147483647)</td>
             <td>Description.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>entryTypeLookup</td>
             <td>To-one association</td>
             <td>EntryTypeLookup - options are Timesheet or Expense.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>expenseSheet</td>
             <td>To-one association</td>
             <td>Expense sheet.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>externalID</td>
             <td>String (100)</td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerSegment1</td>
             <td>To-one association</td>
             <td>
@@ -261,7 +274,7 @@ Represents a billable charge.
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment2</td>
             <td>To-one association</td>
             <td>
@@ -276,7 +289,7 @@ Represents a billable charge.
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerSegment3</td>
             <td>To-one association</td>
             <td>
@@ -291,7 +304,7 @@ Represents a billable charge.
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment4</td>
             <td>To-one association</td>
             <td>
@@ -306,7 +319,7 @@ Represents a billable charge.
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerSegment5</td>
             <td>To-one association</td>
             <td>
@@ -321,14 +334,14 @@ Represents a billable charge.
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerServiceCode</td>
             <td>To-one association</td>
             <td>GeneralLedgerServiceCode.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerStatus</td>
             <td>To-one association</td>
             <td>
@@ -348,7 +361,7 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>hasAdjustment</td>
             <td>Boolean</td>
             <td>Indicates whether billable charge has an adjustment. 
@@ -356,21 +369,21 @@ Represents a billable charge.
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>hasRebill</td>
             <td>Boolean</td>
             <td>Indicates whether billable charge has been rebilled.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>invoiceStatements</td>
             <td>To-many association</td>
             <td>Invoice statements.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>invoiceTerm</td>
             <td>To-one association</td>
             <td>
@@ -388,21 +401,21 @@ Represents a billable charge.
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>invoicedTransactions</td>
             <td>To-many association</td>
             <td>InvoicedTransactions - lists IDs of invoiced transactions.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isInvoiced</td>
             <td>Boolean</td>
             <td>Indicates whether billable charge is invoiced.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobOrder</td>
             <td>To-one association</td>
             <td>
@@ -416,14 +429,14 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>markAsReadyEligible</td>
             <td>Boolean</td>
             <td>Indicates whether billable charge is ready eligible.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>maxAccountingPeriod</td>
             <td>To-one association</td>
             <td>
@@ -437,7 +450,7 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>minAccountingPeriod</td>
             <td>To-one association</td>
             <td>
@@ -451,6 +464,13 @@ Represents a billable charge.
             <td></td>
             <td>X</td>
         </tr>
+        <tr class="even">
+            <td>onHoldComment</td>
+            <td>String (2147483647)</td>
+            <td>This is the comment associated with the billableChargeHoldStatusLookup.</td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="odd">
             <td>payBillCycles</td>
             <td>To-many association</td>
@@ -462,7 +482,6 @@ Represents a billable charge.
                     <li>label</li>
                 </ul>
             </td>
-            <td></td>
             <td></td>
             <td>X</td>
         </tr>
@@ -587,4 +606,3 @@ Represents a billable charge.
         </tr>
     </tbody>
 </table>
-

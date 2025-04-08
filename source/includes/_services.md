@@ -636,7 +636,7 @@ Parameter | Required | Description
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 
-### PUT /services/BillableCharge
+## PUT /services/BillableCharge
 
 Allows a user to create a billable charge.
 
@@ -692,12 +692,12 @@ Parameter | Required | Description
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 
-### POST /services/BillableCharge
+## POST /services/BillableCharge
 
 Allows a user to update a billable charge.
 
 ```shell
-curl -X PUT \
+curl -X POST \
       https://rest{swimlane#}.bullhorn.com/rest-services/e999/services/BillableCharge
 
 # Example Request
@@ -740,9 +740,36 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
+## POST /services/BillableCharge/updateInvoicingHoldStatus
+
+Allows a user to update the onHoldComment and billableChargeHoldStatusLookupID for one or more billable charges.
+
+If the billableChargeHoldStatusLookupID in the request is configured to prevent invoicing, in addition to setting the onHoldComment and billableChargeHoldStatusLookup fields, the status of the billable charges in the request will be updated to On Hold, which will prevent these charges from being invoiced.
+
+If the billableChargeHoldStatusLookupID in the request is not configured to prevent invoicing, no update will be made to the status of the billable charges in the request and only the onHoldComment and billableChargeHoldStatusLookup fields will be updated.
+
+```shell
+curl -X POST \
+      https://rest{swimlane#}.bullhorn.com/rest-services/e999/services/BillableCharge/updateInvoicingHoldStatus
+
+# Example Request
+{
+    "billableChargeIds": [12345, 12346],
+    "billableChargeHoldStatusLookupID": 10000,
+    "onHoldComment": "Pending Review"
+}
+```
+
+### HTTP Request
+
+`{corpToken}/services/updateInvoicingHoldStatus`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
 
-### POST /services/CustomerRequiredField
+## POST /services/CustomerRequiredField
 
 Creates and updates client Customer Required Fields (CRFs), manages CRF options, and sets default options.
 
@@ -789,7 +816,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-### POST /services/PlacementCustomerRequiredField
+## POST /services/PlacementCustomerRequiredField
 
 Creates, updates, and removes Customer Required Fields (CRFs) on placements and manages CRF options.
 
@@ -831,7 +858,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-### POST /services/JobOrderCustomerRequiredField
+## POST /services/JobOrderCustomerRequiredField
 
 Creates, updates, and removes Customer Required Fields (CRFs) on jobs and manages CRF options.
 
@@ -906,7 +933,7 @@ Parameter | Required | Description
 ------ | -------- | -----
 BhRestToken | yes | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
-### DELETE /services/JobOrderCustomerRequiredField/version
+## DELETE /services/JobOrderCustomerRequiredField/version
 Manages versions for Job Customer Required Fields (CRFs).
 
 * 10 CRFs per Job
