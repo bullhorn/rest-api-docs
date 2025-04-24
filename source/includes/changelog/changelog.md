@@ -2,6 +2,10 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## May 2025 Release (2025.5)
+
+| ADDED ```|``` [DirectDepositAccountTypeLookup](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccounttypelookup) |
+
 ## March 2025 Release (2025.3)
 
 | ADDED ```|``` [CustomerRequiredFieldMeta Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-customerrequiredfieldmeta) |
