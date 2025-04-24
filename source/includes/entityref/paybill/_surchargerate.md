@@ -1,6 +1,6 @@
 # Pay and Bill - SurchargeRate
 
-Represents a Surcharge Rate.
+An [effective-dated entity](../index.html#effective-dated-entity) that represents a Surcharge Rate.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 

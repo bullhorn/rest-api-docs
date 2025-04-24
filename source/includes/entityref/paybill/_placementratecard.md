@@ -1,6 +1,6 @@
 # Pay and Bill - PlacementRateCard
 
-An Effective Dated Entity that represents a all of the rates on a Placement. PlacementRateCard is the flattened entity. When making PUT and POST calls to PlacementRateCard, the child entities (PlacementRateCardLineGroup - PlacementRateCardLine) can be passed as well with all associated data.
+An [effective-dated entity](../index.html#effective-dated-entity) that represents all the rates on a Placement. PlacementRateCard is the flattened entity. When making PUT and POST calls to PlacementRateCard, the child entities (PlacementRateCardLineGroup - PlacementRateCardLine) can be passed as well with all associated data.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 

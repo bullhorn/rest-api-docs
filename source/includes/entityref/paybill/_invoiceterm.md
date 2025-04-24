@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceTerm
 
-Entity that represents a customer invoice terms record.
+2awQ    An [effective-dated entity](../index.html#effective-dated-entity) that represents a customer invoice terms record.
 
 
 <table>

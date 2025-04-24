@@ -1,6 +1,6 @@
 # Pay and Bill - JobOrderRateCard
 
-An effective-dated entity that represents all the rates on a JobOrder. 
+An [effective-dated entity](../index.html#effective-dated-entity) that represents all the rates on a JobOrder. 
 JobOrderRateCard is the flattened entity. When making PUT and POST calls 
 to JobOrderRateCard, the child entities, JobOrderRateCardLineGroup and JobOrderRateCardLine, 
 can be passed as well with all associated data.

@@ -1,6 +1,6 @@
 # Pay and Bill - ClientCorporationBillRuleset
 
-An effective-dated entity that represents all the rules on a ClientCorporation.
+An [effective-dated entity](../index.html#effective-dated-entity) that represents all the rules on a ClientCorporation.
 ClientCorporationBillRuleset is the flattened entity. When making PUT and POST calls
 to ClientCorporationBillRuleset, the child entity, TimeLaborEvalRules,
 can be passed as well with all associated data.
