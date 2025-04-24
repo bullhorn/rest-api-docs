@@ -115,7 +115,7 @@ This entity represents the required certifications for a Placement.
         <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td></td>
+            <td>Date the PlacementCertification was last updated.</td>
             <td>X</td>
             <td>X</td>
         </tr>

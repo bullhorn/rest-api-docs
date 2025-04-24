@@ -2,7 +2,7 @@
 
 Represents metadata for a Customer Required Field (CRF).
 
-CRUD Access - CREATE, READ, UPDATE
+CRUD Access - READ ONLY
 
 Entitlements - Add Client Customer Required Field, View Client Customer Required Field, Update Client Customer Required Field
 

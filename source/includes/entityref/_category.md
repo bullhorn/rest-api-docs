@@ -8,7 +8,7 @@ This entity represents a category in which a Candidate or JobOrder can be placed
 | dateAdded | Timestamp | Date on which record was created in the Bullhorn system. | X | X |
 | description | String (255) | Free-text description of this category. |  | |
 | enabled | Boolean | Indicates whether category is available for use in the Bullhorn system. | X | X |
-| name | String (100) | Name of the category + PLId (for categories) | X | X |
+| name | String (100) | Name of the category. | X | X |
 | occupation | String (50) | Occupation. | X | |
 | skills | To-many association | Ids of the Skills associated with this Category. | | |
 | specialties | To-many association | Ids of the Specialties that are children of this Category. | | |
