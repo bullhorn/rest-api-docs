@@ -8,6 +8,8 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | UPDATED ```|``` [File entity](https://bullhorn.github.io/rest-api-docs/entityref.html#file) |
 
+| UPDATED ```|``` [Placement entity](https://bullhorn.github.io/rest-api-docs/entityref.html#placement) |
+
 | ADDED ```|``` [InvoiceTerm reports field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoiceterm) |
 
 | ADDED ```|``` [InvoiceTermVersion reports field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicetermversion) |
