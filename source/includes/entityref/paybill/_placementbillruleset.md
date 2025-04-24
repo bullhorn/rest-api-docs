@@ -1,6 +1,6 @@
 # Pay and Bill - PlacementBillRuleset
 
-An effective-dated entity that represents all the rules on a Placement.
+An [effective-dated entity](../index.html#effective-dated-entity) that represents all the rules on a Placement.
 PlacementBillRuleset is the flattened entity. When making PUT and POST calls
 to PlacementBillRuleset, the child entity, TimeLaborEvalRules,
 can be passed as well with all associated data.
