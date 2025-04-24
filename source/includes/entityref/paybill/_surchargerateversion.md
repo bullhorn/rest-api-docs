@@ -1,6 +1,6 @@
 # Pay and Bill - SurchargeRateVersion
 
-Represents a version entity for the Surcharge Rate Version effective-dated entity.
+Represents a version entity for the [SurchargeRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerate) effective-dated entity.
 
 CRUD Access - READ
 

@@ -1,6 +1,6 @@
 # Pay and Bill - BillingSyncBatchFileAttachment
 
-File attachments that can be associated with a BillingSyncBatch.
+File attachments that can be associated with a [BillingSyncBatch](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billingsyncbatch).
 
 CRUD Access - READ.
 

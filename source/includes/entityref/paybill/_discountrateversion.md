@@ -1,6 +1,6 @@
 # Pay and Bill - DiscountRateVersion
 
-Represents a version entity for the Discount Rate effective-dated entity.
+Represents a version entity for the [DiscountRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-discountrate) effective-dated entity.
 
 CRUD Access - READ
 

@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterSurchargeRate
 
-Represents an association between bill master and a surcharge rate.
+Represents an association between [BillMaster](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmaster) and a [SurchargeRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerate).
 
 CRUD Access - READ
 
