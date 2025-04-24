@@ -6,7 +6,7 @@ This entity represents a category in which a Candidate or JobOrder can be placed
 | --- | --- | --- | --- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | dateAdded | Timestamp | Date on which record was created in the Bullhorn system. | X | X |
-| description | String (255) | Free-text description of this category. | X | X |
+| description | String (255) | Free-text description of this category. |  | |
 | enabled | Boolean | Indicates whether category is available for use in the Bullhorn system. | X | X |
 | name | String (100) | Name of the category. | X | X |
 | occupation | String (50) | Occupation. | X | |
