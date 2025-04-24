@@ -1,7 +1,7 @@
 # Pay and Bill - JobOrderRateCardLineGroup
 
 Represents a group of rates on a Job Order
-
+For more information see [how rate card calculations work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
 
 <table>
     <colgroup>

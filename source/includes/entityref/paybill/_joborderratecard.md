@@ -4,6 +4,7 @@ An [effective-dated entity](../index.html#effective-dated-entity) that represent
 JobOrderRateCard is the flattened entity. When making PUT and POST calls 
 to JobOrderRateCard, the child entities, JobOrderRateCardLineGroup and JobOrderRateCardLine, 
 can be passed as well with all associated data.
+For more information see [how rate card calculations work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 
