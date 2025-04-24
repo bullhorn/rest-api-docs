@@ -179,14 +179,15 @@ Files can be attached to the following types of entities:
 `{corpToken}/file/{entityType}/{entityId}`
 
 Request body field | Required | Description
------- | -------- | -----
-externalID | yes | External identifier for the file.
-fileContent | yes | Base64-encoded string of the file content.
-fileExtension | no | Extension of the file. For example, .doc or .jpg.
-fileType | yes | Always use the value “SAMPLE”.
-name | yes | File name. If a file extension is included as part of the name and the fileExtension field is not set, the file extension in the name is used.
-description | no | Description of the file.
-contentType | no | Type/subtype of the file content.type | no | Type of file that is attached.
+------ |----------| -----
+externalID | yes      | External identifier for the file.
+fileContent | yes      | Base64-encoded string of the file content.
+fileExtension | no       | Extension of the file. For example, .doc or .jpg.
+fileType | yes      | Always use the value “SAMPLE”.
+type | no       | Specifies the category or purpose of the file.
+name | yes      | File name. If a file extension is included as part of the name and the fileExtension field is not set, the file extension in the name is used.
+description | no       | Description of the file.
+contentType | no       | Type/subtype of the file content.type | no | Type of file that is attached.
 
 
 Parameter | Required | Description
