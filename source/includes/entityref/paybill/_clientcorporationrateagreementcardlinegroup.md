@@ -1,6 +1,6 @@
 # Pay and Bill - ClientCorporationRateAgreementCardLineGroup
 
-Represents a group of rates on a ClientCorporation
+Represents a group of rates on a [ClientCorporation](https://bullhorn.github.io/rest-api-docs/entityref.html#clientcorporation)
 
 
 <table>

@@ -1,6 +1,6 @@
  # Pay and Bill - InvoiceTermTemplate
 
-Represents a invoice term template
+Represents an invoice term template
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.
 

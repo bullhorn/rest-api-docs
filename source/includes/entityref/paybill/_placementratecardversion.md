@@ -1,6 +1,6 @@
 # Pay and Bill - PlacementRateCardVersion
 
-Represents a version entity for the PlacementRateCard effective-dated entity.
+Represents a version entity for the [PlacementRateCard](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-placementratecard) effective-dated entity.
 For more information see [how rate card calculations work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.

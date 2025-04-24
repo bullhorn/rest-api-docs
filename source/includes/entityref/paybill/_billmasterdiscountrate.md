@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterDiscountRate
 
-Represents an association between BillMaster and a DiscountRate.
+Represents an association between [BillMaster](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmaster) and a [DiscountRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-discountrate).
 
 CRUD Access - READ
 

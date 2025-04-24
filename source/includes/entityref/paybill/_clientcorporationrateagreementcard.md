@@ -1,8 +1,8 @@
 # Pay and Bill - ClientCorporationRateAgreementCard
 
-An effective-dated entity that represents all the rates on a ClientCorporation.
+An effective-dated entity that represents all the rates on a [ClientCorporation](https://bullhorn.github.io/rest-api-docs/entityref.html#clientcorporation).
 ClientCorporationRateAgreementCard is the flattened entity. When making PUT and POST calls
-to ClientCorporationRateAgreementCard, the child entities, ClientCorporationRateAgreementCardLineGroup and ClientCorporationRateAgreementCardLine,
+to ClientCorporationRateAgreementCard, the child entities, [ClientCorporationRateAgreementCardLineGroup](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-clientcorporationrateagreementcardlinegroup) and [ClientCorporationRateAgreementCardLine](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-clientcorporationrateagreementcardline),
 can be passed as well with all associated data. This data can also flow down into JobOrderRateCard.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE

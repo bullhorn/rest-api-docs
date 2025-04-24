@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterCustomerRequiredField
 
-An entity that represents a Customer Required Field (CRF) associated with a BillMaster.
+An entity that represents a [Customer Required Field (CRF)](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldconfiguration) associated with a [BillMaster](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmaster).
 
 CRUD Access - READ ONLY
 

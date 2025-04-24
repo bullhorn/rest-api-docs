@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionSalesTaxRate
 
-Represents an association between a BillMasterTransaction and SalesTaxRate.
+Represents an association between a [BillMasterTransaction](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransaction) and [SalesTaxRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-salestaxrate).
 
 CRUD Access - READ
 

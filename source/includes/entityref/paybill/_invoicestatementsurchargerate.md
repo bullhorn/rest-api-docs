@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceStatementSurchargeRate
 
-Represents the rounded subtotals for unique surcharge rates tied to an invoice statement.
+Represents the rounded subtotals for unique [SurchargeRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerate) tied to an [InvoiceStatement](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement).
 
 CRUD Access - READ
 

@@ -1,6 +1,6 @@
 # Pay and Bill - GeneralLedgerAccount
 
-Represents a general ledger account for use with billing information, including earn codes and invoice terms.
+Represents a general ledger account for use with billing information, including [EarnCodes](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-earncode) and [InvoiceTerms](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoiceterm).
 
 <table>
 <colgroup>
