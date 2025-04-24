@@ -6,11 +6,13 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [DirectDepositAccountTypeLookup](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccounttypelookup) |
 
+| UPDATED ```|``` [Candidate entity](https://bullhorn.github.io/rest-api-docs/entityref.html#candidate) |
+
 | UPDATED ```|``` [File entity](https://bullhorn.github.io/rest-api-docs/entityref.html#file) |
 
-| UPDATED ```|``` [Placement entity](https://bullhorn.github.io/rest-api-docs/entityref.html#placement) |
-
 | UPDATED ```|``` [GeneralLedgeAccount entity](https://bullhorn.github.io/rest-api-docs/entityref.html#generalledgeraccount) |
+
+| UPDATED ```|``` [Placement entity](https://bullhorn.github.io/rest-api-docs/entityref.html#placement) |
 
 ## March 2025 Release (2025.3)
 
