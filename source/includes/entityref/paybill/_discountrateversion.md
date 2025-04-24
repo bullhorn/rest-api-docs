@@ -1,6 +1,6 @@
 # Pay and Bill - DiscountRateVersion
 
-The version entity for the Discount Rate effective-dated entity
+Represents a version entity for the Discount Rate effective-dated entity.
 
 CRUD Access - READ
 

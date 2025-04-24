@@ -1,6 +1,6 @@
 # Pay and Bill - PlacementBillRulesetVersion
 
-Represents a PlacementBillRuleset version.
+Represents a version entity for the PlacementBillRuleset effective-dated entity.
 
 <table>
     <colgroup>

@@ -1,6 +1,6 @@
 # Pay and Bill - SalesTaxRateVersion
 
-The version entity for the Sales Tax Rate effective-dated entity
+Represents a version entity for the SalesTaxRate effective-dated entity.
 
 CRUD Access - READ
 

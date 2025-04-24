@@ -1,6 +1,6 @@
 # Pay and Bill - ClientCorporationPayRulesetVersion
 
-Represents a ClientCorporation PayRuleset version.
+Represents a version entity for the ClientCorporation PayRuleset effective-dated entity.
 
 <table>
     <colgroup>

@@ -1,6 +1,6 @@
 # Pay and Bill - JobOrderRateCardVersion
 
-Represents a job order rate card version.
+Represents a version entity for the JobOrderRateCard effective-dated entity.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.
 

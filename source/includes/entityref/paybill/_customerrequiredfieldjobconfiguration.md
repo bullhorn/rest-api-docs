@@ -1,4 +1,5 @@
 # Pay and Bill - CustomerRequiredFieldJobConfiguration
+
 An entity that represents a Customer Required Field (CRF) configuration for a Job Order. It extends CustomerRequiredFieldConfigurationBase.
 
 [effective-dated entity](../index.html#effective-dated-entity)
