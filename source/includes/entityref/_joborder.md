@@ -410,7 +410,7 @@ The JobOrder entity supports the massUpdate operations.
          <tr class="even">
             <td>isWorkFromHome</td>
             <td>Boolean</td>
-            <td>Indicates whether the JobOrder is work from home.</td>
+            <td>Indicates whether the job is going to be remote or work from home.</td>
             <td></td>
             <td></td>
         </tr>
@@ -740,13 +740,6 @@ The JobOrder entity supports the massUpdate operations.
             <td>yearsRequired</td>
             <td>Integer</td>
             <td>Number of years of experience required for the JobOrder.</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>isWorkFromHome</td>
-            <td>Boolean</td>
-            <td>Indicates whether the job is going to be remote or work from home.</td>
             <td></td>
             <td></td>
         </tr>
