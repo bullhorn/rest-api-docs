@@ -1,7 +1,7 @@
 # Pay and Bill - PlacementRateCardLine
 
 Represents each individual rate on a Placement.
-
+For more information see [how rate card calculations work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
 
 <table>
     <colgroup>
