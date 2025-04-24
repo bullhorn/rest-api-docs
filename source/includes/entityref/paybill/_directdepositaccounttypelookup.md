@@ -1,5 +1,9 @@
 # Pay and Bill - DirectDepositAccountTypeLookup
 
+Contains description of Direct Deposit Account
+
+CRUD Access - READ
+
 <table>
     <colgroup>
         <col width="20%" />
