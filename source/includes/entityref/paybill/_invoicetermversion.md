@@ -1,7 +1,6 @@
 # Pay and Bill - InvoiceTermVersion
 
-Represents an invoice term version.
-
+Represents a version entity for the Invoice Term effective-dated entity.
 
 <table>
     <colgroup>

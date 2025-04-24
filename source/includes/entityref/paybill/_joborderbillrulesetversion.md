@@ -1,6 +1,6 @@
 # Pay and Bill - JobOrderBillRulesetVersion
 
-Represents a JobOrderBillRuleset version.
+Represents a version entity for the JobOrderBillRuleset effective-dated entity.
 
 <table>
     <colgroup>

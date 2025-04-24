@@ -1,6 +1,6 @@
 # Pay and Bill - PlacementRateCardVersion
 
-Represents a placement rate card version.
+Represents a version entity for the PlacementRateCard effective-dated entity.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.
 

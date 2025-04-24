@@ -1,6 +1,6 @@
 # Pay and Bill - SurchargeRateVersion
 
-Represents a Surcharge Rate Version.
+Represents a version entity for the Surcharge Rate Version effective-dated entity.
 
 CRUD Access - READ
 

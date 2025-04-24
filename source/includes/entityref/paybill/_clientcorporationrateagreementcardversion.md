@@ -1,6 +1,6 @@
 # Pay and Bill - ClientCorporationRateAgreementCardVersion
 
-Represents a ClientCorporation rate card version.
+Represents a version entity for the ClientCorporation rate card effective-dated entity.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.
 
