@@ -6,6 +6,8 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [DirectDepositAccountTypeLookup](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccounttypelookup) |
 
+| UPDATED ```|``` [File entity](https://bullhorn.github.io/rest-api-docs/entityref.html#file) |
+
 ## March 2025 Release (2025.3)
 
 | ADDED ```|``` [CustomerRequiredFieldMeta Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-customerrequiredfieldmeta) |
