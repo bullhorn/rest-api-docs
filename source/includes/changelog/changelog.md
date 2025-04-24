@@ -10,6 +10,8 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | UPDATED ```|``` [Placement entity](https://bullhorn.github.io/rest-api-docs/entityref.html#placement) |
 
+| UPDATED ```|``` [GeneralLedgeAccount entity](https://bullhorn.github.io/rest-api-docs/entityref.html#generalledgeraccount) |
+
 ## March 2025 Release (2025.3)
 
 | ADDED ```|``` [CustomerRequiredFieldMeta Service](http://bullhorn.github.io/rest-api-docs/index.html#post-services-customerrequiredfieldmeta) |

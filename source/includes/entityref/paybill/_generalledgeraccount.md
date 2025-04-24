@@ -1,6 +1,6 @@
 # Pay and Bill - GeneralLedgerAccount
 
-Represents a general ledger account for use with billing information, including earn codes and invoice terms.
+Represents a general ledger account for use with billing information, including earn codes and invoice terms.
 
 <table>
 <colgroup>
@@ -29,7 +29,7 @@ Represents a general ledger account for use with billing information, including 
 </tr>
 <tr class="even">
 <td>externalAccountNumber</td>
-<td><span>Integer</span></td>
+<td><span>String (100)</span></td>
 <td><p><span>External account number.</span></p></td>
 <td> X</td>
 <td> </td>
