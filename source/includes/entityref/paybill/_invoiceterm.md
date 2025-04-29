@@ -239,41 +239,48 @@ Entity that represents a customer invoice terms record.
             <td></td>
         </tr>
         <tr class="odd">
+            <td>reports</td>
+            <td>To-many association</td>
+            <td>Report - Report containing custom sql scripts used for flexible invoicing</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
             <td>status</td>
             <td>String (100)</td>
             <td></td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>surchargeRates</td>
             <td>To-many association</td>
             <td>SurchargeRate.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>title</td>
             <td>String (100)</td>
             <td></td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>versionID</td>
             <td>Integer</td>
             <td></td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>versions</td>
             <td>To-many association</td>
             <td>InvoiceTermVersion.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>waitForTimecards</td>
             <td>Boolean</td>
             <td></td>
