@@ -1,6 +1,6 @@
 # Pay and Bill - HolidayInstance
 
-Entity that represents a Holiday Instance record.
+Denotes a specific occurrence of a [Holiday](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-holiday) on the calendar, created from recurring holiday definitions, and captures the exact date and any instance-specific details needed for operational adjustments.
 
 CRUD Access - READ.
 

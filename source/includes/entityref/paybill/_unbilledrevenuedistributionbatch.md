@@ -1,6 +1,6 @@
 # Pay and Bill - UnbilledRevenueDistributionBatch
 
-Represents an unbilled revenue distribution batch.
+Groups unbilled revenue records into a single batch for systematic processing, enabling a streamlined transition from accrued revenue to invoicing.
 
 <table>
 <colgroup>

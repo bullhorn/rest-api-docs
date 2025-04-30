@@ -1,6 +1,6 @@
 # Pay and Bill - DirectDepositAccountTypeLookup
 
-Contains description of Direct Deposit Account
+Provides a standardized set of lookup values that classify the types of [DirectDepositAccounts](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccount) (for example, checking or savings) used during payment processing.
 
 CRUD Access - READ
 

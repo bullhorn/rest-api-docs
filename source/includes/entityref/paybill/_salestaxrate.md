@@ -1,6 +1,6 @@
 # Pay and Bill - SalesTaxRate
 
-An [effective-dated entity](../index.html#effective-dated-entity) that represents a sales tax rate.
+An [effective-dated entity](../index.html#effective-dated-entity) that specifies the percentage or fixed rate at which sales tax is applied, including details on the applicable region and effective periods.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 

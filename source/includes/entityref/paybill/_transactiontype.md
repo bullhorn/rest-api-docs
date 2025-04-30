@@ -1,6 +1,6 @@
 # Pay and Bill - TransactionType
 
-Read-only entity that represents a transaction type.
+Categorizes a transaction by its nature—such as fee, adjustment, or payment—ensuring it is processed and reported correctly within the system.
 
 <table>
 <colgroup>

@@ -1,6 +1,6 @@
 #  Pay and Bill - CalendarInstance
 
-Entity that represents a Calendar Instance record.
+Denotes a specific scheduled occurrence generated from a recurring [Calendar](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-calendar) record, capturing the concrete date, time, and other instance-specific details.
 
 
 <table>

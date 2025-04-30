@@ -2,7 +2,6 @@
 
 Represents a group of rates on a [ClientCorporation](https://bullhorn.github.io/rest-api-docs/entityref.html#clientcorporation)
 
-
 <table>
     <colgroup>
         <col width="20%" />

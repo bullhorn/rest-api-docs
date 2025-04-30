@@ -1,6 +1,6 @@
 # Pay and Bill - LegalBusinessEntity
 
-Entity representing a Legal Business Entity for use in payroll integrations.
+Captures the formal, legally recognized details of a business entity—such as its legal name and structure—used for contractual, billing, and compliance purposes.
 
 | **LegalBusinessEntity field** | **Type** | **Description** | **Not null** | **Read-only** |
 | --- | --- | --- | --- | --- |

@@ -1,7 +1,8 @@
 #  Pay and Bill - CalendarFrequencyLookup
 
-Read-only lookup entity used with billing cycles and billing calendars.
+Serves as a lookup table providing predefined frequency options (such as daily, weekly, monthly) that standardize recurrence intervals for calendar events.
 
+CRUD Access - READ
 
 <table>
     <colgroup>

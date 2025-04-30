@@ -1,7 +1,6 @@
 # Pay and Bill - InvoiceStatementTemplate
 
-Entity that represents an Invoice Statement Template record.
-
+Provides a predefined layout and formatting structure for generating invoice statements, ensuring that all necessary elements—like line items and totals—are consistently presented in billing documents.
 
 <table>
     <colgroup>

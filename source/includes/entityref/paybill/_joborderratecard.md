@@ -1,9 +1,9 @@
 # Pay and Bill - JobOrderRateCard
 
-An [effective-dated entity](../index.html#effective-dated-entity) that represents all the rates on a JobOrder. 
-JobOrderRateCard is the flattened entity. When making PUT and POST calls 
-to JobOrderRateCard, the child entities, JobOrderRateCardLineGroup and JobOrderRateCardLine, 
-can be passed as well with all associated data.
+An [effective-dated entity](../index.html#effective-dated-entity) that defines the set of rate details for a specific job order, including elements like pay rates, bill rates, and margins that govern the financial terms of placements.
+
+JobOrderRateCard is the flattened entity. When making PUT and POST calls to JobOrderRateCard, the child entities, JobOrderRateCardLineGroup and JobOrderRateCardLine, can be passed as well with all associated data.
+
 For more information see [how rate card calculations work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
 
 CRUD Access - CREATE, READ, UPDATE, DELETE

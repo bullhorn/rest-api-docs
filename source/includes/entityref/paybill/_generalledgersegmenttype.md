@@ -1,6 +1,6 @@
 # Pay and Bill - GeneralLedgerSegmentType
 
-Represents a general ledger segment for assignment to [Placement](https://bullhorn.github.io/rest-api-docs/entityref.html#placement), [BillableCharge](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billablecharge), and [PayableCharge](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-payablecharge).
+Provides a lookup reference that defines the various types or classifications of segments used within the general ledger, ensuring consistency in financial segmentation.
 
 <table>
 <colgroup>

@@ -1,6 +1,7 @@
 # Pay and Bill - JobOrderRateCardLine
 
-An Entity representing each individual rate on a Job Order
+Represents an individual rate component within a JobOrderRateCard, detailing specific pricing elements or adjustments that contribute to the overall rate structure.
+
 For more information see [how rate card calculations work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
 
 <table>

@@ -1,9 +1,6 @@
-
 # Pay and Bill - EarnCodeGroup
 
 This entity represents the Earn Code Group which is a grouping of one or three [EarnCodes](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-earncode).
-
-
 
 <table>
     <colgroup>

@@ -1,8 +1,8 @@
 # Pay and Bill - BillingSyncBatchFileAttachment
 
-File attachments that can be associated with a [BillingSyncBatch](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billingsyncbatch).
+Contains file attachments linked to a billing sync batch, supplying supplemental documentation that supports the billing information being processed.
 
-CRUD Access - READ.
+CRUD Access - READ
 
 Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge.
 

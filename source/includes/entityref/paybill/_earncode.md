@@ -1,7 +1,6 @@
 # Pay and Bill - EarnCode
 
-Represents an earn code.
-
+Represents a unique code used in payroll systems to categorize different types of earnings (such as base pay, overtime, or bonuses) for accurate calculation and reporting.
 
 <table>
     <colgroup>

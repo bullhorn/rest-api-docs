@@ -1,6 +1,6 @@
 # Pay and Bill - PlacementBillRulesetVersion
 
-Represents a version entity for the PlacementBillRuleset effective-dated entity.
+Represents a version entity for the [PlacementBillRuleset](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-placementbillruleset) effective-dated entity.
 
 <table>
     <colgroup>

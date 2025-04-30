@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceTerm
 
-An [effective-dated entity](../index.html#effective-dated-entity) that represents a customer invoice terms record.
+An [effective-dated entity](../index.html#effective-dated-entity) that specifies particular contractual or payment conditions attached to an invoice, such as due dates, discounts, or penalties, to clearly outline the terms of the transaction.
 
 
 <table>

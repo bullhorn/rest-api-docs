@@ -1,7 +1,6 @@
 # Pay and Bill - DirectDepositAccount
 
-Entity that represents a candidate's direct deposit account record.
-
+Stores bank account details required for processing direct deposit payments, including information like account and routing numbers associated with an employee or contractor.
 
 <table>
     <colgroup>

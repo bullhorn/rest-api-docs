@@ -1,9 +1,8 @@
 # Pay and Bill - PlacementPayRuleset
 
-An [effective-dated entity](../index.html#effective-dated-entity) that represents all the rules on a Placement.
-PlacementPayRuleset is the flattened entity. When making PUT and POST calls
-to PlacementPayRuleset, the child entity, TimeLaborEvalRules,
-can be passed as well with all associated data.
+An [effective-dated entity](../index.html#effective-dated-entity) that specifies the pay configuration for a placement, setting the guidelines for candidate compensation including wages, deductions, and other payroll parameters.
+
+PlacementPayRuleset is the flattened entity. When making PUT and POST calls to PlacementPayRuleset, the child entity, TimeLaborEvalRules, can be passed as well with all associated data.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 

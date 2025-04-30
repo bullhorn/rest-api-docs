@@ -1,8 +1,6 @@
 # TimeLaborEvalRuleTemplate
 
-This entity represents the required certifications for a TimeLaborEvalRuleTemplate.
-
-
+Provides a standardized blueprint for creating TimeLaborEvalRules, enabling consistent application of evaluation rules across different scenarios or departments.
 
 <table>
     <colgroup>
