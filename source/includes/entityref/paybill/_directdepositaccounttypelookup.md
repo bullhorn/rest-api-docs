@@ -32,14 +32,14 @@ CRUD Access - READ
         <tr class="odd">
             <td>hasIntegration</td>
             <td>Boolean</td>
-            <td>: Indicates whether the Direct Deposit Account Type should be flagged by the API for custom processes, such as pay card registration.</td>
+            <td>Indicates whether the Direct Deposit Account Type needs to be picked up by the API for processes like registration of a pay card.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td>Whether or not the direct deposit type is deleted</td>
+            <td>Whether the direct deposit type is deleted</td>
             <td>X</td>
             <td></td>
         </tr>
