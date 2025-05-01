@@ -2,7 +2,17 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
-## April 2025 Release (2025.6)
+## May 2025 Release (2025.5)
+
+| ADDED ```|``` [DirectDepositAccountTypeLookup](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccounttypelookup) |
+
+| UPDATED ```|``` [Candidate entity](https://bullhorn.github.io/rest-api-docs/entityref.html#candidate) |
+
+| UPDATED ```|``` [File entity](https://bullhorn.github.io/rest-api-docs/entityref.html#file) |
+
+| UPDATED ```|``` [GeneralLedgeAccount entity](https://bullhorn.github.io/rest-api-docs/entityref.html#generalledgeraccount) |
+
+| UPDATED ```|``` [Placement entity](https://bullhorn.github.io/rest-api-docs/entityref.html#placement) |
 
 | ADDED ```|``` [InvoiceTerm reports field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoiceterm) |
 

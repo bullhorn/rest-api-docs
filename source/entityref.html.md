@@ -108,6 +108,7 @@ includes:
   - entityref/paybill/customerrequiredfieldmeta
   - entityref/paybill/customerrequiredfieldoption
   - entityref/paybill/directdepositaccount
+  - entityref/paybill/directdepositaccounttypelookup
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
   - entityref/paybill/districtsalestaxrate

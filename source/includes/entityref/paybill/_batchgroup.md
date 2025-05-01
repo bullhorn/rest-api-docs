@@ -1,6 +1,9 @@
 # Pay and Bill - BatchGroup
 
-Read-only entity that represents a batch group. Dynamic insert via billing-sync-services.
+Organizes related batches into one grouping to streamline the processing and management of bulk operations. 
+Dynamically inserted via billing-sync-services.
+
+CRUD Access - READ
 
 <table>
 <colgroup>

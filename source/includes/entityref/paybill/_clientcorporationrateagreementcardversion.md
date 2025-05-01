@@ -1,6 +1,6 @@
 # Pay and Bill - ClientCorporationRateAgreementCardVersion
 
-Represents a ClientCorporation rate card version.
+Represents a version entity for the [ClientCorporationRateCard](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-clientcorporationratecard) effective-dated entity.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.
 

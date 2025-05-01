@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceStatementLineItem
 
-Represents an invoice line item.
+Represents an individual entry on an invoice statement, detailing specific charges, credits, or adjustments that collectively form the overall invoice total.
 
 CRUD Access - READ
 

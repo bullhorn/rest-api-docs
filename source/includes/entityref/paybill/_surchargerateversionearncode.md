@@ -1,6 +1,6 @@
 # Pay and Bill - SurchargeRateVersionEarnCode
 
-Association table for SurchargeRateVersion and EarnCodes
+Association table for [SurchargeRateVersion](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerateversion) and [EarnCode](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-earncode)
 
 CRUD Access - CREATE, READ, DELETE
 

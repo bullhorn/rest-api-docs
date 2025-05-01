@@ -1,9 +1,6 @@
 # TimesheetEntry
 
-This entity represents the required certifications for a TimesheetEntry.
-
-
-
+Denotes an individual record within a timesheet, capturing the work date, duration, and relevant activity details for precise time tracking.
 
 <table>
     <colgroup>

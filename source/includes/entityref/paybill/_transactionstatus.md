@@ -1,6 +1,6 @@
 # Pay and Bill - TransactionStatus
 
-Read-only entity that represents a transaction type.
+Indicates the current state of a transaction, which helps in monitoring its progress through various processing stages.
 
 <table>
 <colgroup>

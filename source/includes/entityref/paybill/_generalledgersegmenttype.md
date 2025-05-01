@@ -1,6 +1,6 @@
 # Pay and Bill - GeneralLedgerSegmentType
 
-Represents a general ledger segment for assignment to Placement, BillableCharge, and PayableCharge.
+Provides a lookup reference that defines the various types or classifications of segments used within the general ledger, ensuring consistency in financial segmentation.
 
 <table>
 <colgroup>

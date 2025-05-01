@@ -1,6 +1,7 @@
 # Pay and Bill - JobOrderRateCardVersion
 
-Represents a job order rate card version.
+Represents a version entity for the JobOrderRateCard effective-dated entity.
+For more information see [how rate card calculations work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.
 

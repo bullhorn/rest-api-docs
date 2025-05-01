@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionSalesTaxDetail
 
-Represents the denormalized details of a sales tax rate version for a BillMasterTransactionSalesTaxRate.
+Represents the denormalized details of a sales tax rate version for a [BillMasterTransactionSalesTaxRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransactionsalestaxrate).
 
 CRUD Access - READ
 

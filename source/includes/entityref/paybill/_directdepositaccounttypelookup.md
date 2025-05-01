@@ -1,6 +1,6 @@
-#  Pay and Bill - CalendarFrequencyLookup
+# Pay and Bill - DirectDepositAccountTypeLookup
 
-Serves as a lookup table providing predefined frequency options (such as daily, weekly, monthly) that standardize recurrence intervals for calendar events.
+Provides a standardized set of lookup values that classify the types of [DirectDepositAccounts](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccount) (for example, checking or savings) used during payment processing.
 
 CRUD Access - READ
 
@@ -14,7 +14,7 @@ CRUD Access - READ
     </colgroup>
     <thead>
         <tr class="header">
-            <th>CalendarFrequencyLookup fields</th>
+            <th>DirectDepositAccountTypeLookup fields</th>
             <th>Type</th>
             <th>Description</th>
             <th>Not null</th>
@@ -30,36 +30,32 @@ CRUD Access - READ
             <td>X</td>
         </tr>
         <tr class="odd">
-            <td>dateAdded</td>
-            <td>Timestamp</td>
-            <td></td>
+            <td>hasIntegration</td>
+            <td>Boolean</td>
+            <td>Indicates whether the Direct Deposit Account Type needs to be picked up by the API for processes like registration of a pay card.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>dateLastModified</td>
-            <td>Timestamp</td>
-            <td></td>
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Whether the direct deposit type is deleted</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>isDeleted</td>
+            <td>isPayCard</td>
             <td>Boolean</td>
-            <td></td>
+            <td>Identifies whether the record is marked as a Pay Card account type within the Bullhorn system</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>label</td>
-            <td>String (100)</td>
-            <td></td>
+            <td>String (50)</td>
+            <td>Name of the Direct Deposit Type</td>
             <td></td>
             <td></td>
         </tr>
     </tbody>
 </table>
-
-
-     
-        

@@ -1,6 +1,6 @@
 # Pay and Bill - JobOrderBillRuleset
 
-An effective-dated entity that represents all the rules on a job order.
+An [effective-dated entity](../index.html#effective-dated-entity) that represents all the rules on a job order.
 JobOrderBillRuleset is the flattened entity. When making PUT and POST calls
 to JobOrderBillRuleset, the child entity, TimeLaborEvalRules,
 can be passed as well with all associated data.

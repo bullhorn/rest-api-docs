@@ -1,9 +1,6 @@
 # ExpenseSheet
 
-This entity represents the required certifications for an ExpenseSheet.
-
-
-
+Acts as a master record for collecting and summarizing an employee’s incurred expenses, facilitating the reimbursement process by grouping multiple expense entries.
 
 <table>
     <colgroup>

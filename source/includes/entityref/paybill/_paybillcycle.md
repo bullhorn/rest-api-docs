@@ -1,7 +1,6 @@
 #  Pay and Bill - PayBillCycle
 
-Entity that represents a billing cycle record.
-
+Defines a recurring time period or schedule over which payroll or payable transactions are processed, establishing the cycle for calculating and disbursing payments.
 
 <table>
     <colgroup>

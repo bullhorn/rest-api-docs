@@ -1,6 +1,6 @@
 # Pay and Bill - Holiday
 
-Entity that represents a Holiday record.
+Represents a recorded holiday within the system, detailing key attributes (such as name and date) used for scheduling, payroll, and workflow adjustments during non-working days.
 
 CRUD Access - READ, DELETE.
 

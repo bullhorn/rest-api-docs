@@ -1,6 +1,6 @@
 # Pay and Bill - PayMaster
 
-Read-only entity that represents a PayMaster record.
+Serves as the master record for a payroll cycle, aggregating overall payment details and linking together individual transactions for accurate financial reconciliation.
 
 <table>
 <colgroup>

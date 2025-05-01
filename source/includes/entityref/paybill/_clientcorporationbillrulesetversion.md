@@ -1,6 +1,6 @@
 # Pay and Bill - ClientCorporationBillRulesetVersion
 
-Represents a ClientCorporation BillRuleset version.
+Represents a version entity for the [ClientCorporationBillRuleset](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-clientcorporationbillruleset) effective-dated entity.
 
 <table>
     <colgroup>

@@ -1,6 +1,6 @@
 # Pay and Bill - AccountingPeriod
 
-Represents an accounting period.
+Defines a financial period—typically marked by start and end dates—within which billing and revenue transactions are grouped, reported, and reconciled.
 
 <table>
     <colgroup>

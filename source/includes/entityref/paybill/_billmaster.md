@@ -1,6 +1,6 @@
 # Pay and Bill - BillMaster
 
-Represents a BillMaster record.
+Represents the master billing record that aggregates header-level financial information and links the various billing transactions and adjustments for an invoice or billing event.
 
 CRUD Access - READ, UPDATE.
 
