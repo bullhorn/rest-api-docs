@@ -779,7 +779,7 @@
 <td></td>
 </tr>
 <tr>
-<td>customText1 to 60</td>
+<td>customText1 to 40</td>
 <td>String (100)</td>
 <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
 <td></td>
@@ -9672,8 +9672,9 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 
           <h1 id="locationversion">LocationVersion</h1>
 
-<p>Represents a version of the Location record on a Client Corporation.
-CRUD Access - READ</p>
+<p>Represents a version of the Location record on a Client Corporation.</p>
+
+<p>CRUD Access - READ</p>
 
 <table>
     <colgroup>
@@ -10728,7 +10729,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-accountingperiod">Pay and Bill - AccountingPeriod</h1>
 
-<p>Represents an accounting period.</p>
+<p>Defines a financial period—typically marked by start and end dates—within which billing and revenue transactions are grouped, reported, and reconciled.</p>
 
 <table>
     <colgroup>
@@ -10767,7 +10768,10 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-batchgroup">Pay and Bill - BatchGroup</h1>
 
-<p>Read-only entity that represents a batch group. Dynamic insert via billing-sync-services.</p>
+<p>Organizes related batches into one grouping to streamline the processing and management of bulk operations. 
+Dynamically inserted via billing-sync-services.</p>
+
+<p>CRUD Access - READ</p>
 
 <table>
 <colgroup>
@@ -10817,7 +10821,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billablecharge">Pay and Bill - BillableCharge</h1>
 
-<p>Represents a billable charge.</p>
+<p>The BillableCharge entity records a chargeable fee, capturing key details like the fee amount, rate type, and effective dates, and ties these charges to specific BillMasterTransactions.</p>
 
 <table>
     <colgroup>
@@ -11407,7 +11411,10 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billingsyncbatch">Pay and Bill - BillingSyncBatch</h1>
 
-<p>Read-only entity that represents a billing-sync batch. Dynamic insert and update via billing-sync-services.</p>
+<p>Represents a collection of billing records bundled together for efficient synchronization between Bullhorn and external billing systems.
+Dynamically inserted and updated via billing-sync-services.</p>
+
+<p>CRUD Access - READ</p>
 
 <table>
 <colgroup>
@@ -11529,9 +11536,9 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billingsyncbatchfileattachment">Pay and Bill - BillingSyncBatchFileAttachment</h1>
 
-<p>File attachments that can be associated with a BillingSyncBatch.</p>
+<p>Contains file attachments linked to a billing sync batch, supplying supplemental documentation that supports the billing information being processed.</p>
 
-<p>CRUD Access - READ.</p>
+<p>CRUD Access - READ</p>
 
 <p>Entitlements - Add Billable Charge, Update Billable Charge, View Billable Charge.</p>
 
@@ -11753,7 +11760,10 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billingsyncerror">Pay and Bill - BillingSyncError</h1>
 
-<p>Read-only entity that represents a billing-sync error. Dynamic insert and update via billing-sync-services.</p>
+<p>Logs errors encountered during billing synchronization, capturing critical details for troubleshooting and ensuring data integrity.
+Dynamic insert and update via billing-sync-services.</p>
+
+<p>CRUD Access - READ</p>
 
 <table>
 <colgroup>
@@ -11862,7 +11872,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmaster">Pay and Bill - BillMaster</h1>
 
-<p>Represents a BillMaster record.</p>
+<p>Represents the master billing record that aggregates header-level financial information and links the various billing transactions and adjustments for an invoice or billing event.</p>
 
 <p>CRUD Access - READ, UPDATE.</p>
 
@@ -12136,7 +12146,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmasterdiscountrate">Pay and Bill - BillMasterDiscountRate</h1>
 
-<p>Represents an association between BillMaster and a DiscountRate.</p>
+<p>Represents an association between <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmaster">BillMaster</a> and a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-discountrate">DiscountRate</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -12224,7 +12234,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmastersurchargerate">Pay and Bill - BillMasterSurchargeRate</h1>
 
-<p>Represents an association between bill master and a surcharge rate.</p>
+<p>Represents an association between <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmaster">BillMaster</a> and a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerate">SurchargeRate</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -12632,7 +12642,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmastertransactiondiscountdetail">Pay and Bill - BillMasterTransactionDiscountDetail</h1>
 
-<p>Represents the denormalized details of a discount rate version for a BillMasterTransactionDiscountRate.</p>
+<p>Represents the denormalized details of a discount rate version for a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransactiondiscountrate">BillMasterTransactionDiscountRate</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -12750,7 +12760,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmastertransactiondiscountrate">Pay and Bill - BillMasterTransactionDiscountRate</h1>
 
-<p>Represents an association between a BillMasterTransaction and DiscountRate.</p>
+<p>Represents an association between a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransactions">BillMasterTransactions</a> and <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-discountrate">DiscountRate</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -12885,7 +12895,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmastertransactiondistributionbatch">Pay and Bill - BillMasterTransactionDistributionBatch</h1>
 
-<p>Read-only entity used to track which BillMasterTransactions are ready for revenue recognition distribution record creation</p>
+<p>Read-only entity used to track which <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransactions">BillMasterTransactions</a> are ready for revenue recognition distribution record creation</p>
 
 <table>
     <colgroup>
@@ -12974,7 +12984,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmastertransactionsalestaxdetail">Pay and Bill - BillMasterTransactionSalesTaxDetail</h1>
 
-<p>Represents the denormalized details of a sales tax rate version for a BillMasterTransactionSalesTaxRate.</p>
+<p>Represents the denormalized details of a sales tax rate version for a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransactionsalestaxrate">BillMasterTransactionSalesTaxRate</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -13050,7 +13060,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmastertransactionsalestaxrate">Pay and Bill - BillMasterTransactionSalesTaxRate</h1>
 
-<p>Represents an association between a BillMasterTransaction and SalesTaxRate.</p>
+<p>Represents an association between a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransaction">BillMasterTransaction</a> and <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-salestaxrate">SalesTaxRate</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -13180,7 +13190,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmastertransactionsurchargedetail">Pay and Bill - BillMasterTransactionSurchargeDetail</h1>
 
-<p>Represents the denormalized details of a surcharge rate for a BillMasterTransactionSurchargeRate.</p>
+<p>Represents the denormalized details of a surcharge rate for a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransactionsurchargerate">BillMasterTransactionSurchargeRate</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -13276,7 +13286,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-billmastertransactionsurchargerate">Pay and Bill - BillMasterTransactionSurchargeRate</h1>
 
-<p>Represents an association between a bill master transaction and surcharge rate.</p>
+<p>Represents an association between a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmaster">BillMasterTransaction</a> and <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerate">SurchargeRate</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -13403,7 +13413,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-calendar">Pay and Bill - Calendar</h1>
 
-<p>Entity that represents a Calendar record.</p>
+<p>Represents a scheduling record that organizes events, appointments, and recurring patterns within the system, serving as the framework for time-based activities.</p>
 
 <table>
     <colgroup>
@@ -13484,7 +13494,9 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-calendarfrequencylookup">Pay and Bill - CalendarFrequencyLookup</h1>
 
-<p>Read-only lookup entity used with billing cycles and billing calendars.</p>
+<p>Serves as a lookup table providing predefined frequency options (such as daily, weekly, monthly) that standardize recurrence intervals for calendar events.</p>
+
+<p>CRUD Access - READ</p>
 
 <table>
     <colgroup>
@@ -13544,7 +13556,7 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-calendarinstance">Pay and Bill - CalendarInstance</h1>
 
-<p>Entity that represents a Calendar Instance record.</p>
+<p>Denotes a specific scheduled occurrence generated from a recurring <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-calendar">Calendar</a> record, capturing the concrete date, time, and other instance-specific details.</p>
 
 <table>
     <colgroup>
@@ -13622,10 +13634,9 @@ CRUD Access - READ</p>
 
           <h1 id="pay-and-bill-clientcorporationbillruleset">Pay and Bill - ClientCorporationBillRuleset</h1>
 
-<p>An effective-dated entity that represents all the rules on a ClientCorporation.
-ClientCorporationBillRuleset is the flattened entity. When making PUT and POST calls
-to ClientCorporationBillRuleset, the child entity, TimeLaborEvalRules,
-can be passed as well with all associated data.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that defines the billing policies and criteria for a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#clientcorporation">ClientCorporation</a>, outlining rules that govern invoicing processes and financial transactions.</p>
+
+<p>ClientCorporationBillRuleset is the flattened entity. When making PUT and POST calls to ClientCorporationBillRuleset, the child entity, TimeLaborEvalRules, can be passed as well with all associated data.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
@@ -13730,7 +13741,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-clientcorporationbillrulesetversion">Pay and Bill - ClientCorporationBillRulesetVersion</h1>
 
-<p>Represents a ClientCorporation BillRuleset version.</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-clientcorporationbillruleset">ClientCorporationBillRuleset</a> effective-dated entity.</p>
 
 <table>
     <colgroup>
@@ -13804,10 +13815,9 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-clientcorporationpayruleset">Pay and Bill - ClientCorporationPayRuleset</h1>
 
-<p>An effective-dated entity that represents all the rules on a ClientCorporation.
-ClientCorporationPayRuleset is the flattened entity. When making PUT and POST calls
-to ClientCorporationPayRuleset, the child entity, TimeLaborEvalRules,
-can be passed as well with all associated data.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that specifies the payment or payroll rules particular to a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#clientcorporation">ClientCorporation</a>, ensuring that payment processing aligns with established company guidelines.</p>
+
+<p>ClientCorporationPayRuleset is the flattened entity. When making PUT and POST calls to ClientCorporationPayRuleset, the child entity, TimeLaborEvalRules, can be passed as well with all associated data.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
@@ -13912,7 +13922,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-clientcorporationpayrulesetversion">Pay and Bill - ClientCorporationPayRulesetVersion</h1>
 
-<p>Represents a ClientCorporation PayRuleset version.</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-clientcorporationpayruleset">ClientCorporationPayRuleset</a> effective-dated entity.</p>
 
 <table>
     <colgroup>
@@ -13986,10 +13996,9 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-clientcorporationrateagreementcard">Pay and Bill - ClientCorporationRateAgreementCard</h1>
 
-<p>An effective-dated entity that represents all the rates on a ClientCorporation.
-ClientCorporationRateAgreementCard is the flattened entity. When making PUT and POST calls
-to ClientCorporationRateAgreementCard, the child entities, ClientCorporationRateAgreementCardLineGroup and ClientCorporationRateAgreementCardLine,
-can be passed as well with all associated data. This data can also flow down into JobOrderRateCard.</p>
+<p>An effective-dated entity that acts as a master record for rate agreements between a staffing firm and a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#clientcorporation">ClientCorporation</a>, detailing overall rate structures and contractual terms.</p>
+
+<p>ClientCorporationRateAgreementCard is the flattened entity. When making PUT and POST calls to ClientCorporationRateAgreementCard, the child entities, <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-clientcorporationrateagreementcardlinegroup">ClientCorporationRateAgreementCardLineGroup</a> and <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-clientcorporationrateagreementcardline">ClientCorporationRateAgreementCardLine</a>, can be passed as well with all associated data. This data can also flow down into JobOrderRateCard.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
@@ -14116,7 +14125,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-clientcorporationrateagreementcardline">Pay and Bill - ClientCorporationRateAgreementCardLine</h1>
 
-<p>An entity representing each individual rate on a ClientCorporation.</p>
+<p>Represents individual line items within the rate agreement card, detailing specific rate components, charges, or conditions on a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#clientcorporation">ClientCorporation</a>.</p>
 
 <table>
     <colgroup>
@@ -14323,7 +14332,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-clientcorporationrateagreementcardlinegroup">Pay and Bill - ClientCorporationRateAgreementCardLineGroup</h1>
 
-<p>Represents a group of rates on a ClientCorporation</p>
+<p>Represents a group of rates on a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#clientcorporation">ClientCorporation</a></p>
 
 <table>
     <colgroup>
@@ -14428,7 +14437,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-clientcorporationrateagreementcardversion">Pay and Bill - ClientCorporationRateAgreementCardVersion</h1>
 
-<p>Represents a ClientCorporation rate card version.</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-clientcorporationratecard">ClientCorporationRateCard</a> effective-dated entity.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE.</p>
 
@@ -14541,7 +14550,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-customerrequiredfieldconfiguration">Pay and Bill - CustomerRequiredFieldConfiguration</h1>
 
-<p>An entity that represents the primary view for the Customer Required Field (CRF) Effective Dated Entity (EDE). CustomerRequiredFieldConfiguration (CRFC) is an EDE entity designed to associate a CustomerRequiredField to a Placement. They have a 1:1 relationship with Placements signifying that only one Placement can have that specific CRFC.</p>
+<p>An entity that represents the primary view for the Customer Required Field (CRF) Effective-Dated Entity (EDE). CustomerRequiredFieldConfiguration (CRFC) is an EDE entity designed to associate a CustomerRequiredField to a Placement. They have a 1:1 relationship with Placements signifying that only one Placement can have that specific CRFC.</p>
 
 <p>CRUD Access- CREATE, READ, UPDATE, DELETE <a href="./#effective-dated-entity">effective-dated entity</a> DEPRECATED <a href="../_services.md#post-servicescustomerrequiredfieldmeta">see service endpoint</a></p>
 
@@ -14695,7 +14704,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-customerrequiredfieldconfigurationversion">Pay and Bill - CustomerRequiredFieldConfigurationVersion</h1>
 
-<p>An entity that represents the version entity for the Customer Required Field (CRF) Effective Dated Entity (EDE).</p>
+<p>An entity that represents the version entity for <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldconfiguration">CustomerRequiredFieldConfiguration</a></p>
 
 <p>CRUD Access - READ ONLY</p>
 
@@ -14800,7 +14809,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-customerrequiredfieldconfigurationversionoption">Pay and Bill - CustomerRequiredFieldConfigurationVersionOption</h1>
 
-<p>An entity that represents the Customer Required Field options available for a particular Customer Required Field version.</p>
+<p>An entity that represents the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldoption">CustomerRequiredFieldOptions</a> available for a particular <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldconfigurationversion">CustomerRequiredFieldConfigurationVersion</a>.</p>
 
 <p>CRUD ACCESS - READ ONLY</p>
 
@@ -14883,7 +14892,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-customerrequiredfieldmeta">Pay and Bill - CustomerRequiredFieldMeta</h1>
 
-<p>Represents metadata for a Customer Required Field (CRF).</p>
+<p>Manages and defines the setup for fields that must be completed on customer-related records, specifying which fields are mandatory and how they should be validated.</p>
 
 <p>CRUD Access - READ ONLY</p>
 
@@ -15032,7 +15041,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-customerrequiredfieldoption">Pay and Bill - CustomerRequiredFieldOption</h1>
 
-<p>These options define what options a user will be able to choose from when filling in the Customer Required Field (CRF). Each option can have its own value, label, and start and end dates.</p>
+<p>The permissible options or values for a customer required field, particularly for fields with a predefined set of selectable inputs.</p>
 
 <p>CRUD Access - READ ONLY</p>
 
@@ -15138,7 +15147,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-directdepositaccount">Pay and Bill - DirectDepositAccount</h1>
 
-<p>Entity that represents a candidate&rsquo;s direct deposit account record.</p>
+<p>Stores bank account details required for processing direct deposit payments, including information like account and routing numbers associated with an employee or contractor.</p>
 
 <table>
     <colgroup>
@@ -15288,9 +15297,71 @@ can be passed as well with all associated data. This data can also flow down int
     </tbody>
 </table>
 
+          <h1 id="pay-and-bill-directdepositaccounttypelookup">Pay and Bill - DirectDepositAccountTypeLookup</h1>
+
+<p>Provides a standardized set of lookup values that classify the types of <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccount">DirectDepositAccounts</a> (for example, checking or savings) used during payment processing.</p>
+
+<p>CRUD Access - READ</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>DirectDepositAccountTypeLookup fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>hasIntegration</td>
+            <td>Boolean</td>
+            <td>Indicates whether the Direct Deposit Account Type needs to be picked up by the API for processes like registration of a pay card.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Whether the direct deposit type is deleted</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isPayCard</td>
+            <td>Boolean</td>
+            <td>Identifies whether the record is marked as a Pay Card account type within the Bullhorn system</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>label</td>
+            <td>String (50)</td>
+            <td>Name of the Direct Deposit Type</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
           <h1 id="pay-and-bill-discountrate">Pay and Bill - DiscountRate</h1>
 
-<p>An effective dated entity that represents a Discount Rate.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that defines a specified discount—either as a percentage or fixed amount—that is applied to invoices or fee calculations to adjust the overall charge.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
@@ -15623,7 +15694,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-discountrateversion">Pay and Bill - DiscountRateVersion</h1>
 
-<p>The version entity for the Discount Rate effective dated entity</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-discountrate">DiscountRate</a> effective-dated entity.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -15901,7 +15972,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-earncode">Pay and Bill - EarnCode</h1>
 
-<p>Represents an earn code.</p>
+<p>Represents a unique code used in payroll systems to categorize different types of earnings (such as base pay, overtime, or bonuses) for accurate calculation and reporting.</p>
 
 <table>
     <colgroup>
@@ -16100,7 +16171,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-earncodegroup">Pay and Bill - EarnCodeGroup</h1>
 
-<p>This entity represents the Earn Code Group which is a grouping of one or three earn codes.</p>
+<p>This entity represents the Earn Code Group which is a grouping of one or three <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-earncode">EarnCodes</a>.</p>
 
 <table>
     <colgroup>
@@ -16236,7 +16307,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="expensesheet">ExpenseSheet</h1>
 
-<p>This entity represents the required certifications for an ExpenseSheet.</p>
+<p>Acts as a master record for collecting and summarizing an employee’s incurred expenses, facilitating the reimbursement process by grouping multiple expense entries.</p>
 
 <table>
     <colgroup>
@@ -16422,7 +16493,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="expensesheetentry">ExpenseSheetEntry</h1>
 
-<p>This entity represents the required certifications for an ExpenseSheetEntry.</p>
+<p>Details an individual expense item within an <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-expensesheet">ExpenseSheet</a>, capturing information like date, amount, and expense category for precise tracking and validation.</p>
 
 <table>
     <colgroup>
@@ -16616,7 +16687,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-generalledgeraccount">Pay and Bill - GeneralLedgerAccount</h1>
 
-<p>Represents a general ledger account for use with billing information, including earn codes and invoice terms.</p>
+<p>Identifies a specific account in the general ledger used to record and categorize financial transactions, supporting the overall accounting structure; including <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-earncode">EarnCodes</a> and <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoiceterm">InvoiceTerms</a>.</p>
 
 <table>
 <colgroup>
@@ -16645,7 +16716,7 @@ can be passed as well with all associated data. This data can also flow down int
 </tr>
 <tr class="even">
 <td>externalAccountNumber</td>
-<td><span>Integer</span></td>
+<td><span>String (100)</span></td>
 <td><p><span>External account number.</span></p></td>
 <td> X</td>
 <td> </td>
@@ -16717,7 +16788,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-generalledgersegment">Pay and Bill - GeneralLedgerSegment</h1>
 
-<p>Represents a general ledger segment for assignment to Placement, BillableCharge, and PayableCharge.</p>
+<p>Represents a general ledger segment for assignment to <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#placement">Placement</a>, <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billablecharge">BillableCharge</a>, and <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-payablecharge">PayableCharge</a>.</p>
 
 <table>
 <colgroup>
@@ -16786,7 +16857,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-generalledgersegmenttype">Pay and Bill - GeneralLedgerSegmentType</h1>
 
-<p>Represents a general ledger segment for assignment to Placement, BillableCharge, and PayableCharge.</p>
+<p>Provides a lookup reference that defines the various types or classifications of segments used within the general ledger, ensuring consistency in financial segmentation.</p>
 
 <table>
 <colgroup>
@@ -16832,7 +16903,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-generalledgerservicecode">Pay and Bill - GeneralLedgerServiceCode</h1>
 
-<p>Represents a general ledger service code.</p>
+<p>pecifies a designated code that correlates services with their financial entries in the general ledger, ensuring that revenue and expense transactions are properly identified and allocated.</p>
 
 <table>
 <colgroup>
@@ -16895,7 +16966,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-holiday">Pay and Bill - Holiday</h1>
 
-<p>Entity that represents a Holiday record.</p>
+<p>Represents a recorded holiday within the system, detailing key attributes (such as name and date) used for scheduling, payroll, and workflow adjustments during non-working days.</p>
 
 <p>CRUD Access - READ, DELETE.</p>
 
@@ -17031,7 +17102,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-holidaycategorylookup">Pay and Bill - HolidayCategoryLookup</h1>
 
-<p>Entity that represents a Holiday Category Lookup record.</p>
+<p>Acts as a reference table that categorizes <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-holiday">Holidays</a>—such as federal, religious, or company-specific—to ensure consistent classification and application of holiday rules.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE.</p>
 
@@ -17138,7 +17209,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-holidayinstance">Pay and Bill - HolidayInstance</h1>
 
-<p>Entity that represents a Holiday Instance record.</p>
+<p>Denotes a specific occurrence of a <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-holiday">Holiday</a> on the calendar, created from recurring holiday definitions, and captures the exact date and any instance-specific details needed for operational adjustments.</p>
 
 <p>CRUD Access - READ.</p>
 
@@ -17216,7 +17287,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-invoicestatementdiscountrate">Pay and Bill - InvoiceStatementDiscountRate</h1>
 
-<p>Represents the rounded subtotals for unique discount rates tied to an invoice statement.</p>
+<p>Represents the rounded subtotals for unique <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-discountrate">DiscountRates</a> tied to an <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement">InvoiceStatement</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -17347,7 +17418,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-invoicestatementlineitem">Pay and Bill - InvoiceStatementLineItem</h1>
 
-<p>Represents an invoice line item.</p>
+<p>Represents an individual entry on an invoice statement, detailing specific charges, credits, or adjustments that collectively form the overall invoice total.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -17543,7 +17614,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-invoicestatementlineitemdiscountrate">Pay and Bill - InvoiceStatementLineItemDiscountRate</h1>
 
-<p>Represents the rounded subtotals for unique discount rates tied to an invoice statement line item.</p>
+<p>Represents the rounded subtotals for unique <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-discountrate">DiscountRates</a> tied to an <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatementlineitem">InvoiceStatementLineItem</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -17674,7 +17745,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-invoicestatementlineitemsalestaxrate">Pay and Bill - InvoiceStatementLineItemSalesTaxRate</h1>
 
-<p>Represents the rounded subtotals for unique sales tax rates to an invoice statement line item.</p>
+<p>Represents the rounded subtotals for unique <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-salestaxrate">SalesTaxRate</a> to an <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatementlineitem">InvoiceStatementLineItem</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -17816,7 +17887,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-invoicestatementlineitemsurchargerate">Pay and Bill - InvoiceStatementLineItemSurchargeRate</h1>
 
-<p>Represents the rounded subtotals for unique surcharge rates tied to an invoice statement line item.</p>
+<p>Represents the rounded subtotals for unique <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerate">SurchargeRate</a> tied to an <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatementlineitem">InvoiceStatementLineItem</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -17913,7 +17984,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-invoicestatementsalestaxrate">Pay and Bill - InvoiceStatementSalesTaxRate</h1>
 
-<p>Represents the rounded subtotals for unique sales tax rates tied to an invoice statement.</p>
+<p>Represents the rounded subtotals for unique <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-saletaxrate">SalesTaxRate</a> tied to an <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement">InvoiceStatement</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -18055,7 +18126,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-invoicestatementsurchargerate">Pay and Bill - InvoiceStatementSurchargeRate</h1>
 
-<p>Represents the rounded subtotals for unique surcharge rates tied to an invoice statement.</p>
+<p>Represents the rounded subtotals for unique <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerate">SurchargeRate</a> tied to an <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement">InvoiceStatement</a>.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -18152,7 +18223,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-invoiceterm">Pay and Bill - InvoiceTerm</h1>
 
-<p>Entity that represents a customer invoice terms record.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that specifies particular contractual or payment conditions attached to an invoice, such as due dates, discounts, or penalties, to clearly outline the terms of the transaction.</p>
 
 <table>
     <colgroup>
@@ -18443,7 +18514,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-invoicetermversion">Pay and Bill - InvoiceTermVersion</h1>
 
-<p>Represents an invoice term version.</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoiceterm">InvoiceTerm</a> effective-dated entity.</p>
 
 <table>
     <colgroup>
@@ -18685,7 +18756,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-jobcode">Pay and Bill - JobCode</h1>
 
-<p>Represents a Job Code.</p>
+<p>Serves as an identifying code for classifying jobs or positions within Bullhorn, aiding in tracking, billing, and payroll by linking specific roles or functions to standardized categories.</p>
 
 <table>
     <colgroup>
@@ -18841,7 +18912,7 @@ can be passed as well with all associated data. This data can also flow down int
 
           <h1 id="pay-and-bill-joborderbillruleset">Pay and Bill - JobOrderBillRuleset</h1>
 
-<p>An effective-dated entity that represents all the rules on a job order.
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that represents all the rules on a job order.
 JobOrderBillRuleset is the flattened entity. When making PUT and POST calls
 to JobOrderBillRuleset, the child entity, TimeLaborEvalRules,
 can be passed as well with all associated data.</p>
@@ -18949,7 +19020,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-joborderbillrulesetversion">Pay and Bill - JobOrderBillRulesetVersion</h1>
 
-<p>Represents a JobOrderBillRuleset version.</p>
+<p>Represents a version entity for the JobOrderBillRuleset effective-dated entity.</p>
 
 <table>
     <colgroup>
@@ -19023,7 +19094,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-joborderpayruleset">Pay and Bill - JobOrderPayRuleset</h1>
 
-<p>An effective-dated entity that represents all the rules on a JobOrder.
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that represents all the rules on a JobOrder.
 JobOrderPayRuleset is the flattened entity. When making PUT and POST calls
 to JobOrderPayRuleset, the child entity, TimeLaborEvalRules,
 can be passed as well with all associated data.</p>
@@ -19131,7 +19202,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-joborderpayrulesetversion">Pay and Bill - JobOrderPayRulesetVersion</h1>
 
-<p>Represents a JobOrderPayRuleset version.</p>
+<p>Represents a version entity for the JobOrderPayRuleset effective-dated entity.</p>
 
 <table>
     <colgroup>
@@ -19205,10 +19276,11 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-joborderratecard">Pay and Bill - JobOrderRateCard</h1>
 
-<p>An effective-dated entity that represents all the rates on a JobOrder. 
-JobOrderRateCard is the flattened entity. When making PUT and POST calls 
-to JobOrderRateCard, the child entities, JobOrderRateCardLineGroup and JobOrderRateCardLine, 
-can be passed as well with all associated data.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that defines the set of rate details for a specific job order, including elements like pay rates, bill rates, and margins that govern the financial terms of placements.</p>
+
+<p>JobOrderRateCard is the flattened entity. When making PUT and POST calls to JobOrderRateCard, the child entities, JobOrderRateCardLineGroup and JobOrderRateCardLine, can be passed as well with all associated data.</p>
+
+<p>For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/">how rate card calculations work</a></p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
@@ -19329,7 +19401,9 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-joborderratecardline">Pay and Bill - JobOrderRateCardLine</h1>
 
-<p>An Entity representing each individual rate on a Job Order</p>
+<p>Represents an individual rate component within a JobOrderRateCard, detailing specific pricing elements or adjustments that contribute to the overall rate structure.</p>
+
+<p>For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/">how rate card calculations work</a></p>
 
 <table>
     <colgroup>
@@ -19503,7 +19577,8 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-joborderratecardlinegroup">Pay and Bill - JobOrderRateCardLineGroup</h1>
 
-<p>Represents a group of rates on a Job Order</p>
+<p>Represents a group of rates on a Job Order
+For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/">how rate card calculations work</a></p>
 
 <table>
     <colgroup>
@@ -19608,7 +19683,8 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-joborderratecardversion">Pay and Bill - JobOrderRateCardVersion</h1>
 
-<p>Represents a job order rate card version.</p>
+<p>Represents a version entity for the JobOrderRateCard effective-dated entity.
+For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/">how rate card calculations work</a></p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE.</p>
 
@@ -19689,7 +19765,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-legalbusinessentity">Pay and Bill - LegalBusinessEntity</h1>
 
-<p>Entity representing a Legal Business Entity for use in payroll integrations.</p>
+<p>Captures the formal, legally recognized details of a business entity—such as its legal name and structure—used for contractual, billing, and compliance purposes.</p>
 
 <table><thead>
 <tr>
@@ -19771,7 +19847,10 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-payablecharge">Pay and Bill - PayableCharge</h1>
 
-<p>Read-only entity that represents a payable charge. Dynamic insert and update via billing-sync-services.</p>
+<p>Records a charge or fee that creates a payable obligation within the payroll or expense process, detailing amounts and relevant characteristics of the expense.
+Dynamically inserted and updated via billing-sync-services.</p>
+
+<p>CRUD Access - READ</p>
 
 <table>
     <colgroup>
@@ -20258,7 +20337,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-paybillcycle">Pay and Bill - PayBillCycle</h1>
 
-<p>Entity that represents a billing cycle record.</p>
+<p>Defines a recurring time period or schedule over which payroll or payable transactions are processed, establishing the cycle for calculating and disbursing payments.</p>
 
 <table>
     <colgroup>
@@ -20353,7 +20432,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-paymaster">Pay and Bill - PayMaster</h1>
 
-<p>Read-only entity that represents a PayMaster record.</p>
+<p>Serves as the master record for a payroll cycle, aggregating overall payment details and linking together individual transactions for accurate financial reconciliation.</p>
 
 <table>
 <colgroup>
@@ -20445,7 +20524,9 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-paymastertransaction">Pay and Bill - PayMasterTransaction</h1>
 
-<p>Read-only entity that represents a PayMasterTransaction.</p>
+<p>Details an individual payment transaction within a PayMaster record, capturing specific amounts, deductions, and adjustments that compose the overall payroll disbursement.</p>
+
+<p>CRUD Access - READ</p>
 
 <table>
     <colgroup>
@@ -20706,10 +20787,9 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-placementbillruleset">Pay and Bill - PlacementBillRuleset</h1>
 
-<p>An effective-dated entity that represents all the rules on a Placement.
-PlacementBillRuleset is the flattened entity. When making PUT and POST calls
-to PlacementBillRuleset, the child entity, TimeLaborEvalRules,
-can be passed as well with all associated data.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that defines the billing configuration for a placement, outlining how client invoices are generated by specifying the applicable fee structures and charge calculations.</p>
+
+<p>PlacementBillRuleset is the flattened entity. When making PUT and POST calls to PlacementBillRuleset, the child entity, TimeLaborEvalRules, can be passed as well with all associated data.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
@@ -20814,7 +20894,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-placementbillrulesetversion">Pay and Bill - PlacementBillRulesetVersion</h1>
 
-<p>Represents a PlacementBillRuleset version.</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-placementbillruleset">PlacementBillRuleset</a> effective-dated entity.</p>
 
 <table>
     <colgroup>
@@ -20888,10 +20968,9 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-placementpayruleset">Pay and Bill - PlacementPayRuleset</h1>
 
-<p>An effective-dated entity that represents all the rules on a Placement.
-PlacementPayRuleset is the flattened entity. When making PUT and POST calls
-to PlacementPayRuleset, the child entity, TimeLaborEvalRules,
-can be passed as well with all associated data.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that specifies the pay configuration for a placement, setting the guidelines for candidate compensation including wages, deductions, and other payroll parameters.</p>
+
+<p>PlacementPayRuleset is the flattened entity. When making PUT and POST calls to PlacementPayRuleset, the child entity, TimeLaborEvalRules, can be passed as well with all associated data.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
@@ -20996,7 +21075,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-placementpayrulesetversion">Pay and Bill - PlacementPayRulesetVersion</h1>
 
-<p>Represents a PlacementPayRuleset version.</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-placementpayruleset">PlacementPayRuleset</a> effective-dated entity.</p>
 
 <table>
     <colgroup>
@@ -21070,7 +21149,11 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-placementratecard">Pay and Bill - PlacementRateCard</h1>
 
-<p>An Effective Dated Entity that represents a all of the rates on a Placement. PlacementRateCard is the flattened entity. When making PUT and POST calls to PlacementRateCard, the child entities (PlacementRateCardLineGroup - PlacementRateCardLine) can be passed as well with all associated data.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that serves as the master record for rate agreements on a placement, detailing both bill and pay rates along with their respective terms and conditions.</p>
+
+<p>PlacementRateCard is the flattened entity. When making PUT and POST calls to PlacementRateCard, the child entities (PlacementRateCardLineGroup - PlacementRateCardLine) can be passed as well with all associated data.</p>
+
+<p>For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/">how rate card calculations work</a></p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
@@ -21204,7 +21287,9 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-placementratecardline">Pay and Bill - PlacementRateCardLine</h1>
 
-<p>Represents each individual rate on a Placement.</p>
+<p>Represents an individual line item within a PlacementRateCard that provides granular details on specific rates, such as adjustments or effective dates.</p>
+
+<p>For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/">how rate card calculations work</a></p>
 
 <table>
     <colgroup>
@@ -21390,7 +21475,8 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-placementratecardversion">Pay and Bill - PlacementRateCardVersion</h1>
 
-<p>Represents a placement rate card version.</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-placementratecard">PlacementRateCard</a> effective-dated entity.
+For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/">how rate card calculations work</a></p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE.</p>
 
@@ -21471,7 +21557,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-salestaxgroup">Pay and Bill - SalesTaxGroup</h1>
 
-<p>Represents various taxes (city, state, other, and so forth) associated with a zip+4 range.</p>
+<p>Organizes one or more sales tax rates under a common grouping, facilitating the application of multiple tax rates to a transaction based on jurisdiction or specific criteria.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE</p>
 
@@ -21667,7 +21753,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-salestaxrate">Pay and Bill - SalesTaxRate</h1>
 
-<p>An Effective Dated Entity that represents a sales tax rate.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that specifies the percentage or fixed rate at which sales tax is applied, including details on the applicable region and effective periods.</p>
 
 <p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
@@ -22022,7 +22108,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-salestaxrateversion">Pay and Bill - SalesTaxRateVersion</h1>
 
-<p>The version entity for the Sales Tax Rate effective dated entity</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-salestaxrate">SalesTaxRate</a> effective-dated entity.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -22184,11 +22270,11 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-surchargerate">Pay and Bill - SurchargeRate</h1>
 
-<p>Represents a Surcharge Rate.</p>
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that defines an additional fee added on top of a base charge, intended to cover extra costs or processing fees associated with the transaction.</p>
 
-<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE</p>
 
-<p>Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surcharge Rate and Version, Manage Current Surcharge Rate Version, Manage Future Surcharge Rate Version, Manage Historical Surcharge Rate Version, View Current and Future Surcharge Rate Version</p>
+<p>Entitlements - Add Surcharge Rate, Add Surcharge Rate Version, Delete Surcharge Rate and Version, Manage Current Surcharge Rate Version, Manage Future Surcharge Rate Version, Manage Historical Surcharge Rate Version, View Current and Future Surcharge Rate Version</p>
 
 <table>
     <colgroup>
@@ -22481,7 +22567,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-surchargerateversion">Pay and Bill - SurchargeRateVersion</h1>
 
-<p>Represents a Surcharge Rate Version.</p>
+<p>Represents a version entity for the <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerate">SurchargeRate</a> effective-dated entity.</p>
 
 <p>CRUD Access - READ</p>
 
@@ -22726,7 +22812,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-surchargerateversionearncode">Pay and Bill - SurchargeRateVersionEarnCode</h1>
 
-<p>Association table for SurchargeRateVersion and EarnCodes</p>
+<p>Association table for <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-surchargerateversion">SurchargeRateVersion</a> and <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-earncode">EarnCode</a></p>
 
 <p>CRUD Access - CREATE, READ, DELETE</p>
 
@@ -22807,7 +22893,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="timelaborevalrule">TimeLaborEvalRule</h1>
 
-<p>This entity represents the required certifications for a TimeLaborEvalRule.</p>
+<p>Sets the criteria and logic for evaluating time and labor entries, ensuring that recorded work complies with organizational policies and translates correctly into payroll data.</p>
 
 <table>
     <colgroup>
@@ -22975,7 +23061,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="timelaborevalruletemplate">TimeLaborEvalRuleTemplate</h1>
 
-<p>This entity represents the required certifications for a TimeLaborEvalRuleTemplate.</p>
+<p>Provides a standardized blueprint for creating TimeLaborEvalRules, enabling consistent application of evaluation rules across different scenarios or departments.</p>
 
 <table>
     <colgroup>
@@ -23081,7 +23167,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="timesheet">Timesheet</h1>
 
-<p>This entity represents the required certifications for a Timesheet.</p>
+<p>Acts as a master record that aggregates multiple time entries, tracking an individual’s work hours and activities over a specific period for payroll and reporting purposes.</p>
 
 <table>
     <colgroup>
@@ -23390,7 +23476,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="timesheetentry">TimesheetEntry</h1>
 
-<p>This entity represents the required certifications for a TimesheetEntry.</p>
+<p>Denotes an individual record within a timesheet, capturing the work date, duration, and relevant activity details for precise time tracking.</p>
 
 <table>
     <colgroup>
@@ -23678,7 +23764,9 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-transactionorigin">Pay and Bill - TransactionOrigin</h1>
 
-<p>Read-only entity that represents a transaction type.</p>
+<p>Identifies the source or trigger of a transaction, helping to trace its origin whether it’s initiated by a specific event, user action, or system process.</p>
+
+<p>CRUD - READ</p>
 
 <table>
 <colgroup>
@@ -23717,7 +23805,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-transactionstatus">Pay and Bill - TransactionStatus</h1>
 
-<p>Read-only entity that represents a transaction type.</p>
+<p>Indicates the current state of a transaction, which helps in monitoring its progress through various processing stages.</p>
 
 <table>
 <colgroup>
@@ -23756,7 +23844,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-transactiontype">Pay and Bill - TransactionType</h1>
 
-<p>Read-only entity that represents a transaction type.</p>
+<p>Categorizes a transaction by its nature—such as fee, adjustment, or payment—ensuring it is processed and reported correctly within the system.</p>
 
 <table>
 <colgroup>
@@ -23795,7 +23883,7 @@ can be passed as well with all associated data.</p>
 
           <h1 id="pay-and-bill-unbilledrevenuedistributionbatch">Pay and Bill - UnbilledRevenueDistributionBatch</h1>
 
-<p>Represents an unbilled revenue distribution batch.</p>
+<p>Groups unbilled revenue records into a single batch for systematic processing, enabling a streamlined transition from accrued revenue to invoicing.</p>
 
 <table>
 <colgroup>
@@ -24856,20 +24944,13 @@ can be passed as well with all associated data.</p>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>workersCompensationRateID</td>
-            <td>Integer (100)</td>
-            <td><strong>Not supported in this release.</strong> Id of the WorkersCompensationRate associated with this Placement.</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
             <td>workWeekStart</td>
             <td>Integer</td>
             <td>Day of the week on which the work week begins for this Placement. 1 = Sunday, 2 = Monday, and so forth.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>vendorClientCorporation</td>
             <td>To-one association</td>
             <td>Umbrella company associated with this Placement.</td>
