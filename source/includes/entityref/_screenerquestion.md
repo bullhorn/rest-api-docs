@@ -1,6 +1,6 @@
  # ScreenerQuestion
 
-The Screener Question entity enables users to define custom screening questions for jobs posted to third-party job boards such as Indeed. When a candidate applies and responds to these questions, their answers are mapped to corresponding fields on the Candidate entity, based on the user’s configuration.
+The Screener Question entity enables users to define custom screening questions for Jobs. When a candidate applies and responds to these questions, their answers are mapped to corresponding fields on the Candidate entity, based on the user’s configuration.
 
 <table>
     <colgroup>
