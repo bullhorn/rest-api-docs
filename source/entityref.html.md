@@ -177,6 +177,7 @@ includes:
   - entityref/placementtimeandexpensechangerequest
   - entityref/placementcommission
   - entityref/placementshiftset
+  - entityref/screenerquestion
   - entityref/sendout
   - entityref/shift
   - entityref/shiftposition
