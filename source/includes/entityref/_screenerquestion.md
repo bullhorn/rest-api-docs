@@ -58,7 +58,7 @@ The Screener Question entity enables users to define custom screening questions 
         <tr class="odd">
             <td>isDeleted</td>
             <td>Boolean</td>
-            <td>Indicates whether this record has been marked as deleted in the Bullhorn system.</td>
+            <td>Indicates whether this record has been marked as deleted in the Bullhorn system. Defaults to false.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -72,7 +72,7 @@ The Screener Question entity enables users to define custom screening questions 
         <tr class="odd">
             <td>required</td>
             <td>Boolean</td>
-            <td>Indicates if the question is required or optional.</td>
+            <td>Indicates if the question is required or optional. Defaults to false.</td>
             <td>X</td>
             <td></td>
         </tr>
