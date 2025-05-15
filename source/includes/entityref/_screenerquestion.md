@@ -1,4 +1,4 @@
- # ScreenerQuestion
+# ScreenerQuestion
 
 The Screener Question entity enables users to define custom screening questions for Jobs. When a candidate applies and responds to these questions, their answers are mapped to corresponding fields on the Candidate entity, based on the user’s configuration.
 
