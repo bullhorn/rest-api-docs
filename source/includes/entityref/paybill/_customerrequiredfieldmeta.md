@@ -1,6 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldMeta
 
-Represents metadata for a Customer Required Field (CRF).
+Manages and defines the setup for fields that must be completed on customer-related records, specifying which fields are mandatory and how they should be validated.
 
 CRUD Access - READ ONLY
 

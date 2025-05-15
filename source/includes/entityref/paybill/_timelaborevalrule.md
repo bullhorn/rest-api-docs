@@ -1,8 +1,6 @@
 # TimeLaborEvalRule
 
-This entity represents the required certifications for a TimeLaborEvalRule.
-
-
+Sets the criteria and logic for evaluating time and labor entries, ensuring that recorded work complies with organizational policies and translates correctly into payroll data.
 
 <table>
     <colgroup>

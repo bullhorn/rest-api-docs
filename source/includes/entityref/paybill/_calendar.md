@@ -1,7 +1,6 @@
 # Pay and Bill - Calendar
 
-Entity that represents a Calendar record.
-
+Represents a scheduling record that organizes events, appointments, and recurring patterns within the system, serving as the framework for time-based activities.
 
 <table>
     <colgroup>

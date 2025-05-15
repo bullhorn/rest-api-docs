@@ -1,6 +1,6 @@
 # Pay and Bill - JobCode
 
-Represents a Job Code.
+Serves as an identifying code for classifying jobs or positions within Bullhorn, aiding in tracking, billing, and payroll by linking specific roles or functions to standardized categories.
 
 <table>
     <colgroup>

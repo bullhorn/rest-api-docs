@@ -1,6 +1,6 @@
 # Pay and Bill - HolidayCategoryLookup
 
-Entity that represents a Holiday Category Lookup record.
+Acts as a reference table that categorizes [Holidays](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-holiday)—such as federal, religious, or company-specific—to ensure consistent classification and application of holiday rules.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.
 

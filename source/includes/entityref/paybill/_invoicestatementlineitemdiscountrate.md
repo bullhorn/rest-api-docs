@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceStatementLineItemDiscountRate
 
-Represents the rounded subtotals for unique discount rates tied to an invoice statement line item.
+Represents the rounded subtotals for unique [DiscountRates](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-discountrate) tied to an [InvoiceStatementLineItem](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatementlineitem).
 
 CRUD Access - READ
 

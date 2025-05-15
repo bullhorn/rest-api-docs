@@ -1,7 +1,6 @@
 # Pay and Bill - InvoiceTermVersion
 
-Represents an invoice term version.
-
+Represents a version entity for the [InvoiceTerm](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoiceterm) effective-dated entity.
 
 <table>
     <colgroup>

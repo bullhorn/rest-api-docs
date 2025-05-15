@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionDiscountDetail
 
-Represents the denormalized details of a discount rate version for a BillMasterTransactionDiscountRate.
+Represents the denormalized details of a discount rate version for a [BillMasterTransactionDiscountRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransactiondiscountrate).
 
 CRUD Access - READ
 

@@ -1,6 +1,6 @@
 # Pay and Bill - BillableCharge
 
-Represents a billable charge.
+The BillableCharge entity records a chargeable fee, capturing key details like the fee amount, rate type, and effective dates, and ties these charges to specific BillMasterTransactions.
 
 <table>
     <colgroup>

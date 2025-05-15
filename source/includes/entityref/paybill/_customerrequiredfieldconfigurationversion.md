@@ -1,6 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldConfigurationVersion
 
-An entity that represents the version entity for the Customer Required Field (CRF) Effective Dated Entity (EDE).
+An entity that represents the version entity for [CustomerRequiredFieldConfiguration](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldconfiguration)
 
 CRUD Access - READ ONLY
 

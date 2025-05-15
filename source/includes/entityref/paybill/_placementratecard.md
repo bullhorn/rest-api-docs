@@ -1,6 +1,10 @@
 # Pay and Bill - PlacementRateCard
 
-An Effective Dated Entity that represents a all of the rates on a Placement. PlacementRateCard is the flattened entity. When making PUT and POST calls to PlacementRateCard, the child entities (PlacementRateCardLineGroup - PlacementRateCardLine) can be passed as well with all associated data.
+An [effective-dated entity](../index.html#effective-dated-entity) that serves as the master record for rate agreements on a placement, detailing both bill and pay rates along with their respective terms and conditions.
+
+PlacementRateCard is the flattened entity. When making PUT and POST calls to PlacementRateCard, the child entities (PlacementRateCardLineGroup - PlacementRateCardLine) can be passed as well with all associated data.
+
+For more information see [how rate card calculations work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 

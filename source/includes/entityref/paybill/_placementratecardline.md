@@ -1,7 +1,8 @@
 # Pay and Bill - PlacementRateCardLine
 
-Represents each individual rate on a Placement.
+Represents an individual line item within a PlacementRateCard that provides granular details on specific rates, such as adjustments or effective dates.
 
+For more information see [how rate card calculations work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
 
 <table>
     <colgroup>

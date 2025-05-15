@@ -1,6 +1,9 @@
 # Pay and Bill - PayableCharge
 
-Read-only entity that represents a payable charge. Dynamic insert and update via billing-sync-services.
+Records a charge or fee that creates a payable obligation within the payroll or expense process, detailing amounts and relevant characteristics of the expense.
+Dynamically inserted and updated via billing-sync-services.
+
+CRUD Access - READ
 
 <table>
     <colgroup>

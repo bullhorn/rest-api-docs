@@ -1,6 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldConfiguration
 
-An entity that represents the primary view for the Customer Required Field (CRF) Effective Dated Entity (EDE). CustomerRequiredFieldConfiguration (CRFC) is an EDE entity designed to associate a CustomerRequiredField to a Placement. They have a 1:1 relationship with Placements signifying that only one Placement can have that specific CRFC.
+An entity that represents the primary view for the Customer Required Field (CRF) Effective-Dated Entity (EDE). CustomerRequiredFieldConfiguration (CRFC) is an EDE entity designed to associate a CustomerRequiredField to a Placement. They have a 1:1 relationship with Placements signifying that only one Placement can have that specific CRFC.
 
 CRUD Access- CREATE, READ, UPDATE, DELETE [effective-dated entity](../index.html#effective-dated-entity) DEPRECATED [see service endpoint](../_services.md#post-servicescustomerrequiredfieldmeta)
 

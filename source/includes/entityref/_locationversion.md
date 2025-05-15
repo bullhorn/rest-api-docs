@@ -1,6 +1,7 @@
 # LocationVersion
 
 Represents a version of the Location record on a Client Corporation.
+
 CRUD Access - READ
 
 <table>

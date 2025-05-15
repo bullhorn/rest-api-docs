@@ -1,6 +1,9 @@
 # Pay and Bill - BillingSyncBatch
 
-Read-only entity that represents a billing-sync batch. Dynamic insert and update via billing-sync-services.
+Represents a collection of billing records bundled together for efficient synchronization between Bullhorn and external billing systems.
+Dynamically inserted and updated via billing-sync-services.
+
+CRUD Access - READ
 
 <table>
 <colgroup>

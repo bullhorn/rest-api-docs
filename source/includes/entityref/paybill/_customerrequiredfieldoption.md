@@ -1,6 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldOption
 
-These options define what options a user will be able to choose from when filling in the Customer Required Field (CRF). Each option can have its own value, label, and start and end dates.
+The permissible options or values for a customer required field, particularly for fields with a predefined set of selectable inputs.
 
 CRUD Access - READ ONLY
 

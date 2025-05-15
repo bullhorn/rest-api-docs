@@ -1,6 +1,9 @@
 # Pay and Bill - BillingSyncError
 
-Read-only entity that represents a billing-sync error. Dynamic insert and update via billing-sync-services.
+Logs errors encountered during billing synchronization, capturing critical details for troubleshooting and ensuring data integrity.
+Dynamic insert and update via billing-sync-services.
+
+CRUD Access - READ
 
 <table>
 <colgroup>

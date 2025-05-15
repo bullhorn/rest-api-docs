@@ -1,5 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldValueTypeLookup
-Represents the possible value types for Customer Required Fields (CRF).
+
+Acts as a reference for the allowed data types for customer required fields, ensuring proper validation and consistency across record entries.
 
 CRUD Access - READ ONLY
 

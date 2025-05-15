@@ -1,6 +1,6 @@
 # Pay and Bill - CustomerRequiredFieldConfigurationVersionOption
 
-An entity that represents the Customer Required Field options available for a particular Customer Required Field version.
+An entity that represents the [CustomerRequiredFieldOptions](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldoption) available for a particular [CustomerRequiredFieldConfigurationVersion](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-customerrequiredfieldconfigurationversion).
 
 CRUD ACCESS - READ ONLY
 

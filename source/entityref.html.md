@@ -108,6 +108,7 @@ includes:
   - entityref/paybill/customerrequiredfieldmeta
   - entityref/paybill/customerrequiredfieldoption
   - entityref/paybill/directdepositaccount
+  - entityref/paybill/directdepositaccounttypelookup
   - entityref/paybill/discountrate
   - entityref/paybill/discountrateversion
   - entityref/paybill/districtsalestaxrate
@@ -176,6 +177,7 @@ includes:
   - entityref/placementtimeandexpensechangerequest
   - entityref/placementcommission
   - entityref/placementshiftset
+  - entityref/screenerquestion
   - entityref/sendout
   - entityref/shift
   - entityref/shiftposition

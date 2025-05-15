@@ -1,6 +1,6 @@
 # Pay and Bill - GeneralLedgerServiceCode
 
-Represents a general ledger service code.
+pecifies a designated code that correlates services with their financial entries in the general ledger, ensuring that revenue and expense transactions are properly identified and allocated.
 
 <table>
 <colgroup>

@@ -1,10 +1,10 @@
 # Pay and Bill - SurchargeRate
 
-Represents a Surcharge Rate.
+An [effective-dated entity](../index.html#effective-dated-entity) that defines an additional fee added on top of a base charge, intended to cover extra costs or processing fees associated with the transaction.
 
-CRUD Access - CREATE, READ, UPDATE, DELETE
+CRUD Access - CREATE, READ, UPDATE, DELETE
 
-Entitlements - Add Surcharge Rate,  Add Surcharge Rate Version, Delete Surcharge Rate and Version, Manage Current Surcharge Rate Version, Manage Future Surcharge Rate Version, Manage Historical Surcharge Rate Version, View Current and Future Surcharge Rate Version
+Entitlements - Add Surcharge Rate, Add Surcharge Rate Version, Delete Surcharge Rate and Version, Manage Current Surcharge Rate Version, Manage Future Surcharge Rate Version, Manage Historical Surcharge Rate Version, View Current and Future Surcharge Rate Version
 
 <table>
     <colgroup>

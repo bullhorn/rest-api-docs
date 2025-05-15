@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionDistributionBatch
 
-Read-only entity used to track which BillMasterTransactions are ready for revenue recognition distribution record creation
+Read-only entity used to track which [BillMasterTransactions](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransactions) are ready for revenue recognition distribution record creation
 
 <table>
     <colgroup>

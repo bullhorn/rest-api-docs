@@ -1,6 +1,6 @@
 # Pay and Bill - ClientCorporationRateAgreementCardLine
 
-An entity representing each individual rate on a ClientCorporation.
+Represents individual line items within the rate agreement card, detailing specific rate components, charges, or conditions on a [ClientCorporation](https://bullhorn.github.io/rest-api-docs/entityref.html#clientcorporation).
 
 <table>
     <colgroup>

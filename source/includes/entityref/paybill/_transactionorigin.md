@@ -1,6 +1,8 @@
 # Pay and Bill - TransactionOrigin
 
-Read-only entity that represents a transaction type.
+Identifies the source or trigger of a transaction, helping to trace its origin whether it’s initiated by a specific event, user action, or system process.
+
+CRUD - READ
 
 <table>
 <colgroup>

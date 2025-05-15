@@ -1,6 +1,6 @@
 # Pay and Bill - DiscountRate
 
-An effective dated entity that represents a Discount Rate.
+An [effective-dated entity](../index.html#effective-dated-entity) that defines a specified discount—either as a percentage or fixed amount—that is applied to invoices or fee calculations to adjust the overall charge.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE
 

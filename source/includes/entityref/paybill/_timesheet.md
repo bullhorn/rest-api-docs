@@ -1,9 +1,6 @@
 # Timesheet
 
-This entity represents the required certifications for a Timesheet.
-
-
-
+Acts as a master record that aggregates multiple time entries, tracking an individual’s work hours and activities over a specific period for payroll and reporting purposes.
 
 <table>
     <colgroup>

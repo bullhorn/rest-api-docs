@@ -1,6 +1,8 @@
 # Pay and Bill - PayMasterTransaction
 
-Read-only entity that represents a PayMasterTransaction.
+Details an individual payment transaction within a PayMaster record, capturing specific amounts, deductions, and adjustments that compose the overall payroll disbursement.
+
+CRUD Access - READ
 
 <table>
     <colgroup>

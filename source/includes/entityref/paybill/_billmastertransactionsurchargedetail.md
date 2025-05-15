@@ -1,6 +1,6 @@
 # Pay and Bill - BillMasterTransactionSurchargeDetail
 
-Represents the denormalized details of a surcharge rate for a BillMasterTransactionSurchargeRate.
+Represents the denormalized details of a surcharge rate for a [BillMasterTransactionSurchargeRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransactionsurchargerate).
 
 CRUD Access - READ
 

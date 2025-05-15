@@ -751,20 +751,13 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
         </tr>
         <tr class="odd">
-            <td>workersCompensationRateID</td>
-            <td>Integer (100)</td>
-            <td><strong>Not supported in this release.</strong> Id of the WorkersCompensationRate associated with this Placement.</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
             <td>workWeekStart</td>
             <td>Integer</td>
             <td>Day of the week on which the work week begins for this Placement. 1 = Sunday, 2 = Monday, and so forth.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>vendorClientCorporation</td>
             <td>To-one association</td>
             <td>Umbrella company associated with this Placement.</td>

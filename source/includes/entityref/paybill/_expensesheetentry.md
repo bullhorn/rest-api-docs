@@ -1,8 +1,6 @@
 # ExpenseSheetEntry
 
-This entity represents the required certifications for an ExpenseSheetEntry.
-
-
+Details an individual expense item within an [ExpenseSheet](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-expensesheet), capturing information like date, amount, and expense category for precise tracking and validation.
 
 <table>
     <colgroup>

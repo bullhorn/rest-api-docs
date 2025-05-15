@@ -1,6 +1,6 @@
  # Pay and Bill - InvoiceTermTemplate
 
-Represents a invoice term template
+Offers a standardized blueprint for composing invoice terms, facilitating the consistent application and presentation of contractual conditions across multiple invoices.
 
 CRUD Access - CREATE, READ, UPDATE, DELETE.
 

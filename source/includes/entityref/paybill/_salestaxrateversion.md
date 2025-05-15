@@ -1,6 +1,6 @@
 # Pay and Bill - SalesTaxRateVersion
 
-The version entity for the Sales Tax Rate effective dated entity
+Represents a version entity for the [SalesTaxRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-salestaxrate) effective-dated entity.
 
 CRUD Access - READ
 

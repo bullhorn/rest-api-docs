@@ -1,6 +1,6 @@
 # Pay and Bill - InvoiceStatementLineItemSalesTaxRate
 
-Represents the rounded subtotals for unique sales tax rates to an invoice statement line item.
+Represents the rounded subtotals for unique [SalesTaxRate](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-salestaxrate) to an [InvoiceStatementLineItem](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatementlineitem).
 
 CRUD Access - READ
 

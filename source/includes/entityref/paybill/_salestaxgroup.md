@@ -1,6 +1,6 @@
 # Pay and Bill - SalesTaxGroup
 
-Represents various taxes (city, state, other, and so forth) associated with a zip+4 range.
+Organizes one or more sales tax rates under a common grouping, facilitating the application of multiple tax rates to a transaction based on jurisdiction or specific criteria.
 
 CRUD Access - CREATE, READ, UPDATE
 
