@@ -22,6 +22,14 @@ set :fonts_dir, 'fonts'
 # Activate Sprockets
 activate :sprockets
 
+# Sass configuration - this is what was missing!
+set :sass, {
+  load_paths: [File.join(root, 'source', 'stylesheets')],
+  line_comments: false,
+  style: :expanded,
+  syntax: :scss
+}
+
 # Activate the syntax highlighter
 activate :syntax
 activate :relative_assets
@@ -35,6 +43,23 @@ end
 
 # Build Configuration
 configure :build do
+  # Sass config for build
+  set :sass, {
+    load_paths: [File.join(root, 'source', 'stylesheets')],
+    line_comments: false,
+    style: :compressed,
+    syntax: :scss
+  }
+
   activate :minify_css
   activate :minify_javascript
+end
+
+configure :development do
+  set :sass, {
+    load_paths: [File.join(root, 'source', 'stylesheets')],
+    line_comments: false,
+    style: :expanded,
+    syntax: :scss
+  }
 end

@@ -8,7 +8,7 @@ gem 'middleman-sprockets', '~> 4.1'
 gem 'rouge', '~> 3.28'
 gem 'redcarpet', '~> 3.6'
 gem 'nokogiri', '~> 1.13.9'
-gem 'sass'
+gem 'sass', '~> 3.7'
 gem 'webrick'
 
 # For GitHub Pages deployment
