@@ -1,16 +1,10 @@
 language: ruby
 rvm:
- - 2.7
- - 3.0
-cache:
- bundler: true
+ - 2.2
+ - jruby
 install:
- - bundle install
-script:
- - bundle exec middleman build
-deploy:
- provider: script
- script: bash deploy.sh
- skip_cleanup: true
- on:
-  branch: master
+  - bundle install
+provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
