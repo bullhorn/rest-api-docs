@@ -71,7 +71,7 @@
 
 <p>search/JobOrder?fields=id,businessSectors[3](name,id){name=&lsquo;Insurance&rsquo;}</p>
 
-<p>search/Candidate?fields=id,lastName,primarySkills(name,id){name IN (Java, &lsquo;SAP&rsquo;)}</p>
+<p>search/Candidate?fields=id,lastName,primarySkills(name,id){name IN (Java, &#39;SAP&rsquo;)}</p>
 
 <h4 id="to-many-fields-can-only-appear-at-the-top-level-with-no-nesting">To-many fields can only appear at the top level with no nesting</h4>
 

@@ -15,11 +15,11 @@
   background-color: #272822;
 }
 .highlight .err {
-  color: #272822;
-  background-color: #f92672;
+  color: #151515;
+  background-color: #ac4142;
 }
-.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
-  color: #75715e;
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
 }
 .highlight .cp {
   color: #f4bf75;
@@ -28,48 +28,45 @@
   color: #f4bf75;
 }
 .highlight .o, .highlight .ow {
-  color: #f8f8f2;
+  color: #d0d0d0;
 }
 .highlight .p, .highlight .pi {
-  color: #f8f8f2;
+  color: #d0d0d0;
 }
 .highlight .gi {
-  color: #a6e22e;
+  color: #90a959;
 }
 .highlight .gd {
-  color: #f92672;
+  color: #ac4142;
 }
 .highlight .gh {
-  color: #66d9ef;
-  background-color: #272822;
+  color: #6a9fb5;
+  background-color: #151515;
   font-weight: bold;
 }
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #ae81ff;
+  color: #aa759f;
 }
 .highlight .kc {
-  color: #fd971f;
+  color: #d28445;
 }
 .highlight .kt {
-  color: #fd971f;
+  color: #d28445;
 }
 .highlight .kd {
-  color: #fd971f;
+  color: #d28445;
 }
-.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #a6e22e;
-}
-.highlight .sa {
-  color: #ae81ff;
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
 }
 .highlight .sr {
-  color: #a1efe4;
+  color: #75b5aa;
 }
 .highlight .si {
-  color: #cc6633;
+  color: #8f5536;
 }
 .highlight .se {
-  color: #cc6633;
+  color: #8f5536;
 }
 .highlight .nn {
   color: #f4bf75;
@@ -81,13 +78,13 @@
   color: #f4bf75;
 }
 .highlight .na {
-  color: #66d9ef;
+  color: #6a9fb5;
 }
-.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
-  color: #a6e22e;
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
 }
 .highlight .ss {
-  color: #a6e22e;
+  color: #90a959;
 }
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
@@ -99,11 +96,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="" />
+        <img src="images/navbar.png" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" alt="" />
+      <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -303,7 +300,7 @@ https://rest.bullhornstaffing.com/rest-services/loginInfo?username={API_Username
 
 <p>search/JobOrder?fields=id,businessSectors[3](name,id){name=&lsquo;Insurance&rsquo;}</p>
 
-<p>search/Candidate?fields=id,lastName,primarySkills(name,id){name IN (Java, &lsquo;SAP&rsquo;)}</p>
+<p>search/Candidate?fields=id,lastName,primarySkills(name,id){name IN (Java, &#39;SAP&rsquo;)}</p>
 
 <h4 id="to-many-fields-can-only-appear-at-the-top-level-with-no-nesting">To-many fields can only appear at the top level with no nesting</h4>
 
@@ -715,7 +712,7 @@ StateText</td>
           <h1 id="allcorpnotes">allCorpNotes</h1>
 
 <h2 id="get-allcorpnotes"><span class="tag">GET</span> /allCorpNotes</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/allCorpNotes?clientCorpId<span class="o">=</span>4&amp;fields<span class="o">=</span><span class="nv">start</span><span class="o">=</span>0&amp;count<span class="o">=</span>5
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/allCorpNotes?clientCorpId<span class="o">=</span>4&amp;fields<span class="o">=</span><span class="nv">start</span><span class="o">=</span>0&amp;count<span class="o">=</span>5
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -742,7 +739,8 @@ StateText</td>
    <span class="o">]</span>
 <span class="o">}</span>
 
-</code></pre></div>
+</code></pre>
+
 <p>Returns all Notes in the specified ClientCorporation. Specify the fields to be included in the response in the fields request parameter.  </p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -781,9 +779,9 @@ StateText</td>
           <h1 id="association">association</h1>
 
 <h2 id="post-association"><span class="tag">POST</span> /association</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{ "ids": [7681,2625,1464], "showTotalMatched": true, "start": 0, "count": 3}'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{ "ids": [7681,2625,1464], "showTotalMatched": true, "start": 0, "count": 3}'</span> <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/association/Candidate/primarySkills
 
 <span class="c"># Example Response</span>
@@ -804,7 +802,8 @@ StateText</td>
         <span class="o">]</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Retrieves a list of associated entity ids for a given entity. The association field can be a to-many or to-one association.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -850,7 +849,7 @@ StateText</td>
           <h1 id="entitlements">entitlements</h1>
 
 <h2 id="get-entitlements"><span class="tag">GET</span> /entitlements</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entitlements/Candidate
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entitlements/Candidate
 
 <span class="c"># Example Response</span>
 <span class="o">[</span>
@@ -860,7 +859,8 @@ StateText</td>
     <span class="s2">"UPDATE"</span>,
     <span class="s2">"DELETE"</span>
 <span class="o">]</span>
-</code></pre></div>
+</code></pre>
+
 <p>Gets the entity entitlements of an entity for the current user. For GET, PUT, POST, and DELETE requests on entities, the user must have the appropriate entitlements for the action to succeed. PUT requests (adding records) require create entitlements. Read, update, and delete entitlements are divided into owned, department, and corporate entitlements. If a user tries to perform an action without the required entitlements, the call fails and an error is thrown.
 A user’s ability to perform file attachment GET, PUT, POST, and DELETE operations is based on the user’s entitlements for the entity to which the file attachment operation applies</p>
 
@@ -933,7 +933,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
           <h1 id="entity">entity</h1>
 
 <h2 id="get-entity"><span class="tag">GET</span> /entity</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entity/Candidate/5059165?fields<span class="o">=</span>firstName,lastName,address
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entity/Candidate/5059165?fields<span class="o">=</span>firstName,lastName,address
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -949,7 +949,8 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
     <span class="s2">"countryID"</span> : 1
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Gets one or more entities or to-many associations.</p>
 
 <p>Individual entity records are manifested as resources, where the entity type and id form the last two parts of the resource path.</p>
@@ -1004,7 +1005,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h2 id="multiple-entities">Multiple Entities</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields<span class="o">=</span><span class="nb">id</span>,firstName,lastName
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entity/Candidate/123,456?fields<span class="o">=</span>id,firstName,lastName
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1020,7 +1021,8 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>This is an extension of the single GET and supports the same result set control parameters (count, start) as the query call. Id values are specified as a comma-separated list:</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1074,13 +1076,14 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
 <h2 id="to-many-associations">To-many Associations</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;count<span class="o">=</span>2
+<pre class="highlight shell"><code>curl https://rest<span class="o">{{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entity/ClientCorporation/5059165,2362648/clientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;count<span class="o">=</span>2
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
     ...
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>This is an extension of the single and multiple GETs that returns the to-many associated entities of the specified type for the specified entity ID(s). The call supports the same query parameters as the query call.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1149,9 +1152,9 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <aside class="warning">Returns an HTTP 404 error if none of the requested entities are found. If any of the requested entities are found, returns the found entities and does not throw an error.</aside>
 
 <h2 id="put-entity"><span class="tag">PUT</span> /entity</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"firstName" : "Alanzo", "lastName" : "Smith"}'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"firstName" : "Alanzo", "lastName" : "Smith"}'</span> <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate
 
 <span class="c"># Example Response</span>
@@ -1160,7 +1163,8 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
   <span class="s2">"changeType"</span>: <span class="s2">"INSERT"</span>
 <span class="o">}</span>
 
-</code></pre></div>
+</code></pre>
+
 <p>You can use HTTP PUT requests to create new entities. The URL looks the same as GET request URL, but without the last path element containing an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body. The structure of the JSON is identical to that returned in HTTP responses to GET requests, with a few additional restrictions:</p>
 
 <ul>
@@ -1197,9 +1201,10 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 <h3 id="create-to-many-associations">Create To-many Associations</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/3084/primarySkills/964,684,253
-</code></pre></div>
+</code></pre>
+
 <p>You can add to-many associations to an entity with a PUT request in which you specify entity IDs of the entities you want to associate. The call fails if any of the association entities you specify are already associated.</p>
 
 <p><code class="prettyprint">{corpToken}/entity/{entityType}/{entity-id}/{to-many-association-name}/{entity-id},*}</code></p>
@@ -1221,9 +1226,9 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <aside class="warning">Returns An HTTP 404 error if the requested entity cannot be found, fields are specified that do not exist on the specified entity, or you specify values for any mandatory fields with no default values.</aside>
 
 <h2 id="post-entity"><span class="tag">POST</span> /entity</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{ "id" : 5059165, "firstName" : "Alanzo","lastName" : "Smith" }'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{ "id" : 5059165, "firstName" : "Alanzo","lastName" : "Smith" }'</span> <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/5059165
 
      <span class="c"># Example Response</span>
@@ -1231,7 +1236,8 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
   <span class="s2">"changedEntityId"</span>: 1489,
   <span class="s2">"changeType"</span>: <span class="s2">"UPDATE"</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>You can update entities with HTTP POST requests. The URL looks the same as the GET request URL. Place the data comprising the entity fields in JSON format in the request body. The structure of the JSON in a POST request is identical to that returned in HTTP responses to GET requests, but read-only properties cannot be changed.</p>
 
 <aside class="notice">To update confidential fields as part of a POST /entity call, the user must have the Edit Confidential Data user action entitlement. The confidentialFieldList private label attribute contains the list of fields that are considered confidential.</aside>
@@ -1241,7 +1247,7 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <li>  You can create to-one associations.</li>
 </ul>
 
-<p>You set association fields by giving as their values a JSON object that contains a field named &lsquo;id&rsquo;, and providing the value the id of the entity to associate.</p>
+<p>You set association fields by giving as their values a JSON object that contains a field named &#39;id&rsquo;, and providing the value the id of the entity to associate.</p>
 
 <p>If you provide fields that do not exist on the entity being created, returns a 400 error containing messages about the unknown fields.</p>
 
@@ -1268,12 +1274,13 @@ A user’s ability to perform file attachment GET, PUT, POST, and DELETE operati
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 <h3 id="to-many-associations-special-case">To-many Associations - Special Case</h3>
-<div class="highlight"><pre class="highlight shell"><code><span class="c"># This example will create and associate a new customObject1s record.</span>
-curl <span class="nt">-X</span> PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
+<pre class="highlight shell"><code><span class="c"># This example will create and associate a new customObject1s record.</span>
+curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
 
 <span class="c"># This example will update an existing customObject1s record #1.</span>
-curl <span class="nt">-X</span> PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
-</code></pre></div>
+curl -X PUT https://rest.bullhornstaffing.com/rest-services/e999/entity/JobOrder/123
+</code></pre>
+
 <p>For special to-many associations, like Custom Objects, you can create and associate in a single step. You can add or update to-many associations with a POST request as if the data is directly on the parent entity. You can combine standard parent entity updates with special association add and edits.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1303,9 +1310,10 @@ curl <span class="nt">-X</span> PUT https://rest.bullhornstaffing.com/rest-servi
 <p>The API supports hard or soft delete using the DELETE verb. You can also use a standard update request with the POST verb to set the isDeleted property of a soft-deletable entity to true.</p>
 
 <h3 id="hard-or-soft-delete-via-delete-call">Hard or Soft Delete via DELETE call</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/NoteEntity/2552
-</code></pre></div>
+</code></pre>
+
 <p>Hard deletes one or more hard-deletable entities, which removes it from the database. Soft deletes one or more soft-deletable entities, which sets the isDeleted property of the entity to true.</p>
 
 <p>This operation is available for all entity types except immutable entities, which are neither hard-deletable nor soft-deletable. Immutable entities include the following:</p>
@@ -1344,12 +1352,13 @@ curl <span class="nt">-X</span> PUT https://rest.bullhornstaffing.com/rest-servi
 <p>To delete an entity with children, explicitly delete all the children before attempting to delete the root entity.</p>
 
 <h3 id="soft-delete-via-post-update-call">Soft delete via POST (update) call</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{ "isDeleted" : true }'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{ "isDeleted" : true }'</span> <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/ClientContact/1804
 
-</code></pre></div>
+</code></pre>
+
 <p>When you soft delete an entity, it is not removed from the database. A soft delete operation is actually an update (for example, POST) that sets the isDeleted property of the entity to true.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1359,9 +1368,10 @@ curl <span class="nt">-X</span> PUT https://rest.bullhornstaffing.com/rest-servi
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h3 id="disassociate-to-many-associations">Disassociate To-many Associations</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Candidate/3084/primarySkills/253
-</code></pre></div>
+</code></pre>
+
 <p>Removes or &ldquo;disassociates&rdquo; a to-many association relationship on an entity.</p>
 
 <p><code class="prettyprint">{corpToken}/entity/{entityType}/{entity-id}/{to-many-association-name}/{entity-id},*}</code></p>
@@ -1373,7 +1383,7 @@ curl <span class="nt">-X</span> PUT https://rest.bullhornstaffing.com/rest-servi
 <p>Effective-dated entities are entities that are versioned by a specific date (the effectiveDate of the version). By maintaining multiple versions of an entity, users can track historical data and the context of an entity on a specific date.</p>
 
 <h3 id="create-first-version">Create first version</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location
 
 Sample Request Body
@@ -1386,7 +1396,8 @@ Sample Request Body
     <span class="s2">"city"</span> : <span class="s2">"Clayton"</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>You can use HTTP PUT requests to create new effective-dated entities much like standard entities. The URL looks the same as a GET request URL, but without the last path element that contains an entity ID. Place the data comprising the new entity to be inserted in JSON format in the request body.</p>
 
 <p>All effective-dated entities have a required effectiveDate field. The effectiveEndDate and viewableStartDate fields are calculated based on the versions that exist on this root entity.</p>
@@ -1394,7 +1405,7 @@ Sample Request Body
 <p>One key difference between effective-dated entities and standard entities is that effective-dated entities return both a changedEntityId and a changedVersionId in the response. This is because an update to an effective-dated entity involves two entities. For example, the Location entity involves the root Location entity and the LocationVersion version entity.</p>
 
 <h3 id="create-subsequent-versions">Create subsequent versions</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234
 
 Sample Request Body
@@ -1406,7 +1417,8 @@ Sample Request Body
     <span class="s2">"city"</span> : <span class="s2">"Clayton"</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Creating additional versions on an existing effective-dated entity is considered both an update and create action because you update the root entity while creating a new version.</p>
 
 <p>Use a POST request to create one or more additional versions. The URL looks the same as a PUT request URL, but includes the ID of the root entity you are updating as the last path parameter of the URL. The JSON data is the same as that of the PUT request and no version ID is included.</p>
@@ -1414,7 +1426,7 @@ Sample Request Body
 <p>Not all fields in the JSON are unique to the version entity, so requests against these fields update the root entity rather than create a new version. The Location clientCorporation field is an example of this. It is a required field on initial Root create but not on subsequent create calls for Versions.</p>
 
 <h3 id="update-specific-version">Update specific version</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234
 
 Sample Request Body
@@ -1422,20 +1434,22 @@ Sample Request Body
   <span class="s2">"versionID"</span>: 7654,
   <span class="s2">"customText1"</span>: <span class="s2">"my custom text"</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Use a POST request to update an existing version. Place the data comprising the entity fields in JSON format in the request body.</p>
 
 <p>Due to the double-entity nature of effective-dated entities, you must pass both the entity ID and version ID that you want to update in this request.</p>
 
 <h3 id="delete-a-version">Delete a version</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234
 
 Sample Response
 <span class="o">{</span>
    <span class="s2">"message"</span>: <span class="s2">"Successfully deleted 1 Location entities."</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Use a DELETE request to delete a version on an effective-dated entity. When you delete a version, it is hard-deleted from the database but edit history for that version is not deleted. When attempting to delete the only version(s) of an effective-dated entity, we block the hard deletion and instead cause the root entity to be soft-deleted to remove it from the user&rsquo;s view in the user interface while maintaining historical context for how it was used.</p>
 
 <h3 id="read-a-version">Read a version</h3>
@@ -1447,7 +1461,7 @@ Sample Response
 <h5 id="today-s-version">Today’s version</h5>
 
 <p>When making a GET request for an entity, the version that is effective today according to the user&rsquo;s local computer time is returned.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields<span class="o">=</span>address
 
 Sample Response
@@ -1461,15 +1475,17 @@ Sample Response
     <span class="s2">"address1"</span> : <span class="s2">"123 Whatever St"</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="version-effective-on-specific-date">Version effective on specific date</h3>
 
 <p>This effectiveOn value defaults to today but you can use the effectiveOn query parameter to return a different version.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234?fields<span class="o">=</span>address&amp;effectiveOn<span class="o">=</span>2027-12-31
-</code></pre></div>
+</code></pre>
+
 <h3 id="all-versions">All versions</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/entity/Location/1234/versions?fields<span class="o">=</span>address
 
 Sample Response
@@ -1494,17 +1510,21 @@ data: <span class="o">[{</span>
   <span class="o">}</span>
 <span class="o">}</span>
 <span class="o">}]</span>
-</code></pre></div>
+</code></pre>
+
 <p>You can request all versions that exist on the effective-dated entity.</p>
 
 <h3 id="associated-effective-dated-entity-fields">Associated effective-dated entity fields</h3>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
     https://rest.bullhornstaffing.com/rest-services/e999/entity/Placement/1?fields<span class="o">=</span>location&amp;effectiveOn<span class="o">=</span>2021-12-31
-</code></pre></div><div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+</code></pre>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
     https://rest.bullhornstaffing.com/rest-services/e999/query/Placement?where<span class="o">=</span><span class="nv">firstName</span><span class="o">=</span><span class="s1">'Bob'</span>&amp;fields<span class="o">=</span>location&amp;effectiveOn<span class="o">=</span>2027-12-31
-</code></pre></div><div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-    https://rest.bullhornstaffing.com/rest-services/e999/search/Placement?fields<span class="o">=</span>location&amp;effectiveOn<span class="o">=</span>2021-12-31&amp;query<span class="o">=</span><span class="nb">id</span><span class="o">&gt;</span>0
-</code></pre></div>
+</code></pre>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
+    https://rest.bullhornstaffing.com/rest-services/e999/search/Placement?fields<span class="o">=</span>location&amp;effectiveOn<span class="o">=</span>2021-12-31&amp;query<span class="o">=</span>id&gt;0
+</code></pre>
+
 <p>When requesting effective-dated entity fields via an associated object, use the effectiveOn parameter to limit the request to a specific date.</p>
 
 <p>In the examples, Location is an effective-dated entity field requested from an associated Placement. The effectiveOn value is applied to the requested Location. </p>
@@ -1512,7 +1532,7 @@ data: <span class="o">[{</span>
           <h1 id="departmententities">departmentEntities</h1>
 
 <h2 id="get-department-entity-s"><span class="tag">GET</span> /department{Entity}s</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/departmentClientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;start<span class="o">=</span>0&amp;count<span class="o">=</span>5
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/departmentClientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;start<span class="o">=</span>0&amp;count<span class="o">=</span>5
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1567,7 +1587,8 @@ data: <span class="o">[{</span>
 <span class="o">}</span>
 
 
-</code></pre></div>
+</code></pre>
+
 <p>Returns the entities for the departments to which the current user belongs, for the following entity types: Candidate, ClientContact, Placement, and Note. For Candidate and Note requests, an _score field is included in each item returned; this is the Lucene search score.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1641,7 +1662,7 @@ data: <span class="o">[{</span>
           <h1 id="myentities">myEntities</h1>
 
 <h2 id="get-my-entity-s"><span class="tag">GET</span> /my{Entity}s</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/myClientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;start<span class="o">=</span>0&amp;count<span class="o">=</span>5
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/myClientContacts?fields<span class="o">=</span>firstName,lastName,address&amp;start<span class="o">=</span>0&amp;count<span class="o">=</span>5
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1696,7 +1717,8 @@ data: <span class="o">[{</span>
 <span class="o">}</span>
 
 
-</code></pre></div>
+</code></pre>
+
 <p>Returns the entities for which the current user is the owner, for the following entity types: Candidate, ClientContact, Placement, and Note. For Candidate and Note requests, an _score field is included in each item returned; this is the Lucene search score.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1770,7 +1792,7 @@ data: <span class="o">[{</span>
           <h1 id="file">file</h1>
 
 <h2 id="get-file"><span class="tag">GET</span> /file</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/file/Candidate/3835/231
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/file/Candidate/3835/231
 
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s2">"File"</span>: <span class="o">{</span>
@@ -1778,7 +1800,8 @@ data: <span class="o">[{</span>
    <span class="s2">"fileContent"</span>: <span class="s2">"VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl"</span>,
    <span class="s2">"name"</span>: <span class="s2">"SmallFile.txt"</span>
 <span class="o">}}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Returns an attached file as base64-encoded text.</p>
 
 <p><strong>Note:</strong> The optional &ldquo;raw&rdquo; path parameter returns a multipart-encoded version of the file. This path parameter exists for convenience. When an API user makes a call of this form in a browser, it appears that the browser has downloaded the file.</p>
@@ -1817,7 +1840,7 @@ data: <span class="o">[{</span>
 <h2 id="get-entityfiles"><span class="tag">GET</span> /entityFiles</h2>
 
 <p>(deprecated; replaced by /entity/{entityType}/{entityId}/fileAttachments)</p>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entityFiles/Candidate/203866
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entityFiles/Candidate/203866
 
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s2">"EntityFiles"</span>: <span class="o">[</span>
@@ -1838,7 +1861,8 @@ data: <span class="o">[{</span>
       <span class="s2">"contentSubType"</span>: <span class="s2">"plain"</span>
    <span class="o">}</span>
 <span class="o">]}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Returns metadata for attached files.
 Files can be attached to the following types of entities:</p>
 
@@ -1870,7 +1894,7 @@ Files can be attached to the following types of entities:</p>
 </tbody></table>
 
 <h2 id="get-entity-entitytype-entityid-fileattachments"><span class="tag">GET</span> /entity/{entityType}/{entityId}/fileAttachments</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entity/JobOrder/203866/fileAttachments?fields<span class="o">=</span><span class="nb">id</span>
+<pre class="highlight shell"><code>curl https://rest<span class="o">{{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/entity/JobOrder/203866/fileAttachments?fields<span class="o">=</span>id
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -1904,7 +1928,8 @@ Files can be attached to the following types of entities:</p>
       <span class="s2">"title"</span> : <span class="s2">"Greatest Job"</span>
     <span class="o">}</span> <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Returns metadata for attached files.</p>
 
 <p>Files can be attached to the following types of entities:</p>
@@ -1937,25 +1962,26 @@ Files can be attached to the following types of entities:</p>
 </tbody></table>
 
 <h2 id="put-file"><span class="tag">PUT</span> /file</h2>
-<div class="highlight"><pre class="highlight shell"><code>
+<pre class="highlight shell"><code>
 <span class="c"># Base64-encoded file request</span>
 
-curl <span class="nt">-X</span> PUT <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
+curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
         "fileType" : "SAMPLE", "name" : "TestResumeFile.txt", "contentType" : "text/plain",\
         "description" : "Resume file for candidate.", "type" : "cover"}'</span> <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909
 
 <span class="c"># Multipart/form (raw) file request</span>
 
-curl <span class="nt">-X</span> PUT <span class="se">\</span>
-    <span class="nt">-F</span> <span class="s2">"file=@samplefile.txt"</span> <span class="se">\</span>
+curl -X PUT <span class="se">\</span>
+    -F <span class="s2">"file=@samplefile.txt"</span> <span class="se">\</span>
     https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/raw?filetype<span class="o">=</span>SAMPLE&amp;externalID<span class="o">=</span>portfolio
 
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s2">"fileId"</span>: 178<span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Attaches a file to an entity. You can send a file as base64-encoded text or multipart/form data (raw). 
 Files can be attached to the following types of entities:</p>
 
@@ -2084,25 +2110,26 @@ Files can be attached to the following types of entities:</p>
 </tbody></table>
 
 <h2 id="post-file"><span class="tag">POST</span> /file</h2>
-<div class="highlight"><pre class="highlight shell"><code>
+<pre class="highlight shell"><code>
 <span class="c"># Base64-encoded file request</span>
 
-curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
+curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
         "fileType" : "SAMPLE", "name" : "TestResumeFile.txt", "contentType" : "text/plain",\
         "description" : "Resume file for candidate.", "type" : "cover"}'</span> <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/1234
 
 <span class="c"># Multipart/form (raw) file request</span>
 
-curl <span class="nt">-X</span> POST <span class="se">\</span>
-    <span class="nt">-F</span> <span class="s2">"file=@samplefile.txt"</span> <span class="se">\</span>
+curl -X POST <span class="se">\</span>
+    -F <span class="s2">"file=@samplefile.txt"</span> <span class="se">\</span>
     https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/5097909/1234/raw?filetype<span class="o">=</span>SAMPLE&amp;externalID<span class="o">=</span>portfolio
 
 <span class="c"># Example Response</span>
-No response body<span class="p">;</span> returns 200 on successful update.
-</code></pre></div>
+No response body; returns 200 on successful update.
+</code></pre>
+
 <p>Updates a file attachment. You can update a file as base64-encoded text or multipart/form data (raw). 
 Files attachments can be updated for the following types of entities:</p>
 
@@ -2226,7 +2253,7 @@ Files attachments can be updated for the following types of entities:</p>
 </tbody></table>
 
 <h2 id="delete-file"><span class="tag">DELETE</span> /file</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/file/Candidate/3835/231
 
      <span class="c"># Example Response</span>
@@ -2235,7 +2262,8 @@ Files attachments can be updated for the following types of entities:</p>
    <span class="s2">"changeType"</span>: <span class="s2">"DELETED"</span>
 <span class="o">}</span>
 
-</code></pre></div>
+</code></pre>
+
 <p>Soft deletes a file attachment. The actual file remains on the server.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -2261,7 +2289,7 @@ Files attachments can be updated for the following types of entities:</p>
           <h1 id="find">find</h1>
 
 <h2 id="get-find"><span class="tag">GET</span> /find</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/find?query<span class="o">=</span>smith&amp;countPerEntity<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/find?query<span class="o">=</span>smith&amp;countPerEntity<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2271,7 +2299,8 @@ Files attachments can be updated for the following types of entities:</p>
       <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
     <span class="o">}]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>FastFind is a type of search that attempts to detect the kind of information contained in the search query. It then searches against entity fields that contain that type of information. Since FastFind attempts to detect the intent of a search query, it requires no special query language or syntax. Queries consist of only the words or numbers for which a user wants to search.</p>
 
 <p>(FastFind) Searches the following entity types given a string containing search terms:</p>
@@ -2344,7 +2373,7 @@ Files attachments can be updated for the following types of entities:</p>
 
 <p><strong>Email address</strong></p>
 
-<p>Any combination of a-z,A-Z,0-9,!,#,$,%, &amp;, &lsquo;, *, +, -, /, =, ?, <sup>,</sup> _ or ` but not ., followed by @, followed by any combination of a-z, A-Z, 0-9, _, -, +, ., *</p>
+<p>Any combination of a-z,A-Z,0-9,!,#,$,%, &amp;, &rsquo;, *, +, -, /, =, ?, ^, _ or ` but not ., followed by @, followed by any combination of a-z, A-Z, 0-9, _, -, +, ., *</p>
 
 <p>For example:</p>
 
@@ -2510,14 +2539,15 @@ clientCorporation.name</td>
           <h1 id="login">login</h1>
 
 <h2 id="partner-login-using-oauth">Partner login using OAuth</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/login?access_token<span class="o">=</span>xxx&amp;version<span class="o">=</span><span class="k">*</span>
+<pre class="highlight shell"><code>curl https://rest.bullhornstaffing.com/login?access_token<span class="o">=</span>xxx&amp;version<span class="o">=</span><span class="k">*</span>
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"BhRestToken"</span> : <span class="s2">"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>,
   <span class="s2">"restUrl"</span> : <span class="s2">"https://rest{swimlane#}.bullhornstaffing.com/rest-services/{corpToken}/"</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Log in and get a REST session. This is the only supported login process in a production environment.</p>
 
 <ul>
@@ -2553,19 +2583,20 @@ clientCorporation.name</td>
 <aside class="warning"><strong>Possible Error: &ldquo;Invalid or expired OAuth access token.&rdquo;</strong></aside>
 
 <h2 id="logout">Logout</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/logout
+<pre class="highlight shell"><code>curl https://rest<span class="o">{{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/logout
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
     <span class="nb">logout</span>: <span class="s2">"OK"</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Log out and invalidate your REST session.</p>
 
           <h1 id="massupdate">massUpdate</h1>
 
 <h2 id="get-massupdate"><span class="tag">GET</span> /massUpdate</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/massUpdate
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/massUpdate
 
 <span class="c"># Example Response</span>
 <span class="o">[</span>
@@ -2581,7 +2612,8 @@ clientCorporation.name</td>
 <span class="s2">"Task"</span>,
 <span class="s2">"Tearsheet"</span>
 <span class="o">]</span>
-</code></pre></div>
+</code></pre>
+
 <p>Returns the list of entity types that support mass update.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -2603,7 +2635,7 @@ clientCorporation.name</td>
 </tbody></table>
 
 <h2 id="get-massupdate-entitytype"><span class="tag">GET</span> /massUpdate/{entityType}</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/massUpdate/JobOrder
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/massUpdate/JobOrder
 
 <span class="c"># Example Response</span>
 <span class="o">[</span> <span class="o">{</span>
@@ -2623,7 +2655,8 @@ clientCorporation.name</td>
   <span class="s2">"entitlementRequired"</span> : <span class="s2">"Mass Update Job Status"</span>
 <span class="o">}</span> <span class="o">]</span>
 
-</code></pre></div>
+</code></pre>
+
 <p>Returns the list of entity properties for which mass update is supported on the specified entity type. Also returns the entitlement required for updating each property.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -2645,32 +2678,34 @@ clientCorporation.name</td>
 </tbody></table>
 
 <h2 id="post-massupdate-entitytype"><span class="tag">POST</span> /massUpdate/{entityType}</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"ids": [789,790], "status": "active"}'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"ids": [789,790], "status": "active"}'</span> <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/massUpdate/JobOrder
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
     <span class="s2">"count"</span>: 2
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Performs a massUpdate on all entity records of the specified type for which the entity id is included in the request body.
 <br>
 <strong>Note:</strong> Use the GET /massUpdate/{entityType} request to see the list of entity properties for which mass update is supported on the specified entity type.
 <br>
 The request body uses the following syntax:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "ids" : [id, id, id],
-  "{property}" : value,
-  "toOneProperty" : id,
-  "{toManyProperty}" : [ id, id, id],
-  "{toManyProperty}" : {
-                       "add" : [id, id, id],
-                       "remove" : [id, id, id]
-                     }
-}
-</code></pre></div>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"ids"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"{property}"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">value</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"toOneProperty"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"{toManyProperty}"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"{toManyProperty}"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                       </span><span class="nt">"add"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">],</span><span class="w">
+                       </span><span class="nt">"remove"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w"> </span><span class="err">id</span><span class="p">]</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <ul>
 <li>&ldquo;ids&rdquo; is a list of entity ids to mass update. (mandatory, 10000 limit)</li>
 <li>For to-one properties, supply the associated entity id as value. For example, &ldquo;owner&rdquo; : 123</li>
@@ -2695,7 +2730,7 @@ The request body uses the following syntax:</p>
           <h1 id="meta">meta</h1>
 
 <h2 id="get-meta"><span class="tag">GET</span> /meta</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/meta
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/meta
 
 <span class="c"># Example Response</span>
 <span class="o">[</span>
@@ -2725,13 +2760,14 @@ The request body uses the following syntax:</p>
     <span class="o">}</span>,
     ...
 <span class="o">]</span>
-</code></pre></div>
+</code></pre>
+
 <p>Calling /meta with no entity name will return the list of available entities and their respective base URLs.  </p>
 
 <p>Read-only system fields ( fields with names prefixed with _ ) are not represented in entity metadata ever, even with * calls.</p>
 
 <h2 id="get-meta-entity"><span class="tag">GET</span> /meta/{Entity}</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields<span class="o">=</span><span class="k">*</span>
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/meta/Candidate?fields<span class="o">=</span><span class="k">*</span>
 <span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"entity"</span> : <span class="s2">"Candidate"</span>,
@@ -2745,7 +2781,8 @@ The request body uses the following syntax:</p>
     ...
   <span class="o">}]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Returns entity and property metadata for the specified entity type.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -2862,7 +2899,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="options">options</h1>
 
 <h2 id="get-options"><span class="tag">GET</span> /options</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/options
+<pre class="highlight shell"><code>curl https://rest<span class="o">{{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/options
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2884,7 +2921,8 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
   <span class="o">}</span>,
 ...
 <span class="o">]</span>
-</code></pre></div>
+</code></pre>
+
 <p>Gets the list of supported option types (value/label pairs) for list-based entities. </p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -2906,7 +2944,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 </tbody></table>
 
 <h2 id="get-options-optionstype"><span class="tag">GET</span> /options/{optionsType}</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/options/Country
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/options/Country
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -2923,7 +2961,8 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <span class="o">]</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Gets the list of value/label pairs (options) for a list-based entity. If the option is of type text, a list of input value/label pairs is returned where the label is set to the input value.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -3077,13 +3116,14 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="ping">ping</h1>
 
 <h2 id="get-ping"><span class="tag">GET</span> /ping</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/ping
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/ping
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
   <span class="s2">"sessionExpires"</span> : 1323449994922
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Returns the date of the calling client&rsquo;s session expiration. You can use this call to test whether the client&rsquo;s session is valid. If the session is not valid, the response is the standard response for unauthenticated clients.</p>
 
 <table><thead>
@@ -3103,7 +3143,7 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
           <h1 id="query">query</h1>
 
 <h2 id="get-query"><span class="tag">GET</span> /query</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields<span class="o">=</span>firstName,lastName&amp;where<span class="o">=</span><span class="nv">lastName</span><span class="o">=</span><span class="s1">'smith'</span>&amp;count<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -3113,7 +3153,8 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
         <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
     <span class="o">}]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Retrieves a list of entities. To avoid hitting URL length limits, always use the POST version of the query call rather than this GET version for <code class="prettyprint">where</code> values that exceed 7500 characters in length. The query is performed against the database. The <code class="prettyprint">where</code> parameter accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the <a href="#search">Search</a> call when it is available for the entity type for which you want to search.</p>
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
@@ -3194,10 +3235,10 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 <h2 id="post-query"><span class="tag">POST</span> /query</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"where": "id IN (10125, 10126, 10127, 10128, 10129, 10130, 10131, 10132, 10133, 10134, 10135, 10136, 10137, 10138, 17376, 26865, 67604, 67605, 80203, 80204, 80205, 80206, 80207, 80208, 80209, 80210, 80211, 80212, 80213, 80214)"}'</span> <span class="se">\</span>
-      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields<span class="o">=</span><span class="nb">id</span>,firstName,lastname&amp;count<span class="o">=</span>3
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"where": "id IN (10125, 10126, 10127, 10128, 10129, 10130, 10131, 10132, 10133, 10134, 10135, 10136, 10137, 10138, 17376, 26865, 67604, 67605, 80203, 80204, 80205, 80206, 80207, 80208, 80209, 80210, 80211, 80212, 80213, 80214)"}'</span> <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/query/ClientContact?fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -3207,7 +3248,8 @@ If the defaultValue is not translatable, For example, cannot parse string to a d
         <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
     <span class="o">}]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Retrieves a list of entities. To avoid hitting URL length limits, always use this version of the query call rather than the GET version for <code class="prettyprint">where</code> values that exceed 7500 characters in length. The query is performed against the database. The <code class="prettyprint">where</code> field in the request body accepts Java Persistance Query Language (JPQL) syntax, which is similar SQL syntax.  Accessing data via that database is only performant when you query very specific data. Otherwise, it is preferable to use the <a href="#search">Search</a> call when it is available for the entity type for which you want to search.</p>
 
 <aside class="notice">NOTE: At least one of the required parameters(fields and layout) or both must be specified.</aside>
@@ -3293,7 +3335,7 @@ property &gt;= value</p>
 <h3 id="may-use-compound-property-names-not-for-to-many-properties">May use compound property names (not for to-many properties)</h3>
 
 <p>owner.lastName = &lsquo;Smith&rsquo;
-owner.corporation.name = &lsquo;Acme&rsquo;</p>
+owner.corporation.name = &#39;Acme&rsquo;</p>
 
 <h3 id="is-not-null">IS [NOT] NULL</h3>
 
@@ -3343,8 +3385,8 @@ willingToRelocate = false</p>
           <h1 id="resume">resume</h1>
 
 <h2 id="post-resume-parsetocandidate"><span class="tag">POST</span> /resume/parseToCandidate</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-F</span> <span class="s2">"file=@sampleresume.html"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -F <span class="s2">"file=@sampleresume.html"</span> <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/resume/parseToCandidate?format<span class="o">=</span>text&amp;populateDescription<span class="o">=</span>html
 
 <span class="c"># Example Response</span>
@@ -3388,7 +3430,8 @@ willingToRelocate = false</p>
       <span class="o">}</span>
    <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>The parseToCandidate operation parses a resume to unsaved Candidate data. A typical use case for this operation is to use parts of the response in the bodies of calls to create new Candidate, CandidateWorkHistory, and CandidateEducation entities. The parseToCandidate operation lets you send a resume as a file attached as multipart/form-data. The parseToHrXml operation sends a resume as a file attached as multipart/form-data. The attached file must be a non-base64-encoded file. Takes one file per request.
 To send a block of text rather than a file, use the parseToCandidateViaJson operation.</p>
 
@@ -3421,9 +3464,9 @@ To send a block of text rather than a file, use the parseToCandidateViaJson oper
 </tbody></table>
 
 <h2 id="post-resume-parsetocandidateviajson"><span class="tag">POST</span> /resume/parseToCandidateViaJson</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}'</span> <span class="se">\</span>
      <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/resume/parseToCandidateViaJson?format<span class="o">=</span>text&amp;populateDescription<span class="o">=</span>html
 
@@ -3468,7 +3511,8 @@ To send a block of text rather than a file, use the parseToCandidateViaJson oper
       <span class="o">}</span>
    <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>The parseToCandidateViaJson operation parses a resume to unsaved Candidate data. A typical use case for this operation is to use parts of the response in the bodies of calls to create new Candidate, CandidateWorkHistory, and CandidateEducation entities. The parseToCandidateViaJson operation lets you send a resume as JSON-encoded text, which is useful for scenarios where you want to parse a block of text rather than a file.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -3500,8 +3544,8 @@ To send a block of text rather than a file, use the parseToCandidateViaJson oper
 </tbody></table>
 
 <h2 id="post-resume-parsetohrxml"><span class="tag">POST</span> /resume/parseToHrXml</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-F</span> <span class="s2">"file=@sampleresume.pdf"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -F <span class="s2">"file=@sampleresume.pdf"</span> <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/resume/parseToHrXml?format<span class="o">=</span>pdf
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s2">"hrXml"</span>: <span class="s2">"&lt;?xml version=</span><span class="se">\"</span><span class="s2">1.0</span><span class="se">\"</span><span class="s2"> encoding=</span><span class="se">\"</span><span class="s2">UTF-8</span><span class="se">\"</span><span class="s2">?&gt;</span><span class="se">\n</span><span class="s2">&lt;Resume </span><span class="se">\</span><span class="s2">
@@ -3514,7 +3558,8 @@ To send a block of text rather than a file, use the parseToCandidateViaJson oper
  &lt;MiddleName&gt;Keskimmäinen&lt;</span><span class="se">\/</span><span class="s2">MiddleName&gt;</span><span class="se">\n</span><span class="s2"> &lt;FamilyName&gt;Nimi&lt;</span><span class="se">\/</span><span class="s2">FamilyName&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
  &lt;Affix type=</span><span class="se">\"</span><span class="s2">formOfAddress</span><span class="se">\"</span><span class="s2">&gt;DR.&lt;</span><span class="se">\/</span><span class="s2">Affix&gt;</span><span class="se">\n</span><span class="s2">  &lt;</span><span class="se">\/</span><span class="s2">PersonName&gt;</span><span class="se">\n</span><span class="s2"> &lt;ContactMethod&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
  /UserArea&gt;</span><span class="se">\n</span><span class="s2">&lt;</span><span class="se">\/</span><span class="s2">Resume&gt;"</span><span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>The parseToHrXml operation sends a resume as a file attached as multipart/form-data. The attached file must be a non-base64-encoded file. Takes one file per request.</p>
 
 <p><code class="prettyprint">{corpToken}/resume/parseToXrXml</code></p>
@@ -3539,9 +3584,9 @@ To send a block of text rather than a file, use the parseToCandidateViaJson oper
 </tbody></table>
 
 <h2 id="post-resume-parsetohrxmlviajson"><span class="tag">POST</span> /resume/parseToHrXmlViaJson</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 \
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 \
      Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \
      \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\n \
      Telephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\n \
@@ -3560,7 +3605,8 @@ To send a block of text rather than a file, use the parseToCandidateViaJson oper
  &lt;MiddleName&gt;Keskimmäinen&lt;</span><span class="se">\/</span><span class="s2">MiddleName&gt;</span><span class="se">\n</span><span class="s2"> &lt;FamilyName&gt;Nimi&lt;</span><span class="se">\/</span><span class="s2">FamilyName&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
  &lt;Affix type=</span><span class="se">\"</span><span class="s2">formOfAddress</span><span class="se">\"</span><span class="s2">&gt;DR.&lt;</span><span class="se">\/</span><span class="s2">Affix&gt;</span><span class="se">\n</span><span class="s2">  &lt;</span><span class="se">\/</span><span class="s2">PersonName&gt;</span><span class="se">\n</span><span class="s2"> &lt;ContactMethod&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="se">\</span><span class="s2">
  /UserArea&gt;</span><span class="se">\n</span><span class="s2">&lt;</span><span class="se">\/</span><span class="s2">Resume&gt;"</span><span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>The parseToHrXmlViaJson operation send plain text or HTML as a JSON-encoded string. This call is useful for sending resume content that a user pastes into a browser form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -3587,8 +3633,8 @@ To send a block of text rather than a file, use the parseToCandidateViaJson oper
 </tbody></table>
 
 <h2 id="post-resume-converttotext-html"><span class="tag">POST</span> /resume/convertToText|Html</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-F</span> <span class="s2">"file=@sampleresume.pdf"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -F <span class="s2">"file=@sampleresume.pdf"</span> <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/resume/convertToHtml?format<span class="o">=</span>pdf
 
 <span class="c"># Example Response</span>
@@ -3610,7 +3656,8 @@ To send a block of text rather than a file, use the parseToCandidateViaJson oper
 Dean s List: Fall 2005 and Spring 2006&lt;/font&gt;</span><span class="se">\n</span><span class="s2">&lt;br /&gt; </span><span class="se">\</span><span class="s2">
 &amp;nbsp;&lt;br /&gt;&amp;nbsp;&lt;/body&gt;</span><span class="se">\r\n</span><span class="s2">&lt;/html&gt;"</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>The convertToText|Html operations converts a resume to JSON-encoded plain text or HTML text. A typical use case for this operation is to use the converted resume in the body of a call to update a Candidate description. </p>
 
 <p>When the resume text in the response is used in a request body of another call, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the resume as JSON before using it in the request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.</p>
@@ -3639,9 +3686,9 @@ Dean s List: Fall 2005 and Spring 2006&lt;/font&gt;</span><span class="se">\n</s
 <h2 id="post-resume-converttotext-htmlviajson"><span class="tag">POST</span> /resume/convertToText|HtmlViaJson</h2>
 
 <p>The value of the “resume” field must be JSON-encoded text. Most programming languages provide utility classes for generating JSON-encoded text.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"resume" : "\r\n\r\nDr. Minun Keskimm\u00E4inen Nimi\r\n123 Osoite Katu\r\nApartment 1\r\nKaupunki, MA 02210\r\nHome: 466-346-4663 \u00A0Business: 387-438-3874 ext. 89 \u00A0Mobile: 662-466-6624\r\nTelephone: 835-383-8353 ext. 90 \u00A0VoiceNumber: 864-386-8643\r\nFax: 329-329-3290 \u00A0Pager: 724-772-7247\r\nMinun.Nimi@finland.com ...}'</span> <span class="se">\</span>
      <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/resume/convertToTextViaJson?format<span class="o">=</span>html
 
@@ -3657,7 +3704,8 @@ Dean s List: Fall 2005 and Spring 2006&lt;/font&gt;</span><span class="se">\n</s
 ...
 "</span><span class="o">}</span>
 
-</code></pre></div>
+</code></pre>
+
 <p>The convertToText|HtmlViaJson operations convert a resume to JSON-encoded plain text or HTML text. A typical use case for this operation is to use the converted resume in the body of a call to update a Candidate description. 
 When the resume text in the response is used in a request body of another call, it must be JSON-encoded. If you have parsed the response to an object for manipulation, you must re-encode the resume as JSON before using it in the request body of another call. For example, in Groovy you can use the groovy.json.JsonOutput.toJson(java.lang.String s) method to Json-encode a string.</p>
 
@@ -3687,7 +3735,7 @@ When the resume text in the response is used in a request body of another call, 
           <h1 id="savedsearch">savedSearch</h1>
 
 <h2 id="get-savedsearch"><span class="tag">GET</span> /savedSearch</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/savedSearch
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/savedSearch
 
 or:
 
@@ -3719,7 +3767,8 @@ curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullh
   <span class="s2">"start"</span> : 0,
   <span class="s2">"count"</span> : 2
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>The savedSearch operation with no {savedSearchId} path parameter and no query parameters returns all saved searches in the user’s corporation to which the user has entitlements. Use the entity and entityId parameters to return the saved searches associated with a specific entity.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -3738,7 +3787,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
 
 <h2 id="get-mysavedsearch"><span class="tag">GET</span> /mySavedSearch</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/mySavedSearch
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/mySavedSearch
 
 or:
 
@@ -3760,7 +3809,8 @@ curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullh
   <span class="s2">"start"</span> : 0,
   <span class="s2">"count"</span> : 3
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>The mySavedSearch operation returns all saved searches that the user owns.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -3779,7 +3829,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
 
 <h2 id="get-savedsearch-savedsearchid"><span class="tag">GET</span> /savedSearch/{savedSearchId}</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/esavedSearch/4
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/esavedSearch/4
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -3796,7 +3846,8 @@ BhRestToken | no | Token that represents a session established by the login proc
   }
 }
 
-</span></code></pre></div>
+</span></code></pre>
+
 <p>Gets a saved Lucene search for any entity type for which the search operation is supported.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -3809,9 +3860,9 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
 
 <h2 id="put-savedsearch"><span class="tag">PUT</span> /savedSearch</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"name"        : "my_note_search", \
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"name"        : "my_note_search", \
         "description" : "my description", \
         "indexType"   : "NOTE", \
         "data"        : "data", \
@@ -3829,7 +3880,8 @@ BhRestToken | no | Token that represents a session established by the login proc
 
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Creates a saved Lucene search for a Lucene-indexed entity type. The name, indexType, data, and query fields are required in the request body. The user who creates a saved search always gets entitlements for all operations on that saved search; for more information about entitlements, see PUT /savedSearchGrant.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -3852,9 +3904,9 @@ BhRestToken | no | Token that represents a session established by the login proc
 </tbody></table>
 
 <h2 id="post-savedsearch-savedsearchid"><span class="tag">POST</span> /savedSearch/{savedSearchId}</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"name"        : "my_note_search", \
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"name"        : "my_note_search", \
         "description" : "my description", \
         "indexType"   : "NOTE", \
         "data"        : "data", \
@@ -3872,7 +3924,8 @@ BhRestToken | no | Token that represents a session established by the login proc
 
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Updates a saved Lucene search for Lucene-indexed entity types. The following fields are optional in the request body: name, description, indexType, data, and query.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -3897,7 +3950,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 <h2 id="delete-savedsearch-savedsearchid"><span class="tag">DELETE</span> /savedSearch/{savedSearchId}</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
 https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/esavedSearch/4
 
 <span class="c"># Example Response</span>
@@ -3910,7 +3963,8 @@ TBD
 
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Deletes a saved Lucene search for any entity type for which the search operation is supported.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -3923,9 +3977,10 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns a 404 error if saved search does not exist or caller has no access to saved search (not owner and not granted entitlements via the /savedSearchGrant operation).</aside></p>
 
 <h2 id="put-savedsearchassociation"><span class="tag">PUT</span> /savedSearchAssociation</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/savedSearchAssociation/4/JobOrder/1495    
-</code></pre></div>
+</code></pre>
+
 <p>Creates an association between a saved search and a specified entity id.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -3948,9 +4003,10 @@ BhRestToken | no | Token that represents a session established by the login proc
 </tbody></table>
 
 <h2 id="delete-savedsearchassociation"><span class="tag">DELETE</span> /savedSearchAssociation</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/savedSearchAssociation/4/JobOrder/1495    
-</code></pre></div>
+</code></pre>
+
 <p>Deletes an association between a saved search and a specified entity id.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -3973,7 +4029,7 @@ BhRestToken | no | Token that represents a session established by the login proc
 </tbody></table>
 
 <h2 id="get-savedsearchgrants"><span class="tag">GET</span> /savedSearchGrants</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/savedSearchGrants/4
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/savedSearchGrants/4
 
 <span class="c"># Example Response</span>
 <span class="o">[</span>
@@ -3982,7 +4038,8 @@ BhRestToken | no | Token that represents a session established by the login proc
   <span class="o">{</span> <span class="s2">"type"</span><span class="o">=</span><span class="s2">"USER"</span>, <span class="s2">"targetId"</span><span class="o">=</span>1333<span class="o">}</span>
 <span class="o">]</span>
 
-</code></pre></div>
+</code></pre>
+
 <p>Returns entitlements for a saved search.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -4007,16 +4064,18 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns an HTTP 200 code if the saved search is not found. Returns an HTTP 403 error if the saved search exists but the user is not the owner. Returns an HTTP 200 code if the saved search exists and the user is owner (even for missing association).</aside>
 
 <h2 id="delete-savedsearchgrant"><span class="tag">DELETE</span> /savedSearchGrant</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/savedSearchGrant/4/CORP
-</code></pre></div>
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/savedSearchGrant/4/CORP
+</code></pre>
+
 <p>Deletes entitlements for a saved search.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
 <h3 id="http-request">HTTP Request</h3>
-<div class="highlight"><pre class="highlight plaintext"><code>{corpToken}/savedSearchGrant/{savedSearchId}/CORP 
-{corpToken}/savedSearchGrant/{savedSearchId}/DEPT/{departmentId} 
-{corpToken}/savedSearchGrant/{savedSearchId}/USER/{corporateUserId} 
-</code></pre></div>
+<pre class="highlight json"><code><span class="p">{</span><span class="err">corpToken</span><span class="p">}</span><span class="err">/savedSearchGrant/</span><span class="p">{</span><span class="err">savedSearchId</span><span class="p">}</span><span class="err">/CORP</span><span class="w"> 
+</span><span class="p">{</span><span class="err">corpToken</span><span class="p">}</span><span class="err">/savedSearchGrant/</span><span class="p">{</span><span class="err">savedSearchId</span><span class="p">}</span><span class="err">/DEPT/</span><span class="p">{</span><span class="err">departmentId</span><span class="p">}</span><span class="w"> 
+</span><span class="p">{</span><span class="err">corpToken</span><span class="p">}</span><span class="err">/savedSearchGrant/</span><span class="p">{</span><span class="err">savedSearchId</span><span class="p">}</span><span class="err">/USER/</span><span class="p">{</span><span class="err">corporateUserId</span><span class="p">}</span><span class="w"> 
+</span></code></pre>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4036,9 +4095,10 @@ BhRestToken | no | Token that represents a session established by the login proc
 <p>FAVORITES</p>
 
 <h2 id="put-savedsearchfavorite"><span class="tag">PUT</span> /savedSearchFavorite</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/savedSearchFavorite/4
-</code></pre></div>
+</code></pre>
+
 <p>Adds a saved search to saved search favorites.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -4061,9 +4121,10 @@ BhRestToken | no | Token that represents a session established by the login proc
 </tbody></table>
 
 <h2 id="delete-savedsearchassociation"><span class="tag">DELETE</span> /savedSearchAssociation</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/savedSearchAssociation/4/JobOrder/1495    
-</code></pre></div>
+</code></pre>
+
 <p>Deletes an association between a saved search and a specified entity id.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -4088,9 +4149,10 @@ BhRestToken | no | Token that represents a session established by the login proc
 <aside class="warning">Returns an HTTP 404 error is saved search is missing or user has no access to it.</aside>
 
 <h2 id="put-savedsearchfavorite"><span class="tag">PUT</span> /savedSearchFavorite</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/savedSearchFavorite/4
-</code></pre></div>
+</code></pre>
+
 <p>Adds a saved search to saved search favorites.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -4113,9 +4175,10 @@ BhRestToken | no | Token that represents a session established by the login proc
 </tbody></table>
 
 <h2 id="delete-savedsearchfavorite"><span class="tag">DELETE</span> /savedSearchFavorite</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/savedSearchFavorite/4
-</code></pre></div>
+</code></pre>
+
 <p>Removes a saved search from saved search favorites.
 <aside class="warning">The saved search feature is not related to the saved query feature currently in the Bullhorn CRM application.</aside></p>
 
@@ -4140,7 +4203,7 @@ BhRestToken | no | Token that represents a session established by the login proc
           <h1 id="search">search</h1>
 
 <h2 id="get-search"><span class="tag">GET</span> /search</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/search/Candidate?query<span class="o">=</span>lastName:Smith&amp;fields<span class="o">=</span><span class="nb">id</span>,firstName,lastname&amp;count<span class="o">=</span>3
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/search/Candidate?query<span class="o">=</span>lastName:Smith&amp;fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -4151,7 +4214,8 @@ BhRestToken | no | Token that represents a session established by the login proc
       <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
     <span class="o">}]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Retrieves a list of entities. To avoid hitting URL length limits, always use the POST version of the search call rather than this GET version for <code class="prettyprint">query</code> values that exceed 7500 characters in length.
 The search call is performed against a Lucene index. For information about the Lucene query syntax, see: <a href="http://www.lucenetutorial.com/lucene-query-syntax.html">Lucene Tutorial</a></p>
 
@@ -4160,13 +4224,14 @@ The search call is performed against a Lucene index. For information about the L
 <p>Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.</p>
 
 <aside class="notice">If parameter &ldquo;fields&rdquo; or &ldquo;layout&rdquo; is not present, the search will return the list of found entity ids in the returned &ldquo;data&rdquo;.</aside>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/search/Candidate?query<span class="o">=</span>isDeleted:0
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/search/Candidate?query<span class="o">=</span>isDeleted:0
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
     <span class="s2">"data"</span>: <span class="o">[</span>101,102,103,104,...,999]
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/search/{entity}?query={lucene}&amp;fields={fields}&amp;sort={fields}&amp;count={count}&amp;start={start}</code></p>
@@ -4238,10 +4303,10 @@ The search call is performed against a Lucene index. For information about the L
 <aside class="warning">Returns an HTTP 404 if the requested entity cannot be found, if fields are specified that do not exist on the specified entity, or if values for any mandatory fields with no default value are not included.</aside>
 
 <h2 id="post-search"><span class="tag">POST</span> /search</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"query": "id:10125 10126 10127 10128 10129 10130 10131 10132 10133 10134 10135 10136 10137 10138 17376 26865 67604 67605 80203 80204 80205 80206 80207 80208 80209 80210 80211 80212 80213 80214"}'</span> <span class="se">\</span>
-      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/search/Candidate?fields<span class="o">=</span><span class="nb">id</span>,firstName,lastname&amp;count<span class="o">=</span>3
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"query": "id:10125 10126 10127 10128 10129 10130 10131 10132 10133 10134 10135 10136 10137 10138 17376 26865 67604 67605 80203 80204 80205 80206 80207 80208 80209 80210 80211 80212 80213 80214"}'</span> <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/search/Candidate?fields<span class="o">=</span>id,firstName,lastname&amp;count<span class="o">=</span>3
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -4252,7 +4317,8 @@ The search call is performed against a Lucene index. For information about the L
       <span class="s2">"lastName"</span> : <span class="s2">"Smith"</span>
     <span class="o">}]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Retrieves a list of entities. To avoid hitting URL length limits, always use this version of the search call rather than the GET version for <code class="prettyprint">query</code> values that exceed 7500 characters in length. Place the <code class="prettyprint">query</code> in JSON format in the request body. For example:
 <code class="prettyprint">
 {&quot;query&quot;: &quot;id:10125 10126 10127 10128 10129 10130 10131 10132 10133 10134 10135 10136 10137 10138 17376 26865 67604 67605 80203 80204 80205 80206 80207 80208 80209 80210 80211 80212 80213 80214&quot;}
@@ -4342,7 +4408,7 @@ The search call is performed against a Lucene index. For information about the L
 </ul>
 
 <p>After the email is successfully sent, a note is added to the person record with an action type from the <code class="prettyprint">dataCaptureNotificationNoteType</code> system setting.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CCPA/notifyOnCapture
 
 <span class="c"># Example Response</span>
@@ -4362,7 +4428,8 @@ The search call is performed against a Lucene index. For information about the L
     <span class="o">]</span>,
     <span class="s2">"failureIds"</span>: <span class="o">[]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/CCPA/notifyOnCapture</code></p>
@@ -4394,10 +4461,10 @@ The search call is performed against a Lucene index. For information about the L
 <h2 id="post-put-services-corporateuser">POST / PUT /services/CorporateUser</h2>
 
 <p>With appropriate access, you can add or update users. Adding users may incur additional user fees. For questions about your account and billing, please contact Bullhorn Support or your Account Manager.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CorporateUser
 
-curl <span class="nt">-X</span> POST <span class="se">\</span>
+curl -X POST <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CorporateUser/<span class="o">{</span>corporateUserID<span class="o">}</span>
 
 <span class="c"># Example Request</span>
@@ -4532,7 +4599,8 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
     <span class="s2">"changeType"</span>: <span class="s2">"UPDATE"</span>,
     <span class="s2">"data"</span>: <span class="o">{}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/CorporateUser</code> and <code class="prettyprint">{corpToken}/services/CorporateUser/{corporateUserID}</code></p>
@@ -4554,7 +4622,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <h2 id="put-services-corporateuser-corporateuserid-delegation">PUT /services/CorporateUser/{corporateUserID}/delegation</h2>
 
 <p>With appropriate access, you can add delegates to users.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CorporateUser/<span class="o">{</span>corporateUserID<span class="o">}</span>/delegation
 
 <span class="c"># Example Request</span>
@@ -4566,7 +4634,8 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <span class="o">{</span>
     <span class="s2">"delegate"</span>: 1
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/CorporateUser/{corporateUserID}/delegation</code> and <code class="prettyprint">{corpToken}/services/CorporateUser/{corporateUserID}/delegation</code></p>
@@ -4585,7 +4654,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <h2 id="post-put-services-directdepositaccount">POST / PUT /services/DirectDepositAccount</h2>
 
 <p>The Direct Deposit Account service allows for the creation of direct deposit accounts attached to a single candidate.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST / PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST / PUT <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/DirectDepositAccount
 
 <span class="c"># Example Request</span>
@@ -4671,7 +4740,8 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">]</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/DirectDepositAccount</code></p>
@@ -4693,7 +4763,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 <h2 id="put-services-issuereport">PUT /services/IssueReport</h2>
 
 <p>The Issue Report service allows for creation of issues to be presented to the user. These user-facing issues will be related to existing entities, and provide data on what the issue is and how to fix it.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/IssueReport
 
 <span class="c"># Example Request</span>
@@ -4731,7 +4801,8 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
         <span class="s2">"data"</span>: <span class="o">{}</span>
     <span class="o">}</span>
 <span class="o">]</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/IssueReport</code></p>
@@ -4751,7 +4822,7 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 </tbody></table>
 
 <h2 id="post-services-placementchangerequest-approve">POST /services/PlacementChangeRequest/approve/</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/PlacementChangeRequest/approve/123
 
 <span class="c"># Example Request 1</span>
@@ -4792,7 +4863,8 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
         <span class="s2">"id"</span>: 123
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Approves a PlacementChangeRequest and updates the associated placement with the fields changes specified on the PlacementChangeRequest.</p>
 
 <p>This request can be made <em><strong>without</strong></em> any request body.</p>
@@ -4841,7 +4913,7 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
 <h2 id="put-services-revenuerecognition-billmastertransactiondistributionbatch">PUT /services/RevenueRecognition/BillMasterTransactionDistributionBatch</h2>
 
 <p>Handles the creation of a BillMasterTransactionDistributionBatch and its subsequent association to BillableCharges.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/RevenueRecognition/BillMasterTransactionDistributionBatch
 
 <span class="c"># Example Request</span>
@@ -4856,7 +4928,8 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
     <span class="s2">"changeType"</span>:<span class="s2">"INSERT"</span>,
     <span class="s2">"data"</span>:<span class="o">{}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/RevenueRecognition/BillMasterTransactionDistributionBatch</code></p>
@@ -4878,7 +4951,7 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
 <h2 id="put-services-revenuerecognition-unbilledrevenuedistributionbatch">PUT /services/RevenueRecognition/UnbilledRevenueDistributionBatch</h2>
 
 <p>Handles the creation of an UnbilledRevenueDistributionBatch and its subsequent association to UnbilledRevenueDistributions.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/services/RevenueRecognition/UnbilledRevenueDistributionBatch 
 
 <span class="c"># Example Request</span>
@@ -4893,7 +4966,8 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
     <span class="s2">"changeType"</span>:<span class="s2">"INSERT"</span>,
     <span class="s2">"data"</span>:<span class="o">{}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/RevenueRecognition/BillMasterTransactionDistributionBatch</code></p>
@@ -4915,7 +4989,7 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
 <h2 id="post-services-revenuerecognition-updatetransactionexportstatus">POST /services/RevenueRecognition/UpdateTransactionExportStatus</h2>
 
 <p>Allows the API user to update the unbilledRevenueGeneralLedgerExportStatus for one or more BillMasterTransactions.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/services/RevenueRecognition/UpdateTransactionExportStatus 
 
 <span class="c"># Example Request</span>
@@ -4934,7 +5008,8 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
         <span class="o">]</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/RevenueRecognition/UpdateTransactionExportStatus</code></p>
@@ -4958,7 +5033,7 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
 <p>Allows a user to update the status of a PayExportBatch.</p>
 
 <p>NOTE: If you submit a batch export status update where there is only a single failed record with an entity name of PayExportBatch and the entityId matches the sourceBatchId, then we will treat the request as if you had asked our system to fail every PayMasterTransaction associated with that PayExportBatch. Issue creation logic will be unaffected.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/services/PayExportBatch/batchExportStatus
 
 <span class="c"># Example Request</span>
@@ -5032,7 +5107,8 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
     <span class="o">]</span>,
     <span class="s2">"data"</span>: <span class="o">{}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/RevenueRecognition/UpdateTransactionExportStatus</code></p>
@@ -5056,7 +5132,7 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
 <p>Allows a user to create a billable charge.</p>
 
 <p>At least one of either a placement or a billing profile is required. If only a placement is provided, it must have a billing profile. A description is required.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/services/BillableCharge
 
 <span class="c"># Example Request</span>
@@ -5094,7 +5170,8 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/BillableCharge</code></p>
@@ -5116,7 +5193,7 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
 <h3 id="post-services-billablecharge">POST /services/BillableCharge</h3>
 
 <p>Allows a user to update a billable charge.</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
       https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhorn.com/rest-services/e999/services/BillableCharge
 
 <span class="c"># Example Request</span>
@@ -5149,7 +5226,8 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/BillableCharge/{billableChargeId}</code></p>
@@ -5186,8 +5264,8 @@ If PlacementChangeRequest fields are included, then updates will be made to the 
 * Only 1 option is marked default
 * Requires booleans for doesFlowToNewJobs, requiredOntimesheet, visibleOnTimesheet
 * If PO then requires entityID in message and PO ID exists</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\ </span>PUT
-https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CustomerRequiredField/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\ </span>PUT
+https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>
 
 <span class="c"># Example Request</span>
 <span class="o">{</span>
@@ -5202,7 +5280,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/CustomerRequiredField/{id}</code></p>
@@ -5238,8 +5317,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
 * Effective date is unique
 * Requires isActive
 * Root ID matches version parent ID</p>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\ </span>PUT <span class="se">\ </span>GET
-      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\ </span>PUT <span class="se">\ </span>GET
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>
 
 <span class="c"># Example Request</span>
 <span class="o">{</span>
@@ -5252,7 +5331,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
     <span class="s2">"options"</span>: <span class="o">{</span>
         <span class="s2">"replaceAll"</span>: <span class="o">[</span>96, 97, 98]
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/PlacementCustomerRequiredField/{id}</code></p>
@@ -5294,8 +5374,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
 <li>Requires isActive</li>
 <li>Root ID matches version parent ID</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="se">\ </span>PUT <span class="se">\ </span>GET
-      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\ </span>PUT <span class="se">\ </span>GET
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>
 
 <span class="c"># Example Request</span>
 <span class="o">{</span>
@@ -5309,7 +5389,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
         <span class="s2">"replaceAll"</span>: <span class="o">[</span>96, 97, 98]
 <span class="o">}</span>
 
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/JobOrderCustomerRequiredField/{id}</code></p>
@@ -5336,8 +5417,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
 <li>10 CRFs per Placement</li>
 <li>50 CRF Options per Version</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
-      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/version/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/PlacementCustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>/version/<span class="o">{</span>id<span class="o">}</span>
 
 <span class="c"># Example Request</span>
 <span class="o">{</span>
@@ -5351,7 +5432,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
     <span class="o">}</span>
 <span class="o">}</span>
 
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/PlacementCustomerRequiredField/{id}/version/{id}</code></p>
@@ -5379,8 +5461,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
 <li>50 CRF Options per Version</li>
 <li>Version</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
-      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/version/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/JobOrderCustomerRequiredField/<span class="o">{</span>id<span class="o">}</span>/version/<span class="o">{</span>id<span class="o">}</span>
 
 <span class="c"># Example Request</span>
 <span class="o">{</span>
@@ -5393,7 +5475,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
         <span class="s2">"replaceAll"</span>: <span class="o">[</span>236, 237, 238, 239, 240, 241, 242, 243, 244, 245]
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">{corpToken}/services/JobOrderCustomerRequiredField/{id}/version/{id}</code></p>
@@ -5415,19 +5498,20 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
           <h1 id="settings">settings</h1>
 
 <h2 id="get-settings-setting1-setting2">GET /settings/setting1[,setting2&hellip;]</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/settings/allPrivateLabelIds,currencyFormat
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
     <span class="s2">"allPrivateLabelIds"</span>:  <span class="o">[</span> 1, 2, 3],
     <span class="s2">"currencyFormat"</span>: <span class="s2">"USD"</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Returns the value(s) of the specified system setting(s). The value type (Integer, String, Boolean, and so forth) depends on the specified setting name.
 <aside class="notice">NOTE: In the allDeptIds field of a settings response, the primary department id is always first in the list of department ids.</aside></p>
 
 <h2 id="get-settings">GET /settings</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"http://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/settings"</span>
+<pre class="highlight shell"><code>curl -X GET <span class="s2">"http://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/settings"</span>
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -5456,13 +5540,14 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
     ...
   <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Returns a list of predefined setting names and their metadata.</p>
 
           <h1 id="events">events</h1>
 
 <h2 id="get-event-subscription"><span class="tag">GET</span> /event/subscription</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?maxEvents<span class="o">=</span>100
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?maxEvents<span class="o">=</span>100
 
 <span class="c"># Example Response</span>
 <span class="o">{{</span>
@@ -5486,7 +5571,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Lets you get entity events, field map change events, and job match search events.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -5560,11 +5646,12 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
 </tbody></table>
 
 <h2 id="get-event-subscription-lastrequestid"><span class="tag">GET</span> /event/subscription/lastRequestId</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/event/subscriptioN/Abcde/lastRequestId
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/event/subscriptioN/Abcde/lastRequestId
 
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s1">'result'</span>: 1<span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Lets you get entity events, field map change events, and job match search events.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -5586,8 +5673,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
 </tbody></table>
 
 <h2 id="put-event-subscription"><span class="tag">PUT</span> /event/subscription</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> PUT <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde?type<span class="o">=</span>entity&amp;names<span class="o">=</span>Candidate
 &amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
 
@@ -5597,7 +5684,8 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
  <span class="s1">'createdOn'</span>: 1335285871323,
  <span class="s1">'jmsSelector'</span>: <span class="s2">"JMSType='ENTITY' AND BhCorpId=44 AND BhEntityName='Candidate' AND BhEntityEventType IN ('UPDATED','INSERTED','DELETED')"</span><span class="o">}</span>
 
-</code></pre></div>
+</code></pre>
+
 <p>Lets you subscribe to event types.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -5634,13 +5722,14 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
 </tbody></table>
 
 <h2 id="delete-event-subscription"><span class="tag">DELETE</span> /event/subscription</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/event/subscription/Abcde
 &amp;eventTypes<span class="o">=</span>INSERTED,UPDATED,DELETED
 
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s1">'result'</span>: True<span class="o">}</span>
 
-</code></pre></div>
+</code></pre>
+
 <p>Lets you unsubscribe from event types.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -5664,11 +5753,12 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
           <h1 id="userheadshotfile">userHeadshotFile</h1>
 
 <h2 id="get-userheadshotfile"><span class="tag">GET</span> /userHeadshotFile</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
+<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
 
 <span class="c"># Example Response</span>
 &lt;A multipart-encoded version of the file&gt;
-</code></pre></div>
+</code></pre>
+
 <p>Returns a user headshot (profile picture) file attached to a Person entity. Headshot files can be attached to the following types of entities:</p>
 
 <ul>
@@ -5698,25 +5788,26 @@ https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornst
 <aside class="warning">Returns an HTTP 404 error if the requested entity cannot be found.</aside>
 
 <h2 id="put-userheadshotfile"><span class="tag">PUT</span> /userHeadshotFile</h2>
-<div class="highlight"><pre class="highlight shell"><code>
+<pre class="highlight shell"><code>
 <span class="c"># Base64-encoded userHeadshotFile request</span>
 
-curl <span class="nt">-X</span> PUT <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
+curl -X PUT <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
         "fileType" : "SAMPLE", "name" : "headshotfile.jpg", "contentType" : "image",\
         "description" : "Headshot file for candidate.", "type" : "headshot"}'</span> <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909
 
 <span class="c"># Multipart/form (raw) userHeadshotFile request</span>
 
-curl <span class="nt">-X</span> PUT <span class="se">\</span>
-    <span class="nt">-F</span> <span class="s2">"file=@headshotfile.jpg"</span> <span class="se">\</span>
+curl -X PUT <span class="se">\</span>
+    -F <span class="s2">"file=@headshotfile.jpg"</span> <span class="se">\</span>
     https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909/raw?filetype<span class="o">=</span>SAMPLE&amp;externalID<span class="o">=</span>portfolio
 
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s2">"fileId"</span>: 178<span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Attaches a user headshot file (profile picture) to an entity. You can send a user headshot file as base64-encoded text or multipart/form data (raw). 
 Files can be attached to the following types of entities:</p>
 
@@ -5840,25 +5931,26 @@ Files can be attached to the following types of entities:</p>
 </tbody></table>
 
 <h2 id="post-userheadshotfile"><span class="tag">POST</span> /userHeadshotFile</h2>
-<div class="highlight"><pre class="highlight shell"><code>
+<pre class="highlight shell"><code>
 <span class="c"># Base64-encoded user headshot file request</span>
 
-curl <span class="nt">-X</span> POST <span class="se">\</span>
-     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-     <span class="nt">-d</span> <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
+curl -X POST <span class="se">\</span>
+     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+     -d <span class="s1">'{"externalID" : "portfolio", "fileContent" : "VGhpcyBpcyBhIHZlcnkgc21hbGwgdGV4dCBmaWxlLg0KDQpTbWFsbFRleHRGaWxl", \
         "fileType" : "SAMPLE", "name" : "headshotfile.jpg", "contentType" : "image",\
         "description" : "Headshot file for candidate.", "type" : "headshot"}'</span> <span class="se">\</span>
      https://rest.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909
 
 <span class="c"># Multipart/form (raw) userHeadshotFile request</span>
 
-curl <span class="nt">-X</span> POST <span class="se">\</span>
-    <span class="nt">-F</span> <span class="s2">"file=@headshotfile.jpg"</span> <span class="se">\</span>
+curl -X POST <span class="se">\</span>
+    -F <span class="s2">"file=@headshotfile.jpg"</span> <span class="se">\</span>
     https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/5097909/raw?filetype<span class="o">=</span>SAMPLE&amp;externalID<span class="o">=</span>portfolio
 
 <span class="c"># Example Response</span>
 <span class="o">{</span><span class="s2">"fileId"</span>: 179<span class="o">}</span>
-</code></pre></div>
+</code></pre>
+
 <p>Attaches a user headshot file (profile picture) to an entity. You can send a file as base64-encoded text or multipart/form data (raw). 
 Files can be attached to the following types of entities:</p>
 
@@ -5979,7 +6071,7 @@ Files can be attached to the following types of entities:</p>
 </tbody></table>
 
 <h2 id="delete-userheadshotfile"><span class="tag">DELETE</span> /userHeadshotFile</h2>
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/userHeadshotFile/Candidate/3835
 
 <span class="c"># Example Response</span>
@@ -5988,7 +6080,8 @@ Files can be attached to the following types of entities:</p>
    <span class="s2">"changeType"</span>: <span class="s2">"DELETED"</span>
 <span class="o">}</span>
 
-</code></pre></div>
+</code></pre>
+
 <p>Soft deletes a user headshot file. The actual file remains on the server.</p>
 
 <h3 id="http-request">HTTP Request</h3>
