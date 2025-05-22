@@ -2,6 +2,7 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
+@import 'toc';
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -44,7 +45,7 @@ body {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
-.guide-link { 
+.guide-link {
     color: #616161;
     transition-property: background;
     transition-timing-function: linear;

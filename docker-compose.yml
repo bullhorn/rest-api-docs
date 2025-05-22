@@ -1,4 +1,3 @@
-version: '3'
 services:
   slate:
     build: .
@@ -6,3 +5,4 @@ services:
       - "4567:4567"
     volumes:
       - .:/srv/slate
+    restart: unless-stopped

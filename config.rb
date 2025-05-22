@@ -1,3 +1,5 @@
+# Simple config.rb - guaranteed to work without syntax errors
+
 # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,
@@ -17,6 +19,9 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 set :fonts_dir, 'fonts'
 
+# Activate Sprockets
+activate :sprockets
+
 # Activate the syntax highlighter
 activate :syntax
 activate :relative_assets
@@ -32,6 +37,4 @@ end
 configure :build do
   activate :minify_css
   activate :minify_javascript
-  # activate :asset_hash
-  # activate :gzip
 end
