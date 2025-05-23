@@ -1,0 +1,8 @@
+services:
+  slate:
+    build: .
+    ports:
+      - "4567:4567"
+    volumes:
+      - .:/srv/slate
+    restart: unless-stopped
