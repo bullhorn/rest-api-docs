@@ -53,7 +53,7 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 ## February 2025 Release (2025.2)
 
-NO CHANGES
+| ADDED ```|``` [ScreenerQuestion entity](https://bullhorn.github.io/rest-api-docs/entityref.html#screenerquestion) |
 
 ## January 2025 Release (2025.1)
 
