@@ -1,5 +1,32 @@
 # Changelog
 
+## Version 2.0.0
+
+*May 22, 2025*
+
+Major update to modernize the documentation system and improve compatibility with current technologies.
+
+**Features:**
+- Updated to Middleman 4.4+ for improved performance and features
+- Added Docker support for easier development environment setup
+- Added support for Ruby 2.7+ and 3.0+
+- Improved GitHub Pages deployment process with middleman-gh-pages gem
+- Enhanced Markdown rendering with newer Redcarpet version
+- Modernized Jenkins pipeline for improved CI/CD
+
+**Fixes:**
+- Resolved Ruby version compatibility issues
+- Updated dependencies to address security vulnerabilities
+- Fixed deployment script for modern GitHub Pages
+- Improved CSS minification and asset handling
+- Enhanced syntax highlighting with Rouge 3.28+
+
+**Changes:**
+- Replaced custom deploy script with Rake-based deployment (optional)
+- Updated documentation generation with better error handling
+- Improved configuration for mobile responsiveness
+- Enhanced code syntax highlighting
+
 ## Version 1.3.2
 
 *February 3, 2016*
