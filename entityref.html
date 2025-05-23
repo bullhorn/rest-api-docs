@@ -15,11 +15,11 @@
   background-color: #272822;
 }
 .highlight .err {
-  color: #151515;
-  background-color: #ac4142;
+  color: #272822;
+  background-color: #f92672;
 }
-.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #505050;
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #75715e;
 }
 .highlight .cp {
   color: #f4bf75;
@@ -28,45 +28,48 @@
   color: #f4bf75;
 }
 .highlight .o, .highlight .ow {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .p, .highlight .pi {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .gi {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .gd {
-  color: #ac4142;
+  color: #f92672;
 }
 .highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
+  color: #66d9ef;
+  background-color: #272822;
   font-weight: bold;
 }
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f;
+  color: #ae81ff;
 }
 .highlight .kc {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kt {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kd {
-  color: #d28445;
+  color: #fd971f;
 }
-.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959;
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #a6e22e;
+}
+.highlight .sa {
+  color: #ae81ff;
 }
 .highlight .sr {
-  color: #75b5aa;
+  color: #a1efe4;
 }
 .highlight .si {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .se {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .nn {
   color: #f4bf75;
@@ -78,13 +81,13 @@
   color: #f4bf75;
 }
 .highlight .na {
-  color: #6a9fb5;
+  color: #66d9ef;
 }
-.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959;
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #a6e22e;
 }
 .highlight .ss {
-  color: #90a959;
+  color: #a6e22e;
 }
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
@@ -96,11 +99,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/logo.png" alt="" />
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -26424,87 +26427,6 @@ Allows Shift definitions to be linked to specific Placements</p>
             <td>To-many association</td>
             <td>Shifts associated with the PlacementShiftSet.</td>
             <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
-
-          <h1 id="screenerquestion">ScreenerQuestion</h1>
-
-<p>The Screener Question entity enables users to define custom screening questions for Jobs. When a candidate applies and responds to these questions, their answers are mapped to corresponding fields on the Candidate entity, based on the user’s configuration.</p>
-
-<table>
-    <colgroup>
-        <col width="20%" />
-        <col width="20%" />
-        <col width="20%" />
-        <col width="20%" />
-        <col width="20%" />
-    </colgroup>
-    <thead>
-        <tr class="header">
-            <th>ScreenerQuestion fields</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Not null</th>
-            <th>Read-only</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="even">
-            <td>id</td>
-            <td>Integer</td>
-            <td>Unique identifier for this entity.</td>
-            <td>X</td>
-            <td>X</td>
-        </tr>
-        <tr class="odd">
-            <td>answerEntityType</td>
-            <td>To-one association</td>
-            <td>The Bullhorn entity the applicant’s response will be mapped to.</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>answerFieldName</td>
-            <td>String (255)</td>
-            <td>The field on the answerEntityType that the applicant’s answer should be mapped to.</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>dateAdded</td>
-            <td>Timestamp</td>
-            <td>Date on which this record was created in the Bullhorn system.</td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>dateLastModified</td>
-            <td>Timestamp</td>
-            <td>Date on which this record was last updated in the Bullhorn system.</td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>isDeleted</td>
-            <td>Boolean</td>
-            <td>Indicates whether this record has been marked as deleted in the Bullhorn system. Defaults to false.</td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>questionText</td>
-            <td>String (255)</td>
-            <td>The text that applicants will see on job boards when applying to a Job.</td>
-            <td>X</td>
-            <td></td>
-        </tr>
-        <tr class="odd">
-            <td>required</td>
-            <td>Boolean</td>
-            <td>Indicates if the question is required or optional. Defaults to false.</td>
-            <td>X</td>
             <td></td>
         </tr>
     </tbody>

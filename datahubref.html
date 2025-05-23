@@ -15,11 +15,11 @@
   background-color: #272822;
 }
 .highlight .err {
-  color: #151515;
-  background-color: #ac4142;
+  color: #272822;
+  background-color: #f92672;
 }
-.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #505050;
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #75715e;
 }
 .highlight .cp {
   color: #f4bf75;
@@ -28,45 +28,48 @@
   color: #f4bf75;
 }
 .highlight .o, .highlight .ow {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .p, .highlight .pi {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .gi {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .gd {
-  color: #ac4142;
+  color: #f92672;
 }
 .highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
+  color: #66d9ef;
+  background-color: #272822;
   font-weight: bold;
 }
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f;
+  color: #ae81ff;
 }
 .highlight .kc {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kt {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kd {
-  color: #d28445;
+  color: #fd971f;
 }
-.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959;
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #a6e22e;
+}
+.highlight .sa {
+  color: #ae81ff;
 }
 .highlight .sr {
-  color: #75b5aa;
+  color: #a1efe4;
 }
 .highlight .si {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .se {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .nn {
   color: #f4bf75;
@@ -78,13 +81,13 @@
   color: #f4bf75;
 }
 .highlight .na {
-  color: #6a9fb5;
+  color: #66d9ef;
 }
-.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959;
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #a6e22e;
 }
 .highlight .ss {
-  color: #90a959;
+  color: #a6e22e;
 }
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
@@ -96,11 +99,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/logo.png" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -455,7 +458,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
 <p>The Data Hub API is secured in the same manner as the Bullhorn REST API. For a full guide on logging into the API and authorizing a request please follow this documentation: <a href="http://bullhorn.github.io/rest-api-docs/index.html#authorization">Authorization</a></p>
 
 <h2 id="post-data-hub-data"><span class="tag">POST</span> /data-hub/data</h2>
-<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/data
+<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/data
 
 <span class="c"># Example Request</span>
 <span class="o">[</span>
@@ -531,8 +534,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
         <span class="o">}</span>
     <span class="o">]</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Upserts up to 100 records to Data Hub. Payload must be formatted according to schema definition setup for the corporation.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -554,7 +556,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
 </tbody></table>
 
 <h2 id="post-data-hub-data-find"><span class="tag">POST</span> /data-hub/data/find</h2>
-<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/data/find
+<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/data/find
 
 <span class="c"># Example Request</span>
 <span class="o">{</span>
@@ -623,8 +625,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
         <span class="o">]</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Used to lookup and view Data Hub records using adaptive query.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -646,7 +647,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
 </tbody></table>
 
 <h2 id="post-put-data-hub-sourcesystem"><span class="tag"> POST / PUT </span> /data-hub/sourceSystem</h2>
-<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/sourceSystem
+<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/sourceSystem
 
 <span class="c"># Example Request</span>
 <span class="o">{</span>
@@ -664,8 +665,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
         <span class="s2">"display"</span>: <span class="s2">"sourceSystemDisplay"</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Used to add or update source systems.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -687,7 +687,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
 </tbody></table>
 
 <h2 id="post-put-data-hub-entitytype"><span class="tag"> POST / PUT </span> /data-hub/entityType</h2>
-<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/entityType
+<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/entityType
 
 <span class="c"># Example Request</span>
 <span class="o">{</span>
@@ -713,8 +713,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
         <span class="s2">"isPrivate"</span>: <span class="nb">true</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Used to add or update entity types.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -736,7 +735,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
 </tbody></table>
 
 <h2 id="post-put-data-hub-entitytypeschemaversion"><span class="tag"> POST / PUT </span> /data-hub/entityTypeSchemaVersion</h2>
-<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/entityTypeSchemaVersion
+<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/entityTypeSchemaVersion
 
 <span class="c"># Example Request associating entity type by entityTypeId</span>
 <span class="o">{</span>
@@ -776,8 +775,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Used to add or update entity type schema versions.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -799,7 +797,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
 </tbody></table>
 
 <h2 id="get-data-hub"><span class="tag"> GET </span> /data-hub</h2>
-<pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/entityType/311
+<div class="highlight"><pre class="highlight shell"><code>curl https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/data-hub/entityType/311
 
 <span class="c"># Example Response</span>
 <span class="o">{</span>
@@ -822,8 +820,7 @@ All Data Hub API calls must be made with a valid BH REST Token and accepts UTF-8
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Used to retrieve information about a source system, entity type, or schema version.</p>
 
 <h3 id="http-request">HTTP Request</h3>
