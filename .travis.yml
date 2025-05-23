@@ -1,10 +1,31 @@
 language: ruby
 rvm:
- - 2.2
- - jruby
+  - 2.7
+  - 3.0
+
+cache:
+  bundler: true
+
 install:
   - bundle install
-provider: script
+
+script:
+  - bundle exec middleman build --verbose
+
+deploy:
+  provider: script
   script: bash deploy.sh
+  skip_cleanup: true
   on:
     branch: master
+
+# Add environment variables if needed
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+# Specify which branches to build
+branches:
+  only:
+    - master
+    - f/update-slate
