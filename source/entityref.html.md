@@ -57,6 +57,7 @@ includes:
   - entityref/issueitems
   - entityref/jobboardpost
   - entityref/joborder
+  - entityref/joborderscreenerquestion
   - entityref/jobshift
   - entityref/jobshiftsubmission
   - entityref/jobshiftassignment
