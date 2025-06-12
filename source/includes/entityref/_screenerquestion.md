@@ -55,7 +55,7 @@ The Screener Question entity enables users to define custom screening questions 
         <tr class="even">
             <td>comments</td>
             <td>String (255)</td>
-            <td>Free text field ....</td>
+            <td>Free text field</td>
             <td></td>
             <td></td>
         </tr>
