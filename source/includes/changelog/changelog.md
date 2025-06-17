@@ -2,6 +2,14 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## July 2025 Release (2025.7)
+
+| UPDATED ```|``` [ScreenerQuestion entity](https://bullhorn.github.io/rest-api-docs/entityref.html#screenerquestion) |
+
+| ADDED ```|``` [JobOrderScreenerQuestion entity](https://bullhorn.github.io/rest-api-docs/entityref.html#joborderscreenerquestion) |
+
+| ADDED ```|``` [JobOrder jobOrderScreenerQuestion field](https://bullhorn.github.io/rest-api-docs/entityref.html#joborder) |
+
 ## May 2025 Release (2025.5)
 
 | ADDED ```|``` [DirectDepositAccountTypeLookup](http://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-directdepositaccounttypelookup) |
