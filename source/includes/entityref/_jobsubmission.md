@@ -210,51 +210,51 @@ The JobSubmission entity supports the massUpdate operations.
         <tr class="even">
             <td>screeningCompletedDateTime</td>
             <td>Timestamp</td>
+            <td>Screening Completed DateTime</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="odd">
             <td>screeningDuration</td>
             <td>Float</td>
+            <td>Screening Duration</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="even">
             <td>screeningFeedbackComment</td>
             <td>String (255)</td>
+            <td>Screening Feedback Comment</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="odd">
             <td>screeningFeedbackRating</td>
             <td>Integer</td>
+            <td>Screening Feedback Rating</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="even">
             <td>screeningScore</td>
             <td>Integer</td>
+            <td>Screening Score</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="odd">
             <td>screeningStatus</td>
             <td>String (100)</td>
+            <td>Screening Status</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="even">
             <td>screeningSummary</td>
             <td>String (255)</td>
+            <td>Screening Summary</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="odd">
             <td>sendingUser</td>

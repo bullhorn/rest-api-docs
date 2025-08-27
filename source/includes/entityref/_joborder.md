@@ -319,9 +319,9 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>estimatedEndDate</td>
             <td>Date</td>
+            <td>Estimated End Date used for integration with Onboarding365 only.</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="even">
             <td>externalCategoryID</td>
@@ -445,9 +445,9 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>jobOrderRateCardID</td>
             <td>Integer</td>
+            <td>JobOrderRateCardID</td>
             <td></td>
-            <td>X</td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="even">
             <td>jobOrderScreenerQuestions</td>
@@ -459,16 +459,16 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>jobPostingURL</td>
             <td>String (100)</td>
+            <td>Job Posting URL</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="even">
             <td>jobShifts</td>
             <td>To-many association</td>
-            <td>JobShift</td>
+            <td>Job Shifts associated with the Job Order.</td>
             <td></td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>location</td>
@@ -606,9 +606,9 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="even">
             <td>screenerQuestionsStatus</td>
             <td>Integer</td>
+            <td>Screener Questions Ready</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="odd">
             <td>sendouts</td>
@@ -711,9 +711,9 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>timeAndLaborEnabledDate</td>
             <td>Timestamp</td>
+            <td>Time And Labor Enabled Date</td>
             <td></td>
             <td></td>
-            <td>X</td>
         </tr>
         <tr class="even">
             <td>timeUnits</td>
