@@ -2,6 +2,24 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## October 2025 Release (2025.10)
+
+| ADDED ```|``` [JobOrder screenerQuestionsStatus field](https://bullhorn.github.io/rest-api-docs/entityref.html#joborder) |
+
+| ADDED ```|``` [JobSubmission screeningCompletedDateTime field](https://bullhorn.github.io/rest-api-docs/entityref.html#jobsubmission) |
+
+| ADDED ```|``` [JobSubmission screeningDuration field](https://bullhorn.github.io/rest-api-docs/entityref.html#jobsubmission) |
+
+| ADDED ```|``` [JobSubmission screeningFeedbackComment field](https://bullhorn.github.io/rest-api-docs/entityref.html#jobsubmission) |
+
+| ADDED ```|``` [JobSubmission screeningFeedbackRating field](https://bullhorn.github.io/rest-api-docs/entityref.html#jobsubmission) |
+
+| ADDED ```|``` [JobSubmission screeningScore field](https://bullhorn.github.io/rest-api-docs/entityref.html#jobsubmission) |
+
+| ADDED ```|``` [JobSubmission screeningStatus field](https://bullhorn.github.io/rest-api-docs/entityref.html#jobsubmission) |
+
+| ADDED ```|``` [JobSubmission screeningSummary field](https://bullhorn.github.io/rest-api-docs/entityref.html#jobsubmission) |
+
 ## July 2025 Release (2025.7)
 
 | UPDATED ```|``` [ScreenerQuestion entity](https://bullhorn.github.io/rest-api-docs/entityref.html#screenerquestion) |
@@ -19,6 +37,10 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 | UPDATED ```|``` [File entity](https://bullhorn.github.io/rest-api-docs/entityref.html#file) |
 
 | UPDATED ```|``` [GeneralLedgeAccount entity](https://bullhorn.github.io/rest-api-docs/entityref.html#generalledgeraccount) |
+
+| ADDED ```|``` [JobOrder jobPostingURL field](https://bullhorn.github.io/rest-api-docs/entityref.html#joborder) |
+
+| ADDED ```|``` [JobSubmission history field](https://bullhorn.github.io/rest-api-docs/entityref.html#jobsubmission) |
 
 | UPDATED ```|``` [Placement entity](https://bullhorn.github.io/rest-api-docs/entityref.html#placement) |
 

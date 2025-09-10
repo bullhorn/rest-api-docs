@@ -34,7 +34,7 @@ The JobSubmission entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>appointments</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>Ids of Appointments associated with this JobSubmission.</td>
             <td></td>
             <td></td>
@@ -48,14 +48,14 @@ The JobSubmission entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>branch</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Branch</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>candidate</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Candidate submitted for this job.</td>
             <td>X</td>
             <td></td>
@@ -126,83 +126,139 @@ The JobSubmission entity supports the massUpdate operations.
         <tr class="even">
             <td>endDate</td>
             <td>Timestamp</td>
-            <td>Place holder for where the start date of the Placement.  This is not automatically updated.</td>
+            <td>Placeholder for where the start date of the Placement.  This is not automatically updated.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
+            <td>history</td>
+            <td>To-many association</td>
+            <td>JobSubmissionHistory</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isHidden</td>
             <td>Boolean</td>
             <td>Indicates whether web responses are hidden. If you do not plan to promote a web response to a submission, set the isHidden field to true.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobOrder</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>JobOrder to which this JobSubmission corresponds.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>jobSubmissionCertificationRequirements</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>JobSubmissionCertificationRequirement</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobSubmissionIntegrations</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>JobSubmissionIntegration</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>latestAppointment</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Appointment</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>migrateGUID</td>
             <td>String (36)</td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>owners</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>Primary (first) and secondary (all but first) corporateUsers considered owners of this JobSubmission.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>payRate</td>
             <td>BigDecimal</td>
             <td>Pay rate for this JobSubmission.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>salary</td>
             <td>BigDecimal</td>
             <td>Salary for this JobSubmission.</td>
             <td></td>
             <td></td>
         </tr>
+        <tr class="even">
+            <td>screeningCompletedDateTime</td>
+            <td>Timestamp</td>
+            <td>Screening Completed DateTime</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>screeningDuration</td>
+            <td>Float</td>
+            <td>Screening Duration</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>screeningFeedbackComment</td>
+            <td>String (255)</td>
+            <td>Screening Feedback Comment</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>screeningFeedbackRating</td>
+            <td>Integer</td>
+            <td>Screening Feedback Rating</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>screeningScore</td>
+            <td>Integer</td>
+            <td>Screening Score</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>screeningStatus</td>
+            <td>String (100)</td>
+            <td>Screening Status</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>screeningSummary</td>
+            <td>String (255)</td>
+            <td>Screening Summary</td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="odd">
             <td>sendingUser</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>CorporateUser credited with making the submission. The default value is user who created the JobSubmission.</td>
             <td>X</td>
             <td></td>
@@ -217,7 +273,7 @@ The JobSubmission entity supports the massUpdate operations.
         <tr class="odd">
             <td>startDate</td>
             <td>Timestamp</td>
-            <td>Place holder for where the start date of the Placement.  This is not automatically updated.</td>
+            <td>Placeholder for where the start date of the Placement. This is not automatically updated.</td>
             <td></td>
             <td></td>
         </tr>
@@ -230,7 +286,7 @@ The JobSubmission entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>tasks</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>Task</td>
             <td></td>
             <td>X</td>
