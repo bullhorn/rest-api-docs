@@ -59,118 +59,119 @@ curl -X POST \
 # Example Request
 {
     "userType": {
-            "id": 456789
+        "id": 456789
+    },
+    "privateLabel": {
+        "id": 987654
+    },
+    "salesforceUserID": "00530000003xqAb",
+    "userSettings": {
+        "openOutboundMailInDefaultClient": "FALSE",
+        "sendAppointmentReminder": "FALSE",
+        "sendInvitationsToOwner": "FALSE",
+        "mobileEnabled": "0"
+    },
+    "firstName": "Jane",
+    "middleName": "Francine",
+    "lastName": "Doe",
+    "name": "Jane Doe",
+    "username": "JaneDoe",
+    "nickName": "Janey",
+    "password": "FakePassword",
+    "enabled": true,
+    "emailNotify": false,
+    "timeZoneOffsetEST": 600,
+    "address": {
+        "address1": "Fake Address 1",
+        "address2": "Fake Address 2",
+        "city": "Boston",
+        "countryID": 1,
+        "state": "MA",
+        "zip": "02108"
+    },
+    "userDateAdded": 1550874742177,
+    "dateLastComment": 1607036876320,
+    "departments": [
+        {
+            "id": 123456,
+            "isPrimary": true
         },
-        "privateLabel": {
-            "id": 987654
-        },
-        "userSettings": {
-            "openOutboundMailInDefaultClient": "FALSE",
-            "sendAppointmentReminder": "FALSE",
-            "sendInvitationsToOwner": "FALSE",
-            "mobileEnabled": "0"
-        },
-        "firstName": "Jane",
-        "middleName": "Francine",
-        "lastName": "Doe",
-        "name": "Jane Doe",
-        "username": "JaneDoe",
-        "nickName": "Janey",
-        "password": "FakePassword",
-        "enabled": true,
-        "emailNotify": false,
-        "timeZoneOffsetEST": 600,
-        "address": {
-            "address1": "Fake Address 1",
-            "address2": "Fake Address 2",
-            "city": "Boston",
-            "countryID": 1,
-            "state": "MA",
-            "zip": "02108"
-        },
-        "userDateAdded": 1550874742177,
-        "dateLastComment": 1607036876320,
-        "departments": [
-            {
-                "id": 123456,
-                "isPrimary": true
-            },
-            {
-                "id": 456789,
-                "isPrimary": false
-            }
-        ],
-        "email": "fakeEmail@fakeEmail.com",
-        "email2": "fakeEmail2@fakeEmail.com",
-        "email3": "fakeEmail3@fakeEmail.com",
-        "emailSignature": "Jane Doe",
-        "externalEmail": "fakeExternalEmail@fakeExternalEmail.com",
-        "phone": "12345678912",
-        "phone2": "45612378894",
-        "phone3": "12346512384",
-        "mobile": "13216549456",
-        "pager": "456987412512",
-        "fax": "12345678912",
-        "fax2": "45612378894",
-        "fax3": "12346512384",
-        "occupation": "HR",
-        "companyName": "Fake Company",
-        "addressSourceLocation": {
-            "id": 7
-        },
-        "namePrefix": "Ms",
-        "nameSuffix": "ii",
-        "isDayLightSavings": false,
-        "isLockedOut": false,
-        "isOutboundFaxEnabled": false,
-        "inboundEmailEnabled": false,
-        "customText1": "Custom Text",
-        "customText2": "Custom Text",
-        "customText3": "Custom Text",
-        "customText4": "Custom Text",
-        "customText5": "Custom Text",
-        "customText6": "Custom Text",
-        "customText7": "Custom Text",
-        "customText8": "Custom Text",
-        "customText9": "Custom Text",
-        "customText10": "Custom Text",
-        "customText11": "Custom Text",
-        "customText12": "Custom Text",
-        "customText13": "Custom Text",
-        "customText14": "Custom Text",
-        "customText15": "Custom Text",
-        "customText16": "Custom Text",
-        "customText17": "Custom Text",
-        "customText18": "Custom Text",
-        "customText19": "Custom Text",
-        "customText20": "Custom Text",
-        "customDate1": "1550874742177",
-        "customDate2": "1550874742177",
-        "customDate3": "1550874742177",
-        "customFloat1": 1.3,
-        "customFloat2": 0.4,
-        "customFloat3": 10.5,
-        "customInt1": 100,
-        "customInt2": 450,
-        "customInt3": 30,
-        "isDeleted": false,
-        "massMailOptOut": false,
-        "smsOptIn": false,
-        "loginRestrictions": {
-            "ipAddress": "149.176.114.106",
-            "timeStart": "23:30:00",
-            "timeEnd": "00:30:00",
-            "weekDays": [
-                1,
-                2,
-                6
-            ]
-        },
-        "samlInfo": {
-            "samlIdpID": 456,
-            "nameID": "ssoEmail@email.com",
-            "idpType": 1
+        {
+            "id": 456789,
+            "isPrimary": false
         }
+    ],
+    "email": "fakeEmail@fakeEmail.com",
+    "email2": "fakeEmail2@fakeEmail.com",
+    "email3": "fakeEmail3@fakeEmail.com",
+    "emailSignature": "Jane Doe",
+    "externalEmail": "fakeExternalEmail@fakeExternalEmail.com",
+    "phone": "12345678912",
+    "phone2": "45612378894",
+    "phone3": "12346512384",
+    "mobile": "13216549456",
+    "pager": "456987412512",
+    "fax": "12345678912",
+    "fax2": "45612378894",
+    "fax3": "12346512384",
+    "occupation": "HR",
+    "companyName": "Fake Company",
+    "addressSourceLocation": {
+        "id": 7
+    },
+    "namePrefix": "Ms",
+    "nameSuffix": "ii",
+    "isDayLightSavings": false,
+    "isLockedOut": false,
+    "isOutboundFaxEnabled": false,
+    "inboundEmailEnabled": false,
+    "customText1": "Custom Text",
+    "customText2": "Custom Text",
+    "customText3": "Custom Text",
+    "customText4": "Custom Text",
+    "customText5": "Custom Text",
+    "customText6": "Custom Text",
+    "customText7": "Custom Text",
+    "customText8": "Custom Text",
+    "customText9": "Custom Text",
+    "customText10": "Custom Text",
+    "customText11": "Custom Text",
+    "customText12": "Custom Text",
+    "customText13": "Custom Text",
+    "customText14": "Custom Text",
+    "customText15": "Custom Text",
+    "customText16": "Custom Text",
+    "customText17": "Custom Text",
+    "customText18": "Custom Text",
+    "customText19": "Custom Text",
+    "customText20": "Custom Text",
+    "customDate1": "1550874742177",
+    "customDate2": "1550874742177",
+    "customDate3": "1550874742177",
+    "customFloat1": 1.3,
+    "customFloat2": 0.4,
+    "customFloat3": 10.5,
+    "customInt1": 100,
+    "customInt2": 450,
+    "customInt3": 30,
+    "isDeleted": false,
+    "massMailOptOut": false,
+    "smsOptIn": false,
+    "loginRestrictions": {
+        "ipAddress": "149.176.114.106",
+        "timeStart": "23:30:00",
+        "timeEnd": "00:30:00",
+        "weekDays": [
+            1,
+            2,
+            6
+        ]
+    },
+    "samlInfo": {
+        "samlIdpID": 456,
+        "nameID": "ssoEmail@email.com",
+        "idpType": 1
+    }
 }
 
 # Example Response for PUT
