@@ -32,7 +32,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>address</td>
             <td>COMPOSITE</td>
-            <td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID)</td>
+            <td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></li></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?fields=address(countryID)</td>
             <td></td>
             <td></td>
         </tr>
@@ -73,7 +73,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>billingProfile</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>BillingProfile</td>
             <td></td>
             <td></td>
@@ -87,7 +87,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>branch</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Branch associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
@@ -143,21 +143,21 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>clientContact</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>ClientContact associated with the JobOrder.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Hiring company associated with the JobOrder.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>clientCorporationLine</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>AgreementLine associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
@@ -317,123 +317,137 @@ The JobOrder entity supports the massUpdate operations.
             <td></td>
         </tr>
         <tr class="odd">
+            <td>estimatedEndDate</td>
+            <td>Date</td>
+            <td>Estimated End Date used for integration with Onboarding365 only.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>externalCategoryID</td>
             <td>Integer</td>
             <td>Category exposed on public JobOrder postings to the web.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>externalID</td>
             <td>String (100)</td>
             <td>Used for migrations or for the JobOrder's external/back-office identification number.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>feeArrangement</td>
             <td>Double</td>
             <td>Fee, expressed as a percentage, that will be paid by the ClientCorporation when the JobOrder is filled.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>fileAttachments</td>
             <td>To-many association</td>
             <td>JobOrderFileAttachment associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>hoursOfOperation</td>
             <td>String (30)</td>
             <td>Hiring company's hours of operation.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>hoursPerWeek</td>
             <td>Double</td>
             <td>Number of hours per week that the employee will work.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>interviews</td>
             <td>To-many association</td>
             <td>Appointments associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isClientEditable</td>
             <td>Boolean</td>
             <td>Indicates whether a ClientContact can modify the JobOrder via the Bullhorn system.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isInterviewRequired</td>
             <td>Boolean</td>
             <td>Indicates whether applicants are required to Interview for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isJobcastPublished</td>
             <td>Boolean</td>
             <td>Indicates whether the JobOrder was published through Jobcast.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isOpen</td>
             <td>Boolean</td>
             <td>Indicates whether the JobOrder is open.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isPublic</td>
             <td>Integer</td>
             <td>Controls whether a JobOrder appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1.</td>
             <td></td>
             <td></td>
         </tr>
-         <tr class="even">
+        <tr class="odd">
             <td>isWorkFromHome</td>
             <td>Boolean</td>
             <td>Indicates whether the JobOrder is work from home.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobBoardList</td>
             <td>String (2147483647)</td>
             <td>List of job boards on which the JobOrder has been posted.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>jobCode</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>JobCode</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobOrderIntegrations</td>
             <td>To-many association</td>
             <td>JobOrderIntegration</td>
             <td></td>
             <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>jobOrderRateCardID</td>
+            <td>Integer</td>
+            <td>JobOrderRateCardID</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr class="even">
             <td>jobOrderScreenerQuestions</td>
@@ -443,8 +457,22 @@ The JobOrder entity supports the massUpdate operations.
             <td></td>
         </tr>
         <tr class="odd">
+            <td>jobPostingURL</td>
+            <td>String (100)</td>
+            <td>Job Posting URL</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jobShifts</td>
+            <td>To-many association</td>
+            <td>Job Shifts associated with the Job Order.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>location</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Location sourced from the associated ClientCorporation record by way of the Location entity.</td>
             <td></td>
             <td></td>
@@ -479,7 +507,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>opportunity</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Opportunity associated with the JobOrder.</td>
             <td></td>
             <td></td>
@@ -493,7 +521,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>owner</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>CorporateUser who owns the JobOrder. The default value is the user who creates the JobOrder. The field name in ATS for owner is listed in field maps as userID.</td>
             <td>X</td>
             <td></td>
@@ -521,7 +549,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>publishedCategory</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Category</td>
             <td></td>
             <td>X</td>
@@ -549,14 +577,14 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="even">
             <td>reportToClientContact</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>ClientContact the JobOrder reports to.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>responseUser</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>CorporateUser to whom submissions should be sent.</td>
             <td></td>
             <td></td>
@@ -576,100 +604,114 @@ The JobOrder entity supports the massUpdate operations.
             <td></td>
         </tr>
         <tr class="even">
+            <td>screenerQuestionsStatus</td>
+            <td>Integer</td>
+            <td>Screener Questions Ready</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>sendouts</td>
             <td>To-many association</td>
             <td>Sendouts associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>shift</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Shift</td>
             <td>Deprecated. Shift associated with the JobOrder.</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>shifts</td>
             <td>To-many association</td>
             <td>Deprecated. Shifts associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>skillList</td>
             <td>String (2147483647)</td>
             <td>Comma-separated list of skills the applicants should have.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>skills</td>
             <td>To-many association</td>
             <td>Skills associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>source</td>
             <td>String (100)</td>
             <td>Source of the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>specialties</td>
             <td>To-many association</td>
             <td>Specialties associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>startDate</td>
             <td>Timestamp</td>
             <td>Desired start date for the position. The default value is 12 AM on day record is added.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>status</td>
             <td>String (200)</td>
             <td>Current status of the Job Order. Examples: Accepting Candidates, Currently Interviewing, Covered, Offer Out, Placed</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>submissions</td>
             <td>To-many association</td>
             <td>JobSubmissions associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>tasks</td>
             <td>To-many association</td>
             <td>Tasks associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>taxRate</td>
             <td>Double</td>
             <td>Rate (percentage) at which the person hired for the JobOrder will be taxed.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>taxStatus</td>
             <td>String (20)</td>
             <td>Tax Status, for example, 1099, W-2, and so forth.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>tearsheets</td>
             <td>To-many association</td>
             <td>Tearsheets associated with the JobOrder.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>timeAndLaborEnabledDate</td>
+            <td>Timestamp</td>
+            <td>Time And Labor Enabled Date</td>
             <td></td>
             <td></td>
         </tr>
@@ -711,7 +753,7 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>webResponses</td>
             <td>To-many association</td>
-            <td>Web responses associated with the JobOrder. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”.</td>
+            <td>Web responses associated with the JobOrder. This field is populated when you create JobSubmissions where JobSubmission. Status is “New Lead”.</td>
             <td></td>
             <td></td>
         </tr>
@@ -738,7 +780,7 @@ The JobOrder entity supports the massUpdate operations.
         </tr>
         <tr class="odd">
             <td>workersCompRate</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>WorkersCompensationRate entity associated with the JobOrder.</td>
             <td></td>
             <td></td>
