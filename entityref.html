@@ -4869,6 +4869,13 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td></td>
 </tr>
 <tr>
+<td>salesforceUserID</td>
+<td>String</td>
+<td>Salesforce user ID tied to the CorporateUser (user/corp must be enabled for Unified Search + Salesforce use).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>smsOptIn</td>
 <td>Boolean</td>
 <td>Indicates whether the CorporateUser has granted permission to be sent messages via SMS.</td>
@@ -7142,7 +7149,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         <tr class="odd">
             <td>address</td>
             <td>COMPOSITE</td>
-            <td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?felds=address(countryID)</td>
+            <td>Address of the hiring company; when the record is created in the Bullhorn application, this data is pulled from the client contact record.<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></li></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/JobOrder?fields=address(countryID)</td>
             <td></td>
             <td></td>
         </tr>
@@ -7183,7 +7190,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         </tr>
         <tr class="odd">
             <td>billingProfile</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>BillingProfile</td>
             <td></td>
             <td></td>
@@ -7197,7 +7204,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         </tr>
         <tr class="odd">
             <td>branch</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Branch associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
@@ -7253,21 +7260,21 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         </tr>
         <tr class="odd">
             <td>clientContact</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>ClientContact associated with the JobOrder.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>clientCorporation</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Hiring company associated with the JobOrder.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>clientCorporationLine</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>AgreementLine associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
@@ -7427,254 +7434,296 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td></td>
         </tr>
         <tr class="odd">
+            <td>estimatedEndDate</td>
+            <td>Date</td>
+            <td>Estimated End Date used for integration with Onboarding365 only.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>externalCategoryID</td>
             <td>Integer</td>
             <td>Category exposed on public JobOrder postings to the web.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>externalID</td>
             <td>String (100)</td>
             <td>Used for migrations or for the JobOrder&rsquo;s external/back-office identification number.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>feeArrangement</td>
             <td>Double</td>
             <td>Fee, expressed as a percentage, that will be paid by the ClientCorporation when the JobOrder is filled.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>fileAttachments</td>
             <td>To-many association</td>
             <td>JobOrderFileAttachment associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>hoursOfOperation</td>
             <td>String (30)</td>
             <td>Hiring company&rsquo;s hours of operation.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>hoursPerWeek</td>
             <td>Double</td>
             <td>Number of hours per week that the employee will work.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>interviews</td>
             <td>To-many association</td>
             <td>Appointments associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isClientEditable</td>
             <td>Boolean</td>
             <td>Indicates whether a ClientContact can modify the JobOrder via the Bullhorn system.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isInterviewRequired</td>
             <td>Boolean</td>
             <td>Indicates whether applicants are required to Interview for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isJobcastPublished</td>
             <td>Boolean</td>
             <td>Indicates whether the JobOrder was published through Jobcast.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isOpen</td>
             <td>Boolean</td>
             <td>Indicates whether the JobOrder is open.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>isPublic</td>
             <td>Integer</td>
             <td>Controls whether a JobOrder appears on the Bullhorn job board (if in use). Only 3 values allows, -1, 0, 1.</td>
             <td></td>
             <td></td>
         </tr>
-         <tr class="even">
+        <tr class="odd">
             <td>isWorkFromHome</td>
             <td>Boolean</td>
             <td>Indicates whether the JobOrder is work from home.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobBoardList</td>
             <td>String (2147483647)</td>
             <td>List of job boards on which the JobOrder has been posted.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>jobCode</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>JobCode</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobOrderIntegrations</td>
             <td>To-many association</td>
             <td>JobOrderIntegration</td>
             <td></td>
             <td>X</td>
         </tr>
+        <tr class="odd">
+            <td>jobOrderRateCardID</td>
+            <td>Integer</td>
+            <td>JobOrderRateCardID</td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="even">
-            <td>location</td>
-            <td>To-one Association</td>
-            <td>Location sourced from the associated ClientCorporation record by way of the Location entity.</td>
+            <td>jobOrderScreenerQuestions</td>
+            <td>To-many association</td>
+            <td>JobOrderScreenerQuestions associated to JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
+            <td>jobPostingURL</td>
+            <td>String (100)</td>
+            <td>Job Posting URL</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>jobShifts</td>
+            <td>To-many association</td>
+            <td>Job Shifts associated with the Job Order.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>location</td>
+            <td>To-one association</td>
+            <td>Location sourced from the associated ClientCorporation record by way of the Location entity.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>markUpPercentage</td>
             <td>Double</td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>notes</td>
             <td>To-many association</td>
             <td>Notes associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>numOpenings</td>
             <td>Integer</td>
             <td>Number of openings to be filled for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>onSite</td>
             <td>String (20)</td>
             <td>Location requirements; for example, on-site, off-site, no preference.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>opportunity</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Opportunity associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>optionsPackage</td>
             <td>String (2147483647)</td>
             <td>Text description of the stock options package offered with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>owner</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>CorporateUser who owns the JobOrder. The default value is the user who creates the JobOrder. The field name in ATS for owner is listed in field maps as userID.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>payRate</td>
             <td>BigDecimal</td>
             <td>Pay rate offered with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>placements</td>
             <td>To-many association</td>
             <td>Placements associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>publicDescription</td>
             <td>String (2147483647)</td>
             <td>Description of the JobOrder for use on public job boards.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>publishedCategory</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Category</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>publishedZip</td>
             <td>String (18)</td>
             <td>Published ZIP code of the job location.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>reasonClosed</td>
             <td>String (2147483647)</td>
             <td>Text description of the reason the JobOrder was closed, if applicable.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>reportTo</td>
             <td>String (100)</td>
             <td>Name and/or title of the person the JobOrder will report to.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>reportToClientContact</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>ClientContact the JobOrder reports to.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>responseUser</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>CorporateUser to whom submissions should be sent.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>salary</td>
             <td>BigDecimal</td>
             <td>Salary offered for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>salaryUnit</td>
             <td>String (12)</td>
             <td>Salary unit represented by the range (for example, per hour, yearly).</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>screenerQuestionsStatus</td>
+            <td>Integer</td>
+            <td>Screener Questions Ready</td>
             <td></td>
             <td></td>
         </tr>
@@ -7687,7 +7736,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         </tr>
         <tr class="even">
             <td>shift</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>Shift</td>
             <td>Deprecated. Shift associated with the JobOrder.</td>
             <td></td>
@@ -7777,80 +7826,145 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
             <td></td>
         </tr>
         <tr class="odd">
+            <td>timeAndLaborEnabledDate</td>
+            <td>Timestamp</td>
+            <td>Time And Labor Enabled Date</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>timeUnits</td>
             <td>To-many association</td>
             <td>TimeUnits associated with the JobOrder.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>title</td>
             <td>String (100)</td>
             <td>Job title.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>travelRequirements</td>
             <td>String (50)</td>
             <td>Text description of the amount of travel required for the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>type</td>
             <td>Integer</td>
             <td>Job type, for example, Cold, Cool, Medium, Warm, Hot. Stored in DB as Integer with display values configured in field maps.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>usersAssigned</td>
             <td>String (0)</td>
             <td></td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>webResponses</td>
             <td>To-many association</td>
-            <td>Web responses associated with the JobOrder. This field is populated when you create JobSubmissions where JobSubmission.status is “New Lead”.</td>
+            <td>Web responses associated with the JobOrder. This field is populated when you create JobSubmissions where JobSubmission. Status is “New Lead”.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>willRelocate</td>
             <td>Boolean</td>
             <td>Indicates whether the hiring company will provide relocation assistance.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>willRelocateInt</td>
             <td>Integer</td>
             <td></td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>willSponsor</td>
             <td>Boolean</td>
             <td>Indicates whether the hiring company is willing to sponsor an employee on a work visa.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>workersCompRate</td>
-            <td>To-one Association</td>
+            <td>To-one association</td>
             <td>WorkersCompensationRate entity associated with the JobOrder.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>yearsRequired</td>
             <td>Integer</td>
             <td>Number of years of experience required for the JobOrder.</td>
             <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+          <h1 id="joborderscreenerquestion">JobOrderScreenerQuestion</h1>
+
+<p>The Job Order Screener Question entity enables users to associate Screener Questions with Jobs. </p>
+
+<p>When a user adds a screener question to a job, the association is stored, along with a user defined sort order field for display purposes.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>JobOrderScreenerQuestion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>jobOrder</td>
+            <td>To-one association</td>
+            <td>JobOrder default fields: 
+                <li>id</li>
+                <li>title</li>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>screenerQuestion</td>
+            <td>To-one association</td>
+            <td>Screener Question associated with this record.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>sortOrder</td>
+            <td>Integer</td>
+            <td>In a list of screener questions associated with a job, sortOrder determines the location of the screener question in the list.</td>
+            <td>X</td>
             <td></td>
         </tr>
     </tbody>
@@ -8274,7 +8388,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         </tr>
         <tr class="odd">
             <td>appointments</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>Ids of Appointments associated with this JobSubmission.</td>
             <td></td>
             <td></td>
@@ -8288,14 +8402,14 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         </tr>
         <tr class="odd">
             <td>branch</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Branch</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>candidate</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Candidate submitted for this job.</td>
             <td>X</td>
             <td></td>
@@ -8366,83 +8480,139 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         <tr class="even">
             <td>endDate</td>
             <td>Timestamp</td>
-            <td>Place holder for where the start date of the Placement.  This is not automatically updated.</td>
+            <td>Placeholder for where the start date of the Placement.  This is not automatically updated.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
+            <td>history</td>
+            <td>To-many association</td>
+            <td>JobSubmissionHistory</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
             <td>isDeleted</td>
             <td>Boolean</td>
             <td>Indicates whether this record is marked as deleted in the Bullhorn system.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isHidden</td>
             <td>Boolean</td>
             <td>Indicates whether web responses are hidden. If you do not plan to promote a web response to a submission, set the isHidden field to true.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobOrder</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>JobOrder to which this JobSubmission corresponds.</td>
             <td>X</td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>jobSubmissionCertificationRequirements</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>JobSubmissionCertificationRequirement</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobSubmissionIntegrations</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>JobSubmissionIntegration</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>latestAppointment</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>Appointment</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>migrateGUID</td>
             <td>String (36)</td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>owners</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>Primary (first) and secondary (all but first) corporateUsers considered owners of this JobSubmission.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>payRate</td>
             <td>BigDecimal</td>
             <td>Pay rate for this JobSubmission.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>salary</td>
             <td>BigDecimal</td>
             <td>Salary for this JobSubmission.</td>
             <td></td>
             <td></td>
         </tr>
+        <tr class="even">
+            <td>screeningCompletedDateTime</td>
+            <td>Timestamp</td>
+            <td>Screening Completed DateTime</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>screeningDuration</td>
+            <td>Float</td>
+            <td>Screening Duration</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>screeningFeedbackComment</td>
+            <td>String (255)</td>
+            <td>Screening Feedback Comment</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>screeningFeedbackRating</td>
+            <td>Integer</td>
+            <td>Screening Feedback Rating</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>screeningScore</td>
+            <td>Integer</td>
+            <td>Screening Score</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>screeningStatus</td>
+            <td>String (100)</td>
+            <td>Screening Status</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>screeningSummary</td>
+            <td>String (255)</td>
+            <td>Screening Summary</td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="odd">
             <td>sendingUser</td>
-            <td>To One Association</td>
+            <td>To-one association</td>
             <td>CorporateUser credited with making the submission. The default value is user who created the JobSubmission.</td>
             <td>X</td>
             <td></td>
@@ -8457,7 +8627,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         <tr class="odd">
             <td>startDate</td>
             <td>Timestamp</td>
-            <td>Place holder for where the start date of the Placement.  This is not automatically updated.</td>
+            <td>Placeholder for where the start date of the Placement. This is not automatically updated.</td>
             <td></td>
             <td></td>
         </tr>
@@ -8470,7 +8640,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         </tr>
         <tr class="odd">
             <td>tasks</td>
-            <td>To Many Association</td>
+            <td>To-many association</td>
             <td>Task</td>
             <td></td>
             <td>X</td>
@@ -26462,16 +26632,34 @@ Allows Shift definitions to be linked to specific Placements</p>
             <td>X</td>
         </tr>
         <tr class="odd">
+            <td>addedByUser</td>
+            <td>To-one association</td>
+            <td>CorporateUser default fields: 
+                <li>id</li>
+                <li>firstName</li>
+                <li>lastName</li>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
             <td>answerEntityType</td>
             <td>To-one association</td>
             <td>The Bullhorn entity the applicant’s response will be mapped to.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>answerFieldName</td>
             <td>String (255)</td>
             <td>The field on the answerEntityType that the applicant’s answer should be mapped to.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>comments</td>
+            <td>String (255)</td>
+            <td>Free text field</td>
             <td></td>
             <td></td>
         </tr>
@@ -26494,6 +26682,20 @@ Allows Shift definitions to be linked to specific Placements</p>
             <td>Boolean</td>
             <td>Indicates whether this record has been marked as deleted in the Bullhorn system. Defaults to false.</td>
             <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>IsSystemGenerated</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been generated by an automated process. Defaults to false.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>jobOrderScreenerQuestions</td>
+            <td>To-many association</td>
+            <td>JobOrderScreenerQuestions associated to ScreenerQuestion.</td>
+            <td></td>
             <td></td>
         </tr>
         <tr class="even">
