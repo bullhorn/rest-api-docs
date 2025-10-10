@@ -3,3 +3,4 @@ _site
 /source/includes/npm-debug.log
 .vagrant
 .idea
+vendor
