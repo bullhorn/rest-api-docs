@@ -1,6 +1,7 @@
 build/
 _site
 /source/includes/npm-debug.log
+/source/redoc.html
 .vagrant
 .idea
 vendor

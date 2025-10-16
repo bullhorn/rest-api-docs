@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "validate": "spectral lint openapi.yaml --ruleset .spectral.yaml",
-    "docs:redoc": "redocly build-docs openapi.yaml -o ../build/redoc.html --title \"Bullhorn Middle Office API\"",
+    "docs:redoc": "redocly build-docs openapi.yaml -o ../build/redoc.html --title \"Bullhorn Middle Office API\" && cp ../build/redoc.html ../source/redoc.html",
+    "docs:redoc:dev": "redocly build-docs openapi.yaml -o ../source/redoc.html --title \"Bullhorn Middle Office API\"",
     "preview": "redocly preview-docs openapi.yaml",
     "bundle": "redocly bundle openapi.yaml -o openapi.bundle.yaml",
     "sdk:typescript": "openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o ../sdks/typescript",
