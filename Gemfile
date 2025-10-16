@@ -11,5 +11,8 @@ gem 'nokogiri', '~> 1.13.9'
 gem 'sass', '~> 3.7'
 gem 'webrick'
 
+# Windows file watching (for better performance on Windows)
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+
 # For GitHub Pages deployment
 gem 'middleman-gh-pages', '~> 0.4.1'
