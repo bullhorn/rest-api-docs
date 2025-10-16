@@ -1,0 +1,147 @@
+CreditRequest:
+  type: object
+  description: |
+    Request payload for crediting (cancelling) invoice statements via the
+    `/services/InvoiceStatement/credit` endpoint.
+
+    This service creates a credit invoice (negative amounts) that offsets the original invoice,
+    effectively cancelling it. The original invoice is marked as credited (isCredited = true).
+
+    **Use Cases**:
+    - Invoice was sent to wrong client
+    - Invoice contains errors that require full re-generation
+    - Services were cancelled/reversed
+    - Customer dispute resulted in full credit
+
+    **Credit Invoice Workflow**:
+    1. Original invoice is validated (must be finalized, not already credited)
+    2. Credit invoice is created with:
+       - All amounts negated (subtotal, tax, total become negative)
+       - Reference to original invoice (creditOfInvoiceStatement)
+       - Same line items with negative quantities or amounts
+    3. Original invoice is marked: isCredited = true, creditedByInvoiceStatement = new credit invoice
+    4. Both invoices remain in the system for audit trail
+
+  properties:
+    invoiceStatementID:
+      type: integer
+      format: int32
+      description: |
+        ID of the InvoiceStatement to credit.
+
+        **Requirements**:
+        - Invoice must be finalized (isFinalized = true)
+        - Invoice must not already be credited (isCredited = false)
+        - Invoice must not itself be a credit invoice (creditOfInvoiceStatement = null)
+      example: 12345
+
+    creditReason:
+      type: string
+      maxLength: 500
+      description: |
+        Reason for crediting the invoice. Required for audit purposes.
+
+        Examples:
+        - "Invoice sent to wrong client"
+        - "Billing error - incorrect rate used"
+        - "Services cancelled by client"
+        - "Customer dispute - full credit issued"
+      example: "Billing error - incorrect rate used. New invoice to be generated."
+
+    creditDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date to use for the credit invoice's invoiceStatementDate.
+        If not specified, uses the current date.
+      example: "2024-02-01"
+
+    automaticallyFinalize:
+      type: boolean
+      description: |
+        Whether to automatically finalize the credit invoice after creation.
+        - **true**: Credit invoice is created and finalized (ready for delivery)
+        - **false**: Credit invoice remains in draft status for review
+
+        Default: false
+      example: true
+
+    generateInvoiceNumber:
+      type: boolean
+      description: |
+        Whether to generate an invoice number for the credit invoice.
+        - **true**: Credit invoice gets a sequential invoice number
+        - **false**: Credit invoice remains without a number (draft mode)
+
+        Default: true (if automaticallyFinalize = true)
+      example: true
+
+    creditInvoiceNumberSuffix:
+      type: string
+      maxLength: 10
+      nullable: true
+      description: |
+        Optional suffix to append to the credit invoice number.
+        Examples: "CR", "CREDIT", "C"
+
+        If specified and the original invoice number is "INV-2024-001234",
+        the credit invoice number becomes "INV-2024-001234-CR"
+      example: "CR"
+
+    # Partial Credit Options (future enhancement)
+    creditAmount:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        **Not currently supported - reserved for future partial credit functionality**
+
+        Amount to credit (for partial credits). If specified, only this amount is credited
+        rather than the full invoice total.
+      example: 5000.00
+
+    creditLineItemIDs:
+      type: array
+      items:
+        type: integer
+        format: int32
+      nullable: true
+      description: |
+        **Not currently supported - reserved for future partial credit functionality**
+
+        Array of InvoiceStatementLineItem IDs to credit (for partial line item credits).
+        If specified, only these line items are included in the credit invoice.
+      example: [67890, 67891]
+
+    # Additional Options
+    notifyClient:
+      type: boolean
+      description: |
+        Whether to automatically email the credit invoice to the client.
+        Uses the same email recipients as the original invoice.
+
+        Default: false
+      example: false
+
+    addCommentToOriginal:
+      type: boolean
+      description: |
+        Whether to add a comment to the original invoice noting the credit.
+
+        Default: true
+      example: true
+
+  required:
+    - invoiceStatementID
+    - creditReason
+
+  example:
+    invoiceStatementID: 12345
+    creditReason: "Billing error - incorrect rate used. New invoice to be generated."
+    creditDate: "2024-02-01"
+    automaticallyFinalize: true
+    generateInvoiceNumber: true
+    creditInvoiceNumberSuffix: "CR"
+    notifyClient: false
+    addCommentToOriginal: true

@@ -1,0 +1,364 @@
+InvoiceStatementLineItemEntity:
+  type: object
+  description: |
+    Represents a single line item on an InvoiceStatement. Line items group together related billing
+    transactions based on configured grouping rules (e.g., by earn code, by candidate, by week).
+
+    Each line item displays:
+    - A description of what was billed
+    - Quantity (hours, units, days)
+    - Rate (per hour, per unit, per day)
+    - Extended amount (quantity × rate)
+
+    **CRUD Access**: READ only via REST API
+    **Entitlements**: View Invoice Statement
+
+    **Example Line Items**:
+    - "Regular Hours - John Doe - Week of 01/15/24 | 40.0 hrs @ $50.00/hr = $2,000.00"
+    - "Overtime Hours - Jane Smith - January 2024 | 10.0 hrs @ $75.00/hr = $750.00"
+    - "Expense Reimbursement - Travel | 1.0 unit @ $250.00 = $250.00"
+
+    **Grouping**: Line items are created based on BillingProfile configuration. Common grouping
+    dimensions include:
+    - Earn Code (Regular, Overtime, Double Time, Expense)
+    - Candidate/Employee
+    - Time Period (daily, weekly, monthly)
+    - Job Order / Placement
+    - Location / Cost Center
+    - General Ledger segments
+
+  properties:
+    invoiceStatementLineItemID:
+      type: integer
+      format: int32
+      description: Primary key. Unique identifier for the line item.
+      readOnly: true
+      example: 67890
+
+    invoiceStatement:
+      type: object
+      description: |
+        Reference to the parent InvoiceStatement. Each line item belongs to exactly one invoice.
+      properties:
+        id:
+          type: integer
+        invoiceStatementNumber:
+          type: string
+          example: "INV-2024-001234"
+
+    lineNumber:
+      type: integer
+      format: int32
+      description: |
+        Sequential line number on the invoice for display purposes.
+        Used to order line items consistently on the printed/PDF invoice.
+      example: 1
+
+    description:
+      type: string
+      maxLength: 255
+      description: |
+        Human-readable description of what this line item represents.
+        Generated based on grouping configuration and transaction data.
+
+        Examples:
+        - "Regular Hours - John Doe"
+        - "Overtime - Week ending 01/15/2024"
+        - "Expenses - Travel Reimbursement"
+        - "Weekend Premium - Jane Smith - Location: Boston Office"
+      example: "Regular Hours - John Doe - Week of 01/15/24"
+
+    quantity:
+      type: number
+      format: double
+      description: |
+        Total quantity for this line item. Interpretation depends on unit of measure:
+        - Hours (for time-based billing): 40.0
+        - Days: 5.0
+        - Units (for flat-rate or expense): 1.0
+
+        Sum of quantities from all underlying BillMasterTransactions grouped into this line.
+      example: 40.0
+
+    rate:
+      type: number
+      format: double
+      description: |
+        Billing rate per unit of quantity.
+
+        For grouped transactions:
+        - If all transactions have the same rate, that rate is shown
+        - If transactions have different rates, this may be a weighted average
+        - Can be 0 for unbillable or credit line items
+      example: 50.00
+
+    amount:
+      type: number
+      format: double
+      description: |
+        Extended amount for the line item.
+        Formula: quantity × rate (with rounding per currency rules)
+
+        This is the base amount before any line-level discounts, surcharges, or taxes.
+      example: 2000.00
+
+    unitOfMeasure:
+      type: string
+      maxLength: 20
+      nullable: true
+      description: |
+        Unit of measure for the quantity. Common values:
+        - "Hours"
+        - "Days"
+        - "Units"
+        - "Each"
+        - "Flat"
+
+        Displayed on the invoice after the quantity (e.g., "40.0 Hours").
+      example: "Hours"
+
+    # Grouping Dimensions
+    earnCode:
+      type: object
+      nullable: true
+      description: |
+        The earn code type for this line item (if grouped by earn code).
+        Examples: Regular, Overtime, Double Time, Holiday, Expense
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          example: "REG"
+        name:
+          type: string
+          example: "Regular Hours"
+
+    candidate:
+      type: object
+      nullable: true
+      description: |
+        If grouped by candidate, the candidate/employee this line item is for.
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+    placement:
+      type: object
+      nullable: true
+      description: |
+        If grouped by placement, the placement this line item is for.
+      properties:
+        id:
+          type: integer
+
+    jobOrder:
+      type: object
+      nullable: true
+      description: |
+        If grouped by job order, the job order this line item is for.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+
+    location:
+      type: object
+      nullable: true
+      description: |
+        If grouped by location, the work location for this line item.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          example: "Boston Office"
+
+    # General Ledger Segments
+    generalLedgerSegment1:
+      type: object
+      nullable: true
+      description: |
+        GL segment 1 for this line item (if applicable). Used for financial reporting
+        and integration with accounting systems. Typically represents department or cost center.
+      properties:
+        id:
+          type: integer
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment2:
+      type: object
+      nullable: true
+      description: GL segment 2 (e.g., account code)
+      properties:
+        id:
+          type: integer
+        externalSegmentNumber:
+          type: string
+
+    generalLedgerSegment3:
+      type: object
+      nullable: true
+      description: GL segment 3 (e.g., project or grant code)
+      properties:
+        id:
+          type: integer
+        externalSegmentNumber:
+          type: string
+
+    generalLedgerSegment4:
+      type: object
+      nullable: true
+      description: GL segment 4
+      properties:
+        id:
+          type: integer
+        externalSegmentNumber:
+          type: string
+
+    generalLedgerSegment5:
+      type: object
+      nullable: true
+      description: GL segment 5
+      properties:
+        id:
+          type: integer
+        externalSegmentNumber:
+          type: string
+
+    # Date Ranges
+    periodStartDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Start date of the period this line item covers (e.g., start of the week or month).
+        Used when grouping by time period.
+      example: "2024-01-15T00:00:00Z"
+
+    periodEndDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        End date of the period this line item covers.
+        Used when grouping by time period.
+      example: "2024-01-21T23:59:59Z"
+
+    # Discounts, Surcharges, Taxes at Line Level
+    lineItemDiscounts:
+      type: object
+      nullable: true
+      description: |
+        If discounts are applied at the line item level (as opposed to invoice level),
+        this collection contains the discount records for this line.
+
+        **Usage**: `GET /entity/InvoiceStatementLineItem/{id}/lineItemDiscounts`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementDiscountEntity.yaml#/InvoiceStatementDiscountEntity'
+
+    lineItemSurcharges:
+      type: object
+      nullable: true
+      description: |
+        If surcharges are applied at the line item level, this collection contains them.
+
+        **Usage**: `GET /entity/InvoiceStatementLineItem/{id}/lineItemSurcharges`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementSurchargeEntity.yaml#/InvoiceStatementSurchargeEntity'
+
+    lineItemTaxes:
+      type: object
+      nullable: true
+      description: |
+        If taxes are calculated at the line item level, this collection contains them.
+
+        **Usage**: `GET /entity/InvoiceStatementLineItem/{id}/lineItemTaxes`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementTaxEntity.yaml#/InvoiceStatementTaxEntity'
+
+    # Underlying Transactions
+    billMasterTransactions:
+      type: object
+      description: |
+        Collection of BillMasterTransactions that were grouped together to create this line item.
+        Each transaction represents an individual billing event (time entry, expense, adjustment).
+
+        **Usage**: `GET /entity/InvoiceStatementLineItem/{id}/billMasterTransactions`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './BillMasterTransactionEntity.yaml#/BillMasterTransactionEntity'
+
+    # Custom Fields
+    customText1:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 1 for additional line item information
+
+    customText2:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 2
+
+    customText3:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 3
+
+    customTextBlock1:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Large custom text field for detailed line item notes or descriptions
+
+    # Audit Fields
+    dateAdded:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp when the line item was created
+      example: "2024-01-15T10:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp of last modification
+      example: "2024-01-15T10:30:00Z"
+
+  required:
+    - invoiceStatementLineItemID
+    - invoiceStatement
+    - quantity
+    - rate
+    - amount

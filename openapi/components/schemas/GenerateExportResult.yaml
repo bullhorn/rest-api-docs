@@ -1,0 +1,149 @@
+GenerateExportResult:
+  type: object
+  description: |
+    Response payload from the `/services/InvoiceStatement/generateExport` endpoint.
+
+    Contains the export batch information and download URL for the generated file.
+
+  properties:
+    exportBatchID:
+      type: integer
+      format: int32
+      description: |
+        ID of the created InvoiceStatementExportBatch record.
+        Use this to query export status and results.
+      example: 66666
+
+    batchNumber:
+      type: string
+      description: |
+        Human-readable batch identifier.
+      example: "EXPORT-2024-01-001"
+
+    status:
+      type: string
+      enum: [Pending, Processing, Completed, Failed, PartiallyCompleted]
+      description: |
+        Current status of the export.
+        - **Pending**: Export queued for processing
+        - **Processing**: Export is being generated (for async exports)
+        - **Completed**: Export complete and ready for download
+        - **Failed**: Export failed (see errorMessage)
+        - **PartiallyCompleted**: Some invoices exported successfully, some failed
+      example: "Completed"
+
+    totalInvoicesExported:
+      type: integer
+      format: int32
+      description: |
+        Count of invoices successfully exported.
+      example: 45
+
+    totalInvoicesFailed:
+      type: integer
+      format: int32
+      description: |
+        Count of invoices that failed to export.
+      example: 0
+
+    outputFileName:
+      type: string
+      nullable: true
+      description: |
+        Name of the generated export file.
+      example: "invoices_january_2024.pdf"
+
+    outputFileSize:
+      type: integer
+      format: int64
+      nullable: true
+      description: |
+        Size of the export file in bytes.
+      example: 2048576
+
+    downloadUrl:
+      type: string
+      nullable: true
+      description: |
+        Temporary download URL for the export file.
+        URL typically expires after a certain time period (e.g., 24 hours).
+
+        **Note**: Only present if export is synchronous and completed.
+        For async exports, poll the export batch status to get the URL when complete.
+      example: "https://downloads.bullhorn.com/invoice-exports/abc123def456?expires=1705363200"
+
+    expiresAt:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Expiration date/time for the download URL.
+      example: "2024-01-16T14:00:00Z"
+
+    # External System Integration
+    externalSystemName:
+      type: string
+      nullable: true
+      description: |
+        Name of the external system the export was sent to (if applicable).
+      example: "QuickBooks Online"
+
+    externalBatchID:
+      type: string
+      nullable: true
+      description: |
+        Batch identifier in the external system (if posted to external system).
+      example: "QB-BATCH-2024-001"
+
+    integrationStatus:
+      type: string
+      enum: [NotSent, Sent, Acknowledged, Accepted, Rejected]
+      nullable: true
+      description: |
+        Status of integration with external system.
+      example: "Accepted"
+
+    # Execution Details
+    executionDurationSeconds:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Time taken to generate the export in seconds.
+      example: 45
+
+    # Error Information
+    errorMessage:
+      type: string
+      nullable: true
+      description: |
+        Error message if the export failed or partially completed.
+      example: "Failed to export invoice 12348 - Missing billing address"
+
+    warnings:
+      type: array
+      items:
+        type: string
+      nullable: true
+      description: |
+        Array of warning messages (non-fatal issues during export).
+      example:
+        - "Invoice 12345 has no line items"
+        - "Invoice 12346 currency conversion applied"
+
+  required:
+    - exportBatchID
+    - batchNumber
+    - status
+
+  example:
+    exportBatchID: 66666
+    batchNumber: "EXPORT-2024-01-001"
+    status: "Completed"
+    totalInvoicesExported: 45
+    totalInvoicesFailed: 0
+    outputFileName: "invoices_january_2024.pdf"
+    outputFileSize: 2048576
+    downloadUrl: "https://downloads.bullhorn.com/invoice-exports/abc123def456?expires=1705363200"
+    expiresAt: "2024-01-16T14:00:00Z"
+    executionDurationSeconds: 45

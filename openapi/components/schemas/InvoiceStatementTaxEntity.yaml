@@ -1,0 +1,261 @@
+InvoiceStatementTaxEntity:
+  type: object
+  description: |
+    Represents a tax applied to an InvoiceStatement or InvoiceStatementLineItem.
+    Taxes are calculated based on configured tax rules for the billing location and service types.
+
+    **CRUD Access**: READ only via REST API
+    **Entitlements**: View Invoice Statement
+
+    **Tax Types**:
+    - **Sales Tax**: State/provincial sales tax
+    - **VAT**: Value Added Tax (common in EU, UK, etc.)
+    - **GST**: Goods and Services Tax
+    - **Use Tax**: Tax on services used in a jurisdiction
+    - **Local Tax**: City or county-level taxes
+
+    **Application Levels**:
+    - **Invoice Level**: Tax calculated on the entire invoice taxable amount
+    - **Line Item Level**: Tax calculated per line item (jurisdiction-specific rules)
+
+    **Tax Calculation**:
+    Taxes are typically calculated on: subtotal - discounts + surcharges (if surcharges are taxable)
+
+    **Multi-Jurisdiction Taxes**:
+    A single invoice may have multiple tax records if services span multiple tax jurisdictions
+    or if different tax rates apply to different line items.
+
+  properties:
+    invoiceStatementTaxID:
+      type: integer
+      format: int32
+      description: Primary key. Unique identifier for the tax record.
+      readOnly: true
+      example: 33333
+
+    invoiceStatement:
+      type: object
+      nullable: true
+      description: |
+        Reference to the parent InvoiceStatement if this is an invoice-level tax.
+        Either invoiceStatement or invoiceStatementLineItem will be populated, not both.
+      properties:
+        id:
+          type: integer
+        invoiceStatementNumber:
+          type: string
+
+    invoiceStatementLineItem:
+      type: object
+      nullable: true
+      description: |
+        Reference to the parent InvoiceStatementLineItem if this is a line-level tax.
+        Either invoiceStatement or invoiceStatementLineItem will be populated, not both.
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
+
+    generalLedgerServiceCode:
+      type: object
+      nullable: true
+      description: |
+        Service code that determines tax treatment. Different service types may have
+        different tax rates or exemptions.
+        Examples: Professional Services, Temporary Staffing, Equipment Rental
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        description:
+          type: string
+          example: "Professional Services"
+
+    taxType:
+      type: string
+      maxLength: 50
+      description: |
+        Type of tax being applied.
+        Examples: "Sales Tax", "VAT", "GST", "Use Tax", "Local Tax"
+      example: "Sales Tax"
+
+    description:
+      type: string
+      maxLength: 255
+      description: |
+        Human-readable description of the tax shown on the invoice.
+        Examples:
+        - "MA Sales Tax (6.25%)"
+        - "VAT (20%)"
+        - "GST/HST (13%)"
+        - "City Tax - Boston (0.5%)"
+      example: "MA Sales Tax (6.25%)"
+
+    taxRate:
+      type: number
+      format: double
+      description: |
+        Tax rate as a percentage.
+        Example: 6.25 for 6.25% tax rate
+      example: 6.25
+
+    taxableAmount:
+      type: number
+      format: double
+      description: |
+        The base amount that tax is calculated on.
+        Typically: subtotal - discounts + taxable surcharges
+
+        For line-level taxes, this is the line item amount (after line-level discounts/surcharges).
+      example: 15500.00
+
+    taxAmount:
+      type: number
+      format: double
+      description: |
+        Calculated tax amount.
+        Formula: taxableAmount × (taxRate / 100)
+
+        This amount is added to the invoice total.
+      example: 968.75
+
+    # Tax Jurisdiction
+    taxJurisdiction:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        The tax jurisdiction where this tax applies.
+        Examples: "Massachusetts", "United Kingdom", "Ontario, Canada", "Boston, MA"
+      example: "Massachusetts"
+
+    taxJurisdictionCode:
+      type: string
+      maxLength: 20
+      nullable: true
+      description: |
+        Code identifying the tax jurisdiction.
+        Examples: "MA", "UK", "ON", "BOS"
+      example: "MA"
+
+    # Tax ID/Registration Numbers
+    taxRegistrationNumber:
+      type: string
+      maxLength: 50
+      nullable: true
+      description: |
+        Tax registration number for the billing entity in this jurisdiction.
+        Examples: VAT number, GST number, sales tax permit number
+      example: "VAT-GB-123456789"
+
+    # Exemption Handling
+    isExempt:
+      type: boolean
+      description: |
+        Indicates if this tax is exempt for this invoice/line item.
+        If true, taxAmount should be 0.
+
+        Default: false
+      example: false
+
+    exemptionReason:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Reason for tax exemption (if isExempt = true).
+        Examples:
+        - "Client has valid exemption certificate"
+        - "Non-profit organization"
+        - "Government agency"
+        - "Export to non-taxable jurisdiction"
+      example: "Client has valid exemption certificate #TX-2024-12345"
+
+    exemptionCertificateNumber:
+      type: string
+      maxLength: 50
+      nullable: true
+      description: |
+        Reference number for the tax exemption certificate (if applicable).
+      example: "TX-2024-12345"
+
+    # Reverse Charge
+    isReverseCharge:
+      type: boolean
+      description: |
+        For VAT/GST scenarios where the tax liability shifts to the customer.
+        If true, tax is noted on the invoice but not charged (customer self-assesses).
+
+        Common in B2B cross-border transactions within the EU.
+
+        Default: false
+      example: false
+
+    # Multiple Tax Components
+    baseStateTax:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        State-level tax component (if tax has multiple components).
+      example: 900.00
+
+    baseLocalTax:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Local (city/county) tax component (if tax has multiple components).
+      example: 68.75
+
+    # Ordering
+    sequenceNumber:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Order in which this tax appears on the invoice.
+        Lower numbers display first.
+      example: 1
+
+    # Tax Code for External Systems
+    externalTaxCode:
+      type: string
+      maxLength: 50
+      nullable: true
+      description: |
+        Tax code used when exporting to external accounting/GL systems.
+        Maps to the external system's tax code structure.
+      example: "SALES-MA-6.25"
+
+    # Additional Context
+    comments:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Internal notes about the tax calculation. Not displayed on the invoice.
+
+    # Audit Fields
+    dateAdded:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp when the tax record was created
+      example: "2024-01-15T10:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp of last modification
+      example: "2024-01-15T10:00:00Z"
+
+  required:
+    - invoiceStatementTaxID
+    - taxType
+    - taxRate
+    - taxableAmount
+    - taxAmount

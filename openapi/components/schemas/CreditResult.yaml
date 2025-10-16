@@ -1,0 +1,197 @@
+CreditResult:
+  type: object
+  description: |
+    Response payload from the `/services/InvoiceStatement/credit` endpoint.
+
+    Contains information about the created credit invoice and the updated original invoice.
+
+  properties:
+    creditInvoiceStatementID:
+      type: integer
+      format: int32
+      description: |
+        ID of the newly created credit invoice.
+      example: 12349
+
+    creditInvoiceStatementNumber:
+      type: string
+      nullable: true
+      description: |
+        Invoice number of the credit invoice (if generated).
+        Will be null if generateInvoiceNumber = false in the request.
+      example: "INV-2024-001234-CR"
+
+    originalInvoiceStatementID:
+      type: integer
+      format: int32
+      description: |
+        ID of the original invoice that was credited.
+      example: 12345
+
+    originalInvoiceStatementNumber:
+      type: string
+      description: |
+        Invoice number of the original invoice.
+      example: "INV-2024-001234"
+
+    creditAmount:
+      type: number
+      format: double
+      description: |
+        Total credit amount (negative value).
+        This offsets the original invoice total.
+      example: -15487.50
+
+    originalInvoiceTotal:
+      type: number
+      format: double
+      description: |
+        Total of the original invoice.
+      example: 15487.50
+
+    creditInvoiceStatus:
+      type: string
+      description: |
+        Status of the created credit invoice.
+        - "Draft" if automaticallyFinalize = false
+        - "Finalized" if automaticallyFinalize = true
+      example: "Finalized"
+
+    isFinalized:
+      type: boolean
+      description: |
+        Whether the credit invoice was finalized.
+      example: true
+
+    # Original Invoice Updates
+    originalInvoiceUpdated:
+      type: object
+      description: |
+        Summary of updates made to the original invoice.
+      properties:
+        isCredited:
+          type: boolean
+          description: Original invoice's isCredited flag (set to true)
+          example: true
+        creditedByInvoiceStatementID:
+          type: integer
+          format: int32
+          description: Reference to the credit invoice
+          example: 12349
+        commentAdded:
+          type: boolean
+          description: Whether a comment was added to the original invoice
+          example: true
+
+    # Affected Records
+    creditLineItemCount:
+      type: integer
+      format: int32
+      description: |
+        Number of line items in the credit invoice.
+        Typically matches the original invoice's line item count.
+      example: 8
+
+    affectedBillableChargeIDs:
+      type: array
+      items:
+        type: integer
+        format: int32
+      description: |
+        Array of BillableCharge IDs that were associated with the original invoice.
+        These charges' status may have been updated (e.g., back to ReadyToBill if
+        they need to be re-invoiced).
+      example: [98765, 98766, 98767]
+
+    affectedTransactionCount:
+      type: integer
+      format: int32
+      description: |
+        Total count of BillMasterTransactions that were part of the original invoice.
+      example: 150
+
+    # Notifications
+    emailSent:
+      type: boolean
+      description: |
+        Whether the credit invoice was emailed to the client (if notifyClient = true in request).
+      example: false
+
+    emailRecipients:
+      type: string
+      nullable: true
+      description: |
+        Email recipients if email was sent.
+      example: "ap@acme.com;billing@acme.com"
+
+    # Execution Details
+    creditProcessedAt:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when the credit was processed.
+      example: "2024-02-01T10:30:00Z"
+
+    executionDurationSeconds:
+      type: integer
+      format: int32
+      description: |
+        Time taken to process the credit in seconds.
+      example: 3
+
+    # Warnings
+    warnings:
+      type: array
+      items:
+        type: string
+      nullable: true
+      description: |
+        Array of warning messages (non-fatal issues during credit processing).
+      example:
+        - "Original invoice had payments recorded - manual payment reversal may be required"
+
+    # Next Steps
+    recommendedActions:
+      type: array
+      items:
+        type: string
+      nullable: true
+      description: |
+        Array of recommended follow-up actions.
+      example:
+        - "Review and finalize the credit invoice"
+        - "Generate corrected invoice for the same billing period"
+        - "Email credit invoice to client"
+        - "Verify general ledger entries"
+
+  required:
+    - creditInvoiceStatementID
+    - originalInvoiceStatementID
+    - originalInvoiceStatementNumber
+    - creditAmount
+    - originalInvoiceTotal
+    - creditInvoiceStatus
+    - isFinalized
+
+  example:
+    creditInvoiceStatementID: 12349
+    creditInvoiceStatementNumber: "INV-2024-001234-CR"
+    originalInvoiceStatementID: 12345
+    originalInvoiceStatementNumber: "INV-2024-001234"
+    creditAmount: -15487.50
+    originalInvoiceTotal: 15487.50
+    creditInvoiceStatus: "Finalized"
+    isFinalized: true
+    originalInvoiceUpdated:
+      isCredited: true
+      creditedByInvoiceStatementID: 12349
+      commentAdded: true
+    creditLineItemCount: 8
+    affectedBillableChargeIDs: [98765, 98766, 98767]
+    affectedTransactionCount: 150
+    emailSent: false
+    creditProcessedAt: "2024-02-01T10:30:00Z"
+    executionDurationSeconds: 3
+    recommendedActions:
+      - "Email credit invoice to client"
+      - "Generate corrected invoice for the same billing period"

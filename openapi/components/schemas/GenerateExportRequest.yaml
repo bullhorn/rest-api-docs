@@ -1,0 +1,170 @@
+GenerateExportRequest:
+  type: object
+  description: |
+    Request payload for generating invoice exports via the
+    `/services/InvoiceStatement/generateExport` endpoint.
+
+    This service exports invoices to various formats (PDF, CSV, XML, etc.) or
+    external accounting systems (QuickBooks, NetSuite, etc.).
+
+  properties:
+    invoiceStatementIDs:
+      type: array
+      items:
+        type: integer
+        format: int32
+      description: |
+        Array of InvoiceStatement IDs to export.
+        All invoices must be finalized (isFinalized = true) to be exported.
+      minItems: 1
+      example: [12345, 12346, 12347]
+
+    exportFormat:
+      type: string
+      enum: [PDF, CSV, Excel, XML, JSON, EDI, QuickBooks, NetSuite, Sage, Custom]
+      description: |
+        Format for the export.
+        - **PDF**: Generate PDF invoice documents
+        - **CSV**: Export invoice data to CSV
+        - **Excel**: Export to Excel workbook
+        - **XML**: Export to XML format
+        - **JSON**: Export to JSON format
+        - **EDI**: Generate EDI X12 810 documents
+        - **QuickBooks**: Export to QuickBooks IIF or QBO format
+        - **NetSuite**: Export to NetSuite CSV import format
+        - **Sage**: Export to Sage accounting format
+        - **Custom**: Use custom export template
+      example: "PDF"
+
+    exportTemplateID:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        ID of the export template to use.
+        Required for PDF and Custom formats.
+        Optional for other formats (uses default template).
+      example: 50
+
+    exportType:
+      type: string
+      maxLength: 50
+      nullable: true
+      description: |
+        Type/purpose of the export for tracking.
+        Examples: "GL Export", "Client Delivery", "Archive", "Reporting"
+      example: "GL Export"
+
+    includeLineItems:
+      type: boolean
+      description: |
+        Whether to include line item details in the export.
+        - **true**: Export includes all line items (detailed)
+        - **false**: Export includes invoice summaries only
+
+        Default: true
+      example: true
+
+    includeTransactions:
+      type: boolean
+      description: |
+        Whether to include underlying BillMasterTransaction details.
+        Only applicable for detailed exports (CSV, Excel, XML, JSON).
+
+        Default: false
+      example: false
+
+    groupBy:
+      type: array
+      items:
+        type: string
+        enum: [Client, BillingProfile, InvoiceDate, DueDate, Status, CurrencyUnit]
+      nullable: true
+      description: |
+        Grouping options for the export.
+        Multiple groupings can be specified for hierarchical output.
+      example: ["Client", "InvoiceDate"]
+
+    outputFileName:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Custom name for the export file.
+        If not specified, a default name is generated based on format and date.
+      example: "invoices_2024-01.pdf"
+
+    # External System Options
+    externalSystemID:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        ID of the external system configuration to export to.
+        Used for QuickBooks, NetSuite, Sage, and other accounting integrations.
+      example: 10
+
+    postToExternalSystem:
+      type: boolean
+      description: |
+        Whether to automatically post the export to the external system.
+        - **true**: Send export to external system after generation
+        - **false**: Generate export file only (do not send)
+
+        Default: false
+      example: false
+
+    # Date Range Filter (optional - if not using invoiceStatementIDs)
+    invoiceDateFrom:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Start date for invoice date range.
+        If specified, exports all finalized invoices with invoiceStatementDate >= this date.
+        Cannot be used with invoiceStatementIDs parameter.
+      example: "2024-01-01"
+
+    invoiceDateTo:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        End date for invoice date range.
+        Cannot be used with invoiceStatementIDs parameter.
+      example: "2024-01-31"
+
+    # Additional Filters
+    clientCorporationIDs:
+      type: array
+      items:
+        type: integer
+        format: int32
+      nullable: true
+      description: |
+        Filter to specific client corporations.
+        Only used when exporting by date range (not with invoiceStatementIDs).
+      example: [100, 101, 102]
+
+    billingProfileIDs:
+      type: array
+      items:
+        type: integer
+        format: int32
+      nullable: true
+      description: |
+        Filter to specific billing profiles.
+        Only used when exporting by date range.
+      example: [50, 51]
+
+  required:
+    - exportFormat
+
+  example:
+    invoiceStatementIDs: [12345, 12346, 12347]
+    exportFormat: "PDF"
+    exportTemplateID: 50
+    exportType: "Client Delivery"
+    includeLineItems: true
+    includeTransactions: false
+    outputFileName: "invoices_january_2024.pdf"

@@ -1,0 +1,254 @@
+InvoiceStatementExportBatchEntity:
+  type: object
+  description: |
+    Represents a batch export of invoices to external systems or file formats.
+    Export batches allow generating invoice documents (PDF, CSV, XML) or data feeds
+    for general ledger systems, EDI, or customer portals.
+
+    **CRUD Access**: READ
+    **Entitlements**: View Invoice Statement
+
+    **Export Batch Types**:
+    - **PDF Export**: Generate PDF invoice documents for printing or email
+    - **CSV Export**: Export invoice data to CSV for Excel/reporting
+    - **GL Export**: Export to external general ledger systems (QuickBooks, NetSuite, etc.)
+    - **EDI Export**: Generate EDI X12 810 invoice documents
+    - **XML Export**: Export to XML format for custom integrations
+    - **API Export**: Push invoice data to external API endpoints
+
+    **Export Workflow**:
+    1. User selects invoices and export format
+    2. System creates export batch record
+    3. Invoices are transformed to target format
+    4. Export files/data are generated
+    5. Batch tracks success/failure status
+
+  properties:
+    invoiceStatementExportBatchID:
+      type: integer
+      format: int32
+      description: Primary key. Unique identifier for the export batch.
+      readOnly: true
+      example: 66666
+
+    batchNumber:
+      type: string
+      maxLength: 50
+      description: |
+        Human-readable batch identifier for tracking.
+      example: "EXPORT-2024-01-001"
+
+    exportDate:
+      type: string
+      format: date-time
+      description: |
+        Date/time the export was created.
+      example: "2024-01-15T10:00:00Z"
+
+    exportFormat:
+      type: string
+      enum: [PDF, CSV, Excel, XML, EDI, JSON, QuickBooks, NetSuite, Sage, Custom]
+      description: |
+        Format of the exported data.
+      example: "PDF"
+
+    status:
+      type: string
+      enum: [Pending, Processing, Completed, Failed, PartiallyCompleted, Cancelled]
+      description: |
+        Current status of the export batch.
+      example: "Completed"
+
+    # Export Configuration
+    exportType:
+      type: string
+      maxLength: 50
+      description: |
+        Type/purpose of the export.
+        Examples: "GL Export", "Client Delivery", "Archive", "Reporting", "EDI"
+      example: "GL Export"
+
+    exportTemplate:
+      type: object
+      nullable: true
+      description: |
+        Template used for export formatting (if applicable).
+        For PDF exports, this defines the invoice layout/design.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: "Standard Invoice Template"
+
+    # Export Results
+    totalInvoicesExported:
+      type: integer
+      format: int32
+      description: |
+        Count of invoices successfully exported.
+      example: 45
+
+    totalInvoicesFailed:
+      type: integer
+      format: int32
+      description: |
+        Count of invoices that failed to export.
+      example: 0
+
+    # Output Files
+    outputFileName:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Name of the generated export file.
+      example: "invoices_2024-01-15.pdf"
+
+    outputFileSize:
+      type: integer
+      format: int64
+      nullable: true
+      description: |
+        Size of the export file in bytes.
+      example: 2048576
+
+    outputFilePath:
+      type: string
+      maxLength: 500
+      nullable: true
+      description: |
+        File system path or URL where the export file is stored.
+        May be a cloud storage URL (S3, Azure Blob, etc.) or local path.
+      example: "s3://bullhorn-invoices/exports/2024/01/invoices_2024-01-15.pdf"
+
+    downloadUrl:
+      type: string
+      maxLength: 500
+      nullable: true
+      description: |
+        Temporary download URL for the export file (if applicable).
+        URLs may expire after a certain time period.
+      example: "https://downloads.bullhorn.com/invoice-exports/abc123def456?expires=1705363200"
+
+    # External System Integration
+    externalSystemName:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Name of the external system the invoices were exported to.
+        Examples: "QuickBooks Online", "NetSuite", "SAP", "Custom ERP"
+      example: "QuickBooks Online"
+
+    externalBatchID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Batch identifier in the external system (if applicable).
+      example: "QB-BATCH-2024-001"
+
+    integrationStatus:
+      type: string
+      enum: [NotSent, Sent, Acknowledged, Accepted, Rejected]
+      nullable: true
+      description: |
+        Status of integration with external system.
+        - **NotSent**: Export complete but not sent to external system
+        - **Sent**: Data sent to external system
+        - **Acknowledged**: External system received the data
+        - **Accepted**: External system successfully processed the data
+        - **Rejected**: External system rejected the data (see error log)
+      example: "Accepted"
+
+    # Execution Details
+    startDateTime:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Date/time export processing started.
+      example: "2024-01-15T10:00:00Z"
+
+    endDateTime:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Date/time export processing completed.
+      example: "2024-01-15T10:15:30Z"
+
+    executionDurationSeconds:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Total execution time in seconds.
+      example: 930
+
+    # Error Tracking
+    errorLog:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Detailed error log if export failed or partially completed.
+
+    # Related Records
+    invoiceStatements:
+      type: object
+      description: |
+        Collection of InvoiceStatements included in this export batch.
+
+        **Usage**: `GET /entity/InvoiceStatementExportBatch/{id}/invoiceStatements`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementEntity.yaml#/InvoiceStatementEntity'
+
+    # Scheduling
+    isScheduledExport:
+      type: boolean
+      description: |
+        Indicates if this export was triggered by a scheduled job.
+
+        Default: false
+      example: false
+
+    # Audit Fields
+    dateAdded:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp when the export batch was created
+      example: "2024-01-15T10:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp of last modification
+      example: "2024-01-15T10:15:30Z"
+
+    createdByUser:
+      type: object
+      nullable: true
+      description: User who created the export batch
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+  required:
+    - invoiceStatementExportBatchID
+    - batchNumber
+    - exportDate
+    - exportFormat
+    - status

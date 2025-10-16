@@ -1,0 +1,206 @@
+InvoiceStatementDiscountEntity:
+  type: object
+  description: |
+    Represents a discount applied to an InvoiceStatement or InvoiceStatementLineItem.
+    Discounts reduce the billed amount and can be either percentage-based or flat amounts.
+
+    **CRUD Access**: READ only via REST API
+    **Entitlements**: View Invoice Statement
+
+    **Discount Types**:
+    - **Percentage Discounts**: Applied as a percentage of the subtotal or line amount
+      - Example: "10% Volume Discount" on $10,000 subtotal = $1,000 discount
+    - **Flat Amount Discounts**: Fixed dollar amount deducted
+      - Example: "$500 Loyalty Discount"
+
+    **Application Levels**:
+    - **Invoice Level**: Applied to the entire invoice subtotal before taxes
+    - **Line Item Level**: Applied to specific line items
+
+    **Common Discount Scenarios**:
+    - Volume discounts (e.g., 5% off for >$50k monthly billing)
+    - Prompt payment discounts (e.g., 2% if paid within 10 days)
+    - Promotional discounts
+    - Negotiated rate reductions
+    - Credit adjustments
+
+  properties:
+    invoiceStatementDiscountID:
+      type: integer
+      format: int32
+      description: Primary key. Unique identifier for the discount.
+      readOnly: true
+      example: 11111
+
+    invoiceStatement:
+      type: object
+      nullable: true
+      description: |
+        Reference to the parent InvoiceStatement if this is an invoice-level discount.
+        Either invoiceStatement or invoiceStatementLineItem will be populated, not both.
+      properties:
+        id:
+          type: integer
+        invoiceStatementNumber:
+          type: string
+
+    invoiceStatementLineItem:
+      type: object
+      nullable: true
+      description: |
+        Reference to the parent InvoiceStatementLineItem if this is a line-level discount.
+        Either invoiceStatement or invoiceStatementLineItem will be populated, not both.
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
+
+    discountRate:
+      type: object
+      nullable: true
+      description: |
+        Reference to the configured DiscountRate that defines the discount rules.
+        DiscountRate entities are typically configured at the BillingProfile level.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          example: "Volume Discount - 10%"
+        rateType:
+          type: string
+          enum: [Percentage, FlatAmount]
+        rate:
+          type: number
+          format: double
+          example: 10.0
+
+    description:
+      type: string
+      maxLength: 255
+      description: |
+        Human-readable description of the discount shown on the invoice.
+        Examples:
+        - "Volume Discount (10%)"
+        - "Prompt Payment Discount"
+        - "$500 Loyalty Credit"
+      example: "Volume Discount (10%)"
+
+    discountType:
+      type: string
+      enum: [Percentage, FlatAmount]
+      description: |
+        Type of discount calculation:
+        - **Percentage**: discountAmount = baseAmount × (discountPercent / 100)
+        - **FlatAmount**: discountAmount = fixed dollar amount
+      example: "Percentage"
+
+    discountPercent:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Percentage value if discountType = Percentage.
+        Example: 10.0 for 10% discount
+      example: 10.0
+
+    baseAmount:
+      type: number
+      format: double
+      description: |
+        The amount the discount is calculated against:
+        - For invoice-level discounts: usually the invoice subtotal
+        - For line-level discounts: the line item amount
+      example: 10000.00
+
+    discountAmount:
+      type: number
+      format: double
+      description: |
+        Calculated discount amount deducted from the invoice or line item.
+
+        **Calculation**:
+        - If Percentage: baseAmount × (discountPercent / 100)
+        - If FlatAmount: the configured flat amount (up to baseAmount)
+
+        This amount is subtracted from the subtotal when calculating the invoice total.
+      example: 1000.00
+
+    # Ordering
+    sequenceNumber:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Order in which this discount is applied and displayed on the invoice.
+        Lower numbers are applied first. Useful when multiple discounts stack.
+      example: 1
+
+    # Effective Dates
+    effectiveDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Start date for discount eligibility. Discount only applies if invoice date >= effectiveDate.
+      example: "2024-01-01T00:00:00Z"
+
+    effectiveEndDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        End date for discount eligibility. Discount only applies if invoice date <= effectiveEndDate.
+      example: "2024-12-31T23:59:59Z"
+
+    # Additional Context
+    isAutomaticallyApplied:
+      type: boolean
+      description: |
+        Indicates whether this discount was automatically applied based on business rules
+        (true) or manually added by a user (false).
+
+        Default: true
+      example: true
+
+    comments:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Internal notes about the discount. Not displayed on the invoice.
+        Example: "Applied per contract amendment dated 12/15/23"
+
+    # Audit Fields
+    dateAdded:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp when the discount was created
+      example: "2024-01-15T10:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp of last modification
+      example: "2024-01-15T10:00:00Z"
+
+    addedByUser:
+      type: object
+      nullable: true
+      description: User who added the discount (if manually added)
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+  required:
+    - invoiceStatementDiscountID
+    - discountType
+    - baseAmount
+    - discountAmount

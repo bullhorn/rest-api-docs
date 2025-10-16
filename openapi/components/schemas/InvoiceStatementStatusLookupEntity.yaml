@@ -1,0 +1,63 @@
+InvoiceStatementStatusLookupEntity:
+  type: object
+  description: |
+    Lookup table for invoice statement status values. Defines the various lifecycle states
+    an invoice can be in during its processing.
+
+    **CRUD Access**: READ only
+    **Entitlements**: Public lookup data
+
+    **Common Status Values**:
+    - **Draft**: Invoice created but not finalized
+    - **Finalized**: Invoice locked and ready for delivery
+    - **Approved**: Invoice approved for client delivery (additional approval workflow)
+    - **Rejected**: Invoice rejected during approval process
+    - **Sent**: Invoice delivered to client
+    - **Voided**: Invoice cancelled/voided
+
+    Status values are typically configured per implementation and may vary by customer.
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: Primary key. Unique identifier for the status.
+      readOnly: true
+      example: 1
+
+    label:
+      type: string
+      maxLength: 100
+      description: |
+        Display label for the status.
+      example: "Finalized"
+
+    description:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Detailed description of what this status means and when it's used.
+      example: "Invoice has been finalized and is ready for delivery to the client."
+
+    isActive:
+      type: boolean
+      description: |
+        Indicates whether this status is currently active and available for use.
+        Inactive statuses may be legacy values no longer in use.
+
+        Default: true
+      example: true
+
+    sortOrder:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Sort order for displaying status values in dropdowns and reports.
+        Lower numbers appear first.
+      example: 1
+
+  required:
+    - id
+    - label

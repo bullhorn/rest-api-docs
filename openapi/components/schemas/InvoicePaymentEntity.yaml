@@ -1,0 +1,268 @@
+InvoicePaymentEntity:
+  type: object
+  description: |
+    Represents a payment received against an InvoiceStatement. Multiple payments can be applied
+    to a single invoice (for partial payments or installments).
+
+    **CRUD Access**: CREATE, READ, UPDATE
+    **Entitlements**: View Invoice Statement, Edit Invoice Payment
+
+    **Payment Application**:
+    When a payment is created or updated, the system automatically:
+    1. Updates the InvoiceStatement.amountPaid field
+    2. Recalculates InvoiceStatement.outstandingBalance
+    3. Updates InvoiceStatement.invoiceStatementPaidStatus based on the balance
+
+    **Payment Methods**:
+    - Check
+    - Wire Transfer
+    - ACH
+    - Credit Card
+    - Cash
+    - Electronic Payment (generic)
+
+    **Payment Allocation**:
+    Payments can be:
+    - Applied to a single invoice
+    - Split across multiple invoices (unapplied/overpayments)
+    - Recorded as client credit for future invoices
+
+  properties:
+    invoicePaymentID:
+      type: integer
+      format: int32
+      description: Primary key. Unique identifier for the payment record.
+      readOnly: true
+      example: 44444
+
+    invoiceStatement:
+      type: object
+      description: |
+        Reference to the InvoiceStatement this payment is applied against.
+      properties:
+        id:
+          type: integer
+        invoiceStatementNumber:
+          type: string
+          example: "INV-2024-001234"
+
+    paymentAmount:
+      type: number
+      format: double
+      description: |
+        Amount of this payment. Must be > 0.
+
+        Can exceed the invoice outstandingBalance (results in overpayment/credit).
+      example: 10000.00
+
+    paymentDate:
+      type: string
+      format: date-time
+      description: |
+        Date the payment was received or posted.
+      example: "2024-02-01T00:00:00Z"
+
+    paymentMethod:
+      type: string
+      maxLength: 50
+      description: |
+        Method of payment.
+        Common values: "Check", "Wire Transfer", "ACH", "Credit Card", "Cash", "Electronic Payment"
+      example: "Check"
+
+    referenceNumber:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Payment reference number. Examples:
+        - Check number: "12345"
+        - Wire transfer confirmation: "WT-2024-5678"
+        - Transaction ID: "TXN-ABC123"
+        - Credit card authorization: "AUTH-987654"
+      example: "12345"
+
+    comments:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Notes about the payment. Internal use only.
+        Examples:
+        - "Partial payment - client paying in installments"
+        - "Wire transfer received from client bank account ending in 4567"
+        - "Applied credit from previous overpayment"
+
+    # Currency
+    currencyUnit:
+      type: object
+      nullable: true
+      description: |
+        Currency of the payment. Should match the invoice currency in most cases.
+        If different, currency conversion may be required.
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          example: "USD"
+
+    # Payment Posting
+    isPosted:
+      type: boolean
+      description: |
+        Indicates whether this payment has been posted to the invoice and general ledger.
+        - **false**: Payment recorded but not yet applied (pending approval or verification)
+        - **true**: Payment applied to invoice and GL entries created
+
+        Default: true
+      example: true
+
+    postDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Date/time the payment was posted to the invoice and GL.
+        Populated when isPosted = true.
+      example: "2024-02-01T14:30:00Z"
+
+    # Unapplied Amount Handling
+    unappliedAmount:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        If paymentAmount exceeds the invoice outstandingBalance, the excess can be
+        recorded as unapplied credit for future invoices.
+
+        Formula: max(0, paymentAmount - invoice.outstandingBalance)
+      example: 500.00
+
+    # Bank Deposit
+    depositDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Date the payment was deposited into the bank account.
+        May differ from paymentDate (receipt date) and postDate (accounting date).
+      example: "2024-02-02T00:00:00Z"
+
+    bankAccount:
+      type: object
+      nullable: true
+      description: |
+        Bank account the payment was deposited into.
+      properties:
+        id:
+          type: integer
+        accountName:
+          type: string
+          example: "Bullhorn Operating Account - ****1234"
+
+    # Reversal
+    isReversed:
+      type: boolean
+      description: |
+        Indicates if this payment has been reversed (e.g., bounced check, disputed charge).
+        When true, a reversal payment record should exist with negative amount.
+
+        Default: false
+      example: false
+
+    reversalDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Date the payment was reversed.
+      example: "2024-02-15T00:00:00Z"
+
+    reversalReason:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Reason for payment reversal.
+        Examples: "NSF - Insufficient Funds", "Payment Disputed", "Check Voided"
+
+    reversedByInvoicePayment:
+      type: object
+      nullable: true
+      description: |
+        If this payment was reversed, references the reversal payment record (negative amount).
+      properties:
+        id:
+          type: integer
+
+    reversalOfInvoicePayment:
+      type: object
+      nullable: true
+      description: |
+        If this is a reversal payment, references the original payment being reversed.
+      properties:
+        id:
+          type: integer
+
+    # General Ledger Export
+    isExportedToGL:
+      type: boolean
+      description: |
+        Indicates if this payment has been exported to an external general ledger system.
+
+        Default: false
+      example: true
+
+    glExportDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Date/time the payment was exported to the GL system.
+      example: "2024-02-01T16:00:00Z"
+
+    glExportBatch:
+      type: object
+      nullable: true
+      description: |
+        Reference to the GL export batch this payment was included in.
+      properties:
+        id:
+          type: integer
+        batchNumber:
+          type: string
+
+    # Audit Fields
+    dateAdded:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp when the payment record was created
+      example: "2024-02-01T14:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp of last modification
+      example: "2024-02-01T14:30:00Z"
+
+    enteredByUser:
+      type: object
+      nullable: true
+      description: User who entered/recorded the payment
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+  required:
+    - invoicePaymentID
+    - invoiceStatement
+    - paymentAmount
+    - paymentDate
+    - paymentMethod

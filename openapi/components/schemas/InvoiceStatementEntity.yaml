@@ -1,0 +1,692 @@
+InvoiceStatementEntity:
+  type: object
+  description: |
+    The main invoice document in the Pay Bill system that consolidates all billing charges for a client
+    over a specific period. An InvoiceStatement aggregates multiple BillableCharges and their associated
+    BillMasterTransactions into a single document for client billing.
+
+    **CRUD Access**: READ, UPDATE (via specific service endpoints)
+    **Entitlements**: View Invoice Statement, Edit Invoice Statement
+
+    **Lifecycle**:
+    1. **Draft** - Invoice created but not finalized
+    2. **Finalized** - Invoice locked and ready for delivery (`isFinalized = true`)
+    3. **Delivered** - Invoice sent to client (deliveryStatus updated)
+    4. **Paid** - Payment received (invoiceStatementPaidStatus updated)
+    5. **Credited** - Invoice cancelled via credit invoice (`isCredited = true`)
+
+    **Key Relationships**:
+    - One InvoiceStatement has many InvoiceStatementLineItems
+    - One InvoiceStatement can have many InvoiceStatementDiscounts/Surcharges/Taxes
+    - One InvoiceStatement consolidates many BillableCharges
+    - Credit invoices create parent-child relationships via creditOfInvoiceStatement
+
+    **Immutability**: Once `isFinalized = true`, the financial amounts and line items cannot be modified.
+    Changes require creating a credit invoice and a new corrected invoice.
+
+  properties:
+    invoiceStatementID:
+      type: integer
+      format: int32
+      description: |
+        Primary key. Unique identifier for the invoice statement.
+      readOnly: true
+      example: 12345
+
+    invoiceStatementNumber:
+      type: string
+      maxLength: 100
+      description: |
+        The generated invoice number displayed to clients. Format is typically configured per
+        BillingProfile and may include prefixes, date components, and sequence numbers.
+
+        Example formats:
+        - `INV-2024-001234`
+        - `BH-202401-5678`
+        - `ACME-INV-001234-A` (with rebill suffix)
+      example: "INV-2024-001234"
+
+    rawInvoiceStatementNumber:
+      type: integer
+      format: int32
+      description: |
+        The sequential number component before formatting. Used internally for generating
+        the final invoiceStatementNumber according to the billing profile's numbering scheme.
+      example: 1234
+
+    invoiceStatementDate:
+      type: string
+      format: date-time
+      description: |
+        The date the invoice was created or finalized. This date appears on the invoice document
+        and is used for accounting purposes.
+      example: "2024-01-15T00:00:00Z"
+
+    invoiceStatementFinalizedDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        The date/time when the invoice was finalized (isFinalized set to true). Once finalized,
+        the invoice becomes immutable and ready for delivery to the client.
+      example: "2024-01-15T10:30:00Z"
+
+    dueDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Payment due date, typically calculated from invoiceStatementDate plus the InvoiceTerm
+        (e.g., Net 30, Net 60). Displayed prominently on the invoice.
+      example: "2024-02-14T00:00:00Z"
+
+    isFinalized:
+      type: boolean
+      description: |
+        Indicates whether the invoice has been finalized. When true:
+        - Invoice becomes read-only (financial data cannot be modified)
+        - Invoice can be delivered to the client
+        - Invoice can be exported to GL systems
+        - Changes require credit invoice process
+
+        Default: false
+      example: true
+
+    status:
+      $ref: './InvoiceStatementStatusLookupEntity.yaml#/InvoiceStatementStatusLookupEntity'
+      description: |
+        Current status of the invoice in its lifecycle. Common statuses include:
+        - Draft
+        - Finalized
+        - Approved
+        - Rejected
+        - Voided
+
+    deliveryStatus:
+      $ref: './InvoiceStatementDeliveryStatusLookupEntity.yaml#/InvoiceStatementDeliveryStatusLookupEntity'
+      nullable: true
+      description: |
+        Tracks whether and how the invoice was delivered to the client. Values include:
+        - Not Delivered
+        - Email Sent
+        - Printed
+        - Downloaded
+        - API Delivered
+
+    invoiceStatementPaidStatus:
+      $ref: './InvoiceStatementPaidStatusLookupEntity.yaml#/InvoiceStatementPaidStatusLookupEntity'
+      nullable: true
+      description: |
+        Payment status of the invoice. Values include:
+        - Unpaid
+        - Partially Paid
+        - Paid
+        - Overpaid
+
+    generalLedgerExportStatusLookup:
+      type: object
+      nullable: true
+      description: |
+        Status of export to external general ledger systems (e.g., QuickBooks, NetSuite).
+        Tracks whether the invoice has been successfully exported for accounting purposes.
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+          example: "Exported"
+
+    # Financial Fields
+    subtotal:
+      type: number
+      format: double
+      description: |
+        Sum of all line item amounts before discounts, surcharges, and taxes.
+        Calculated as: Σ(lineItem.amount) across all InvoiceStatementLineItems.
+      example: 15000.00
+
+    discountAmount:
+      type: number
+      format: double
+      description: |
+        Total discount amount applied to the invoice. Sum of all InvoiceStatementDiscount amounts.
+        Reduces the subtotal. Can be percentage-based or flat amounts.
+      example: 750.00
+
+    surchargeAmount:
+      type: number
+      format: double
+      description: |
+        Total surcharge amount added to the invoice. Sum of all InvoiceStatementSurcharge amounts.
+        Increases the subtotal. Examples: rush fees, weekend work premiums, administrative fees.
+      example: 250.00
+
+    taxAmount:
+      type: number
+      format: double
+      description: |
+        Total tax amount. Sum of all InvoiceStatementTax amounts.
+        Calculated based on tax rules and rates for the billing location.
+      example: 987.50
+
+    total:
+      type: number
+      format: double
+      description: |
+        Final invoice total amount due.
+        Formula: subtotal - discountAmount + surchargeAmount + taxAmount
+      example: 15487.50
+
+    previousBalance:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Any outstanding balance from previous invoices. Carried forward from unpaid amounts
+        on prior invoice statements for this client.
+      example: 500.00
+
+    amountPaid:
+      type: number
+      format: double
+      description: |
+        Total amount paid against this invoice. Updated as InvoicePayment records are created.
+        Default: 0.00
+      example: 10000.00
+
+    outstandingBalance:
+      type: number
+      format: double
+      description: |
+        Remaining unpaid balance on the invoice.
+        Formula: total + previousBalance - amountPaid
+      example: 5987.50
+
+    # Client & Billing Information
+    clientCorporation:
+      type: object
+      description: |
+        The client being invoiced. References the ClientCorporation entity.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: "Acme Corporation"
+
+    billingProfile:
+      type: object
+      description: |
+        The billing profile that defines invoice formatting, numbering scheme, payment terms,
+        and other invoice generation rules. Each client can have multiple billing profiles
+        for different invoice types or business units.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          example: "Acme Corp - Standard Billing"
+
+    billingClientContact:
+      type: object
+      nullable: true
+      description: |
+        Primary contact at the client for billing inquiries. References ClientContact entity.
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+    billingAttention:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        "Attention" line for the invoice, typically a person or department name.
+        Example: "Accounts Payable Department" or "Jane Smith - AP Manager"
+      example: "Accounts Payable Department"
+
+    # Billing Address Fields
+    billingAddress1:
+      type: string
+      maxLength: 40
+      nullable: true
+      description: Address line 1 for invoice delivery
+      example: "123 Main Street"
+
+    billingAddress2:
+      type: string
+      maxLength: 40
+      nullable: true
+      description: Address line 2 (suite, floor, etc.)
+      example: "Suite 500"
+
+    billingCity:
+      type: string
+      maxLength: 40
+      nullable: true
+      description: City for billing address
+      example: "Boston"
+
+    billingState:
+      type: string
+      maxLength: 30
+      nullable: true
+      description: State/province for billing address
+      example: "MA"
+
+    billingZip:
+      type: string
+      maxLength: 15
+      nullable: true
+      description: Postal/ZIP code for billing address
+      example: "02101"
+
+    billingCountryID:
+      type: integer
+      nullable: true
+      description: Country ID for billing address. References Country entity.
+      example: 1
+
+    # Payment Terms
+    invoiceTerm:
+      type: object
+      nullable: true
+      description: |
+        Payment terms for the invoice (e.g., Net 30, Net 60, Due on Receipt).
+        Determines the dueDate calculation.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          example: "Net 30"
+
+    paymentTerms:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Free-text payment terms that appear on the invoice. Can supplement or override
+        the invoiceTerm setting. Examples: "Net 30 days", "Due upon receipt", "2/10 Net 30"
+      example: "Net 30 days from invoice date"
+
+    remitInstructions:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Payment instructions displayed on the invoice. May include:
+        - Wire transfer details
+        - ACH instructions
+        - Check mailing address
+        - Online payment portal URL
+      example: |
+        Please remit payment to:
+        Bullhorn, Inc.
+        P.O. Box 12345
+        Boston, MA 02101
+
+        Or pay online at: https://payments.bullhorn.com
+
+    purchaseOrderNumber:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Client's purchase order number to be referenced on the invoice.
+        Required by some clients for payment processing.
+      example: "PO-2024-5678"
+
+    # Currency
+    currencyUnit:
+      type: object
+      nullable: true
+      description: |
+        Currency for all amounts on the invoice. References CurrencyUnit entity.
+        Default is typically USD unless configured otherwise for the client.
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          example: "USD"
+        symbol:
+          type: string
+          example: "$"
+
+    # Credit Invoice Fields
+    isCredited:
+      type: boolean
+      description: |
+        Indicates this invoice has been credited (cancelled) by a credit invoice.
+        When true, this invoice is effectively voided and should not be paid.
+        The creditedByInvoiceStatement relationship points to the credit invoice.
+
+        Default: false
+      example: false
+
+    creditOfInvoiceStatement:
+      type: object
+      nullable: true
+      description: |
+        If this is a credit invoice, references the original invoice being credited.
+        Credit invoices have negative amounts that offset the original invoice.
+      properties:
+        id:
+          type: integer
+        invoiceStatementNumber:
+          type: string
+
+    creditedByInvoiceStatement:
+      type: object
+      nullable: true
+      description: |
+        If this invoice has been credited, references the credit invoice that cancelled it.
+        Set when isCredited = true.
+      properties:
+        id:
+          type: integer
+        invoiceStatementNumber:
+          type: string
+
+    isReinstated:
+      type: boolean
+      nullable: true
+      description: |
+        Indicates a previously credited invoice has been reinstated (un-cancelled).
+        Rare operation typically requiring special permissions.
+      example: false
+
+    # Rebill Information
+    rebillNumberFromInvoiceStatement:
+      type: object
+      nullable: true
+      description: |
+        If this is a rebilled invoice, references the original invoice it replaces.
+        Rebills are used when an invoice needs to be regenerated with corrections
+        but without using the credit invoice process.
+      properties:
+        id:
+          type: integer
+        invoiceStatementNumber:
+          type: string
+
+    rebillSuffix:
+      type: string
+      maxLength: 10
+      nullable: true
+      description: |
+        Suffix appended to the invoice number for rebilled invoices.
+        Examples: "A", "B", "R1", "REV1"
+      example: "A"
+
+    # Email Fields
+    toRecipients:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Semicolon-separated list of primary email recipients for invoice delivery.
+        Example: "ap@acme.com;billing@acme.com"
+      example: "accountspayable@acme.com;billing@acme.com"
+
+    ccRecipients:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Semicolon-separated list of CC email recipients.
+      example: "manager@acme.com"
+
+    bccRecipients:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Semicolon-separated list of BCC email recipients.
+      example: "archive@bullhorn.com"
+
+    emailErrorReason:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        If email delivery failed, contains the error message/reason.
+        Populated by the email delivery system.
+      example: "550 5.1.1 Recipient address rejected: User unknown"
+
+    # Custom Fields - Correlated from BillingProfile
+    billingProfileCorrelatedCustomText1:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 1 correlated from BillingProfile settings
+
+    billingProfileCorrelatedCustomText2:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 2 correlated from BillingProfile settings
+
+    billingProfileCorrelatedCustomText3:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 3 correlated from BillingProfile settings
+
+    billingProfileCorrelatedCustomText4:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 4 correlated from BillingProfile settings
+
+    billingProfileCorrelatedCustomText5:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 5 correlated from BillingProfile settings
+
+    billingProfileCorrelatedCustomText6:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 6 correlated from BillingProfile settings
+
+    billingProfileCorrelatedCustomText7:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 7 correlated from BillingProfile settings
+
+    billingProfileCorrelatedCustomText8:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 8 correlated from BillingProfile settings
+
+    billingProfileCorrelatedCustomText9:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 9 correlated from BillingProfile settings
+
+    billingProfileCorrelatedCustomText10:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Custom text field 10 correlated from BillingProfile settings
+
+    # Custom Text Blocks
+    customTextBlock1:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Large custom text field for additional invoice information, terms, or notes.
+        Often used for special instructions or legal disclaimers.
+
+    customTextBlock2:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Large custom text field 2
+
+    customTextBlock3:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Large custom text field 3
+
+    # Relationships - Collections
+    lineItems:
+      type: object
+      description: |
+        Collection of InvoiceStatementLineItems. Each line item represents grouped billing
+        charges (e.g., "Regular Hours - John Doe - Week of 1/1/24").
+
+        **Usage**: `GET /entity/InvoiceStatement/{id}/lineItems`
+      properties:
+        total:
+          type: integer
+          description: Total count of line items
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementLineItemEntity.yaml#/InvoiceStatementLineItemEntity'
+
+    discounts:
+      type: object
+      description: |
+        Collection of InvoiceStatementDiscount records applied to this invoice.
+
+        **Usage**: `GET /entity/InvoiceStatement/{id}/discounts`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementDiscountEntity.yaml#/InvoiceStatementDiscountEntity'
+
+    surcharges:
+      type: object
+      description: |
+        Collection of InvoiceStatementSurcharge records applied to this invoice.
+
+        **Usage**: `GET /entity/InvoiceStatement/{id}/surcharges`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementSurchargeEntity.yaml#/InvoiceStatementSurchargeEntity'
+
+    taxes:
+      type: object
+      description: |
+        Collection of InvoiceStatementTax records. Taxes are typically calculated
+        based on tax rules for the billing location and service types.
+
+        **Usage**: `GET /entity/InvoiceStatement/{id}/taxes`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementTaxEntity.yaml#/InvoiceStatementTaxEntity'
+
+    billableCharges:
+      type: object
+      description: |
+        Collection of BillableCharge records included in this invoice.
+        Each BillableCharge aggregates approved time/expense entries for a placement.
+
+        **Usage**: `GET /entity/InvoiceStatement/{id}/billableCharges`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './BillableCharge.yaml#/BillableCharge'
+
+    invoicePayments:
+      type: object
+      description: |
+        Collection of InvoicePayment records applied to this invoice.
+        Tracks all payments received against the invoice.
+
+        When payments are created:
+        - `amountPaid` is updated with the sum of all payment amounts
+        - `outstandingBalance` is recalculated
+        - `invoiceStatementPaidStatus` is updated based on the balance
+
+        **Usage**: `GET /entity/InvoiceStatement/{id}/invoicePayments`
+      properties:
+        total:
+          type: integer
+          description: Total count of payments
+        data:
+          type: array
+          items:
+            $ref: './InvoicePaymentEntity.yaml#/InvoicePaymentEntity'
+
+    invoiceStatementBatch:
+      type: object
+      nullable: true
+      description: |
+        If this invoice was created via batch processing, references the batch run.
+        InvoiceStatementBatch entities track bulk invoice generation runs.
+      properties:
+        id:
+          type: integer
+
+    invoiceStatementTemplate:
+      type: object
+      nullable: true
+      description: |
+        The template used to format/render this invoice. Defines layout, styling,
+        and which fields to display.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+
+    # Audit Fields
+    dateAdded:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp when the invoice was created
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp of last modification to the invoice
+      example: "2024-01-15T10:30:00Z"
+
+    owner:
+      type: object
+      description: User who owns/created this invoice
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+  required:
+    - invoiceStatementID
+    - isFinalized
+    - subtotal
+    - total

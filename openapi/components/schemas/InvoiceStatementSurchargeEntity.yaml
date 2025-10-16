@@ -1,0 +1,234 @@
+InvoiceStatementSurchargeEntity:
+  type: object
+  description: |
+    Represents a surcharge (additional charge) applied to an InvoiceStatement or InvoiceStatementLineItem.
+    Surcharges increase the billed amount and can be either percentage-based or flat amounts.
+
+    **CRUD Access**: READ only via REST API
+    **Entitlements**: View Invoice Statement
+
+    **Surcharge Types**:
+    - **Percentage Surcharges**: Applied as a percentage of the subtotal or line amount
+      - Example: "5% Weekend Work Premium" on $1,000 line = $50 surcharge
+    - **Flat Amount Surcharges**: Fixed dollar amount added
+      - Example: "$25 Rush Fee"
+
+    **Application Levels**:
+    - **Invoice Level**: Applied to the entire invoice subtotal
+    - **Line Item Level**: Applied to specific line items
+
+    **Common Surcharge Scenarios**:
+    - Weekend/holiday work premiums
+    - Rush delivery fees
+    - Administrative fees
+    - Fuel surcharges
+    - Remote location fees
+    - Currency conversion fees
+    - Technology fees
+
+  properties:
+    invoiceStatementSurchargeID:
+      type: integer
+      format: int32
+      description: Primary key. Unique identifier for the surcharge.
+      readOnly: true
+      example: 22222
+
+    invoiceStatement:
+      type: object
+      nullable: true
+      description: |
+        Reference to the parent InvoiceStatement if this is an invoice-level surcharge.
+        Either invoiceStatement or invoiceStatementLineItem will be populated, not both.
+      properties:
+        id:
+          type: integer
+        invoiceStatementNumber:
+          type: string
+
+    invoiceStatementLineItem:
+      type: object
+      nullable: true
+      description: |
+        Reference to the parent InvoiceStatementLineItem if this is a line-level surcharge.
+        Either invoiceStatement or invoiceStatementLineItem will be populated, not both.
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
+
+    surchargeRate:
+      type: object
+      nullable: true
+      description: |
+        Reference to the configured SurchargeRate that defines the surcharge rules.
+        SurchargeRate entities are typically configured at the BillingProfile level.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          example: "Weekend Premium - 5%"
+        rateType:
+          type: string
+          enum: [Percentage, FlatAmount]
+        rate:
+          type: number
+          format: double
+          example: 5.0
+
+    description:
+      type: string
+      maxLength: 255
+      description: |
+        Human-readable description of the surcharge shown on the invoice.
+        Examples:
+        - "Weekend Work Premium (5%)"
+        - "Rush Delivery Fee"
+        - "$25 Administrative Charge"
+        - "Holiday Premium"
+      example: "Weekend Work Premium (5%)"
+
+    surchargeType:
+      type: string
+      enum: [Percentage, FlatAmount]
+      description: |
+        Type of surcharge calculation:
+        - **Percentage**: surchargeAmount = baseAmount × (surchargePercent / 100)
+        - **FlatAmount**: surchargeAmount = fixed dollar amount
+      example: "Percentage"
+
+    surchargePercent:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Percentage value if surchargeType = Percentage.
+        Example: 5.0 for 5% surcharge
+      example: 5.0
+
+    baseAmount:
+      type: number
+      format: double
+      description: |
+        The amount the surcharge is calculated against:
+        - For invoice-level surcharges: usually the invoice subtotal
+        - For line-level surcharges: the line item amount
+      example: 1000.00
+
+    surchargeAmount:
+      type: number
+      format: double
+      description: |
+        Calculated surcharge amount added to the invoice or line item.
+
+        **Calculation**:
+        - If Percentage: baseAmount × (surchargePercent / 100)
+        - If FlatAmount: the configured flat amount
+
+        This amount is added to the subtotal when calculating the invoice total.
+      example: 50.00
+
+    # Ordering
+    sequenceNumber:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Order in which this surcharge is applied and displayed on the invoice.
+        Lower numbers are applied first. Useful when multiple surcharges stack.
+      example: 1
+
+    # Effective Dates
+    effectiveDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Start date for surcharge applicability. Surcharge only applies if invoice date >= effectiveDate.
+      example: "2024-01-01T00:00:00Z"
+
+    effectiveEndDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        End date for surcharge applicability. Surcharge only applies if invoice date <= effectiveEndDate.
+      example: "2024-12-31T23:59:59Z"
+
+    # Tax Treatment
+    isTaxable:
+      type: boolean
+      description: |
+        Indicates whether this surcharge is subject to tax calculation.
+        If true, taxes will be calculated on the surcharge amount.
+
+        Default: true
+      example: true
+
+    # Additional Context
+    isAutomaticallyApplied:
+      type: boolean
+      description: |
+        Indicates whether this surcharge was automatically applied based on business rules
+        (true) or manually added by a user (false).
+
+        Default: true
+      example: true
+
+    comments:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Internal notes about the surcharge. Not displayed on the invoice.
+        Example: "Applied due to weekend shift on 01/15/24"
+
+    # Related Transactions
+    billMasterTransactions:
+      type: object
+      nullable: true
+      description: |
+        If the surcharge is directly linked to specific billing transactions
+        (e.g., weekend premium for specific hours), references those transactions.
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './BillMasterTransactionEntity.yaml#/BillMasterTransactionEntity'
+
+    # Audit Fields
+    dateAdded:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp when the surcharge was created
+      example: "2024-01-15T10:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp of last modification
+      example: "2024-01-15T10:00:00Z"
+
+    addedByUser:
+      type: object
+      nullable: true
+      description: User who added the surcharge (if manually added)
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+  required:
+    - invoiceStatementSurchargeID
+    - surchargeType
+    - baseAmount
+    - surchargeAmount

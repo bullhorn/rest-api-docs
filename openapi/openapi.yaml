@@ -170,6 +170,77 @@ info:
     }
     ```
 
+    ### Email Invoice to Client
+    ```http
+    POST /services/InvoiceStatement/email
+    {
+      "invoiceStatementIDs": [12345, 12346],
+      "includePDFAttachment": true,
+      "sendImmediately": false,
+      "updateDeliveryStatus": true
+    }
+    ```
+
+    ### Generate Invoice Export
+    ```http
+    POST /services/InvoiceStatement/generateExport
+    {
+      "invoiceStatementIDs": [12345, 12346],
+      "exportFormat": "PDF",
+      "exportTemplateID": 50,
+      "includeLineItems": true
+    }
+    ```
+
+    ### Credit Invoice
+    ```http
+    POST /services/InvoiceStatement/credit
+    {
+      "invoiceStatementID": 12345,
+      "creditReason": "Billing error - incorrect rate used",
+      "automaticallyFinalize": true,
+      "generateInvoiceNumber": true,
+      "creditInvoiceNumberSuffix": "CR"
+    }
+    ```
+
+    ## Invoicing Workflow
+
+    The InvoiceStatement workflow extends the Pay Bill system from billable charges to client invoices:
+
+    ```
+    1. INVOICE GENERATION
+       └─> BillableCharges with status=ReadyToBill selected
+       └─> InvoiceStatementBatch created
+       └─> Charges grouped by client + billing profile + period
+       └─> InvoiceStatement created per group
+
+    2. LINE ITEM CREATION
+       └─> BillMasterTransactions grouped by earn code/candidate/period
+       └─> InvoiceStatementLineItem created for each group
+       └─> Discounts, surcharges, taxes applied
+
+    3. INVOICE FINALIZATION
+       └─> Invoice reviewed and approved
+       └─> isFinalized set to true
+       └─> Invoice becomes immutable
+       └─> Invoice number generated
+
+    4. DELIVERY TO CLIENT
+       └─> Email with PDF attachment (via /services/InvoiceStatement/email)
+       └─> deliveryStatus updated
+       └─> Or: Export to portal/EDI (via /services/InvoiceStatement/generateExport)
+
+    5. PAYMENT TRACKING
+       └─> InvoicePayment records created
+       └─> invoiceStatementPaidStatus updated
+       └─> outstandingBalance calculated
+
+    6. GL EXPORT
+       └─> Invoice data exported to external accounting systems
+       └─> Revenue recognized in AccountingPeriod
+    ```
+
     ## Authentication
 
     This API uses OAuth 2.0 for authentication followed by a session-based token system:
@@ -223,6 +294,23 @@ tags:
       rate type, effective dates, and status. It ties charges to specific BillMasterTransactions
       and manages them through the billing workflow from creation to invoicing.
 
+  - name: Invoice Statement Services
+    description: |
+      InvoiceStatement service endpoints for managing invoice generation, delivery, and lifecycle
+      operations.
+
+      InvoiceStatements consolidate BillableCharges into client-facing invoices with line items,
+      discounts, surcharges, and taxes. These endpoints handle invoice finalization, email
+      delivery, export to various formats, credit invoice creation, and integration with
+      external accounting systems.
+
+  - name: Invoice Statement Entity
+    description: |
+      Entity endpoints for querying and retrieving InvoiceStatement records.
+
+      Use these endpoints to retrieve invoice data, search invoices, and access related
+      entities like line items, payments, discounts, surcharges, and taxes.
+
 paths:
   /services/BillableCharge:
     $ref: './paths/services/BillableCharge.yaml#/createBillableCharge'
@@ -241,6 +329,24 @@ paths:
 
   /services/BillableCharge/clearNeedsReviewAndMarkAsReady:
     $ref: './paths/services/BillableCharge.yaml#/clearNeedsReviewAndMarkAsReady'
+
+  /services/InvoiceStatement/generateExport:
+    $ref: './paths/services/InvoiceStatement.yaml#/generateExport'
+
+  /services/InvoiceStatement/email:
+    $ref: './paths/services/InvoiceStatement.yaml#/email'
+
+  /services/InvoiceStatement/credit:
+    $ref: './paths/services/InvoiceStatement.yaml#/credit'
+
+  /services/InvoiceStatement/repostRequest:
+    $ref: './paths/services/InvoiceStatement.yaml#/repostRequest'
+
+  /entity/InvoiceStatement/{id}:
+    $ref: './paths/entity/InvoiceStatement.yaml#/getInvoiceStatement'
+
+  /query/InvoiceStatement:
+    $ref: './paths/entity/InvoiceStatement.yaml#/queryInvoiceStatements'
 
 components:
   securitySchemes:

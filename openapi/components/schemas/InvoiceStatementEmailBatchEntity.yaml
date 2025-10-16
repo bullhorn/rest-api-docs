@@ -1,0 +1,284 @@
+InvoiceStatementEmailBatchEntity:
+  type: object
+  description: |
+    Represents a batch email delivery of invoices to clients. Email batches allow sending
+    multiple invoice emails at once with tracking of delivery status and errors.
+
+    **CRUD Access**: READ
+    **Entitlements**: View Invoice Statement
+
+    **Email Batch Workflow**:
+    1. User selects invoices to email
+    2. System creates email batch record
+    3. For each invoice:
+       - Generate PDF attachment
+       - Populate email template with invoice data
+       - Send email to configured recipients
+       - Track delivery status
+    4. Update invoice deliveryStatus field
+    5. Batch completes with success/failure counts
+
+    **Email Features**:
+    - Customizable email templates per billing profile
+    - PDF invoice attachment
+    - Multiple recipients (To, CC, BCC)
+    - Delivery tracking and error logging
+    - Retry logic for failed emails
+
+  properties:
+    invoiceStatementEmailBatchID:
+      type: integer
+      format: int32
+      description: Primary key. Unique identifier for the email batch.
+      readOnly: true
+      example: 77777
+
+    batchNumber:
+      type: string
+      maxLength: 50
+      description: |
+        Human-readable batch identifier for tracking.
+      example: "EMAIL-2024-01-001"
+
+    emailDate:
+      type: string
+      format: date-time
+      description: |
+        Date/time the email batch was created and processing started.
+      example: "2024-01-15T14:00:00Z"
+
+    status:
+      type: string
+      enum: [Pending, Processing, Completed, Failed, PartiallyCompleted, Cancelled]
+      description: |
+        Current status of the email batch.
+        - **Pending**: Batch created but email sending not started
+        - **Processing**: Emails are being sent
+        - **Completed**: All emails sent successfully
+        - **Failed**: Batch failed to send any emails
+        - **PartiallyCompleted**: Some emails sent, some failed
+        - **Cancelled**: Batch cancelled before completion
+      example: "Completed"
+
+    # Email Results
+    totalEmailsSent:
+      type: integer
+      format: int32
+      description: |
+        Count of emails successfully sent (invoices delivered).
+      example: 43
+
+    totalEmailsFailed:
+      type: integer
+      format: int32
+      description: |
+        Count of emails that failed to send.
+      example: 2
+
+    # Email Configuration
+    emailTemplate:
+      type: object
+      nullable: true
+      description: |
+        Email template used for the message body and subject line.
+        Templates typically include invoice details and payment instructions.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: "Standard Invoice Email"
+
+    subjectLine:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Email subject line used for this batch.
+        May include variables like invoice number, client name, date.
+      example: "Invoice #INV-2024-001234 from Bullhorn, Inc."
+
+    fromAddress:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Email address used as the "From" address.
+      example: "billing@bullhorn.com"
+
+    replyToAddress:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Email address for client replies.
+      example: "ar@bullhorn.com"
+
+    # Attachment Settings
+    includePDFAttachment:
+      type: boolean
+      description: |
+        Whether to attach PDF invoice to the email.
+
+        Default: true
+      example: true
+
+    pdfTemplate:
+      type: object
+      nullable: true
+      description: |
+        Template used to generate the PDF invoice attachment.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: "Standard Invoice PDF"
+
+    # Recipient Override
+    overrideToAddress:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        If specified, all emails in the batch are sent to this address instead of
+        the invoice's configured recipients. Used for testing.
+      example: "test@bullhorn.com"
+
+    # Execution Details
+    startDateTime:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Date/time email batch processing started.
+      example: "2024-01-15T14:00:00Z"
+
+    endDateTime:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Date/time email batch processing completed.
+      example: "2024-01-15T14:22:45Z"
+
+    executionDurationSeconds:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Total execution time in seconds.
+      example: 1365
+
+    # Error Tracking
+    errorLog:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: |
+        Detailed error log for failed email deliveries.
+        Contains SMTP error codes and bounce reasons.
+      example: |
+        ERROR: Invoice 12345 - 550 5.1.1 Recipient address rejected: User unknown
+        ERROR: Invoice 12346 - 552 5.2.2 Mailbox full
+
+    # Email Service Provider
+    emailServiceProvider:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Email service used to send the emails.
+        Examples: "SendGrid", "Amazon SES", "SMTP", "Office 365"
+      example: "SendGrid"
+
+    # Delivery Tracking
+    totalOpens:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Count of emails opened by recipients (if tracking enabled).
+      example: 38
+
+    totalClicks:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Count of links clicked in emails (if tracking enabled).
+      example: 12
+
+    # Related Records
+    invoiceStatements:
+      type: object
+      description: |
+        Collection of InvoiceStatements included in this email batch.
+
+        **Usage**: `GET /entity/InvoiceStatementEmailBatch/{id}/invoiceStatements`
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementEntity.yaml#/InvoiceStatementEntity'
+
+    # Test Mode
+    isTestMode:
+      type: boolean
+      description: |
+        Indicates if this is a test batch (emails sent to test addresses only).
+
+        Default: false
+      example: false
+
+    # Scheduling
+    isScheduledBatch:
+      type: boolean
+      description: |
+        Indicates if this batch was triggered by a scheduled job.
+
+        Default: false
+      example: false
+
+    scheduledJobName:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Name of the scheduled job that triggered this batch (if applicable).
+      example: "Weekly Invoice Email Delivery"
+
+    # Audit Fields
+    dateAdded:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp when the email batch was created
+      example: "2024-01-15T14:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      readOnly: true
+      description: Timestamp of last modification
+      example: "2024-01-15T14:22:45Z"
+
+    createdByUser:
+      type: object
+      nullable: true
+      description: User who created the email batch
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+  required:
+    - invoiceStatementEmailBatchID
+    - batchNumber
+    - emailDate
+    - status

@@ -1,0 +1,420 @@
+generateExport:
+  post:
+    tags:
+      - Invoice Statement Services
+    summary: Generate invoice export
+    description: |
+      Generates an export of invoice statements in various formats (PDF, CSV, XML, etc.)
+      or exports to external accounting systems (QuickBooks, NetSuite, etc.).
+
+      **Use Cases**:
+      - Export invoices to PDF for client delivery
+      - Export to CSV/Excel for reporting
+      - Export to external GL systems for accounting
+      - Generate EDI documents for electronic invoice delivery
+
+      **Authorization**: Requires authenticated session with invoice export permissions
+
+    operationId: generateInvoiceExport
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/GenerateExportRequest.yaml#/GenerateExportRequest'
+          examples:
+            pdfExport:
+              summary: Export invoices to PDF
+              value:
+                invoiceStatementIDs: [12345, 12346, 12347]
+                exportFormat: "PDF"
+                exportTemplateID: 50
+                includeLineItems: true
+                outputFileName: "invoices_january_2024.pdf"
+            csvExport:
+              summary: Export to CSV for reporting
+              value:
+                invoiceDateFrom: "2024-01-01"
+                invoiceDateTo: "2024-01-31"
+                exportFormat: "CSV"
+                includeLineItems: true
+                includeTransactions: false
+                groupBy: ["Client", "InvoiceDate"]
+            quickbooksExport:
+              summary: Export to QuickBooks
+              value:
+                invoiceStatementIDs: [12345, 12346]
+                exportFormat: "QuickBooks"
+                externalSystemID: 10
+                postToExternalSystem: true
+
+    responses:
+      '200':
+        description: Export generated successfully
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/GenerateExportResult.yaml#/GenerateExportResult'
+            example:
+              exportBatchID: 66666
+              batchNumber: "EXPORT-2024-01-001"
+              status: "Completed"
+              totalInvoicesExported: 45
+              totalInvoicesFailed: 0
+              outputFileName: "invoices_january_2024.pdf"
+              outputFileSize: 2048576
+              downloadUrl: "https://downloads.bullhorn.com/invoice-exports/abc123?expires=1705363200"
+              expiresAt: "2024-01-16T14:00:00Z"
+              executionDurationSeconds: 45
+
+      '400':
+        description: Bad request - validation error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errorCode:
+                  type: string
+                  example: "INVALID_REQUEST"
+                message:
+                  type: string
+                  example: "Export format is required"
+
+      '401':
+        description: Unauthorized - invalid or missing authentication
+      '403':
+        description: Forbidden - user lacks export permissions
+      '404':
+        description: Not found - one or more invoice IDs do not exist
+      '500':
+        description: Internal server error
+
+email:
+  post:
+    tags:
+      - Invoice Statement Services
+    summary: Email invoice statements
+    description: |
+      Sends invoice statements via email to configured recipients with PDF attachments.
+
+      **Features**:
+      - Customizable email templates
+      - PDF invoice attachment
+      - Multiple recipients (To, CC, BCC)
+      - Delivery tracking
+      - Test mode with override addresses
+
+      **Requirements**:
+      - All invoices must be finalized (isFinalized = true)
+      - Invoices must have valid email recipients configured
+
+      **Authorization**: Requires authenticated session with invoice email permissions
+
+    operationId: emailInvoiceStatements
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/InvoiceStatementEmailRequest.yaml#/InvoiceStatementEmailRequest'
+          examples:
+            basicEmail:
+              summary: Email invoices to clients
+              value:
+                invoiceStatementIDs: [12345, 12346]
+                includePDFAttachment: true
+                sendImmediately: false
+                updateDeliveryStatus: true
+            testEmail:
+              summary: Test email delivery
+              value:
+                invoiceStatementIDs: [12345]
+                overrideToAddress: "test@bullhorn.com"
+                includePDFAttachment: true
+                sendImmediately: true
+            customEmail:
+              summary: Email with custom message
+              value:
+                invoiceStatementIDs: [12345, 12346, 12347]
+                emailTemplateID: 100
+                customSubject: "Invoice {invoiceNumber} - Payment Due"
+                customMessage: "<p>Dear Client,</p><p>Please remit payment within 30 days.</p>"
+                includePDFAttachment: true
+
+    responses:
+      '200':
+        description: Email request processed successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                emailBatchID:
+                  type: integer
+                  format: int32
+                  description: ID of the created InvoiceStatementEmailBatch
+                batchNumber:
+                  type: string
+                  description: Email batch identifier
+                status:
+                  type: string
+                  enum: [Pending, Processing, Completed]
+                totalEmailsSent:
+                  type: integer
+                  format: int32
+                totalEmailsFailed:
+                  type: integer
+                  format: int32
+                failedInvoiceIDs:
+                  type: array
+                  items:
+                    type: integer
+                  description: IDs of invoices that failed to send
+                message:
+                  type: string
+            example:
+              emailBatchID: 77777
+              batchNumber: "EMAIL-2024-01-001"
+              status: "Processing"
+              totalEmailsSent: 2
+              totalEmailsFailed: 0
+              message: "Emails queued for delivery. Check batch status for results."
+
+      '400':
+        description: Bad request - validation error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errorCode:
+                  type: string
+                  example: "INVOICE_NOT_FINALIZED"
+                message:
+                  type: string
+                  example: "Invoice 12345 is not finalized and cannot be emailed"
+
+      '401':
+        description: Unauthorized - invalid or missing authentication
+      '403':
+        description: Forbidden - user lacks email permissions
+      '404':
+        description: Not found - one or more invoice IDs do not exist
+      '500':
+        description: Internal server error
+
+credit:
+  post:
+    tags:
+      - Invoice Statement Services
+    summary: Credit (cancel) an invoice statement
+    description: |
+      Creates a credit invoice that offsets and cancels an original invoice.
+      The original invoice is marked as credited.
+
+      **Credit Invoice Process**:
+      1. Original invoice is validated (must be finalized, not already credited)
+      2. Credit invoice created with negative amounts
+      3. Original invoice marked: isCredited = true
+      4. Both invoices retained for audit trail
+
+      **Use Cases**:
+      - Invoice sent to wrong client
+      - Invoice contains billing errors
+      - Services cancelled/reversed
+      - Customer dispute
+
+      **Important**: This creates a full credit. For partial credits or adjustments,
+      create a new corrected invoice instead.
+
+      **Authorization**: Requires authenticated session with invoice credit permissions
+
+    operationId: creditInvoiceStatement
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/CreditRequest.yaml#/CreditRequest'
+          examples:
+            basicCredit:
+              summary: Credit an invoice
+              value:
+                invoiceStatementID: 12345
+                creditReason: "Billing error - incorrect rate used"
+                automaticallyFinalize: true
+                generateInvoiceNumber: true
+                creditInvoiceNumberSuffix: "CR"
+            creditWithoutFinalize:
+              summary: Credit invoice for review
+              value:
+                invoiceStatementID: 12345
+                creditReason: "Customer dispute - needs review"
+                automaticallyFinalize: false
+                generateInvoiceNumber: false
+                addCommentToOriginal: true
+
+    responses:
+      '200':
+        description: Credit invoice created successfully
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/CreditResult.yaml#/CreditResult'
+            example:
+              creditInvoiceStatementID: 12349
+              creditInvoiceStatementNumber: "INV-2024-001234-CR"
+              originalInvoiceStatementID: 12345
+              originalInvoiceStatementNumber: "INV-2024-001234"
+              creditAmount: -15487.50
+              originalInvoiceTotal: 15487.50
+              creditInvoiceStatus: "Finalized"
+              isFinalized: true
+              originalInvoiceUpdated:
+                isCredited: true
+                creditedByInvoiceStatementID: 12349
+                commentAdded: true
+              creditLineItemCount: 8
+              recommendedActions:
+                - "Email credit invoice to client"
+                - "Generate corrected invoice"
+
+      '400':
+        description: Bad request - validation error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errorCode:
+                  type: string
+                  example: "INVOICE_ALREADY_CREDITED"
+                message:
+                  type: string
+                  example: "Invoice 12345 has already been credited"
+
+      '401':
+        description: Unauthorized - invalid or missing authentication
+      '403':
+        description: Forbidden - user lacks credit permissions
+      '404':
+        description: Not found - invoice ID does not exist
+      '409':
+        description: Conflict - invoice cannot be credited (not finalized, already credited, etc.)
+      '500':
+        description: Internal server error
+
+repostRequest:
+  post:
+    tags:
+      - Invoice Statement Services
+    summary: Repost invoice to external systems
+    description: |
+      Re-sends invoice data to external systems (GL, ERP, etc.) for reconciliation
+      or error recovery.
+
+      **Use Cases**:
+      - Original GL export failed or was rejected
+      - External system was offline during initial export
+      - Data needs to be re-synchronized
+      - External system requested re-transmission
+
+      **Behavior**:
+      - Creates new export batch or updates existing batch
+      - Re-generates export data from current invoice state
+      - Updates GL export status on invoice
+      - Does not modify invoice amounts or status
+
+      **Authorization**: Requires authenticated session with GL export permissions
+
+    operationId: repostInvoiceStatement
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              invoiceStatementIDs:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+                description: Array of invoice IDs to repost
+                minItems: 1
+              externalSystemID:
+                type: integer
+                format: int32
+                description: ID of the external system to post to
+              exportFormat:
+                type: string
+                enum: [QuickBooks, NetSuite, Sage, Custom]
+                description: Export format for the external system
+              forceRepost:
+                type: boolean
+                description: |
+                  Whether to force repost even if invoice was previously posted successfully.
+                  Default: false
+            required:
+              - invoiceStatementIDs
+              - externalSystemID
+              - exportFormat
+          examples:
+            repostToQuickBooks:
+              summary: Repost invoices to QuickBooks
+              value:
+                invoiceStatementIDs: [12345, 12346]
+                externalSystemID: 10
+                exportFormat: "QuickBooks"
+                forceRepost: false
+
+    responses:
+      '200':
+        description: Repost successful
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                exportBatchID:
+                  type: integer
+                  format: int32
+                batchNumber:
+                  type: string
+                status:
+                  type: string
+                totalInvoicesPosted:
+                  type: integer
+                totalInvoicesFailed:
+                  type: integer
+                externalSystemName:
+                  type: string
+                externalBatchID:
+                  type: string
+                integrationStatus:
+                  type: string
+                  enum: [Sent, Acknowledged, Accepted, Rejected]
+                message:
+                  type: string
+            example:
+              exportBatchID: 66667
+              batchNumber: "REPOST-2024-01-001"
+              status: "Completed"
+              totalInvoicesPosted: 2
+              totalInvoicesFailed: 0
+              externalSystemName: "QuickBooks Online"
+              externalBatchID: "QB-BATCH-2024-002"
+              integrationStatus: "Accepted"
+              message: "Invoices successfully reposted to QuickBooks Online"
+
+      '400':
+        description: Bad request - validation error
+      '401':
+        description: Unauthorized - invalid or missing authentication
+      '403':
+        description: Forbidden - user lacks repost permissions
+      '404':
+        description: Not found - invoice or external system not found
+      '500':
+        description: Internal server error

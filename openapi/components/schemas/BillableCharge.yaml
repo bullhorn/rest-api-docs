@@ -306,6 +306,28 @@ BillableCharge:
         - $ref: './common.yaml#/EntityReference'
         - description: Associated ExpenseSheet
         - readOnly: true
+    invoiceStatements:
+      type: object
+      description: |
+        Collection of InvoiceStatements that include this billable charge.
+        A charge can appear on multiple invoices (e.g., original invoice and credit invoice).
+
+        When a charge is invoiced:
+        - BillMasterTransactions are linked to InvoiceStatementLineItems
+        - Charge status progresses to Invoicing (5) or Invoiced (6)
+        - isInvoiced flag is set to true
+        - Charge becomes immutable
+
+        **Usage**: `GET /entity/BillableCharge/{id}/invoiceStatements`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of invoices including this charge
+        data:
+          type: array
+          items:
+            $ref: './InvoiceStatementEntity.yaml#/InvoiceStatementEntity'
   required:
     - periodEndDate
   example:

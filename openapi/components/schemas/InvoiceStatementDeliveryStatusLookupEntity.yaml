@@ -1,0 +1,76 @@
+InvoiceStatementDeliveryStatusLookupEntity:
+  type: object
+  description: |
+    Lookup table for invoice delivery status values. Tracks how and whether an invoice
+    has been delivered to the client.
+
+    **CRUD Access**: READ only
+    **Entitlements**: Public lookup data
+
+    **Common Delivery Status Values**:
+    - **Not Delivered**: Invoice has not been sent to the client yet
+    - **Email Sent**: Invoice delivered via email
+    - **Email Failed**: Email delivery failed (see emailErrorReason on InvoiceStatement)
+    - **Downloaded**: Invoice downloaded by client from portal
+    - **Printed**: Invoice printed for physical mail delivery
+    - **Faxed**: Invoice sent via fax (legacy)
+    - **API Delivered**: Invoice delivered via API integration
+    - **EDI Sent**: Invoice sent via EDI (Electronic Data Interchange)
+
+    The delivery status is automatically updated when invoice delivery actions occur
+    (e.g., when /services/InvoiceStatement/email is called successfully).
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: Primary key. Unique identifier for the delivery status.
+      readOnly: true
+      example: 2
+
+    label:
+      type: string
+      maxLength: 100
+      description: |
+        Display label for the delivery status.
+      example: "Email Sent"
+
+    description:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Detailed description of what this delivery status represents.
+      example: "Invoice successfully delivered to client via email."
+
+    isActive:
+      type: boolean
+      description: |
+        Indicates whether this delivery status is currently active and available for use.
+        Inactive statuses may be legacy values no longer in use.
+
+        Default: true
+      example: true
+
+    sortOrder:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Sort order for displaying delivery status values in dropdowns and reports.
+        Lower numbers appear first.
+      example: 2
+
+    # Delivery Method Classification
+    deliveryMethod:
+      type: string
+      maxLength: 50
+      nullable: true
+      description: |
+        The delivery method this status represents.
+        Examples: "Email", "Print", "Download", "API", "EDI", "Fax"
+      example: "Email"
+
+  required:
+    - id
+    - label
