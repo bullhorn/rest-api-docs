@@ -9,7 +9,7 @@ BadRequest:
           summary: Missing required field
           value:
             errorCode: MISSING_REQUIRED_FIELD
-            errorMessage: Required field 'description' is missing
+            errorMessage: "Required field 'description' is missing"
             errorMessageKey: errors.entity.missingRequired
             errors:
               - field: description
@@ -18,19 +18,19 @@ BadRequest:
           summary: Missing placement or billing profile
           value:
             errorCode: INVALID_REQUEST
-            errorMessage: At least one of 'placement' or 'billingProfile' is required. If only placement is provided, it must have a billing profile.
+            errorMessage: 'At least one of "placement" or "billingProfile" is required. If only placement is provided, it must have a billing profile.'
             errorMessageKey: errors.billableCharge.placementOrProfileRequired
         invalidField:
           summary: Invalid field name
           value:
             errorCode: INVALID_FIELD
-            errorMessage: Field 'invalidField' does not exist on entity BillableCharge
+            errorMessage: "Field 'invalidField' does not exist on entity BillableCharge"
             errorMessageKey: errors.entity.invalidField
         invalidDataType:
           summary: Invalid data type
           value:
             errorCode: INVALID_DATA_TYPE
-            errorMessage: Field 'periodEndDate' must be a valid date in format YYYY-MM-DD
+            errorMessage: 'Field "periodEndDate" must be a valid date in format YYYY-MM-DD'
             errorMessageKey: errors.entity.invalidDataType
             errors:
               - field: periodEndDate
@@ -48,15 +48,24 @@ Unauthorized:
         errorMessageKey: errors.auth.unauthorized
 
 Forbidden:
-  description: Forbidden - Insufficient permissions
+  description: Forbidden - Insufficient permissions for this operation
   content:
     application/json:
       schema:
         $ref: '../schemas/common.yaml#/ErrorResponse'
-      example:
-        errorCode: FORBIDDEN
-        errorMessage: You do not have permission to perform this action
-        errorMessageKey: errors.auth.forbidden
+      examples:
+        insufficientPermissions:
+          summary: Missing required entitlement
+          value:
+            errorCode: FORBIDDEN
+            errorMessage: 'User lacks required entitlement: Mark Billable Charge Ready'
+            errorMessageKey: errors.auth.forbidden
+        invalidStatus:
+          summary: Invalid status for operation
+          value:
+            errorCode: INVALID_STATUS
+            errorMessage: 'BillableCharge with ID 12345 cannot be marked as ready from status: Invoiced'
+            errorMessageKey: errors.billableCharge.invalidStatusTransition
 
 NotFound:
   description: Not Found - The requested entity does not exist

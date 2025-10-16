@@ -8,6 +8,11 @@ BillableChargeCreateRequest:
     - At least one of `placement` or `billingProfile` must be provided
     - If only `placement` is provided, the placement must have an associated billing profile
     - The `billMasters` array contains the individual transaction records for this charge
+
+    **Middle Office Workflow:**
+    New BillableCharges are created in `NotReadyToBill` status by default. They progress through
+    validation and approval workflows before reaching `ReadyToBill` status, at which point they
+    can be invoiced to clients.
   properties:
     description:
       type: string
@@ -17,7 +22,9 @@ BillableChargeCreateRequest:
     periodEndDate:
       type: string
       format: date
-      description: Period end date for this billable charge (required)
+      description: |
+        Period end date for this billable charge (required).
+        Typically aligns with the billing cycle end date.
       example: '2024-04-27'
     placement:
       allOf:
@@ -34,11 +41,14 @@ BillableChargeCreateRequest:
         - description: |
             Reference to the BillingProfile entity.
             Required if placement is not provided.
+            The billing profile defines rate cards, invoicing schedules, and GL accounts.
       example:
         id: 150
     billMasters:
       type: array
-      description: Array of bill master transaction records
+      description: |
+        Array of bill master transaction records.
+        Each record represents a discrete unit of billable work (time or expense).
       items:
         $ref: './BillMaster.yaml#/BillMaster'
       minItems: 1
@@ -48,7 +58,7 @@ BillableChargeCreateRequest:
           amount: 1500.0
           earnCode:
             id: 5
-          rate: 50
+          rate: 50.0
           customerRequiredFields:
             - customerRequiredFieldMeta:
                 id: 2
@@ -56,14 +66,16 @@ BillableChargeCreateRequest:
                 id: 14
             - customerRequiredFieldMeta:
                 id: 1
-              textValue: Meta Text Value!
+              textValue: 'Meta Text Value!'
   required:
     - description
     - periodEndDate
     - billMasters
   anyOf:
-    - required: [placement]
-    - required: [billingProfile]
+    - required:
+        - placement
+    - required:
+        - billingProfile
   example:
     description: BillableCharge Test
     periodEndDate: '2024-04-27'
@@ -75,7 +87,7 @@ BillableChargeCreateRequest:
         amount: 1500.0
         earnCode:
           id: 5
-        rate: 50
+        rate: 50.0
         customerRequiredFields:
           - customerRequiredFieldMeta:
               id: 2
@@ -83,4 +95,4 @@ BillableChargeCreateRequest:
               id: 14
           - customerRequiredFieldMeta:
               id: 1
-            textValue: Meta Text Value!
+            textValue: 'Meta Text Value!'

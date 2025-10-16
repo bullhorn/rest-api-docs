@@ -1,9 +1,7 @@
-.bundle
+build/
+_site
+/source/includes/npm-debug.log
+.vagrant
 .idea
-build
 vendor
 node_modules
-
-_site
-.vagrant
-/source/includes/npm-debug.log

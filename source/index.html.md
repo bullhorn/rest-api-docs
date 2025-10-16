@@ -5,6 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
+  - <a href='/redoc.html' target='_blank'><strong>Middle Office API Reference</strong></a>
 
 includes:
   - intro

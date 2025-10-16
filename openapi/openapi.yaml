@@ -1,9 +1,40 @@
 openapi: 3.0.3
 info:
-  title: Bullhorn REST API
+  title: Bullhorn Middle Office API
   version: 1.0.0
   description: |
-    The Bullhorn REST API provides programmatic access to the Bullhorn ATS/CRM platform.
+    The Bullhorn Middle Office API provides programmatic access to the Middle Office suite,
+    managing the complete lifecycle from placement configuration through time/expense entry
+    to payroll and billing operations.
+
+    ## Middle Office Systems
+
+    Middle Office consists of three integrated systems:
+
+    - **Pay Bill System** (91 entities): Manages billing, invoicing, rate cards, general ledger
+      integration, and revenue recognition. Core entities include BillableCharge, BillMaster,
+      InvoiceStatement, and BillingProfile.
+
+    - **Time and Labor System** (7 entities): Handles time entry, expense reporting, and
+      approval workflows for contractor placements. Core entities include Timesheet and
+      ExpenseSheet.
+
+    - **Back to Employer System** (7 entities): Manages placement configuration, certifications,
+      onboarding, and shift scheduling. Core entities include PlacementCertification and
+      OnboardingConfiguration.
+
+    ## BillableCharge Workflow
+
+    The BillableCharge entity is central to the billing process, progressing through these statuses:
+
+    1. **NotReadyToBill**: Initial state for new charges
+    2. **ReadyToBill**: Charges validated and ready for invoicing
+    3. **Processing**: Currently being processed into invoices
+    4. **NeedsReview**: Requires manual review due to validation issues
+    5. **Invoiced**: Successfully invoiced to client
+    6. **Unbillable**: Marked as non-billable
+    7. **ProcessingFailed**: Failed during invoice generation
+    8. **OnHold**: Temporarily paused from billing
 
     ## Authentication
 
@@ -25,7 +56,7 @@ info:
     - `{corpToken}` is your corporation token from the login response (e.g., 'e999')
 
   contact:
-    name: Bullhorn API Support
+    name: Bullhorn Middle Office Support
     url: https://bullhorn.github.io/rest-api-docs
   license:
     name: Proprietary
@@ -40,7 +71,7 @@ servers:
           Data center swimlane number (e.g., '9', '22').
           Leave empty for default. Obtained from /loginInfo endpoint.
       corpToken:
-        default: e999
+        default: 'e999'
         description: |
           Corporation token returned from the login endpoint.
           This identifies your organization's instance.
@@ -51,16 +82,31 @@ security:
 tags:
   - name: Services - BillableCharge
     description: |
-      BillableCharge service endpoints for creating and updating billable charges.
+      BillableCharge service endpoints for creating, updating, and managing billable charges
+      through their workflow lifecycle.
 
       A BillableCharge records a chargeable fee, capturing key details like the fee amount,
-      rate type, and effective dates, and ties these charges to specific BillMasterTransactions.
+      rate type, effective dates, and status. It ties charges to specific BillMasterTransactions
+      and manages them through the billing workflow from creation to invoicing.
 
 paths:
   /services/BillableCharge:
     $ref: './paths/services/BillableCharge.yaml#/createBillableCharge'
+
   /services/BillableCharge/{billableChargeId}:
     $ref: './paths/services/BillableCharge.yaml#/updateBillableCharge'
+
+  /services/BillableCharge/markAsReady:
+    $ref: './paths/services/BillableCharge.yaml#/markAsReady'
+
+  /services/BillableCharge/markUnbillable:
+    $ref: './paths/services/BillableCharge.yaml#/markUnbillable'
+
+  /services/BillableCharge/updateHoldStatus:
+    $ref: './paths/services/BillableCharge.yaml#/updateHoldStatus'
+
+  /services/BillableCharge/clearNeedsReviewAndMarkAsReady:
+    $ref: './paths/services/BillableCharge.yaml#/clearNeedsReviewAndMarkAsReady'
 
 components:
   securitySchemes:
@@ -80,3 +126,12 @@ components:
         ```
         BhRestToken: a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6
         ```
+
+  parameters:
+    $ref: './components/parameters/common.yaml'
+
+  schemas:
+    $ref: './components/schemas/common.yaml'
+
+  responses:
+    $ref: './components/responses/errors.yaml'

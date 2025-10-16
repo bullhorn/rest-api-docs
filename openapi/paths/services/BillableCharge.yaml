@@ -14,13 +14,16 @@ createBillableCharge:
         - If only a billing profile is provided, it will be used directly
       - **BillMasters required**: At least one bill master transaction must be included
 
-      ## Workflow
+      ## Middle Office Workflow
 
       1. Validate that either placement or billing profile exists
-      2. Create the BillableCharge entity
+      2. Create the BillableCharge entity in `NotReadyToBill` status
       3. Create associated BillMaster transactions
       4. Link customer required fields if provided
       5. Return the created entity ID
+
+      The charge will remain in `NotReadyToBill` status until explicitly marked as ready
+      using the `/services/BillableCharge/markAsReady` endpoint.
 
       ## Common Errors
 
@@ -28,7 +31,6 @@ createBillableCharge:
       - `401 Unauthorized`: Invalid or expired session token
       - `404 Not Found`: Referenced placement or billing profile does not exist
       - `500 Internal Server Error`: Unexpected server error
-
     operationId: createBillableCharge
     security:
       - BhRestToken: []
@@ -46,7 +48,7 @@ createBillableCharge:
               summary: Create with placement reference
               description: Most common scenario - create billable charge linked to a placement
               value:
-                description: Weekly billing for placement #272
+                description: Weekly billing for placement
                 periodEndDate: '2024-04-27'
                 placement:
                   id: 272
@@ -148,19 +150,28 @@ updateBillableCharge:
       - Modify customer required fields
       - Update charge description or period end date
 
+      ## Middle Office Context
+
+      Updates are commonly performed when:
+      - Additional time or expenses are submitted after initial charge creation
+      - Corrections are needed before marking the charge as ready to bill
+      - Customer required fields need to be populated or corrected
+      - The charge is in `NeedsReview` status and requires modifications
+
       ## Notes
 
       - The billableChargeId path parameter identifies which charge to update
       - You can provide only the fields you want to update
       - BillMasters in the request will be added or updated based on the system logic
+      - Cannot update charges in `Invoiced`, `Processing`, or certain other locked statuses
 
       ## Common Errors
 
       - `400 Bad Request`: Invalid data provided
       - `401 Unauthorized`: Invalid or expired session token
+      - `403 Forbidden`: Charge is in a status that cannot be updated
       - `404 Not Found`: BillableCharge with specified ID does not exist
       - `500 Internal Server Error`: Unexpected server error
-
     operationId: updateBillableCharge
     security:
       - BhRestToken: []
@@ -236,6 +247,519 @@ updateBillableCharge:
         $ref: '../../components/responses/errors.yaml#/BadRequest'
       '401':
         $ref: '../../components/responses/errors.yaml#/Unauthorized'
+      '403':
+        $ref: '../../components/responses/errors.yaml#/Forbidden'
+      '404':
+        $ref: '../../components/responses/errors.yaml#/NotFound'
+      '429':
+        $ref: '../../components/responses/errors.yaml#/RateLimited'
+      '500':
+        $ref: '../../components/responses/errors.yaml#/InternalServerError'
+
+markAsReady:
+  post:
+    tags:
+      - Services - BillableCharge
+    summary: Mark BillableCharges as ready to bill
+    description: |
+      Marks one or more BillableCharges as ready to bill by transitioning them to `ReadyToBill` status.
+
+      ## Required Entitlement
+
+      - **Mark Billable Charge Ready**: User must have this entitlement to execute this operation
+
+      ## Workflow
+
+      1. Validates that all specified BillableCharges exist and are in `NotReadyToBill` status
+      2. Runs validation rules to ensure charges are complete and ready for invoicing
+      3. Transitions valid charges to `ReadyToBill` status
+      4. Returns success/failure results for each charge
+
+      ## Middle Office Context
+
+      This is a critical step in the billing workflow. Once marked as ready:
+      - Charges become eligible for invoice generation
+      - They appear in billing queues for processing
+      - Further modifications require special permissions
+      - The charges are locked from casual edits to maintain billing integrity
+
+      ## Valid Status Transitions
+
+      - `NotReadyToBill` → `ReadyToBill`: Standard path
+      - `NeedsReview` → `ReadyToBill`: After review and corrections (requires `clearNeedsReviewAndMarkAsReady`)
+      - `OnHold` → Not valid (use `updateHoldStatus` to remove hold first)
+
+      ## Common Validation Failures
+
+      - Missing required customer fields
+      - No associated transactions (billMasters)
+      - Invalid billing profile configuration
+      - Timesheet/expense not approved
+      - Missing placement information
+      - Charge already in `Invoiced`, `Processing`, or other non-editable status
+
+      ## Example Errors
+
+      - `403 Forbidden`: User lacks "Mark Billable Charge Ready" entitlement
+      - `403 Forbidden`: Charge is not in a valid status for this transition
+      - `404 Not Found`: One or more specified charge IDs do not exist
+    operationId: markBillableChargesAsReady
+    security:
+      - BhRestToken: []
+    parameters:
+      - $ref: '../../components/parameters/common.yaml#/BillableChargeIds'
+      - $ref: '../../components/parameters/common.yaml#/BhRestToken'
+    responses:
+      '200':
+        description: Operation completed (check results for individual charge status)
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/common.yaml#/BulkOperationResponse'
+            examples:
+              allSuccess:
+                summary: All charges marked as ready successfully
+                value:
+                  results:
+                    SUCCESS: [123, 456, 789]
+                    FAILURE: []
+                  overallStatus: SUCCESS
+                  message: Successfully marked 3 BillableCharges as ready to bill
+                  successIds: [123, 456, 789]
+                  failureIds: []
+              partialSuccess:
+                summary: Some charges failed validation
+                value:
+                  results:
+                    SUCCESS: [123, 456]
+                    FAILURE: [789]
+                  overallStatus: PARTIAL_SUCCESS
+                  message: Marked 2 of 3 BillableCharges as ready to bill
+                  successIds: [123, 456]
+                  failureIds: [789]
+                  errors:
+                    - entityId: 789
+                      errorMessage: 'BillableCharge 789 is missing required customer field: Project Code'
+      '400':
+        $ref: '../../components/responses/errors.yaml#/BadRequest'
+      '401':
+        $ref: '../../components/responses/errors.yaml#/Unauthorized'
+      '403':
+        $ref: '../../components/responses/errors.yaml#/Forbidden'
+      '404':
+        $ref: '../../components/responses/errors.yaml#/NotFound'
+      '429':
+        $ref: '../../components/responses/errors.yaml#/RateLimited'
+      '500':
+        $ref: '../../components/responses/errors.yaml#/InternalServerError'
+
+markUnbillable:
+  post:
+    tags:
+      - Services - BillableCharge
+    summary: Mark BillableCharges as unbillable
+    description: |
+      Marks one or more BillableCharges as unbillable, preventing them from being invoiced to clients.
+
+      ## Required Entitlement
+
+      - **Mark Billable Charge Unbillable**: User must have this entitlement to execute this operation
+
+      ## Use Cases
+
+      - Time or expenses rejected by client
+      - Work performed in error or not authorized
+      - Contractual exceptions (pro bono, training, etc.)
+      - Quality issues requiring charge cancellation
+      - Administrative corrections
+
+      ## Workflow
+
+      1. Validates that specified BillableCharges exist
+      2. Verifies charges are not already invoiced
+      3. Transitions charges to `Unbillable` status
+      4. Removes charges from billing queues
+      5. Returns success/failure results for each charge
+
+      ## Status Transition Rules
+
+      Can transition to `Unbillable` from:
+      - `NotReadyToBill`
+      - `ReadyToBill`
+      - `NeedsReview`
+      - `OnHold`
+      - `ProcessingFailed`
+
+      Cannot transition from:
+      - `Invoiced` (already billed to client)
+      - `Processing` (currently being invoiced)
+
+      ## Impact
+
+      - Charges marked as unbillable are excluded from revenue recognition
+      - Associated transactions remain linked but are not billed
+      - The placement's billing history reflects these as unbillable periods
+      - Reports will show these charges separately from billable amounts
+
+      ## Common Errors
+
+      - `403 Forbidden`: User lacks required entitlement
+      - `403 Forbidden`: Charge already invoiced (cannot mark as unbillable)
+      - `404 Not Found`: Specified charge ID does not exist
+    operationId: markBillableChargesUnbillable
+    security:
+      - BhRestToken: []
+    parameters:
+      - $ref: '../../components/parameters/common.yaml#/BillableChargeIds'
+      - $ref: '../../components/parameters/common.yaml#/BhRestToken'
+    responses:
+      '200':
+        description: Operation completed (check results for individual charge status)
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/common.yaml#/BulkOperationResponse'
+            examples:
+              allSuccess:
+                summary: All charges marked as unbillable successfully
+                value:
+                  results:
+                    SUCCESS: [123, 456]
+                    FAILURE: []
+                  overallStatus: SUCCESS
+                  message: Successfully marked 2 BillableCharges as unbillable
+                  successIds: [123, 456]
+                  failureIds: []
+              partialFailure:
+                summary: Some charges already invoiced
+                value:
+                  results:
+                    SUCCESS: [123]
+                    FAILURE: [456]
+                  overallStatus: PARTIAL_SUCCESS
+                  message: Marked 1 of 2 BillableCharges as unbillable
+                  successIds: [123]
+                  failureIds: [456]
+                  errors:
+                    - entityId: 456
+                      errorMessage: 'Cannot mark BillableCharge 456 as unbillable: already invoiced'
+      '400':
+        $ref: '../../components/responses/errors.yaml#/BadRequest'
+      '401':
+        $ref: '../../components/responses/errors.yaml#/Unauthorized'
+      '403':
+        $ref: '../../components/responses/errors.yaml#/Forbidden'
+      '404':
+        $ref: '../../components/responses/errors.yaml#/NotFound'
+      '429':
+        $ref: '../../components/responses/errors.yaml#/RateLimited'
+      '500':
+        $ref: '../../components/responses/errors.yaml#/InternalServerError'
+
+updateHoldStatus:
+  put:
+    tags:
+      - Services - BillableCharge
+    summary: Update hold status of BillableCharges
+    description: |
+      Places BillableCharges on hold or removes them from hold status. Charges on hold
+      are temporarily excluded from billing processing.
+
+      ## Required Entitlement
+
+      - **Edit Billable Charge**: User must have this entitlement to execute this operation
+
+      ## Use Cases
+
+      ### Placing on Hold
+      - Client payment issues or disputes
+      - Pending contract amendments
+      - Investigation of time/expense discrepancies
+      - Awaiting additional documentation
+      - Client-requested billing delay
+
+      ### Removing from Hold
+      - Issues resolved, ready to resume billing
+      - Documentation received and validated
+      - Client authorization obtained
+      - Dispute settled
+
+      ## Request Body
+
+      ```json
+      {
+        "billableChargeIds": [123, 456, 789],
+        "onHold": true,
+        "comments": "Placed on hold pending client payment"
+      }
+      ```
+
+      ## Workflow
+
+      1. Validates that specified BillableCharges exist
+      2. Verifies user has edit permissions
+      3. Updates hold status (`onHold` flag)
+      4. For holds: Transitions status to `OnHold`, removes from billing queues
+      5. For removals: Returns to previous status (`NotReadyToBill` or `ReadyToBill`)
+      6. Logs the hold/release action with user and timestamp
+      7. Returns success/failure results
+
+      ## Status Transitions
+
+      ### When Placing on Hold
+      - `NotReadyToBill` → `OnHold`
+      - `ReadyToBill` → `OnHold`
+      - `NeedsReview` → `OnHold`
+
+      Cannot place on hold:
+      - `Invoiced` (already billed)
+      - `Processing` (currently being processed)
+      - `Unbillable` (marked as non-billable)
+
+      ### When Removing Hold
+      - `OnHold` → Returns to previous status before hold
+
+      ## Middle Office Impact
+
+      Charges on hold:
+      - Are excluded from automated billing runs
+      - Do not appear in "ready to bill" queues
+      - Are tracked separately in hold reports
+      - Maintain all transaction data and relationships
+      - Can still be edited and updated
+
+      ## Common Errors
+
+      - `403 Forbidden`: User lacks "Edit Billable Charge" entitlement
+      - `403 Forbidden`: Cannot place invoiced charge on hold
+      - `404 Not Found`: Specified charge ID does not exist
+    operationId: updateBillableChargeHoldStatus
+    security:
+      - BhRestToken: []
+    parameters:
+      - $ref: '../../components/parameters/common.yaml#/BhRestToken'
+    requestBody:
+      required: true
+      description: Hold status update data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              billableChargeIds:
+                type: array
+                description: Array of BillableCharge IDs to update (maximum 500)
+                items:
+                  type: integer
+                  format: int64
+                minItems: 1
+                maxItems: 500
+                example: [123, 456, 789]
+              onHold:
+                type: boolean
+                description: 'true to place on hold, false to remove from hold'
+                example: true
+              comments:
+                type: string
+                description: Optional comments explaining the hold/release reason
+                maxLength: 2000
+                example: 'Placed on hold pending client payment resolution'
+            required:
+              - billableChargeIds
+              - onHold
+          examples:
+            placeOnHold:
+              summary: Place charges on hold
+              description: Place multiple charges on hold with reason
+              value:
+                billableChargeIds: [123, 456]
+                onHold: true
+                comments: Client dispute - holding until resolution
+            removeHold:
+              summary: Remove hold status
+              description: Remove hold and return charges to normal workflow
+              value:
+                billableChargeIds: [123, 456]
+                onHold: false
+                comments: Dispute resolved, resuming billing
+    responses:
+      '200':
+        description: Operation completed (check results for individual charge status)
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/common.yaml#/BulkOperationResponse'
+            examples:
+              allSuccess:
+                summary: All charges updated successfully
+                value:
+                  results:
+                    SUCCESS: [123, 456]
+                    FAILURE: []
+                  overallStatus: SUCCESS
+                  message: Successfully updated hold status for 2 BillableCharges
+                  successIds: [123, 456]
+                  failureIds: []
+              partialFailure:
+                summary: Some charges could not be updated
+                value:
+                  results:
+                    SUCCESS: [123]
+                    FAILURE: [456]
+                  overallStatus: PARTIAL_SUCCESS
+                  message: Updated hold status for 1 of 2 BillableCharges
+                  successIds: [123]
+                  failureIds: [456]
+                  errors:
+                    - entityId: 456
+                      errorMessage: 'Cannot place BillableCharge 456 on hold: already invoiced'
+      '400':
+        $ref: '../../components/responses/errors.yaml#/BadRequest'
+      '401':
+        $ref: '../../components/responses/errors.yaml#/Unauthorized'
+      '403':
+        $ref: '../../components/responses/errors.yaml#/Forbidden'
+      '404':
+        $ref: '../../components/responses/errors.yaml#/NotFound'
+      '429':
+        $ref: '../../components/responses/errors.yaml#/RateLimited'
+      '500':
+        $ref: '../../components/responses/errors.yaml#/InternalServerError'
+
+clearNeedsReviewAndMarkAsReady:
+  post:
+    tags:
+      - Services - BillableCharge
+    summary: Clear needs review flag and mark as ready
+    description: |
+      Clears the "needs review" flag from BillableCharges and transitions them to `ReadyToBill` status.
+
+      ## Required Entitlements
+
+      Requires **ALL** of the following entitlements:
+      - **Mark Billable Charge Ready**: Required to transition to ReadyToBill status
+      - **View Billable Charge**: Required to view charge details
+      - **Edit Billable Charge**: Required to clear the needs review flag
+
+      ## Use Cases
+
+      BillableCharges enter `NeedsReview` status when:
+      - Validation rules fail during `markAsReady` operation
+      - Billing configuration changes require re-validation
+      - Manual review flags are set by users
+      - Automated quality checks detect anomalies
+
+      This endpoint is used after:
+      - Reviewing and correcting the flagged issues
+      - Verifying all transactions are accurate
+      - Confirming customer required fields are complete
+      - Validating billing rates and amounts
+      - Obtaining necessary approvals
+
+      ## Workflow
+
+      1. Validates user has all three required entitlements
+      2. Verifies charges are in `NeedsReview` status
+      3. Clears the needs review flag
+      4. Re-runs validation rules
+      5. If validation passes: Transitions to `ReadyToBill` status
+      6. If validation fails: Remains in `NeedsReview` with error details
+      7. Returns success/failure results
+
+      ## Middle Office Context
+
+      This is a critical quality control step in the billing workflow:
+      - Ensures charges have been manually reviewed before invoicing
+      - Maintains audit trail of review and approval
+      - Prevents problematic charges from reaching clients
+      - Supports compliance and quality assurance processes
+
+      ## Status Transitions
+
+      - `NeedsReview` → `ReadyToBill`: Standard path after successful review
+      - Other statuses: Operation will fail
+
+      ## Common Scenarios
+
+      ### Scenario 1: Missing Customer Required Field
+      1. Charge marked ready → fails validation → enters `NeedsReview`
+      2. User adds missing project code via PUT `/services/BillableCharge/{id}`
+      3. User calls this endpoint → validation passes → moves to `ReadyToBill`
+
+      ### Scenario 2: Rate Discrepancy
+      1. Automated check flags unusual billing rate → enters `NeedsReview`
+      2. Billing manager reviews and confirms rate is correct
+      3. Manager calls this endpoint → clears flag → moves to `ReadyToBill`
+
+      ### Scenario 3: Persistent Validation Failure
+      1. Charge flagged for review due to missing placement data
+      2. User calls this endpoint without fixing the issue
+      3. Validation still fails → charge remains in `NeedsReview`
+      4. Response includes specific validation errors to address
+
+      ## Example Errors
+
+      - `403 Forbidden`: User lacks one or more required entitlements
+      - `403 Forbidden`: Charge not in `NeedsReview` status
+      - `400 Bad Request`: Charge still fails validation (with error details)
+    operationId: clearNeedsReviewAndMarkAsReady
+    security:
+      - BhRestToken: []
+    parameters:
+      - $ref: '../../components/parameters/common.yaml#/BillableChargeIds'
+      - $ref: '../../components/parameters/common.yaml#/BhRestToken'
+    responses:
+      '200':
+        description: Operation completed (check results for individual charge status)
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/common.yaml#/BulkOperationResponse'
+            examples:
+              allSuccess:
+                summary: All charges cleared and marked as ready
+                value:
+                  results:
+                    SUCCESS: [123, 456]
+                    FAILURE: []
+                  overallStatus: SUCCESS
+                  message: Successfully cleared review flag and marked 2 BillableCharges as ready
+                  successIds: [123, 456]
+                  failureIds: []
+              partialFailure:
+                summary: Some charges still fail validation
+                value:
+                  results:
+                    SUCCESS: [123]
+                    FAILURE: [456]
+                  overallStatus: PARTIAL_SUCCESS
+                  message: Cleared 1 of 2 BillableCharges for billing
+                  successIds: [123]
+                  failureIds: [456]
+                  errors:
+                    - entityId: 456
+                      errorMessage: 'BillableCharge 456 still missing required field: Cost Center'
+              wrongStatus:
+                summary: Charges not in NeedsReview status
+                value:
+                  results:
+                    SUCCESS: []
+                    FAILURE: [123, 456]
+                  overallStatus: FAILURE
+                  message: Cannot clear review flag for charges not in NeedsReview status
+                  successIds: []
+                  failureIds: [123, 456]
+                  errors:
+                    - entityId: 123
+                      errorMessage: 'BillableCharge 123 is in ReadyToBill status, not NeedsReview'
+                    - entityId: 456
+                      errorMessage: 'BillableCharge 456 is in Invoiced status, not NeedsReview'
+      '400':
+        $ref: '../../components/responses/errors.yaml#/BadRequest'
+      '401':
+        $ref: '../../components/responses/errors.yaml#/Unauthorized'
+      '403':
+        $ref: '../../components/responses/errors.yaml#/Forbidden'
       '404':
         $ref: '../../components/responses/errors.yaml#/NotFound'
       '429':

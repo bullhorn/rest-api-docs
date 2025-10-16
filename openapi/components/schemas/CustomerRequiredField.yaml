@@ -24,8 +24,10 @@ CustomerRequiredField:
   required:
     - customerRequiredFieldMeta
   oneOf:
-    - required: [customerRequiredFieldOption]
-    - required: [textValue]
+    - required:
+        - customerRequiredFieldOption
+    - required:
+        - textValue
   example:
     customerRequiredFieldMeta:
       id: 2

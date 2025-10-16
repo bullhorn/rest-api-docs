@@ -1,5 +1,3 @@
-# Common schema definitions used across multiple entities
-
 EntityReference:
   type: object
   description: Reference to another entity by ID
@@ -29,7 +27,10 @@ StandardChangeResponse:
       example: 12345
     changeType:
       type: string
-      enum: [INSERT, UPDATE, DELETE]
+      enum:
+        - INSERT
+        - UPDATE
+        - DELETE
       description: The type of change operation performed
       example: INSERT
     data:
@@ -42,6 +43,75 @@ StandardChangeResponse:
     - changedEntityId
     - changeType
 
+BulkOperationResponse:
+  type: object
+  description: Response structure for bulk operations that process multiple entities
+  properties:
+    results:
+      type: object
+      description: Results grouped by success/failure status
+      properties:
+        SUCCESS:
+          type: array
+          description: IDs of entities that were successfully processed
+          items:
+            type: integer
+            format: int64
+          example: [123, 456, 789]
+        FAILURE:
+          type: array
+          description: IDs of entities that failed to process
+          items:
+            type: integer
+            format: int64
+          example: [999]
+    overallStatus:
+      type: string
+      enum:
+        - SUCCESS
+        - PARTIAL_SUCCESS
+        - FAILURE
+      description: Overall status of the bulk operation
+      example: SUCCESS
+    message:
+      type: string
+      description: Human-readable message about the operation result
+      example: 'Successfully processed 3 BillableCharges'
+    successIds:
+      type: array
+      description: List of successfully processed entity IDs
+      items:
+        type: integer
+        format: int64
+      example: [123, 456, 789]
+    failureIds:
+      type: array
+      description: List of entity IDs that failed processing
+      items:
+        type: integer
+        format: int64
+      example: [999]
+    errors:
+      type: array
+      description: Detailed error information for failures
+      items:
+        type: object
+        properties:
+          entityId:
+            type: integer
+            format: int64
+            description: ID of the entity that failed
+          errorMessage:
+            type: string
+            description: Error message explaining the failure
+        example:
+          entityId: 999
+          errorMessage: 'BillableCharge is already in ReadyToBill status'
+  required:
+    - results
+    - overallStatus
+    - message
+
 ErrorResponse:
   type: object
   description: Standard error response structure
@@ -53,7 +123,7 @@ ErrorResponse:
     errorMessage:
       type: string
       description: Human-readable error message
-      example: Field 'invalidField' does not exist on entity BillableCharge
+      example: "Field 'invalidField' does not exist on entity BillableCharge"
     errorMessageKey:
       type: string
       description: Localization key for the error message
@@ -72,7 +142,7 @@ ErrorResponse:
             description: Error message for this field
   example:
     errorCode: MISSING_REQUIRED_FIELD
-    errorMessage: Required field 'description' is missing
+    errorMessage: "Required field 'description' is missing"
     errorMessageKey: errors.entity.missingRequired
     errors:
       - field: description

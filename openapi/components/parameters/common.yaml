@@ -24,3 +24,15 @@ BillableChargeId:
     format: int64
     minimum: 1
   example: 12345
+
+BillableChargeIds:
+  name: billableChargeIds
+  in: query
+  required: true
+  description: |
+    Comma-separated list of BillableCharge IDs to process.
+    Maximum 500 IDs per request.
+  schema:
+    type: string
+    pattern: '^\d+(,\d+)*$'
+  example: '12345,12346,12347'

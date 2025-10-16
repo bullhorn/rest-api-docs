@@ -5,6 +5,10 @@ BillableChargeUpdateRequest:
 
     **Note:** When updating a BillableCharge, you typically provide the billMasters
     array with transaction records to be added or modified.
+
+    **Middle Office Context**: Updates are commonly used to add additional transactions
+    to an existing charge, correct transaction details, or update customer required fields
+    before the charge moves to `ReadyToBill` status.
   properties:
     description:
       type: string
@@ -41,7 +45,7 @@ BillableChargeUpdateRequest:
           amount: 1500.0
           earnCode:
             id: 5
-          rate: 50
+          rate: 50.0
           customerRequiredFields:
             - customerRequiredFieldMeta:
                 id: 2
@@ -49,7 +53,7 @@ BillableChargeUpdateRequest:
                 id: 14
             - customerRequiredFieldMeta:
                 id: 1
-              textValue: Meta Text Value!
+              textValue: 'Meta Text Value!'
   example:
     billMasters:
       - quantity: 30.0
@@ -57,7 +61,7 @@ BillableChargeUpdateRequest:
         amount: 1500.0
         earnCode:
           id: 5
-        rate: 50
+        rate: 50.0
         customerRequiredFields:
           - customerRequiredFieldMeta:
               id: 2
@@ -65,4 +69,4 @@ BillableChargeUpdateRequest:
               id: 14
           - customerRequiredFieldMeta:
               id: 1
-            textValue: Meta Text Value!
+            textValue: 'Meta Text Value!'

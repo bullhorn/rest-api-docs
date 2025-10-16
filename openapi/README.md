@@ -1,332 +1,315 @@
-# Bullhorn REST API - OpenAPI Specification
+# Bullhorn Middle Office API - OpenAPI Specification
 
-This directory contains the OpenAPI 3.0.3 specification for the Bullhorn REST API, starting with the BillableCharge service endpoints.
+This directory contains the OpenAPI 3.0.3 specification for the Bullhorn Middle Office API, documenting service endpoints for managing the billing lifecycle from placement configuration through invoicing.
 
-## Directory Structure
+## Overview
+
+The Bullhorn Middle Office suite consists of three integrated systems:
+
+- **Pay Bill System** (91 entities): Manages billing, invoicing, rate cards, general ledger integration, and revenue recognition
+- **Time and Labor System** (7 entities): Handles time entry, expense reporting, and approval workflows
+- **Back to Employer System** (7 entities): Manages placement configuration, certifications, onboarding, and shift scheduling
+
+This OpenAPI specification focuses on the **Pay Bill System**, specifically the BillableCharge workflow and service endpoints.
+
+## Documentation
+
+### View the Documentation
+
+The generated interactive documentation is available at:
+- **ReDoc**: `../build/redoc.html` (Open in browser)
+- **Preview**: Run `npm run preview` for live preview during development
+
+### Generate Documentation
+
+```bash
+# Install dependencies (if not already done)
+npm install
+
+# Generate static ReDoc HTML documentation
+npm run docs:redoc
+
+# Preview documentation with live reload
+npm run preview
+```
+
+The generated documentation will be created at `../build/redoc.html` and can be opened directly in a web browser.
+
+## File Structure
 
 ```
 openapi/
-├── openapi.yaml                          # Main OpenAPI specification file
+├── openapi.yaml                          # Main OpenAPI specification entry point
 ├── components/
-│   ├── schemas/                          # Data models and schemas
-│   │   ├── BillableCharge.yaml           # Full BillableCharge entity schema
+│   ├── parameters/
+│   │   └── common.yaml                   # Shared parameters (BhRestToken, IDs)
+│   ├── schemas/
+│   │   ├── common.yaml                   # Common schemas (EntityReference, responses)
 │   │   ├── BillableChargeCreateRequest.yaml
 │   │   ├── BillableChargeUpdateRequest.yaml
 │   │   ├── BillMaster.yaml               # Bill master transaction schema
-│   │   ├── CustomerRequiredField.yaml    # Customer required fields schema
-│   │   └── common.yaml                   # Reusable common schemas
-│   ├── parameters/
-│   │   └── common.yaml                   # Reusable parameters (BhRestToken, etc.)
+│   │   └── CustomerRequiredField.yaml
 │   └── responses/
 │       └── errors.yaml                   # Standard error responses
-└── paths/
-    └── services/
-        └── BillableCharge.yaml           # BillableCharge endpoint definitions
+├── paths/
+│   └── services/
+│       └── BillableCharge.yaml           # All 6 BillableCharge endpoints
+├── package.json                          # npm scripts and dependencies
+├── .spectral.yaml                        # OpenAPI validation rules
+└── README.md                             # This file
 ```
 
-## Getting Started
+## Available Endpoints
 
-### Prerequisites
+### BillableCharge Service Endpoints
 
-- Node.js 16+ (for tooling)
-- npm or yarn
+1. **PUT /services/BillableCharge** - Create a new BillableCharge
+2. **POST /services/BillableCharge/{billableChargeId}** - Update an existing BillableCharge
+3. **POST /services/BillableCharge/markAsReady** - Mark charges as ready to bill
+4. **POST /services/BillableCharge/markUnbillable** - Mark charges as unbillable
+5. **PUT /services/BillableCharge/updateHoldStatus** - Place charges on hold or release hold
+6. **POST /services/BillableCharge/clearNeedsReviewAndMarkAsReady** - Clear review flag and mark ready
 
-### Installation
+## BillableCharge Workflow
 
-Install OpenAPI tools:
+The BillableCharge entity progresses through the following statuses:
+
+1. **NotReadyToBill** (ID: 1) - Initial state for new charges
+2. **ReadyToBill** (ID: 2) - Validated and ready for invoicing
+3. **Processing** (ID: 3) - Currently being processed into invoices
+4. **NeedsReview** (ID: 4) - Requires manual review
+5. **Invoicing** (ID: 5) - Associated with invoice statement (not finalized)
+6. **Invoiced** (ID: 6) - Successfully invoiced to client
+7. **Unbillable** (ID: 7) - Marked as non-billable
+8. **ProcessingFailed** (ID: 8) - Failed during processing
+9. **OnHold** (ID: 9) - Temporarily paused from billing
+
+**Status Priority** (highest to lowest): OnHold > ProcessingFailed > Processing > NeedsReview > Invoiced/Unbillable > ReadyToBill > NotReadyToBill
+
+## Validation
+
+Validate the OpenAPI specification against OpenAPI 3.0 standards:
 
 ```bash
-# Install Swagger UI CLI
-npm install -g swagger-ui-cli
+# Validate the specification
+npm run validate
 
-# Install OpenAPI validator (Spectral)
-npm install -g @stoplight/spectral-cli
-
-# Install ReDoc CLI (alternative documentation generator)
-npm install -g @redocly/cli
-
-# Install OpenAPI Generator (for SDK generation)
-npm install -g @openapitools/openapi-generator-cli
+# Bundle all files into a single specification
+npm run bundle
 ```
 
-## Usage
+The validation uses Spectral with the recommended OAS ruleset.
 
-### 1. View Interactive Documentation
+## SDK Generation
 
-#### Using Swagger UI
-
-Generate interactive API documentation:
+Generate client SDKs in multiple languages:
 
 ```bash
-# From the openapi directory
-swagger-ui-cli bundle openapi.yaml -o ../build/swagger-ui
+# TypeScript (axios-based)
+npm run sdk:typescript
 
-# Then open build/swagger-ui/index.html in your browser
+# Python
+npm run sdk:python
+
+# Java
+npm run sdk:java
+
+# C#
+npm run sdk:csharp
 ```
 
-Or serve it locally:
+Generated SDKs will be created in the `../sdks/{language}` directory.
+
+## Authentication
+
+The API uses OAuth 2.0 followed by a session-based token system:
+
+1. Obtain an OAuth 2.0 access token through the OAuth flow
+2. Call `/login` with the access token to receive a `BhRestToken`
+3. Include `BhRestToken` in all subsequent API requests via:
+   - **HTTP Header** (recommended): `BhRestToken: <token>`
+   - Query Parameter: `?BhRestToken=<token>`
+   - Cookie: Automatically set by login endpoint
+
+## Base URL Structure
+
+All API requests follow this pattern:
+
+```
+https://rest{swimlane}.bullhornstaffing.com/rest-services/{corpToken}/{endpoint}
+```
+
+Where:
+- `{swimlane}` - Your data center swimlane number (e.g., '9', '22', or empty for default)
+- `{corpToken}` - Corporation token from login response (e.g., 'e999')
+
+## Business Rules
+
+### Creating BillableCharges
+
+- **Description is required**: Identifies the charge
+- **Placement OR BillingProfile required**: At least one must be provided
+  - If only placement is provided, it must have an associated billing profile
+- **BillMasters required**: At least one transaction record must be included
+
+### Updating BillableCharges
+
+- Cannot update charges in `Invoiced`, `Processing`, or certain locked statuses
+- New transactions can be added via the update endpoint
+- Customer required fields can be modified before invoicing
+
+### Marking Charges Ready
+
+- **Entitlement**: Mark Billable Charge Ready
+- Only charges in `NotReadyToBill` status are eligible
+- All transactions must pass validation
+- Sets `readyToBillOverride` flag
+
+### Marking Charges Unbillable
+
+- **Entitlement**: Mark Billable Charge Unbillable
+- Cannot mark already invoiced charges as unbillable
+- Typically irreversible - transactions excluded from revenue
+
+### Hold Status Management
+
+- **Entitlement**: Edit Billable Charge
+- Prevents invoicing even if transactions are approved
+- Can be placed/released with optional comments
+- Cannot place invoiced charges on hold
+
+### Clearing Review Flags
+
+- **Entitlements**: Mark Billable Charge Ready, View Billable Charge, Edit Billable Charge
+- Only for charges in `NeedsReview` status
+- Re-runs validation before marking ready
+- Used after correcting flagged issues
+
+## Example Usage
+
+### Create a BillableCharge
 
 ```bash
-npx serve build/swagger-ui
-# Opens at http://localhost:3000
+curl -X PUT \
+  https://rest9.bullhornstaffing.com/rest-services/e999/services/BillableCharge \
+  -H 'BhRestToken: a1b2c3d4-e5f6-47h8-89j0-k1l2m3n4o5p6' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "description": "Weekly billing for placement",
+    "periodEndDate": "2024-04-27",
+    "placement": { "id": 272 },
+    "billMasters": [{
+      "quantity": 40.0,
+      "transactionDate": "2024-04-27",
+      "amount": 2000.0,
+      "earnCode": { "id": 5 },
+      "rate": 50.0
+    }]
+  }'
 ```
 
-#### Using ReDoc
+### Mark Charges as Ready
 
 ```bash
-redocly build-docs openapi.yaml -o ../build/redoc.html
-
-# Then open build/redoc.html in your browser
+curl -X POST \
+  'https://rest9.bullhornstaffing.com/rest-services/e999/services/BillableCharge/markAsReady?billableChargeIds=12345,12346,12347' \
+  -H 'BhRestToken: a1b2c3d4-e5f6-47h8-89j0-k1l2m3n4o5p6'
 ```
 
-### 2. Validate the Specification
-
-Validate that the OpenAPI spec is correct:
+### Place Charges on Hold
 
 ```bash
-spectral lint openapi.yaml --ruleset .spectral.yaml
+curl -X PUT \
+  https://rest9.bullhornstaffing.com/rest-services/e999/services/BillableCharge/updateHoldStatus \
+  -H 'BhRestToken: a1b2c3d4-e5f6-47h8-89j0-k1l2m3n4o5p6' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "billableChargeIds": [12345, 12346],
+    "onHold": true,
+    "comments": "Pending rate verification with client"
+  }'
 ```
 
-### 3. Generate Client SDKs
+## Error Responses
 
-Generate client libraries in various languages:
+All endpoints return standardized error responses:
 
-#### TypeScript/JavaScript
+- **400 Bad Request**: Invalid request parameters or body
+- **401 Unauthorized**: Invalid or expired session token
+- **403 Forbidden**: Insufficient permissions for operation
+- **404 Not Found**: Requested entity does not exist
+- **429 Rate Limited**: Too many requests
+- **500 Internal Server Error**: Unexpected server error
+
+Example error response:
+
+```json
+{
+  "errorCode": "MISSING_REQUIRED_FIELD",
+  "errorMessage": "Required field 'description' is missing",
+  "errorMessageKey": "errors.entity.missingRequired",
+  "errors": [
+    {
+      "field": "description",
+      "message": "This field is required"
+    }
+  ]
+}
+```
+
+## Development
+
+### Requirements
+
+- Node.js 14+
+- npm 6+
+
+### Setup
 
 ```bash
-openapi-generator-cli generate \
-  -i openapi.yaml \
-  -g typescript-axios \
-  -o ../sdks/typescript \
-  --additional-properties=npmName=bullhorn-api-client
+# Install dependencies
+npm install
+
+# Validate specification
+npm run validate
+
+# Preview documentation locally
+npm run preview
+
+# Generate documentation
+npm run docs:redoc
 ```
 
-#### Python
+### Making Changes
 
-```bash
-openapi-generator-cli generate \
-  -i openapi.yaml \
-  -g python \
-  -o ../sdks/python \
-  --additional-properties=packageName=bullhorn_api
-```
-
-#### Java
-
-```bash
-openapi-generator-cli generate \
-  -i openapi.yaml \
-  -g java \
-  -o ../sdks/java \
-  --additional-properties=groupId=com.bullhorn,artifactId=rest-api-client
-```
-
-#### C#
-
-```bash
-openapi-generator-cli generate \
-  -i openapi.yaml \
-  -g csharp \
-  -o ../sdks/csharp \
-  --additional-properties=packageName=Bullhorn.RestApi
-```
-
-### 4. Import into Tools
-
-#### Postman
-
-1. Open Postman
-2. Click **Import**
-3. Select `openapi/openapi.yaml`
-4. Postman will generate a complete collection with all endpoints
-
-#### Insomnia
-
-1. Open Insomnia
-2. Click **Create** → **Import From** → **File**
-3. Select `openapi/openapi.yaml`
-
-#### VS Code / IntelliJ
-
-Most modern IDEs have OpenAPI/Swagger plugins that provide:
-- Autocomplete for API requests
-- Inline documentation
-- Schema validation
-- Request/response examples
-
-## Key Features
-
-### BillableCharge Service
-
-The current specification covers the BillableCharge service with two endpoints:
-
-1. **PUT /services/BillableCharge** - Create a new billable charge
-2. **POST /services/BillableCharge/{billableChargeId}** - Update existing billable charge
-
-### Schema Highlights
-
-- **Complete validation rules**: Required fields, data types, formats
-- **Nested objects**: BillMaster and CustomerRequiredField schemas
-- **Business logic documentation**: Placement XOR BillingProfile requirements
-- **Comprehensive examples**: Multiple real-world scenarios for each endpoint
-- **Error responses**: All standard HTTP error codes with examples
-
-## Validation Rules
-
-The specification includes OpenAPI 3.0 schema validation:
-
-### Create BillableCharge
-
-- ✅ `description` - Required, string
-- ✅ `periodEndDate` - Required, date format (YYYY-MM-DD)
-- ✅ `placement` OR `billingProfile` - At least one required
-- ✅ `billMasters` - Required, array with at least 1 item
-
-### BillMaster
-
-- ✅ `quantity` - Required, number >= 0
-- ✅ `transactionDate` - Required, date format
-- ✅ `amount` - Required, number >= 0
-- ✅ `rate` - Required, number >= 0
-- ✅ `earnCode` - Required, entity reference
-
-### CustomerRequiredField
-
-- ✅ `customerRequiredFieldMeta` - Required
-- ✅ One of: `customerRequiredFieldOption` OR `textValue`
-
-## Testing
-
-You can test the API using the generated Swagger UI:
-
-1. Generate Swagger UI (see above)
-2. Click "Authorize" and enter your BhRestToken
-3. Try out endpoints directly from the browser
-4. View request/response examples
-
-## Extending the Specification
-
-To add more endpoints:
-
-1. Create schema files in `components/schemas/`
-2. Create path files in `paths/`
-3. Reference them in `openapi.yaml`
-4. Validate with Spectral
-5. Regenerate documentation
-
-### Example: Adding a New Service
-
-```yaml
-# In openapi.yaml
-paths:
-  /services/NewService:
-    $ref: './paths/services/NewService.yaml#/createNewService'
-```
-
-## Continuous Integration
-
-### GitHub Actions Example
-
-```yaml
-# .github/workflows/validate-openapi.yml
-name: Validate OpenAPI
-
-on: [push, pull_request]
-
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install Spectral
-        run: npm install -g @stoplight/spectral-cli
-
-      - name: Validate OpenAPI Spec
-        run: |
-          cd openapi
-          spectral lint openapi.yaml
-```
-
-## Benefits
-
-### For Developers
-
-- ✅ Auto-generated SDKs in 40+ languages
-- ✅ Interactive documentation with "try it out" functionality
-- ✅ Type safety and autocomplete in IDEs
-- ✅ Consistent API contract
-- ✅ Reduced integration time
-
-### For API Maintainers
-
-- ✅ Single source of truth for API documentation
-- ✅ Automated validation in CI/CD
-- ✅ Version control for API changes
-- ✅ Breaking change detection
-- ✅ Easier collaboration with consumers
-
-### For QA/Testing
-
-- ✅ Contract testing with Pact, Dredd, or Postman
-- ✅ Automated mock servers for development
-- ✅ Schema validation for responses
-- ✅ Example requests for all scenarios
-
-## Troubleshooting
-
-### Validation Errors
-
-If you get validation errors:
-
-```bash
-spectral lint openapi.yaml --verbose
-```
-
-Common issues:
-- Missing required fields in schema definitions
-- Incorrect `$ref` paths
-- Invalid OpenAPI 3.0 syntax
-
-### Reference Resolution
-
-If refs aren't resolving:
-- Ensure paths are relative to the file location
-- Check that referenced files exist
-- Verify YAML syntax (indentation, colons)
+1. Edit the relevant YAML files in `components/`, `paths/`, or the main `openapi.yaml`
+2. Validate changes: `npm run validate`
+3. Preview changes: `npm run preview`
+4. Generate updated docs: `npm run docs:redoc`
+5. Commit both source files and generated documentation
 
 ## Resources
 
-- [OpenAPI Specification 3.0.3](https://spec.openapis.org/oas/v3.0.3)
-- [Swagger UI](https://swagger.io/tools/swagger-ui/)
-- [ReDoc](https://redocly.com/redoc/)
-- [OpenAPI Generator](https://openapi-generator.tech/)
+- [OpenAPI Specification 3.0.3](https://swagger.io/specification/)
+- [ReDoc Documentation](https://redocly.com/docs/redoc/)
 - [Spectral Linter](https://stoplight.io/open-source/spectral)
+- [OpenAPI Generator](https://openapi-generator.tech/)
+- [Bullhorn REST API Docs](https://bullhorn.github.io/rest-api-docs)
 
-## Next Steps
+## Related Documentation
 
-1. ✅ **Validate the spec**: `spectral lint openapi.yaml`
-2. ✅ **Generate documentation**: Create Swagger UI
-3. ✅ **Test endpoints**: Use interactive docs
-4. ⬜ **Extend coverage**: Add more service endpoints
-5. ⬜ **Generate SDKs**: Create client libraries
-6. ⬜ **Integrate with CI/CD**: Automate validation
+- **Main REST API Documentation**: See `../source/` for comprehensive API reference
+- **Entity Reference**: `../source/includes/entityref/paybill/` for Pay Bill entities
+- **Service Endpoints**: `../source/includes/_services.md` for all service endpoints
+- **Middle Office Overview**: See f/test branch for detailed Middle Office documentation
 
-## Contributing
+## Support
 
-When adding new endpoints:
+For questions or issues with the Middle Office API:
 
-1. Follow the existing schema structure
-2. Include comprehensive examples
-3. Document business rules
-4. Add validation rules
-5. Include error responses
-6. Test with Spectral validation
+- Review the generated ReDoc documentation at `../build/redoc.html`
+- Check the main REST API documentation at `../source/`
+- Contact Bullhorn API Support
 
 ## License
 

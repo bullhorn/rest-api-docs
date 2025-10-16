@@ -1,4 +1,1 @@
-# Spectral ruleset for validating Bullhorn OpenAPI specifications
-# Using the recommended ruleset with all rules enabled
-
 extends: [[spectral:oas, recommended]]

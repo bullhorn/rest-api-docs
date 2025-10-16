@@ -3,41 +3,55 @@ BillMaster:
   description: |
     Bill Master transaction record within a BillableCharge.
     Represents an individual billable transaction with quantity, rate, and amount information.
+
+    **Middle Office Context**: BillMasters represent the actual billable work performed, such as
+    hours worked or expenses incurred. They are linked to Timesheets or ExpenseSheets through
+    the Time and Labor system, and are aggregated into BillableCharges for invoicing.
   properties:
     quantity:
       type: number
       format: double
-      description: Quantity of work performed (e.g., hours worked)
+      description: |
+        Quantity of work performed (e.g., hours worked for time entries, count for expense entries)
       minimum: 0
       example: 30.0
     transactionDate:
       type: string
       format: date
-      description: Date of the transaction
+      description: |
+        Date of the transaction. This should match the date the work was performed or expense was incurred.
       example: '2024-04-27'
     amount:
       type: number
       format: double
-      description: Total billing amount for this transaction (typically quantity × rate)
+      description: |
+        Total billing amount for this transaction (typically quantity × rate).
+        This is the amount that will be invoiced to the client.
       minimum: 0
       example: 1500.0
     rate:
       type: number
       format: double
-      description: Billing rate per unit
+      description: |
+        Billing rate per unit. For time entries, this is the hourly rate. For expenses, this may
+        be the reimbursement rate or markup.
       minimum: 0
       example: 50.0
     earnCode:
       allOf:
         - $ref: './common.yaml#/EntityReference'
-        - description: Reference to the EarnCode defining the type of work
+        - description: |
+            Reference to the EarnCode defining the type of work.
+            EarnCodes categorize transactions (e.g., Regular Time, Overtime, Expenses) and
+            determine how they are processed for billing and payroll.
       example:
         id: 5
     customerRequiredFields:
       type: array
       description: |
         Optional array of customer-specific required fields for this transaction.
-        Used for custom data capture as required by the client.
+        Used for custom data capture as required by the client (e.g., project codes, cost centers,
+        purchase order numbers).
       items:
         $ref: './CustomerRequiredField.yaml#/CustomerRequiredField'
       example:
@@ -47,7 +61,7 @@ BillMaster:
             id: 14
         - customerRequiredFieldMeta:
             id: 1
-          textValue: Meta Text Value!
+          textValue: 'Project Code: ABC123'
   required:
     - quantity
     - transactionDate
@@ -68,4 +82,4 @@ BillMaster:
           id: 14
       - customerRequiredFieldMeta:
           id: 1
-        textValue: Meta Text Value!
+        textValue: 'Meta Text Value!'
