@@ -8,7 +8,7 @@ The Bullhorn Middle Office suite consists of three integrated systems:
 
 - **Pay Bill System** (91 entities): Manages billing, invoicing, rate cards, general ledger integration, and revenue recognition
 - **Time and Labor System** (7 entities): Handles time entry, expense reporting, and approval workflows
-- **Back to Employer System** (7 entities): Manages placement configuration, certifications, onboarding, and shift scheduling
+- **Bullhorn Time & Expense System** (7 entities): Manages placement configuration, certifications, onboarding, and shift scheduling
 
 This OpenAPI specification focuses on the **Pay Bill System**, specifically the BillableCharge workflow and service endpoints.
 

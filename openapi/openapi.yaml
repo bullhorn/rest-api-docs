@@ -19,7 +19,7 @@ info:
       approval workflows for contractor placements. Core entities include Timesheet and
       ExpenseSheet.
 
-    - **Back to Employer System** (7 entities): Manages placement configuration, certifications,
+    - **Bullhorn Time & Expense System** (7 entities): Manages placement configuration, certifications,
       onboarding, and shift scheduling. Core entities include PlacementCertification and
       OnboardingConfiguration.
 
@@ -125,7 +125,7 @@ info:
     - **Workflow**: Timesheet approved → BillableCharge created → BillMaster +
       BillMasterTransaction generated
 
-    ### Back to Employer (BTE) System
+    ### Bullhorn Time & Expense (BTE) System
     - **Input**: Placement configuration, rate cards, billing profiles
     - **Usage**: Determines rates, billing calendar, discount/surcharge rules
     - **Workflow**: Placement defines billing rules → Applied during BillableCharge creation
