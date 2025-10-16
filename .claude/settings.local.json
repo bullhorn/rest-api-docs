@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx --yes @redocly/cli lint openapi.yaml)",
+      "Bash(npm run validate)",
+      "Bash(npm run docs:redoc:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

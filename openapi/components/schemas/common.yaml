@@ -1,0 +1,79 @@
+# Common schema definitions used across multiple entities
+
+EntityReference:
+  type: object
+  description: Reference to another entity by ID
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: The unique identifier of the referenced entity
+      minimum: 1
+  required:
+    - id
+  example:
+    id: 123
+
+StandardChangeResponse:
+  type: object
+  description: Standard response structure for entity create/update operations
+  properties:
+    changedEntityType:
+      type: string
+      description: The type of entity that was changed
+      example: BillableCharge
+    changedEntityId:
+      type: integer
+      format: int64
+      description: The ID of the entity that was changed
+      example: 12345
+    changeType:
+      type: string
+      enum: [INSERT, UPDATE, DELETE]
+      description: The type of change operation performed
+      example: INSERT
+    data:
+      type: object
+      description: Additional data about the change (often empty)
+      additionalProperties: true
+      example: {}
+  required:
+    - changedEntityType
+    - changedEntityId
+    - changeType
+
+ErrorResponse:
+  type: object
+  description: Standard error response structure
+  properties:
+    errorCode:
+      type: string
+      description: Machine-readable error code
+      example: INVALID_FIELD
+    errorMessage:
+      type: string
+      description: Human-readable error message
+      example: Field 'invalidField' does not exist on entity BillableCharge
+    errorMessageKey:
+      type: string
+      description: Localization key for the error message
+      example: errors.entity.invalidField
+    errors:
+      type: array
+      description: Detailed error information for validation failures
+      items:
+        type: object
+        properties:
+          field:
+            type: string
+            description: The field that caused the error
+          message:
+            type: string
+            description: Error message for this field
+  example:
+    errorCode: MISSING_REQUIRED_FIELD
+    errorMessage: Required field 'description' is missing
+    errorMessageKey: errors.entity.missingRequired
+    errors:
+      - field: description
+        message: This field is required

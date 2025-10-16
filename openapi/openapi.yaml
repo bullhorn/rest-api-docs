@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Bullhorn REST API
+  version: 1.0.0
+  description: |
+    The Bullhorn REST API provides programmatic access to the Bullhorn ATS/CRM platform.
+
+    ## Authentication
+
+    This API uses OAuth 2.0 for authentication followed by a session-based token system:
+
+    1. Obtain an OAuth 2.0 access token through the OAuth flow
+    2. Call `/login` with the access token to receive a BhRestToken
+    3. Include BhRestToken in all subsequent API requests
+
+    ## Base URL Structure
+
+    All API requests follow this pattern:
+    ```
+    https://rest{swimlane}.bullhornstaffing.com/rest-services/{corpToken}/{endpoint}
+    ```
+
+    Where:
+    - `{swimlane}` is your data center swimlane number (e.g., '9', '22', or empty for default)
+    - `{corpToken}` is your corporation token from the login response (e.g., 'e999')
+
+  contact:
+    name: Bullhorn API Support
+    url: https://bullhorn.github.io/rest-api-docs
+  license:
+    name: Proprietary
+
+servers:
+  - url: https://rest{swimlane}.bullhornstaffing.com/rest-services/{corpToken}
+    description: Bullhorn REST API Server
+    variables:
+      swimlane:
+        default: ''
+        description: |
+          Data center swimlane number (e.g., '9', '22').
+          Leave empty for default. Obtained from /loginInfo endpoint.
+      corpToken:
+        default: e999
+        description: |
+          Corporation token returned from the login endpoint.
+          This identifies your organization's instance.
+
+security:
+  - BhRestToken: []
+
+tags:
+  - name: Services - BillableCharge
+    description: |
+      BillableCharge service endpoints for creating and updating billable charges.
+
+      A BillableCharge records a chargeable fee, capturing key details like the fee amount,
+      rate type, and effective dates, and ties these charges to specific BillMasterTransactions.
+
+paths:
+  /services/BillableCharge:
+    $ref: './paths/services/BillableCharge.yaml#/createBillableCharge'
+  /services/BillableCharge/{billableChargeId}:
+    $ref: './paths/services/BillableCharge.yaml#/updateBillableCharge'
+
+components:
+  securitySchemes:
+    BhRestToken:
+      type: apiKey
+      in: header
+      name: BhRestToken
+      description: |
+        Session token obtained from the login endpoint.
+
+        Can be provided in one of three ways:
+        - **HTTP Header** (recommended): `BhRestToken` or `BHRestToken`
+        - **Query Parameter**: `?BhRestToken=<token>`
+        - **Cookie**: Automatically set by login endpoint for browser clients
+
+        Example:
+        ```
+        BhRestToken: a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6
+        ```

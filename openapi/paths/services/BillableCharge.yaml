@@ -1,0 +1,244 @@
+createBillableCharge:
+  put:
+    tags:
+      - Services - BillableCharge
+    summary: Create a new BillableCharge
+    description: |
+      Creates a new billable charge with associated bill master transactions.
+
+      ## Business Rules
+
+      - **Description is required**: You must provide a description for the charge
+      - **Placement OR BillingProfile required**: At least one must be provided
+        - If only a placement is provided, it must have a billing profile
+        - If only a billing profile is provided, it will be used directly
+      - **BillMasters required**: At least one bill master transaction must be included
+
+      ## Workflow
+
+      1. Validate that either placement or billing profile exists
+      2. Create the BillableCharge entity
+      3. Create associated BillMaster transactions
+      4. Link customer required fields if provided
+      5. Return the created entity ID
+
+      ## Common Errors
+
+      - `400 Bad Request`: Missing required fields or invalid data
+      - `401 Unauthorized`: Invalid or expired session token
+      - `404 Not Found`: Referenced placement or billing profile does not exist
+      - `500 Internal Server Error`: Unexpected server error
+
+    operationId: createBillableCharge
+    security:
+      - BhRestToken: []
+    parameters:
+      - $ref: '../../components/parameters/common.yaml#/BhRestToken'
+    requestBody:
+      required: true
+      description: BillableCharge data to create
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/BillableChargeCreateRequest.yaml#/BillableChargeCreateRequest'
+          examples:
+            withPlacement:
+              summary: Create with placement reference
+              description: Most common scenario - create billable charge linked to a placement
+              value:
+                description: Weekly billing for placement #272
+                periodEndDate: '2024-04-27'
+                placement:
+                  id: 272
+                billMasters:
+                  - quantity: 40.0
+                    transactionDate: '2024-04-27'
+                    amount: 2000.0
+                    earnCode:
+                      id: 5
+                    rate: 50.0
+                    customerRequiredFields:
+                      - customerRequiredFieldMeta:
+                          id: 2
+                        customerRequiredFieldOption:
+                          id: 14
+                      - customerRequiredFieldMeta:
+                          id: 1
+                        textValue: 'Project Code: ABC123'
+            withBillingProfile:
+              summary: Create with billing profile reference
+              description: Create billable charge directly with billing profile
+              value:
+                description: Custom billable charge for client services
+                periodEndDate: '2024-04-27'
+                billingProfile:
+                  id: 150
+                billMasters:
+                  - quantity: 30.0
+                    transactionDate: '2024-04-27'
+                    amount: 1500.0
+                    earnCode:
+                      id: 5
+                    rate: 50.0
+            multipleBillMasters:
+              summary: Multiple bill master transactions
+              description: Create charge with multiple transaction records
+              value:
+                description: Multi-day billing period
+                periodEndDate: '2024-04-27'
+                placement:
+                  id: 272
+                billMasters:
+                  - quantity: 8.0
+                    transactionDate: '2024-04-23'
+                    amount: 400.0
+                    earnCode:
+                      id: 5
+                    rate: 50.0
+                  - quantity: 8.0
+                    transactionDate: '2024-04-24'
+                    amount: 400.0
+                    earnCode:
+                      id: 5
+                    rate: 50.0
+                  - quantity: 8.0
+                    transactionDate: '2024-04-25'
+                    amount: 400.0
+                    earnCode:
+                      id: 5
+                    rate: 50.0
+    responses:
+      '200':
+        description: BillableCharge created successfully
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/common.yaml#/StandardChangeResponse'
+            examples:
+              success:
+                summary: Successful creation
+                value:
+                  changedEntityType: BillableCharge
+                  changedEntityId: 12345
+                  changeType: INSERT
+                  data: {}
+      '400':
+        $ref: '../../components/responses/errors.yaml#/BadRequest'
+      '401':
+        $ref: '../../components/responses/errors.yaml#/Unauthorized'
+      '404':
+        $ref: '../../components/responses/errors.yaml#/NotFound'
+      '429':
+        $ref: '../../components/responses/errors.yaml#/RateLimited'
+      '500':
+        $ref: '../../components/responses/errors.yaml#/InternalServerError'
+
+updateBillableCharge:
+  post:
+    tags:
+      - Services - BillableCharge
+    summary: Update an existing BillableCharge
+    description: |
+      Updates an existing billable charge, typically to add or modify bill master transactions.
+
+      ## Use Cases
+
+      - Add new bill master transactions to an existing charge
+      - Update transaction details (quantity, rate, amount)
+      - Modify customer required fields
+      - Update charge description or period end date
+
+      ## Notes
+
+      - The billableChargeId path parameter identifies which charge to update
+      - You can provide only the fields you want to update
+      - BillMasters in the request will be added or updated based on the system logic
+
+      ## Common Errors
+
+      - `400 Bad Request`: Invalid data provided
+      - `401 Unauthorized`: Invalid or expired session token
+      - `404 Not Found`: BillableCharge with specified ID does not exist
+      - `500 Internal Server Error`: Unexpected server error
+
+    operationId: updateBillableCharge
+    security:
+      - BhRestToken: []
+    parameters:
+      - $ref: '../../components/parameters/common.yaml#/BillableChargeId'
+      - $ref: '../../components/parameters/common.yaml#/BhRestToken'
+    requestBody:
+      required: true
+      description: BillableCharge update data
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/BillableChargeUpdateRequest.yaml#/BillableChargeUpdateRequest'
+          examples:
+            addBillMasters:
+              summary: Add bill master transactions
+              description: Most common scenario - adding new transactions to existing charge
+              value:
+                billMasters:
+                  - quantity: 30.0
+                    transactionDate: '2024-04-27'
+                    amount: 1500.0
+                    earnCode:
+                      id: 5
+                    rate: 50.0
+                    customerRequiredFields:
+                      - customerRequiredFieldMeta:
+                          id: 2
+                        customerRequiredFieldOption:
+                          id: 14
+                      - customerRequiredFieldMeta:
+                          id: 1
+                        textValue: Updated project code
+            updateDescription:
+              summary: Update description and date
+              description: Update charge metadata
+              value:
+                description: Updated description for billing period
+                periodEndDate: '2024-04-30'
+            addMultipleTransactions:
+              summary: Add multiple transactions
+              description: Bulk add multiple bill master records
+              value:
+                billMasters:
+                  - quantity: 8.0
+                    transactionDate: '2024-04-26'
+                    amount: 400.0
+                    earnCode:
+                      id: 5
+                    rate: 50.0
+                  - quantity: 8.0
+                    transactionDate: '2024-04-27'
+                    amount: 400.0
+                    earnCode:
+                      id: 5
+                    rate: 50.0
+    responses:
+      '200':
+        description: BillableCharge updated successfully
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/common.yaml#/StandardChangeResponse'
+            examples:
+              success:
+                summary: Successful update
+                value:
+                  changedEntityType: BillableCharge
+                  changedEntityId: 12345
+                  changeType: UPDATE
+                  data: {}
+      '400':
+        $ref: '../../components/responses/errors.yaml#/BadRequest'
+      '401':
+        $ref: '../../components/responses/errors.yaml#/Unauthorized'
+      '404':
+        $ref: '../../components/responses/errors.yaml#/NotFound'
+      '429':
+        $ref: '../../components/responses/errors.yaml#/RateLimited'
+      '500':
+        $ref: '../../components/responses/errors.yaml#/InternalServerError'

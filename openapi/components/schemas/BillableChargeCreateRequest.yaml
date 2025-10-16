@@ -1,0 +1,86 @@
+BillableChargeCreateRequest:
+  type: object
+  description: |
+    Request body for creating a new BillableCharge.
+
+    **Business Rules:**
+    - A `description` is required
+    - At least one of `placement` or `billingProfile` must be provided
+    - If only `placement` is provided, the placement must have an associated billing profile
+    - The `billMasters` array contains the individual transaction records for this charge
+  properties:
+    description:
+      type: string
+      description: Description of the billable charge (required)
+      maxLength: 2147483647
+      example: BillableCharge Test
+    periodEndDate:
+      type: string
+      format: date
+      description: Period end date for this billable charge (required)
+      example: '2024-04-27'
+    placement:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: |
+            Reference to the Placement entity.
+            Required if billingProfile is not provided.
+            The placement must have an associated billing profile.
+      example:
+        id: 272
+    billingProfile:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: |
+            Reference to the BillingProfile entity.
+            Required if placement is not provided.
+      example:
+        id: 150
+    billMasters:
+      type: array
+      description: Array of bill master transaction records
+      items:
+        $ref: './BillMaster.yaml#/BillMaster'
+      minItems: 1
+      example:
+        - quantity: 30.0
+          transactionDate: '2024-04-27'
+          amount: 1500.0
+          earnCode:
+            id: 5
+          rate: 50
+          customerRequiredFields:
+            - customerRequiredFieldMeta:
+                id: 2
+              customerRequiredFieldOption:
+                id: 14
+            - customerRequiredFieldMeta:
+                id: 1
+              textValue: Meta Text Value!
+  required:
+    - description
+    - periodEndDate
+    - billMasters
+  anyOf:
+    - required: [placement]
+    - required: [billingProfile]
+  example:
+    description: BillableCharge Test
+    periodEndDate: '2024-04-27'
+    placement:
+      id: 272
+    billMasters:
+      - quantity: 30.0
+        transactionDate: '2024-04-27'
+        amount: 1500.0
+        earnCode:
+          id: 5
+        rate: 50
+        customerRequiredFields:
+          - customerRequiredFieldMeta:
+              id: 2
+            customerRequiredFieldOption:
+              id: 14
+          - customerRequiredFieldMeta:
+              id: 1
+            textValue: Meta Text Value!

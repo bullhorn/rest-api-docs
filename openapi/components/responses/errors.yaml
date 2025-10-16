@@ -1,0 +1,99 @@
+BadRequest:
+  description: Bad Request - Invalid request parameters or body
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/common.yaml#/ErrorResponse'
+      examples:
+        missingRequiredField:
+          summary: Missing required field
+          value:
+            errorCode: MISSING_REQUIRED_FIELD
+            errorMessage: Required field 'description' is missing
+            errorMessageKey: errors.entity.missingRequired
+            errors:
+              - field: description
+                message: This field is required
+        invalidPlacementOrProfile:
+          summary: Missing placement or billing profile
+          value:
+            errorCode: INVALID_REQUEST
+            errorMessage: At least one of 'placement' or 'billingProfile' is required. If only placement is provided, it must have a billing profile.
+            errorMessageKey: errors.billableCharge.placementOrProfileRequired
+        invalidField:
+          summary: Invalid field name
+          value:
+            errorCode: INVALID_FIELD
+            errorMessage: Field 'invalidField' does not exist on entity BillableCharge
+            errorMessageKey: errors.entity.invalidField
+        invalidDataType:
+          summary: Invalid data type
+          value:
+            errorCode: INVALID_DATA_TYPE
+            errorMessage: Field 'periodEndDate' must be a valid date in format YYYY-MM-DD
+            errorMessageKey: errors.entity.invalidDataType
+            errors:
+              - field: periodEndDate
+                message: 'Expected format: YYYY-MM-DD'
+
+Unauthorized:
+  description: Unauthorized - Invalid or expired session token
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/common.yaml#/ErrorResponse'
+      example:
+        errorCode: UNAUTHORIZED
+        errorMessage: Invalid or expired BhRestToken. Please login again.
+        errorMessageKey: errors.auth.unauthorized
+
+Forbidden:
+  description: Forbidden - Insufficient permissions
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/common.yaml#/ErrorResponse'
+      example:
+        errorCode: FORBIDDEN
+        errorMessage: You do not have permission to perform this action
+        errorMessageKey: errors.auth.forbidden
+
+NotFound:
+  description: Not Found - The requested entity does not exist
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/common.yaml#/ErrorResponse'
+      example:
+        errorCode: NOT_FOUND
+        errorMessage: BillableCharge with ID 99999 not found
+        errorMessageKey: errors.entity.notFound
+
+RateLimited:
+  description: Rate Limited - Too many requests
+  content:
+    application/json:
+      schema:
+        allOf:
+          - $ref: '../schemas/common.yaml#/ErrorResponse'
+          - type: object
+            properties:
+              retryAfter:
+                type: integer
+                description: Seconds to wait before retrying
+      example:
+        errorCode: RATE_LIMITED
+        errorMessage: Rate limit exceeded. Please retry after 1 second.
+        errorMessageKey: errors.rateLimit.exceeded
+        retryAfter: 1
+
+InternalServerError:
+  description: Internal Server Error - An unexpected error occurred
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/common.yaml#/ErrorResponse'
+      example:
+        errorCode: INTERNAL_ERROR
+        errorMessage: An internal server error occurred. Please try again later.
+        errorMessageKey: errors.server.internal

@@ -1,0 +1,215 @@
+BillableCharge:
+  type: object
+  description: |
+    The BillableCharge entity records a chargeable fee, capturing key details like the fee amount,
+    rate type, and effective dates, and ties these charges to specific BillMasterTransactions.
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Unique identifier for this entity
+      readOnly: true
+      example: 12345
+    description:
+      type: string
+      maxLength: 2147483647
+      description: Description of the billable charge
+      example: Weekly billing for placement #272
+    periodEndDate:
+      type: string
+      format: date
+      description: Period end date for this billable charge
+      example: '2024-04-27'
+    placement:
+      $ref: './common.yaml#/EntityReference'
+      description: Reference to the associated Placement
+    billingProfile:
+      $ref: './common.yaml#/EntityReference'
+      description: Reference to the associated BillingProfile
+    status:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: BillableChargeStatusLookup indicating the status of this charge
+    entryTypeLookup:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Entry type (Timesheet or Expense)
+    subtotal:
+      type: number
+      format: double
+      description: Subtotal amount for this billable charge
+      readOnly: true
+      example: 1500.00
+    isInvoiced:
+      type: boolean
+      description: Indicates whether this billable charge has been invoiced
+      readOnly: true
+      example: false
+    hasAdjustment:
+      type: boolean
+      description: Indicates whether billable charge has an adjustment
+      example: false
+    hasRebill:
+      type: boolean
+      description: Indicates whether billable charge has been rebilled
+      example: false
+    externalID:
+      type: string
+      maxLength: 100
+      description: External system identifier
+      nullable: true
+      example: EXT-BC-12345
+    readyToBillOverride:
+      type: boolean
+      description: Ready to bill override flag
+      readOnly: true
+      example: false
+    markAsReadyEligible:
+      type: boolean
+      description: Indicates whether billable charge is ready eligible
+      readOnly: true
+      example: true
+    timeAndExpenseBranch:
+      type: string
+      maxLength: 32
+      description: Time and expense branch identifier
+      nullable: true
+    dateAdded:
+      type: integer
+      format: int64
+      description: Unix timestamp (milliseconds) when entity was added
+      readOnly: true
+      example: 1714176000000
+    dateLastModified:
+      type: integer
+      format: int64
+      description: Unix timestamp (milliseconds) when entity was last modified
+      readOnly: true
+      example: 1714262400000
+    addedByUser:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: CorporateUser who added this record
+        - readOnly: true
+    candidate:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Associated Candidate
+        - readOnly: true
+    jobOrder:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Associated JobOrder
+        - readOnly: true
+    clientCorporation:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Associated ClientCorporation
+        - readOnly: true
+    billingClientCorporation:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Bill-to company
+        - readOnly: true
+    billingClientContact:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Billing contact
+        - readOnly: true
+    billingCorporateUser:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Associated CorporateUser for billing
+        - readOnly: true
+    billingFrequency:
+      type: string
+      maxLength: 20
+      description: Billing frequency
+      readOnly: true
+      example: Weekly
+    billingSchedule:
+      type: integer
+      description: Billing schedule identifier
+      readOnly: true
+    currencyUnit:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Currency unit for this charge
+        - readOnly: true
+    invoiceTerm:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Associated InvoiceTerm
+    transactionStatus:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Transaction status
+        - readOnly: true
+    transactionType:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Transaction type
+        - readOnly: true
+    generalLedgerStatus:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: General Ledger export status
+        - readOnly: true
+    generalLedgerSegment1:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: General Ledger Segment 1 (typically Class)
+    generalLedgerSegment2:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: General Ledger Segment 2 (typically Division)
+    generalLedgerSegment3:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: General Ledger Segment 3 (typically Department)
+    generalLedgerSegment4:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: General Ledger Segment 4 (typically Country)
+    generalLedgerSegment5:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: General Ledger Segment 5 (typically Location)
+    generalLedgerServiceCode:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: General Ledger Service Code
+    minAccountingPeriod:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Minimum accounting period of all transactions
+        - readOnly: true
+    maxAccountingPeriod:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Maximum accounting period of all transactions
+        - readOnly: true
+    timesheet:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Associated Timesheet
+        - readOnly: true
+    expenseSheet:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Associated ExpenseSheet
+        - readOnly: true
+  required:
+    - periodEndDate
+  example:
+    id: 12345
+    description: Weekly billing for placement #272
+    periodEndDate: '2024-04-27'
+    placement:
+      id: 272
+    status:
+      id: 1
+    subtotal: 1500.00
+    isInvoiced: false
+    dateAdded: 1714176000000
+    dateLastModified: 1714262400000

@@ -1,0 +1,26 @@
+BhRestToken:
+  name: BhRestToken
+  in: query
+  required: false
+  description: |
+    Session token representing an established session with the API.
+
+    While the token can be provided as a query parameter, it's recommended to use
+    the HTTP header or cookie method instead for better security.
+
+    **Note**: This parameter is shown as optional because the token can also be
+    provided via HTTP header or cookie (preferred methods).
+  schema:
+    type: string
+  example: a1b2c3d4-e5f6-47h8-89j0-k1l2m3n4o5p6
+
+BillableChargeId:
+  name: billableChargeId
+  in: path
+  required: true
+  description: The unique identifier of the BillableCharge entity to update
+  schema:
+    type: integer
+    format: int64
+    minimum: 1
+  example: 12345

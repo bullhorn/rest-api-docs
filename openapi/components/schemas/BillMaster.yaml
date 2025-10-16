@@ -1,0 +1,71 @@
+BillMaster:
+  type: object
+  description: |
+    Bill Master transaction record within a BillableCharge.
+    Represents an individual billable transaction with quantity, rate, and amount information.
+  properties:
+    quantity:
+      type: number
+      format: double
+      description: Quantity of work performed (e.g., hours worked)
+      minimum: 0
+      example: 30.0
+    transactionDate:
+      type: string
+      format: date
+      description: Date of the transaction
+      example: '2024-04-27'
+    amount:
+      type: number
+      format: double
+      description: Total billing amount for this transaction (typically quantity × rate)
+      minimum: 0
+      example: 1500.0
+    rate:
+      type: number
+      format: double
+      description: Billing rate per unit
+      minimum: 0
+      example: 50.0
+    earnCode:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Reference to the EarnCode defining the type of work
+      example:
+        id: 5
+    customerRequiredFields:
+      type: array
+      description: |
+        Optional array of customer-specific required fields for this transaction.
+        Used for custom data capture as required by the client.
+      items:
+        $ref: './CustomerRequiredField.yaml#/CustomerRequiredField'
+      example:
+        - customerRequiredFieldMeta:
+            id: 2
+          customerRequiredFieldOption:
+            id: 14
+        - customerRequiredFieldMeta:
+            id: 1
+          textValue: Meta Text Value!
+  required:
+    - quantity
+    - transactionDate
+    - amount
+    - rate
+    - earnCode
+  example:
+    quantity: 30.0
+    transactionDate: '2024-04-27'
+    amount: 1500.0
+    earnCode:
+      id: 5
+    rate: 50.0
+    customerRequiredFields:
+      - customerRequiredFieldMeta:
+          id: 2
+        customerRequiredFieldOption:
+          id: 14
+      - customerRequiredFieldMeta:
+          id: 1
+        textValue: Meta Text Value!

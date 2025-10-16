@@ -1,0 +1,33 @@
+CustomerRequiredField:
+  type: object
+  description: |
+    Customer Required Field (CRF) for a BillMaster transaction.
+    Must include either customerRequiredFieldOption OR textValue, but not both.
+  properties:
+    customerRequiredFieldMeta:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Reference to the CustomerRequiredFieldMeta configuration
+      example:
+        id: 2
+    customerRequiredFieldOption:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Reference to a predefined option (for dropdown/select type fields)
+      example:
+        id: 14
+    textValue:
+      type: string
+      description: Free-form text value (for text input type fields)
+      maxLength: 1000
+      example: Meta Text Value!
+  required:
+    - customerRequiredFieldMeta
+  oneOf:
+    - required: [customerRequiredFieldOption]
+    - required: [textValue]
+  example:
+    customerRequiredFieldMeta:
+      id: 2
+    customerRequiredFieldOption:
+      id: 14

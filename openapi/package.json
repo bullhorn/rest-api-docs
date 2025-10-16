@@ -1,0 +1,34 @@
+{
+  "name": "bullhorn-openapi-spec",
+  "version": "1.0.0",
+  "description": "OpenAPI 3.0 specification for Bullhorn REST API",
+  "scripts": {
+    "validate": "spectral lint openapi.yaml --ruleset .spectral.yaml",
+    "docs:swagger": "redocly build-docs openapi.yaml -o ../build/swagger-ui.html --theme.openapi.htmlTemplate=redoc",
+    "docs:redoc": "redocly build-docs openapi.yaml -o ../build/redoc.html",
+    "docs:preview": "redocly preview-docs openapi.yaml",
+    "docs:all": "npm run docs:swagger && npm run docs:redoc",
+    "sdk:typescript": "openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o ../sdks/typescript --additional-properties=npmName=bullhorn-api-client",
+    "sdk:python": "openapi-generator-cli generate -i openapi.yaml -g python -o ../sdks/python --additional-properties=packageName=bullhorn_api",
+    "sdk:java": "openapi-generator-cli generate -i openapi.yaml -g java -o ../sdks/java --additional-properties=groupId=com.bullhorn,artifactId=rest-api-client",
+    "sdk:csharp": "openapi-generator-cli generate -i openapi.yaml -g csharp -o ../sdks/csharp --additional-properties=packageName=Bullhorn.RestApi",
+    "preview": "redocly preview-docs openapi.yaml",
+    "bundle": "redocly bundle openapi.yaml -o ../build/openapi-bundle.yaml",
+    "convert:json": "js-yaml openapi.yaml > ../build/openapi.json"
+  },
+  "keywords": [
+    "openapi",
+    "swagger",
+    "bullhorn",
+    "rest-api",
+    "api-documentation"
+  ],
+  "author": "Bullhorn, Inc.",
+  "license": "Proprietary",
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.13.0",
+    "@redocly/cli": "^1.14.0",
+    "@stoplight/spectral-cli": "^6.11.0",
+    "js-yaml": "^4.1.0"
+  }
+}

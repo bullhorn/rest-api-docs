@@ -2,6 +2,7 @@
 .idea
 build
 vendor
+node_modules
 
 _site
 .vagrant

@@ -1,0 +1,68 @@
+BillableChargeUpdateRequest:
+  type: object
+  description: |
+    Request body for updating an existing BillableCharge.
+
+    **Note:** When updating a BillableCharge, you typically provide the billMasters
+    array with transaction records to be added or modified.
+  properties:
+    description:
+      type: string
+      description: Updated description of the billable charge
+      maxLength: 2147483647
+      example: Updated BillableCharge Description
+    periodEndDate:
+      type: string
+      format: date
+      description: Updated period end date
+      example: '2024-04-27'
+    placement:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Reference to the Placement entity
+      example:
+        id: 272
+    billingProfile:
+      allOf:
+        - $ref: './common.yaml#/EntityReference'
+        - description: Reference to the BillingProfile entity
+      example:
+        id: 150
+    billMasters:
+      type: array
+      description: |
+        Array of bill master transaction records to update.
+        Existing transactions can be modified, and new transactions can be added.
+      items:
+        $ref: './BillMaster.yaml#/BillMaster'
+      example:
+        - quantity: 30.0
+          transactionDate: '2024-04-27'
+          amount: 1500.0
+          earnCode:
+            id: 5
+          rate: 50
+          customerRequiredFields:
+            - customerRequiredFieldMeta:
+                id: 2
+              customerRequiredFieldOption:
+                id: 14
+            - customerRequiredFieldMeta:
+                id: 1
+              textValue: Meta Text Value!
+  example:
+    billMasters:
+      - quantity: 30.0
+        transactionDate: '2024-04-27'
+        amount: 1500.0
+        earnCode:
+          id: 5
+        rate: 50
+        customerRequiredFields:
+          - customerRequiredFieldMeta:
+              id: 2
+            customerRequiredFieldOption:
+              id: 14
+          - customerRequiredFieldMeta:
+              id: 1
+            textValue: Meta Text Value!
