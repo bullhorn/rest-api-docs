@@ -1,0 +1,12 @@
+# Redocly configuration with Novo Elements branding
+theme:
+  openapi:
+    # Display options
+    layout: three-panel
+    hideDownloadButtons: false
+    hideLoading: false
+
+    # Schema display
+    sortRequiredPropsFirst: true
+    jsonSamplesExpandLevel: 2
+    schemasExpansionLevel: 2

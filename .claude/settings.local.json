@@ -8,7 +8,13 @@
       "Read(//c/Users/jeremy.quick/Bullhorn/core-services/**)",
       "Read(//c/Users/jeremy.quick/Bullhorn/billing-sync/**)",
       "Bash(find:*)",
-      "Read(//c/Users/jeremy.quick/Bullhorn/sql/**)"
+      "Read(//c/Users/jeremy.quick/Bullhorn/sql/**)",
+      "Bash(npx @redocly/cli:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:unpkg.com)",
+      "WebFetch(domain:app.unpkg.com)",
+      "Bash(npm run docs:redoc:dev:*)"
     ],
     "deny": [],
     "ask": []

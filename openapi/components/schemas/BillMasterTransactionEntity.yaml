@@ -103,7 +103,6 @@ BillMasterTransactionEntity:
         determining decimal precision for final rounding on invoices. Immutable after creation to
         maintain financial integrity.
       readOnly: true
-      required: true
       properties:
         id:
           type: integer
@@ -322,7 +321,6 @@ BillMasterTransactionEntity:
         BillingSync-originated transactions. Manual adjustments only affect Manual-originated
         transactions. Essential for multi-system integration safety.
       readOnly: true
-      required: true
       properties:
         id:
           type: integer
@@ -345,7 +343,6 @@ BillMasterTransactionEntity:
         (excludes Unbillable). Used to identify reversible transactions. Determines eligibility for
         reversal operations. Critical for adjustment workflow and invoice processing logic.
       readOnly: true
-      required: true
       properties:
         id:
           type: integer
@@ -402,7 +399,6 @@ BillMasterTransactionEntity:
         "8.0 Hours" vs "1.0 Days"). System validates unitOfMeasure is compatible with earnCode type.
         Immutable after creation to maintain consistency. Important for payroll integration ensuring
         correct unit interpretation by external systems.
-      required: true
       properties:
         id:
           type: integer

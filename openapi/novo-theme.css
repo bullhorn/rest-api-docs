@@ -1,0 +1,302 @@
+/* Novo Elements Theme for ReDoc */
+/* Applied to Bullhorn Middle Office API Documentation */
+
+:root {
+  /* === PRIMARY COLORS === */
+  --color-primary: #4a89dc;           /* Ocean Blue */
+  --color-success: #8cc152;           /* Grass Green */
+  --color-warning: #f6b042;           /* Sunflower */
+  --color-error: #da4453;             /* Grapefruit */
+  --color-info: #4a89dc;              /* Ocean Blue */
+
+  /* === TEXT COLORS === */
+  --color-text-primary: #3d464d;      /* Dark Gray */
+  --color-text-secondary: #70777f;    /* Muted Gray */
+  --color-text-light: #9e9e9e;        /* Gray */
+
+  /* === BACKGROUND COLORS === */
+  --color-bg-main: #ffffff;           /* White */
+  --color-bg-panel: #f7f7f7;          /* Off-White */
+  --color-bg-code: #282828;           /* Charcoal */
+  --color-bg-muted: #f4f4f4;          /* Sand */
+
+  /* === BORDER COLORS === */
+  --color-border-light: #dbdbdb;      /* Light */
+  --color-border-dark: #bebebe;       /* Stone */
+
+  /* === HTTP METHOD COLORS === */
+  --color-http-get: #4a89dc;          /* Ocean Blue */
+  --color-http-post: #8cc152;         /* Grass Green */
+  --color-http-put: #f6b042;          /* Sunflower */
+  --color-http-delete: #da4453;       /* Grapefruit */
+  --color-http-patch: #967adc;        /* Lavender */
+  --color-http-head: #707070;         /* Slate */
+  --color-http-options: #9e9e9e;      /* Gray */
+}
+
+/* Typography - Roboto font family */
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  color: var(--color-text-primary) !important;
+  font-size: 14px !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-weight: 600 !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Sidebar styling */
+.menu-content {
+  background-color: var(--color-bg-main) !important;
+  color: var(--color-text-primary) !important;
+}
+
+.menu-content a {
+  color: var(--color-text-primary) !important;
+}
+
+.menu-content .active,
+.menu-content li.active > label {
+  color: var(--color-primary) !important;
+  background-color: rgba(74, 137, 220, 0.1) !important;
+}
+
+.menu-content a:hover {
+  color: var(--color-primary) !important;
+  background-color: rgba(74, 137, 220, 0.05) !important;
+}
+
+/* Main content area */
+.api-content {
+  background-color: var(--color-bg-main) !important;
+}
+
+/* Right panel (code samples) */
+.api-content > div:last-child {
+  background-color: var(--color-bg-code) !important;
+}
+
+/* Links */
+a {
+  color: var(--color-primary) !important;
+}
+
+a:hover {
+  color: #3a79cc !important;
+}
+
+/* Buttons */
+button {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* Code blocks */
+pre,
+code {
+  font-family: Consolas, Menlo, Monaco, 'Lucida Console', monospace !important;
+  font-size: 13px !important;
+  background-color: var(--color-bg-panel) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Inline code */
+code {
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+}
+
+/* JSON/code samples in right panel */
+.redoc-json code,
+pre[class*="language-"] code,
+.api-content > div:last-child pre,
+.api-content > div:last-child code {
+  background-color: var(--color-bg-code) !important;
+  color: #ffffff !important;
+}
+
+/* Description code blocks (workflows, examples) */
+.redoc-markdown pre,
+.redoc-markdown code,
+[class*="styled__StyledMarkdownBlock"] pre,
+[class*="styled__StyledMarkdownBlock"] code {
+  background-color: var(--color-bg-panel) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Ensure all pre blocks have dark text on light bg by default */
+pre {
+  color: var(--color-text-primary) !important;
+  padding: 16px !important;
+  border-radius: 4px !important;
+  overflow-x: auto !important;
+}
+
+/* HTTP Method badges */
+.http-verb {
+  font-weight: 600 !important;
+  border-radius: 4px !important;
+}
+
+.http-verb.get {
+  background-color: var(--color-http-get) !important;
+  color: #ffffff !important;
+}
+
+.http-verb.post {
+  background-color: var(--color-http-post) !important;
+  color: #ffffff !important;
+}
+
+.http-verb.put {
+  background-color: var(--color-http-put) !important;
+  color: #ffffff !important;
+}
+
+.http-verb.delete {
+  background-color: var(--color-http-delete) !important;
+  color: #ffffff !important;
+}
+
+.http-verb.patch {
+  background-color: var(--color-http-patch) !important;
+  color: #ffffff !important;
+}
+
+.http-verb.head {
+  background-color: var(--color-http-head) !important;
+  color: #ffffff !important;
+}
+
+.http-verb.options {
+  background-color: var(--color-http-options) !important;
+  color: #ffffff !important;
+}
+
+/* Schema property types */
+.property-type {
+  color: var(--color-primary) !important;
+}
+
+/* Required labels */
+.required {
+  color: var(--color-error) !important;
+  font-weight: 600 !important;
+}
+
+/* Borders */
+.sc-gHrCVQ:not(:last-of-type):after,
+.sc-dTvVRJ:not(:last-of-type):after {
+  border-bottom-color: var(--color-border-light) !important;
+}
+
+/* Table borders */
+table {
+  border-color: var(--color-border-light) !important;
+}
+
+td, th {
+  border-color: var(--color-border-light) !important;
+}
+
+/* Response status codes */
+.response-status-code {
+  font-weight: 600 !important;
+}
+
+.response-status-code.success {
+  color: var(--color-success) !important;
+}
+
+.response-status-code.redirect {
+  color: var(--color-primary) !important;
+}
+
+.response-status-code.error {
+  color: var(--color-error) !important;
+}
+
+/* Tags */
+.operation-tag {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+/* Search box */
+.search-input {
+  border-color: var(--color-border-light) !important;
+  background-color: var(--color-bg-panel) !important;
+}
+
+.search-input:focus {
+  border-color: var(--color-primary) !important;
+  outline-color: var(--color-primary) !important;
+}
+
+/* Nested schema backgrounds */
+.sc-jaXbil {
+  background-color: var(--color-bg-muted) !important;
+}
+
+.sc-jaXbil .sc-jaXbil {
+  background-color: var(--color-bg-main) !important;
+}
+
+/* Additional text color overrides for readability */
+p, li, td, th, span, div {
+  color: inherit;
+}
+
+/* Markdown content text */
+.redoc-markdown p,
+.redoc-markdown li,
+.redoc-markdown td,
+[class*="styled__StyledMarkdownBlock"] p,
+[class*="styled__StyledMarkdownBlock"] li,
+[class*="styled__StyledMarkdownBlock"] td {
+  color: var(--color-text-primary) !important;
+}
+
+/* Description text */
+[class*="styled__Description"],
+[class*="Description__StyledDescription"] {
+  color: var(--color-text-primary) !important;
+}
+
+/* Ensure strong/bold text is visible */
+strong, b {
+  color: var(--color-text-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* Fix any white text on light backgrounds */
+.api-content [style*="color: rgb(255, 255, 255)"],
+.api-content [style*="color: white"],
+.api-content [style*="color:#ffffff"],
+.api-content [style*="color:#fff"] {
+  color: var(--color-text-primary) !important;
+}
+
+/* Scrollbar styling (webkit browsers) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-panel);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Load Roboto font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap');
