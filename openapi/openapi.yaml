@@ -13,7 +13,7 @@ info:
 
     - **Pay Bill System** (91 entities): Manages billing, invoicing, rate cards, general ledger
       integration, and revenue recognition. Core entities include BillableCharge, BillMaster,
-      InvoiceStatement, and BillingProfile.
+      BillMasterTransaction, InvoiceStatement, and BillingProfile.
 
     - **Time and Labor System** (7 entities): Handles time entry, expense reporting, and
       approval workflows for contractor placements. Core entities include Timesheet and
@@ -23,18 +23,152 @@ info:
       onboarding, and shift scheduling. Core entities include PlacementCertification and
       OnboardingConfiguration.
 
-    ## BillableCharge Workflow
+    ## Pay Bill System Overview
 
-    The BillableCharge entity is central to the billing process, progressing through these statuses:
+    The Pay Bill system transforms approved time and expense data into invoiced revenue by:
+    - Creating billable charges from approved timesheets and expense reports
+    - Applying rate cards, discounts, surcharges, and sales tax
+    - Managing billing workflows (approval, review, hold states)
+    - Generating invoices grouped by billing calendar periods
+    - Integrating with general ledger systems for revenue recognition
+    - Tracking unbilled revenue and revenue distribution
 
-    1. **NotReadyToBill**: Initial state for new charges
-    2. **ReadyToBill**: Charges validated and ready for invoicing
-    3. **Processing**: Currently being processed into invoices
-    4. **NeedsReview**: Requires manual review due to validation issues
-    5. **Invoiced**: Successfully invoiced to client
-    6. **Unbillable**: Marked as non-billable
-    7. **ProcessingFailed**: Failed during invoice generation
-    8. **OnHold**: Temporarily paused from billing
+    ## Workflow: From Time Entry to Invoice
+
+    ```
+    1. TIME/EXPENSE ENTRY (Time and Labor System)
+       └─> Timesheet/ExpenseSheet approved
+
+    2. CHARGE CREATION (Pay Bill - BillableCharge)
+       └─> BillableCharge created, status = NotReadyToBill
+
+    3. TRANSACTION GROUPING (Pay Bill - BillMaster)
+       └─> BillMaster groups by earn code + transaction date
+       └─> BillMasterTransaction records rates, amounts, audit trail
+
+    4. APPROVAL & REVIEW (Pay Bill - Workflows)
+       └─> Transactions approved (status = Approved)
+       └─> Review flags cleared (needsReview = false)
+       └─> Charge status → ReadyToBill
+
+    5. INVOICING (Pay Bill - InvoiceStatement)
+       └─> Transactions stamped with invoiceStatementBatch
+       └─> Invoice created with discounts, surcharges, taxes
+       └─> Transactions become immutable
+       └─> Charge status → Invoiced
+
+    6. GL INTEGRATION (Pay Bill - Accounting)
+       └─> Revenue recognized in AccountingPeriod
+       └─> UnbilledRevenueDistribution (if applicable)
+       └─> Export to external GL systems
+    ```
+
+    ## Entity Hierarchy
+
+    ```
+    BillableCharge (Charge-level container)
+      ├─> BillMaster (Master-level grouping by earn code/date)
+      │     ├─> BillMasterTransaction (Individual transaction audit trail)
+      │     │     ├─> BillMasterTransactionDiscountDetail
+      │     │     ├─> BillMasterTransactionSurchargeDetail
+      │     │     └─> BillMasterTransactionSalesTaxDetail
+      │     ├─> BillMasterDiscountRate (Applied discounts)
+      │     └─> BillMasterSurchargeRate (Applied surcharges)
+      │
+      └─> InvoiceStatementLineItem (When invoiced)
+            └─> InvoiceStatement (Final invoice to client)
+    ```
+
+    ## BillableCharge Status Flow
+
+    The BillableCharge entity progresses through these statuses:
+
+    1. **NotReadyToBill (1)** - Default state when transactions aren't yet approved
+    2. **ReadyToBill (2)** - All transactions approved and eligible for invoicing
+    3. **Processing (3)** - Bill masters syncing (temporary state)
+    4. **NeedsReview (4)** - Flagged for manual review (e.g., rate issues, missing data)
+    5. **Invoicing (5)** - Associated with invoice statement (not yet finalized)
+    6. **Invoiced (6)** - All transactions invoiced and finalized
+    7. **Unbillable (7)** - All transactions marked unbillable
+    8. **ProcessingFailed (8)** - Bill master sync failed
+    9. **OnHold (9)** - Charge is on hold (prevents invoicing)
+
+    **Status Priority**: OnHold > ProcessingFailed > Processing > NeedsReview >
+    Invoiced/Unbillable > ReadyToBill > NotReadyToBill
+
+    ## Transaction Immutability & Adjustments
+
+    **BillMasterTransaction** records become immutable once:
+    - `invoiceStatement != null` (already invoiced)
+    - `invoiceStatementBatch != null` (stamped for invoicing)
+    - `billMasterTransactionDistributionBatch != null` (in revenue distribution)
+
+    **Adjustment Pattern**: To modify immutable transactions, create adjustment pairs:
+    1. **Reversal Transaction** - Negates original quantity and amount, links via
+       `reversalOfTransaction`, increments `adjustmentSequenceNumber`
+    2. **Adjustment Transaction** - Contains corrected values, further increments
+       `adjustmentSequenceNumber`, system recalculates `netAmount` and `netQuantity`
+
+    Example:
+    ```
+    Original: quantity=8.0, amount=400.00, adjustmentSequenceNumber=0
+    Reversal: quantity=-8.0, amount=-400.00, adjustmentSequenceNumber=1
+    Adjustment: quantity=9.0, amount=450.00, adjustmentSequenceNumber=2
+    Net Result: netQuantity=9.0, netAmount=450.00
+    ```
+
+    ## Integration Points
+
+    ### Time and Labor System
+    - **Input**: Approved timesheets and expense reports
+    - **Trigger**: BillableCharge creation from approved time/expense
+    - **Workflow**: Timesheet approved → BillableCharge created → BillMaster +
+      BillMasterTransaction generated
+
+    ### Back to Employer (BTE) System
+    - **Input**: Placement configuration, rate cards, billing profiles
+    - **Usage**: Determines rates, billing calendar, discount/surcharge rules
+    - **Workflow**: Placement defines billing rules → Applied during BillableCharge creation
+
+    ### General Ledger Systems
+    - **Output**: Revenue recognition, unbilled revenue, invoice data
+    - **Integration**: Export via pay-export-services
+    - **Workflow**: Transactions distributed → Revenue recognized → Exported to external GL
+
+    ## Common API Patterns
+
+    ### Create Billable Charge
+    ```http
+    PUT /services/BillableCharge
+    {
+      "description": "John Smith - Software Engineer - Period Ending 2025-01-31",
+      "periodEndDate": "2025-01-31",
+      "placement": {"id": 12345},
+      "billMasters": [{
+        "earnCode": {"id": 1},
+        "transactionDate": "2025-01-27",
+        "quantity": 40.0,
+        "rate": 75.00,
+        "amount": 3000.00
+      }]
+    }
+    ```
+
+    ### Mark Charge Ready for Billing
+    ```http
+    POST /services/BillableCharge/markAsReady
+    {"billableChargeIds": [67890]}
+    ```
+
+    ### Place Charge on Hold
+    ```http
+    PUT /services/BillableCharge/updateHoldStatus
+    {
+      "billableChargeIds": [67890],
+      "billableChargeHoldStatusLookupID": 1,
+      "onHoldComment": "Pending rate verification with client"
+    }
+    ```
 
     ## Authentication
 

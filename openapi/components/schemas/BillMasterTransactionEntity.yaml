@@ -1,0 +1,446 @@
+BillMasterTransactionEntity:
+  type: object
+  description: |
+    Read-only entity via REST API that represents the audit trail and rate information for a BillMaster
+    record. Transactions become immutable once invoiced, stamped for invoicing, or included in an
+    unbilled revenue distribution batch. Changes to immutable transactions require creating adjustment
+    pairs (reversal + adjustment transactions).
+
+    **CRUD Access**: READ only
+
+    **Immutability Rules**: A transaction **cannot** be updated if:
+    - `invoiceStatement != null` (already invoiced)
+    - `invoiceStatementBatch != null` (stamped for invoicing)
+    - `billMasterTransactionDistributionBatch != null` (in revenue distribution)
+    - `transactionOrigin` doesn't match the requesting system
+    - `transactionType` is not "New" or "Adjustment"
+
+    **Adjustment Pattern**: To modify immutable transactions, create adjustment pairs:
+    1. **Reversal Transaction** - Negates original quantity and amount, links via `reversalOfTransaction`
+    2. **Adjustment Transaction** - Contains corrected values, increments `adjustmentSequenceNumber`
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Unique identifier for this entity
+      readOnly: true
+    accountingPeriod:
+      type: object
+      description: |
+        Links transaction to financial reporting period for period close and accounting. Assigned
+        during period close process based on recordingDate or payPeriodEndDate. Can be cleared and
+        reassigned if periods are recalculated. Used by pay-export-services to export by accounting
+        period. Critical for revenue recognition and financial reporting. Supports period rollback
+        scenarios.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        accountingPeriodDate:
+          type: string
+          format: date
+    adjustmentSequenceNumber:
+      type: integer
+      description: |
+        Monotonically increasing sequence tracking adjustment history for a BillMaster. Original
+        transaction=0, first reversal=1, first adjustment=2, etc. Calculated as MAX(existing sequence)
+        + ROW_NUMBER during bulk operations. Used in ORDER BY clauses to display transaction history
+        chronologically. Critical for identifying the most recent transaction state and understanding
+        the complete audit trail of changes. System prevents gaps in sequence within a BillMaster.
+      readOnly: true
+      example: 0
+    amount:
+      type: number
+      format: double
+      description: |
+        Total transaction value calculated as rate × quantity. Precision: DECIMAL(19,6). NOT rounded
+        in BillMasterTransaction (unlike PayMasterTransaction) as amounts flow to invoices requiring
+        further calculations (discounts, surcharges, taxes). Negated for reversal and unbillable
+        transactions. Aggregated with SUM() for invoice totals and subtotals. Final rounding occurs
+        during invoice creation based on currency minor units.
+      example: 400.00
+    billMaster:
+      type: object
+      description: Associated BillMaster
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+    billMasterTransactionDistributionBatch:
+      type: object
+      description: |
+        BillMasterTransactionDistributionBatch - Links to unbilled revenue distribution for GL revenue
+        recognition. Once set, transaction becomes immutable (checked in isUpdatable). Prevents
+        modifications after revenue has been distributed to general ledger. Used for revenue recognition
+        tracking before invoicing. Triggers wasUnbilled flag. System validates this field to maintain
+        financial accuracy and audit compliance. Critical for unbilled revenue reporting and GL
+        integration.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+    comment:
+      type: string
+      maxLength: 2147483647
+      description: |
+        Free-text field for transaction notes and explanations. Automatically populated during
+        markUnbillable operations with user-provided reason. Frequently used for adjustment
+        justifications, approval notes, and audit documentation. Visible in UI transaction history
+        for review workflows. Not directly searchable in standard queries due to large size - use
+        transaction notes or edit history for searchable comments.
+      readOnly: true
+    currencyUnit:
+      type: object
+      description: |
+        Currency used for rate and amount values. Copied from placement or billing profile during
+        creation. Required field - must match currency used in related BillMaster and parent
+        BillableCharge. System validates all transactions within a charge use same currency before
+        calculating subtotals - mixed currencies set subtotal to NULL. Used for invoice generation
+        with proper currency formatting and exchange rate handling. Contains minorUnits property
+        determining decimal precision for final rounding on invoices. Immutable after creation to
+        maintain financial integrity.
+      readOnly: true
+      required: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        System-generated timestamp when transaction record was created in database. Different from
+        recordingDate (billing system recording date) and BillMaster.transactionDate (work performed
+        date). Automatically set by database on INSERT. Used for audit trail tracking when transactions
+        were created vs. when work occurred. Immutable after creation. Not typically used in business
+        queries - use recordingDate or transactionDate instead for filtering by billing periods.
+      readOnly: true
+    dateLastModified:
+      type: string
+      format: date-time
+      description: |
+        System-generated timestamp of most recent UPDATE to transaction record. Automatically maintained
+        by database triggers. Used for audit tracking and change detection. Updated when any field
+        changes including calculated denormalized fields. Different from dateAdded and version -
+        dateLastModified is pure timestamp while version is optimistic locking counter. Used by CDC
+        (Change Data Capture) systems for identifying recently modified records.
+      readOnly: true
+    editHistories:
+      type: array
+      description: BillMasterTransactionEditHistory - audit trail of changes
+      readOnly: true
+      items:
+        type: object
+    invoiceStatement:
+      type: object
+      description: |
+        Links to final invoice document. Set during invoice creation after invoiceStatementBatch is
+        assigned. Once set, transaction becomes immutable (isUpdatable returns false). Used to filter
+        uninvoiced transactions (WHERE invoiceStatementID IS NULL). Cleared when invoice is deleted
+        to allow re-invoicing. Critical immutability trigger - prevents modification of invoiced
+        financial records. Part of three-way invoice link with invoiceStatementBatch and
+        invoiceStatementLineItem.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+    invoiceStatementBatch:
+      type: object
+      description: |
+        Stamped first during invoice batch creation, before invoiceStatementID is set. Locks
+        transactions with ROWLOCK, UPDLOCK during invoice processing. Once set, transaction becomes
+        immutable. Cleared when invoice is deleted. Used to group transactions being processed
+        together. Part of immutability rules - checked in isUpdatable(). If set without
+        invoiceStatementID, indicates batch processing is in progress.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+    invoiceStatementLineItem:
+      type: object
+      description: Associated InvoiceStatementLineItem
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+    isCustomRate:
+      type: boolean
+      description: |
+        Boolean flag indicating billing rate was manually overridden from standard PlacementRateCard.
+        Set to true when user manually edits rate field or when rate doesn't match any rate card
+        entry for the earnCode/date combination. Used in reports for rate variance analysis and
+        margin tracking. Helps identify exceptions to standard pricing. Used in audit queries to
+        find non-standard billing. Different from rate overrides at placement level - this tracks
+        transaction-specific overrides. Remains false when rate comes from rate card even if rate
+        card itself was customized. Immutable once transaction is invoiced.
+      readOnly: true
+    isDeleted:
+      type: boolean
+      description: |
+        Soft delete flag marking transaction for removal from active processing while preserving
+        audit trail. Set to true when user deletes transaction before invoicing. Different from
+        isUnbillable (business decision not to bill) - isDeleted typically indicates data entry
+        error or duplicate. Filtered out with WHERE isDeleted=0 in most business queries including
+        invoice processing. Excluded from netAmount/netQuantity calculations. Cannot be set on
+        invoiced transactions - must use adjustment pattern instead. Used for error correction
+        rather than financial workflow. Enables transaction recovery if deletion was accidental.
+    isUnbillable:
+      type: boolean
+      description: |
+        Display flag indicating transaction was explicitly marked unbillable. Stored in secondary
+        table BH_BillTransactionInfo for UI performance. Set to true when markUnbillable operation
+        creates reversal transaction. Original transaction keeps isUnbillable=true as permanent
+        marker. Different from isDeleted (soft delete for errors) - isUnbillable is business decision
+        to not invoice. Used in reports to track revenue that was marked non-billable. Visual indicator
+        in UI that transaction went through unbillable workflow.
+      readOnly: true
+    needsReview:
+      type: boolean
+      description: |
+        Workflow flag indicating manual review required before invoicing. Set automatically by
+        billing-sync when detecting validation issues, rate mismatches, or conflicts. Prevents
+        automatic invoicing - charges with needsReview transactions get NeedsReview status. Cleared
+        via clearNeedsReview API operation or when marking transactions unbillable. User must
+        explicitly review and clear flag via clearNeedsReviewAndMarkAsReady service. Used in WHERE
+        clauses to identify problematic transactions requiring attention. Updatable field cleared
+        during review workflow.
+      readOnly: true
+    netAmount:
+      type: number
+      format: double
+      description: |
+        Denormalized display field showing sum of all related transaction amounts (original +
+        reversals + adjustments). Stored in secondary table BH_BillTransactionInfo for query
+        performance rather than calculating via SUM() each time. Automatically updated when
+        adjustment transactions are created. Used extensively in UI lists, reports, and invoice
+        preview calculations. May differ from individual transaction amount when adjustments exist.
+        System recalculates by summing all transactions with same billMasterID. Read-only field
+        accessible via LEFT JOIN in queries and View_BillMasterTransaction.
+      readOnly: true
+    netQuantity:
+      type: number
+      format: double
+      description: |
+        Denormalized display field showing sum of all related transaction quantities (original +
+        reversals + adjustments). Stored in secondary table BH_BillTransactionInfo for query
+        performance. Automatically recalculated when adjustments are created. Used in UI to show
+        effective hours/units after all changes. Important for variance analysis - comparing
+        netQuantity vs. original quantity reveals adjustment magnitude. May be zero if transaction
+        fully reversed. System maintains in sync with netAmount through adjustment process.
+        Read-only calculated field.
+      readOnly: true
+    payPeriodEndDate:
+      type: string
+      format: date
+      description: |
+        End date of pay period from originating timesheet or expense report. Used for period
+        alignment between pay and bill cycles. Critical for accountingPeriod assignment - system
+        selects accounting period where payPeriodEndDate falls within period date range as fallback
+        when recordingDate not available. Enables split billing when work from one pay period spans
+        multiple billing periods. Used by pay-export-services for payroll integration. Remains
+        constant even when transactions are adjusted. Copied from source system during billing-sync
+        processing.
+      readOnly: true
+    quantity:
+      type: number
+      format: double
+      description: |
+        Transaction quantity in unitOfMeasure units (typically hours for time, units for expenses).
+        Precision: DECIMAL(19,6) supporting fractional hours like 7.5 or 0.25. Negated for Reversal
+        and Unbillable transaction types to offset original quantity. Multiplied by rate to calculate
+        amount (quantity × rate = amount). Updatable only if transaction is not immutable. System
+        validates quantity matches units appropriate for earnCode (hours for time earn codes). Used
+        in SUM() aggregations for netQuantity calculations. Zero quantity transactions allowed for
+        fixed-fee billing scenarios.
+      example: 8.0
+    rate:
+      type: number
+      format: double
+      description: |
+        Billing rate per unit of quantity. Precision: DECIMAL(19,6) supporting rates like $47.50 or
+        $125.33. Derived from PlacementRateCard based on earnCode and transactionDate falling within
+        rate card effective dates. Can be manually overridden (sets isCustomRate=true). NOT negated
+        for reversal transactions - only quantity and amount are negated. Multiplied by quantity to
+        calculate amount. System validates rate is non-negative. Used in variance analysis comparing
+        actual vs. expected rates. Immutable once transaction is invoiced or distributed for revenue
+        recognition.
+      example: 50.00
+    recordingDate:
+      type: string
+      format: date
+      description: |
+        Business date when transaction was recorded in billing system for accounting purposes. Primary
+        date used for accountingPeriod assignment - system selects period where recordingDate falls
+        within period date range. Different from dateAdded (system creation timestamp) and
+        BillMaster.transactionDate (work performance date). Set by billing-sync during import from
+        external systems. Used in revenue recognition calculations and period close processes.
+        Immutable after creation. Critical for financial reporting - determines which accounting
+        period recognizes the revenue. Typically matches timesheet approval date rather than work
+        date.
+      readOnly: true
+    reversalOfTransaction:
+      type: object
+      description: |
+        Self-referencing link to original transaction being reversed. Set when creating Reversal or
+        Unbillable transaction types. Enables audit trail showing which transactions reverse others.
+        System checks NOT EXISTS(reversalOfTransactionID) to prevent double-reversals. Used with
+        adjustmentSequenceNumber to construct complete adjustment history. Reversal pattern: original
+        transaction receives reversal (negative amounts) with this link, then adjustment transaction
+        with corrected values. Critical for maintaining financial audit trail.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+    timestamp:
+      type: string
+      format: byte
+      description: |
+        SQL Server rowversion column automatically incremented on every UPDATE. Binary value uniquely
+        identifying the version of the row across entire database. Used by CDC (Change Data Capture)
+        and event streaming systems to detect modifications since last poll. Different from version
+        field (optimistic locking) - timestamp is database-level change tracking while version is
+        application-level concurrency control. Not intended for API consumption - use version for
+        concurrency checks. Updated even when denormalized fields change. Enables efficient
+        incremental data synchronization without comparing all fields.
+      readOnly: true
+    transactionOrigin:
+      type: object
+      description: |
+        Tracks how transaction was created and controls editing permissions. Manual(1)=user action,
+        BillingSync(2)=automated sync, System(3)=system operation. Used in isUpdatable() -
+        transactions can only be updated if origin matches current operation's origin. Prevents
+        cross-system modifications ensuring data integrity. Billing sync operations only modify
+        BillingSync-originated transactions. Manual adjustments only affect Manual-originated
+        transactions. Essential for multi-system integration safety.
+      readOnly: true
+      required: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        id: 2
+        name: BillingSync
+    transactionType:
+      type: object
+      description: |
+        Categorizes transaction purpose and workflow:
+        - **New (1)** - Original from billing sync
+        - **Adjustment (2)** - Corrected transaction
+        - **Reversal (3)** - Negated transaction
+        - **Unbillable (6)** - Marked non-billable
+
+        Controls updateability - only New and Adjustment types can be updated. Filtered in invoicing
+        (excludes Unbillable). Used to identify reversible transactions. Determines eligibility for
+        reversal operations. Critical for adjustment workflow and invoice processing logic.
+      readOnly: true
+      required: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        id: 1
+        name: New
+    unbilledRevenueDistributions:
+      type: array
+      description: UnbilledRevenueDistribution records for revenue recognition
+      items:
+        type: object
+    unbilledRevenueGeneralLedgerExportStatusLookup:
+      type: object
+      description: |
+        Tracks current state in unbilled revenue GL export workflow. Defaults to 'Ready for
+        Distribution' (ID: 2) for new transactions. Updated by revenue distribution batch processes
+        and pay-export-services during GL export.
+
+        **Status values**:
+        1. Export Failed
+        2. Ready for Distribution (default)
+        3. Stamped for Distribution
+        4. Creating Distribution
+        5. Ready for Export
+        6. Export Queued
+        7. Export in progress
+        8. Export Successful
+        9. Distribution Creation Failed (priority 0)
+
+        Aggregated to BillableCharge.generalLedgerStatus using MIN() with special handling for
+        Distribution Creation Failed as priority 0. Used to identify transactions requiring attention
+        after failed exports. Critical for GL integration reconciliation and ensuring all revenue
+        properly exported to accounting systems.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+      example:
+        id: 2
+        label: Ready for Distribution
+    unitOfMeasure:
+      type: object
+      description: |
+        Defines measurement unit for quantity field (Hours, Days, Units, Miles, etc.). Determines
+        how quantity is displayed and interpreted. Copied from EarnCode during transaction creation -
+        typically Hours for time-based earn codes, Units for expense earn codes. Required field -
+        must be set even if quantity is zero. Used in UI labels showing quantity values (e.g.,
+        "8.0 Hours" vs "1.0 Days"). System validates unitOfMeasure is compatible with earnCode type.
+        Immutable after creation to maintain consistency. Important for payroll integration ensuring
+        correct unit interpretation by external systems.
+      required: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+    version:
+      type: integer
+      description: |
+        Optimistic locking counter for concurrency control preventing lost updates. Incremented
+        automatically on every UPDATE. API clients should read version, then send same version value
+        back on UPDATE - system rejects if version changed (OptimisticLockException). Different from
+        timestamp (database change tracking) and dateLastModified (timestamp field). Currently
+        enforced by internal services (billing-sync, invoice-service). Planned for future enforcement
+        in TimeLaborEval. Zero for initial creation, increments sequentially. Essential for
+        preventing race conditions when multiple processes update same transaction. Standard JPA/
+        Hibernate optimistic locking mechanism.
+      readOnly: true
+    wasUnbilled:
+      type: boolean
+      description: |
+        Permanent marker indicating transaction was reversed via markUnbillable operation. Set to
+        true on BOTH the original transaction AND the new reversal transaction created during
+        unbillable workflow. Different from isUnbillable (display flag) - wasUnbilled is persisted
+        in main transaction table for reporting. Used for tracking revenue that was initially billed
+        but later reversed. Enables financial reports distinguishing between never-billed vs.
+        unbilled-after-processing. Immutable once set - provides audit trail of unbillable actions.
+      readOnly: true
+  required:
+    - id
+    - adjustmentSequenceNumber
+    - amount
+    - billMaster
+    - currencyUnit
+    - dateAdded
+    - dateLastModified
+    - recordingDate
+    - transactionOrigin
+    - transactionType
+    - unitOfMeasure
+    - wasUnbilled

@@ -1,0 +1,32 @@
+{
+  "name": "bullhorn-rest-api-docs",
+  "version": "1.0.0",
+  "description": "Bullhorn REST API Documentation (Slate + OpenAPI)",
+  "private": true,
+  "scripts": {
+    "install:all": "bundle install && npm install && cd openapi && npm install",
+    "build": "npm run build:slate && npm run build:openapi",
+    "build:slate": "bundle exec middleman build --clean",
+    "build:openapi": "cd openapi && npm run docs:redoc",
+    "dev": "concurrently \"npm run dev:slate\" \"npm run dev:openapi\"",
+    "dev:slate": "bundle exec middleman server",
+    "dev:openapi": "cd openapi && npm run preview",
+    "validate": "cd openapi && npm run validate",
+    "clean": "rm -rf build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "bullhorn",
+    "rest-api",
+    "documentation",
+    "slate",
+    "openapi",
+    "middle-office"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bullhorn/rest-api-docs.git"
+  }
+}

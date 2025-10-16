@@ -1,0 +1,322 @@
+BillMasterEntity:
+  type: object
+  description: |
+    Master billing record that aggregates header-level financial information and links the various
+    billing transactions and adjustments for an invoice or billing event.
+
+    **CRUD Access**: READ, UPDATE
+
+    **Entitlements**: View Bill Master, Edit Billable Charge
+
+    **Purpose**: BillMaster records group transactions by:
+    - **Earn Code** - Type of work (regular hours, overtime, double-time, etc.)
+    - **Transaction Date** - Date work was performed or expense incurred
+    - **External ID** - External system identifier for integration
+
+    This grouping enables detailed rate tracking by earn code, easy identification of overtime vs.
+    regular hours, and integration with external time & expense systems.
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Unique identifier for this entity
+      readOnly: true
+      example: 67890
+    addedByUser:
+      type: object
+      description: CorporateUser who added the record
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+    billMasterTransactions:
+      type: array
+      description: Associated BillMasterTransactions containing the audit trail and rate information
+      readOnly: true
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+    billableCharge:
+      type: object
+      description: Parent BillableCharge container
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+    billingCalendarInstance:
+      type: object
+      description: |
+        Determines billing period and invoicing eligibility. Automatically matched based on
+        transactionDate falling within calendar instance date range.
+
+        **Eligibility**: `isEligible = (billingCalendarInstance.endDate < current date)`
+
+        Updatable via BillMasterSyncBatch when billing calendar changes on placement. Derived from
+        InvoiceTerm's payBillCycle. Used extensively for period-based invoicing and eligibility
+        calculations. Requires "viewCalendar" entitlement to read.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+    billingSyncBatch:
+      type: object
+      description: |
+        Links to originating time & expense import batch. All BillMasters from same external batch
+        share same billingSyncBatch for traceability. Enables tracking which external events created
+        which BillMasters. Used to process corrections and updates to existing batches. Provides
+        audit trail for external system integration. Immutable after creation.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+    billingSyncBatchFileAttachments:
+      type: array
+      description: BillingSyncBatchFileAttachment - list of files associated with the record
+      readOnly: true
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+    canInvoice:
+      type: boolean
+      description: |
+        Controls invoicing eligibility - set to false by invoice creation process after successful
+        invoicing to prevent double-invoicing. Can be manually set to false to temporarily exclude
+        specific earn codes or transaction dates from invoicing without marking as unbillable. One
+        of the few updatable fields on BillMaster. Checked before including transactions in invoices.
+      default: true
+      example: true
+    chargeTypeLookup:
+      type: object
+      description: |
+        Categorizes as Time (1), Expense (2), or Time and Expense (3). Automatically derived from
+        EarnCode's EarnCodeGroup during creation. Immutable after creation. Used for grouping
+        transactions on invoices, separating time from expense reporting, and validating customer
+        required fields.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        id: 1
+        name: Time
+    customerRequiredFields:
+      type: array
+      description: |
+        BillMasterCustomerRequiredField - custom fields required by specific clients (e.g., project
+        codes, cost centers, department codes). These fields are defined in the client's InvoiceTerm
+        and automatically associated when BillMaster is created.
+      readOnly: true
+      items:
+        type: object
+    dateAdded:
+      type: string
+      format: date-time
+      description: Date the entity was added to the system
+      readOnly: true
+    dateLastModified:
+      type: string
+      format: date-time
+      description: Date the entity was last modified
+      readOnly: true
+    earnCode:
+      type: object
+      description: |
+        Defines type of work performed (regular hours, overtime, double-time, PTO, etc.). Primary
+        grouping dimension for BillMaster records. Controls discount eligibility via isDiscountable
+        flag - discounts can only be applied if earnCode.isDiscountable=true. Determines
+        chargeTypeLookup via EarnCodeGroup. Links to rate cards for billing calculations. Immutable
+        after creation. Required field used in unique constraint.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalID:
+          type: string
+        title:
+          type: string
+    externalID:
+      type: string
+      maxLength: 100
+      description: |
+        External system identifier for integration. Auto-generated as `BH_INJECTED_ID_{billMasterID}`
+        if duplicate detected. Used with unique constraint on `earnCodeID + transactionDate +
+        externalID + workedShiftID`.
+      readOnly: true
+    location:
+      type: object
+      description: |
+        Work location critical for sales tax calculations. Copied from Placement during BillMaster
+        creation. Updatable via BillMasterSyncBatch when placement location changes (syncLocation=true).
+
+        System matches location effective-dated version based on transactionDate. Used to determine
+        applicable tax rates via LocationVersionTaxGroups. Invoice creation queries sales tax rates
+        based on location and transactionDate falling between location's effectiveDate and
+        effectiveEndDate.
+      properties:
+        id:
+          type: integer
+          format: int64
+        clientCorporation:
+          type: object
+        candidate:
+          type: object
+        title:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        effectiveEndDate:
+          type: string
+          format: date
+        versionID:
+          type: integer
+        externalID:
+          type: string
+    owner:
+      type: object
+      description: CorporateUser owner of the record
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+    payBillCycle:
+      type: object
+      description: |
+        Links to billing cycle defining billing frequency and calendar. Contains billingCalendarID
+        used to determine billingCalendarInstance. Sourced from InvoiceTerm effective for
+        transactionDate. Updatable via BillMasterSyncBatch when invoice terms change. Used for
+        billing period determination and calendar synchronization. Requires "viewPayBillCycle"
+        entitlement to read.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+    transactionDate:
+      type: string
+      format: date
+      description: |
+        Business date when work was performed or expense incurred. Critical for effective-dated
+        version matching - determines which BillingProfile, InvoiceTerm, DiscountRate, SurchargeRate,
+        and PlacementRateCard versions apply. Used in unique constraint. Different from dateAdded
+        (system timestamp). Part of grouping key for BillMaster records. Required field, immutable
+        after creation. System selects configuration versions where transactionDate falls between
+        effectiveDate and effectiveEndDate.
+      readOnly: true
+      example: '2024-04-27'
+    transactionStatus:
+      type: object
+      description: |
+        TransactionStatus. Options are:
+        - 1 = Pending
+        - 2 = Submitted
+        - 3 = Payment Approved
+        - 4 = Approved
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        id: 4
+        name: Approved
+    discountRates:
+      type: array
+      description: |
+        Percentage or fixed-amount reductions applied to billing. Copied from InvoiceTermVersion
+        during BillMaster creation. Only applicable if earnCode.isDiscountable=true - system filters
+        discounts for non-discountable earn codes.
+
+        Updatable via BillMasterSyncBatch (syncDiscount=true). System selects rate versions where
+        transactionDate falls between effectiveDate and effectiveEndDate. Applied in calculatePriority
+        order during invoice calculation (each discount calculated on amount after previous discounts).
+        Can affect tax base unless ignoreForSalesTaxCalculations=true.
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+          title:
+            type: string
+          effectiveDate:
+            type: string
+            format: date
+          effectiveEndDate:
+            type: string
+            format: date
+          versionID:
+            type: integer
+          rate:
+            type: number
+            format: double
+          amount:
+            type: number
+            format: double
+          discountTypeLookup:
+            type: object
+    surchargeRates:
+      type: array
+      description: |
+        Additional charges applied to billing (shift differentials, weekend rates, hazard pay).
+        Copied from InvoiceTermVersion during BillMaster creation. No earn code restrictions - can
+        be applied to any earn code type.
+
+        Updatable via BillMasterSyncBatch (syncSurcharge=true). System selects rate versions where
+        transactionDate falls between effectiveDate and effectiveEndDate. Two types: Type 1 (fixed
+        amount per unit) or Type 2+ (percentage of base amount). Applied during invoice creation
+        after base amount calculation.
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+          title:
+            type: string
+          effectiveDate:
+            type: string
+            format: date
+          effectiveEndDate:
+            type: string
+            format: date
+          versionID:
+            type: integer
+          rate:
+            type: number
+            format: double
+          amount:
+            type: number
+            format: double
+          type:
+            type: integer
+  required:
+    - id
+    - dateAdded
+    - dateLastModified

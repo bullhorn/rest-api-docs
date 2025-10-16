@@ -3,6 +3,26 @@ BillableCharge:
   description: |
     The BillableCharge entity records a chargeable fee, capturing key details like the fee amount,
     rate type, and effective dates, and ties these charges to specific BillMasterTransactions.
+
+    **CRUD Access**: READ (via REST API). CREATE and UPDATE operations available via dedicated
+    service endpoints for workflow operations.
+
+    **Entitlements**: View Billable Charge, Add Billable Charge, Edit Billable Charge, Mark
+    Billable Charge Unbillable, Mark Billable Charge Ready
+
+    **Lifecycle States**:
+    1. **NotReadyToBill (1)** - Default state when transactions aren't yet approved
+    2. **ReadyToBill (2)** - All transactions approved and eligible for invoicing
+    3. **Processing (3)** - Bill masters syncing (temporary state)
+    4. **NeedsReview (4)** - Flagged for manual review (e.g., rate issues, missing data)
+    5. **Invoicing (5)** - Associated with invoice statement (not yet finalized)
+    6. **Invoiced (6)** - All transactions invoiced and finalized
+    7. **Unbillable (7)** - All transactions marked unbillable
+    8. **ProcessingFailed (8)** - Bill master sync failed
+    9. **OnHold (9)** - Charge is on hold (prevents invoicing)
+
+    **Status Priority**: OnHold > ProcessingFailed > Processing > NeedsReview > Invoiced/Unbillable
+    > ReadyToBill > NotReadyToBill
   properties:
     id:
       type: integer
@@ -13,23 +33,45 @@ BillableCharge:
     description:
       type: string
       maxLength: 2147483647
-      description: Description of the billable charge
+      description: |
+        Required description of the charge. Auto-generated descriptions include candidate name, job
+        title, and period end date. Used for display in invoices, reports, and UI lists. Can be
+        manually specified when creating charges via API.
       example: Weekly billing for placement #272
     periodEndDate:
       type: string
       format: date
-      description: Period end date for this billable charge
+      description: |
+        End date of billing period. Required field used for effective-dated version selection of
+        BillingProfile and InvoiceTerm. Typically represents end of pay period from timesheet approval.
+        Cannot be changed once charge is invoiced. Used for grouping charges by billing period and
+        determining which rate versions apply.
       example: '2024-04-27'
     placement:
       $ref: './common.yaml#/EntityReference'
-      description: Reference to the associated Placement
+      description: |
+        Links charge to worker's job assignment. Either placement or billingProfile must be provided
+        on creation. If provided, charge inherits billingProfile, location, GL segments, and branch
+        information from placement. Immutable after creation - cannot be updated once set. Used for
+        authorization checks and configuration inheritance.
     billingProfile:
       $ref: './common.yaml#/EntityReference'
-      description: Reference to the associated BillingProfile
+      description: |
+        Defines billing configuration including rates, schedules, and terms. Required for invoicing -
+        either set directly or inherited from placement. System selects effective-dated version based
+        on periodEndDate. Cannot be updated once charge is invoiced. Used to determine discount rates,
+        surcharge rates, billing calendar, and invoice terms.
     status:
       allOf:
         - $ref: './common.yaml#/EntityReference'
-        - description: BillableChargeStatusLookup indicating the status of this charge
+        - description: |
+            Calculated field representing current charge state in billing workflow. Cannot be directly
+            updated - changes based on transaction states, sync status, hold status, invoice
+            associations, and needsReview flags. Priority order (highest to lowest): OnHold >
+            ProcessingFailed > Processing > NeedsReview > Invoiced/Unbillable > ReadyToBill >
+            NotReadyToBill. Automatically recalculated when child transactions or BillMasters change.
+            Used extensively for filtering in queries, determining workflow actions, and controlling
+            invoicing eligibility.
     entryTypeLookup:
       allOf:
         - $ref: './common.yaml#/EntityReference'
@@ -37,17 +79,29 @@ BillableCharge:
     subtotal:
       type: number
       format: double
-      description: Subtotal amount for this billable charge
+      description: |
+        Sum of all BillMasterTransaction amounts for this charge. Only calculated if all transactions
+        use same currency - set to NULL if mixed currencies exist, preventing invalid total display.
+        Automatically recalculated when transactions are added, updated, or deleted. Used in reports,
+        list views, and invoice validation. Read-only calculated field stored in View_BillableCharge.
       readOnly: true
       example: 1500.00
     isInvoiced:
       type: boolean
-      description: Indicates whether this billable charge has been invoiced
+      description: |
+        Calculated field indicating if any transaction has been included in an invoice (true if any
+        BillMasterTransaction.invoiceStatementID is not null). Automatically updated when transactions
+        are invoiced. Once true, charge becomes immutable and cannot be modified. Used to filter
+        charges in invoicing workflows and UI lists. Special ACL protection prevents updates when
+        invoiced.
       readOnly: true
       example: false
     hasAdjustment:
       type: boolean
-      description: Indicates whether billable charge has an adjustment
+      description: |
+        Indicates whether billable charge has an adjustment. This field is set automatically when
+        an adjustment has occurred in the system, and it can also be manually overridden later if
+        the charge needs to be manually adjusted.
       example: false
     hasRebill:
       type: boolean
@@ -56,23 +110,39 @@ BillableCharge:
     externalID:
       type: string
       maxLength: 100
-      description: External system identifier
+      description: |
+        External system identifier for integration with third-party billing/accounting systems.
+        Useful for correlating charges across systems.
       nullable: true
       example: EXT-BC-12345
     readyToBillOverride:
       type: boolean
-      description: Ready to bill override flag
+      description: |
+        Manual override flag that forces charge to ReadyToBill status even when transactions aren't
+        fully approved. Set to true by markAsReady service operation. Automatically reset to false
+        when new BillMasterTransactions are added or new timecard data is imported, requiring
+        re-approval. Used for special billing situations requiring early invoicing before full
+        approval workflow completes. Bypass standard approval requirements with appropriate entitlement.
       readOnly: true
       example: false
     markAsReadyEligible:
       type: boolean
-      description: Indicates whether billable charge is ready eligible
+      description: |
+        Calculated field indicating if charge can be marked ready via markAsReady operation. True
+        when charge has at least one eligible transaction (isEligible=1, canInvoice=1) AND either:
+        (1) transactions have needsReview=1 flag set, OR (2) transactions are not approved
+        (transactionStatusID≠4) without readyToBillOverride. Used by UI to enable/disable "Mark As
+        Ready" button. Automatically recalculated when transaction approval status or needsReview
+        flags change.
       readOnly: true
       example: true
     timeAndExpenseBranch:
       type: string
       maxLength: 32
-      description: Time and expense branch identifier
+      description: |
+        Time and expense branch identifier from the placement, used for organizational tracking
+        and reporting in multi-branch/division environments.
+      readOnly: true
       nullable: true
     dateAdded:
       type: integer
@@ -124,7 +194,10 @@ BillableCharge:
     billingFrequency:
       type: string
       maxLength: 20
-      description: Billing frequency
+      description: |
+        Billing frequency derived from the associated InvoiceTerm (e.g., "Weekly", "Bi-Weekly",
+        "Monthly"). Read-only field populated from billing configuration. Used for display and
+        reporting purposes.
       readOnly: true
       example: Weekly
     billingSchedule:
@@ -139,7 +212,11 @@ BillableCharge:
     invoiceTerm:
       allOf:
         - $ref: './common.yaml#/EntityReference'
-        - description: Associated InvoiceTerm
+        - description: |
+            Defines payment terms, billing frequency, approval requirements, and billing calendar.
+            Automatically derived from billingProfile. Required for invoicing - charges without
+            invoiceTerm are excluded from invoice processing. System selects effective-dated version
+            based on periodEndDate. Read-only field populated from billing configuration.
     transactionStatus:
       allOf:
         - $ref: './common.yaml#/EntityReference'
@@ -153,28 +230,58 @@ BillableCharge:
     generalLedgerStatus:
       allOf:
         - $ref: './common.yaml#/EntityReference'
-        - description: General Ledger export status
+        - description: |
+            Tracks unbilled revenue GL export status with special handling for distribution failures.
+            Calculated as minimum status across all child transactions, with distribution failures
+            (status 9) prioritized via internal value 0. Updated by revenue distribution batch processes
+            and pay-export-services during GL export. Used for GL integration reconciliation and
+            identifying charges with failed exports requiring attention.
+
+            **Status Values**: 1=Export Failed, 2=Ready for Distribution, 3=Stamped for Distribution,
+            4=Creating Distribution, 5=Ready for Export, 6=Export Queued, 7=Export in progress,
+            8=Export Successful, 9=Distribution Creation Failed
         - readOnly: true
     generalLedgerSegment1:
       allOf:
         - $ref: './common.yaml#/EntityReference'
-        - description: General Ledger Segment 1 (typically Class)
+        - description: |
+            Chart of Accounts categorization for GL export. By default configured as Class.
+            Automatically inherited from placement during charge creation. Can be manually updated
+            with "View General Ledger" permission. Critical for proper revenue recognition and
+            financial reporting. Used in GL distribution generation and exported to external GL
+            systems. Typically represents department/division level.
     generalLedgerSegment2:
       allOf:
         - $ref: './common.yaml#/EntityReference'
-        - description: General Ledger Segment 2 (typically Division)
+        - description: |
+            Chart of Accounts categorization for GL export. By default configured as Division.
+            Automatically inherited from placement during charge creation. Can be manually updated
+            with "View General Ledger" permission. Used for segmented financial analysis and GL
+            account coding. Typically represents cost center level.
     generalLedgerSegment3:
       allOf:
         - $ref: './common.yaml#/EntityReference'
-        - description: General Ledger Segment 3 (typically Department)
+        - description: |
+            Chart of Accounts categorization for GL export. By default configured as Department.
+            Automatically inherited from placement during charge creation. Can be manually updated
+            with "View General Ledger" permission. Used for GL export and financial reporting.
+            Typically represents product/service line level.
     generalLedgerSegment4:
       allOf:
         - $ref: './common.yaml#/EntityReference'
-        - description: General Ledger Segment 4 (typically Country)
+        - description: |
+            Chart of Accounts categorization for GL export. By default configured as Country.
+            Automatically inherited from placement during charge creation. Can be manually updated
+            with "View General Ledger" permission. Used for geographic revenue segmentation and
+            compliance reporting. Typically represents location/region level.
     generalLedgerSegment5:
       allOf:
         - $ref: './common.yaml#/EntityReference'
-        - description: General Ledger Segment 5 (typically Location)
+        - description: |
+            Chart of Accounts categorization for GL export. By default configured as Location.
+            Automatically inherited from placement during charge creation. Can be manually updated
+            with "View General Ledger" permission. Used for project-level tracking and financial
+            reporting. Typically represents project/campaign level.
     generalLedgerServiceCode:
       allOf:
         - $ref: './common.yaml#/EntityReference'
