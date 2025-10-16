@@ -6,6 +6,11 @@ BillMasterTransactionEntity:
     unbilled revenue distribution batch. Changes to immutable transactions require creating adjustment
     pairs (reversal + adjustment transactions).
 
+    **See Also**:
+    - Workflow: [Transaction Adjustments](#tag/Transaction-Adjustments) - Complete adjustment pattern documentation
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Entity Documentation: [Transaction Entities](#tag/Transaction-Entities)
+
     **CRUD Access**: READ only
 
     **Immutability Rules**: A transaction **cannot** be updated if:
@@ -18,6 +23,8 @@ BillMasterTransactionEntity:
     **Adjustment Pattern**: To modify immutable transactions, create adjustment pairs:
     1. **Reversal Transaction** - Negates original quantity and amount, links via `reversalOfTransaction`
     2. **Adjustment Transaction** - Contains corrected values, increments `adjustmentSequenceNumber`
+
+    For detailed examples, see [Transaction Adjustments](#tag/Transaction-Adjustments).
   properties:
     id:
       type: integer

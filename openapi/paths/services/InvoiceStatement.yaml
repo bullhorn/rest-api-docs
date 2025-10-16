@@ -1,11 +1,13 @@
 generateExport:
   post:
     tags:
-      - Invoice Statement Services
+      - Invoice Services
     summary: Generate invoice export
     description: |
       Generates an export of invoice statements in various formats (PDF, CSV, XML, etc.)
       or exports to external accounting systems (QuickBooks, NetSuite, etc.).
+
+      **See Also**: [Invoicing Workflow](#tag/Invoicing-Workflow) - Complete invoicing process
 
       **Use Cases**:
       - Export invoices to PDF for client delivery
@@ -93,10 +95,12 @@ generateExport:
 email:
   post:
     tags:
-      - Invoice Statement Services
+      - Invoice Services
     summary: Email invoice statements
     description: |
       Sends invoice statements via email to configured recipients with PDF attachments.
+
+      **See Also**: [Invoicing Workflow](#tag/Invoicing-Workflow) - Invoice delivery process
 
       **Features**:
       - Customizable email templates
@@ -207,11 +211,13 @@ email:
 credit:
   post:
     tags:
-      - Invoice Statement Services
+      - Invoice Services
     summary: Credit (cancel) an invoice statement
     description: |
       Creates a credit invoice that offsets and cancels an original invoice.
       The original invoice is marked as credited.
+
+      **See Also**: [Invoicing Workflow](#tag/Invoicing-Workflow) - Credit invoice process details
 
       **Credit Invoice Process**:
       1. Original invoice is validated (must be finalized, not already credited)
@@ -308,7 +314,7 @@ credit:
 repostRequest:
   post:
     tags:
-      - Invoice Statement Services
+      - Invoice Services
     summary: Repost invoice to external systems
     description: |
       Re-sends invoice data to external systems (GL, ERP, etc.) for reconciliation

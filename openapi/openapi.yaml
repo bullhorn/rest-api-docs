@@ -7,6 +7,10 @@ info:
     managing the complete lifecycle from placement configuration through time/expense entry
     to payroll and billing operations.
 
+    This OpenAPI specification documents the **Pay Bill System** service endpoints for managing
+    billable charges and invoices. For complete workflow documentation, entity schemas, and
+    authentication details, use the navigation sidebar.
+
     ## Middle Office Systems
 
     Middle Office consists of three integrated systems:
@@ -23,242 +27,13 @@ info:
       onboarding, and shift scheduling. Core entities include PlacementCertification and
       OnboardingConfiguration.
 
-    ## Pay Bill System Overview
+    ## Getting Started
 
-    The Pay Bill system transforms approved time and expense data into invoiced revenue by:
-    - Creating billable charges from approved timesheets and expense reports
-    - Applying rate cards, discounts, surcharges, and sales tax
-    - Managing billing workflows (approval, review, hold states)
-    - Generating invoices grouped by billing calendar periods
-    - Integrating with general ledger systems for revenue recognition
-    - Tracking unbilled revenue and revenue distribution
-
-    ## Workflow: From Time Entry to Invoice
-
-    ```
-    1. TIME/EXPENSE ENTRY (Time and Labor System)
-       └─> Timesheet/ExpenseSheet approved
-
-    2. CHARGE CREATION (Pay Bill - BillableCharge)
-       └─> BillableCharge created, status = NotReadyToBill
-
-    3. TRANSACTION GROUPING (Pay Bill - BillMaster)
-       └─> BillMaster groups by earn code + transaction date
-       └─> BillMasterTransaction records rates, amounts, audit trail
-
-    4. APPROVAL & REVIEW (Pay Bill - Workflows)
-       └─> Transactions approved (status = Approved)
-       └─> Review flags cleared (needsReview = false)
-       └─> Charge status → ReadyToBill
-
-    5. INVOICING (Pay Bill - InvoiceStatement)
-       └─> Transactions stamped with invoiceStatementBatch
-       └─> Invoice created with discounts, surcharges, taxes
-       └─> Transactions become immutable
-       └─> Charge status → Invoiced
-
-    6. GL INTEGRATION (Pay Bill - Accounting)
-       └─> Revenue recognized in AccountingPeriod
-       └─> UnbilledRevenueDistribution (if applicable)
-       └─> Export to external GL systems
-    ```
-
-    ## Entity Hierarchy
-
-    ```
-    BillableCharge (Charge-level container)
-      ├─> BillMaster (Master-level grouping by earn code/date)
-      │     ├─> BillMasterTransaction (Individual transaction audit trail)
-      │     │     ├─> BillMasterTransactionDiscountDetail
-      │     │     ├─> BillMasterTransactionSurchargeDetail
-      │     │     └─> BillMasterTransactionSalesTaxDetail
-      │     ├─> BillMasterDiscountRate (Applied discounts)
-      │     └─> BillMasterSurchargeRate (Applied surcharges)
-      │
-      └─> InvoiceStatementLineItem (When invoiced)
-            └─> InvoiceStatement (Final invoice to client)
-    ```
-
-    ## BillableCharge Status Flow
-
-    The BillableCharge entity progresses through these statuses:
-
-    1. **NotReadyToBill (1)** - Default state when transactions aren't yet approved
-    2. **ReadyToBill (2)** - All transactions approved and eligible for invoicing
-    3. **Processing (3)** - Bill masters syncing (temporary state)
-    4. **NeedsReview (4)** - Flagged for manual review (e.g., rate issues, missing data)
-    5. **Invoicing (5)** - Associated with invoice statement (not yet finalized)
-    6. **Invoiced (6)** - All transactions invoiced and finalized
-    7. **Unbillable (7)** - All transactions marked unbillable
-    8. **ProcessingFailed (8)** - Bill master sync failed
-    9. **OnHold (9)** - Charge is on hold (prevents invoicing)
-
-    **Status Priority**: OnHold > ProcessingFailed > Processing > NeedsReview >
-    Invoiced/Unbillable > ReadyToBill > NotReadyToBill
-
-    ## Transaction Immutability & Adjustments
-
-    **BillMasterTransaction** records become immutable once:
-    - `invoiceStatement != null` (already invoiced)
-    - `invoiceStatementBatch != null` (stamped for invoicing)
-    - `billMasterTransactionDistributionBatch != null` (in revenue distribution)
-
-    **Adjustment Pattern**: To modify immutable transactions, create adjustment pairs:
-    1. **Reversal Transaction** - Negates original quantity and amount, links via
-       `reversalOfTransaction`, increments `adjustmentSequenceNumber`
-    2. **Adjustment Transaction** - Contains corrected values, further increments
-       `adjustmentSequenceNumber`, system recalculates `netAmount` and `netQuantity`
-
-    Example:
-    ```
-    Original: quantity=8.0, amount=400.00, adjustmentSequenceNumber=0
-    Reversal: quantity=-8.0, amount=-400.00, adjustmentSequenceNumber=1
-    Adjustment: quantity=9.0, amount=450.00, adjustmentSequenceNumber=2
-    Net Result: netQuantity=9.0, netAmount=450.00
-    ```
-
-    ## Integration Points
-
-    ### Time and Labor System
-    - **Input**: Approved timesheets and expense reports
-    - **Trigger**: BillableCharge creation from approved time/expense
-    - **Workflow**: Timesheet approved → BillableCharge created → BillMaster +
-      BillMasterTransaction generated
-
-    ### Bullhorn Time & Expense (BTE) System
-    - **Input**: Placement configuration, rate cards, billing profiles
-    - **Usage**: Determines rates, billing calendar, discount/surcharge rules
-    - **Workflow**: Placement defines billing rules → Applied during BillableCharge creation
-
-    ### General Ledger Systems
-    - **Output**: Revenue recognition, unbilled revenue, invoice data
-    - **Integration**: Export via pay-export-services
-    - **Workflow**: Transactions distributed → Revenue recognized → Exported to external GL
-
-    ## Common API Patterns
-
-    ### Create Billable Charge
-    ```http
-    PUT /services/BillableCharge
-    {
-      "description": "John Smith - Software Engineer - Period Ending 2025-01-31",
-      "periodEndDate": "2025-01-31",
-      "placement": {"id": 12345},
-      "billMasters": [{
-        "earnCode": {"id": 1},
-        "transactionDate": "2025-01-27",
-        "quantity": 40.0,
-        "rate": 75.00,
-        "amount": 3000.00
-      }]
-    }
-    ```
-
-    ### Mark Charge Ready for Billing
-    ```http
-    POST /services/BillableCharge/markAsReady
-    {"billableChargeIds": [67890]}
-    ```
-
-    ### Place Charge on Hold
-    ```http
-    PUT /services/BillableCharge/updateHoldStatus
-    {
-      "billableChargeIds": [67890],
-      "billableChargeHoldStatusLookupID": 1,
-      "onHoldComment": "Pending rate verification with client"
-    }
-    ```
-
-    ### Email Invoice to Client
-    ```http
-    POST /services/InvoiceStatement/email
-    {
-      "invoiceStatementIDs": [12345, 12346],
-      "includePDFAttachment": true,
-      "sendImmediately": false,
-      "updateDeliveryStatus": true
-    }
-    ```
-
-    ### Generate Invoice Export
-    ```http
-    POST /services/InvoiceStatement/generateExport
-    {
-      "invoiceStatementIDs": [12345, 12346],
-      "exportFormat": "PDF",
-      "exportTemplateID": 50,
-      "includeLineItems": true
-    }
-    ```
-
-    ### Credit Invoice
-    ```http
-    POST /services/InvoiceStatement/credit
-    {
-      "invoiceStatementID": 12345,
-      "creditReason": "Billing error - incorrect rate used",
-      "automaticallyFinalize": true,
-      "generateInvoiceNumber": true,
-      "creditInvoiceNumberSuffix": "CR"
-    }
-    ```
-
-    ## Invoicing Workflow
-
-    The InvoiceStatement workflow extends the Pay Bill system from billable charges to client invoices:
-
-    ```
-    1. INVOICE GENERATION
-       └─> BillableCharges with status=ReadyToBill selected
-       └─> InvoiceStatementBatch created
-       └─> Charges grouped by client + billing profile + period
-       └─> InvoiceStatement created per group
-
-    2. LINE ITEM CREATION
-       └─> BillMasterTransactions grouped by earn code/candidate/period
-       └─> InvoiceStatementLineItem created for each group
-       └─> Discounts, surcharges, taxes applied
-
-    3. INVOICE FINALIZATION
-       └─> Invoice reviewed and approved
-       └─> isFinalized set to true
-       └─> Invoice becomes immutable
-       └─> Invoice number generated
-
-    4. DELIVERY TO CLIENT
-       └─> Email with PDF attachment (via /services/InvoiceStatement/email)
-       └─> deliveryStatus updated
-       └─> Or: Export to portal/EDI (via /services/InvoiceStatement/generateExport)
-
-    5. PAYMENT TRACKING
-       └─> InvoicePayment records created
-       └─> invoiceStatementPaidStatus updated
-       └─> outstandingBalance calculated
-
-    6. GL EXPORT
-       └─> Invoice data exported to external accounting systems
-       └─> Revenue recognized in AccountingPeriod
-    ```
-
-    ## Authentication
-
-    This API uses OAuth 2.0 for authentication followed by a session-based token system:
-
-    1. Obtain an OAuth 2.0 access token through the OAuth flow
-    2. Call `/login` with the access token to receive a BhRestToken
-    3. Include BhRestToken in all subsequent API requests
-
-    ## Base URL Structure
-
-    All API requests follow this pattern:
-    ```
-    https://rest{swimlane}.bullhornstaffing.com/rest-services/{corpToken}/{endpoint}
-    ```
-
-    Where:
-    - `{swimlane}` is your data center swimlane number (e.g., '9', '22', or empty for default)
-    - `{corpToken}` is your corporation token from the login response (e.g., 'e999')
+    1. Review the [Overview](#tag/Overview) for a quick start guide
+    2. Set up [Authentication](#tag/Authentication) using OAuth 2.0 and BhRestToken
+    3. Understand the [Billing Workflow](#tag/Billing-Workflow) from time entry to invoice
+    4. Explore [BillableCharge Services](#tag/BillableCharge-Services) for available operations
+    5. Reference [Entity Documentation](#tag/BillableCharge-Entities) for data structures
 
   contact:
     name: Bullhorn Middle Office Support
@@ -284,32 +59,615 @@ servers:
 security:
   - BhRestToken: []
 
+x-tagGroups:
+  - name: Getting Started
+    tags:
+      - Overview
+      - Authentication
+
+  - name: Workflows & Concepts
+    tags:
+      - Billing Workflow
+      - Invoicing Workflow
+      - Transaction Adjustments
+
+  - name: Pay Bill Services
+    tags:
+      - BillableCharge Services
+      - Invoice Services
+
+  - name: Entity Reference
+    tags:
+      - BillableCharge Entities
+      - Invoice Entities
+      - Transaction Entities
+
 tags:
-  - name: Services - BillableCharge
+  - name: Overview
     description: |
-      BillableCharge service endpoints for creating, updating, and managing billable charges
-      through their workflow lifecycle.
+      # Bullhorn Middle Office API
 
-      A BillableCharge records a chargeable fee, capturing key details like the fee amount,
-      rate type, effective dates, and status. It ties charges to specific BillMasterTransactions
-      and manages them through the billing workflow from creation to invoicing.
+      The Bullhorn Middle Office API provides programmatic access to the Middle Office suite,
+      managing the complete lifecycle from placement configuration through time/expense entry
+      to payroll and billing operations.
 
-  - name: Invoice Statement Services
+      ## Middle Office Systems
+
+      Middle Office consists of three integrated systems:
+
+      - **Pay Bill System** (91 entities): Manages billing, invoicing, rate cards, general ledger
+        integration, and revenue recognition. Core entities include BillableCharge, BillMaster,
+        BillMasterTransaction, InvoiceStatement, and BillingProfile.
+
+      - **Time and Labor System** (7 entities): Handles time entry, expense reporting, and
+        approval workflows for contractor placements. Core entities include Timesheet and
+        ExpenseSheet.
+
+      - **Bullhorn Time & Expense (BTE) System** (7 entities): Manages placement configuration,
+        certifications, onboarding, and shift scheduling. Core entities include PlacementCertification
+        and OnboardingConfiguration.
+
+      ## Quick Start
+
+      1. **Authenticate**: Obtain BhRestToken via OAuth 2.0 flow
+      2. **Create Charge**: POST to `/services/BillableCharge`
+      3. **Mark Ready**: POST to `/services/BillableCharge/markAsReady`
+      4. **Generate Invoice**: Invoice generation happens via billing batch processes
+      5. **Deliver Invoice**: POST to `/services/InvoiceStatement/email`
+
+      ## Common API Patterns
+
+      ### Create Billable Charge
+      ```http
+      PUT /services/BillableCharge
+      {
+        "description": "Weekly billing for placement",
+        "periodEndDate": "2025-01-31",
+        "placement": {"id": 12345},
+        "billMasters": [{
+          "earnCode": {"id": 1},
+          "transactionDate": "2025-01-27",
+          "quantity": 40.0,
+          "rate": 75.00,
+          "amount": 3000.00
+        }]
+      }
+      ```
+
+      ### Mark Charge Ready for Billing
+      ```http
+      POST /services/BillableCharge/markAsReady
+      {"billableChargeIds": [67890]}
+      ```
+
+      ## Next Steps
+
+      - Review [Billing Workflow](#tag/Billing-Workflow) to understand charge lifecycle
+      - Review [Invoicing Workflow](#tag/Invoicing-Workflow) for invoice generation
+      - Explore [BillableCharge Services](#tag/BillableCharge-Services) for available operations
+      - Reference [Entity Documentation](#tag/BillableCharge-Entities) for data structures
+
+  - name: Authentication
     description: |
-      InvoiceStatement service endpoints for managing invoice generation, delivery, and lifecycle
-      operations.
+      # Authentication & Authorization
 
-      InvoiceStatements consolidate BillableCharges into client-facing invoices with line items,
-      discounts, surcharges, and taxes. These endpoints handle invoice finalization, email
-      delivery, export to various formats, credit invoice creation, and integration with
-      external accounting systems.
+      The Bullhorn Middle Office API uses OAuth 2.0 for authentication followed by a session-based token system.
 
-  - name: Invoice Statement Entity
+      ## Authentication Flow
+
+      1. **Obtain OAuth 2.0 Access Token**: Through the OAuth authorization flow
+      2. **Call /login endpoint**: Exchange access token for `BhRestToken`
+      3. **Include BhRestToken**: In all subsequent API requests
+
+      ## Providing the Token
+
+      The `BhRestToken` can be provided in three ways:
+
+      - **HTTP Header** (recommended): `BhRestToken: a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6`
+      - **Query Parameter**: `?BhRestToken=<token>`
+      - **Cookie**: Automatically set by login endpoint for browser clients
+
+      ## Base URL Structure
+
+      ```
+      https://rest{swimlane}.bullhornstaffing.com/rest-services/{corpToken}/{endpoint}
+      ```
+
+      Where:
+      - `{swimlane}`: Your data center swimlane number (e.g., '9', '22', or empty for default)
+      - `{corpToken}`: Corporation token from login response (e.g., 'e999')
+
+      ## Example Request
+
+      ```bash
+      curl -X GET \
+        'https://rest9.bullhornstaffing.com/rest-services/e999/entity/InvoiceStatement/12345' \
+        -H 'BhRestToken: a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6'
+      ```
+
+      ## Entitlements
+
+      Operations require specific entitlements:
+      - **View Invoice Statement**: Required to retrieve invoice data
+      - **Edit Invoice Statement**: Required to modify invoices
+      - **Mark Billable Charge Ready**: Required to transition charges to billing
+      - **Mark Billable Charge Unbillable**: Required to mark charges as non-billable
+
+      See individual endpoint documentation for entitlement requirements.
+
+  - name: Billing Workflow
     description: |
-      Entity endpoints for querying and retrieving InvoiceStatement records.
+      # Billing Workflow: Time Entry to Invoice
 
-      Use these endpoints to retrieve invoice data, search invoices, and access related
-      entities like line items, payments, discounts, surcharges, and taxes.
+      This workflow shows how approved time and expense entries are transformed into billable charges
+      ready for invoicing.
+
+      ```
+      1. TIME/EXPENSE ENTRY (Time and Labor System)
+         └─> Timesheet/ExpenseSheet approved
+
+      2. CHARGE CREATION (Pay Bill - BillableCharge)
+         └─> BillableCharge created, status = NotReadyToBill
+         └─> Related endpoints: PUT /services/BillableCharge
+
+      3. TRANSACTION GROUPING (Pay Bill - BillMaster)
+         └─> BillMaster groups by earn code + transaction date
+         └─> BillMasterTransaction records rates, amounts, audit trail
+         └─> See: BillMasterEntity, BillMasterTransactionEntity
+
+      4. APPROVAL & REVIEW (Pay Bill - Workflows)
+         └─> Transactions approved (status = Approved)
+         └─> Review flags cleared (needsReview = false)
+         └─> Charge status → ReadyToBill
+         └─> Related endpoints: POST /services/BillableCharge/markAsReady
+
+      5. READY FOR INVOICING
+         └─> Charge eligible for invoice generation
+         └─> Appears in billing batch selection
+      ```
+
+      ## Entity Hierarchy
+
+      ```
+      BillableCharge (Charge-level container)
+        ├─> BillMaster (Master-level grouping by earn code/date)
+        │     └─> BillMasterTransaction (Individual transaction audit trail)
+        │           ├─> BillMasterTransactionDiscountDetail
+        │           ├─> BillMasterTransactionSurchargeDetail
+        │           └─> BillMasterTransactionSalesTaxDetail
+        │
+        └─> InvoiceStatementLineItem (When invoiced)
+              └─> InvoiceStatement (Final invoice to client)
+      ```
+
+      ## BillableCharge Status Flow
+
+      | Status | ID | Description | Next States |
+      |--------|----|-----------|----|
+      | **NotReadyToBill** | 1 | Default state | ReadyToBill, OnHold, Unbillable |
+      | **ReadyToBill** | 2 | Eligible for invoicing | Invoicing, OnHold |
+      | **Processing** | 3 | Bill masters syncing | ReadyToBill, ProcessingFailed |
+      | **NeedsReview** | 4 | Requires manual review | ReadyToBill, OnHold |
+      | **Invoicing** | 5 | Being invoiced | Invoiced |
+      | **Invoiced** | 6 | Successfully invoiced | (terminal) |
+      | **Unbillable** | 7 | Marked non-billable | (terminal) |
+      | **ProcessingFailed** | 8 | Failed processing | NotReadyToBill |
+      | **OnHold** | 9 | Temporarily paused | NotReadyToBill, ReadyToBill |
+
+      **Status Priority**: OnHold > ProcessingFailed > Processing > NeedsReview >
+      Invoiced/Unbillable > ReadyToBill > NotReadyToBill
+
+      ## Related Services
+
+      - [Create BillableCharge](#operation/createBillableCharge)
+      - [Update BillableCharge](#operation/updateBillableCharge)
+      - [Mark As Ready](#operation/markBillableChargesAsReady)
+      - [Mark Unbillable](#operation/markBillableChargesUnbillable)
+      - [Update Hold Status](#operation/updateBillableChargeHoldStatus)
+      - [Clear Review & Mark Ready](#operation/clearNeedsReviewAndMarkAsReady)
+
+      ## Related Entities
+
+      - [BillableCharge](#tag/BillableCharge-Entities)
+      - [BillMaster](#tag/Transaction-Entities)
+      - [BillMasterTransaction](#tag/Transaction-Entities)
+
+  - name: Invoicing Workflow
+    description: |
+      # Invoicing Workflow: Charges to Client Invoice
+
+      This workflow extends the billing process from ready-to-bill charges to delivered client invoices.
+
+      ```
+      1. INVOICE GENERATION
+         └─> BillableCharges with status=ReadyToBill selected
+         └─> InvoiceStatementBatch created
+         └─> Charges grouped by client + billing profile + period
+         └─> InvoiceStatement created per group
+
+      2. LINE ITEM CREATION
+         └─> BillMasterTransactions grouped by earn code/candidate/period
+         └─> InvoiceStatementLineItem created for each group
+         └─> Discounts, surcharges, taxes applied
+
+      3. INVOICE FINALIZATION
+         └─> Invoice reviewed and approved
+         └─> isFinalized set to true
+         └─> Invoice becomes immutable
+         └─> Invoice number generated
+
+      4. DELIVERY TO CLIENT
+         └─> Email with PDF attachment
+         └─> Related endpoint: POST /services/InvoiceStatement/email
+         └─> deliveryStatus updated
+         └─> Or: Export to portal/EDI via generateExport
+
+      5. PAYMENT TRACKING
+         └─> InvoicePayment records created
+         └─> invoiceStatementPaidStatus updated
+         └─> outstandingBalance calculated
+
+      6. GL EXPORT
+         └─> Invoice data exported to external accounting systems
+         └─> Revenue recognized in AccountingPeriod
+      ```
+
+      ## Invoice Lifecycle States
+
+      | Field | Values | Description |
+      |-------|--------|-------------|
+      | **status** | Draft, Finalized, Approved, Rejected, Voided | Overall invoice status |
+      | **isFinalized** | true/false | Whether invoice is locked |
+      | **deliveryStatus** | Not Delivered, Email Sent, Downloaded, Printed | Delivery tracking |
+      | **invoiceStatementPaidStatus** | Unpaid, Partially Paid, Paid, Overpaid | Payment status |
+
+      ## Credit Invoice Process
+
+      When corrections are needed after finalization:
+
+      ```
+      1. Original Invoice (isCredited = false)
+         └─> POST /services/InvoiceStatement/credit
+
+      2. Credit Invoice Created (negative amounts)
+         └─> creditOfInvoiceStatement = Original Invoice ID
+         └─> Cancels original invoice
+
+      3. Original Invoice Updated
+         └─> isCredited = true
+         └─> creditedByInvoiceStatement = Credit Invoice ID
+
+      4. New Corrected Invoice (if needed)
+         └─> Created with correct data
+      ```
+
+      ## Related Services
+
+      - [Generate Export](#operation/generateInvoiceExport)
+      - [Email Invoice](#operation/emailInvoiceStatements)
+      - [Credit Invoice](#operation/creditInvoiceStatement)
+      - [Repost Request](#operation/repostInvoiceRequest)
+
+      ## Related Entities
+
+      - [InvoiceStatement](#tag/Invoice-Entities)
+      - [InvoiceStatementLineItem](#tag/Invoice-Entities)
+      - [InvoicePayment](#tag/Invoice-Entities)
+
+  - name: Transaction Adjustments
+    description: |
+      # Transaction Immutability & Adjustments
+
+      BillMasterTransaction records become immutable once they reach certain lifecycle stages.
+      This ensures financial data integrity and proper audit trails.
+
+      ## Immutability Rules
+
+      A **BillMasterTransaction** becomes immutable when:
+
+      - `invoiceStatement != null` (already invoiced)
+      - `invoiceStatementBatch != null` (stamped for invoicing)
+      - `billMasterTransactionDistributionBatch != null` (in revenue distribution)
+
+      ## Adjustment Pattern
+
+      To modify immutable transactions, create **adjustment pairs**:
+
+      ### 1. Reversal Transaction
+      - Negates original quantity and amount
+      - Links via `reversalOfTransaction` field
+      - Increments `adjustmentSequenceNumber`
+      - `transactionType` = "Reversal"
+
+      ### 2. Adjustment Transaction
+      - Contains corrected values
+      - Further increments `adjustmentSequenceNumber`
+      - `transactionType` = "Adjustment"
+      - System recalculates `netAmount` and `netQuantity`
+
+      ## Example Adjustment
+
+      ```
+      Original Transaction:
+      - quantity: 8.0
+      - amount: 400.00
+      - adjustmentSequenceNumber: 0
+      - transactionType: New
+
+      Reversal Transaction (created when correction needed):
+      - quantity: -8.0
+      - amount: -400.00
+      - adjustmentSequenceNumber: 1
+      - transactionType: Reversal
+      - reversalOfTransaction: {id: <original transaction ID>}
+
+      Adjustment Transaction (corrected values):
+      - quantity: 9.0
+      - amount: 450.00
+      - adjustmentSequenceNumber: 2
+      - transactionType: Adjustment
+
+      Net Result:
+      - netQuantity: 9.0 (8.0 - 8.0 + 9.0)
+      - netAmount: 450.00 (400.00 - 400.00 + 450.00)
+      ```
+
+      ## Transaction Types
+
+      | Type | ID | Usage | Can Edit |
+      |------|----|----|----------|
+      | **New** | 1 | Original from billing sync | Before invoicing |
+      | **Adjustment** | 2 | Corrected transaction | Before invoicing |
+      | **Reversal** | 3 | Negated transaction | No (auto-created) |
+      | **Unbillable** | 6 | Marked non-billable | No |
+
+      ## Transaction Origin
+
+      Controls edit permissions:
+
+      - **Manual** (1): Created by user action
+      - **BillingSync** (2): Automated sync from time/expense
+      - **System** (3): System-generated
+
+      **Rule**: Transactions can only be updated if origin matches the requesting system.
+
+      ## Related Entities
+
+      - [BillMasterTransaction](#tag/Transaction-Entities)
+      - [BillMaster](#tag/Transaction-Entities)
+
+  - name: BillableCharge Services
+    description: |
+      # BillableCharge Service Endpoints
+
+      Service endpoints for creating, updating, and managing billable charges through their lifecycle.
+
+      ## Overview
+
+      A **BillableCharge** records a chargeable fee, capturing key details like amounts, rates, effective
+      dates, and status. It ties charges to BillMasterTransactions and manages them through the billing
+      workflow from creation to invoicing.
+
+      ## Available Operations
+
+      - **PUT /services/BillableCharge** - Create new billable charge
+      - **POST /services/BillableCharge/{id}** - Update existing charge
+      - **POST /services/BillableCharge/markAsReady** - Mark charges ready to bill
+      - **POST /services/BillableCharge/markUnbillable** - Mark charges as unbillable
+      - **PUT /services/BillableCharge/updateHoldStatus** - Place on hold or release
+      - **POST /services/BillableCharge/clearNeedsReviewAndMarkAsReady** - Clear review flags
+
+      ## Workflow Context
+
+      See [Billing Workflow](#tag/Billing-Workflow) for complete lifecycle documentation.
+
+      ## Related Entities
+
+      - [BillableCharge Entity](#tag/BillableCharge-Entities)
+      - [BillMaster Entity](#tag/Transaction-Entities)
+      - [BillMasterTransaction](#tag/Transaction-Entities)
+
+  - name: Invoice Services
+    description: |
+      # Invoice Service Endpoints
+
+      Service endpoints for managing invoice generation, delivery, and lifecycle operations.
+
+      ## Overview
+
+      **InvoiceStatements** consolidate BillableCharges into client-facing invoices with line items,
+      discounts, surcharges, and taxes. These endpoints handle invoice finalization, email delivery,
+      export to various formats, credit invoice creation, and integration with external accounting systems.
+
+      ## Available Operations
+
+      - **POST /services/InvoiceStatement/generateExport** - Export invoices to PDF/CSV/GL
+      - **POST /services/InvoiceStatement/email** - Email invoices to clients
+      - **POST /services/InvoiceStatement/credit** - Create credit invoice
+      - **POST /services/InvoiceStatement/repostRequest** - Repost to accounting systems
+
+      ## Query Operations
+
+      - **GET /entity/InvoiceStatement/{id}** - Retrieve invoice by ID
+      - **GET /query/InvoiceStatement** - Search invoices
+
+      ## Workflow Context
+
+      See [Invoicing Workflow](#tag/Invoicing-Workflow) for complete process documentation.
+
+      ## Related Entities
+
+      - [InvoiceStatement Entity](#tag/Invoice-Entities)
+      - [InvoicePayment Entity](#tag/Invoice-Entities)
+      - [InvoiceStatementLineItem](#tag/Invoice-Entities)
+
+  - name: BillableCharge Entities
+    description: |
+      # BillableCharge Entity Documentation
+
+      Core entities involved in the billable charge lifecycle.
+
+      ## BillableCharge
+
+      **Primary entity** representing a chargeable fee for time/expenses.
+
+      **Key Fields:**
+      - `billableChargeID`: Unique identifier
+      - `description`: Charge description
+      - `status`: Current workflow status (NotReadyToBill, ReadyToBill, Invoiced, etc.)
+      - `periodEndDate`: Billing period end date
+      - `placement`: Associated placement
+      - `billingProfile`: Billing configuration
+
+      **Related Services:**
+      - [Create BillableCharge](#operation/createBillableCharge)
+      - [Update BillableCharge](#operation/updateBillableCharge)
+      - [Mark As Ready](#operation/markBillableChargesAsReady)
+
+      **Workflow:** See [Billing Workflow](#tag/Billing-Workflow)
+
+      ---
+
+      ## CustomerRequiredField
+
+      Custom fields required by clients for billing.
+
+      **Key Fields:**
+      - `customerRequiredFieldMeta`: Field definition
+      - `customerRequiredFieldOption`: Selected option (for dropdown fields)
+      - `textValue`: Free-text value
+
+      **Usage:** Attached to BillMaster transactions during charge creation
+
+  - name: Invoice Entities
+    description: |
+      # Invoice Entity Documentation
+
+      Core entities involved in invoice generation and delivery.
+
+      ## InvoiceStatement
+
+      **Primary invoice document** consolidating billing charges for a client.
+
+      **Key Fields:**
+      - `invoiceStatementID`: Unique identifier
+      - `invoiceStatementNumber`: Client-facing invoice number
+      - `isFinalized`: Whether invoice is locked and deliverable
+      - `subtotal`, `discountAmount`, `surchargeAmount`, `taxAmount`, `total`: Financial amounts
+      - `amountPaid`, `outstandingBalance`: Payment tracking
+      - `deliveryStatus`: Delivery state (Email Sent, Downloaded, etc.)
+      - `invoiceStatementPaidStatus`: Payment state (Unpaid, Paid, etc.)
+
+      **Related Services:**
+      - [Query Invoice](#operation/getInvoiceStatement)
+      - [Email Invoice](#operation/emailInvoiceStatements)
+      - [Generate Export](#operation/generateInvoiceExport)
+      - [Credit Invoice](#operation/creditInvoiceStatement)
+
+      **Workflow:** See [Invoicing Workflow](#tag/Invoicing-Workflow)
+
+      ---
+
+      ## InvoiceStatementLineItem
+
+      Individual line items on an invoice, grouping related transactions.
+
+      **Key Fields:**
+      - `description`: Line item description
+      - `quantity`, `rate`, `amount`: Financial details
+      - `earnCode`: Type of work/expense
+
+      ---
+
+      ## InvoicePayment
+
+      Payment records applied to invoices.
+
+      **Key Fields:**
+      - `invoicePaymentID`: Unique identifier
+      - `paymentAmount`: Amount paid
+      - `paymentDate`: When payment received
+      - `paymentMethod`: How payment was made
+      - `isReversed`: Whether payment was reversed
+
+      ---
+
+      ## InvoiceStatementDiscount / Surcharge / Tax
+
+      Financial adjustments applied to invoices:
+      - **Discounts**: Reduce invoice total (volume discounts, early payment discounts)
+      - **Surcharges**: Increase invoice total (rush fees, admin fees)
+      - **Taxes**: Sales tax calculations
+
+      ---
+
+      ## Lookup Entities
+
+      - **InvoiceStatementStatusLookup**: Invoice lifecycle statuses
+      - **InvoiceStatementDeliveryStatusLookup**: Delivery tracking
+      - **InvoiceStatementPaidStatusLookup**: Payment status
+
+      ---
+
+      ## Batch Entities
+
+      - **InvoiceStatementBatch**: Bulk invoice generation tracking
+      - **InvoiceStatementExportBatch**: Export operation tracking
+      - **InvoiceStatementEmailBatch**: Email delivery batch tracking
+
+  - name: Transaction Entities
+    description: |
+      # Transaction Entity Documentation
+
+      Core entities for transaction management and grouping.
+
+      ## BillMaster
+
+      **Transaction grouping entity** that aggregates transactions by earn code and date.
+
+      **Key Fields:**
+      - `billMasterID`: Unique identifier
+      - `earnCode`: Type of work (Regular, Overtime, etc.)
+      - `transactionDate`: Date work performed
+      - `quantity`, `rate`, `amount`: Aggregated values
+      - `billableCharge`: Parent charge
+
+      **Related Services:**
+      - Created automatically via BillableCharge operations
+
+      **Workflow:** See [Billing Workflow](#tag/Billing-Workflow)
+
+      ---
+
+      ## BillMasterTransaction
+
+      **Individual transaction audit trail** recording rates, amounts, and lifecycle.
+
+      **Key Fields:**
+      - `billMasterTransactionID`: Unique identifier
+      - `quantity`, `rate`, `amount`: Financial details
+      - `adjustmentSequenceNumber`: Tracks adjustment history (0 = original)
+      - `transactionType`: New, Adjustment, Reversal, Unbillable
+      - `transactionOrigin`: Manual, BillingSync, System
+      - `invoiceStatement`: Invoice link (when invoiced)
+      - `invoiceStatementBatch`: Batch stamping (immutability trigger)
+      - `reversalOfTransaction`: Link to reversed transaction
+      - `netAmount`, `netQuantity`: Calculated net values after adjustments
+      - `isDeleted`, `isUnbillable`, `needsReview`: Workflow flags
+
+      **Immutability:** Once invoiced or distributed, transactions become immutable.
+      See [Transaction Adjustments](#tag/Transaction-Adjustments) for modification pattern.
+
+      **Related Services:**
+      - Queried via BillableCharge or Invoice relationships
+
+      ---
+
+      ## Transaction Detail Entities
+
+      - **BillMasterTransactionDiscountDetail**: Applied discounts
+      - **BillMasterTransactionSurchargeDetail**: Applied surcharges
+      - **BillMasterTransactionSalesTaxDetail**: Applied taxes
 
 paths:
   /services/BillableCharge:

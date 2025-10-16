@@ -14,7 +14,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:unpkg.com)",
       "WebFetch(domain:app.unpkg.com)",
-      "Bash(npm run docs:redoc:dev:*)"
+      "Bash(npm run docs:redoc:dev:*)",
+      "WebFetch(domain:redocly.com)"
     ],
     "deny": [],
     "ask": []

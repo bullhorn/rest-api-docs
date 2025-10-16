@@ -1,10 +1,12 @@
 createBillableCharge:
   put:
     tags:
-      - Services - BillableCharge
+      - BillableCharge Services
     summary: Create a new BillableCharge
     description: |
       Creates a new billable charge with associated bill master transactions.
+
+      **See Also**: [Billing Workflow](#tag/Billing-Workflow), [BillableCharge Entities](#tag/BillableCharge-Entities)
 
       ## Business Rules
 
@@ -138,10 +140,12 @@ createBillableCharge:
 updateBillableCharge:
   post:
     tags:
-      - Services - BillableCharge
+      - BillableCharge Services
     summary: Update an existing BillableCharge
     description: |
       Updates an existing billable charge, typically to add or modify bill master transactions.
+
+      **See Also**: [Billing Workflow](#tag/Billing-Workflow), [BillableCharge Entities](#tag/BillableCharge-Entities)
 
       ## Use Cases
 
@@ -259,10 +263,12 @@ updateBillableCharge:
 markAsReady:
   post:
     tags:
-      - Services - BillableCharge
+      - BillableCharge Services
     summary: Mark BillableCharges as ready to bill
     description: |
       Marks one or more BillableCharges as ready to bill by transitioning them to `ReadyToBill` status.
+
+      **See Also**: [Billing Workflow](#tag/Billing-Workflow) - Status flow and transitions
 
       ## Required Entitlement
 
@@ -356,7 +362,7 @@ markAsReady:
 markUnbillable:
   post:
     tags:
-      - Services - BillableCharge
+      - BillableCharge Services
     summary: Mark BillableCharges as unbillable
     description: |
       Marks one or more BillableCharges as unbillable, preventing them from being invoiced to clients.
@@ -459,7 +465,7 @@ markUnbillable:
 updateHoldStatus:
   put:
     tags:
-      - Services - BillableCharge
+      - BillableCharge Services
     summary: Update hold status of BillableCharges
     description: |
       Places BillableCharges on hold or removes them from hold status. Charges on hold
@@ -629,7 +635,7 @@ updateHoldStatus:
 clearNeedsReviewAndMarkAsReady:
   post:
     tags:
-      - Services - BillableCharge
+      - BillableCharge Services
     summary: Clear needs review flag and mark as ready
     description: |
       Clears the "needs review" flag from BillableCharges and transitions them to `ReadyToBill` status.

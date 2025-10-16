@@ -4,6 +4,12 @@ BillableCharge:
     The BillableCharge entity records a chargeable fee, capturing key details like the fee amount,
     rate type, and effective dates, and ties these charges to specific BillMasterTransactions.
 
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Entity Documentation: [BillableCharge Entities](#tag/BillableCharge-Entities)
+    - Service Operations: [BillableCharge Services](#tag/BillableCharge-Services)
+    - Related Operations: [Create BillableCharge](#operation/createBillableCharge), [Update BillableCharge](#operation/updateBillableCharge), [Mark As Ready](#operation/markBillableChargesAsReady)
+
     **CRUD Access**: READ (via REST API). CREATE and UPDATE operations available via dedicated
     service endpoints for workflow operations.
 
