@@ -312,6 +312,153 @@ BillableCharge:
         - $ref: './common.yaml#/EntityReference'
         - description: Associated ExpenseSheet
         - readOnly: true
+    billableTransactions:
+      type: object
+      description: |
+        Collection of BillableChargeBillableTransaction records linking this charge to individual
+        BillMasterTransactions. Each entry represents a single billable transaction (time or expense
+        entry) that contributes to this charge's total.
+
+        This is the primary relationship connecting BillableCharge to the detailed transaction data.
+        Used for drilling down from charge-level view to individual time/expense entries.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/billableTransactions`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of billable transactions
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+    billMasters:
+      type: object
+      description: |
+        Collection of BillMaster records associated with this charge. BillMasters are intermediate
+        grouping entities that organize transactions by placement, period, and earn code before
+        they are invoiced.
+
+        Multiple BillMasters can exist for a single BillableCharge when transactions span different
+        earn codes or have different billing attributes. Used in the billing sync process to group
+        transactions for rate calculation and invoice line item generation.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/billMasters`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of bill masters
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+    billMasterTransactionDistributionBatches:
+      type: object
+      description: |
+        Collection of BillMasterTransactionDistributionBatch records tracking unbilled revenue GL
+        distribution processing for this charge's transactions. Each batch represents an automated
+        GL export run that created accounting entries for revenue recognition.
+
+        Used for GL reconciliation, tracking distribution failures, and understanding when revenue
+        was recognized in the general ledger. Critical for financial close processes and revenue
+        recognition compliance.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/billMasterTransactionDistributionBatches`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of distribution batches
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+    summaryTransactions:
+      type: object
+      description: |
+        Collection of BillableChargeSummaryTransaction records providing pre-aggregated views of
+        transaction data grouped by key dimensions (earn code, bill rate, date, etc.).
+
+        Used for performance optimization in reports and UI displays, avoiding need to aggregate
+        individual transactions on every query. Summary records are maintained automatically as
+        transactions are added, updated, or deleted.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/summaryTransactions`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of summary transaction records
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+    invoicedTransactions:
+      type: object
+      description: |
+        Collection of transactions that have been included in an invoice. Subset of billableTransactions
+        where invoiceStatementID is not null. Used to differentiate between invoiced and pending
+        transactions on partially invoiced charges.
+
+        When a charge is fully invoiced, this collection will match billableTransactions. For charges
+        with mixed invoiced/pending transactions, this shows only the invoiced portion.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/invoicedTransactions`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of invoiced transactions
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+    unbillableTransactions:
+      type: object
+      description: |
+        Collection of BillableChargeUnbillableTransaction records representing transactions marked
+        as unbillable (transactionStatusID = 6). These transactions are excluded from invoicing but
+        retained for audit trail and reporting.
+
+        Transactions can be marked unbillable due to rate issues, client disputes, approval
+        rejections, or manual override. Used for tracking non-billable work and understanding
+        revenue leakage.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/unbillableTransactions`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of unbillable transactions
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
     invoiceStatements:
       type: object
       description: |
@@ -334,6 +481,111 @@ BillableCharge:
           type: array
           items:
             $ref: './InvoiceStatementEntity.yaml#/InvoiceStatementEntity'
+    billingCalendarInstances:
+      type: object
+      description: |
+        Collection of CalendarInstance records representing billing periods associated with this
+        charge. Calendar instances define the specific date ranges for billing cycles (e.g.,
+        weekly periods ending every Friday).
+
+        Used to associate charges with billing schedules, determine invoice generation timing,
+        and group charges by billing period. Multiple instances can exist when charges span
+        billing period boundaries.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/billingCalendarInstances`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of calendar instances
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+    transactionAccountingPeriods:
+      type: object
+      description: |
+        Collection of all distinct AccountingPeriod records referenced by transactions on this
+        charge. Provides quick access to all accounting periods spanned by the charge's transactions
+        without needing to query individual transactions.
+
+        Used for accounting period close validation, ensuring charges don't span closed periods,
+        and financial reporting period reconciliation. Critical for month-end/quarter-end close
+        processes.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/transactionAccountingPeriods`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of unique accounting periods
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              accountingPeriodDate:
+                type: string
+                format: date
+    payBillCycles:
+      type: object
+      description: |
+        Collection of PayBillCycle records displaying the associated billing cycle(s) for this
+        charge. Pay Bill Cycles coordinate payroll and billing periods, ensuring consistent timing
+        between paying contractors and billing clients.
+
+        Typically one cycle per charge, but can be multiple if charge configuration changes during
+        the period or if charge spans multiple pay/bill cycle boundaries. Used for cycle-based
+        reporting and processing coordination.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/payBillCycles`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of pay bill cycles
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              label:
+                type: string
+    billingSyncBatchFileAttachments:
+      type: object
+      description: |
+        Collection of BillingSyncBatchFileAttachment records linking this charge to billing sync
+        import files. When charges are created via automated billing sync (importing timecard data
+        from external systems), this tracks which import files contained the source data.
+
+        Used for data lineage tracking, troubleshooting sync issues, and audit trails showing
+        original source of billing data. Essential for reconciling with external time tracking
+        systems.
+
+        **Usage**: `GET /entity/BillableCharge/{id}/billingSyncBatchFileAttachments`
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of sync batch file attachments
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
   required:
     - periodEndDate
   example:

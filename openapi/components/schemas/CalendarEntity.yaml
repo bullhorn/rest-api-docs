@@ -1,0 +1,133 @@
+CalendarEntity:
+  type: object
+  description: |
+    Represents a scheduling record that organizes billing and payroll cycles into recurring patterns.
+    Calendars define when invoices should be generated and when payroll should be processed.
+
+    Calendars can be system-generated with regular frequencies (weekly, bi-weekly, monthly) or
+    custom calendars with manually defined periods.
+
+    **See Also**:
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: InvoiceTerm - References Calendar for billing schedules
+    - Related: CalendarInstance - Individual occurrences of calendar periods
+    - Related: CalendarFrequencyLookup - Defines recurring pattern (Weekly, Bi-Weekly, Monthly)
+
+    **CRUD Access**: CREATE, READ, UPDATE
+
+    **Entitlements**:
+    - View Client Billing Terms
+    - Add Client Billing Terms
+    - Update Client Billing Terms
+
+    **Calendar Types**:
+    - **System Calendars**: Pre-defined with regular frequencies (isCustom = false)
+    - **Custom Calendars**: User-defined periods for irregular billing cycles (isCustom = true)
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 10
+
+    label:
+      type: string
+      maxLength: 100
+      description: |
+        Title for the calendar. Used in UI and reports to identify the billing/payroll schedule.
+        Examples: "Weekly Billing", "Bi-Weekly Payroll", "Monthly Invoice Cycle"
+      example: "Weekly Billing"
+
+    calendarFrequencyLookup:
+      type: object
+      description: |
+        Defines the recurring pattern for this calendar. Determines how often billing or
+        payroll periods occur.
+
+        Common frequencies:
+        - **Weekly**: New period every 7 days
+        - **Bi-Weekly**: New period every 14 days
+        - **Semi-Monthly**: Twice per month (e.g., 1st and 15th)
+        - **Monthly**: New period every month
+        - **Custom**: Irregular periods defined manually
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Weekly"
+
+    startDate:
+      type: string
+      format: date
+      description: |
+        Beginning date for the calendar. First period starts on this date. All subsequent
+        periods are calculated from this starting point based on the frequency.
+      example: "2024-01-01"
+
+    offset:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Beginning day for a calendar frequency pattern. Used to adjust when the calendar
+        cycle starts within the frequency period.
+
+        For example, with a weekly calendar, offset determines which day of the week the
+        period begins (0 = Sunday, 1 = Monday, etc.).
+      example: 1
+
+    isCustom:
+      type: boolean
+      description: |
+        Designates a calendar with customer-generated instances. When true, calendar periods
+        are manually defined rather than automatically generated from the frequency pattern.
+
+        Custom calendars are useful for irregular billing cycles that don't follow standard
+        weekly/monthly patterns.
+      readOnly: true
+      default: false
+      example: false
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Date the entity was added to the Bullhorn system.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Date the entity was last modified.
+      readOnly: true
+      example: "2024-01-20T14:30:00Z"
+
+  required:
+    - id
+    - label
+    - calendarFrequencyLookup
+    - startDate
+    - isCustom
+    - dateAdded
+
+  example:
+    id: 10
+    label: "Weekly Billing"
+    calendarFrequencyLookup:
+      id: 1
+      label: "Weekly"
+    startDate: "2024-01-01"
+    offset: 1
+    isCustom: false
+    dateAdded: "2024-01-15T08:00:00Z"
+    dateLastModified: "2024-01-20T14:30:00Z"

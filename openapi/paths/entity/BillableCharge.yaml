@@ -1,0 +1,341 @@
+getBillableCharge:
+  get:
+    tags:
+      - BillableCharge Entities
+    summary: Get a BillableCharge by ID
+    description: |
+      Retrieves a single BillableCharge entity by its ID with all available fields.
+
+      **Entity Access**: READ
+      **Entitlements**: View Billable Charge
+
+      **See Also**: [Billing Workflow](#tag/Billing-Workflow), [BillableCharge Services](#tag/BillableCharge-Services)
+
+      ## Field Groups
+
+      Use the `fields` parameter to control which fields are returned:
+
+      ### Core Fields
+      - `id`, `description`, `periodEndDate`, `status`, `subtotal`, `isInvoiced`
+
+      ### Associations
+      - `placement`, `billingProfile`, `invoiceTerm`
+      - `candidate`, `jobOrder`, `clientCorporation`
+      - `billingClientCorporation`, `billingClientContact`, `billingCorporateUser`
+
+      ### Flags & Metadata
+      - `hasAdjustment`, `hasRebill`, `readyToBillOverride`, `markAsReadyEligible`
+      - `dateAdded`, `dateLastModified`, `addedByUser`
+
+      ### GL Integration
+      - `generalLedgerSegment1` through `generalLedgerSegment5`
+      - `generalLedgerServiceCode`, `generalLedgerStatus`
+
+      ### Time & Expense
+      - `timesheet`, `expenseSheet`, `entryTypeLookup`
+      - `timeAndExpenseBranch`
+
+      ### Accounting
+      - `minAccountingPeriod`, `maxAccountingPeriod`, `transactionAccountingPeriods`
+      - `currencyUnit`
+
+      ### To-Many Collections
+      Use association endpoints to retrieve these:
+      - `billableTransactions` - GET /entity/BillableCharge/{id}/billableTransactions
+      - `billMasters` - GET /entity/BillableCharge/{id}/billMasters
+      - `invoiceStatements` - GET /entity/BillableCharge/{id}/invoiceStatements
+      - `summaryTransactions` - GET /entity/BillableCharge/{id}/summaryTransactions
+      - And more...
+
+    operationId: getBillableCharge
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: BillableCharge ID
+        schema:
+          type: integer
+          format: int64
+        example: 12345
+      - name: fields
+        in: query
+        description: |
+          Comma-separated list of fields to return. Use "*" for all scalar fields.
+          To-many associations must be accessed via separate association endpoints.
+
+          Examples:
+          - `id,description,periodEndDate,status,subtotal` - Key fields only
+          - `*` - All scalar fields
+          - `id,placement(id,candidate),status(id,label)` - Nested fields
+        schema:
+          type: string
+        example: "id,description,periodEndDate,status,subtotal,placement,billingProfile"
+      - name: BhRestToken
+        in: query
+        description: Session token (can also be provided via header)
+        schema:
+          type: string
+    responses:
+      '200':
+        description: BillableCharge retrieved successfully
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas/BillableCharge.yaml#/BillableCharge'
+            examples:
+              basic:
+                summary: Basic charge data
+                value:
+                  id: 12345
+                  description: "Weekly billing for placement #272"
+                  periodEndDate: "2024-04-27"
+                  subtotal: 1500.00
+                  isInvoiced: false
+                  status:
+                    id: 2
+                    label: "ReadyToBill"
+                  placement:
+                    id: 272
+                  billingProfile:
+                    id: 150
+                  dateAdded: 1714176000000
+                  dateLastModified: 1714262400000
+              detailed:
+                summary: Detailed charge with associations
+                value:
+                  id: 12345
+                  description: "Weekly billing for placement #272"
+                  periodEndDate: "2024-04-27"
+                  subtotal: 2000.00
+                  isInvoiced: false
+                  hasAdjustment: false
+                  hasRebill: false
+                  readyToBillOverride: false
+                  markAsReadyEligible: true
+                  status:
+                    id: 2
+                    label: "ReadyToBill"
+                  placement:
+                    id: 272
+                  candidate:
+                    id: 5000
+                    firstName: "John"
+                    lastName: "Doe"
+                  jobOrder:
+                    id: 3000
+                    title: "Software Engineer"
+                  clientCorporation:
+                    id: 100
+                    name: "Acme Corporation"
+                  billingProfile:
+                    id: 150
+                    title: "Standard Billing"
+                  invoiceTerm:
+                    id: 42
+                    title: "Net 30"
+                  entryTypeLookup:
+                    id: 1
+                    label: "Timesheet"
+                  currencyUnit:
+                    id: 1
+                    alphabeticCode: "USD"
+                    name: "US Dollar"
+                  generalLedgerSegment1:
+                    id: 500
+                    externalSegmentNumber: "100"
+                    externalSegmentName: "Professional Services"
+                  dateAdded: 1714176000000
+                  dateLastModified: 1714262400000
+      '401':
+        description: Unauthorized - invalid or missing authentication
+      '403':
+        description: Forbidden - user lacks View Billable Charge entitlement
+      '404':
+        description: Not found - BillableCharge ID does not exist
+      '500':
+        description: Internal server error
+
+queryBillableCharges:
+  get:
+    tags:
+      - BillableCharge Entities
+    summary: Query BillableCharges
+    description: |
+      Searches for BillableCharge entities using a Lucene-style query string.
+
+      **Entity Access**: READ
+      **Entitlements**: View Billable Charge
+
+      **See Also**: [Billing Workflow](#tag/Billing-Workflow)
+
+      ## Common Query Patterns
+
+      ### By Status
+      ```
+      status.id:2
+      ```
+      Find all charges in ReadyToBill status
+
+      ### By Period
+      ```
+      periodEndDate:[2024-01-01 TO 2024-01-31]
+      ```
+      Find charges for January 2024
+
+      ### By Placement
+      ```
+      placement.id:272
+      ```
+      Find all charges for a specific placement
+
+      ### By Client
+      ```
+      clientCorporation.id:100 AND status.id:2
+      ```
+      Find ready-to-bill charges for a client
+
+      ### Not Invoiced
+      ```
+      isInvoiced:false AND status.id:2
+      ```
+      Find unbilled charges that are ready
+
+      ### Complex Query
+      ```
+      clientCorporation.id:100 AND periodEndDate:[2024-01-01 TO 2024-03-31] AND status.id:2 AND NOT isInvoiced:true
+      ```
+      Q1 2024 uninvoiced ready charges for client 100
+
+    operationId: queryBillableCharges
+    parameters:
+      - name: where
+        in: query
+        required: true
+        description: |
+          Lucene-style query string. Supports:
+          - Field searches: `placement.id:272`
+          - Ranges: `periodEndDate:[2024-01-01 TO 2024-01-31]`
+          - Boolean operators: `AND`, `OR`, `NOT`
+          - Wildcards: `description:*billing*`
+          - Exact matches: `status.id:2`
+
+          Common fields to query:
+          - `id`, `placement.id`, `billingProfile.id`
+          - `status.id`, `isInvoiced`, `hasAdjustment`
+          - `clientCorporation.id`, `candidate.id`, `jobOrder.id`
+          - `periodEndDate`, `dateAdded`, `dateLastModified`
+        schema:
+          type: string
+        example: "status.id:2 AND isInvoiced:false"
+      - name: fields
+        in: query
+        description: |
+          Comma-separated list of fields to return. Defaults to basic fields if not specified.
+
+          Examples:
+          - `id,description,periodEndDate,status,subtotal`
+          - `id,placement,status,subtotal,isInvoiced`
+          - `*` (all scalar fields)
+        schema:
+          type: string
+        example: "id,description,periodEndDate,status,subtotal,placement,isInvoiced"
+      - name: count
+        in: query
+        description: Maximum number of results to return (default 20, max 500)
+        schema:
+          type: integer
+          default: 20
+          maximum: 500
+        example: 50
+      - name: start
+        in: query
+        description: Offset for pagination (default 0)
+        schema:
+          type: integer
+          default: 0
+        example: 0
+      - name: orderBy
+        in: query
+        description: |
+          Sort order. Prefix with "-" for descending.
+
+          Examples:
+          - `periodEndDate` - Ascending by period end date
+          - `-dateAdded` - Most recently added first
+          - `status.id` - By status ID
+          - `-subtotal` - Highest amount first
+        schema:
+          type: string
+        example: "-periodEndDate"
+      - name: BhRestToken
+        in: query
+        description: Session token
+        schema:
+          type: string
+    responses:
+      '200':
+        description: Query successful
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                total:
+                  type: integer
+                  description: Total count of matching records
+                start:
+                  type: integer
+                  description: Offset used for this result set
+                count:
+                  type: integer
+                  description: Number of records returned
+                data:
+                  type: array
+                  items:
+                    $ref: '../../components/schemas/BillableCharge.yaml#/BillableCharge'
+            examples:
+              queryResult:
+                summary: Query result with multiple charges
+                value:
+                  total: 45
+                  start: 0
+                  count: 3
+                  data:
+                    - id: 12345
+                      description: "Weekly billing for placement #272"
+                      periodEndDate: "2024-04-27"
+                      subtotal: 1500.00
+                      isInvoiced: false
+                      status:
+                        id: 2
+                        label: "ReadyToBill"
+                      placement:
+                        id: 272
+                    - id: 12346
+                      description: "Bi-weekly billing for placement #280"
+                      periodEndDate: "2024-04-27"
+                      subtotal: 3200.00
+                      isInvoiced: false
+                      status:
+                        id: 2
+                        label: "ReadyToBill"
+                      placement:
+                        id: 280
+                    - id: 12347
+                      description: "Monthly billing for placement #301"
+                      periodEndDate: "2024-04-30"
+                      subtotal: 8000.00
+                      isInvoiced: false
+                      status:
+                        id: 2
+                        label: "ReadyToBill"
+                      placement:
+                        id: 301
+      '400':
+        description: Bad request - invalid query syntax
+      '401':
+        description: Unauthorized
+      '403':
+        description: Forbidden
+      '500':
+        description: Internal server error

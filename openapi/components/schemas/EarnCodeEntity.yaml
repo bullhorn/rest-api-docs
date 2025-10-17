@@ -1,0 +1,439 @@
+EarnCodeEntity:
+  type: object
+  description: |
+    Represents a unique code used in payroll systems to categorize different types of earnings
+    (such as base pay, overtime, or bonuses) for accurate calculation and reporting.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow) - Used to categorize transactions
+    - Entity: [BillMaster](#tag/Transaction-Entities) - Groups transactions by earn code
+
+    **CRUD Access**: READ, CREATE, UPDATE
+
+    **Common Earn Code Types**:
+    - **Reg** (1): Regular time/work
+    - **OT** (2): Overtime
+    - **DT** (3): Double time
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: Unique identifier for this entity.
+      readOnly: true
+      example: 5
+
+    code:
+      type: string
+      maxLength: 100
+      description: |
+        Customer facing identifier for the earn code. Used in timesheets, invoices, and reports.
+        Examples: "REG", "OT", "DT", "HOLIDAY", "SICK"
+      example: "REG"
+
+    description:
+      type: string
+      maxLength: 255
+      description: |
+        Human-readable description of the earn code explaining its purpose.
+      example: "Regular Hours"
+
+    earnCodeGroup:
+      type: object
+      description: |
+        EarnCodeGroup association. Groups related earn codes together for reporting and configuration.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+
+    earnCodeTypeLookup:
+      type: object
+      description: |
+        EarnCodeTypeLookup - the type of the earn code. Determines how the earn code is treated
+        in calculations and reporting.
+
+        Options:
+        - 1 = Reg (Regular time)
+        - 2 = OT (Overtime)
+        - 3 = DT (Double time)
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Reg"
+
+    externalID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        External system identifier for integration with third-party payroll/billing systems.
+        Used to correlate earn codes across different systems.
+      example: "EXT-REG-001"
+
+    generalLedgerBillAccount:
+      type: object
+      nullable: true
+      description: |
+        GeneralLedgerAccount for the earn code where isBill = true (Bill Account).
+        Used for revenue recognition when billing clients.
+      properties:
+        id:
+          type: integer
+          format: int64
+        accountNumber:
+          type: string
+
+    generalLedgerPayAccount:
+      type: object
+      nullable: true
+      description: |
+        GeneralLedgerAccount for the earn code where isPay = true (Pay Account).
+        Used for expense recognition when paying contractors/employees.
+      properties:
+        id:
+          type: integer
+          format: int64
+        accountNumber:
+          type: string
+
+    generalLedgerSegment1:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment1 is configured as Class, which allows users to
+        specify the type of the ledger.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+
+    generalLedgerSegment2:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment2 is configured as Division, which allows users to
+        specify the type of the ledger.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+
+    generalLedgerSegment3:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment3 is configured as Department, which allows users to
+        specify the type of the ledger.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+
+    generalLedgerSegment4:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment4 is configured as Country, which allows users to
+        specify the type of the ledger.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+
+    generalLedgerSegment5:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment5 is configured as Location, which allows users to
+        specify the type of the ledger.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+
+    generalLedgerServiceCode:
+      type: object
+      nullable: true
+      description: |
+        GeneralLedgerServiceCode for the earn code (Product/Service Code).
+        Used for GL integration and financial reporting.
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+
+    isDeleted:
+      type: boolean
+      description: |
+        Whether entity is deleted (soft delete). The default value is false.
+      default: false
+      example: false
+
+    owner:
+      type: object
+      description: |
+        CorporateUser who is the owner of this entity. The default value is user who created the entity.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: Timestamp when the entity was created.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      nullable: true
+      description: Timestamp when the entity was last modified.
+      example: "2024-01-20T14:30:00Z"
+
+    # Custom Fields
+    customDate1:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+      readOnly: true
+
+    customDate2:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+      readOnly: true
+
+    customDate3:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+      readOnly: true
+
+    customFloat1:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customFloat2:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customFloat3:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customInt1:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customInt2:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customInt3:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customText1:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText2:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText3:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText4:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText5:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText6:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText7:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText8:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText9:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText10:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText11:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText12:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText13:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText14:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText15:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText16:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText17:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText18:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText19:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText20:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customTextBlock1:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+      readOnly: true
+
+    customTextBlock2:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+      readOnly: true
+
+    customTextBlock3:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+      readOnly: true
+
+  required:
+    - id
+    - code
+    - earnCodeTypeLookup
+    - isDeleted
+    - dateAdded
+
+  example:
+    id: 5
+    code: "REG"
+    description: "Regular Hours"
+    earnCodeTypeLookup:
+      id: 1
+      label: "Reg"
+    isDeleted: false
+    dateAdded: "2024-01-15T08:00:00Z"

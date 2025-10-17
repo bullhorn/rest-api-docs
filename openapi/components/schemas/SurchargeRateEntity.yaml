@@ -1,0 +1,539 @@
+SurchargeRateEntity:
+  type: object
+  description: |
+    Defines a surcharge that is automatically applied to invoices based on configurable criteria.
+    Surcharges increase the invoice amount and can be calculated as a percentage or fixed amount.
+
+    Surcharge Rates are effective-dated, meaning multiple versions can exist over time with different
+    configurations. Each version has a specific date range during which it applies.
+
+    Common use cases include administrative fees, fuel surcharges, or compliance-related charges.
+
+    **See Also**:
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: InvoiceTerm - Invoice Terms reference SurchargeRates
+    - Related: DiscountRate - Opposite of surcharges, reduces invoice amount
+    - Related: InvoiceStatement - Final invoice with surcharges applied
+
+    **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+    **Entitlements**:
+    - View Client Billing Terms
+    - Add Client Billing Terms
+    - Update Client Billing Terms
+
+    **Version Management**: This is an effective-dated entity. When updated, a new version is created
+    with a new effectiveDate. The previous version's effectiveEndDate is set to one day before the
+    new version's effectiveDate.
+
+    **Calculation Priority**: When multiple surcharges apply, calculatePriority determines the order
+    of application. Lower numbers are applied first.
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 20
+
+    effectiveDate:
+      type: string
+      format: date
+      description: |
+        Date when this version of the Surcharge Rate becomes active. For effective-dated entities,
+        this marks the start of the validity period for this configuration.
+      example: "2024-01-01"
+
+    effectiveEndDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date when this version of the Surcharge Rate expires. When a new version is created, this
+        is automatically set to one day before the new version's effectiveDate. Null means this
+        is the current active version.
+      example: "2024-12-31"
+
+    versionID:
+      type: integer
+      format: int32
+      description: |
+        Version number for this Surcharge Rate. Increments with each new version created.
+        Used to track the evolution of surcharge configurations over time.
+      example: 2
+
+    versions:
+      type: object
+      description: |
+        Collection of all versions of this Surcharge Rate across different effective dates.
+        Allows querying historical surcharge configurations.
+      properties:
+        total:
+          type: integer
+          description: Total count of versions
+        data:
+          type: array
+          items:
+            $ref: '#/SurchargeRateEntity'
+      example:
+        total: 3
+
+    isFirst:
+      type: boolean
+      description: |
+        Indicates if this is the first/original version of the Surcharge Rate. True only for
+        the version with versionID = 1.
+      default: false
+      example: true
+
+    title:
+      type: string
+      maxLength: 100
+      description: |
+        Name of the Surcharge Rate. Used in UI and reports to identify the surcharge.
+      example: "Administrative Fee"
+
+    externalID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        External system identifier for integration with third-party accounting/billing systems.
+        Used to correlate surcharge rates across different systems.
+      example: "EXT-SURCH-001"
+
+    amount:
+      type: number
+      format: double
+      description: |
+        The surcharge amount or percentage. Interpretation depends on surchargeTypeLookup:
+        - For percentage surcharges: Value between 0-100 (e.g., 3.5 for 3.5%)
+        - For fixed amount surcharges: Dollar amount (e.g., 50.00 for $50 fee)
+      example: 3.5
+
+    surchargeTypeLookup:
+      type: object
+      description: |
+        Type of surcharge calculation to apply. Determines how the amount field is interpreted.
+
+        Common values:
+        - **Percentage**: Surcharge is calculated as a percentage of invoice amount
+        - **Fixed Amount**: Surcharge is a fixed dollar amount added to invoice
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Percentage"
+
+    calculatePriority:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Order in which this surcharge is applied when multiple surcharges exist on an invoice.
+        Lower numbers are calculated first. For percentage surcharges, this affects the
+        compounding calculation.
+
+        Example: Priority 1 surcharges apply first, then priority 2, etc.
+      example: 1
+
+    earnCodes:
+      type: object
+      description: |
+        Collection of EarnCode entities this surcharge applies to. If specified, surcharge only
+        applies to transactions with these earn codes. If empty, applies to all earn codes.
+      properties:
+        total:
+          type: integer
+          description: Total count of earn codes
+        data:
+          type: array
+          items:
+            $ref: './EarnCodeEntity.yaml#/EarnCodeEntity'
+      example:
+        total: 2
+
+    generalLedgerAccount:
+      type: object
+      nullable: true
+      description: |
+        General Ledger account where surcharge amounts are posted. Used for revenue recognition
+        accounting when surcharges are applied to invoices.
+      properties:
+        id:
+          type: integer
+          format: int64
+        accountNumber:
+          type: string
+        accountName:
+          type: string
+      example:
+        id: 5020
+        accountNumber: "4200"
+        accountName: "Service Fees"
+
+    generalLedgerSegment1:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment1 is configured as Class, which allows users to
+        specify the type of the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment2:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment2 is configured as Division, which allows users to
+        specify the division for the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment3:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment3 is configured as Department, which allows users to
+        specify the department for the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment4:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment4 is configured as Country, which allows users to
+        specify the country for the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment5:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment5 is configured as Location, which allows users to
+        specify the location for the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerServiceCode:
+      type: object
+      nullable: true
+      description: |
+        GeneralLedgerServiceCode for the surcharge (Product/Service Code).
+        Used for GL integration and financial reporting to categorize the type of
+        service or product the surcharge applies to.
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        name:
+          type: string
+
+    invoiceTerms:
+      type: object
+      description: |
+        Collection of InvoiceTerm entities that reference this surcharge rate. Shows which
+        billing configurations will automatically apply this surcharge.
+      properties:
+        total:
+          type: integer
+          description: Total count of invoice terms
+        data:
+          type: array
+          items:
+            $ref: './InvoiceTermEntity.yaml#/InvoiceTermEntity'
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this version was created in the Bullhorn system.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Timestamp when this version was last updated.
+      readOnly: true
+      example: "2024-01-20T14:30:00Z"
+
+    isDeleted:
+      type: boolean
+      description: |
+        Soft delete flag. When true, the Surcharge Rate is hidden from normal queries but
+        preserved for historical reporting.
+      default: false
+      example: false
+
+    # Custom Fields - Date
+    customDate1:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+
+    customDate2:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+
+    customDate3:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Float
+    customFloat1:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customFloat2:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customFloat3:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Integer
+    customInt1:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customInt2:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customInt3:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Text
+    customText1:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText2:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText3:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText4:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText5:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText6:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText7:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText8:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText9:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText10:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText11:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText12:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText13:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText14:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText15:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText16:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText17:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText18:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText19:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText20:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Text Block
+    customTextBlock1:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable large text field that can be used to store custom data depending on deployment needs.
+
+    customTextBlock2:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable large text field that can be used to store custom data depending on deployment needs.
+
+    customTextBlock3:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable large text field that can be used to store custom data depending on deployment needs.
+
+  required:
+    - id
+    - effectiveDate
+    - title
+    - amount
+    - surchargeTypeLookup
+    - isDeleted
+    - dateAdded
+
+  example:
+    id: 20
+    effectiveDate: "2024-01-01"
+    effectiveEndDate: null
+    versionID: 1
+    isFirst: true
+    title: "Administrative Fee"
+    amount: 3.5
+    surchargeTypeLookup:
+      id: 1
+      label: "Percentage"
+    calculatePriority: 1
+    generalLedgerAccount:
+      id: 5020
+      accountNumber: "4200"
+      accountName: "Service Fees"
+    isDeleted: false
+    dateAdded: "2024-01-15T08:00:00Z"

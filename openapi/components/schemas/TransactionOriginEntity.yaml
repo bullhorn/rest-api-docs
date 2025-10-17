@@ -1,0 +1,45 @@
+TransactionOriginEntity:
+  type: object
+  description: |
+    Identifies the source or trigger of a transaction, helping to trace its origin whether it's initiated
+    by a specific event, user action, or system process.
+
+    **See Also**:
+    - Workflow: [Transaction Adjustments](#tag/Transaction-Adjustments) - Origin controls edit permissions
+    - Entity: [BillMasterTransaction](#tag/Transaction-Entities) - Uses TransactionOrigin
+
+    **CRUD Access**: READ only
+
+    **Transaction Origins**:
+    - **Manual** (1): Created by user action
+    - **BillingSync** (2): Automated sync from time/expense systems
+    - **System** (3): System-generated transactions
+
+    **Edit Permission Rule**: Transactions can only be updated if the requesting system's origin matches
+    the transaction's origin. This prevents cross-system modifications and maintains data integrity.
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity. Standard values:
+        - 1 = Manual
+        - 2 = BillingSync
+        - 3 = System
+      readOnly: true
+      example: 2
+
+    name:
+      type: string
+      maxLength: 100
+      description: |
+        Name of the transaction origin. Values include "Manual", "BillingSync", "System".
+      example: "BillingSync"
+
+  required:
+    - id
+
+  example:
+    id: 2
+    name: "BillingSync"

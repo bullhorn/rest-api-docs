@@ -1,0 +1,537 @@
+DiscountRateEntity:
+  type: object
+  description: |
+    Defines a discount that is automatically applied to invoices based on configurable criteria.
+    Discounts reduce the invoice amount and can be calculated as a percentage or fixed amount.
+
+    Discount Rates are effective-dated, meaning multiple versions can exist over time with different
+    configurations. Each version has a specific date range during which it applies.
+
+    **See Also**:
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: InvoiceTerm - Invoice Terms reference DiscountRates
+    - Related: SurchargeRate - Opposite of discounts, adds to invoice amount
+    - Related: InvoiceStatement - Final invoice with discounts applied
+
+    **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+    **Entitlements**:
+    - View Client Billing Terms
+    - Add Client Billing Terms
+    - Update Client Billing Terms
+
+    **Version Management**: This is an effective-dated entity. When updated, a new version is created
+    with a new effectiveDate. The previous version's effectiveEndDate is set to one day before the
+    new version's effectiveDate.
+
+    **Calculation Priority**: When multiple discounts apply, calculatePriority determines the order
+    of application. Lower numbers are applied first.
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 15
+
+    effectiveDate:
+      type: string
+      format: date
+      description: |
+        Date when this version of the Discount Rate becomes active. For effective-dated entities,
+        this marks the start of the validity period for this configuration.
+      example: "2024-01-01"
+
+    effectiveEndDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date when this version of the Discount Rate expires. When a new version is created, this
+        is automatically set to one day before the new version's effectiveDate. Null means this
+        is the current active version.
+      example: "2024-12-31"
+
+    versionID:
+      type: integer
+      format: int32
+      description: |
+        Version number for this Discount Rate. Increments with each new version created.
+        Used to track the evolution of discount configurations over time.
+      example: 2
+
+    versions:
+      type: object
+      description: |
+        Collection of all versions of this Discount Rate across different effective dates.
+        Allows querying historical discount configurations.
+      properties:
+        total:
+          type: integer
+          description: Total count of versions
+        data:
+          type: array
+          items:
+            $ref: '#/DiscountRateEntity'
+      example:
+        total: 3
+
+    isFirst:
+      type: boolean
+      description: |
+        Indicates if this is the first/original version of the Discount Rate. True only for
+        the version with versionID = 1.
+      default: false
+      example: true
+
+    title:
+      type: string
+      maxLength: 100
+      description: |
+        Name of the Discount Rate. Used in UI and reports to identify the discount.
+      example: "Volume Discount"
+
+    externalID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        External system identifier for integration with third-party accounting/billing systems.
+        Used to correlate discount rates across different systems.
+      example: "EXT-DISC-001"
+
+    amount:
+      type: number
+      format: double
+      description: |
+        The discount amount or percentage. Interpretation depends on discountTypeLookup:
+        - For percentage discounts: Value between 0-100 (e.g., 10.5 for 10.5%)
+        - For fixed amount discounts: Dollar amount (e.g., 500.00 for $500 off)
+      example: 10.5
+
+    discountTypeLookup:
+      type: object
+      description: |
+        Type of discount calculation to apply. Determines how the amount field is interpreted.
+
+        Common values:
+        - **Percentage**: Discount is calculated as a percentage of invoice amount
+        - **Fixed Amount**: Discount is a fixed dollar amount subtracted from invoice
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Percentage"
+
+    calculatePriority:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Order in which this discount is applied when multiple discounts exist on an invoice.
+        Lower numbers are calculated first. For percentage discounts, this affects the
+        compounding calculation.
+
+        Example: Priority 1 discounts apply first, then priority 2, etc.
+      example: 1
+
+    earnCodes:
+      type: object
+      description: |
+        Collection of EarnCode entities this discount applies to. If specified, discount only
+        applies to transactions with these earn codes. If empty, applies to all earn codes.
+      properties:
+        total:
+          type: integer
+          description: Total count of earn codes
+        data:
+          type: array
+          items:
+            $ref: './EarnCodeEntity.yaml#/EarnCodeEntity'
+      example:
+        total: 2
+
+    generalLedgerAccount:
+      type: object
+      nullable: true
+      description: |
+        General Ledger account where discount amounts are posted. Used for revenue reduction
+        accounting when discounts are applied to invoices.
+      properties:
+        id:
+          type: integer
+          format: int64
+        accountNumber:
+          type: string
+        accountName:
+          type: string
+      example:
+        id: 5010
+        accountNumber: "4100"
+        accountName: "Sales Discounts"
+
+    generalLedgerSegment1:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment1 is configured as Class, which allows users to
+        specify the type of the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment2:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment2 is configured as Division, which allows users to
+        specify the division for the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment3:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment3 is configured as Department, which allows users to
+        specify the department for the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment4:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment4 is configured as Country, which allows users to
+        specify the country for the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment5:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Segments are part of the Chart of Accounts structure.
+        By default generalLedgerSegment5 is configured as Location, which allows users to
+        specify the location for the ledger entry.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerServiceCode:
+      type: object
+      nullable: true
+      description: |
+        GeneralLedgerServiceCode for the discount (Product/Service Code).
+        Used for GL integration and financial reporting to categorize the type of
+        service or product the discount applies to.
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        name:
+          type: string
+
+    invoiceTerms:
+      type: object
+      description: |
+        Collection of InvoiceTerm entities that reference this discount rate. Shows which
+        billing configurations will automatically apply this discount.
+      properties:
+        total:
+          type: integer
+          description: Total count of invoice terms
+        data:
+          type: array
+          items:
+            $ref: './InvoiceTermEntity.yaml#/InvoiceTermEntity'
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this version was created in the Bullhorn system.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Timestamp when this version was last updated.
+      readOnly: true
+      example: "2024-01-20T14:30:00Z"
+
+    isDeleted:
+      type: boolean
+      description: |
+        Soft delete flag. When true, the Discount Rate is hidden from normal queries but
+        preserved for historical reporting.
+      default: false
+      example: false
+
+    # Custom Fields - Date
+    customDate1:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+
+    customDate2:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+
+    customDate3:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Float
+    customFloat1:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customFloat2:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customFloat3:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Integer
+    customInt1:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customInt2:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customInt3:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Text
+    customText1:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText2:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText3:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText4:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText5:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText6:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText7:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText8:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText9:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText10:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText11:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText12:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText13:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText14:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText15:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText16:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText17:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText18:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText19:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText20:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Text Block
+    customTextBlock1:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable large text field that can be used to store custom data depending on deployment needs.
+
+    customTextBlock2:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable large text field that can be used to store custom data depending on deployment needs.
+
+    customTextBlock3:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable large text field that can be used to store custom data depending on deployment needs.
+
+  required:
+    - id
+    - effectiveDate
+    - title
+    - amount
+    - discountTypeLookup
+    - isDeleted
+    - dateAdded
+
+  example:
+    id: 15
+    effectiveDate: "2024-01-01"
+    effectiveEndDate: null
+    versionID: 1
+    isFirst: true
+    title: "Volume Discount"
+    amount: 10.5
+    discountTypeLookup:
+      id: 1
+      label: "Percentage"
+    calculatePriority: 1
+    generalLedgerAccount:
+      id: 5010
+      accountNumber: "4100"
+      accountName: "Sales Discounts"
+    isDeleted: false
+    dateAdded: "2024-01-15T08:00:00Z"

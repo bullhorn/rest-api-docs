@@ -1,0 +1,54 @@
+AccountingPeriodEntity:
+  type: object
+  description: |
+    Defines a financial period—typically marked by start and end dates—within which billing and
+    revenue transactions are grouped, reported, and reconciled.
+
+    Accounting Periods are used for financial reporting, GL posting, and period close operations.
+    Each period represents a slice of time (usually a month or quarter) that must be balanced
+    and closed before moving to the next period.
+
+    **See Also**:
+    - Workflow: [General Ledger Integration](#tag/General-Ledger-Integration)
+    - Related: InvoiceStatement - Invoices are posted to accounting periods
+    - Related: GeneralLedgerAccount - GL entries are organized by accounting period
+
+    **CRUD Access**: CREATE, READ
+
+    **Entitlements**:
+    - View Financial Reports
+    - Manage Accounting Periods
+
+    **Period Management**:
+    - Accounting periods are typically created in advance for the fiscal year
+    - Periods can be in different states: Open, Closed, Locked
+    - Once closed, transactions cannot be posted to that period without reopening it
+    - Period close is a critical financial process ensuring all transactions are accounted for
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 202401
+
+    accountingPeriodDate:
+      type: string
+      format: date
+      description: |
+        Accounting Period date. Represents the period for financial reporting and GL posting.
+        Typically the first day of the period (e.g., "2024-01-01" for January 2024 period).
+
+        All transactions with dates within this period's range are grouped together for
+        financial reporting and reconciliation.
+      example: "2024-01-01"
+
+  required:
+    - id
+    - accountingPeriodDate
+
+  example:
+    id: 202401
+    accountingPeriodDate: "2024-01-01"

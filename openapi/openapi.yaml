@@ -505,39 +505,101 @@ tags:
     description: |
       # BillableCharge Entity Documentation
 
-      Core entities involved in the billable charge lifecycle.
+      The BillableCharge entity records a chargeable fee, capturing key details like the fee amount, rate type, and effective dates, and ties these charges to specific BillMasterTransactions.
 
-      ## BillableCharge
+      **CRUD Access**: READ (via REST API). CREATE and UPDATE operations available via dedicated service endpoints for workflow operations.
 
-      **Primary entity** representing a chargeable fee for time/expenses.
+      **Entitlements**: View Billable Charge, Add Billable Charge, Edit Billable Charge, Mark Billable Charge Unbillable, Mark Billable Charge Ready
 
-      **Key Fields:**
-      - `billableChargeID`: Unique identifier
-      - `description`: Charge description
-      - `status`: Current workflow status (NotReadyToBill, ReadyToBill, Invoiced, etc.)
-      - `periodEndDate`: Billing period end date
-      - `placement`: Associated placement
-      - `billingProfile`: Billing configuration
+      **Related Services**: [Create BillableCharge](#operation/createBillableCharge), [Update BillableCharge](#operation/updateBillableCharge), [Mark As Ready](#operation/markBillableChargesAsReady)
 
-      **Related Services:**
-      - [Create BillableCharge](#operation/createBillableCharge)
-      - [Update BillableCharge](#operation/updateBillableCharge)
-      - [Mark As Ready](#operation/markBillableChargesAsReady)
-
-      **Workflow:** See [Billing Workflow](#tag/Billing-Workflow)
+      **Workflow**: See [Billing Workflow](#tag/Billing-Workflow)
 
       ---
 
-      ## CustomerRequiredField
+      ## BillableCharge Fields
 
-      Custom fields required by clients for billing.
+      ### Core Identification
+      - **id** (Integer, Required, Read-only): Unique identifier for this entity
+      - **description** (String, Required): Required description of the charge. Auto-generated descriptions include candidate name, job title, and period end date. Used for display in invoices, reports, and UI lists. Can be manually specified when creating charges via API.
+      - **periodEndDate** (Date, Required): End date of billing period. Required field used for effective-dated version selection of BillingProfile and InvoiceTerm. Typically represents end of pay period from timesheet approval. Cannot be changed once charge is invoiced. Used for grouping charges by billing period and determining which rate versions apply.
+      - **externalID** (String): External system identifier for integration with third-party billing/accounting systems. Useful for correlating charges across systems.
 
-      **Key Fields:**
-      - `customerRequiredFieldMeta`: Field definition
-      - `customerRequiredFieldOption`: Selected option (for dropdown fields)
-      - `textValue`: Free-text value
+      ### Workflow & Status
+      - **status** (To-one association, Read-only): Calculated field representing current charge state in billing workflow. Cannot be directly updated - changes based on transaction states, sync status, hold status, invoice associations, and needsReview flags. Priority order (highest to lowest): OnHold > ProcessingFailed > Processing > NeedsReview > Invoiced/Unbillable > ReadyToBill > NotReadyToBill. Automatically recalculated when child transactions or BillMasters change. Used extensively for filtering in queries, determining workflow actions, and controlling invoicing eligibility.
+      - **isInvoiced** (Boolean, Read-only): Calculated field indicating if any transaction has been included in an invoice (true if any BillMasterTransaction.invoiceStatementID is not null). Automatically updated when transactions are invoiced. Once true, charge becomes immutable and cannot be modified. Used to filter charges in invoicing workflows and UI lists. Special ACL protection prevents updates when invoiced.
+      - **readyToBillOverride** (Boolean, Read-only): Manual override flag that forces charge to ReadyToBill status even when transactions aren't fully approved. Set to true by markAsReady service operation. Automatically reset to false when new BillMasterTransactions are added or new timecard data is imported, requiring re-approval. Used for special billing situations requiring early invoicing before full approval workflow completes.
+      - **markAsReadyEligible** (Boolean, Read-only): Calculated field indicating if charge can be marked ready via markAsReady operation. True when charge has at least one eligible transaction (isEligible=1, canInvoice=1) AND either: (1) transactions have needsReview=1 flag set, OR (2) transactions are not approved (transactionStatusID≠4) without readyToBillOverride. Used by UI to enable/disable "Mark As Ready" button.
 
-      **Usage:** Attached to BillMaster transactions during charge creation
+      ### Financial
+      - **subtotal** (Decimal, Read-only): Sum of all BillMasterTransaction amounts for this charge. Only calculated if all transactions use same currency - set to NULL if mixed currencies exist, preventing invalid total display. Automatically recalculated when transactions are added, updated, or deleted. Used in reports, list views, and invoice validation.
+      - **hasAdjustment** (Boolean): Indicates whether billable charge has an adjustment. This field is set automatically when an adjustment has occurred in the system, and it can also be manually overridden later if the charge needs to be manually adjusted.
+      - **hasRebill** (Boolean): Indicates whether billable charge has been rebilled.
+
+      ### Associations - Primary
+      - **placement** (To-one association): Links charge to worker's job assignment. Either placement or billingProfile must be provided on creation. If provided, charge inherits billingProfile, location, GL segments, and branch information from placement. Immutable after creation - cannot be updated once set. Used for authorization checks and configuration inheritance.
+      - **billingProfile** (To-one association): Defines billing configuration including rates, schedules, and terms. Required for invoicing - either set directly or inherited from placement. System selects effective-dated version based on periodEndDate. Cannot be updated once charge is invoiced. Used to determine discount rates, surcharge rates, billing calendar, and invoice terms.
+      - **invoiceTerm** (To-one association, Read-only): Defines payment terms, billing frequency, approval requirements, and billing calendar. Automatically derived from billingProfile. Required for invoicing - charges without invoiceTerm are excluded from invoice processing. System selects effective-dated version based on periodEndDate.
+
+      ### Associations - Context
+      - **candidate** (To-one association, Read-only): Associated Candidate (worker)
+      - **jobOrder** (To-one association, Read-only): Associated JobOrder
+      - **clientCorporation** (To-one association, Read-only): Associated ClientCorporation (end client)
+      - **billingClientCorporation** (To-one association, Read-only): Bill-to company (may differ from end client)
+      - **billingClientContact** (To-one association, Read-only): Billing contact person
+      - **billingCorporateUser** (To-one association, Read-only): Associated CorporateUser for billing
+      - **currencyUnit** (To-one association, Read-only): Currency unit for this charge
+
+      ### Entry Type & Time Tracking
+      - **entryTypeLookup** (To-one association, Required): Entry type - Timesheet (1) or Expense (2)
+      - **timesheet** (To-one association, Read-only): Associated Timesheet (if entry type is Timesheet)
+      - **expenseSheet** (To-one association, Read-only): Associated ExpenseSheet (if entry type is Expense)
+      - **timeAndExpenseBranch** (String, Read-only): Time and expense branch identifier from the placement, used for organizational tracking and reporting in multi-branch/division environments.
+
+      ### Billing Configuration
+      - **billingFrequency** (String, Read-only): Billing frequency derived from the associated InvoiceTerm (e.g., "Weekly", "Bi-Weekly", "Monthly"). Used for display and reporting purposes.
+      - **billingSchedule** (Integer, Read-only): Billing schedule identifier
+
+      ### Transaction Status
+      - **transactionStatus** (To-one association, Read-only): Transaction status (Pending, Submitted, Payment Approved, Approved)
+      - **transactionType** (To-one association, Read-only): Transaction type (New, Adjustment, Reversal, Unbillable)
+
+      ### General Ledger Integration
+      - **generalLedgerStatus** (To-one association, Read-only): Tracks unbilled revenue GL export status with special handling for distribution failures. Calculated as minimum status across all child transactions, with distribution failures (status 9) prioritized via internal value 0. Updated by revenue distribution batch processes and pay-export-services during GL export. Used for GL integration reconciliation and identifying charges with failed exports requiring attention. **Status Values**: 1=Export Failed, 2=Ready for Distribution, 3=Stamped for Distribution, 4=Creating Distribution, 5=Ready for Export, 6=Export Queued, 7=Export in progress, 8=Export Successful, 9=Distribution Creation Failed
+      - **generalLedgerSegment1** (To-one association): Chart of Accounts categorization for GL export. By default configured as Class. Automatically inherited from placement during charge creation. Can be manually updated with "View General Ledger" permission. Critical for proper revenue recognition and financial reporting. Typically represents department/division level.
+      - **generalLedgerSegment2** (To-one association): Chart of Accounts categorization for GL export. By default configured as Division. Automatically inherited from placement during charge creation. Can be manually updated with "View General Ledger" permission. Typically represents cost center level.
+      - **generalLedgerSegment3** (To-one association): Chart of Accounts categorization for GL export. By default configured as Department. Automatically inherited from placement during charge creation. Can be manually updated with "View General Ledger" permission. Typically represents product/service line level.
+      - **generalLedgerSegment4** (To-one association): Chart of Accounts categorization for GL export. By default configured as Country. Automatically inherited from placement during charge creation. Can be manually updated with "View General Ledger" permission. Typically represents location/region level.
+      - **generalLedgerSegment5** (To-one association): Chart of Accounts categorization for GL export. By default configured as Location. Automatically inherited from placement during charge creation. Can be manually updated with "View General Ledger" permission. Typically represents project/campaign level.
+      - **generalLedgerServiceCode** (To-one association): General Ledger Service Code for product/service categorization
+
+      ### Accounting Periods
+      - **minAccountingPeriod** (To-one association, Read-only): Minimum accounting period of all transactions on this charge
+      - **maxAccountingPeriod** (To-one association, Read-only): Maximum accounting period of all transactions on this charge
+      - **transactionAccountingPeriods** (To-many association, Read-only): Collection of all distinct AccountingPeriod records referenced by transactions on this charge. Provides quick access to all accounting periods spanned by the charge's transactions without needing to query individual transactions. Used for accounting period close validation, ensuring charges don't span closed periods, and financial reporting period reconciliation. Critical for month-end/quarter-end close processes. **Usage**: GET /entity/BillableCharge/{id}/transactionAccountingPeriods
+
+      ### Transaction Collections
+      - **billableTransactions** (To-many association, Read-only): Collection of BillableChargeBillableTransaction records linking this charge to individual BillMasterTransactions. Each entry represents a single billable transaction (time or expense entry) that contributes to this charge's total. This is the primary relationship connecting BillableCharge to the detailed transaction data. Used for drilling down from charge-level view to individual time/expense entries. **Usage**: GET /entity/BillableCharge/{id}/billableTransactions
+      - **billMasters** (To-many association, Read-only): Collection of BillMaster records associated with this charge. BillMasters are intermediate grouping entities that organize transactions by placement, period, and earn code before they are invoiced. Multiple BillMasters can exist for a single BillableCharge when transactions span different earn codes or have different billing attributes. Used in the billing sync process to group transactions for rate calculation and invoice line item generation. **Usage**: GET /entity/BillableCharge/{id}/billMasters
+      - **summaryTransactions** (To-many association, Read-only): Collection of BillableChargeSummaryTransaction records providing pre-aggregated views of transaction data grouped by key dimensions (earn code, bill rate, date, etc.). Used for performance optimization in reports and UI displays, avoiding need to aggregate individual transactions on every query. Summary records are maintained automatically as transactions are added, updated, or deleted. **Usage**: GET /entity/BillableCharge/{id}/summaryTransactions
+      - **invoicedTransactions** (To-many association, Read-only): Collection of transactions that have been included in an invoice. Subset of billableTransactions where invoiceStatementID is not null. Used to differentiate between invoiced and pending transactions on partially invoiced charges. When a charge is fully invoiced, this collection will match billableTransactions. **Usage**: GET /entity/BillableCharge/{id}/invoicedTransactions
+      - **unbillableTransactions** (To-many association, Read-only): Collection of BillableChargeUnbillableTransaction records representing transactions marked as unbillable (transactionStatusID = 6). These transactions are excluded from invoicing but retained for audit trail and reporting. Transactions can be marked unbillable due to rate issues, client disputes, approval rejections, or manual override. Used for tracking non-billable work and understanding revenue leakage. **Usage**: GET /entity/BillableCharge/{id}/unbillableTransactions
+
+      ### Invoice & Distribution
+      - **invoiceStatements** (To-many association, Read-only): Collection of InvoiceStatements that include this billable charge. A charge can appear on multiple invoices (e.g., original invoice and credit invoice). When a charge is invoiced: BillMasterTransactions are linked to InvoiceStatementLineItems, charge status progresses to Invoicing (5) or Invoiced (6), isInvoiced flag is set to true, and charge becomes immutable. **Usage**: GET /entity/BillableCharge/{id}/invoiceStatements
+      - **billMasterTransactionDistributionBatches** (To-many association, Read-only): Collection of BillMasterTransactionDistributionBatch records tracking unbilled revenue GL distribution processing for this charge's transactions. Each batch represents an automated GL export run that created accounting entries for revenue recognition. Used for GL reconciliation, tracking distribution failures, and understanding when revenue was recognized in the general ledger. Critical for financial close processes and revenue recognition compliance. **Usage**: GET /entity/BillableCharge/{id}/billMasterTransactionDistributionBatches
+
+      ### Calendar & Cycles
+      - **billingCalendarInstances** (To-many association, Read-only): Collection of CalendarInstance records representing billing periods associated with this charge. Calendar instances define the specific date ranges for billing cycles (e.g., weekly periods ending every Friday). Used to associate charges with billing schedules, determine invoice generation timing, and group charges by billing period. Multiple instances can exist when charges span billing period boundaries. **Usage**: GET /entity/BillableCharge/{id}/billingCalendarInstances
+      - **payBillCycles** (To-many association, Read-only): Collection of PayBillCycle records displaying the associated billing cycle(s) for this charge. Pay Bill Cycles coordinate payroll and billing periods, ensuring consistent timing between paying contractors and billing clients. Typically one cycle per charge, but can be multiple if charge configuration changes during the period or if charge spans multiple pay/bill cycle boundaries. Used for cycle-based reporting and processing coordination. **Usage**: GET /entity/BillableCharge/{id}/payBillCycles
+
+      ### Integration & Sync
+      - **billingSyncBatchFileAttachments** (To-many association, Read-only): Collection of BillingSyncBatchFileAttachment records linking this charge to billing sync import files. When charges are created via automated billing sync (importing timecard data from external systems), this tracks which import files contained the source data. Used for data lineage tracking, troubleshooting sync issues, and audit trails showing original source of billing data. Essential for reconciling with external time tracking systems. **Usage**: GET /entity/BillableCharge/{id}/billingSyncBatchFileAttachments
+
+      ### Audit
+      - **dateAdded** (Timestamp, Required, Read-only): Unix timestamp (milliseconds) when entity was added
+      - **dateLastModified** (Timestamp, Required, Read-only): Unix timestamp (milliseconds) when entity was last modified
+      - **addedByUser** (To-one association, Read-only): CorporateUser who added this record
 
   - name: Invoice Entities
     description: |
@@ -625,17 +687,72 @@ tags:
 
       **Transaction grouping entity** that aggregates transactions by earn code and date.
 
-      **Key Fields:**
-      - `billMasterID`: Unique identifier
-      - `earnCode`: Type of work (Regular, Overtime, etc.)
-      - `transactionDate`: Date work performed
-      - `quantity`, `rate`, `amount`: Aggregated values
-      - `billableCharge`: Parent charge
+      **CRUD Access**: READ, UPDATE
 
-      **Related Services:**
-      - Created automatically via BillableCharge operations
+      **Entitlements**: View Bill Master, Edit Billable Charge
 
-      **Workflow:** See [Billing Workflow](#tag/Billing-Workflow)
+      **Purpose**: BillMaster records group transactions by earn code, transaction date, and external ID. This grouping enables detailed rate tracking by earn code, easy identification of overtime vs. regular hours, and integration with external time & expense systems.
+
+      **Related Services**: Created automatically via BillableCharge operations
+
+      **Workflow**: See [Billing Workflow](#tag/Billing-Workflow)
+
+      ---
+
+      ### BillMaster Fields
+
+      #### Core Identification
+      - **id** (Integer, Required, Read-only): Unique identifier for this entity.
+
+      - **externalID** (String, Read-only): External system identifier for integration with third-party time/expense systems. Auto-generated as `BH_INJECTED_ID_{billMasterID}` if duplicate detected. Used with unique constraint on `earnCodeID + transactionDate + externalID + workedShiftID` to prevent duplicate imports. Essential for correlating BillMasters with external timecard records.
+
+      #### Associations - Parent
+      - **billableCharge** (To-one association, Read-only): Parent BillableCharge container that groups all BillMasters for a billing period. The charge manages workflow status (NotReadyToBill, ReadyToBill, Invoiced) and approval requirements. Multiple BillMasters can belong to a single BillableCharge when transactions span different earn codes or dates. *Default fields: id*
+
+      #### Associations - Configuration
+      - **earnCode** (To-one association, Read-only): Defines type of work performed (regular hours, overtime, double-time, PTO, holiday, sick, etc.). Primary grouping dimension for BillMaster records. **Key Behaviors**: Controls discount eligibility via `isDiscountable` flag - discounts can only be applied if earnCode.isDiscountable=true. Determines chargeTypeLookup via EarnCodeGroup. Links to rate cards for billing calculations. Immutable after creation. Required field used in unique constraint. *Default fields: id, externalID, title*
+
+      - **chargeTypeLookup** (To-one association, Required, Read-only): Categorizes as Time (1), Expense (2), or Time and Expense (3). Automatically derived from EarnCode's EarnCodeGroup during creation. Immutable after creation. Used for: (1) Grouping transactions on invoices, (2) Separating time from expense reporting, (3) Validating customer required fields, (4) Determining applicable workflows. **Options**: Timesheet or Expense Report
+
+      - **location** (To-one association, Updatable): Work location critical for sales tax calculations. Copied from Placement during BillMaster creation. Updatable via BillMasterSyncBatch when placement location changes (syncLocation=true). **Sales Tax Determination**: System matches location effective-dated version based on transactionDate. Used to determine applicable tax rates via LocationVersionTaxGroups. Invoice creation queries sales tax rates based on location and transactionDate falling between location's effectiveDate and effectiveEndDate. Location changes can result in different tax rates for transactions on different dates. *Default fields: id, clientCorporation, candidate, title, effectiveDate, effectiveEndDate, versionID, externalID*
+
+      - **payBillCycle** (To-one association, Read-only): Links to billing cycle defining billing frequency and calendar. Contains billingCalendarID used to determine billingCalendarInstance. Sourced from InvoiceTerm effective for transactionDate. **Update Behavior**: Updatable via BillMasterSyncBatch when invoice terms change. Used for billing period determination, calendar synchronization, coordinating payroll and billing cycles, and grouping transactions by pay/bill period. Requires "viewPayBillCycle" entitlement to read. *Default fields: id*
+
+      #### Billing Calendar
+      - **billingCalendarInstance** (To-one association, Read-only): Determines billing period and invoicing eligibility. Automatically matched based on transactionDate falling within calendar instance date range. **Eligibility Rule**: `isEligible = (billingCalendarInstance.endDate < current date)`. Updatable via BillMasterSyncBatch when billing calendar changes on placement. Derived from InvoiceTerm's payBillCycle. Used extensively for period-based invoicing and eligibility calculations. Requires "viewCalendar" entitlement to read. *Default fields: id, label*
+
+      #### Sync & Import
+      - **billingSyncBatch** (To-one association, Read-only): Links to originating time & expense import batch. All BillMasters from same external batch share same billingSyncBatch for traceability. Enables tracking which external events created which BillMasters. Used to process corrections and updates to existing batches. Provides audit trail for external system integration. Immutable after creation. *Default fields: id*
+
+      - **billingSyncBatchFileAttachments** (To-many association, Read-only): BillingSyncBatchFileAttachment - Collection of import files associated with this record. When BillMasters are created via automated billing sync (importing timecard data from external systems), this tracks which import files contained the source data. Used for data lineage tracking, troubleshooting sync issues, and audit trails showing original source of billing data. *Default fields: id* **Usage**: GET /entity/BillMaster/{id}/billingSyncBatchFileAttachments
+
+      #### Transaction Collections
+      - **billMasterTransactions** (To-many association, Read-only): Associated BillMasterTransactions containing the audit trail and rate information. Each transaction represents a single time/expense entry with its full lifecycle tracking including rates, amounts, adjustments, and invoice links. This is the primary relationship for accessing detailed transaction data. *Default fields: id* **Usage**: GET /entity/BillMaster/{id}/billMasterTransactions
+
+      #### Customer Required Fields
+      - **customerRequiredFields** (To-many association, Read-only): BillMasterCustomerRequiredField - Custom fields required by specific clients (e.g., project codes, cost centers, department codes, PO numbers). These fields are defined in the client's InvoiceTerm and automatically associated when BillMaster is created. Each field can be: (1) **Text**: Free-text input (e.g., project description), (2) **Custom Picker**: Dropdown selection from predefined options, (3) **Purchase Order**: PO number entry with validation. Used for client-specific reporting, invoice line item details, and GL export segmentation. **Usage**: GET /entity/BillMaster/{id}/customerRequiredFields
+
+      #### Financial Adjustments
+      - **discountRates** (To-many association, Updatable): Percentage or fixed-amount reductions applied to billing (volume discounts, early payment discounts, client-specific rate reductions). Copied from InvoiceTermVersion during BillMaster creation. **Eligibility**: Only applicable if earnCode.isDiscountable=true - system filters discounts for non-discountable earn codes. **Update Behavior**: Updatable via BillMasterSyncBatch (syncDiscount=true) when invoice terms change. System selects rate versions where transactionDate falls between effectiveDate and effectiveEndDate. **Calculation**: Applied in calculatePriority order during invoice calculation - each discount calculated on amount after previous discounts (compounding). Can affect tax base unless ignoreForSalesTaxCalculations=true. *Default fields: id, title, effectiveDate, effectiveEndDate, versionID, rate, amount, discountTypeLookup* **Usage**: GET /entity/BillMaster/{id}/discountRates
+
+      - **surchargeRates** (To-many association, Updatable): Additional charges applied to billing (shift differentials, weekend rates, hazard pay, rush fees, administrative fees). Copied from InvoiceTermVersion during BillMaster creation. **Eligibility**: No earn code restrictions - can be applied to any earn code type, unlike discounts. **Update Behavior**: Updatable via BillMasterSyncBatch (syncSurcharge=true) when invoice terms change. System selects rate versions where transactionDate falls between effectiveDate and effectiveEndDate. **Types**: Type 1 = Fixed amount per unit (e.g., $5 per hour shift differential), Type 2+ = Percentage of base amount (e.g., 10% weekend surcharge). Applied during invoice creation after base amount calculation and before tax calculations. *Default fields: id, title, effectiveDate, effectiveEndDate, versionID, rate, amount, type* **Usage**: GET /entity/BillMaster/{id}/surchargeRates
+
+      #### Flags
+      - **canInvoice** (Boolean, Updatable): Controls invoicing eligibility. Set to false by invoice creation process after successful invoicing to prevent double-invoicing. Can be manually set to false to temporarily exclude specific earn codes or transaction dates from invoicing without marking as unbillable. One of the few updatable fields on BillMaster. Checked before including transactions in invoices. *Default: true*
+
+      #### Status
+      - **transactionStatus** (To-one association, Updatable): Current approval status of the transaction. Controls workflow progression and invoicing eligibility. **Status Values**: 1=Pending (Initial state, awaiting submission), 2=Submitted (Submitted for approval, not yet reviewed), 3=Payment Approved (Approved for payroll but not yet billing), 4=Approved (Fully approved, eligible for invoicing). BillableCharge status calculations prioritize transactions by approval state. Only Approved (4) transactions are invoiced by default unless readyToBillOverride is used.
+
+      - **transactionDate** (Date, Read-only): Business date when work was performed or expense incurred. Critical for effective-dated version matching - determines which versions apply: BillingProfile version, InvoiceTerm version, DiscountRate versions, SurchargeRate versions, PlacementRateCard version, Location version (for sales tax). **Important**: Different from dateAdded (system timestamp). Part of grouping key for BillMaster records. Required field, immutable after creation. System selects configuration versions where transactionDate falls between effectiveDate and effectiveEndDate.
+
+      #### Audit
+      - **dateAdded** (Timestamp, Required, Read-only): Date and time when this entity was created in the Bullhorn system. System timestamp that differs from transactionDate (business date of work). Used for audit trails and tracking when billing data was received.
+
+      - **dateLastModified** (Timestamp, Required, Read-only): Date and time when this entity was last modified. Updated automatically whenever the record changes. Used for synchronization, caching, and audit trails.
+
+      - **addedByUser** (To-one association, Required, Read-only): CorporateUser who added the record. Tracks which internal user created this BillMaster, typically the user who initiated the billing sync or manual charge creation. *Default fields: id, firstName, lastName*
+
+      - **owner** (To-one association, Read-only): CorporateUser owner of the record. Typically the user who created the BillableCharge parent, or assigned via ownership rules. Used for authorization checks and record access control. *Default fields: id, firstName, lastName*
 
       ---
 
@@ -687,6 +804,12 @@ paths:
 
   /services/BillableCharge/clearNeedsReviewAndMarkAsReady:
     $ref: './paths/services/BillableCharge.yaml#/clearNeedsReviewAndMarkAsReady'
+
+  /entity/BillableCharge/{id}:
+    $ref: './paths/entity/BillableCharge.yaml#/getBillableCharge'
+
+  /query/BillableCharge:
+    $ref: './paths/entity/BillableCharge.yaml#/queryBillableCharges'
 
   /services/InvoiceStatement/generateExport:
     $ref: './paths/services/InvoiceStatement.yaml#/generateExport'

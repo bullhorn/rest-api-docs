@@ -1,0 +1,158 @@
+GeneralLedgerAccountEntity:
+  type: object
+  description: |
+    Identifies a specific account in the general ledger used to record and categorize financial
+    transactions, supporting the overall accounting structure.
+
+    General Ledger Accounts are the foundation of double-entry accounting. Each account represents
+    a category for grouping related transactions (e.g., Revenue, Expenses, Assets, Liabilities).
+
+    Accounts are linked to EarnCodes, InvoiceTerms, DiscountRates, and SurchargeRates to determine
+    where financial transactions are posted when processed.
+
+    **See Also**:
+    - Workflow: [General Ledger Integration](#tag/General-Ledger-Integration)
+    - Related: EarnCode - Links to bill and pay GL accounts
+    - Related: InvoiceTerm - Links to accounts receivable GL account
+    - Related: DiscountRate - Links to discount GL account
+    - Related: SurchargeRate - Links to surcharge GL account
+
+    **CRUD Access**: CREATE, READ, UPDATE
+
+    **Entitlements**:
+    - View General Ledger Configuration
+    - Manage General Ledger Accounts
+
+    **Account Types**:
+    - **Accounts Receivable**: Set isAccountsReceivable = true
+    - **Bill Accounts**: Set isBill = true (revenue/billing side)
+    - **Pay Accounts**: Set isPay = true (expense/payroll side)
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 1001
+
+    externalAccountNumber:
+      type: string
+      maxLength: 100
+      description: |
+        External account number from the accounting system. This is the actual account number
+        used in the Chart of Accounts (e.g., "1200", "4000", "5010").
+
+        This number is used when exporting to accounting systems like QuickBooks, NetSuite, etc.
+      example: "1200"
+
+    externalAccountName:
+      type: string
+      maxLength: 100
+      description: |
+        External account name from the accounting system. Human-readable name for the account
+        that appears on financial reports.
+
+        Examples: "Accounts Receivable", "Staffing Revenue", "Contractor Wages"
+      example: "Accounts Receivable"
+
+    externalAccountType:
+      type: string
+      maxLength: 100
+      description: |
+        External account type classification. High-level category of the account in the
+        Chart of Accounts.
+
+        Common types:
+        - **Asset**: Resources owned (Cash, Accounts Receivable, Equipment)
+        - **Liability**: Obligations owed (Accounts Payable, Loans)
+        - **Equity**: Owner's stake (Capital, Retained Earnings)
+        - **Revenue**: Income earned (Sales, Service Revenue)
+        - **Expense**: Costs incurred (Wages, Rent, Supplies)
+      example: "Asset"
+
+    externalAccountDetailType:
+      type: string
+      maxLength: 100
+      description: |
+        External account detail type. Sub-category that provides more granular classification
+        within the account type.
+
+        Examples:
+        - For Asset type: "Current Asset", "Fixed Asset", "Other Asset"
+        - For Revenue type: "Service Revenue", "Product Revenue"
+        - For Expense type: "Cost of Goods Sold", "Operating Expense"
+      example: "Current Asset"
+
+    isAccountsReceivable:
+      type: boolean
+      description: |
+        Designates this account as the Accounts Receivable account. When invoices are posted
+        to the GL, the invoice amount is debited to this account.
+
+        Typically only one account per organization has this flag set to true.
+      default: false
+      example: true
+
+    isActive:
+      type: boolean
+      description: |
+        Indicates whether this account is active and available for use. Inactive accounts
+        are hidden from selection lists but preserved for historical transactions.
+      default: true
+      example: true
+
+    isBill:
+      type: boolean
+      description: |
+        Designates this account as available for billing (revenue) transactions. When set to true,
+        this account can be used on EarnCodes for bill transactions and will receive credit entries
+        for billed amounts.
+
+        Bill accounts are typically revenue accounts.
+      default: false
+      example: true
+
+    isPay:
+      type: boolean
+      description: |
+        Designates this account as available for payroll (expense) transactions. When set to true,
+        this account can be used on EarnCodes for pay transactions and will receive debit entries
+        for payroll amounts.
+
+        Pay accounts are typically expense accounts.
+      default: false
+      example: false
+
+    isDeleted:
+      type: boolean
+      description: |
+        Soft delete flag. When true, the account is hidden from normal queries but preserved
+        for historical transactions and reporting.
+      default: false
+      example: false
+
+  required:
+    - id
+    - externalAccountNumber
+    - externalAccountName
+    - externalAccountType
+    - externalAccountDetailType
+    - isAccountsReceivable
+    - isActive
+    - isBill
+    - isPay
+    - isDeleted
+
+  example:
+    id: 1001
+    externalAccountNumber: "1200"
+    externalAccountName: "Accounts Receivable"
+    externalAccountType: "Asset"
+    externalAccountDetailType: "Current Asset"
+    isAccountsReceivable: true
+    isActive: true
+    isBill: false
+    isPay: false
+    isDeleted: false

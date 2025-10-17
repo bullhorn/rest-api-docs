@@ -1,0 +1,35 @@
+TransactionStatusEntity:
+  type: object
+  description: |
+    Indicates the current state of a transaction, which helps in monitoring its progress through
+    various processing stages.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow) - Transaction approval process
+    - Entity: [BillMasterTransaction](#tag/Transaction-Entities) - Uses TransactionStatus
+
+    **CRUD Access**: READ only
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity. Represents different workflow states for transactions.
+      readOnly: true
+      example: 4
+
+    name:
+      type: string
+      maxLength: 100
+      description: |
+        Name of the transaction status. Values include various workflow states such as
+        "Approved", "Pending", etc.
+      example: "Approved"
+
+  required:
+    - id
+
+  example:
+    id: 4
+    name: "Approved"

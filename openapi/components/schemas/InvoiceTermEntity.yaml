@@ -1,0 +1,659 @@
+InvoiceTermEntity:
+  type: object
+  description: |
+    Defines the billing terms and configuration for how invoices are generated, grouped, and approved for
+    a specific client. Controls the complete invoicing workflow including timing, grouping, discounts,
+    surcharges, and approval requirements.
+
+    Invoice Terms are effective-dated, meaning multiple versions can exist over time with different
+    configurations. Each version has a specific date range during which it applies.
+
+    **See Also**:
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: DiscountRate - Discounts applied to invoices
+    - Related: SurchargeRate - Surcharges applied to invoices
+    - Related: InvoiceStatement - Generated using this term configuration
+
+    **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+    **Entitlements**:
+    - View Client Billing Terms
+    - Add Client Billing Terms
+    - Update Client Billing Terms
+
+    **Version Management**: This is an effective-dated entity. When updated, a new version is created
+    with a new effectiveDate. The previous version's effectiveEndDate is set to one day before the
+    new version's effectiveDate.
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 42
+
+    effectiveDate:
+      type: string
+      format: date
+      description: |
+        Date when this version of the Invoice Term becomes active. For effective-dated entities,
+        this marks the start of the validity period for this configuration.
+      example: "2024-01-01"
+
+    effectiveEndDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date when this version of the Invoice Term expires. When a new version is created, this
+        is automatically set to one day before the new version's effectiveDate. Null means this
+        is the current active version.
+      example: "2024-12-31"
+
+    versionID:
+      type: integer
+      format: int32
+      description: |
+        Version number for this Invoice Term. Increments with each new version created.
+        Used to track the evolution of billing terms over time.
+      example: 2
+
+    versions:
+      type: object
+      description: |
+        Collection of all versions of this Invoice Term across different effective dates.
+        Allows querying historical billing configurations.
+      properties:
+        total:
+          type: integer
+          description: Total count of versions
+        data:
+          type: array
+          items:
+            $ref: '#/InvoiceTermEntity'
+      example:
+        total: 3
+
+    isFirst:
+      type: boolean
+      description: |
+        Indicates if this is the first/original version of the Invoice Term. True only for
+        the version with versionID = 1.
+      default: false
+      example: true
+
+    title:
+      type: string
+      maxLength: 100
+      description: |
+        Name of the Invoice Term. Used in UI and reports to identify the billing configuration.
+      example: "Standard Net 30"
+
+    description:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        Detailed explanation of the Invoice Term and its usage. Helps users understand when
+        to apply this billing configuration.
+      example: "Standard billing terms with 30 day payment period"
+
+    status:
+      type: string
+      maxLength: 30
+      nullable: true
+      description: |
+        Current status of the Invoice Term. Controls whether it can be used for new invoices.
+        Common values: "Active", "Inactive", "Draft"
+      example: "Active"
+
+    clientCorporation:
+      type: object
+      description: |
+        Client Corporation this Invoice Term belongs to. Invoice Terms are client-specific
+        and cannot be shared across clients.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        id: 123
+        name: "Acme Corporation"
+
+    currencyUnit:
+      type: object
+      description: |
+        Currency used for all financial calculations on invoices generated with this term.
+        Must match the currency of associated rates, discounts, and surcharges.
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        name:
+          type: string
+      example:
+        id: 1
+        code: "USD"
+        name: "US Dollar"
+
+    invoiceOn:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Determines when invoices are generated. Controls the timing of the invoicing cycle.
+        Common values: "Approval", "WeekEnd", "PeriodEnd", "MonthEnd"
+      example: "Approval"
+
+    invoiceGroupBy:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Defines how transactions are grouped into separate invoices. Each unique combination
+        of these fields creates a separate invoice.
+
+        Common groupings: "Placement", "JobOrder", "Department", "ClientContact"
+
+        Multiple fields can be combined: "Placement,JobOrder"
+      example: "Placement"
+
+    invoiceSplitBy:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Secondary grouping that splits invoices within the invoiceGroupBy structure.
+        Used for finer-grained invoice separation.
+
+        Example: If invoiceGroupBy="Placement" and invoiceSplitBy="EarnCode", each
+        placement will have separate invoices for each earn code.
+      example: "EarnCode"
+
+    invoiceSummarizeBy:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Controls how invoice line items are summarized or rolled up on the invoice.
+        Determines the level of detail shown on the final invoice.
+
+        Common values: "Transaction", "Day", "Week", "EarnCode", "None"
+
+        Example: "Day" will combine all transactions for the same day into a single line item.
+      example: "Day"
+
+    approvalRequired:
+      type: boolean
+      description: |
+        When true, invoices must go through an approval workflow before being finalized.
+        Enables multi-level review of invoices before sending to clients.
+      default: false
+      example: true
+
+    purchaseOrderRequired:
+      type: boolean
+      description: |
+        When true, all transactions must have an associated Purchase Order before they can
+        be invoiced. Enforces PO validation in the billing workflow.
+      default: false
+      example: true
+
+    invoiceApprovedTimecardsRequired:
+      type: boolean
+      description: |
+        When true, only transactions from approved timecards/expense sheets can be invoiced.
+        Unapproved time/expenses are excluded from invoice generation.
+      default: false
+      example: true
+
+    waitForTimecards:
+      type: boolean
+      description: |
+        When true, the system waits for all timecards in the billing period to be submitted
+        before generating invoices. Ensures complete invoices without missing time entries.
+      default: false
+      example: false
+
+    paymentTerms:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Payment terms text displayed on invoices. Specifies when payment is due.
+        Examples: "Net 30", "Net 45", "Due on Receipt", "2/10 Net 30"
+      example: "Net 30"
+
+    remitInstructions:
+      type: string
+      nullable: true
+      description: |
+        Payment instructions displayed on invoices. Can include bank account details,
+        mailing addresses, or electronic payment information. Supports large text blocks.
+      example: "Please remit payment to:\nAcme Staffing Inc.\nP.O. Box 12345\nNew York, NY 10001"
+
+    discountRates:
+      type: object
+      description: |
+        Collection of DiscountRate entities applied to invoices using this term.
+        Discounts are automatically calculated and applied during invoice generation.
+      properties:
+        total:
+          type: integer
+          description: Total count of discount rates
+        data:
+          type: array
+          items:
+            $ref: './DiscountRateEntity.yaml#/DiscountRateEntity'
+      example:
+        total: 2
+
+    surchargeRates:
+      type: object
+      description: |
+        Collection of SurchargeRate entities applied to invoices using this term.
+        Surcharges are automatically calculated and added during invoice generation.
+      properties:
+        total:
+          type: integer
+          description: Total count of surcharge rates
+        data:
+          type: array
+          items:
+            $ref: './SurchargeRateEntity.yaml#/SurchargeRateEntity'
+      example:
+        total: 1
+
+    invoiceStatementTemplate:
+      type: object
+      description: |
+        Template used to format and render invoices generated with this term. Defines
+        the layout, sections, and appearance of the final invoice document.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        id: 5
+        name: "Standard Invoice Template"
+
+    generalLedgerAccountsReceivable:
+      type: object
+      nullable: true
+      description: |
+        General Ledger account for accounts receivable entries. When invoices are posted
+        to the GL, this account is debited with the invoice amount.
+      properties:
+        id:
+          type: integer
+          format: int64
+        accountNumber:
+          type: string
+        accountName:
+          type: string
+      example:
+        id: 1001
+        accountNumber: "1200"
+        accountName: "Accounts Receivable"
+
+    payBillCycle:
+      type: object
+      nullable: true
+      description: |
+        Pay Bill Cycle associated with this Invoice Term. Links billing schedules to
+        payroll cycles for synchronized processing.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+
+    reports:
+      type: object
+      description: |
+        Collection of reports associated with this Invoice Term. Defines which reports
+        are available for invoices generated with these terms.
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of reports
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              name:
+                type: string
+
+    fileTypesForInvoicing:
+      type: object
+      description: |
+        Collection of file types that can be attached to invoices generated with this term.
+        Controls which document types are allowed as invoice attachments.
+      properties:
+        total:
+          type: integer
+          description: Total count of file types
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              name:
+                type: string
+
+    externalID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        External system identifier for integration with third-party accounting/billing systems.
+        Used to correlate invoice terms across different systems.
+      readOnly: true
+      example: "EXT-TERM-001"
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this version was created in the Bullhorn system.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Timestamp when this version was last updated.
+      readOnly: true
+      example: "2024-01-20T14:30:00Z"
+
+    owner:
+      type: object
+      description: |
+        CorporateUser who owns this Invoice Term. Typically the user who created it.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+      example:
+        id: 456
+        firstName: "John"
+        lastName: "Smith"
+
+    isDeleted:
+      type: boolean
+      description: |
+        Soft delete flag. When true, the Invoice Term is hidden from normal queries but
+        preserved for historical reporting.
+      default: false
+      example: false
+
+    # Custom Fields - Date
+    customDate1:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+
+    customDate2:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+
+    customDate3:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Float
+    customFloat1:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customFloat2:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customFloat3:
+      type: number
+      format: double
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Integer
+    customInt1:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customInt2:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    customInt3:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable numeric field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Text
+    customText1:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText2:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText3:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText4:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText5:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText6:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText7:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText8:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText9:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText10:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText11:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText12:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText13:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText14:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText15:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText16:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText17:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText18:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText19:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    customText20:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data depending on deployment needs.
+
+    # Custom Fields - Text Block
+    customTextBlock1:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable large text field that can be used to store custom data depending on deployment needs.
+
+    customTextBlock2:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable large text field that can be used to store custom data depending on deployment needs.
+
+    customTextBlock3:
+      type: string
+      maxLength: 2147483647
+      nullable: true
+      description: Configurable large text field that can be used to store custom data depending on deployment needs.
+
+  required:
+    - id
+    - effectiveDate
+    - title
+    - clientCorporation
+    - currencyUnit
+    - invoiceStatementTemplate
+    - approvalRequired
+    - purchaseOrderRequired
+    - invoiceApprovedTimecardsRequired
+    - waitForTimecards
+    - isDeleted
+    - dateAdded
+
+  example:
+    id: 42
+    effectiveDate: "2024-01-01"
+    effectiveEndDate: null
+    versionID: 1
+    isFirst: true
+    title: "Standard Net 30"
+    description: "Standard billing terms with 30 day payment period"
+    status: "Active"
+    clientCorporation:
+      id: 123
+      name: "Acme Corporation"
+    currencyUnit:
+      id: 1
+      code: "USD"
+      name: "US Dollar"
+    invoiceOn: "Approval"
+    invoiceGroupBy: "Placement"
+    invoiceSummarizeBy: "Day"
+    approvalRequired: true
+    purchaseOrderRequired: false
+    invoiceApprovedTimecardsRequired: true
+    waitForTimecards: false
+    paymentTerms: "Net 30"
+    invoiceStatementTemplate:
+      id: 5
+      name: "Standard Invoice Template"
+    generalLedgerAccountsReceivable:
+      id: 1001
+      accountNumber: "1200"
+      accountName: "Accounts Receivable"
+    isDeleted: false
+    dateAdded: "2024-01-15T08:00:00Z"

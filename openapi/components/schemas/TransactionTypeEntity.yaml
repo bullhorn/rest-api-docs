@@ -1,0 +1,44 @@
+TransactionTypeEntity:
+  type: object
+  description: |
+    Categorizes a transaction by its nature—such as fee, adjustment, or payment—ensuring it is processed
+    and reported correctly within the system.
+
+    **See Also**:
+    - Workflow: [Transaction Adjustments](#tag/Transaction-Adjustments) - Adjustment types explained
+    - Entity: [BillMasterTransaction](#tag/Transaction-Entities) - Uses TransactionType
+
+    **CRUD Access**: READ only
+
+    **Transaction Types**:
+    - **New** (1): Original transaction from billing sync
+    - **Adjustment** (2): Corrected transaction with updated values
+    - **Reversal** (3): Negated transaction that offsets an original
+    - **Unbillable** (6): Transaction marked as non-billable
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity. Standard values:
+        - 1 = New
+        - 2 = Adjustment
+        - 3 = Reversal
+        - 6 = Unbillable
+      readOnly: true
+      example: 1
+
+    name:
+      type: string
+      maxLength: 100
+      description: |
+        Name of the transaction type. Values include "New", "Adjustment", "Reversal", "Unbillable".
+      example: "New"
+
+  required:
+    - id
+
+  example:
+    id: 1
+    name: "New"

@@ -1,0 +1,57 @@
+CustomerRequiredFieldValueTypeLookupEntity:
+  type: object
+  description: |
+    Acts as a reference for the allowed data types for customer required fields, ensuring proper
+    validation and consistency across record entries.
+
+    This lookup defines the type of input control and validation that will be applied to a
+    Customer Required Field.
+
+    **See Also**:
+    - Usage: CustomerRequiredFieldMeta - References this lookup to determine field type
+
+    **CRUD Access**: READ only
+
+    **Entitlements**: View Client Customer Required Field
+
+    **Pre-defined Values**:
+    - **Text** (1): Free-text input field with no predefined options
+    - **Custom Picker** (2): Dropdown selection field with predefined CustomerRequiredFieldOption values
+    - **Purchase Order** (3): Special field type for Purchase Order number entry
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+        - 1 = Text
+        - 2 = Custom Picker
+        - 3 = Purchase Order
+      readOnly: true
+      example: 2
+
+    label:
+      type: string
+      description: |
+        Label for the value type. Human-readable name displayed in UI.
+      readOnly: true
+      example: "Custom Picker"
+
+    isDeleted:
+      type: boolean
+      description: |
+        Indicates whether this record has been marked as deleted in the Bullhorn system.
+      readOnly: true
+      default: false
+      example: false
+
+  required:
+    - id
+    - label
+    - isDeleted
+
+  example:
+    id: 2
+    label: "Custom Picker"
+    isDeleted: false

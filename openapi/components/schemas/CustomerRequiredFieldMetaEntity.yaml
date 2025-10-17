@@ -1,0 +1,246 @@
+CustomerRequiredFieldMetaEntity:
+  type: object
+  description: |
+    Manages and defines the setup for fields that must be completed on customer-related records,
+    specifying which fields are mandatory and how they should be validated.
+
+    Customer Required Fields (CRFs) are custom fields that clients require on timesheets, expenses,
+    or invoices. These fields enable clients to capture additional data needed for their internal
+    processes (e.g., project codes, cost centers, PO numbers).
+
+    **See Also**:
+    - Usage: [BillableCharge Entities](#tag/BillableCharge-Entities) - CRFs attached to transactions
+    - Related: CustomerRequiredFieldOption - Options for picker-type fields
+
+    **CRUD Access**: READ only
+
+    **Entitlements**:
+    - Add Client Customer Required Field
+    - View Client Customer Required Field
+    - Update Client Customer Required Field
+
+    **Value Types**:
+    - **Text** (1): Free-text input field
+    - **Custom Picker** (2): Dropdown with predefined options
+    - **Purchase Order** (3): Purchase order number field
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: Unique identifier for this entity.
+      readOnly: true
+      example: 2
+
+    clientCorporation:
+      type: object
+      description: |
+        Client Corporation which the CRF belongs to. The CRF configuration is specific to this client.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        id: 123
+        name: "Acme Corporation"
+
+    label:
+      type: string
+      maxLength: 255
+      description: |
+        Label (or title) for the CRF. This is displayed to users when entering data.
+      example: "Project Code"
+
+    valueType:
+      type: object
+      description: |
+        The types of values the CRF will have. Determines the input control and validation.
+
+        Options:
+        - Text (1): Free-text input
+        - Custom Picker (2): Dropdown selection from predefined options
+        - Purchase Order (3): Purchase order number
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+      example:
+        id: 2
+        label: "Custom Picker"
+
+    viewableStartDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date when the CRF will become viewable. Used for effective-dating field availability.
+      example: "2024-01-01"
+
+    viewableEndDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date when the CRF will stop being viewable. Used to retire fields after a certain date.
+      example: "2024-12-31"
+
+    isRequiredOnTimesheet:
+      type: boolean
+      description: |
+        Indicates the CRF should be required on Timesheet. When true, timesheets cannot be
+        submitted without providing a value for this field.
+      default: false
+      example: true
+
+    isVisibleOnTimeSheet:
+      type: boolean
+      description: |
+        Indicates the CRF should be visible on Timesheet. When false, the field is hidden
+        from timesheet entry screens.
+      default: true
+      example: true
+
+    doesFlowToNewJobs:
+      type: boolean
+      description: |
+        Indicates the CRF will exist on newly created jobs. When true, new job orders
+        automatically inherit this CRF configuration.
+      default: false
+      example: false
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: Date on which this record was created in the Bullhorn system.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      description: Date entity was last modified.
+      readOnly: true
+      example: "2024-01-20T14:30:00Z"
+
+    # Custom Fields
+    customText1:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data.
+
+    customText2:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data.
+
+    customText3:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data.
+
+    customText4:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data.
+
+    customText5:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: Configurable text field that can be used to store custom data.
+
+    customInt1:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable integer field that can be used to store custom data.
+
+    customInt2:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable integer field that can be used to store custom data.
+
+    customInt3:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable integer field that can be used to store custom data.
+
+    customInt4:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable integer field that can be used to store custom data.
+
+    customInt5:
+      type: integer
+      format: int32
+      nullable: true
+      description: Configurable integer field that can be used to store custom data.
+
+    customDate1:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data.
+
+    customDate2:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data.
+
+    customDate3:
+      type: string
+      format: date-time
+      nullable: true
+      description: Configurable date field that can be used to store custom data.
+
+    options:
+      type: object
+      description: |
+        Collection of CustomerRequiredFieldOption objects tied to this Customer Required Field Meta.
+        Only applicable when valueType is "Custom Picker" (2).
+      properties:
+        total:
+          type: integer
+          description: Total count of options
+        data:
+          type: array
+          items:
+            $ref: './CustomerRequiredFieldOptionEntity.yaml#/CustomerRequiredFieldOptionEntity'
+
+  required:
+    - id
+    - clientCorporation
+    - label
+    - valueType
+    - isRequiredOnTimesheet
+    - isVisibleOnTimeSheet
+    - doesFlowToNewJobs
+    - dateAdded
+    - dateLastModified
+
+  example:
+    id: 2
+    clientCorporation:
+      id: 123
+      name: "Acme Corporation"
+    label: "Project Code"
+    valueType:
+      id: 2
+      label: "Custom Picker"
+    isRequiredOnTimesheet: true
+    isVisibleOnTimeSheet: true
+    doesFlowToNewJobs: false
+    dateAdded: "2024-01-15T08:00:00Z"
+    dateLastModified: "2024-01-20T14:30:00Z"

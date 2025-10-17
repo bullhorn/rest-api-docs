@@ -1,0 +1,440 @@
+SalesTaxRateEntity:
+  type: object
+  description: |
+    An effective-dated entity that specifies the percentage or fixed rate at which sales tax is
+    applied, including details on the applicable region and effective periods.
+
+    Sales tax rates are applied to invoices based on the work location and effective date of the
+    transaction. The system automatically selects the appropriate rate version based on the
+    transaction date.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Related: SalesTaxGroup - Groups multiple tax rates by jurisdiction
+    - Related: BillMaster - Transaction location determines applicable rates
+    - Related: InvoiceStatement - Invoices with calculated tax amounts
+
+    **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+    **Entitlements**:
+    - Add Sales Tax Rate
+    - Add Sales Tax Rate Version
+    - Delete Sales Tax Rate and Version
+    - Manage Current Sales Tax Rate Version
+    - Manage Historical Sales Tax Rate Version
+    - Manage Future Sales Tax Rate Version
+    - View Current and Future Sales Tax Rate and Version
+
+    **Version Management**: This is an effective-dated entity. When updated, a new version is created
+    with a new effectiveDate. The previous version's effectiveEndDate is set to one day before the
+    new version's effectiveDate.
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 1000
+
+    label:
+      type: string
+      maxLength: 200
+      nullable: true
+      description: |
+        Display label for this tax rate. Used in UI and reports to identify the rate.
+      example: "California State Sales Tax"
+
+    jurisdictionName:
+      type: string
+      maxLength: 200
+      description: |
+        Name of the tax jurisdiction (e.g., "California", "Los Angeles County", "District 5").
+        Required field used to identify where this tax rate applies.
+      example: "California"
+
+    jurisdictionType:
+      type: object
+      description: |
+        Type of jurisdiction where this tax rate applies. Determines the tax hierarchy level.
+
+        **Options**:
+        - 1 = City
+        - 2 = County
+        - 3 = District
+        - 4 = State
+        - 5 = Other
+        - 6 = MTA (Metropolitan Transportation Authority)
+
+        Required field. Used in conjunction with jurisdiction name to uniquely identify the tax.
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+      example:
+        id: 4
+        label: "State"
+
+    rate:
+      type: number
+      format: double
+      description: |
+        Tax rate as a decimal (e.g., 0.075 for 7.5% tax rate). Used when taxType is "Percent".
+        Required field with default value of 0.000000.
+      default: 0.000000
+      example: 0.0750
+
+    amount:
+      type: number
+      format: double
+      description: |
+        Fixed tax amount. Used when taxType is "Amount" for flat-fee taxes rather than percentage-based.
+        Required field with default value of 0.000000.
+      default: 0.000000
+      example: 0.00
+
+    taxType:
+      type: object
+      description: |
+        Determines how this tax is calculated.
+
+        **Options**:
+        - 1 = Amount (Fixed dollar amount per transaction)
+        - 2 = Percent (Percentage of taxable amount)
+
+        Required field. Most sales taxes use "Percent" type.
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+      example:
+        id: 2
+        label: "Percent"
+
+    type:
+      type: object
+      description: |
+        Classification of this sales tax rate for application purposes.
+
+        **Options**:
+        - 1 = Location Based Tax (Applied based on work location zip code)
+        - 2 = Invoice Tax (Applied at invoice level based on billing configuration)
+
+        Required field. Most rates are Location Based Tax, determined by the BillMaster location field.
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Location Based Tax"
+
+    status:
+      type: object
+      description: |
+        Current status of this tax rate.
+
+        **Options**:
+        - 1 = Active (Currently in use)
+        - 2 = Inactive (Not applied to new transactions)
+
+        Required field. Only Active rates are applied to invoices.
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Active"
+
+    source:
+      type: object
+      description: |
+        Source of this tax rate, indicating how it was created.
+
+        **Options**:
+        - 1 = Manual (default, created by user)
+
+        Required field. Used for tracking data origin and integration.
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Manual"
+
+    effectiveDate:
+      type: string
+      format: date
+      description: |
+        Date when this version of the tax rate becomes active. Transactions with a transaction
+        date on or after this date use this rate version.
+      example: "2024-01-01"
+
+    effectiveEndDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date when this version of the tax rate expires. When a new version is created, this
+        is automatically set to one day before the new version's effectiveDate. Null means this
+        is the current active version.
+      readOnly: true
+      example: "2024-12-31"
+
+    versionID:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for the current version. Increments with each new version created.
+        Used to track rate changes over time.
+      readOnly: true
+      example: 2
+
+    versions:
+      type: object
+      description: |
+        Collection of all versions of this tax rate across different effective dates.
+        Allows querying historical tax rates for audit and correction purposes.
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of versions
+        data:
+          type: array
+          items:
+            $ref: '#/SalesTaxRateEntity'
+      example:
+        total: 5
+
+    stateID:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        State identifier from internal database table. Used for geographic validation and
+        linking to state-specific tax rules.
+      example: 5
+
+    reportingCodeName:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Code used for tax reporting to government agencies. May be required for tax filing
+        and compliance reporting.
+      example: "CA-STATE-001"
+
+    externalID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        External system identifier for integration with third-party tax calculation services.
+        Allows API users to associate internal and external tax data.
+      example: "EXT-TAX-CA-001"
+
+    generalLedgerAccount:
+      type: object
+      nullable: true
+      description: |
+        General Ledger Account for posting collected sales tax. Determines which GL account
+        receives tax revenue in financial exports.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalAccountNumber:
+          type: string
+        externalAccountName:
+          type: string
+      example:
+        id: 500
+        externalAccountNumber: "2200"
+        externalAccountName: "Sales Tax Payable"
+
+    generalLedgerSegment1:
+      type: object
+      nullable: true
+      description: |
+        Chart of Accounts categorization for GL export. By default configured as Class.
+        Used for segmented financial reporting and multi-dimensional revenue analysis.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment2:
+      type: object
+      nullable: true
+      description: |
+        Chart of Accounts categorization for GL export. By default configured as Division.
+        Used for cost center level financial tracking.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment3:
+      type: object
+      nullable: true
+      description: |
+        Chart of Accounts categorization for GL export. By default configured as Department.
+        Used for product/service line level financial tracking.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment4:
+      type: object
+      nullable: true
+      description: |
+        Chart of Accounts categorization for GL export. By default configured as Country.
+        Used for geographic revenue segmentation.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerSegment5:
+      type: object
+      nullable: true
+      description: |
+        Chart of Accounts categorization for GL export. By default configured as Location.
+        Used for project/campaign level financial tracking.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalSegmentNumber:
+          type: string
+        externalSegmentName:
+          type: string
+
+    generalLedgerServiceCode:
+      type: object
+      nullable: true
+      description: |
+        Product/service code for GL categorization. Used to classify tax revenue by service type.
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalServiceCodeNumber:
+          type: string
+        externalServiceCodeName:
+          type: string
+
+    owner:
+      type: object
+      nullable: true
+      description: |
+        CorporateUser who owns this tax rate record. Default value is the user who created
+        the entity. Used for authorization and record management.
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+    isDeleted:
+      type: boolean
+      description: |
+        Soft delete flag. When true, the tax rate is hidden from normal queries but preserved
+        for historical reference and audit trails.
+      default: false
+      example: false
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this version was created in the Bullhorn system.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this version was last updated.
+      readOnly: true
+      example: "2024-01-20T14:30:00Z"
+
+  required:
+    - id
+    - jurisdictionName
+    - jurisdictionType
+    - rate
+    - amount
+    - taxType
+    - type
+    - status
+    - source
+    - effectiveDate
+    - versionID
+    - isDeleted
+    - dateAdded
+    - dateLastModified
+
+  example:
+    id: 1000
+    label: "California State Sales Tax"
+    jurisdictionName: "California"
+    jurisdictionType:
+      id: 4
+      label: "State"
+    rate: 0.0750
+    amount: 0.00
+    taxType:
+      id: 2
+      label: "Percent"
+    type:
+      id: 1
+      label: "Location Based Tax"
+    status:
+      id: 1
+      label: "Active"
+    source:
+      id: 1
+      label: "Manual"
+    effectiveDate: "2024-01-01"
+    effectiveEndDate: null
+    versionID: 1
+    stateID: 5
+    isDeleted: false
+    dateAdded: "2024-01-15T08:00:00Z"
+    dateLastModified: "2024-01-20T14:30:00Z"

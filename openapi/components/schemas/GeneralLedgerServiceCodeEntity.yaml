@@ -1,0 +1,90 @@
+GeneralLedgerServiceCodeEntity:
+  type: object
+  description: |
+    Specifies a designated code that correlates services or products with their financial entries
+    in the general ledger, ensuring that revenue and expense transactions are properly identified
+    and allocated.
+
+    Service Codes (also called Product/Service Codes) provide an additional categorization layer
+    beyond GL accounts and segments. They enable detailed tracking of different service types or
+    product lines in financial reporting.
+
+    Service Codes are linked to EarnCodes, DiscountRates, and SurchargeRates to categorize
+    transactions for financial analysis.
+
+    **See Also**:
+    - Workflow: [General Ledger Integration](#tag/General-Ledger-Integration)
+    - Related: EarnCode - Links to service codes for categorization
+    - Related: DiscountRate - Can specify service code for discount GL posting
+    - Related: SurchargeRate - Can specify service code for surcharge GL posting
+
+    **CRUD Access**: CREATE, READ, UPDATE
+
+    **Entitlements**:
+    - View General Ledger Configuration
+    - Manage Service Codes
+
+    **Common Use Cases**:
+    - Tracking revenue by service type (Temporary Staffing, Direct Hire, Consulting)
+    - Product line reporting (IT Services, Healthcare Staffing, Manufacturing)
+    - Service-level profitability analysis
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 300
+
+    externalServiceCodeNumber:
+      type: integer
+      format: int32
+      description: |
+        External service code number from the accounting system. This is the numeric identifier
+        used to reference this service/product code in the Chart of Accounts.
+
+        Used when exporting to accounting systems like QuickBooks (Items), NetSuite, etc.
+      example: 1001
+
+    externalServiceCodeName:
+      type: string
+      maxLength: 100
+      description: |
+        External service code name from the accounting system. Human-readable name for the
+        service or product that appears on financial reports and invoices.
+
+        Examples: "Temporary Staffing", "Contract Services", "IT Consulting", "Direct Hire Fee"
+      example: "Temporary Staffing"
+
+    isActive:
+      type: boolean
+      description: |
+        Indicates whether this service code is active and available for use. Inactive service
+        codes are hidden from selection lists but preserved for historical transactions.
+      default: true
+      example: true
+
+    isDeleted:
+      type: boolean
+      description: |
+        Soft delete flag. When true, the service code is hidden from normal queries but preserved
+        for historical transactions and reporting.
+      readOnly: true
+      default: false
+      example: false
+
+  required:
+    - id
+    - externalServiceCodeNumber
+    - externalServiceCodeName
+    - isActive
+    - isDeleted
+
+  example:
+    id: 300
+    externalServiceCodeNumber: 1001
+    externalServiceCodeName: "Temporary Staffing"
+    isActive: true
+    isDeleted: false

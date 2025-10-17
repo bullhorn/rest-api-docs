@@ -1,0 +1,277 @@
+SalesTaxGroupEntity:
+  type: object
+  description: |
+    Organizes one or more sales tax rates under a common grouping, facilitating the application
+    of multiple tax rates to a transaction based on jurisdiction or specific criteria.
+
+    Sales Tax Groups link to a specific geographic location (zip code) and aggregate multiple
+    jurisdiction tax rates (state, county, city, district) that apply to that location. When
+    invoicing, the system looks up the work location's zip code to find the applicable tax group
+    and applies all associated tax rates.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Related: SalesTaxRate - Individual tax rates grouped by this entity
+    - Related: Location - Work locations that reference tax groups
+    - Related: BillMaster - Transactions that use location to determine tax
+
+    **CRUD Access**: CREATE, READ, UPDATE
+
+    **Entitlements**:
+    - Add Sales Tax Group
+    - Edit Sales Tax Group
+    - Read Sales Tax Group
+    - Delete Sales Tax Group
+
+    **Geographic Hierarchy**: Tax groups can include:
+    - State-level tax (1 per group)
+    - County-level tax (1 per group)
+    - City-level tax (1 per group)
+    - District-level tax (1 per group)
+    - Other taxes (multiple per group, e.g., transportation districts, special assessments)
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 500
+
+    label:
+      type: string
+      maxLength: 200
+      description: |
+        Display label for this tax group. Typically identifies the location or jurisdiction.
+        Required field used in UI and reports.
+      example: "Los Angeles, CA 90210"
+
+    zipcode:
+      type: string
+      maxLength: 10
+      description: |
+        Primary zip code for this tax group. Required field used to match work locations
+        to applicable tax rates. Must be exactly 5 digits.
+      example: "90210"
+
+    zipPlus4Low:
+      type: string
+      maxLength: 4
+      nullable: true
+      description: |
+        Lower bound of ZIP+4 range (last 4 digits). When specified with zipPlus4High,
+        defines a range of extended zip codes within the tax group. Allows more precise
+        geographic targeting of tax rates.
+      example: "0001"
+
+    zipPlus4High:
+      type: string
+      maxLength: 4
+      nullable: true
+      description: |
+        Upper bound of ZIP+4 range (last 4 digits). Works with zipPlus4Low to define
+        a range. If not specified, the entire 5-digit zip code area uses this tax group.
+      example: "9999"
+
+    stateID:
+      type: integer
+      format: int32
+      description: |
+        State identifier from internal database table. Required field used for validation
+        with zip code to ensure geographic consistency. Links to state reference data.
+      example: 5
+
+    externalID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        External identifier from the tax group source system. Used when importing tax data
+        from third-party tax calculation services or government databases.
+      example: "EXT-TG-90210"
+
+    taxStatusLookup:
+      type: object
+      nullable: true
+      description: |
+        Current status of this tax group.
+
+        **Options**:
+        - 1 = Active (Currently in use for tax calculations)
+        - 2 = Inactive (Not applied to new transactions)
+
+        Only Active tax groups are used for invoice tax calculations.
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Active"
+
+    salesTaxRateSourceLookup:
+      type: object
+      nullable: true
+      description: |
+        Source of this tax group data, indicating how it was created or imported.
+        Used for tracking data lineage and integration with external tax services.
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Manual"
+
+    stateSalesTaxRate:
+      type: object
+      nullable: true
+      description: |
+        State-level sales tax rate for this jurisdiction. One per tax group.
+        Represents the base state tax that applies across the entire state.
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 1000
+
+    countySalesTaxRate:
+      type: object
+      nullable: true
+      description: |
+        County-level sales tax rate for this jurisdiction. One per tax group.
+        Applied in addition to state tax.
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 1001
+
+    citySalesTaxRate:
+      type: object
+      nullable: true
+      description: |
+        City-level sales tax rate for this jurisdiction. One per tax group.
+        Applied in addition to state and county taxes.
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 1002
+
+    districtSalesTaxRate:
+      type: object
+      nullable: true
+      description: |
+        District-level sales tax rate for this jurisdiction. One per tax group.
+        Applied in addition to state, county, and city taxes. Districts include
+        special taxing districts like transportation, water, or fire districts.
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 1003
+
+    otherSalesTaxRates:
+      type: object
+      description: |
+        Collection of additional sales tax rates not covered by standard jurisdiction levels.
+        Multiple rates can be associated. Examples include Metropolitan Transportation Authority
+        (MTA) taxes, special assessment districts, tourism taxes, etc.
+
+        **Usage**: GET /entity/SalesTaxGroup/{id}/otherSalesTaxRates
+      properties:
+        total:
+          type: integer
+          description: Total count of other tax rates
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 2
+
+    totalRate:
+      type: number
+      format: double
+      description: |
+        Calculated sum of all associated tax rates (state + county + city + district + other).
+        Read-only field automatically computed when tax rates are added or modified.
+        Provides quick reference for the total tax percentage that will be applied.
+      readOnly: true
+      example: 0.0950
+
+    taxOnMarginEnabled:
+      type: boolean
+      description: |
+        Determines whether taxes are calculated on the full bill amount or only on the margin
+        (markup). When true, taxes are only applied to the difference between bill rate and
+        pay rate rather than the full billing amount.
+
+        Required field. Used in conjunction with taxableMargin field on Placement Rate Card Line
+        to determine appropriate level of taxes for transactions. Important for staffing agencies
+        operating in jurisdictions with margin-based tax rules.
+      default: false
+      example: false
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this tax group was created in the Bullhorn system.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this tax group was last updated.
+      readOnly: true
+      example: "2024-01-20T14:30:00Z"
+
+  required:
+    - id
+    - label
+    - zipcode
+    - stateID
+    - taxOnMarginEnabled
+    - dateAdded
+    - dateLastModified
+
+  example:
+    id: 500
+    label: "Los Angeles, CA 90210"
+    zipcode: "90210"
+    zipPlus4Low: null
+    zipPlus4High: null
+    stateID: 5
+    externalID: "EXT-TG-90210"
+    taxStatusLookup:
+      id: 1
+      label: "Active"
+    stateSalesTaxRate:
+      id: 1000
+    countySalesTaxRate:
+      id: 1001
+    citySalesTaxRate:
+      id: 1002
+    districtSalesTaxRate:
+      id: 1003
+    totalRate: 0.0950
+    taxOnMarginEnabled: false
+    dateAdded: "2024-01-15T08:00:00Z"
+    dateLastModified: "2024-01-20T14:30:00Z"

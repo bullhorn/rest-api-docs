@@ -1,0 +1,189 @@
+JobOrderRateCardEntity:
+  type: object
+  description: |
+    An effective-dated entity that defines the set of rate details for a specific job order,
+    including elements like pay rates, bill rates, and margins that govern the financial terms
+    of placements created from this job.
+
+    Job Order Rate Cards serve as templates for placement rates. When a placement is created
+    from a job order, the rate card configuration is copied to the new placement.
+
+    JobOrderRateCard is a flattened entity. When making PUT and POST calls, the child entities
+    (JobOrderRateCardLineGroup and JobOrderRateCardLine) can be passed with all associated data.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Documentation: [Rate Card Calculations](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
+    - Related: JobOrderRateCardLineGroup - Groups of rate lines (Bill, Pay, etc.)
+    - Related: JobOrderRateCardLine - Individual rate rules
+    - Related: JobPosting - The job posting this rate card applies to
+    - Related: PlacementRateCard - Created from this template when placement is made
+
+    **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+    **Entitlements**:
+    - View Job Order Rate Cards
+    - Add Job Order Rate Cards
+    - Update Job Order Rate Cards
+    - Delete Job Order Rate Cards
+
+    **Version Management**: This is an effective-dated entity. When updated, a new version is created
+    with a new effectiveDate. The previous version's effectiveEndDate is set to one day before the
+    new version's effectiveDate.
+
+    **Rate Card Structure**:
+    - **Rate Card** (this entity): Master record for the job order
+    - **Line Groups**: Collections of related rate lines (e.g., "Bill Rates", "Pay Rates")
+    - **Lines**: Individual rate rules with earn codes, amounts, and calculation logic
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 2000
+
+    effectiveDate:
+      type: string
+      format: date
+      description: |
+        Date when this version of the Rate Card becomes active. Placements created on or after
+        this date use the rates defined in this version.
+      example: "2024-01-01"
+
+    effectiveEndDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date when this version of the Rate Card expires. When a new version is created, this
+        is automatically set to one day before the new version's effectiveDate. Null means this
+        is the current active version.
+      readOnly: true
+      example: "2024-12-31"
+
+    versionID:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for the current version. Increments with each new version created.
+        Used to track the evolution of rates over time.
+      readOnly: true
+      example: 2
+
+    versions:
+      type: object
+      description: |
+        Collection of all versions of this Rate Card across different effective dates.
+        Allows querying historical rate configurations.
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of versions
+        data:
+          type: array
+          items:
+            $ref: '#/JobOrderRateCardEntity'
+      example:
+        total: 3
+
+    jobPosting:
+      type: object
+      description: |
+        JobPosting this rate card applies to. Links the rate configuration to the specific
+        job order.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+      example:
+        id: 3000
+        title: "Software Engineer"
+
+    jobOrderRateCardLineGroups:
+      type: object
+      description: |
+        Collection of JobOrderRateCardLineGroup entities. Line groups organize rate lines
+        into logical categories (e.g., "Bill Rates", "Pay Rates", "Overtime Rates").
+
+        Each group contains multiple lines that define specific rate calculations for
+        different scenarios.
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of line groups
+        data:
+          type: array
+          items:
+            $ref: './JobOrderRateCardLineGroupEntity.yaml#/JobOrderRateCardLineGroupEntity'
+      example:
+        total: 2
+
+    rootExternalID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        External system identifier for the root rate card (first version). Used for integration
+        with external billing systems. This value remains consistent across all versions.
+      example: "EXT-JO-RC-001"
+
+    rootMigrateGUID:
+      type: string
+      maxLength: 36
+      nullable: true
+      description: |
+        Migration GUID for the root rate card. Used during data migration to maintain
+        relationships across systems.
+      example: "660e8400-e29b-41d4-a716-446655440000"
+
+    isDeleted:
+      type: boolean
+      description: |
+        Soft delete flag. When true, the rate card is hidden from normal queries but preserved
+        for historical reference.
+      default: false
+      example: false
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this version was created in the Bullhorn system.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      nullable: true
+      description: |
+        Timestamp when this version was last updated.
+      example: "2024-01-20T14:30:00Z"
+
+  required:
+    - id
+    - effectiveDate
+    - versionID
+    - jobPosting
+    - isDeleted
+    - dateAdded
+
+  example:
+    id: 2000
+    effectiveDate: "2024-01-01"
+    effectiveEndDate: null
+    versionID: 1
+    jobPosting:
+      id: 3000
+      title: "Software Engineer"
+    isDeleted: false
+    dateAdded: "2024-01-15T08:00:00Z"
+    dateLastModified: "2024-01-20T14:30:00Z"

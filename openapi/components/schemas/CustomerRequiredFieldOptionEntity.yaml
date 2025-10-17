@@ -1,0 +1,128 @@
+CustomerRequiredFieldOptionEntity:
+  type: object
+  description: |
+    The permissible options or values for a customer required field, particularly for fields with
+    a predefined set of selectable inputs.
+
+    These options define the dropdown choices available when the Customer Required Field is of type
+    "Custom Picker" (valueType = 2). Each option represents a selectable value that users can choose
+    when filling out timesheets or other forms.
+
+    **See Also**:
+    - Parent: CustomerRequiredFieldMeta - The field definition this option belongs to
+    - Usage: [BillableCharge Entities](#tag/BillableCharge-Entities) - Selected options attached to transactions
+
+    **CRUD Access**: READ only
+
+    **Entitlements**:
+    - Add Client Customer Required Field
+    - View Client Customer Required Field
+    - Update Client Customer Required Field
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: Unique identifier for this entity.
+      readOnly: true
+      example: 14
+
+    customerRequiredFieldMetaID:
+      type: object
+      description: |
+        Customer Required Field Meta that this Option is part of. Links this option to its
+        parent field definition.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        id: 2
+        name: "Project Code"
+
+    value:
+      type: string
+      maxLength: 255
+      description: |
+        The value for the Customer Required Field option. This is the actual data value stored
+        when this option is selected (e.g., "PROJ-001", "DEPT-HR").
+      example: "PROJ-001"
+
+    displayLabel:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: |
+        How the CRF option will display in the UI. If not provided, the value is displayed.
+        Allows for user-friendly labels while storing different internal values.
+      example: "Project Alpha - Marketing Campaign"
+
+    viewableStartDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date when the CRF option will become viewable. Used for effective-dating option availability.
+      example: "2024-01-01"
+
+    viewableEndDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Date when the CRF option will stop being viewable. Used to retire options after a certain date
+        without deleting historical data.
+      example: "2024-12-31"
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: Date the entity was added.
+      readOnly: true
+      example: "2024-01-15T08:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      description: Date entity was last modified.
+      readOnly: true
+      example: "2024-01-20T14:30:00Z"
+
+    isClientDefault:
+      type: boolean
+      description: |
+        Indicates if this option is the default selection for the client. When true, this option
+        is automatically pre-selected when users create new records.
+      default: false
+      example: false
+
+    associatedEntityID:
+      type: integer
+      format: int32
+      nullable: true
+      description: |
+        Association between a Purchase Order entity and Customer Required Field through the
+        "associatedEntityID" column. Used when valueType is "Purchase Order" (3) to link
+        to an actual PO record.
+      example: 12345
+
+  required:
+    - id
+    - customerRequiredFieldMetaID
+    - value
+    - dateAdded
+    - dateLastModified
+    - isClientDefault
+
+  example:
+    id: 14
+    customerRequiredFieldMetaID:
+      id: 2
+      name: "Project Code"
+    value: "PROJ-001"
+    displayLabel: "Project Alpha - Marketing Campaign"
+    isClientDefault: false
+    dateAdded: "2024-01-15T08:00:00Z"
+    dateLastModified: "2024-01-20T14:30:00Z"
