@@ -66,6 +66,7 @@ The Candidate entity supports the massUpdate operations. It does not support Str
 | isEditable                         | Boolean | Indicates whether Candidate can edit his or her profile information; applicable to Candidate/Client login. | X |
 | isExempt                           | Boolean | To claim exemption from withholding, set this to Yes. | | |
 | lastName                           | String (50) | Candidate's last name. | X | |
+| lastEmailReceivedDate | Date | Date which the last inbound email from the Candidate was recieved. | | X |
 | leads                              | To-many association | Leads associated with this Candidate. | | |
 | linkedPerson                       | To-one association | If person represented by Candidate is also a ClientContact, this field includes the following ClientContact fields<br>: id, _subtype | | |
 | localAddtionalWitholdingsAmount    | BigDecimal | Number of local withholdings the Candidate has selected on his or her W-2 tax form. | | |

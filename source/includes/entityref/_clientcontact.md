@@ -40,6 +40,7 @@ customObject1s to 35s | CustomObject | Fields to which custom objects can be ass
 | isDayLightSavings | Boolean | Indicates whether the ClientContact's location is using Daylight Saving Time. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system. | X | |
 | lastName | String (50) | ClientContact's last name. | | |
+| lastEmailReceivedDate | Date | Date which the last inbound email from the ClientContact was recieved. | | X |
 | leads | To-many association | Leads associated with this ClientContact. | | |
 | linkedPerson | Person (superclass of Candidate and ClientContact) | If the person represented by this ClientContact is also a Candidate, this field includes the following Candidate fields: id, _subtype | | |
 | massMailOptOut | Boolean | Indicates whether the Contact has chosen not to be included in mass emails through the Bullhorn system. | X | |

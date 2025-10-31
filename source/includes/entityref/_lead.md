@@ -42,6 +42,7 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | isDayLightSavingsTime | Boolean | Indicates whether the Lead's location is using Daylight Saving Time. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as Deleted in the Bullhorn system. | X | |
 | lastName | String (50) | Lead's last name | | |
+| lastEmailReceivedDate | Date | Date which the last inbound email from the Lead was recieved. | | X |
 | leadSource | String (15) | Source of the Lead. For example, LinkedIn, Facebook, Marketing, and so forth. | | |
 | massMailOptOut | Boolean | Indicates whether the Lead has chosen not to be included in mass emails through the Bullhorn system | X | |
 | middleName | String (50) | Lead's middle name. | | |
