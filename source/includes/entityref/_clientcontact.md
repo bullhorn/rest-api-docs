@@ -5,7 +5,7 @@ Represents a contact person who works at a ClientCorporation. A ClientContact ca
 The ClientContact entity supports the massUpdate operations.
 
 | **ClientContact field** | **Type** | **Description** | **Not null** | **Read-only** |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | -- | --- |
 | id | Integer | Unique identifier for this entity. | X | X |
 | address | Address | Contact's  address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/ClientContact?fields=address(countryID) | | |
 | businessSectors | To-many association | Ids of BusinessSectors in which the Contact operates. | | |
@@ -70,4 +70,4 @@ customObject1s to 35s | CustomObject | Fields to which custom objects can be ass
 | status | String (30) | Status of the contact; for example, New Lead, Active, Prospect, and so forth. Possible values can be configured using field maps. | X | |
 | timeZoneOffsetEST | Integer | Indicates the number of hours by which the ClientContact's time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |
 | type | String (30) | Describes the type of ClientContact (for example, Primary, Secondary, Target, Gatekeeper). Possible values can be configured using field maps. | X | |
-| username | String (100) | ClientContact's username for logging in to Bullhorn. The default value is _[random number] | X | |
+| username | String (100) | ClientContact's username for logging in to Bullhorn. The default value is _[random number] | X| |

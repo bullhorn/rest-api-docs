@@ -10,7 +10,7 @@ The Candidate entity supports the massUpdate operations. It does not support Str
 | address                            | Address | Candidate address:<ul><li>address1</li><li>address2</li><li>city</li><li>state</li><li>zip</li><li>countryID: options:<ul><li>value: 1</li><li>value: 2</li></ul></ul>Use the following REST call to get the list of countryIDs and labels:<br>/meta/Candidate?fields=address(countryID) | | |
 | blacklistClientCorporations        | To-many association | Set of ClientCorporations blacklisted for this Candidate. | | |
 | businessSectors                    | To-many association | Ids of BusinessSectors with which Candidate is associated. | | |
-| candidateSource                    | To-one association | Source of the Candidate. |   X | |
+| candidateSource                    | To-one association | Source of the Candidate. | X | |
 | category                           | To-one association | Candidate's primary Category. The default value is the Other Area(s) category for the user’s private label or the first Category.<br>**Note:** This property refers to the original category assigned to the Candidate. To retrieve or update categories for the Candidate, you should use the categories associations (see below). | X | |
 | categories                         | To-many association | Categories assigned to Candidate. | | |
 | certifications                     | String (2147483647) | Candidate's certifications. | | |
