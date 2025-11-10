@@ -2,6 +2,14 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## December 2025 Release (2025.12)
+
+| ADDED ```|``` [Candidate lastEmailReceivedDate field](https://bullhorn.github.io/rest-api-docs/entityref.html#candidate) |
+
+| ADDED ```|``` [ClientContact lastEmailReceivedDate field](https://bullhorn.github.io/rest-api-docs/entityref.html#clientcontact) |
+
+| ADDED ```|``` [Lead lastEmailReceivedDate field](https://bullhorn.github.io/rest-api-docs/entityref.html#lead) |
+
 ## October 2025 Release (2025.10)
 
 | ADDED ```|``` [JobOrder screenerQuestionsStatus field](https://bullhorn.github.io/rest-api-docs/entityref.html#joborder) |

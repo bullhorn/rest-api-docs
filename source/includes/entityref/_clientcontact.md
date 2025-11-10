@@ -39,6 +39,7 @@ customObject1s to 35s | CustomObject | Fields to which custom objects can be ass
 | isAnonymized | Boolean | Indicates whether this record is marked as anonymized in the Bullhorn system. | | |
 | isDayLightSavings | Boolean | Indicates whether the ClientContact's location is using Daylight Saving Time. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as deleted in the Bullhorn system. | X | |
+| lastEmailReceivedDate | DateTime | Date which the last inbound email from the ClientContact was recieved. This field will only be updated once daily. | | X |
 | lastName | String (50) | ClientContact's last name. | | |
 | leads | To-many association | Leads associated with this ClientContact. | | |
 | linkedPerson | Person (superclass of Candidate and ClientContact) | If the person represented by this ClientContact is also a Candidate, this field includes the following Candidate fields: id, _subtype | | |
@@ -69,4 +70,4 @@ customObject1s to 35s | CustomObject | Fields to which custom objects can be ass
 | status | String (30) | Status of the contact; for example, New Lead, Active, Prospect, and so forth. Possible values can be configured using field maps. | X | |
 | timeZoneOffsetEST | Integer | Indicates the number of hours by which the ClientContact's time zone differs from Eastern Standard Time. For example, Pacific Standard Time is -3, three hours earlier than Eastern. | | |
 | type | String (30) | Describes the type of ClientContact (for example, Primary, Secondary, Target, Gatekeeper). Possible values can be configured using field maps. | X | |
-| username | String (100) | ClientContact's username for logging in to Bullhorn. The default value is _[random number] | X | |
+| username | String (100) | ClientContact's username for logging in to Bullhorn. The default value is _[random number] | X | |
