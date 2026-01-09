@@ -694,7 +694,7 @@
 <td>candidateSource</td>
 <td>To-one association</td>
 <td>Source of the Candidate.</td>
-<td>  X</td>
+<td>X</td>
 <td></td>
 </tr>
 <tr>
@@ -1074,6 +1074,13 @@
 <td>To claim exemption from withholding, set this to Yes.</td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>lastEmailReceivedDate</td>
+<td>DateTime</td>
+<td>Date which the last inbound email from the Candidate was recieved. This field will only be updated once daily.</td>
+<td></td>
+<td>X</td>
 </tr>
 <tr>
 <td>lastName</td>
@@ -3824,6 +3831,13 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td></td>
 </tr>
 <tr>
+<td>lastEmailReceivedDate</td>
+<td>DateTime</td>
+<td>Date which the last inbound email from the ClientContact was recieved. This field will only be updated once daily.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
 <td>lastName</td>
 <td>String (50)</td>
 <td>ClientContact&rsquo;s last name.</td>
@@ -4037,7 +4051,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td>username</td>
 <td>String (100)</td>
 <td>ClientContact&rsquo;s username for logging in to Bullhorn. The default value is _[random number]</td>
-<td>X </td>
+<td>X</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -8964,7 +8978,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <tr>
 <td>categories</td>
 <td>To-many association</td>
-<td>IDs of the Categories associated with the Lead. Note that the categoryId property is used to store the Lead&rsquo;s primary Category, while this association hold that Category and any other Categories to which the Lead belongs.</td>
+<td>IDs of the Categories associated with the Lead. Note that the categoryId property is used to store the Lead&rsquo;s primary Category, while this association hold that Category and any other Categories to which the Lead belongs.</td>
 <td></td>
 <td></td>
 </tr>
@@ -9172,6 +9186,13 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <td></td>
 </tr>
 <tr>
+<td>lastEmailReceivedDate</td>
+<td>DateTime</td>
+<td>Date which the last inbound email from the Lead was recieved. This field will only be updated once daily.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
 <td>lastName</td>
 <td>String (50)</td>
 <td>Lead&rsquo;s last name</td>
@@ -9209,7 +9230,7 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <tr>
 <td>name</td>
 <td>String (100)</td>
-<td>Lead&rsquo;s full name. Should be a combination of the firstName and lastName fields separated by a space. <br><strong>Notes:</strong> If you create a Lead with no value in the name field, users have no way to select that Lead in the Bullhorn staffing application. If you create or modify a Lead name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the Lead in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields.</td>
+<td>Lead&rsquo;s full name. Should be a combination of the firstName and lastName fields separated by a space. <br><strong>Notes:</strong> If you create a Lead with no value in the name field, users have no way to select that Lead in the Bullhorn staffing application. If you create or modify a Lead name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the Lead in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields.</td>
 <td></td>
 <td></td>
 </tr>
