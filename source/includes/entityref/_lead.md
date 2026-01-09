@@ -11,7 +11,7 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | campaignSource | String (15) | Campaign source of the Lead. | | |
 | candidates | To-many association | Candidates associated with this Lead. | | |
 | category | To-one association | Lead's primary Category. | X | |
-| categories | To-many association | IDs of the Categories associated with the Lead. Note that the categoryId property is used to store the Lead's primary Category, while this association hold that Category and any other Categories to which the Lead belongs. | | |
+| categories | To-many association | IDs of the Categories associated with the Lead. Note that the categoryId property is used to store the Lead's primary Category, while this association hold that Category and any other Categories to which the Lead belongs. | | |
 | clientContacts | To-many association | ClientContacts associated with this Lead. | | |
 | clientCorporation | To-one association | ClientCorporation associated with this Lead. | | |
 | comments | String (2147483647) | Free-text comments on this Lead. | | |
@@ -41,12 +41,13 @@ Represents a Lead on a potential Candidate, ClientContact, or ClientCorporation.
 | isAnonymized | Boolean | Indicates whether this record is marked as anonymized in the Bullhorn system. | | |
 | isDayLightSavingsTime | Boolean | Indicates whether the Lead's location is using Daylight Saving Time. | | |
 | isDeleted | Boolean | Indicates whether this record has been marked as Deleted in the Bullhorn system. | X | |
+| lastEmailReceivedDate | DateTime | Date which the last inbound email from the Lead was recieved. This field will only be updated once daily. | | X |
 | lastName | String (50) | Lead's last name | | |
 | leadSource | String (15) | Source of the Lead. For example, LinkedIn, Facebook, Marketing, and so forth. | | |
 | massMailOptOut | Boolean | Indicates whether the Lead has chosen not to be included in mass emails through the Bullhorn system | X | |
 | middleName | String (50) | Lead's middle name. | | |
 | mobile | String (20) | Lead's mobile (cellular) telephone number. | | |
-| name | String (100) | Lead's full name. Should be a combination of the firstName and lastName fields separated by a space. <br>**Notes:** If you create a Lead with no value in the name field, users have no way to select that Lead in the Bullhorn staffing application. If you create or modify a Lead name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the Lead in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields. | | |
+| name | String (100) | Lead's full name. Should be a combination of the firstName and lastName fields separated by a space. <br>**Notes:** If you create a Lead with no value in the name field, users have no way to select that Lead in the Bullhorn staffing application. If you create or modify a Lead name that is not a combination of the firstName and lastName fields, the name will be overwritten when a user saves the Lead in the Bullhorn staffing application. The name will change to a combination of the firstName and lastName fields. | | |
 | namePrefix | String (5) | Lead's name prefix. For example Dr., Ms, Mr., and so forth. | | |
 | nameSuffix | String (5) | Lead's name suffix. For example Jr. | | |
 | nickName | String(50) | Lead's nickname. | | |
