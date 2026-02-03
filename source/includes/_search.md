@@ -17,7 +17,7 @@ curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/search/Cand
 ```
 
 Retrieves a list of entities. To avoid hitting URL length limits, always use the POST version of the search call rather than this GET version for `query` values that exceed 7500 characters in length.
-The search call is performed against a Lucene index. For information about the Lucene query syntax, see: [Lucene Tutorial](http://www.lucenetutorial.com/lucene-query-syntax.html)
+The search call is performed against a Lucene index. For information about the Lucene query syntax, see: [Lucene Syntax Documentation](https://lucene.apache.org/core/4_10_4/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#Overview)
 
 <aside class="notice">If you provide no request parameters on the GET form of the call, a list of available search fields is provided.</aside>
 
