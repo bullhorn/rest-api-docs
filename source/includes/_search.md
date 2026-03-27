@@ -32,11 +32,11 @@ The following entity types support the search operation:
 
 <aside class="notice">If you provide no request parameters on the GET form of the call, a list of available search fields with schema details is provided.</aside>
 
-Entity types not listed above use the query operation, which accepts JPQL (SQL-like) expressions rather than Lucene syntax. If you are unsure whether an entity supports search, send a GET request with no parameters. A 200 response with a searchFields list confirms Lucene index support; a 404 or error indicates the entity uses query.
+Entity types not listed above use the query operation, which accepts JPQL (SQL-like) expressions rather than Lucene syntax. If you are unsure whether an entity supports search, send a GET request with no parameters. A 200 response with a list of search fields confirms Lucene index support; a 404 or error indicates the entity uses query or does not exist.
 
 Note that the response contains a _score field. This is the Lucene score. Also, if the database record for an entity id is missing, the response contains an _error field for that record.
 
-<aside class="notice">If parameter "fields" or "layout" is not present, the search will return the list of found entity ids in the returned "data".</aside>
+<aside class="notice">If parameter "fields" or "layout" is not present, the search returns the list of found entity ids in the returned "data".</aside>
 
 ``` shell
 curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/search/Candidate?query=isDeleted:0
