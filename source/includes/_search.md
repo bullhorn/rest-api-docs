@@ -30,7 +30,7 @@ The following entity types support the search operation:
 * Placement
 * Task
 
-<aside class="notice">If you provide no request parameters on the GET form of the call, a list of available search fields and schema details is provided.</aside>
+<aside class="notice">If you provide no request parameters on the GET form of the call, a list of available search fields with schema details is provided.</aside>
 
 Entity types not listed above use the query operation, which accepts JPQL (SQL-like) expressions rather than Lucene syntax. If you are unsure whether an entity supports search, send a GET request with no parameters. A 200 response with a searchFields list confirms Lucene index support; a 404 or error indicates the entity uses query.
 
