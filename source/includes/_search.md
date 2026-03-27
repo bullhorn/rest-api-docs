@@ -20,15 +20,17 @@ Retrieves a list of entities. To avoid hitting URL length limits, always use the
 The search call is performed against a Lucene index. For information about the Lucene query syntax, see: [Lucene Syntax Documentation](https://lucene.apache.org/core/4_10_4/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#Overview)
 
 The following entity types support the search operation:
-* Candidate
-* ClientContact
-* ClientCorporation
-* JobOrder
-* Lead
-* Note
-* Opportunity
-* Placement
-* Task
+<ul>
+  <li>Candidate</li>
+  <li>ClientContact</li>
+  <li>ClientCorporation</li>
+  <li>JobOrder</li>
+  <li>Lead</li>
+  <li>Note</li>
+  <li>Opportunity</li>
+  <li>Placement</li>
+  <li>Task</li>
+</ul>
 
 <aside class="notice">If you provide no request parameters on the GET form of the call, a list of available search fields with schema details is provided.</aside>
 
