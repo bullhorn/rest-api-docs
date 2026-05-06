@@ -227,6 +227,28 @@ Parameter | Required | Description
 
 BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
 
+## DELETE /services/CorporateUser/{corporateUserID}/delegation/{delegateID}
+
+With appropriate access, you can remove a delegate from a user. The endpoint disassociates the delegate so they can no longer act on behalf of the user.
+
+``` shell
+curl -X DELETE \
+      https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/services/CorporateUser/{corporateUserID}/delegation/{delegateID}
+
+# Example Response
+{}
+```
+
+### HTTP Request
+
+`{corpToken}/services/CorporateUser/{corporateUserID}/delegation/{delegateID}`
+
+Parameter | Required | Description
+--------- |----------| -----------
+corporateUserID | yes      | ID of the user whose delegate is being removed.
+delegateID     | yes      | ID of the delegate to remove.
+BhRestToken    | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
 ## POST / PUT /services/DirectDepositAccount
 
 The Direct Deposit Account service allows for the creation of direct deposit accounts attached to a single candidate.
