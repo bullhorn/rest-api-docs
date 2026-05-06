@@ -2,6 +2,10 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## May 2026 Release (2026.5)
+
+| ADDED ```|``` [CorporateUserDelegation service DELETE](http://bullhorn.github.io/rest-api-docs/index.html#delete-services-corporateuser-corporateuserid-delegation-delegateid) |
+
 ## December 2025 Release (2025.12)
 
 | ADDED ```|``` [Candidate lastEmailReceivedDate field](https://bullhorn.github.io/rest-api-docs/entityref.html#candidate) |
