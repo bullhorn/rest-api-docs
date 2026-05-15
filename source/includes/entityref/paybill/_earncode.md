@@ -120,14 +120,14 @@ Represents a unique code used in payroll systems to categorize different types o
         <tr class="odd">
             <td>generalLedgerBillAccount</td>
             <td>To-one association</td>
-            <td>GeneralLedgerBillAccount - GeneralLedgerAccount for the earn code where isBill = true (Bill Account).</td>
+            <td>GeneralLedgerAccount - the general ledger account for this earn code where isBill = true (Bill Account).</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerPayAccount</td>
             <td>To-one association</td>
-            <td>GeneralLedgerPayAccount - GeneralLedgerAccount for the earn code where isPay = true (Pay Account).  </td>
+            <td>GeneralLedgerAccount - the general ledger account for this earn code where isPay = true (Pay Account).</td>
             <td></td>
             <td></td>
         </tr>

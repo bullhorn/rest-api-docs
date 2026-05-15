@@ -34,7 +34,7 @@ Entitlements - View Billable Charge
     <tr class="even">
         <td>allSalesTaxRate</td>
         <td>To-one association</td>
-        <td>Associated AllSalesTaxRate.</td>
+        <td>SalesTaxRate - the associated sales tax rate record.</td>
         <td>X</td>
         <td><br/></td>
     </tr>

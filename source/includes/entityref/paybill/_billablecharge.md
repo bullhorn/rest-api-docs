@@ -78,7 +78,7 @@ The BillableCharge entity supports file attachments. Use `PUT /file/BillableChar
         <tr class="odd">
             <td>billableTransactions</td>
             <td>To-many association</td>
-            <td>BillableChargeBillableTransaction - list of associated billable charge transactions.</td>
+            <td>BillMasterTransaction - list of bill master transactions associated with this billable charge.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -402,7 +402,7 @@ The BillableCharge entity supports file attachments. Use `PUT /file/BillableChar
         <tr class="even">
             <td>invoicedTransactions</td>
             <td>To-many association</td>
-            <td>BillableChargeInvoicedTransaction - list of invoiced transactions associated with this charge.</td>
+            <td>BillMasterTransaction - list of BillMasterTransaction records on this charge that have been invoiced (i.e., where an InvoiceStatement has been generated).</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -535,7 +535,7 @@ The BillableCharge entity supports file attachments. Use `PUT /file/BillableChar
         <tr class="odd">
             <td>summaryTransactions</td>
             <td>To-many association</td>
-            <td>BillableChargeSummaryTransaction - list of summary transactions rolled up to this charge.</td>
+            <td>BillMasterTransaction - list of summary BillMasterTransaction records rolled up to this charge.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -598,7 +598,7 @@ The BillableCharge entity supports file attachments. Use `PUT /file/BillableChar
         <tr class="odd">
             <td>unbillableTransactions</td>
             <td>To-many association</td>
-            <td>BillableChargeUnbillableTransaction - list of transactions on this charge that have been marked unbillable.</td>
+            <td>BillMasterTransaction - list of BillMasterTransaction records on this charge where isUnbillable = true.</td>
             <td></td>
             <td>X</td>
         </tr>

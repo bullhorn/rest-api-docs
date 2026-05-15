@@ -44,8 +44,8 @@ CRUD Access - READ
 </tr>
 <tr class="odd">
 <td>billMasters</td>
-<td><p>To-one association</p></td>
-<td><p>BillMasters.</p>
+<td><p>To-many association</p></td>
+<td><p>BillMaster - list of bill master records processed in this billing sync batch.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -91,7 +91,7 @@ CRUD Access - READ
 <tr class="odd">
 <td>payMasters</td>
 <td>To-many association</td>
-<td><p>PayMasters.</p>
+<td><p>PayMaster - list of pay master records processed in this billing sync batch.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>

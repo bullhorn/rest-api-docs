@@ -40,7 +40,7 @@ CRUD Access - READ
 <tr class="odd">
 <td>billingSyncBatches</td>
 <td>To-many association</td>
-<td><p>BillingSyncBatches.</p>
+<td><p>BillingSyncBatch - list of billing sync batches in this group.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
