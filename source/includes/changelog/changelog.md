@@ -148,9 +148,9 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [PayableCharge minAccountingPeriod, maxAccountingPeriod, transactionAccountingPeriods fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-payablecharge) |
 
-| ADDED ```|``` [BillMasterTransaction accountingPeriod and editHistories fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransaction) |
+| ADDED ```|``` [BillMasterTransaction accountingPeriod, editHistories, and isCustomRate fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransaction) |
 
-| ADDED ```|``` [PayMasterTransaction accountingPeriod and editHistories fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-paymastertransaction) |
+| ADDED ```|``` [PayMasterTransaction accountingPeriod, editHistories, and isCustomRate fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-paymastertransaction) |
 
 ## May 2024 Release (2024.5)
 
