@@ -143,7 +143,7 @@ An [effective-dated entity](../index.html#effective-dated-entity) that specifies
         <tr class="odd">
             <td>generalLedgerAccountsReceivable</td>
             <td>To-one association</td>
-            <td>GeneralLedgerAccountsReceivable.</td>
+            <td>GeneralLedgerAccount - the accounts receivable general ledger account associated with this invoice term (where isAccountsReceivable = true).</td>
             <td></td>
             <td></td>
         </tr>

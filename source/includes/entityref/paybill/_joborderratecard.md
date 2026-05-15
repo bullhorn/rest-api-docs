@@ -83,7 +83,7 @@ CRUD Access - CREATE, READ, UPDATE, DELETE
         <tr class="odd">
             <td>jobPosting</td>
             <td>To-one association</td>
-            <td><p>JobPosting.</p>
+            <td><p>JobPosting - the job posting associated with this rate card. Note: JobPosting does not have a standalone documentation page in the Bullhorn REST API reference.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>

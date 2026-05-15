@@ -128,7 +128,7 @@ Represents a version entity for the [InvoiceTerm](https://bullhorn.github.io/res
         <tr class="odd">
             <td>generalLedgerAccountsReceivable</td>
             <td>To-one association</td>
-            <td>GeneralLedgerAccountsReceivable - General Ledger Account (with isAccountsReceivable = 'true') associated with this InvoiceTerm.</td>
+            <td>GeneralLedgerAccount - the accounts receivable general ledger account (where isAccountsReceivable = true) associated with this InvoiceTermVersion.</td>
             <td></td>
             <td></td>
         </tr>
