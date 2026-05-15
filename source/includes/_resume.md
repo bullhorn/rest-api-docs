@@ -271,3 +271,44 @@ Parameter | Required | Description
 ------ | -------- | -----
 format | yes | Input format for the resume. Value can be text or html.
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+## Updating parsedResumeFile for Candidate Preview
+
+``` shell
+curl -X POST \
+     -H "Content-Type: application/json" \
+     -d '{"parsedResumeFile": {"id": 124523}}' \
+     https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/entity/Candidate/2038
+
+# Example Response
+{
+    "changedEntityType": "Candidate",
+    "changedEntityId": 2038,
+    "changeType": "UPDATE",
+    "data": {
+        "parsedResumeFile": {
+            "id": 124523
+        }
+    }
+}
+```
+
+After uploading a resume file to a Candidate record (via `PUT /file/Candidate/{candidateId}` or `PUT /file/Candidate/{candidateId}/raw`), the file upload response returns a `fileId`. This ID must be written back to the `parsedResumeFile` field on the Candidate entity to enable the candidate file preview feature. Without this step, the preview will not know which attachment to display.
+
+The `parsedResumeFile` field is a to-one association pointing to the `CandidateFileAttachment` that represents the candidate's primary resume. It is not populated automatically during resume parsing or candidate creation and must be set explicitly.
+
+### HTTP Request
+
+`{corpToken}/entity/Candidate/{candidateId}`
+
+Parameter | Required | Description
+------ | -------- | -----
+BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+
+### Request Body
+
+Field | Required | Description
+------ | -------- | -----
+parsedResumeFile.id | yes | The `fileId` returned by the `PUT /file/Candidate/{candidateId}` call that uploaded the resume.
+
+<aside class="notice">This is the final step in the complete resume-upload workflow: parse → create Candidate → upload resume file → update <code>parsedResumeFile</code>. Skipping this step means the candidate file preview will not function correctly.</aside>
