@@ -4,6 +4,10 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 ## May 2026 Release (2026.5)
 
+| ADDED ```|``` [Pay and Bill - AccountingPeriodSetting entity reference page](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiodsetting) |
+
+| UPDATED ```|``` [AccountingPeriod entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiod) |
+
 | ADDED ```|``` [Pay and Bill - InvoiceStatement entity reference page](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
 
 | ADDED ```|``` [InvoiceStatement finalizedSubtotal field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
@@ -15,6 +19,10 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 | ADDED ```|``` [InvoiceStatement isDeleted field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
 
 | ADDED ```|``` [InvoiceStatement rawInvoiceStatementNumber field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| UPDATED ```|``` [Resume parsedResumeFile workflow documentation](https://bullhorn.github.io/rest-api-docs/index.html#resume) |
+
+| FIXED ```|``` Corrected phantom entity names and broken association references in Pay and Bill entity reference pages |
 
 ## December 2025 Release (2025.12)
 
