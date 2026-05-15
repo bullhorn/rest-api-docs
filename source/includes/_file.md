@@ -19,6 +19,7 @@ Returns an attached file as base64-encoded text.
 
 Files can be attached to the following types of entities:
 
+* BillableCharge
 * Candidate
 * ClientContact
 * ClientCorporation
@@ -67,6 +68,7 @@ curl https://rest{swimlane#}.bullhornstaffing.com/rest-services/e999/entityFiles
 Returns metadata for attached files.
 Files can be attached to the following types of entities:
 
+* BillableCharge
 * Candidate
 * ClientContact
 * ClientCorporation
@@ -126,6 +128,7 @@ Returns metadata for attached files.
 
 Files can be attached to the following types of entities:
 
+* BillableCharge
 * Candidate
 * ClientContact
 * ClientCorporation
@@ -167,6 +170,7 @@ curl -X PUT \
 Attaches a file to an entity. You can send a file as base64-encoded text or multipart/form data (raw). 
 Files can be attached to the following types of entities:
 
+* BillableCharge
 * Candidate
 * ClientContact
 * ClientCorporation
@@ -233,6 +237,7 @@ No response body; returns 200 on successful update.
 Updates a file attachment. You can update a file as base64-encoded text or multipart/form data (raw). 
 Files attachments can be updated for the following types of entities:
 
+* BillableCharge
 * Candidate
 * ClientContact
 * ClientCorporation
