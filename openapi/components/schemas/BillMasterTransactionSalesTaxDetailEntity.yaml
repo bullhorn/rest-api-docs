@@ -1,0 +1,154 @@
+BillMasterTransactionSalesTaxDetailEntity:
+  type: object
+  description: |
+    Represents the denormalized details of a sales tax rate applied to a BillMasterTransaction.
+    This entity captures a snapshot of the sales tax rate configuration at the time it was
+    applied, preserving the tax details even if the original SalesTaxRate entity is later
+    modified.
+
+    Sales tax details are created automatically during invoice generation when processing
+    BillMasterTransactionSalesTaxRates. Each detail record represents one tax jurisdiction's
+    rate applied to a transaction. Multiple detail records may exist for a single transaction
+    when work location has multiple tax jurisdictions (state, county, city, district).
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: BillMasterTransactionSalesTaxRate - Association linking transaction to tax
+    - Related: SalesTaxRate - Source sales tax rate configuration
+    - Related: SalesTaxGroup - Groups multiple jurisdiction rates by location
+    - Related: BillMasterTransaction - Transaction being taxed
+    - Related: InvoiceStatement - Invoice where tax amount is displayed
+
+    **CRUD Access**: READ (created automatically during invoice processing)
+
+    **Entitlements**: View Billable Charge
+
+    **Denormalization Purpose**: By storing sales tax configuration in this detail entity
+    rather than referencing the versioned SalesTaxRate, the system preserves the exact tax
+    rate that was applied at invoicing time, even if the SalesTaxRate is later modified or
+    deleted. This ensures invoice immutability, audit compliance, and accurate tax reporting
+    for government filings.
+
+    **Tax Calculation**: Sales taxes are calculated on the taxable base, which is:
+    - Start with transaction subtotal
+    - Subtract discounts (unless ignoreForSalesTaxCalculations=true)
+    - Add surcharges
+    - Apply tax rate to resulting amount
+
+    Multiple tax jurisdictions (state, county, city, district) each create separate detail
+    records and are summed for total tax amount.
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 300000
+
+    allSalesTaxRate:
+      type: object
+      description: |
+        Reference to the source sales tax rate entity that this detail was derived from.
+        Required field. Links to AllSalesTaxRate (union of all tax rate types: State,
+        County, City, District, Other). Stores jurisdiction and rate information. Used
+        for reporting and audit trails showing which tax rates were applied to transaction.
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+        jurisdictionType:
+          type: string
+        jurisdictionName:
+          type: string
+      example:
+        id: 1000
+        label: "California State Sales Tax"
+        jurisdictionType: "State"
+        jurisdictionName: "California"
+
+    jurisdictionName:
+      type: string
+      maxLength: 200
+      nullable: true
+      description: |
+        Name of the tax jurisdiction where this rate applies. Denormalized from
+        SalesTaxRate.jurisdictionName at time of application. Examples: "California",
+        "Los Angeles County", "Beverly Hills", "Metro District 5". Preserves jurisdiction
+        name even if SalesTaxRate is later modified. Used on invoice tax breakdowns and
+        tax compliance reports to show which jurisdictions' taxes were collected. Critical
+        for multi-jurisdiction tax reporting and government filing requirements.
+      example: "California"
+
+    rate:
+      type: number
+      format: double
+      description: |
+        Sales tax rate as decimal (e.g., 0.0750 for 7.5% tax rate). Required field.
+        Denormalized from SalesTaxRate.rate at time of application. Preserves exact rate
+        that was applied, ensuring invoice immutability even if tax rates change. Used
+        in tax calculation formulas and displayed on invoice tax breakdowns. Precision:
+        DECIMAL(19,6) to support precise tax calculations and avoid rounding errors in
+        government reporting.
+      example: 0.0750
+
+    billMasterTransactionSalesTaxRates:
+      type: object
+      description: |
+        Collection of BillMasterTransactionSalesTaxRate records that reference this detail.
+        To-many association showing which transaction-tax associations use this detail
+        snapshot. Typically one-to-one but can be many-to-one if same tax rate configuration
+        applied to multiple transactions in same location during batch processing.
+
+        **Usage**: GET /entity/BillMasterTransactionSalesTaxDetail/{id}/billMasterTransactionSalesTaxRates
+
+        Used for tracking which transactions were taxed with this specific rate configuration.
+        Important for tax audit trails and jurisdiction-specific reporting.
+      properties:
+        total:
+          type: integer
+          description: Total count of associations
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 1
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this detail record was created. Required field. Read-only. Represents
+        when tax was calculated and applied during invoice processing. Used for audit trails
+        and tax compliance reporting. Typically matches invoice creation time. Important for
+        demonstrating when tax was collected for government filing deadlines.
+      readOnly: true
+      example: "2024-01-31T15:00:00Z"
+
+  required:
+    - id
+    - allSalesTaxRate
+    - rate
+    - dateAdded
+
+  example:
+    id: 300000
+    allSalesTaxRate:
+      id: 1000
+      label: "California State Sales Tax"
+      jurisdictionType: "State"
+      jurisdictionName: "California"
+    jurisdictionName: "California"
+    rate: 0.0750
+    billMasterTransactionSalesTaxRates:
+      total: 1
+    dateAdded: "2024-01-31T15:00:00Z"

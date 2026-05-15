@@ -1,0 +1,195 @@
+PlacementRateCardLineGroupEntity:
+  type: object
+  description: |
+    Represents a group of rate lines on a PlacementRateCard. Each line group contains rates for
+    all earn codes within a specific EarnCodeGroup (e.g., Regular, Overtime, Double Time). A
+    rate card typically has one base line group plus optional custom line groups for special
+    scenarios like shift differentials or client-specific rates.
+
+    Line groups organize rates into logical sets, allowing multiple rate configurations to coexist
+    on a single rate card. The base group (isBase=true) contains the default rates used when no
+    special conditions apply. Additional groups can represent premium rates, alternate rate
+    structures, or time-period-specific rates.
+
+    **See Also**:
+    - Workflow: [Rate Card Configuration](#tag/Rate-Card-Configuration)
+    - Guide: [How Rate Card Calculations Work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
+    - Parent: PlacementRateCard - Master rate card entity (effective-dated)
+    - Related: PlacementRateCardLine - Individual rate lines within this group
+    - Related: EarnCodeGroup - Defines which earn codes are included in this group
+    - Related: EarnCode - Individual earn code types (REG, OT, DT, etc.)
+
+    **CRUD Access**: CREATE, READ, UPDATE, DELETE (managed through rate card operations)
+
+    **Entitlements**: Add Placement Rate Card, Edit Placement Rate Card, View Placement Rate Card
+
+    **Flattened Entity**: Line groups and their lines are typically created/updated together when
+    managing placement rate cards. Use PUT/POST operations on PlacementRateCard to manage entire
+    rate structures.
+
+    **Base vs. Custom Groups**:
+    - **Base Group** (isBase=true): Default rates, one per rate card
+    - **Custom Groups** (isBase=false): Special rates (shift differentials, seasonal rates, etc.)
+
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 10000
+
+    earnCodeGroup:
+      type: object
+      description: |
+        Reference to the EarnCodeGroup that defines which earn codes are included in this line
+        group. Required field. Read-only. Determines the set of PlacementRateCardLines that must
+        exist in this group (one line per earn code in the group). Common earn code groups include
+        Hourly (REG, OT, DT), Salaried, Per Diem, etc. Critical for ensuring complete rate
+        coverage across all possible earn code scenarios.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+      example:
+        id: 1
+        label: "Hourly"
+
+    externalID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Customer-defined external identifier for integration with external systems. Optional field.
+        Read-only. Can be used to correlate this line group with rate structures in other systems
+        (ATS, payroll, accounting). Useful for data migration and system synchronization.
+      readOnly: true
+      example: "PLRC-LG-001"
+
+    isBase:
+      type: boolean
+      description: |
+        Flag indicating whether this is the base/default line group for the rate card. Required
+        field. Read-only. Only one line group per rate card should have isBase=true. The base
+        group contains the standard rates used when no special conditions apply. Custom groups
+        (isBase=false) represent premium or alternate rates. Important for rate selection logic
+        during billing and payroll processing.
+      readOnly: true
+      default: false
+      example: true
+
+    migrateGUID:
+      type: string
+      maxLength: 36
+      nullable: true
+      description: |
+        Migration tracking GUID for data import and system migration purposes. Optional field.
+        Read-only. Used to maintain referential integrity during data migration between systems
+        or database instances. Format: UUID/GUID. Helpful for troubleshooting migration issues
+        and tracking record lineage.
+      readOnly: true
+      example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+
+    placementRateCard:
+      type: object
+      description: |
+        Reference to the parent PlacementRateCard that contains this line group. Required field.
+        Read-only. Links line group back to master rate card entity. Includes effective dates
+        to identify which rate card version this group belongs to. Used for hierarchical navigation
+        and ensuring line groups are associated with correct rate card versions.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        effectiveDate:
+          type: string
+          format: date
+        effectiveEndDate:
+          type: string
+          format: date
+      example:
+        id: 5000
+        effectiveDate: "2024-01-01"
+        effectiveEndDate: null
+
+    placementRateCardLines:
+      type: object
+      description: |
+        Collection of PlacementRateCardLine records within this group. Read-only association.
+        Number of lines equals the number of earn codes in the associated EarnCodeGroup. Each
+        line represents the bill rate, pay rate, and markup for one earn code (REG, OT, DT, etc.).
+
+        **Usage**: GET /entity/PlacementRateCardLineGroup/{id}/placementRateCardLines
+
+        **Validation**: Must have exactly one line per earn code in earnCodeGroup. Missing lines
+        indicate incomplete rate card configuration. Extra lines indicate data integrity issue.
+        Critical for ensuring all earn codes have defined rates.
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of rate lines (typically 3 for hourly: REG, OT, DT)
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 3
+
+    placementRateCardVersion:
+      type: object
+      description: |
+        Reference to the PlacementRateCardVersion (effective-dated snapshot). Optional field.
+        Read-only. Links line group to specific version of rate card for version history tracking.
+        Includes effective dates to identify time period. Used for historical reporting and
+        understanding rate changes over time.
+      readOnly: true
+      nullable: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        effectiveDate:
+          type: string
+          format: date
+        effectiveEndDate:
+          type: string
+          format: date
+      example:
+        id: 5001
+        effectiveDate: "2024-01-01"
+        effectiveEndDate: null
+
+  required:
+    - id
+    - earnCodeGroup
+    - isBase
+    - placementRateCard
+
+  example:
+    id: 10000
+    earnCodeGroup:
+      id: 1
+      label: "Hourly"
+    externalID: "PLRC-LG-001"
+    isBase: true
+    migrateGUID: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+    placementRateCard:
+      id: 5000
+      effectiveDate: "2024-01-01"
+      effectiveEndDate: null
+    placementRateCardLines:
+      total: 3
+    placementRateCardVersion:
+      id: 5001
+      effectiveDate: "2024-01-01"
+      effectiveEndDate: null

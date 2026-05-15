@@ -1,0 +1,237 @@
+BillMasterTransactionSurchargeRateEntity:
+  type: object
+  description: |
+    Represents an association between a BillMasterTransaction and a SurchargeRate, capturing the
+    application of a surcharge to a transaction. This entity links the transaction to both the
+    source SurchargeRate configuration and the denormalized BillMasterTransactionSurchargeDetail
+    snapshot, while storing the calculated surcharge amount.
+
+    BillMasterTransactionSurchargeRate records are created automatically during invoice processing
+    when surcharges are applied to transactions based on rate card configurations, shift
+    differentials, or special fees. Each association represents one surcharge applied to one
+    transaction.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: BillMasterTransaction - Transaction receiving the surcharge
+    - Related: SurchargeRate - Source surcharge rate configuration (effective-dated)
+    - Related: BillMasterTransactionSurchargeDetail - Denormalized snapshot of surcharge config
+    - Related: InvoiceStatement - Invoice where surcharge is displayed
+
+    **CRUD Access**: READ (created automatically during invoice processing)
+
+    **Entitlements**: None (system-managed entity)
+
+    **Reversal Support**: When transactions are reversed (corrections, cancellations), this entity
+    supports tracking the reversal relationship via `reversalOfTransactionSurchargeRate`, creating
+    an audit trail of original and reversing entries.
+
+    **Calculation Flow**:
+    1. Transaction subtotal calculated
+    2. Discounts applied
+    3. Base amount determined (post-discount amount)
+    4. Surcharge amount calculated based on surcharge type:
+       - Type 1 (fixed): surchargeAmount = rate.amount × quantity
+       - Type 2+ (percentage): surchargeAmount = baseAmount × rate.rate
+    5. Association record created linking transaction, rate, and detail
+    6. Transaction total increased by surcharge
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 500000
+
+    adjustmentSequenceNumber:
+      type: integer
+      format: int32
+      description: |
+        Sequence number representing the order in which this surcharge was applied when multiple
+        adjustments (discounts, surcharges, taxes) exist for a transaction. Required field.
+        Read-only. Used to ensure deterministic calculation order and support reversal matching.
+        Surcharges typically applied after discounts but before taxes. Critical for maintaining
+        consistent calculations across invoice regeneration and adjustments.
+      readOnly: true
+      example: 2
+
+    baseAmount:
+      type: number
+      format: double
+      description: |
+        Amount used to calculate percentage-based surcharges, in conjunction with the surcharge
+        rate. Required field. Read-only. Represents the transaction amount after discounts have
+        been applied. For fixed-amount surcharges (type 1), this is informational. For percentage
+        surcharges (type 2+), used in formula: surchargeAmount = baseAmount × surchargeRate.rate.
+        Precision: DECIMAL(19,6).
+      readOnly: true
+      example: 2700.00
+
+    billMasterTransaction:
+      type: object
+      description: |
+        Reference to the BillMasterTransaction receiving this surcharge. Required field. Read-only.
+        Links surcharge application back to specific transaction. Used for transaction-level
+        reporting and drill-down from invoices to individual surcharged transactions.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 50000
+
+    billMasterTransactionSurchargeDetail:
+      type: object
+      description: |
+        Reference to the BillMasterTransactionSurchargeDetail containing denormalized snapshot
+        of surcharge configuration. Required field. Read-only. This detail entity preserves the
+        exact surcharge rate, title, amount, and type that were applied, ensuring immutability
+        even if source SurchargeRate is later modified. Critical for invoice accuracy and audit
+        compliance.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+      example:
+        id: 200000
+
+    currencyUnit:
+      type: object
+      description: |
+        Currency in which amounts are denominated. Required field. Read-only. Typically matches
+        the invoice currency and transaction currency. Used for multi-currency environments to
+        ensure correct currency handling in calculations and reporting. Important for international
+        operations and currency conversion tracking.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      example:
+        id: 1
+        name: "USD"
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this surcharge association was created. Required field. Read-only.
+        Represents when surcharge was applied during invoice processing. Used for audit trails
+        and chronological tracking of surcharge applications. Typically matches invoice generation
+        time.
+      readOnly: true
+      example: "2024-01-31T15:00:00Z"
+
+    reversalOfTransactionSurchargeRate:
+      type: object
+      nullable: true
+      description: |
+        Reference to the original BillMasterTransactionSurchargeRate being reversed by this record.
+        Optional field. Read-only. Only populated when this association represents a reversal
+        (correction or cancellation) of a previous surcharge. Creates audit trail linking reversing
+        entry back to original. Used in reconciliation and error correction workflows. When
+        populated, surchargeAmount is typically negative of original.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+      example:
+        id: 499999
+
+    surchargeRate:
+      type: object
+      description: |
+        Reference to the source SurchargeRate entity (effective-dated version). Required field.
+        Read-only. Links to master surcharge configuration. Includes versionID to identify which
+        version was active when surcharge was applied. Used for reporting and tracing surcharge
+        back to rate card or shift differential policy. Important for understanding surcharge
+        source and approval chain.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        effectiveEndDate:
+          type: string
+          format: date
+        versionID:
+          type: integer
+          format: int32
+      example:
+        id: 6000
+        label: "Weekend Shift Differential"
+        effectiveDate: "2024-01-01"
+        effectiveEndDate: null
+        versionID: 1
+
+    surchargeRateVersionID:
+      type: integer
+      format: int32
+      description: |
+        Version ID of the SurchargeRate that was used for calculating the surcharge amount.
+        Required field. Read-only. Denormalized from surchargeRate.versionID at time of
+        application. Provides quick access to version without traversing associations. Critical
+        for version-specific reporting and audit trails showing which rate version was in effect.
+      readOnly: true
+      example: 1
+
+    surchargeAmount:
+      type: number
+      format: double
+      description: |
+        Calculated surcharge amount applied to the transaction. Required field. Read-only.
+        Computation depends on surcharge type:
+        - **Type 1 (fixed)**: surchargeAmount = surchargeRate.amount × transaction quantity
+        - **Type 2+ (percentage)**: surchargeAmount = baseAmount × surchargeRate.rate
+
+        This is the actual dollar amount added to the transaction. Precision: DECIMAL(19,6).
+        Displayed on invoice and increases billable amount.
+      readOnly: true
+      example: 405.00
+
+  required:
+    - id
+    - adjustmentSequenceNumber
+    - baseAmount
+    - billMasterTransaction
+    - billMasterTransactionSurchargeDetail
+    - currencyUnit
+    - dateAdded
+    - surchargeRate
+    - surchargeRateVersionID
+    - surchargeAmount
+
+  example:
+    id: 500000
+    adjustmentSequenceNumber: 2
+    baseAmount: 2700.00
+    billMasterTransaction:
+      id: 50000
+    billMasterTransactionSurchargeDetail:
+      id: 200000
+    currencyUnit:
+      id: 1
+      name: "USD"
+    dateAdded: "2024-01-31T15:00:00Z"
+    reversalOfTransactionSurchargeRate: null
+    surchargeRate:
+      id: 6000
+      label: "Weekend Shift Differential"
+      effectiveDate: "2024-01-01"
+      effectiveEndDate: null
+      versionID: 1
+    surchargeRateVersionID: 1
+    surchargeAmount: 405.00

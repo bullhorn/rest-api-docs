@@ -1,0 +1,194 @@
+BillMasterTransactionSurchargeDetailEntity:
+  type: object
+  description: |
+    Represents the denormalized details of a surcharge rate applied to a BillMasterTransaction.
+    This entity captures a snapshot of the surcharge rate configuration at the time it was
+    applied, preserving the surcharge details even if the original SurchargeRate entity is
+    later modified.
+
+    Surcharge details are created automatically during invoice generation when processing
+    BillMasterTransactionSurchargeRates. Each detail record represents one surcharge applied
+    to a transaction, with all configuration denormalized for immutability and performance.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: BillMasterTransactionSurchargeRate - Association linking transaction to surcharge
+    - Related: SurchargeRate - Source surcharge rate configuration
+    - Related: BillMasterTransaction - Transaction receiving the surcharge
+    - Related: InvoiceStatement - Invoice where surcharge amount is displayed
+
+    **CRUD Access**: READ (created automatically during invoice processing)
+
+    **Entitlements**: View Billable Charge
+
+    **Denormalization Purpose**: By storing surcharge configuration in this detail entity
+    rather than referencing the versioned SurchargeRate, the system preserves the exact
+    surcharge that was applied at invoicing time, even if the SurchargeRate is later modified
+    or deleted. This ensures invoice immutability and accurate historical reporting.
+
+    **Surcharge Types**:
+    - **Type 1**: Fixed amount per unit (e.g., $5 per hour shift differential)
+    - **Type 2+**: Percentage of base amount (e.g., 10% weekend surcharge)
+
+    Surcharges are applied after base amount and discount calculations but before tax
+    calculations.
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 200000
+
+    surchargeRate:
+      type: object
+      description: |
+        Reference to the source SurchargeRate entity that this detail was derived from.
+        Required field. Read-only. Links detail back to master surcharge configuration.
+        Stores effective-dated version info (effectiveDate, effectiveEndDate, versionID)
+        to identify which version was active when surcharge was applied. Used for reporting
+        and audit trails.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        effectiveEndDate:
+          type: string
+          format: date
+        versionID:
+          type: integer
+          format: int32
+      example:
+        id: 6000
+        label: "Weekend Shift Differential"
+        effectiveDate: "2024-01-01"
+        effectiveEndDate: null
+        versionID: 1
+
+    title:
+      type: string
+      maxLength: 200
+      nullable: true
+      description: |
+        Display name for this surcharge. Denormalized from SurchargeRate.title at time of
+        application. Shown on invoice line items and reports to identify the surcharge.
+        Preserves original title even if SurchargeRate title is later changed. Used for
+        client-facing invoice display. Common titles include "Shift Differential",
+        "Weekend Premium", "Rush Fee", "Administrative Fee".
+      example: "Weekend Shift Differential"
+
+    rate:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Surcharge rate as decimal. Denormalized from SurchargeRate.rate at time of application.
+        For percentage-based surcharges (type 2+), this is the percentage divided by 100
+        (e.g., 0.10 for 10%). For fixed-amount surcharges (type 1), this may be zero with
+        amount used instead. Precision: DECIMAL(19,6). Used in surcharge calculation formulas.
+      example: 0.15
+
+    amount:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Fixed surcharge amount per unit. Denormalized from SurchargeRate.amount at time of
+        application. For type 1 surcharges (fixed amount), this is the dollar amount per
+        unit (e.g., $5.00 per hour). For percentage-based surcharges (type 2+), this is
+        typically zero with rate used instead. Precision: DECIMAL(19,6). Used in surcharge
+        calculation when surchargeRateType is 1.
+      example: 5.00
+
+    surchargeRateType:
+      type: object
+      nullable: true
+      description: |
+        Type of surcharge calculation. Denormalized from SurchargeRate.type at time of
+        application. Determines how surcharge is calculated:
+
+        **Type 1**: Fixed amount per unit (amount × quantity)
+        - Example: $5/hour shift differential = $5 × 40 hours = $200
+
+        **Type 2+**: Percentage of base amount (rate × baseAmount)
+        - Example: 10% weekend surcharge = 0.10 × $3000 = $300
+
+        Critical for correct surcharge calculation. Preserved in detail to ensure calculation
+        method doesn't change if SurchargeRate type is later modified.
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+      example:
+        id: 2
+        label: "Percentage"
+
+    billMasterTransactionSurchargeRates:
+      type: object
+      description: |
+        Collection of BillMasterTransactionSurchargeRate records that reference this detail.
+        To-many association showing which transaction-surcharge associations use this detail
+        snapshot. Typically one-to-one but can be many-to-one if same surcharge configuration
+        applied to multiple transactions in batch.
+
+        **Usage**: GET /entity/BillMasterTransactionSurchargeDetail/{id}/billMasterTransactionSurchargeRates
+
+        Used for tracking which transactions received this specific surcharge configuration.
+      properties:
+        total:
+          type: integer
+          description: Total count of associations
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 1
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this detail record was created. Required field. Read-only. Represents
+        when surcharge was applied during invoice processing. Used for audit trails. Typically
+        matches invoice creation time.
+      readOnly: true
+      example: "2024-01-31T15:00:00Z"
+
+  required:
+    - id
+    - surchargeRate
+    - dateAdded
+
+  example:
+    id: 200000
+    surchargeRate:
+      id: 6000
+      label: "Weekend Shift Differential"
+      effectiveDate: "2024-01-01"
+      effectiveEndDate: null
+      versionID: 1
+    title: "Weekend Shift Differential"
+    rate: 0.15
+    amount: 0.00
+    surchargeRateType:
+      id: 2
+      label: "Percentage"
+    billMasterTransactionSurchargeRates:
+      total: 1
+    dateAdded: "2024-01-31T15:00:00Z"

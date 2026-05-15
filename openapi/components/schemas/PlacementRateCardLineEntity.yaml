@@ -1,0 +1,297 @@
+PlacementRateCardLineEntity:
+  type: object
+  description: |
+    Represents an individual rate line within a PlacementRateCardLineGroup. Each line defines the
+    bill rate, pay rate, and markup for a specific earn code (e.g., REG, OT, DT). Lines contain
+    the actual hourly rates used for billing customers and paying workers, along with calculated
+    markup values showing the margin between bill and pay rates.
+
+    Rate card lines are the fundamental building blocks of placement pricing. During timecard
+    processing, hours are multiplied by the appropriate line's bill rate to calculate billable
+    amounts, and by the pay rate to calculate payable amounts. The system supports automatic
+    calculation of any rate component given the other two (e.g., calculate billRate from payRate
+    and markupPercent).
+
+    **See Also**:
+    - Workflow: [Rate Card Configuration](#tag/Rate-Card-Configuration)
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Guide: [How Rate Card Calculations Work](https://bullhorn.github.io/Rate-Card-Entities-and-Calculations/)
+    - Parent: PlacementRateCardLineGroup - Container for this line
+    - Related: EarnCode - Defines the type of hours this rate applies to
+    - Related: BillMasterTransaction - Uses rates from this line for billing calculations
+
+    **CRUD Access**: CREATE, READ, UPDATE, DELETE (managed through rate card operations)
+
+    **Entitlements**: Add Placement Rate Card, Edit Placement Rate Card, View Placement Rate Card
+
+    **Rate Calculations**: The system maintains consistency between bill rate, pay rate, and markup:
+    - **markupPercent** = (billRate - payRate) / payRate
+    - **markupValue** = billRate - payRate
+    - **billRate** = payRate × (1 + markupPercent)
+    - **payRate** = billRate / (1 + markupPercent)
+
+    **Multipliers**: OT and DT rates are often calculated using multipliers:
+    - REG: multiplier = 1.0 (always)
+    - OT: multiplier typically 1.5 (time and a half)
+    - DT: multiplier typically 2.0 (double time)
+
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 20000
+
+    alias:
+      type: string
+      maxLength: 100
+      description: |
+        Display name for this earn code as it appears in Time & Expense and on Invoice Statements.
+        Required field. Allows customization of earn code labels for client-facing documents.
+        Example: "Regular Hours" instead of "REG", or "Weekend Premium" instead of "OT". Used
+        to make invoices more professional and easier for clients to understand. Can be different
+        from earn code's internal label.
+      example: "Regular Hours"
+
+    billCurrencyUnit:
+      type: object
+      nullable: true
+      description: |
+        Currency in which the bill rate is denominated. Optional field. Defaults to placement's
+        billing currency if not specified. Used for multi-currency environments where billing
+        currency may differ from payroll currency. Important for international placements and
+        currency conversion tracking.
+      properties:
+        id:
+          type: integer
+          format: int32
+        alphabeticCode:
+          type: string
+        name:
+          type: string
+      example:
+        id: 1
+        alphabeticCode: "USD"
+        name: "US Dollar"
+
+    billMultiplier:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Multiplier between REG bill rate and this line's bill rate. Optional field. Used to
+        calculate premium rates based on regular rate:
+        - **REG**: Always 1.0 (read-only)
+        - **OT**: Typically 1.5 (bill rate = REG bill rate × 1.5)
+        - **DT**: Typically 2.0 (bill rate = REG bill rate × 2.0)
+
+        Defaults from PayBillSetting (overtimeBillMultiplier, doubleTimeBillMultiplier). System
+        auto-calculates multiplier from billRate and REG billRate if rates change. Useful for
+        maintaining rate relationships and ensuring consistent premium pricing.
+      example: 1.5
+
+    billRate:
+      type: number
+      format: double
+      description: |
+        Hourly billing rate charged to the customer for this earn code. Required field. Represents
+        the amount invoiced per hour of work. Precision: DECIMAL(19,6). Can be entered directly
+        or auto-calculated from payRate and markupPercent. Used as the primary input for
+        billable transaction calculations. Critical for revenue generation and client pricing.
+
+        **Auto-calculation**: If payRate and markupPercent are provided, system calculates:
+        billRate = payRate × (1 + markupPercent)
+      example: 45.00
+
+    earnCode:
+      type: object
+      description: |
+        Reference to the EarnCode defining the type of hours this rate applies to. Required field.
+        Common earn codes: REG (regular), OT (overtime), DT (double time), HOL (holiday). Links
+        rate line to specific work classification. Used to match timecard entries to appropriate
+        rates. Critical for correct billing and payroll calculations based on work type.
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        label:
+          type: string
+      example:
+        id: 1
+        code: "REG"
+        label: "Regular Time"
+
+    externalID:
+      type: string
+      maxLength: 100
+      nullable: true
+      description: |
+        Customer-defined external identifier for integration with external systems. Optional field.
+        Can be used to correlate this rate line with pricing structures in other systems (ATS,
+        CRM, accounting). Useful for data migration and system synchronization. Format: flexible,
+        typically client rate code or SKU.
+      example: "RC-001-REG"
+
+    markupPercent:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Percentage markup from pay rate to bill rate. Optional field. Represents the margin as
+        a percentage of the pay rate. Precision: DECIMAL(19,6).
+
+        **Formula**: markupPercent = (billRate - payRate) / payRate
+
+        **Example**: payRate=$20, billRate=$28 → markupPercent=0.40 (40% markup)
+
+        System auto-calculates from billRate and payRate when rates change. Useful for margin
+        analysis and ensuring consistent pricing strategies. Common markups range from 25% to
+        100% depending on industry and skill level.
+      example: 0.50
+
+    markupValue:
+      type: number
+      format: double
+      description: |
+        Dollar amount difference between bill rate and pay rate. Required field. Read-only.
+        Represents the gross margin per hour. Precision: DECIMAL(19,6).
+
+        **Formula**: markupValue = billRate - payRate
+
+        **Example**: billRate=$30, payRate=$20 → markupValue=$10.00
+
+        System auto-calculates from billRate and payRate. Used for margin reporting and profitability
+        analysis. Critical for understanding placement profitability and ensuring adequate margins.
+      readOnly: true
+      example: 15.00
+
+    migrateGUID:
+      type: string
+      maxLength: 36
+      nullable: true
+      description: |
+        Migration tracking GUID for data import and system migration purposes. Optional field.
+        Used to maintain referential integrity during data migration between systems or database
+        instances. Format: UUID/GUID. Helpful for troubleshooting migration issues and tracking
+        record lineage.
+      example: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+
+    payCurrencyUnit:
+      type: object
+      nullable: true
+      description: |
+        Currency in which the pay rate is denominated. Optional field. Defaults to placement's
+        payroll currency if not specified. Used for multi-currency environments where payroll
+        currency may differ from billing currency. Important for international placements,
+        currency conversion tracking, and payroll processing.
+      properties:
+        id:
+          type: integer
+          format: int32
+        alphabeticCode:
+          type: string
+        name:
+          type: string
+      example:
+        id: 1
+        alphabeticCode: "USD"
+        name: "US Dollar"
+
+    payMultiplier:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Multiplier between REG pay rate and this line's pay rate. Optional field. Used to
+        calculate premium pay rates based on regular rate:
+        - **REG**: Always 1.0 (read-only)
+        - **OT**: Typically 1.5 (pay rate = REG pay rate × 1.5)
+        - **DT**: Typically 2.0 (pay rate = REG pay rate × 2.0)
+
+        Defaults from PayBillSetting (overtimePayMultiplier, doubleTimePayMultiplier). System
+        auto-calculates multiplier from payRate and REG payRate if rates change. Important for
+        FLSA compliance and ensuring proper overtime compensation.
+      example: 1.5
+
+    payRate:
+      type: number
+      format: double
+      description: |
+        Hourly pay rate paid to the worker for this earn code. Required field. Represents the
+        amount paid per hour of work. Precision: DECIMAL(19,6). Can be entered directly or
+        auto-calculated from billRate and markupPercent. Used as the primary input for payable
+        transaction calculations. Critical for payroll processing and labor cost tracking.
+
+        **Auto-calculation**: If billRate and markupPercent are provided, system calculates:
+        payRate = billRate / (1 + markupPercent)
+      example: 30.00
+
+    placementRateCardLineGroup:
+      type: object
+      nullable: true
+      description: |
+        Reference to the parent PlacementRateCardLineGroup that contains this line. Optional
+        field. Links line back to containing group. Used for hierarchical navigation and ensuring
+        lines are associated with correct line groups. Important for managing rate structures
+        and maintaining group relationships.
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 10000
+
+    taxableMargin:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Percentage-based value used to calculate taxes on margin rather than gross amount. Optional
+        field. Only used when taxOnMarginEnabled is true on associated SalesTaxGroup. Represents
+        the portion of the margin subject to taxation. Precision: DECIMAL(19,6).
+
+        **Usage**: Tax = (billRate - payRate) × taxableMargin × taxRate
+
+        Common in jurisdictions that tax gross margin rather than gross receipts. Important for
+        tax compliance in certain staffing arrangements and special economic zones. Value typically
+        ranges from 0.0 to 1.0 (0% to 100% of margin).
+      example: 0.25
+
+  required:
+    - id
+    - alias
+    - billRate
+    - earnCode
+    - markupValue
+    - payRate
+
+  example:
+    id: 20000
+    alias: "Regular Hours"
+    billCurrencyUnit:
+      id: 1
+      alphabeticCode: "USD"
+      name: "US Dollar"
+    billMultiplier: 1.0
+    billRate: 45.00
+    earnCode:
+      id: 1
+      code: "REG"
+      label: "Regular Time"
+    externalID: "RC-001-REG"
+    markupPercent: 0.50
+    markupValue: 15.00
+    migrateGUID: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+    payCurrencyUnit:
+      id: 1
+      alphabeticCode: "USD"
+      name: "US Dollar"
+    payMultiplier: 1.0
+    payRate: 30.00
+    placementRateCardLineGroup:
+      id: 10000
+    taxableMargin: 0.25

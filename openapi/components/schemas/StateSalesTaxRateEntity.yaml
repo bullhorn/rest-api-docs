@@ -1,0 +1,40 @@
+StateSalesTaxRateEntity:
+  allOf:
+    - $ref: './SalesTaxRateEntity.yaml#/SalesTaxRateEntity'
+    - type: object
+      description: |
+        A specialized view of SalesTaxRate representing state-level sales tax jurisdictions.
+        This entity is a filtered subset of SalesTaxRate where jurisdictionType = "State".
+
+        State sales tax rates are the primary tax jurisdiction in most U.S. locations and
+        typically have the highest tax rate among multiple jurisdictions. State rates are
+        combined with county, city, and district rates to calculate total sales tax.
+
+        **See Also**:
+        - Parent: SalesTaxRate - Base entity with all fields
+        - Related: SalesTaxGroup - Groups state, county, city, district rates by location
+        - Related: CountySalesTaxRate, CitySalesTaxRate, DistrictSalesTaxRate, OtherSalesTaxRate
+        - Related: BillMasterTransactionSalesTaxRate - Application of tax to transactions
+
+        **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+        **Entitlements**: Add Bill Master Transaction, Edit Bill Master Transaction, View Bill Master Transaction
+
+        **Filter**: All records have `jurisdictionType.label = "State"`
+
+        **Usage**: Query for state tax rates when:
+        - Configuring sales tax for new states
+        - Updating state tax rates due to legislative changes
+        - Reporting state-level tax collections
+        - Analyzing state tax rates across locations
+
+  example:
+    id: 1000
+    jurisdictionType:
+      id: 1
+      label: "State"
+    jurisdictionName: "California"
+    label: "CA Sales Tax"
+    rate: 0.0750
+    effectiveDate: "2024-01-01"
+    versionID: 1

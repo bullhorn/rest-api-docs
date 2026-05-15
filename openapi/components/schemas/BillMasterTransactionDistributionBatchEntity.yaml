@@ -1,0 +1,197 @@
+BillMasterTransactionDistributionBatchEntity:
+  type: object
+  description: |
+    Read-only entity used to track which BillMasterTransactions are ready for revenue recognition
+    distribution record creation. This batch entity groups transactions for unbilled revenue GL
+    export, creating accounting entries before invoices are generated.
+
+    BillMasterTransactionDistributionBatch is created by automated revenue distribution processes
+    that run periodically to recognize revenue in the general ledger for work that has been
+    performed but not yet invoiced. This is critical for accrual-basis accounting and financial
+    reporting compliance.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Related: BillMasterTransaction - Transactions grouped by this batch
+    - Related: BillableCharge - Charges containing distributed transactions
+    - Related: UnbilledRevenueDistribution - Individual GL entries created by this batch
+    - Related: unbilledRevenueGeneralLedgerExportStatusLookup - Status tracking
+
+    **CRUD Access**: READ (created and managed by pay-export-services)
+
+    **Entitlements**: View Bill Master Transaction, View Billable Charge
+
+    **Immutability Impact**: Once a transaction is stamped with a distribution batch
+    (`billMasterTransactionDistributionBatch != null`), the transaction becomes immutable and
+    cannot be modified. This ensures financial data integrity after revenue has been recognized.
+
+    **Revenue Recognition Flow**:
+    1. Transactions reach "Ready for Distribution" status
+    2. Distribution batch created and transactions stamped
+    3. UnbilledRevenueDistribution records generated
+    4. GL export to external accounting systems
+    5. Status updated to "Export Successful"
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity. Auto-generated sequence number.
+      readOnly: true
+      example: 8000
+
+    accountingDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        Business date for revenue recognition in the general ledger. Typically the end date of
+        the accounting period or the batch processing date. Used as posting date in GL export.
+        Critical for ensuring revenue is recognized in the correct accounting period. May be
+        backdated for period-end close adjustments.
+      example: "2024-01-31"
+
+    batchStatus:
+      type: object
+      description: |
+        Current processing status of this distribution batch. Required field tracking batch
+        through its lifecycle.
+
+        **Batch Status Values**:
+        - **1 = Pending**: Batch created, not yet processed
+        - **2 = Processing**: Currently generating distributions
+        - **3 = Completed**: All distributions successfully created
+        - **4 = Failed**: Processing encountered errors
+        - **5 = Cancelled**: Batch cancelled before completion
+
+        Used to monitor batch processing and identify failed batches requiring attention.
+        Only Completed batches have all distributions finalized.
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+      example:
+        id: 3
+        label: "Completed"
+
+    owner:
+      type: object
+      description: |
+        CorporateUser who owns this batch record. Required field. Default value is the user
+        who created the batch (typically a system user account for automated processes).
+        Used for authorization and batch management access control.
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+      example:
+        id: 1
+        firstName: "System"
+        lastName: "Admin"
+
+    billMasterTransactions:
+      type: object
+      description: |
+        Collection of BillMasterTransaction records included in this distribution batch.
+        Each transaction will have `billMasterTransactionDistributionBatch` field pointing
+        back to this batch, marking them as distributed. Once stamped, transactions become
+        immutable. Read-only association.
+
+        **Usage**: GET /entity/BillMasterTransactionDistributionBatch/{id}/billMasterTransactions
+
+        Use this to identify all transactions processed in a batch, useful for reconciliation
+        and troubleshooting distribution issues.
+      properties:
+        total:
+          type: integer
+          description: Total count of transactions in batch
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 150
+
+    billableCharges:
+      type: object
+      description: |
+        Collection of BillableCharge records containing transactions from this batch. Read-only
+        association providing charge-level view of what was distributed. Multiple transactions
+        from same charge may be included. Used for reporting and identifying which charges
+        have revenue recognized.
+
+        **Usage**: GET /entity/BillMasterTransactionDistributionBatch/{id}/billableCharges
+
+        Helpful for charge-level reconciliation and understanding revenue recognition by
+        customer/placement.
+      properties:
+        total:
+          type: integer
+          description: Total count of unique charges affected
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 45
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this batch record was created. Required field. Read-only. Represents
+        when revenue distribution process started for this batch. Used for tracking batch
+        processing timing and identifying batches by creation date. Important for performance
+        analysis and audit trails.
+      readOnly: true
+      example: "2024-01-31T23:00:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this batch record was last updated. Required field. Read-only. Updated
+        when batch status changes or processing completes. Used for monitoring batch lifecycle
+        and identifying when batches finished processing. Important for SLA tracking and error
+        recovery.
+      readOnly: true
+      example: "2024-01-31T23:15:00Z"
+
+  required:
+    - id
+    - batchStatus
+    - owner
+    - dateAdded
+    - dateLastModified
+
+  example:
+    id: 8000
+    accountingDate: "2024-01-31"
+    batchStatus:
+      id: 3
+      label: "Completed"
+    owner:
+      id: 1
+      firstName: "System"
+      lastName: "Admin"
+    billMasterTransactions:
+      total: 150
+    billableCharges:
+      total: 45
+    dateAdded: "2024-01-31T23:00:00Z"
+    dateLastModified: "2024-01-31T23:15:00Z"

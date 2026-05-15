@@ -1,0 +1,242 @@
+BillingSyncBatchEntity:
+  type: object
+  description: |
+    Represents a collection of billing records bundled together for efficient synchronization
+    between Bullhorn and external billing systems. Each batch tracks a single import event from
+    an external time tracking or expense system, grouping all related BillMasters and transactions.
+
+    BillingSyncBatch entities are dynamically created and updated by the billing-sync-services
+    component during automated timecard imports. They provide traceability, allowing users to
+    identify which external events created which billing records.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Related: BillMaster - Individual billing records grouped by this batch
+    - Related: BillableCharge - Charges created/updated by this batch
+    - Related: BillingSyncBatchFileAttachment - Import files associated with this batch
+    - Related: TransactionOrigin - Origin tracking for batch operations
+
+    **CRUD Access**: READ (created and managed by billing-sync-services)
+
+    **Entitlements**: View Bill Master, View Billable Charge
+
+    **Usage Pattern**: When external system (time tracking, expense reporting) exports approved
+    timesheets/expenses, billing-sync creates a BillingSyncBatch to group all resulting billing
+    records. This enables bulk operations, error tracking, and data lineage.
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity. Auto-generated sequence number.
+      readOnly: true
+      example: 50000
+
+    externalID:
+      type: string
+      maxLength: 50
+      nullable: true
+      description: |
+        User-facing unique identifier from external system. Typically the batch ID or transaction
+        ID from the source time tracking or expense system. Read-only field set during import.
+        Used to correlate Bullhorn batches with external system exports. Important for
+        troubleshooting sync issues and identifying which external batch failed.
+      readOnly: true
+      example: "EXT-BATCH-2024-01-27-001"
+
+    timeOfExternalEvent:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when external event occurred that initiated this batch. Required field.
+        Read-only. Represents when the export/approval happened in the external system, not
+        when Bullhorn processed it. Different from dateAdded (Bullhorn creation time). Used
+        for audit trails and understanding timing of external events vs. Bullhorn processing.
+        Critical for troubleshooting sync delays.
+      readOnly: true
+      example: "2024-01-27T14:00:00Z"
+
+    periodEndDate:
+      type: string
+      format: date
+      nullable: true
+      description: |
+        End date of the billing/pay period covered by this batch. Read-only field typically
+        matching the period end date from timesheets/expenses in the batch. Used for grouping
+        batches by period and filtering batch imports by date range. May be null for ad-hoc
+        or correction batches that don't align with standard periods.
+      readOnly: true
+      example: "2024-01-27"
+
+    transactionOrigin:
+      type: object
+      nullable: true
+      description: |
+        Origin tracking for transactions created by this batch. Typically set to BillingSync (2)
+        for automated imports. Used to tag all transactions created from this batch with same
+        origin, enabling bulk updates and ensuring transactions can only be modified by
+        matching origin system. Critical for multi-system integration safety.
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      example:
+        id: 2
+        name: "BillingSync"
+
+    defaultBillableCharge:
+      type: object
+      nullable: true
+      description: |
+        Default BillableCharge used when batch creates or updates billing records. Read-only
+        field set by billing-sync logic. When batch processes multiple periods or placements,
+        this represents the primary charge. Used as fallback when specific charge determination
+        logic doesn't apply. May be null for batches that create new charges rather than
+        updating existing ones.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 12345
+
+    defaultPayableCharge:
+      type: object
+      nullable: true
+      description: |
+        Default PayableCharge (payroll side) used when batch creates or updates pay records.
+        Read-only field set by billing-sync logic. Parallel to defaultBillableCharge but for
+        payroll rather than billing. Used in integrated pay-bill sync scenarios where same
+        batch updates both sides. May be null for billing-only batches.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 67890
+
+    billMasters:
+      type: object
+      description: |
+        Collection of BillMaster records created or updated by this batch. Each BillMaster
+        groups transactions by earn code and date. Read-only association automatically
+        populated as batch processes timecard data. Used to identify all billing records
+        originating from a single external export. Critical for batch-level error handling
+        and corrections.
+
+        **Usage**: GET /entity/BillingSyncBatch/{id}/billMasters
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of BillMasters in batch
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 25
+
+    payMasters:
+      type: object
+      description: |
+        Collection of PayMaster records (payroll side) created or updated by this batch.
+        Read-only association populated in integrated pay-bill scenarios. Parallel to
+        billMasters but for payroll transactions. Used when same external event triggers
+        both pay and bill updates. May be empty for billing-only batches.
+
+        **Usage**: GET /entity/BillingSyncBatch/{id}/payMasters
+      readOnly: true
+      properties:
+        total:
+          type: integer
+          description: Total count of PayMasters in batch
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 25
+
+    batchGroup:
+      type: object
+      nullable: true
+      description: |
+        Logical grouping of related batches. Read-only association used when multiple batches
+        should be processed or tracked together. Examples: all batches from same day, all
+        correction batches, all batches for specific client. Used for batch management UI
+        and bulk operations. May be null for standalone batches.
+
+        **Usage**: GET /entity/BillingSyncBatch/{id}/batchGroup
+      readOnly: true
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 1
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this batch record was created in Bullhorn. Required field. Read-only.
+        Represents when billing-sync processed the external event, not when external event
+        occurred (use timeOfExternalEvent for that). Used for tracking import timing and
+        identifying batches by processing date. Important for performance analysis.
+      readOnly: true
+      example: "2024-01-27T14:15:00Z"
+
+    dateLastModified:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this batch record was last updated. Required field. Read-only.
+        Updated when batch processing completes or when corrections are applied. Used for
+        tracking batch lifecycle and identifying recently modified batches. Important for
+        sync monitoring and error recovery.
+      readOnly: true
+      example: "2024-01-27T14:20:00Z"
+
+  required:
+    - id
+    - timeOfExternalEvent
+    - dateAdded
+    - dateLastModified
+
+  example:
+    id: 50000
+    externalID: "EXT-BATCH-2024-01-27-001"
+    timeOfExternalEvent: "2024-01-27T14:00:00Z"
+    periodEndDate: "2024-01-27"
+    transactionOrigin:
+      id: 2
+      name: "BillingSync"
+    defaultBillableCharge:
+      id: 12345
+    billMasters:
+      total: 25
+    payMasters:
+      total: 25
+    dateAdded: "2024-01-27T14:15:00Z"
+    dateLastModified: "2024-01-27T14:20:00Z"

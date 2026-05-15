@@ -1,0 +1,41 @@
+OtherSalesTaxRateEntity:
+  allOf:
+    - $ref: './SalesTaxRateEntity.yaml#/SalesTaxRateEntity'
+    - type: object
+      description: |
+        A specialized view of SalesTaxRate representing miscellaneous sales tax jurisdictions
+        that don't fit into State, County, City, or District categories. This entity is a
+        filtered subset of SalesTaxRate where jurisdictionType = "Other".
+
+        Other sales tax rates may include special assessment zones, tribal jurisdictions, or
+        unique tax scenarios. They are combined with other jurisdiction rates to calculate total
+        sales tax for a work location.
+
+        **See Also**:
+        - Parent: SalesTaxRate - Base entity with all fields
+        - Related: SalesTaxGroup - Groups state, county, city, district rates by location
+        - Related: StateSalesTaxRate, CountySalesTaxRate, CitySalesTaxRate, DistrictSalesTaxRate
+        - Related: BillMasterTransactionSalesTaxRate - Application of tax to transactions
+
+        **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+        **Entitlements**: Add Bill Master Transaction, Edit Bill Master Transaction, View Bill Master Transaction
+
+        **Filter**: All records have `jurisdictionType.label = "Other"`
+
+        **Usage**: Query for other tax rates when:
+        - Configuring sales tax for non-standard jurisdictions
+        - Handling special tax scenarios
+        - Reporting miscellaneous tax collections
+        - Analyzing unique jurisdiction tax rates
+
+  example:
+    id: 1040
+    jurisdictionType:
+      id: 5
+      label: "Other"
+    jurisdictionName: "Special Assessment Zone 12"
+    label: "SAZ 12 Sales Tax"
+    rate: 0.0010
+    effectiveDate: "2024-01-01"
+    versionID: 1

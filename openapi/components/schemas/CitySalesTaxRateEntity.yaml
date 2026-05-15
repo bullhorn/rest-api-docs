@@ -1,0 +1,40 @@
+CitySalesTaxRateEntity:
+  allOf:
+    - $ref: './SalesTaxRateEntity.yaml#/SalesTaxRateEntity'
+    - type: object
+      description: |
+        A specialized view of SalesTaxRate representing city-level sales tax jurisdictions.
+        This entity is a filtered subset of SalesTaxRate where jurisdictionType = "City".
+
+        City sales tax rates supplement state and county taxes and vary by city within a county.
+        They are combined with state, county, and district rates to calculate total sales tax
+        for a work location.
+
+        **See Also**:
+        - Parent: SalesTaxRate - Base entity with all fields
+        - Related: SalesTaxGroup - Groups state, county, city, district rates by location
+        - Related: StateSalesTaxRate, CountySalesTaxRate, DistrictSalesTaxRate, OtherSalesTaxRate
+        - Related: BillMasterTransactionSalesTaxRate - Application of tax to transactions
+
+        **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+        **Entitlements**: Add Bill Master Transaction, Edit Bill Master Transaction, View Bill Master Transaction
+
+        **Filter**: All records have `jurisdictionType.label = "City"`
+
+        **Usage**: Query for city tax rates when:
+        - Configuring sales tax for new cities
+        - Updating city tax rates due to local legislation
+        - Reporting city-level tax collections
+        - Analyzing city tax rates within counties
+
+  example:
+    id: 1020
+    jurisdictionType:
+      id: 3
+      label: "City"
+    jurisdictionName: "Beverly Hills"
+    label: "Beverly Hills Sales Tax"
+    rate: 0.0050
+    effectiveDate: "2024-01-01"
+    versionID: 1

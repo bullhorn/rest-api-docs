@@ -1,0 +1,260 @@
+BillMasterTransactionSalesTaxRateEntity:
+  type: object
+  description: |
+    Represents an association between a BillMasterTransaction and a SalesTaxRate, capturing the
+    application of a sales tax to a transaction. This entity links the transaction to both the
+    source SalesTaxRate configuration and the denormalized BillMasterTransactionSalesTaxDetail
+    snapshot, while storing the calculated tax amount.
+
+    BillMasterTransactionSalesTaxRate records are created automatically during invoice processing
+    when sales taxes are applied based on work location and tax jurisdiction rules. Multiple
+    associations can exist for a single transaction when work location falls within multiple
+    tax jurisdictions (state, county, city, district).
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: BillMasterTransaction - Transaction being taxed
+    - Related: SalesTaxRate - Source sales tax rate configuration (effective-dated)
+    - Related: BillMasterTransactionSalesTaxDetail - Denormalized snapshot of tax config
+    - Related: SalesTaxGroup - Groups multiple jurisdiction rates by location
+    - Related: InvoiceStatement - Invoice where tax is displayed
+
+    **CRUD Access**: READ (created automatically during invoice processing)
+
+    **Entitlements**: None (system-managed entity)
+
+    **Reversal Support**: When transactions are reversed (corrections, cancellations), this entity
+    supports tracking the reversal relationship via `reversalOfTransactionSalesTaxRate`, creating
+    an audit trail of original and reversing entries.
+
+    **Tax Calculation Flow**:
+    1. Transaction subtotal calculated
+    2. Discounts applied (unless discount.ignoreForSalesTaxCalculations = true)
+    3. Surcharges applied
+    4. Base amount determined (taxable amount)
+    5. Tax jurisdictions identified from work location (via SalesTaxGroup)
+    6. For each jurisdiction (state, county, city, district):
+       - Tax amount = baseAmount × salesTaxRate.rate
+       - Association record created linking transaction, rate, and detail
+    7. Total tax = sum of all jurisdiction tax amounts
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 600000
+
+    adjustmentSequenceNumber:
+      type: integer
+      format: int32
+      description: |
+        Sequence number representing the order in which adjustments are applied to a transaction.
+        Required field. Read-only. For sales taxes, this typically comes after discounts and
+        surcharges. When multiple tax jurisdictions apply, each gets same or sequential adjustment
+        numbers. Used to ensure deterministic calculation order and support reversal matching.
+      readOnly: true
+      example: 3
+
+    baseAmount:
+      type: number
+      format: double
+      description: |
+        Taxable amount used to calculate the sales tax, in conjunction with the tax rate. Required
+        field. Read-only. Represents the transaction amount after discounts (unless discount is
+        marked ignoreForSalesTaxCalculations) and after surcharges. This is the amount subject
+        to taxation. Precision: DECIMAL(19,6). Used in formula: taxAmount = baseAmount × rate.
+        Critical for tax compliance and government reporting.
+      readOnly: true
+      example: 3105.00
+
+    billMasterTransaction:
+      type: object
+      description: |
+        Reference to the BillMasterTransaction being taxed. Required field. Read-only. Links
+        tax application back to specific transaction. Used for transaction-level tax reporting
+        and drill-down from invoices to individual taxed transactions. Important for jurisdiction-
+        specific tax compliance reporting.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 50000
+
+    billMasterTransactionSalesTaxDetail:
+      type: object
+      description: |
+        Reference to the BillMasterTransactionSalesTaxDetail containing denormalized snapshot
+        of sales tax configuration. Required field. Read-only. This detail entity preserves the
+        exact tax rate and jurisdiction that were applied, ensuring immutability even if source
+        SalesTaxRate is later modified. Critical for invoice accuracy, audit compliance, and
+        government tax filing accuracy.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+      example:
+        id: 300000
+
+    currencyUnit:
+      type: object
+      description: |
+        Currency in which amounts are denominated. Required field. Read-only. Typically matches
+        the invoice currency and transaction currency. Used for multi-currency environments to
+        ensure correct currency handling in tax calculations and reporting. Important for
+        international operations with cross-border tax implications.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      example:
+        id: 1
+        name: "USD"
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this sales tax association was created. Required field. Read-only.
+        Represents when tax was calculated and applied during invoice processing. Used for audit
+        trails, tax compliance reporting, and chronological tracking. Typically matches invoice
+        generation time. Important for demonstrating when tax was collected for government filing
+        deadlines.
+      readOnly: true
+      example: "2024-01-31T15:00:00Z"
+
+    reversalOfTransactionSalesTaxRate:
+      type: object
+      nullable: true
+      description: |
+        Reference to the original BillMasterTransactionSalesTaxRate being reversed by this record.
+        Optional field. Read-only. Only populated when this association represents a reversal
+        (correction or cancellation) of previous tax. Creates audit trail linking reversing entry
+        back to original. Used in tax reconciliation and error correction workflows. When populated,
+        taxAmount is typically negative of original. Critical for tax compliance and amendment
+        reporting to government agencies.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+      example:
+        id: 599999
+
+    salesTaxRate:
+      type: object
+      description: |
+        Reference to the source SalesTaxRate entity (effective-dated version). Required field.
+        Read-only. Links to master tax rate configuration for specific jurisdiction. Includes
+        versionID to identify which version was active when tax was applied, and jurisdictionName
+        to identify which government entity tax is owed to. Used for tax reporting, jurisdiction-
+        specific compliance, and tracing tax back to rate configuration. Critical for government
+        filing and audit defense.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        effectiveEndDate:
+          type: string
+          format: date
+        versionID:
+          type: integer
+          format: int32
+        jurisdictionName:
+          type: string
+      example:
+        id: 1000
+        label: "California State Sales Tax"
+        effectiveDate: "2024-01-01"
+        effectiveEndDate: null
+        versionID: 1
+        jurisdictionName: "California"
+
+    salesTaxRateVersionID:
+      type: integer
+      format: int32
+      description: |
+        Version ID of the SalesTaxRate that was used for calculating the tax amount. Required
+        field. Read-only. Denormalized from salesTaxRate.versionID at time of application.
+        Provides quick access to version without traversing associations. Critical for version-
+        specific tax reporting and audit trails showing which rate version was in effect. Important
+        for demonstrating compliance with tax rates in effect at time of service.
+      readOnly: true
+      example: 1
+
+    taxAmount:
+      type: number
+      format: double
+      description: |
+        Calculated sales tax amount applied to the transaction. Required field. Read-only.
+        Computed by multiplying baseAmount by the tax rate from salesTaxRate entity. This is the
+        actual tax dollars collected from the customer. Precision: DECIMAL(19,6) to avoid rounding
+        errors in government reporting. Displayed on invoice and remitted to tax authorities.
+        Formula: taxAmount = baseAmount × salesTaxRate.rate.
+      readOnly: true
+      example: 232.88
+
+    taxableMargin:
+      type: number
+      format: double
+      nullable: true
+      description: |
+        Percentage-based value used to calculate taxes on margin rather than gross amount. Optional
+        field. Read-only. Only used when taxOnMarginEnabled is true on associated SalesTaxGroup.
+        Configurable on Placement Rate Card Line. When present, tax is calculated on the margin
+        (bill rate - pay rate) rather than the full billable amount. Used for gross margin tax
+        scenarios common in certain staffing arrangements. Important for tax compliance in
+        jurisdictions that allow or require taxation on margin rather than gross receipts.
+      readOnly: true
+      example: 0.25
+
+  required:
+    - id
+    - adjustmentSequenceNumber
+    - baseAmount
+    - billMasterTransaction
+    - billMasterTransactionSalesTaxDetail
+    - currencyUnit
+    - dateAdded
+    - salesTaxRate
+    - salesTaxRateVersionID
+    - taxAmount
+
+  example:
+    id: 600000
+    adjustmentSequenceNumber: 3
+    baseAmount: 3105.00
+    billMasterTransaction:
+      id: 50000
+    billMasterTransactionSalesTaxDetail:
+      id: 300000
+    currencyUnit:
+      id: 1
+      name: "USD"
+    dateAdded: "2024-01-31T15:00:00Z"
+    reversalOfTransactionSalesTaxRate: null
+    salesTaxRate:
+      id: 1000
+      label: "California State Sales Tax"
+      effectiveDate: "2024-01-01"
+      effectiveEndDate: null
+      versionID: 1
+      jurisdictionName: "California"
+    salesTaxRateVersionID: 1
+    taxAmount: 232.88
+    taxableMargin: null

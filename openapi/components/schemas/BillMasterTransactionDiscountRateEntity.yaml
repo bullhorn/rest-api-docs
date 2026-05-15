@@ -1,0 +1,228 @@
+BillMasterTransactionDiscountRateEntity:
+  type: object
+  description: |
+    Represents an association between a BillMasterTransaction and a DiscountRate, capturing the
+    application of a discount to a transaction. This entity links the transaction to both the
+    source DiscountRate configuration and the denormalized BillMasterTransactionDiscountDetail
+    snapshot, while storing the calculated discount amount.
+
+    BillMasterTransactionDiscountRate records are created automatically during invoice processing
+    when discounts are applied to transactions based on rate card configurations, client agreements,
+    or manual adjustments. Each association represents one discount applied to one transaction.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: BillMasterTransaction - Transaction receiving the discount
+    - Related: DiscountRate - Source discount rate configuration (effective-dated)
+    - Related: BillMasterTransactionDiscountDetail - Denormalized snapshot of discount config
+    - Related: InvoiceStatement - Invoice where discount is displayed
+
+    **CRUD Access**: READ (created automatically during invoice processing)
+
+    **Entitlements**: None (system-managed entity)
+
+    **Reversal Support**: When transactions are reversed (corrections, cancellations), this entity
+    supports tracking the reversal relationship via `reversalOfTransactionDiscountRate`, creating
+    an audit trail of original and reversing entries.
+
+    **Calculation Flow**:
+    1. Transaction subtotal calculated
+    2. Base amount determined (after previous discounts if multiple)
+    3. Discount amount = baseAmount × discountRate.rate
+    4. Association record created linking transaction, rate, and detail
+    5. Transaction total adjusted for discount
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 400000
+
+    adjustmentSequenceNumber:
+      type: integer
+      format: int32
+      description: |
+        Sequence number representing the order in which this discount was applied when multiple
+        adjustments (discounts, surcharges, taxes) exist for a transaction. Required field.
+        Read-only. Used to ensure deterministic calculation order and support reversal matching.
+        Lower numbers applied first. Critical for maintaining consistent calculations across
+        invoice regeneration and adjustments.
+      readOnly: true
+      example: 1
+
+    baseAmount:
+      type: number
+      format: double
+      description: |
+        Amount used to calculate the discount, in conjunction with the discount rate. Required
+        field. Read-only. Represents the transaction amount after previous discounts but before
+        this discount is applied. For first discount, this equals transaction subtotal. For
+        subsequent discounts, this is the amount after previous discounts (compounding). Precision:
+        DECIMAL(19,6). Used in formula: discountAmount = baseAmount × discountRate.rate.
+      readOnly: true
+      example: 3000.00
+
+    billMasterTransaction:
+      type: object
+      description: |
+        Reference to the BillMasterTransaction receiving this discount. Required field. Read-only.
+        Links discount application back to specific transaction. Used for transaction-level
+        reporting and drill-down from invoices to individual discounted transactions.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+      example:
+        id: 50000
+
+    billMasterTransactionDiscountDetail:
+      type: object
+      description: |
+        Reference to the BillMasterTransactionDiscountDetail containing denormalized snapshot
+        of discount configuration. Required field. Read-only. This detail entity preserves the
+        exact discount rate, title, and flags that were applied, ensuring immutability even if
+        source DiscountRate is later modified. Critical for invoice accuracy and audit compliance.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+      example:
+        id: 100000
+
+    currencyUnit:
+      type: object
+      description: |
+        Currency in which amounts are denominated. Required field. Read-only. Typically matches
+        the invoice currency and transaction currency. Used for multi-currency environments to
+        ensure correct currency handling in calculations and reporting. Important for international
+        operations and currency conversion tracking.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      example:
+        id: 1
+        name: "USD"
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this discount association was created. Required field. Read-only. Represents
+        when discount was applied during invoice processing. Used for audit trails and chronological
+        tracking of discount applications. Typically matches invoice generation time.
+      readOnly: true
+      example: "2024-01-31T15:00:00Z"
+
+    discountAmount:
+      type: number
+      format: double
+      description: |
+        Calculated discount amount applied to the transaction. Required field. Read-only. Computed
+        by multiplying baseAmount by the discount rate from discountRate entity. This is the actual
+        dollar reduction applied to the transaction. Precision: DECIMAL(19,6). Displayed on invoice
+        and reduces billable amount. Formula: discountAmount = baseAmount × discountRate.rate.
+      readOnly: true
+      example: 300.00
+
+    discountRate:
+      type: object
+      description: |
+        Reference to the source DiscountRate entity (effective-dated version). Required field.
+        Read-only. Links to master discount configuration. Includes versionID to identify which
+        version was active when discount was applied. Used for reporting and tracing discount
+        back to rate card or client agreement. Important for understanding discount source and
+        approval chain.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        effectiveEndDate:
+          type: string
+          format: date
+        versionID:
+          type: integer
+          format: int32
+      example:
+        id: 5000
+        label: "Volume Discount - 10%"
+        effectiveDate: "2024-01-01"
+        effectiveEndDate: null
+        versionID: 1
+
+    discountRateVersionID:
+      type: integer
+      format: int32
+      description: |
+        Version ID of the DiscountRate that was used for calculating the discount amount. Required
+        field. Read-only. Denormalized from discountRate.versionID at time of application. Provides
+        quick access to version without traversing associations. Critical for version-specific
+        reporting and audit trails showing which rate version was in effect.
+      readOnly: true
+      example: 1
+
+    reversalOfTransactionDiscountRate:
+      type: object
+      nullable: true
+      description: |
+        Reference to the original BillMasterTransactionDiscountRate being reversed by this record.
+        Optional field. Read-only. Only populated when this association represents a reversal
+        (correction or cancellation) of a previous discount. Creates audit trail linking reversing
+        entry back to original. Used in reconciliation and error correction workflows. When
+        populated, discountAmount is typically negative of original.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int32
+      example:
+        id: 399999
+
+  required:
+    - id
+    - adjustmentSequenceNumber
+    - baseAmount
+    - billMasterTransaction
+    - billMasterTransactionDiscountDetail
+    - currencyUnit
+    - dateAdded
+    - discountAmount
+    - discountRate
+    - discountRateVersionID
+
+  example:
+    id: 400000
+    adjustmentSequenceNumber: 1
+    baseAmount: 3000.00
+    billMasterTransaction:
+      id: 50000
+    billMasterTransactionDiscountDetail:
+      id: 100000
+    currencyUnit:
+      id: 1
+      name: "USD"
+    dateAdded: "2024-01-31T15:00:00Z"
+    discountAmount: 300.00
+    discountRate:
+      id: 5000
+      label: "Volume Discount - 10%"
+      effectiveDate: "2024-01-01"
+      effectiveEndDate: null
+      versionID: 1
+    discountRateVersionID: 1
+    reversalOfTransactionDiscountRate: null

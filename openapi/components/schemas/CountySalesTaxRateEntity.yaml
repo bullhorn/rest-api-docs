@@ -1,0 +1,40 @@
+CountySalesTaxRateEntity:
+  allOf:
+    - $ref: './SalesTaxRateEntity.yaml#/SalesTaxRateEntity'
+    - type: object
+      description: |
+        A specialized view of SalesTaxRate representing county-level sales tax jurisdictions.
+        This entity is a filtered subset of SalesTaxRate where jurisdictionType = "County".
+
+        County sales tax rates supplement state taxes and vary by county within a state. They
+        are combined with state, city, and district rates to calculate total sales tax for a
+        work location.
+
+        **See Also**:
+        - Parent: SalesTaxRate - Base entity with all fields
+        - Related: SalesTaxGroup - Groups state, county, city, district rates by location
+        - Related: StateSalesTaxRate, CitySalesTaxRate, DistrictSalesTaxRate, OtherSalesTaxRate
+        - Related: BillMasterTransactionSalesTaxRate - Application of tax to transactions
+
+        **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+        **Entitlements**: Add Bill Master Transaction, Edit Bill Master Transaction, View Bill Master Transaction
+
+        **Filter**: All records have `jurisdictionType.label = "County"`
+
+        **Usage**: Query for county tax rates when:
+        - Configuring sales tax for new counties
+        - Updating county tax rates due to local legislation
+        - Reporting county-level tax collections
+        - Analyzing county tax rates within states
+
+  example:
+    id: 1010
+    jurisdictionType:
+      id: 2
+      label: "County"
+    jurisdictionName: "Los Angeles County"
+    label: "LA County Sales Tax"
+    rate: 0.0100
+    effectiveDate: "2024-01-01"
+    versionID: 1

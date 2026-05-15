@@ -1,0 +1,202 @@
+BillMasterTransactionDiscountDetailEntity:
+  type: object
+  description: |
+    Represents the denormalized details of a discount rate version applied to a BillMasterTransaction.
+    This entity captures a snapshot of the discount rate configuration at the time it was applied,
+    preserving the discount details even if the original DiscountRate entity is later modified.
+
+    Discount details are created automatically during invoice generation when processing
+    BillMasterTransactionDiscountRates. Each detail record represents one discount applied to
+    a transaction, with all configuration denormalized for immutability and performance.
+
+    **See Also**:
+    - Workflow: [Billing Workflow](#tag/Billing-Workflow)
+    - Workflow: [Invoicing Workflow](#tag/Invoicing-Workflow)
+    - Related: BillMasterTransactionDiscountRate - Association linking transaction to discount
+    - Related: DiscountRate - Source discount rate configuration
+    - Related: BillMasterTransaction - Transaction receiving the discount
+    - Related: InvoiceStatement - Invoice where discount amount is displayed
+
+    **CRUD Access**: READ (created automatically during invoice processing)
+
+    **Entitlements**: View Billable Charge
+
+    **Denormalization Purpose**: By storing discount configuration in this detail entity rather
+    than referencing the versioned DiscountRate, the system preserves the exact discount that
+    was applied at invoicing time, even if the DiscountRate is later modified or deleted. This
+    ensures invoice immutability and accurate historical reporting.
+
+    **Discount Application Order**: When multiple discounts apply, they are calculated in
+    calculatePriority order (lowest first). Each discount calculates on the amount after
+    previous discounts (compounding), not on the original amount (stacking).
+
+  properties:
+    id:
+      type: integer
+      format: int32
+      description: |
+        Unique identifier for this entity.
+      readOnly: true
+      example: 100000
+
+    discountRate:
+      type: object
+      description: |
+        Reference to the source DiscountRate entity that this detail was derived from.
+        Required field. Read-only. Links detail back to master discount configuration.
+        Stores effective-dated version info (effectiveDate, effectiveEndDate, versionID)
+        to identify which version was active when discount was applied. Used for reporting
+        and audit trails.
+      readOnly: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        label:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        effectiveEndDate:
+          type: string
+          format: date
+        versionID:
+          type: integer
+          format: int32
+      example:
+        id: 5000
+        label: "Volume Discount - 10%"
+        effectiveDate: "2024-01-01"
+        effectiveEndDate: null
+        versionID: 1
+
+    title:
+      type: string
+      maxLength: 200
+      nullable: true
+      description: |
+        Display name for this discount. Denormalized from DiscountRate.title at time of
+        application. Shown on invoice line items and reports to identify the discount.
+        Preserves original title even if DiscountRate title is later changed. Used for
+        client-facing invoice display.
+      example: "Volume Discount - 10%"
+
+    rate:
+      type: number
+      format: double
+      description: |
+        Discount rate as decimal (e.g., 0.10 for 10% discount). Required field. Denormalized
+        from DiscountRate.rate at time of application. For percentage-based discounts, this
+        is the percentage divided by 100. For fixed-amount discounts, this may be zero with
+        amount specified separately. Precision: DECIMAL(19,6).
+      example: 0.10
+
+    calculatePriority:
+      type: integer
+      format: int32
+      description: |
+        Value determining order that discounts are applied when multiple discounts exist.
+        Required field. Lower numbers applied first. Denormalized from DiscountRate.calculatePriority.
+        Critical for correct discount calculation as discounts compound (each applies to amount
+        after previous discounts). Example: priority 1 = early payment discount, priority 2 =
+        volume discount. Ensures consistent calculation across invoices.
+      example: 1
+
+    calculateAndDisplayOnInvoice:
+      type: boolean
+      description: |
+        If true, discount will be applied to InvoiceStatement.discountAmount calculation and
+        displayed on the invoice. Required field. Denormalized from DiscountRate configuration.
+        When false, discount is calculated but not shown separately on invoice (absorbed into
+        line item amounts). Most discounts should be true to provide transparency to clients.
+        Used during invoice generation to determine whether to create separate discount line
+        items or adjust base amounts.
+      default: true
+      example: true
+
+    ignoreForSalesTaxCalculations:
+      type: boolean
+      description: |
+        If false, discount will be applied to the base amount used for sales tax calculations.
+        Required field. Denormalized from DiscountRate configuration. When true, discount does
+        not reduce the taxable base - tax calculated on pre-discount amount. When false,
+        discount reduces taxable base - tax calculated on post-discount amount. Important for
+        tax compliance as some jurisdictions require tax on gross amount while others allow
+        discounts to reduce taxable base.
+      default: false
+      example: false
+
+    sentToAccountsReceivable:
+      type: boolean
+      description: |
+        Flag indicating whether this discount has been exported to accounts receivable system.
+        Required field. Used for GL integration tracking. When true, discount has been included
+        in AR export and should not be exported again. Prevents double-posting of discounts.
+        Set to true after successful GL export. Used in reconciliation between Bullhorn and
+        external accounting systems.
+      default: false
+      example: false
+
+    billMasterTransactionDiscountRates:
+      type: object
+      description: |
+        Collection of BillMasterTransactionDiscountRate records that reference this detail.
+        To-many association showing which transaction-discount associations use this detail
+        snapshot. Typically one-to-one but can be many-to-one if same discount configuration
+        applied to multiple transactions in batch.
+
+        **Usage**: GET /entity/BillMasterTransactionDiscountDetail/{id}/billMasterTransactionDiscountRates
+
+        Used for tracking which transactions received this specific discount configuration.
+      properties:
+        total:
+          type: integer
+          description: Total count of associations
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+      example:
+        total: 1
+
+    dateAdded:
+      type: string
+      format: date-time
+      description: |
+        Timestamp when this detail record was created. Required field. Read-only. Represents
+        when discount was applied during invoice processing. Used for audit trails. Typically
+        matches invoice creation time.
+      readOnly: true
+      example: "2024-01-31T15:00:00Z"
+
+  required:
+    - id
+    - discountRate
+    - rate
+    - calculatePriority
+    - calculateAndDisplayOnInvoice
+    - ignoreForSalesTaxCalculations
+    - sentToAccountsReceivable
+    - dateAdded
+
+  example:
+    id: 100000
+    discountRate:
+      id: 5000
+      label: "Volume Discount - 10%"
+      effectiveDate: "2024-01-01"
+      effectiveEndDate: null
+      versionID: 1
+    title: "Volume Discount - 10%"
+    rate: 0.10
+    calculatePriority: 1
+    calculateAndDisplayOnInvoice: true
+    ignoreForSalesTaxCalculations: false
+    sentToAccountsReceivable: false
+    billMasterTransactionDiscountRates:
+      total: 1
+    dateAdded: "2024-01-31T15:00:00Z"

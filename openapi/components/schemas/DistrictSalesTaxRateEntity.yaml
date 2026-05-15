@@ -1,0 +1,40 @@
+DistrictSalesTaxRateEntity:
+  allOf:
+    - $ref: './SalesTaxRateEntity.yaml#/SalesTaxRateEntity'
+    - type: object
+      description: |
+        A specialized view of SalesTaxRate representing special district sales tax jurisdictions.
+        This entity is a filtered subset of SalesTaxRate where jurisdictionType = "District".
+
+        District sales tax rates apply to special tax districts such as transit districts,
+        tourism improvement districts, or other special assessment zones. They supplement state,
+        county, and city taxes and are combined to calculate total sales tax for a work location.
+
+        **See Also**:
+        - Parent: SalesTaxRate - Base entity with all fields
+        - Related: SalesTaxGroup - Groups state, county, city, district rates by location
+        - Related: StateSalesTaxRate, CountySalesTaxRate, CitySalesTaxRate, OtherSalesTaxRate
+        - Related: BillMasterTransactionSalesTaxRate - Application of tax to transactions
+
+        **CRUD Access**: CREATE, READ, UPDATE, DELETE
+
+        **Entitlements**: Add Bill Master Transaction, Edit Bill Master Transaction, View Bill Master Transaction
+
+        **Filter**: All records have `jurisdictionType.label = "District"`
+
+        **Usage**: Query for district tax rates when:
+        - Configuring sales tax for special districts
+        - Updating district tax rates due to special legislation
+        - Reporting district-level tax collections
+        - Analyzing special district tax rates
+
+  example:
+    id: 1030
+    jurisdictionType:
+      id: 4
+      label: "District"
+    jurisdictionName: "Metro Transit District 5"
+    label: "Metro District 5 Sales Tax"
+    rate: 0.0025
+    effectiveDate: "2024-01-01"
+    versionID: 1
