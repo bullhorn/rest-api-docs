@@ -127,6 +127,7 @@ includes:
   - entityref/paybill/holidaycategorylookup
   - entityref/paybill/holidayinstance
   - entityref/paybill/invoicepayment
+  - entityref/paybill/invoicestatement
   - entityref/paybill/invoicestatementdiscountrate
   - entityref/paybill/invoicestatementlineitem
   - entityref/paybill/invoicestatementlineitemdiscountrate
