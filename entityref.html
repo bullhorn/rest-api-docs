@@ -5035,8 +5035,10 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 
           <h1 id="customaction">CustomAction</h1>
 
-<p>Represents a Bullhorn custom action. Custom Actions are read only and must be configured through the Bullhorn application. For more information about custom actions, see:
-<a href="http://bullhorn.github.io/Custom-Tabs-and-Menu-Actions/">http://bullhorn.github.io/Custom-Tabs-and-Menu-Actions/</a></p>
+<p>Represents a Bullhorn custom menu action. Custom Actions are configured by Bullhorn administrators through the Bullhorn application (Admin &gt; View Layout &gt; Custom Menu Actions) and are read-only through the API. For a complete guide to configuring and integrating custom menu actions and custom tabs, see:
+<a href="https://bullhorn.github.io/Custom-Tabs-and-Menu-Actions/">https://bullhorn.github.io/Custom-Tabs-and-Menu-Actions/</a></p>
+
+<p>CRUD Access - READ.</p>
 
 <table><thead>
 <tr>
@@ -5057,60 +5059,119 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 <tr>
 <td>actionOrder</td>
 <td>Integer</td>
-<td>Order of custom action.</td>
-<td></td>
+<td>Display order of the custom action within its entity menu.</td>
+<td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>apiKeyID</td>
 <td>Integer</td>
-<td>Bullhorn API key id.</td>
+<td>ID of the Bullhorn API key (partner key) used to sign OAuth-authenticated requests to the custom action URL. Null when no partner key is configured.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>componentURL</td>
 <td>String (4000)</td>
-<td>URL of CustomAction.</td>
+<td>Base URL of the endpoint that Bullhorn loads in an iframe when the action is invoked. Parameters are appended to this URL at runtime; see parameter-passing behavior below.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>enabled</td>
 <td>Boolean</td>
-<td>Indicates whether CustomAction is enabled.</td>
+<td>Indicates whether this custom action is active and visible to users.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>entity</td>
 <td>String (50)</td>
-<td>Entity to which CustomAction applies.</td>
+<td>Name of the Bullhorn entity to which this custom action applies (for example, Candidate, JobOrder, Placement).</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>location</td>
 <td>Integer</td>
-<td>Location of the action within Bullhorn.</td>
+<td>Where in the Bullhorn UI the action appears. Enumerated values: value: 1 (In a record, on the menu), value: 2 (On a record list, in the Update section), value: 3 (On a record list, in the Action section). The location also controls how parameters are passed to <code class="prettyprint">componentURL</code>; see below.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td>name</td>
 <td>String (50)</td>
-<td>Name of CustomAction.</td>
+<td>Display name of the custom action as it appears in the Bullhorn menu.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>privateLabel</td>
 <td>To-one association</td>
-<td>PrivateLabel the custom action is associated with.</td>
+<td>PrivateLabel with which this custom action is associated.</td>
 <td>X</td>
 <td></td>
 </tr>
 </tbody></table>
+
+<h2 id="parameter-passing-behavior">Parameter-passing behavior</h2>
+
+<p>When Bullhorn invokes a custom action it passes a standard set of context parameters to the <code class="prettyprint">componentURL</code>. <strong>The mechanism differs by <code class="prettyprint">location</code> value.</strong></p>
+
+<h3 id="location-1-in-a-record-on-the-menu">location = 1 — In a record, on the menu</h3>
+
+<p>Parameters are appended to <code class="prettyprint">componentURL</code> as <strong>URL query parameters</strong> (HTTP GET). The iframe <code class="prettyprint">src</code> is set to the constructed URL directly.</p>
+
+<p>Example URL received by the custom action endpoint:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>https://your-endpoint.example.com/action?EntityType=Candidate&amp;EntityID=12345&amp;UserID=67890&amp;CorporationID=1&amp;PrivateLabelID=5&amp;currentBullhornUrl=https%3A%2F%2Fapp.bullhornstaffing.com%2F...
+</code></pre></div>
+<h3 id="location-2-or-3-on-a-record-list">location = 2 or 3 — On a record list</h3>
+
+<p>Parameters are submitted as <strong>HTTP POST form data</strong> (not URL query parameters). Bullhorn renders a hidden HTML form and submits it to <code class="prettyprint">componentURL</code>, targeting the iframe. The form fields are:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>EntityType</td>
+<td>Entity type name (for example, <code class="prettyprint">Candidate</code>)</td>
+</tr>
+<tr>
+<td>EntityID</td>
+<td>Comma-separated list of record IDs selected in the list</td>
+</tr>
+<tr>
+<td>UserID</td>
+<td>ID of the currently logged-in user</td>
+</tr>
+<tr>
+<td>CorporationID</td>
+<td>Corporation ID of the logged-in user&rsquo;s corporation</td>
+</tr>
+<tr>
+<td>PrivateLabelID</td>
+<td>Private label ID</td>
+</tr>
+<tr>
+<td>currentBullhornUrl</td>
+<td>Full URL of the current Bullhorn page, URL-encoded</td>
+</tr>
+<tr>
+<td>authCode</td>
+<td>OAuth authorization code (only present when a partner key with OAuth is configured)</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+Integrators who expect URL query parameters when using a record-list location (2 or 3) will not receive them. The endpoint must read the values from the POST body instead.
+</aside>
+
+<aside class="notice">
+For location = 1 (in a record), the same fields are passed as URL query parameters rather than form data. The <code>authCode</code> field is omitted unless a partner key is configured.
+</aside>
 
           <h1 id="deduction">Deduction</h1>
 
@@ -7205,7 +7266,11 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         <tr class="odd">
             <td>billingProfile</td>
             <td>To-one association</td>
-            <td>BillingProfile</td>
+            <td>BillingProfile that defines the billing instructions (invoice destination, delivery method, invoice terms, email recipients) to be applied when Placements are created from this JobOrder. Default fields:
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
         </tr>
@@ -10923,7 +10988,11 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
 
           <h1 id="pay-and-bill-accountingperiod">Pay and Bill - AccountingPeriod</h1>
 
-<p>Defines a financial period—typically marked by start and end dates—within which billing and revenue transactions are grouped, reported, and reconciled.</p>
+<p>Represents a discrete financial period used to group, close, and reconcile billing and payroll transactions in the Bullhorn pay-and-bill workflow. Each AccountingPeriod anchors the transactions (BillMaster, PayMaster) that fall within it, enabling period-end close processes and GL export by date range.</p>
+
+<p>CRUD Access - READ.</p>
+
+<p>Entitlements - View Accounting Period</p>
 
 <table>
     <colgroup>
@@ -10953,12 +11022,133 @@ PUT <code class="prettyprint">{{restUrl}}file/CertificationFileAttachment/</code
         <tr class="odd">
             <td>accountingPeriodDate</td>
             <td>Date</td>
-            <td>Accounting Period date.</td>
+            <td>The date that identifies this accounting period. Used to stamp and group transactions that fall within the period.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date and time when this record was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="notes">Notes</h2>
+
+<p>AccountingPeriod records are system-managed and created automatically by the accounting period roll-forward process (configured via AccountingPeriodSetting). Integrations should treat these as read-only reference data and use the <code class="prettyprint">accountingPeriodDate</code> to correlate BillMaster and PayMaster transactions to the correct period.</p>
+
+<p>The entity supports the <code class="prettyprint">query</code> operation. Use <code class="prettyprint">accountingPeriodDate</code> as a filter to retrieve specific periods — for example, to pull all transactions closed within a given month.</p>
+
+          <h1 id="pay-and-bill-accountingperiodsetting">Pay and Bill - AccountingPeriodSetting</h1>
+
+<p>Represents the configuration that governs how accounting periods are automatically created and rolled forward for a Bullhorn corporation. A single AccountingPeriodSetting record defines the day of week that closes a period, the roll-forward schedule (day and time), the time zone for that schedule, and optional matching-criteria rules that allow different settings per placement or work type.</p>
+
+<p>CRUD Access - READ.</p>
+
+<p>Entitlements - View Accounting Period Setting</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>AccountingPeriodSetting fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>accountingPeriodDay</td>
+            <td>To-one association</td>
+            <td>
+                <p>DayOfWeekLookup. The day of the week on which the accounting period ends (e.g., Sunday for a Sunday-ending weekly period).</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this record has been soft-deleted. Always returns false; this field is not persisted to the database and exists for API-layer compatibility only.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>matchingCriteriaGroup</td>
+            <td>To-one association</td>
+            <td>
+                <p>MatchingCriteriaGroup. Optional set of matching criteria that scope this setting to specific placements or work types. When null, this is the default setting applied to all transactions.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>rollForwardDay</td>
+            <td>To-one association</td>
+            <td>
+                <p>DayOfWeekLookup. The day of the week on which the automated roll-forward job runs to create the next accounting period.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>rollForwardTime</td>
+            <td>String</td>
+            <td>The time of day (HH:mm format, 24-hour) at which the roll-forward job runs on the configured rollForwardDay, evaluated in the timeZoneLookup time zone.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>timeZoneLookup</td>
+            <td>To-one association</td>
+            <td>
+                <p>TimeZoneGISLookup. The time zone used to evaluate the rollForwardDay and rollForwardTime, ensuring period boundaries are computed correctly for the corporation&rsquo;s locale.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
             <td>X</td>
             <td></td>
         </tr>
     </tbody>
 </table>
+
+<h2 id="notes">Notes</h2>
+
+<p>AccountingPeriodSetting is maintained by Bullhorn back-office administrators and is typically configured once during implementation. Integrations reading this entity can determine the active period schedule — for example, to predict when the next AccountingPeriod will be created or to validate that a transaction&rsquo;s date falls within an open period.</p>
+
+<p>When <code class="prettyprint">matchingCriteriaGroup</code> is null the record is the <strong>default</strong> setting. When populated, the system evaluates the matching criteria at transaction time and applies the first matching setting. Integrations that need to determine which setting applies to a given placement should resolve via the MatchingCriteriaGroup association rather than assuming the default.</p>
 
           <h1 id="pay-and-bill-batchgroup">Pay and Bill - BatchGroup</h1>
 
@@ -11002,7 +11192,7 @@ Dynamically inserted via billing-sync-services.</p>
 <tr class="odd">
 <td>billingSyncBatches</td>
 <td>To-many association</td>
-<td><p>BillingSyncBatches.</p>
+<td><p>BillingSyncBatch - list of billing sync batches in this group.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -11015,7 +11205,13 @@ Dynamically inserted via billing-sync-services.</p>
 
           <h1 id="pay-and-bill-billablecharge">Pay and Bill - BillableCharge</h1>
 
-<p>The BillableCharge entity records a chargeable fee, capturing key details like the fee amount, rate type, and effective dates, and ties these charges to specific BillMasterTransactions.</p>
+<p>Represents a chargeable billing record generated from a timesheet or expense sheet, capturing the fee amount, rate details, billing period, and GL coding required to invoice a client. BillableCharges are the central object in the billing workflow: they are created when timesheets or expense sheets are approved, grouped into BillMasters for invoice generation, and flow through to InvoiceStatements that are sent to the client.</p>
+
+<p>CRUD Access - READ</p>
+
+<p>Entitlements - View Billable Charge, Add Billable Charge, Edit Billable Charge</p>
+
+<p>The BillableCharge entity supports file attachments. Use <code class="prettyprint">PUT /file/BillableCharge/{entityId}</code> to attach supporting documents. Attached files are stored as BillingSyncBatchFileAttachment records and are accessible via the <code class="prettyprint">billingSyncBatchFileAttachments</code> association.</p>
 
 <table>
     <colgroup>
@@ -11046,7 +11242,7 @@ Dynamically inserted via billing-sync-services.</p>
             <td>addedByUser</td>
             <td>To-one association</td>
             <td>
-                <p>CorporateUser - this is the internal user who added the record.</p>
+                <p>CorporateUser - the internal user who added the record.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11078,24 +11274,31 @@ Dynamically inserted via billing-sync-services.</p>
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>billableTransactions</td>
-            <td>To-many association</td>
-            <td>BillableChargeBillableTransaction - list of associated billable charge transactions.</td>
+            <td>billableChargeHoldStatusLookup</td>
+            <td>To-one association</td>
+            <td>BillableChargeHoldStatusLookup - the current hold status of this charge. When set, indicates the charge is on hold and may prevent invoicing depending on the lookup&rsquo;s <code>doesPreventInvoicing</code> flag. A null value means the charge is not on hold.</td>
             <td></td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="odd">
-            <td>billingCalendarInstances</td>
-            <td>To-many association - list of associated billing calendar instances.</td>
-            <td>CalendarInstance.</td>
+            <td>billableTransactions</td>
+            <td>To-many association</td>
+            <td>BillMasterTransaction - list of bill master transactions associated with this billable charge.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
+            <td>billingCalendarInstances</td>
+            <td>To-many association</td>
+            <td>CalendarInstance - list of associated billing calendar instances.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>billingClientContact</td>
             <td>To-one association</td>
             <td>
-                <p>Billing contact - the client contact associated with this billable charge.</p>
+                <p>ClientContact - the billing contact associated with this billable charge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11106,11 +11309,11 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingClientCorporation</td>
             <td>To-one association</td>
             <td>
-                <p>ClientCorporation - this is the bill-to company.</p>
+                <p>ClientCorporation - the bill-to company.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11120,12 +11323,12 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billingCorporateUser</td>
             <td>To-one association</td>
             <td>
-                <p>CorporateUser.</p>
-                <p><span>Default fields:</span></p>
+                <p>CorporateUser - the internal user responsible for billing this charge.</p>
+                <p>Default fields:</p>
                 <ul>
                     <li>id</li>
                     <li>firstName</li>
@@ -11135,18 +11338,18 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingFrequency</td>
             <td>String (20)</td>
             <td>Billing frequency.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billingProfile</td>
             <td>To-one association</td>
             <td>
-                <p>Billing profile.</p>
+                <p>BillingProfile that determines where and how invoice statements for this charge are addressed and delivered. See <a href="../entityref.html#pay-and-bill-billingprofile">Pay and Bill - BillingProfile</a>.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11161,25 +11364,25 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>billingSchedule</td>
             <td>Integer</td>
             <td>Billing schedule.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>billingSyncBatchFileAttachments</td>
             <td>To-many association</td>
-            <td>BillingSyncBatchFileAttachment - list of associated billing sync batch file attachments.</td>
+            <td>BillingSyncBatchFileAttachment - list of file attachments associated with this billable charge. Files uploaded via <code>PUT /file/BillableCharge/{entityId}</code> appear here. See <a href="../entityref.html#pay-and-bill-billingsyncbatchfileattachment">Pay and Bill - BillingSyncBatchFileAttachment</a>.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>candidate</td>
             <td>To-one association</td>
             <td>
-                <p>Candidate.</p>
+                <p>Candidate - the worker associated with this billable charge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11190,11 +11393,11 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>clientCorporation</td>
             <td>To-one association</td>
             <td>
-                <p>ClientCorporation.</p>
+                <p>ClientCorporation - the owning corporation for this charge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11204,11 +11407,11 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>currencyUnit</td>
             <td>To-one association</td>
             <td>
-                <p>Currency unit.</p>
+                <p>CurrencyUnit - the currency in which this charge is denominated.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11219,136 +11422,135 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>dateAdded</td>
             <td>Timestamp</td>
             <td>Date the entity was added.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>dateLastModified</td>
             <td>Timestamp</td>
             <td>Date last modified.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>description</td>
             <td>String (2147483647)</td>
-            <td>Description.</td>
+            <td>Free-text description of the charge.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>entryTypeLookup</td>
             <td>To-one association</td>
-            <td>EntryTypeLookup - options are Timesheet or Expense.</td>
+            <td>EntryTypeLookup - the source type of this charge. Options are Timesheet or Expense.</td>
             <td>X</td>
             <td></td>
-        </tr>
-        <tr class="even">
-            <td>expenseSheet</td>
-            <td>To-one association</td>
-            <td>Expense sheet.</td>
-            <td></td>
-            <td>X</td>
         </tr>
         <tr class="odd">
+            <td>expenseSheet</td>
+            <td>To-one association</td>
+            <td>ExpenseSheet - the expense sheet that generated this charge, if entryTypeLookup is Expense.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
             <td>externalID</td>
             <td>String (100)</td>
-            <td></td>
+            <td>External identifier for integration with third-party billing or ERP systems.</td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerSegment1</td>
             <td>To-one association</td>
             <td>
-                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment1 is configured as Class, which allows users to specify the type of the ledger.</p>
+                <p>GeneralLedgerSegment - part of the Chart of Accounts structure. By default configured as Class, which allows users to specify the type of the ledger.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
                     <li>externalSegmentNumber</li>
                     <li>externalSegmentName</li>
-                </ul>   
+                </ul>
             </td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment2</td>
             <td>To-one association</td>
             <td>
-                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment2 is configured as Division, which allows users to specify the type of the ledger.</p>
+                <p>GeneralLedgerSegment - part of the Chart of Accounts structure. By default configured as Division.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
                     <li>externalSegmentNumber</li>
                     <li>externalSegmentName</li>
-                </ul>   
+                </ul>
             </td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>generalLedgerSegment3</td>
             <td>To-one association</td>
             <td>
-                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment3 is configured as Department, which allows users to specify the type of the ledger.</p>
+                <p>GeneralLedgerSegment - part of the Chart of Accounts structure. By default configured as Department.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
                     <li>externalSegmentNumber</li>
                     <li>externalSegmentName</li>
-                </ul>   
+                </ul>
             </td>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>generalLedgerSegment4</td>
             <td>To-one association</td>
             <td>
-                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment4 is configured as Country, which allows users to specify the type of the ledger.</p>
+                <p>GeneralLedgerSegment - part of the Chart of Accounts structure. By default configured as Country.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
                     <li>externalSegmentNumber</li>
                     <li>externalSegmentName</li>
-                </ul>   
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="even">
-            <td>generalLedgerSegment5</td>
-            <td>To-one association</td>
-            <td>
-                <p>General Ledger Segments are part of the Chart of Accounts structure. By default generalLedgerSegment5 is configured as Location, which allows users to specify the type of the ledger.</p>
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                    <li>externalSegmentNumber</li>
-                    <li>externalSegmentName</li>
-                </ul>   
+                </ul>
             </td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
-            <td>generalLedgerServiceCode</td>
+            <td>generalLedgerSegment5</td>
             <td>To-one association</td>
-            <td>GeneralLedgerServiceCode.</td>
+            <td>
+                <p>GeneralLedgerSegment - part of the Chart of Accounts structure. By default configured as Location.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>externalSegmentNumber</li>
+                    <li>externalSegmentName</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
+            <td>generalLedgerServiceCode</td>
+            <td>To-one association</td>
+            <td>GeneralLedgerServiceCode - the GL service code for this charge, used to classify revenue type in the general ledger.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
             <td>generalLedgerStatus</td>
             <td>To-one association</td>
             <td>
-                <p>UnbilledRevenueGeneralLedgerExportStatusLookup - General Ledger Exports Status.</p>
-                <p>Options are:</p>
+                <p>UnbilledRevenueGeneralLedgerExportStatusLookup - the current GL export status of this charge. Options are:</p>
                 <ol>
                     <li>Export Failed</li>
                     <li>Ready for Distribution</li>
@@ -11363,33 +11565,32 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>hasAdjustment</td>
             <td>Boolean</td>
-            <td>Indicates whether billable charge has an adjustment. 
-            This field is set automatically when an adjustment has occurred in the system, and it can also be manually overridden later if the charge needs to be manually adjusted.</td>
+            <td>Indicates whether this billable charge has been adjusted. Set automatically when an adjustment occurs; can also be manually overridden if the charge requires manual adjustment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>hasRebill</td>
+            <td>Boolean</td>
+            <td>Indicates whether this billable charge has been rebilled.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
-            <td>hasRebill</td>
-            <td>Boolean</td>
-            <td>Indicates whether billable charge has been rebilled.</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="odd">
             <td>invoiceStatements</td>
             <td>To-many association</td>
-            <td>Invoice statements.</td>
+            <td>InvoiceStatement - list of invoice statements that include this charge.</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>invoiceTerm</td>
             <td>To-one association</td>
             <td>
-                <p>InvoiceTerm.</p>
+                <p>InvoiceTerm - the payment terms applied to invoices generated from this charge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11403,25 +11604,25 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td></td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>invoicedTransactions</td>
             <td>To-many association</td>
-            <td>InvoicedTransactions - lists IDs of invoiced transactions.</td>
+            <td>BillMasterTransaction - list of BillMasterTransaction records on this charge that have been invoiced (i.e., where an InvoiceStatement has been generated).</td>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>isInvoiced</td>
             <td>Boolean</td>
-            <td>Indicates whether billable charge is invoiced.</td>
+            <td>Indicates whether this billable charge has been included on an invoice statement. Filter on <code>isInvoiced = false</code> to find charges still awaiting invoicing.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>jobOrder</td>
             <td>To-one association</td>
             <td>
-                <p>Job.</p>
+                <p>JobOrder - the job associated with this billable charge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11431,18 +11632,32 @@ Dynamically inserted via billing-sync-services.</p>
             <td></td>
             <td>X</td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
             <td>markAsReadyEligible</td>
             <td>Boolean</td>
-            <td>Indicates whether billable charge is ready eligible.</td>
+            <td>Indicates whether this charge is eligible to be marked as ready to bill. Computed by the system; cannot be set directly.</td>
             <td>X</td>
             <td>X</td>
         </tr>
-        <tr class="odd">
+        <tr class="even">
             <td>maxAccountingPeriod</td>
             <td>To-one association</td>
             <td>
-                <p>Maximum Accounting Period of all transactions on billable charge.</p>
+                <p>AccountingPeriod - the latest accounting period across all transactions on this charge.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>accountingPeriodDate</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>minAccountingPeriod</td>
+            <td>To-one association</td>
+            <td>
+                <p>AccountingPeriod - the earliest accounting period across all transactions on this charge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11453,24 +11668,17 @@ Dynamically inserted via billing-sync-services.</p>
             <td>X</td>
         </tr>
         <tr class="even">
-            <td>minAccountingPeriod</td>
-            <td>To-one association</td>
-            <td>
-                <p>Minimum Accounting Period of all transactions on billable charge.</p>
-                <p>Default fields:</p>
-                <ul>
-                    <li>id</li>
-                    <li>accountingPeriodDate</li>
-                </ul>
-            </td>
+            <td>onHoldComment</td>
+            <td>String (2147483647)</td>
+            <td>Free-text comment explaining why the charge is on hold. Populated alongside <code>billableChargeHoldStatusLookup</code> when a charge is placed on hold.</td>
             <td></td>
-            <td>X</td>
+            <td></td>
         </tr>
         <tr class="odd">
             <td>payBillCycles</td>
             <td>To-many association</td>
             <td>
-                <p>PayBillCycles - displays the associated Billing Cycle(s).</p>
+                <p>PayBillCycle - the billing cycle(s) associated with this charge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11478,13 +11686,12 @@ Dynamically inserted via billing-sync-services.</p>
                 </ul>
             </td>
             <td></td>
-            <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>periodEndDate</td>
             <td>Date</td>
-            <td>Period end date.</td>
+            <td>The end date of the billing period covered by this charge.</td>
             <td>X</td>
             <td></td>
         </tr>
@@ -11492,7 +11699,7 @@ Dynamically inserted via billing-sync-services.</p>
             <td>placement</td>
             <td>To-one association</td>
             <td>
-                <p>Placement.</p>
+                <p>Placement - the placement that generated this charge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11504,7 +11711,7 @@ Dynamically inserted via billing-sync-services.</p>
         <tr class="even">
             <td>readyToBillOverride</td>
             <td>Boolean</td>
-            <td>Ready to bill override.</td>
+            <td>System-set flag indicating whether the ready-to-bill state has been overridden. Managed by the system; use the Mark as Ready service endpoint to change ready-to-bill state.</td>
             <td>X</td>
             <td>X</td>
         </tr>
@@ -11512,7 +11719,7 @@ Dynamically inserted via billing-sync-services.</p>
             <td>status</td>
             <td>To-one association</td>
             <td>
-                <p>BillableChargeStatusLookup.</p>
+                <p>BillableChargeStatusLookup - the current status of this charge in the billing workflow.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11526,28 +11733,28 @@ Dynamically inserted via billing-sync-services.</p>
         <tr class="even">
             <td>subtotal</td>
             <td>BigDecimal</td>
-            <td>Subtotal.</td>
+            <td>The total billable amount for this charge before taxes, discounts, and surcharges.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>summaryTransactions</td>
             <td>To-many association</td>
-            <td>BillableChargeSummaryTransactions.</td>
+            <td>BillMasterTransaction - list of summary BillMasterTransaction records rolled up to this charge.</td>
             <td></td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>timeAndExpenseBranch</td>
             <td>String (32)</td>
-            <td></td>
+            <td>The branch identifier from the time and expense system that originated this charge.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>timesheet</td>
             <td>To-one association</td>
-            <td>Timesheet.</td>
+            <td>Timesheet - the timesheet that generated this charge, if entryTypeLookup is Timesheet.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -11555,7 +11762,7 @@ Dynamically inserted via billing-sync-services.</p>
             <td>transactionAccountingPeriods</td>
             <td>To-many association</td>
             <td>
-                <p>List of Accounting Periods of all transactions.</p>
+                <p>AccountingPeriod - all accounting periods covered by transactions on this charge.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11569,7 +11776,7 @@ Dynamically inserted via billing-sync-services.</p>
             <td>transactionStatus</td>
             <td>To-one association</td>
             <td>
-                <p>TransactionStatus.</p>
+                <p>TransactionStatus - the processing status of the underlying transactions.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11583,7 +11790,7 @@ Dynamically inserted via billing-sync-services.</p>
             <td>transactionType</td>
             <td>To-one association</td>
             <td>
-                <p>Transaction type.</p>
+                <p>TransactionType - the type of transaction that generated this charge (for example, Regular, Overtime, Holiday).</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -11596,12 +11803,645 @@ Dynamically inserted via billing-sync-services.</p>
         <tr class="odd">
             <td>unbillableTransactions</td>
             <td>To-many association</td>
-            <td>BillableChargeUnbillableTransaction.</td>
+            <td>BillMasterTransaction - list of BillMasterTransaction records on this charge where isUnbillable = true.</td>
             <td></td>
             <td>X</td>
         </tr>
     </tbody>
 </table>
+
+<h2 id="billing-lifecycle">Billing Lifecycle</h2>
+
+<p>BillableCharges sit between time capture and invoicing in the Bullhorn pay-and-bill workflow:</p>
+
+<p><strong>Timesheet / ExpenseSheet approved</strong> → BillableCharge created → <strong>BillMaster generated</strong> → InvoiceStatement sent to client</p>
+
+<p>A charge&rsquo;s <code class="prettyprint">status</code> and <code class="prettyprint">isInvoiced</code> flag track where it is in this pipeline. The <code class="prettyprint">markAsReadyEligible</code> flag indicates whether the system has determined the charge can be moved to ready-to-bill; the actual promotion is performed via the dedicated Mark as Ready service endpoint (requires the &ldquo;Mark Billable Charge Ready&rdquo; entitlement).</p>
+
+<h2 id="hold-status">Hold Status</h2>
+
+<p>A BillableCharge can be placed on hold by setting <code class="prettyprint">billableChargeHoldStatusLookup</code>. Whether a hold prevents invoice generation depends on the lookup record&rsquo;s <code class="prettyprint">doesPreventInvoicing</code> property. When placing a charge on hold, populate <code class="prettyprint">onHoldComment</code> with the reason to preserve an audit trail.</p>
+
+<h2 id="file-attachments">File Attachments</h2>
+
+<p>Supporting documents (such as approved timesheets, PO confirmations, or backup documentation for expenses) can be attached to a BillableCharge using the standard file endpoint:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>PUT {corpToken}/file/BillableCharge/{entityId}
+</code></pre></div>
+<p>Uploaded files are stored as BillingSyncBatchFileAttachment records and are linked to the charge&rsquo;s associated BillMaster and BillingSyncBatch. To retrieve the file list for a charge, query the <code class="prettyprint">billingSyncBatchFileAttachments</code> association:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>GET {corpToken}/entity/BillableCharge/{id}?fields=billingSyncBatchFileAttachments
+</code></pre></div>
+<aside class="notice">Only users with the <strong>View Billable Charge</strong> entitlement can read BillableCharge records. The <strong>Add Billable Charge</strong> and <strong>Edit Billable Charge</strong> entitlements gate create and update operations available through the BillableCharge service endpoints. All BillableCharge operations require the WFR OAuth feature on the API credentials.</aside>
+
+<h2 id="common-integration-patterns">Common Integration Patterns</h2>
+
+<p><strong>Finding uninvoiced charges for a client:</strong> Query on <code class="prettyprint">isInvoiced = false</code> and <code class="prettyprint">billingClientCorporation.id = {id}</code> to find charges awaiting invoicing. Always include <code class="prettyprint">status</code> and <code class="prettyprint">subtotal</code> in your fields to assess billing readiness.</p>
+
+<p><strong>GL export integration:</strong> Poll on <code class="prettyprint">generalLedgerStatus</code> to track which charges have been distributed and exported to your ERP. The status moves from &ldquo;Ready for Distribution&rdquo; through to &ldquo;Export Successful&rdquo; as the GL pipeline processes the charge.</p>
+
+<p><strong>Adjustment detection:</strong> Filter on <code class="prettyprint">hasAdjustment = true</code> to find charges that have been corrected after the original timesheet was approved. These typically require special handling in downstream billing systems.</p>
+
+          <h1 id="pay-and-bill-billingprofile">Pay and Bill - BillingProfile</h1>
+
+<p>An <a href="./#effective-dated-entity">effective-dated entity</a> that represents a billing contract attached to a ClientCorporation, defining where invoices are sent, who receives them, how they are delivered, and which invoice terms apply.</p>
+
+<p>Displays the current version unless you specify the <code class="prettyprint">effectiveOn</code> query parameter (BillingProfileVersion.effectiveDate &lt;= today AND BillingProfileVersion.effectiveEndDate &gt;= today). A BillingProfile may have multiple versions representing changes to billing instructions over time; each change creates a new BillingProfileVersion rather than modifying the existing one.</p>
+
+<p>The BillingProfile entity supports the CREATE, READ, UPDATE, and DELETE operations.</p>
+
+<p>Entitlements - Add Billing Profile, View Current and Future Billing Profile and Version, Add Billing Profile Version, Manage Current Billing Profile Version, Manage Future Billing Profile Version, Manage Historical Billing Profile Version, Delete Billing Profile and Version.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>BillingProfile fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>bccRecipients</td>
+            <td>To-many association</td>
+            <td>
+                <p>Person recipients added to the BCC line of invoice statement emails generated from this profile.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billingAttention</td>
+            <td>String (255)</td>
+            <td>Attention line used on the billing address for invoice correspondence.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billingClientCorporation</td>
+            <td>To-one association</td>
+            <td>
+                <p>ClientCorporation that is the billing entity — the corporation to which invoices are directed. This may differ from the owning <code>clientCorporation</code> in inter-company billing scenarios.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billingContact</td>
+            <td>To-one association</td>
+            <td>
+                <p>ClientContact at the billing entity who should receive invoices.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billingCorporateUser</td>
+            <td>To-one association</td>
+            <td>
+                <p>CorporateUser (internal staff) responsible for managing billing for this profile.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billingLocation</td>
+            <td>To-one association</td>
+            <td>
+                <p>Location that provides the billing address for invoice statements.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>ccRecipients</td>
+            <td>To-many association</td>
+            <td>
+                <p>Person recipients added to the CC line of invoice statement emails generated from this profile.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>
+                <p>ClientCorporation that owns (created) this BillingProfile. In most deployments this is the same corporation as <code>billingClientCorporation</code>; it differs only in inter-company billing setups.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customDate1 to 3</td>
+            <td>Timestamp</td>
+            <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customFloat1 to 3</td>
+            <td>Double</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customInt1 to 3</td>
+            <td>Integer</td>
+            <td>Configurable integer fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>customText1 to 20</td>
+            <td>String (100)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>customTextBlock1 to 3</td>
+            <td>String (2147483647)</td>
+            <td>Configurable large text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date and time when this entity was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date and time when this entity was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>deliveryMethodLookup</td>
+            <td>To-one association</td>
+            <td>
+                <p>SpecializedOptionsLookup defining how invoice statements are delivered (e.g., email, print, portal).</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (2147483647)</td>
+            <td>Free-text description of this billing profile. Promoted from the current active BillingProfileVersion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>Date on which the current BillingProfileVersion became active.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>Date on which the current BillingProfileVersion expires. Calculated by the system when a newer version is created.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>External identifier for use in integrations. Promoted from the current active BillingProfileVersion.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementMessageTemplate</td>
+            <td>To-one association</td>
+            <td>
+                <p>InvoiceStatementMessageTemplate that defines the email body template used when sending invoice statements.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceTerm</td>
+            <td>To-one association</td>
+            <td>
+                <p>InvoiceTerm that defines the payment conditions (due date rules, discounts, penalties) applied to invoice statements generated under this profile.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this BillingProfile has been soft-deleted. Deleted profiles are excluded from active billing workflows. Filter on <code>isDeleted=false</code> to retrieve only active profiles.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>
+                <p>CorporateUser who owns this BillingProfile. Defaults to the user who created the record.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>status</td>
+            <td>String (100)</td>
+            <td>System-managed lifecycle status of the current version. Reflects the effective-date state of the active BillingProfileVersion.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>title</td>
+            <td>String (100)</td>
+            <td>Display name for this BillingProfile. Promoted from the current active BillingProfileVersion.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>toRecipients</td>
+            <td>To-many association</td>
+            <td>
+                <p>Person recipients on the TO line of invoice statement emails generated from this profile.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>versionID</td>
+            <td>Integer</td>
+            <td>ID of the currently active BillingProfileVersion record. Managed by the system; use the <code>versions</code> association or query BillingProfileVersion directly to enumerate all versions.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>versions</td>
+            <td>To-many association</td>
+            <td>
+                <p>All BillingProfileVersion records associated with this BillingProfile, ordered by effectiveDate ascending.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="effective-dating-and-versioning">Effective-dating and versioning</h2>
+
+<p>BillingProfile is an effective-dated entity. Each change to billing instructions (delivery method, invoice terms, email recipients, billing contact, etc.) creates a new BillingProfileVersion rather than overwriting the current one. This preserves a full audit trail of all billing instructions over time.</p>
+
+<p>When querying a BillingProfile without an <code class="prettyprint">effectiveOn</code> parameter, the API returns the version whose <code class="prettyprint">effectiveDate</code> is on or before today and whose <code class="prettyprint">effectiveEndDate</code> is on or after today. To retrieve a profile as it was on a past or future date, pass <code class="prettyprint">effectiveOn=YYYY-MM-DD</code> as a query parameter.</p>
+
+<p>To create a new version for an existing BillingProfile, POST to <code class="prettyprint">/BillingProfileVersion</code> with the <code class="prettyprint">billingProfile</code> association set to the parent BillingProfile <code class="prettyprint">id</code>. The system will automatically calculate and update the <code class="prettyprint">effectiveEndDate</code> of the previous version.</p>
+
+<h2 id="relationships-to-other-entities">Relationships to other entities</h2>
+
+<p>BillingProfile is a central billing contract entity referenced by several downstream entities:</p>
+
+<ul>
+<li><strong>Placement</strong> — a to-one <code class="prettyprint">billingProfile</code> field links the Placement to the billing instructions in effect for that engagement.</li>
+<li><strong>JobOrder</strong> — a to-one <code class="prettyprint">billingProfile</code> field pre-populates billing instructions when a Placement is created from the JobOrder.</li>
+<li><strong>BillableCharge</strong> — a to-one <code class="prettyprint">billingProfile</code> field on the charge record drives invoice grouping and delivery.</li>
+<li><strong>InvoiceStatement</strong> — generated invoice statements are addressed and distributed according to the BillingProfile in effect at the time of invoice creation.</li>
+</ul>
+
+<h2 id="common-integration-gotchas">Common integration gotchas</h2>
+
+<ul>
+<li><strong>isDeleted filtering</strong>: BillingProfile supports soft-delete. Always include <code class="prettyprint">isDeleted=false</code> in query <code class="prettyprint">where</code> clauses unless you intentionally need to surface archived profiles.</li>
+<li><strong>Version vs. root fields</strong>: Fields such as <code class="prettyprint">title</code>, <code class="prettyprint">status</code>, <code class="prettyprint">billingAttention</code>, <code class="prettyprint">description</code>, and <code class="prettyprint">externalID</code> are promoted from the current active version and are read-only at the BillingProfile level. To change these, create a new BillingProfileVersion.</li>
+<li><strong>billingClientCorporation vs. clientCorporation</strong>: <code class="prettyprint">clientCorporation</code> is the Bullhorn corp that owns the profile; <code class="prettyprint">billingClientCorporation</code> is the entity that actually receives invoices. These differ in inter-company billing setups.</li>
+<li><strong>Recipient associations</strong> (<code class="prettyprint">toRecipients</code>, <code class="prettyprint">ccRecipients</code>, <code class="prettyprint">bccRecipients</code>): Stored in the join table <code class="prettyprint">BH_BillingProfileVersionEmailAddress</code> keyed by <code class="prettyprint">billingProfileVersionID</code>. Changes to recipients require creating a new version or updating the current BillingProfileVersion.</li>
+</ul>
+
+          <h1 id="pay-and-bill-billingprofileversion">Pay and Bill - BillingProfileVersion</h1>
+
+<p>Represents a version entity for the <a href="entityref.html#pay-and-bill-billingprofile">BillingProfile</a> effective-dated entity. Each BillingProfileVersion captures the billing instructions (recipients, delivery method, invoice terms, billing contact) that were in effect during a specific date range.</p>
+
+<p>CRUD Access - READ.</p>
+
+<p>Entitlements - View Current and Future Billing Profile and Version, Manage Current Billing Profile Version, Manage Future Billing Profile Version, Manage Historical Billing Profile Version.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>BillingProfileVersion fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>bccRecipients</td>
+            <td>To-many association</td>
+            <td>
+                <p>Person recipients on the BCC line of invoice emails sent for this version.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billingAttention</td>
+            <td>String (255)</td>
+            <td>Attention line used on the billing address during this version&rsquo;s effective period.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billingClientCorporation</td>
+            <td>To-one association</td>
+            <td>
+                <p>ClientCorporation that receives invoices during this version&rsquo;s effective period.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>billingContact</td>
+            <td>To-one association</td>
+            <td>
+                <p>ClientContact at the billing entity who receives invoices during this version&rsquo;s effective period.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billingCorporateUser</td>
+            <td>To-one association</td>
+            <td>
+                <p>CorporateUser responsible for billing during this version&rsquo;s effective period.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>firstName</li>
+                    <li>lastName</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>ccRecipients</td>
+            <td>To-many association</td>
+            <td>
+                <p>Person recipients on the CC line of invoice emails sent for this version.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customDate1 to 3</td>
+            <td>Timestamp</td>
+            <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customFloat1 to 3</td>
+            <td>Double</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customInt1 to 3</td>
+            <td>Integer</td>
+            <td>Configurable integer fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customText1 to 20</td>
+            <td>String (100)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customTextBlock1 to 3</td>
+            <td>String (2147483647)</td>
+            <td>Configurable large text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date and time when this version was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date and time when this version was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>deliveryMethod</td>
+            <td>String (100)</td>
+            <td>Delivery method for invoice statements during this version&rsquo;s effective period (e.g., email, print, portal). Read from the system-managed lookup; to change the method, update <code>deliveryMethodLookup</code> on the parent BillingProfile.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>description</td>
+            <td>String (2147483647)</td>
+            <td>Free-text description of this billing profile version.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>effectiveDate</td>
+            <td>Date</td>
+            <td>Date on which this version becomes active. Must be unique per BillingProfile (no two versions may share the same effectiveDate).</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>effectiveEndDate</td>
+            <td>Date</td>
+            <td>Date on which this version expires. Calculated and set by the system when a newer version is created; do not set manually.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>externalID</td>
+            <td>String (100)</td>
+            <td>External identifier for use in integrations.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementMessageTemplate</td>
+            <td>To-one association</td>
+            <td>
+                <p>InvoiceStatementMessageTemplate applied during this version&rsquo;s effective period.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>isFirst</td>
+            <td>Boolean</td>
+            <td>Indicates whether this is the first (original) version of the parent BillingProfile. Set by the system on creation of the BillingProfile.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>status</td>
+            <td>String (100)</td>
+            <td>System-managed lifecycle status reflecting whether this version is current, future, or historical relative to today&rsquo;s date.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>title</td>
+            <td>String (100)</td>
+            <td>Display name for this version of the BillingProfile.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>toRecipients</td>
+            <td>To-many association</td>
+            <td>
+                <p>Person recipients on the TO line of invoice emails sent for this version.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<aside class="notice">
+BillingProfileVersion is a read-only entity via the REST API. To add or modify versions, POST to <code>/BillingProfileVersion</code> with the parent <code>billingProfile</code> association, or manage versions through the parent BillingProfile entity. The system automatically recalculates <code>effectiveEndDate</code> for all affected versions when a new version is inserted.
+</aside>
 
           <h1 id="pay-and-bill-billingsyncbatch">Pay and Bill - BillingSyncBatch</h1>
 
@@ -11649,8 +12489,8 @@ Dynamically inserted and updated via billing-sync-services.</p>
 </tr>
 <tr class="odd">
 <td>billMasters</td>
-<td><p>To-one association</p></td>
-<td><p>BillMasters.</p>
+<td><p>To-many association</p></td>
+<td><p>BillMaster - list of bill master records processed in this billing sync batch.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -11696,7 +12536,7 @@ Dynamically inserted and updated via billing-sync-services.</p>
 <tr class="odd">
 <td>payMasters</td>
 <td>To-many association</td>
-<td><p>PayMasters.</p>
+<td><p>PayMaster - list of pay master records processed in this billing sync batch.</p>
 <p>Default fields:</p>
 <ul>
 <li>id</li>
@@ -12626,7 +13466,7 @@ Dynamic insert and update via billing-sync-services.</p>
         <tr class="even">
             <td>editHistories</td>
             <td>To-many association</td>
-            <td>BillMasterTransactionEditHistory.</td>
+            <td>BillMasterTransactionEditHistory - list of edit history records for this transaction. Note: BillMasterTransactionEditHistory does not have a standalone documentation page.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -12771,7 +13611,7 @@ Dynamic insert and update via billing-sync-services.</p>
             <td>transactionType</td>
             <td>To-one association</td>
             <td>
-                <p>Associated TransactionOrigin.</p>
+                <p>TransactionType - the type of transaction (for example, Regular, Overtime, Holiday).</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -12784,7 +13624,7 @@ Dynamic insert and update via billing-sync-services.</p>
         <tr class="even">
             <td>unbilledRevenueDistributions</td>
             <td>To-many association</td>
-            <td>UnbilledRevenueDistribution.</td>
+            <td>UnbilledRevenueDistribution - list of unbilled revenue distribution line items for this transaction. Note: UnbilledRevenueDistribution does not have a standalone documentation page; only UnbilledRevenueDistributionBatch is documented.</td>
             <td></td>
             <td></td>
         </tr>
@@ -13212,7 +14052,7 @@ Dynamic insert and update via billing-sync-services.</p>
     <tr class="even">
         <td>allSalesTaxRate</td>
         <td>To-one association</td>
-        <td>Associated AllSalesTaxRate.</td>
+        <td>SalesTaxRate - the associated sales tax rate record.</td>
         <td>X</td>
         <td><br/></td>
     </tr>
@@ -16286,14 +17126,14 @@ Dynamic insert and update via billing-sync-services.</p>
         <tr class="odd">
             <td>generalLedgerBillAccount</td>
             <td>To-one association</td>
-            <td>GeneralLedgerBillAccount - GeneralLedgerAccount for the earn code where isBill = true (Bill Account).</td>
+            <td>GeneralLedgerAccount - the general ledger account for this earn code where isBill = true (Bill Account).</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>generalLedgerPayAccount</td>
             <td>To-one association</td>
-            <td>GeneralLedgerPayAccount - GeneralLedgerAccount for the earn code where isPay = true (Pay Account).  </td>
+            <td>GeneralLedgerAccount - the general ledger account for this earn code where isPay = true (Pay Account).</td>
             <td></td>
             <td></td>
         </tr>
@@ -17026,7 +17866,7 @@ Dynamic insert and update via billing-sync-services.</p>
 <tr class="even">
 <td>generalLedgerSegmentType</td>
 <td><p>To-one association</p></td>
-<td>GeneralLedger.</td>
+<td>GeneralLedgerSegmentType - the type classification for this segment (for example, Class, Division, Department).</td>
 <td>X</td>
 <td>X</td>
 </tr>
@@ -17478,6 +18318,917 @@ Dynamic insert and update via billing-sync-services.</p>
         </tr>
     </tbody>
 </table>
+
+          <h1 id="pay-and-bill-invoicepayment">Pay and Bill - InvoicePayment</h1>
+
+<p>Represents a payment applied against an InvoiceStatement, recording the amount received, the date paid, and an optional check or reference number.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE, DELETE.</p>
+
+<p>Entitlements - View Invoice Payment, Add Invoice Payment, Edit Invoice Payment, Delete Invoice Payment.</p>
+
+<table>
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+        <col width="20%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>InvoicePayment fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="even">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>The payment amount applied to the invoice statement. Stored with precision 19, scale 6.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>checkNumber</td>
+            <td>String (100)</td>
+            <td>Check number or external payment reference for this payment.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customDate1 to 3</td>
+            <td>Timestamp</td>
+            <td>Configurable date fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>customInt1 to 5</td>
+            <td>Integer</td>
+            <td>Configurable numeric fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>customText1 to 5</td>
+            <td>String (255)</td>
+            <td>Configurable text fields that can be used to store custom data depending on the needs of a particular deployment.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date and time this record was created. Set automatically on insert.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date and time this record was last modified. Set automatically on insert and update.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>datePaid</td>
+            <td>Timestamp</td>
+            <td>Date and time this payment was made.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementID</td>
+            <td>Integer</td>
+            <td>ID of the InvoiceStatement to which this payment is applied.</td>
+            <td>X</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="automatic-paid-status-recalculation">Automatic Paid Status Recalculation</h2>
+
+<p>Whenever an InvoicePayment record is created, updated, or deleted, the system automatically recalculates the <code class="prettyprint">invoiceStatementPaidStatus</code> on the parent InvoiceStatement:</p>
+
+<ul>
+<li>If the sum of all payment amounts for the invoice meets or exceeds the invoice total, the status is set to <strong>Paid</strong>.</li>
+<li>If the sum is greater than zero but less than the invoice total, the status is set to <strong>Partial</strong>.</li>
+<li>If there are no remaining payments, the status is set to <strong>Unpaid</strong>.</li>
+</ul>
+
+<p>You do not need to update the InvoiceStatement directly when recording or adjusting payments — the paid status is derived automatically from the total of all associated InvoicePayment records.</p>
+
+          <h1 id="pay-and-bill-invoicestatement">Pay and Bill - InvoiceStatement</h1>
+
+<p>Represents a generated invoice document sent to a client corporation, summarizing billable charges for a specific billing period. InvoiceStatement is the central pay-and-bill entity: it aggregates line items, taxes, discounts, and surcharges into a total amount owed, and tracks the full lifecycle from draft through finalization, delivery, and payment.</p>
+
+<p>CRUD Access - READ, UPDATE</p>
+
+<p>Entitlements - View Any Invoice Statement, Edit Any Invoice Statement</p>
+
+<table>
+    <colgroup>
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="20%"/>
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th>InvoiceStatement fields</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Not null</th>
+            <th>Read-only</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td>id</td>
+            <td>Integer</td>
+            <td>Unique identifier for this entity.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>amountPaid</td>
+            <td>BigDecimal</td>
+            <td>Total amount paid against this invoice statement.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>bccRecipients</td>
+            <td>To-many association</td>
+            <td>
+                <p>Person records to BCC when this invoice statement is emailed.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>billingAddress</td>
+            <td>Address</td>
+            <td>Invoice billing address (address1, address2, city, state, zip, countryID).</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>billingAttention</td>
+            <td>String (200)</td>
+            <td>Attention line on the invoice, typically the name of the client contact to whom the invoice is addressed.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>billingClientContact</td>
+            <td>To-one association</td>
+            <td>
+                <p>The client contact designated as the billing contact for this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>billingCorporateUser</td>
+            <td>To-one association</td>
+            <td>
+                <p>The internal corporate user responsible for billing on this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>billingPeriodEndDate</td>
+            <td>DateTime</td>
+            <td>End date of the billing period covered by this invoice statement.</td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>billingProfile</td>
+            <td>To-one association</td>
+            <td>
+                <p>The billing profile that governs the formatting and delivery rules for this invoice statement. Set at creation time; cannot be changed after creation.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>billingProfileCorrelatedCustomText1 to 10</td>
+            <td>String (200)</td>
+            <td>Configurable text fields correlated from the billing profile. Cannot be edited after finalization.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>billingProfileCorrelatedCustomTextBlock1 to 3</td>
+            <td>String (32000)</td>
+            <td>Configurable large text fields correlated from the billing profile. Cannot be edited after finalization.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>billingScheduleID</td>
+            <td>Integer</td>
+            <td>ID of the billing schedule that generated this invoice statement.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>billableCharges</td>
+            <td>To-many association</td>
+            <td>
+                <p>BillableCharge records included on this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>candidates</td>
+            <td>To-many association</td>
+            <td>
+                <p>Candidate records associated with this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>ccRecipients</td>
+            <td>To-many association</td>
+            <td>
+                <p>Person records to CC when this invoice statement is emailed.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>clientCorporation</td>
+            <td>To-one association</td>
+            <td>
+                <p>The client corporation being invoiced. Set at creation time and cannot be changed.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                    <li>name</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>creditedByInvoiceStatement</td>
+            <td>To-one association</td>
+            <td>
+                <p>The credit invoice statement that credited this invoice statement. Populated only when this invoice has been credited.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>creditOfInvoiceStatement</td>
+            <td>To-one association</td>
+            <td>
+                <p>The original invoice statement that this invoice statement credits. Populated only when this is a credit invoice.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>currencyUnit</td>
+            <td>To-one association</td>
+            <td>
+                <p>The currency in which this invoice statement is denominated.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date and time when this invoice statement was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>dateLastModified</td>
+            <td>Timestamp</td>
+            <td>Date and time when this invoice statement was last modified.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>deliveryMethodLookup</td>
+            <td>To-one association</td>
+            <td>
+                <p>The delivery method (e.g., email, print) for this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>deliveryStatus</td>
+            <td>To-one association</td>
+            <td>
+                <p>Current delivery status of this invoice statement (e.g., Not Applicable, Sent, Failed).</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>discountAmount</td>
+            <td>BigDecimal</td>
+            <td>Total calculated discount amount applied to this invoice statement. System-calculated.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>discountTotal</td>
+            <td>BigDecimal</td>
+            <td>Sum of all discount line item totals on this invoice statement. System-calculated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>discounts</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatementDiscount records associated with this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>dueDate</td>
+            <td>DateTime</td>
+            <td>Payment due date, calculated from invoiceStatementDate plus paymentTerms (number of days). System-calculated; updated whenever invoiceStatementDate or paymentTerms changes.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>effectiveDate</td>
+            <td>DateTime</td>
+            <td>The effective date of the invoice statement, set at creation time.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>emailErrorReason</td>
+            <td>String (100)</td>
+            <td>Reason recorded when email delivery of this invoice statement fails.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>fileTypesForInvoicing</td>
+            <td>To-many association</td>
+            <td>
+                <p>BillingSyncBatchFileTypeLookup records indicating which billing sync batch file types are associated with this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>finalizedSubtotal</td>
+            <td>BigDecimal</td>
+            <td>Subtotal amount captured at the time this invoice statement was finalized. Null until finalization completes. System-calculated.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>finalizedTotal</td>
+            <td>BigDecimal</td>
+            <td>Total amount captured at the time this invoice statement was finalized. Null until finalization completes. System-calculated.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>generalLedgerExportStatusLookup</td>
+            <td>To-one association</td>
+            <td>
+                <p>Current general ledger export status for this invoice statement (e.g., Not Ready to Export, Exported).</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementDate</td>
+            <td>DateTime</td>
+            <td>The invoice date shown on the invoice statement document. Also used as the base date for calculating dueDate.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementDistributionBatch</td>
+            <td>To-one association</td>
+            <td>
+                <p>The distribution batch this invoice statement belongs to, if any.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementExports</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatementExport file attachment records for this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementExportsBatches</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatementExportBatch records grouping the exports for this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementFinalizedDate</td>
+            <td>DateTime</td>
+            <td>Date and time when this invoice statement was finalized. Set automatically by the finalization process.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementLineDistributions</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatementLineDistribution records associated with this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementMessageTemplate</td>
+            <td>To-one association</td>
+            <td>
+                <p>The message template used when emailing this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementNumber</td>
+            <td>String (100)</td>
+            <td>Human-readable invoice number assigned to this invoice statement. Set by the system on finalization; can be updated if the invoiceStatementIsFinalizedStatus entitlement allows it.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementOrigin</td>
+            <td>String (100)</td>
+            <td>Indicates how the invoice statement was created (e.g., &ldquo;System Generated&rdquo;). Set at creation time and cannot be changed.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementPaidStatus</td>
+            <td>To-one association</td>
+            <td>
+                <p>Paid status of this invoice statement (e.g., Unpaid, Partial, Paid). Updated automatically as payments are recorded.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceStatementTemplate</td>
+            <td>To-one association</td>
+            <td>
+                <p>The template used to render the invoice statement document.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>invoiceStatementType</td>
+            <td>To-one association</td>
+            <td>
+                <p>Type of invoice statement (e.g., Original, Credit). Defaults to Original; set at creation time.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>invoiceTerm</td>
+            <td>To-one association</td>
+            <td>
+                <p>The invoice term associated with this invoice statement. Set at creation time and cannot be changed.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>isCredited</td>
+            <td>Boolean</td>
+            <td>Indicates whether this invoice statement has been credited. System-maintained.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this invoice statement has been soft-deleted. Soft-deleted records are excluded from query results by default; include <code>isDeleted:true</code> in your query filter to retrieve them.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>isFinalized</td>
+            <td>Boolean</td>
+            <td>Indicates whether this invoice statement has been finalized. Once finalized, most fields become read-only. Finalization is triggered through the finalization service, not by directly setting this field.</td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>isReinstated</td>
+            <td>Boolean</td>
+            <td>Indicates whether this invoice statement has been reinstated after being voided. System-maintained.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>lineItemTotal</td>
+            <td>BigDecimal</td>
+            <td>Sum of all line item subtotals on this invoice statement, before taxes, discounts, and surcharges. System-calculated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>lineItems</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatementLineItem records that make up the body of this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>outstandingBalance</td>
+            <td>BigDecimal</td>
+            <td>Remaining unpaid balance on this invoice statement (total minus amountPaid). System-calculated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>owner</td>
+            <td>To-one association</td>
+            <td>
+                <p>The corporate user who owns this invoice statement. Defaults to the user who created it.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>paymentCount</td>
+            <td>Integer</td>
+            <td>Number of payments recorded against this invoice statement. System-calculated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>paymentTerms</td>
+            <td>String (200)</td>
+            <td>Number of days after invoiceStatementDate that payment is due. Used to calculate dueDate. Must be a numeric string (e.g., &ldquo;30&rdquo; for net 30). Cannot be edited after finalization.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>placements</td>
+            <td>To-many association</td>
+            <td>
+                <p>Placement records associated with this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>previousBalance</td>
+            <td>BigDecimal</td>
+            <td>Previous outstanding balance carried forward from prior invoices, if any. Cannot be edited after finalization.</td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>purchaseOrderNumber</td>
+            <td>String (200)</td>
+            <td>Client purchase order number associated with this invoice statement. Cannot be edited after finalization.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>rawInvoiceStatementNumber</td>
+            <td>Integer</td>
+            <td>The raw sequential numeric invoice statement number assigned at finalization, before any prefix, suffix, or formatting is applied. System-assigned; read-only.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>rebillFromInvoices</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatement records that this invoice statement was rebilled from.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>rebillNumberFromInvoiceStatement</td>
+            <td>To-one association</td>
+            <td>
+                <p>The invoice statement whose number is used as the base for this rebill&rsquo;s invoice number.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>rebillSuffix</td>
+            <td>String (10)</td>
+            <td>Suffix appended to the invoice number for rebill invoices (e.g., &ldquo;-R1&rdquo;).</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>rebillToInvoices</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatement records that are rebills of this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>remitInstructions</td>
+            <td>String (200)</td>
+            <td>Payment remittance instructions printed on the invoice statement. Cannot be edited after finalization is in progress.</td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>splitBys</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatementSplitBy records defining how this invoice statement is split across dimensions (e.g., by department). Cannot be edited after finalization is in progress.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>status</td>
+            <td>To-one association</td>
+            <td>
+                <p>Workflow status of this invoice statement (e.g., Draft, Ready, Finalized, Voided). Transitions are restricted by the invoiceStatementIsFinalizedStatus field checker.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td>X</td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>subtotal</td>
+            <td>BigDecimal</td>
+            <td>Invoice subtotal: lineItemTotal minus discountTotal plus surchargeTotal. System-calculated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>surchargeAmount</td>
+            <td>BigDecimal</td>
+            <td>Total calculated surcharge amount applied to this invoice statement. System-calculated.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>surchargeTotal</td>
+            <td>BigDecimal</td>
+            <td>Sum of all surcharge line item totals on this invoice statement. System-calculated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>surcharges</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatementSurcharge records associated with this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>taxAmount</td>
+            <td>BigDecimal</td>
+            <td>Total calculated tax amount applied to this invoice statement. System-calculated.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>taxTotal</td>
+            <td>BigDecimal</td>
+            <td>Sum of all tax line item totals on this invoice statement. System-calculated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
+            <td>taxes</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatementTax records associated with this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
+            <td>toRecipients</td>
+            <td>To-many association</td>
+            <td>
+                <p>Person records in the To field when this invoice statement is emailed.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="odd">
+            <td>total</td>
+            <td>BigDecimal</td>
+            <td>Total amount due on this invoice statement: subtotal plus taxTotal (minus any tax already included in subtotal). System-calculated.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="lifecycle-and-workflow-notes">Lifecycle and workflow notes</h2>
+
+<p>InvoiceStatement records move through a status lifecycle: Draft → Ready → Finalized (or Voided/Reinstated). Finalization is an irreversible, asynchronous operation triggered via the finalization service endpoint — setting <code class="prettyprint">isFinalized</code> directly via REST PUT is not supported. Once an invoice is finalized:</p>
+
+<ul>
+<li>Most scalar fields (billing address, billing period, payment terms, etc.) become read-only.</li>
+<li>To correct a finalized invoice, a credit invoice statement must be created (the new entity&rsquo;s <code class="prettyprint">creditOfInvoiceStatement</code> will point back to the original).</li>
+<li>Rebilling creates a new invoice from the credited one; <code class="prettyprint">rebillFromInvoices</code> and <code class="prettyprint">rebillToInvoices</code> track that chain.</li>
+</ul>
+
+<p><strong>Key integrator gotchas:</strong></p>
+
+<ul>
+<li><code class="prettyprint">isDeleted</code> is the soft-delete flag. Deleted invoice statements are excluded from query results by default; add <code class="prettyprint">isDeleted:true</code> (or <code class="prettyprint">isDeleted:false</code>) to your <code class="prettyprint">where</code> clause when you need to control visibility explicitly.</li>
+<li><code class="prettyprint">invoiceStatementNumber</code> is null until finalization — do not treat it as a stable identifier; use <code class="prettyprint">id</code> instead.</li>
+<li><code class="prettyprint">dueDate</code> is calculated automatically from <code class="prettyprint">invoiceStatementDate</code> + <code class="prettyprint">paymentTerms</code>. Setting <code class="prettyprint">dueDate</code> directly via PUT is rejected.</li>
+<li><code class="prettyprint">paymentTerms</code> must be a numeric string representing the number of days (e.g., <code class="prettyprint">&quot;30&quot;</code>). Non-numeric values will cause an error.</li>
+<li><code class="prettyprint">billingProfileCorrelatedCustomText</code> fields are copied from the billing profile at invoice creation. Changes to the billing profile after invoice creation do not propagate automatically.</li>
+<li><code class="prettyprint">amountPaid</code>, <code class="prettyprint">outstandingBalance</code>, and <code class="prettyprint">paymentCount</code> are updated by the payment recording process, not directly writable.</li>
+<li>This entity requires the <strong>WFR</strong> (Workforce Ready / Pay and Bill) OAuth feature on your API credentials.</li>
+</ul>
 
           <h1 id="pay-and-bill-invoicestatementdiscountrate">Pay and Bill - InvoiceStatementDiscountRate</h1>
 
@@ -18559,7 +20310,7 @@ Dynamic insert and update via billing-sync-services.</p>
         <tr class="odd">
             <td>generalLedgerAccountsReceivable</td>
             <td>To-one association</td>
-            <td>GeneralLedgerAccountsReceivable.</td>
+            <td>GeneralLedgerAccount - the accounts receivable general ledger account associated with this invoice term (where isAccountsReceivable = true).</td>
             <td></td>
             <td></td>
         </tr>
@@ -18836,7 +20587,7 @@ Dynamic insert and update via billing-sync-services.</p>
         <tr class="odd">
             <td>generalLedgerAccountsReceivable</td>
             <td>To-one association</td>
-            <td>GeneralLedgerAccountsReceivable - General Ledger Account (with isAccountsReceivable = &lsquo;true&rsquo;) associated with this InvoiceTerm.</td>
+            <td>GeneralLedgerAccount - the accounts receivable general ledger account (where isAccountsReceivable = true) associated with this InvoiceTermVersion.</td>
             <td></td>
             <td></td>
         </tr>
@@ -19553,7 +21304,7 @@ can be passed as well with all associated data.</p>
         <tr class="odd">
             <td>jobPosting</td>
             <td>To-one association</td>
-            <td><p>JobPosting.</p>
+            <td><p>JobPosting - the job posting associated with this rate card. Note: JobPosting does not have a standalone documentation page in the Bullhorn REST API reference.</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -20189,7 +21940,7 @@ Dynamically inserted and updated via billing-sync-services.</p>
         <tr class="odd">
             <td>exportedTransactions</td>
             <td>To-many association</td>
-            <td>PayableChargeExportedTransactions.</td>
+            <td>PayExportBatch - list of pay export batches that include this payable charge. Note: PayExportBatch does not have a standalone documentation page.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -20361,7 +22112,7 @@ Dynamically inserted and updated via billing-sync-services.</p>
         <tr class="even">
             <td>payableTransactions</td>
             <td>To-many association</td>
-            <td>PayableChargePayableTransactions.</td>
+            <td>PayMasterTransaction - list of pay master transactions associated with this payable charge.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -20814,7 +22565,7 @@ Dynamically inserted and updated via billing-sync-services.</p>
         <tr class="even">
             <td>editHistories</td>
             <td>To-many association</td>
-            <td>PayMasterTransactionEditHistory.</td>
+            <td>PayMasterTransactionEditHistory - list of edit history records for this transaction. Note: PayMasterTransactionEditHistory does not have a standalone documentation page.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -20862,7 +22613,7 @@ Dynamically inserted and updated via billing-sync-services.</p>
         <tr class="even">
             <td>payExportBatches</td>
             <td>To-many association</td>
-            <td>PayExportBatches.</td>
+            <td>PayExportBatch - list of pay export batches associated with this transaction. Note: PayExportBatch does not have a standalone documentation page.</td>
             <td></td>
             <td></td>
         </tr>
@@ -24461,6 +26212,17 @@ For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-
             <td>billingFrequency</td>
             <td>String (20)</td>
             <td>Frequency with which the client company will be billed for this position, initially copied from the associated ClientCorporation record but can be modified on the Placement record.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="odd">
+            <td>billingProfile</td>
+            <td>To-one association</td>
+            <td>BillingProfile that determines billing instructions (invoice destination, delivery method, invoice terms, email recipients) for invoice statements generated from this Placement. Initially copied from the associated JobOrder. Default fields:
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
         </tr>

@@ -2,6 +2,28 @@
 
 <p>This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.</p>
 
+<h2 id="may-2026-release-2026-5">May 2026 Release (2026.5)</h2>
+
+<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiodsetting">Pay and Bill - AccountingPeriodSetting entity reference page</a> |</p>
+
+<p>| UPDATED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiod">AccountingPeriod entity</a> |</p>
+
+<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement">Pay and Bill - InvoiceStatement entity reference page</a> |</p>
+
+<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement">InvoiceStatement finalizedSubtotal field</a> |</p>
+
+<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement">InvoiceStatement finalizedTotal field</a> |</p>
+
+<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement">InvoiceStatement invoiceStatementExportsBatches field</a> |</p>
+
+<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement">InvoiceStatement isDeleted field</a> |</p>
+
+<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement">InvoiceStatement rawInvoiceStatementNumber field</a> |</p>
+
+<p>| UPDATED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/index.html#resume">Resume parsedResumeFile workflow documentation</a> |</p>
+
+<p>| FIXED <code class="prettyprint">|</code> Corrected phantom entity names and broken association references in Pay and Bill entity reference pages |</p>
+
 <h2 id="december-2025-release-2025-12">December 2025 Release (2025.12)</h2>
 
 <p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#candidate">Candidate lastEmailReceivedDate field</a> |</p>
@@ -148,9 +170,9 @@
 
 <p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-payablecharge">PayableCharge minAccountingPeriod, maxAccountingPeriod, transactionAccountingPeriods fields</a> |</p>
 
-<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransaction">BillMasterTransaction accountingPeriod and editHistories fields</a> |</p>
+<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransaction">BillMasterTransaction accountingPeriod, editHistories, and isCustomRate fields</a> |</p>
 
-<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-paymastertransaction">PayMasterTransaction accountingPeriod and editHistories fields</a> |</p>
+<p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-paymastertransaction">PayMasterTransaction accountingPeriod, editHistories, and isCustomRate fields</a> |</p>
 
 <h2 id="may-2024-release-2024-5">May 2024 Release (2024.5)</h2>
 
