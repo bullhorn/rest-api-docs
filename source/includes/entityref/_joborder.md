@@ -74,7 +74,11 @@ The JobOrder entity supports the massUpdate operations.
         <tr class="odd">
             <td>billingProfile</td>
             <td>To-one association</td>
-            <td>BillingProfile</td>
+            <td>BillingProfile that defines the billing instructions (invoice destination, delivery method, invoice terms, email recipients) to be applied when Placements are created from this JobOrder. Default fields:
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
             <td></td>
             <td></td>
         </tr>

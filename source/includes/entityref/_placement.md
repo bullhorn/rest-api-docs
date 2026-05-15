@@ -77,6 +77,17 @@ Represents a successfully filled job; for example, a placement of a candidate in
             <td></td>
             <td></td>
         </tr>
+        <tr class="odd">
+            <td>billingProfile</td>
+            <td>To-one association</td>
+            <td>BillingProfile that determines billing instructions (invoice destination, delivery method, invoice terms, email recipients) for invoice statements generated from this Placement. Initially copied from the associated JobOrder. Default fields:
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr class="even">
             <td>bonusPackage</td>
             <td>String (2147483647)</td>
