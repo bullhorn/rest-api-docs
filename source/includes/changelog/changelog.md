@@ -2,6 +2,20 @@
 
 This is where you can find a list of changes to the Bullhorn REST API. This change log was initiated with the 2024.5 release. Prior changes are not listed by release.
 
+## May 2026 Release (2026.5)
+
+| ADDED ```|``` [Pay and Bill - InvoiceStatement entity reference page](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement finalizedSubtotal field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement finalizedTotal field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement invoiceStatementExportsBatches field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement isDeleted field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement rawInvoiceStatementNumber field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
 ## December 2025 Release (2025.12)
 
 | ADDED ```|``` [Candidate lastEmailReceivedDate field](https://bullhorn.github.io/rest-api-docs/entityref.html#candidate) |

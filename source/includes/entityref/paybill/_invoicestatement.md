@@ -326,6 +326,20 @@ Entitlements - View Any Invoice Statement, Edit Any Invoice Statement
             <td><br/></td>
         </tr>
         <tr class="odd">
+            <td>finalizedSubtotal</td>
+            <td>BigDecimal</td>
+            <td>Subtotal amount captured at the time this invoice statement was finalized. Null until finalization completes. System-calculated.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
+            <td>finalizedTotal</td>
+            <td>BigDecimal</td>
+            <td>Total amount captured at the time this invoice statement was finalized. Null until finalization completes. System-calculated.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>generalLedgerExportStatusLookup</td>
             <td>To-one association</td>
             <td>
@@ -372,6 +386,19 @@ Entitlements - View Any Invoice Statement, Edit Any Invoice Statement
             <td><br/></td>
         </tr>
         <tr class="odd">
+            <td>invoiceStatementExportsBatches</td>
+            <td>To-many association</td>
+            <td>
+                <p>InvoiceStatementExportBatch records grouping the exports for this invoice statement.</p>
+                <p>Default fields:</p>
+                <ul>
+                    <li>id</li>
+                </ul>
+            </td>
+            <td><br/></td>
+            <td><br/></td>
+        </tr>
+        <tr class="even">
             <td>invoiceStatementFinalizedDate</td>
             <td>DateTime</td>
             <td>Date and time when this invoice statement was finalized. Set automatically by the finalization process.</td>
@@ -478,6 +505,13 @@ Entitlements - View Any Invoice Statement, Edit Any Invoice Statement
             <td>X</td>
         </tr>
         <tr class="odd">
+            <td>isDeleted</td>
+            <td>Boolean</td>
+            <td>Indicates whether this invoice statement has been soft-deleted. Soft-deleted records are excluded from query results by default; include <code>isDeleted:true</code> in your query filter to retrieve them.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
+        <tr class="even">
             <td>isFinalized</td>
             <td>Boolean</td>
             <td>Indicates whether this invoice statement has been finalized. Once finalized, most fields become read-only. Finalization is triggered through the finalization service, not by directly setting this field.</td>
@@ -573,6 +607,13 @@ Entitlements - View Any Invoice Statement, Edit Any Invoice Statement
             <td><br/></td>
         </tr>
         <tr class="even">
+            <td>rawInvoiceStatementNumber</td>
+            <td>Integer</td>
+            <td>The raw sequential numeric invoice statement number assigned at finalization, before any prefix, suffix, or formatting is applied. System-assigned; read-only.</td>
+            <td><br/></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>rebillFromInvoices</td>
             <td>To-many association</td>
             <td>
@@ -745,6 +786,7 @@ InvoiceStatement records move through a status lifecycle: Draft → Ready → Fi
 
 **Key integrator gotchas:**
 
+- `isDeleted` is the soft-delete flag. Deleted invoice statements are excluded from query results by default; add `isDeleted:true` (or `isDeleted:false`) to your `where` clause when you need to control visibility explicitly.
 - `invoiceStatementNumber` is null until finalization — do not treat it as a stable identifier; use `id` instead.
 - `dueDate` is calculated automatically from `invoiceStatementDate` + `paymentTerms`. Setting `dueDate` directly via PUT is rejected.
 - `paymentTerms` must be a numeric string representing the number of days (e.g., `"30"`). Non-numeric values will cause an error.
