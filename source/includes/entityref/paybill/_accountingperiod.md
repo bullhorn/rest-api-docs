@@ -1,6 +1,10 @@
 # Pay and Bill - AccountingPeriod
 
-Defines a financial period—typically marked by start and end dates—within which billing and revenue transactions are grouped, reported, and reconciled.
+Represents a discrete financial period used to group, close, and reconcile billing and payroll transactions in the Bullhorn pay-and-bill workflow. Each AccountingPeriod anchors the transactions (BillMaster, PayMaster) that fall within it, enabling period-end close processes and GL export by date range.
+
+CRUD Access - READ.
+
+Entitlements - View Accounting Period
 
 <table>
     <colgroup>
@@ -30,9 +34,22 @@ Defines a financial period—typically marked by start and end dates—within wh
         <tr class="odd">
             <td>accountingPeriodDate</td>
             <td>Date</td>
-            <td>Accounting Period date.</td>
+            <td>The date that identifies this accounting period. Used to stamp and group transactions that fall within the period.</td>
             <td>X</td>
             <td></td>
         </tr>
+        <tr class="even">
+            <td>dateAdded</td>
+            <td>Timestamp</td>
+            <td>Date and time when this record was created.</td>
+            <td>X</td>
+            <td>X</td>
+        </tr>
     </tbody>
 </table>
+
+## Notes
+
+AccountingPeriod records are system-managed and created automatically by the accounting period roll-forward process (configured via AccountingPeriodSetting). Integrations should treat these as read-only reference data and use the `accountingPeriodDate` to correlate BillMaster and PayMaster transactions to the correct period.
+
+The entity supports the `query` operation. Use `accountingPeriodDate` as a filter to retrieve specific periods — for example, to pull all transactions closed within a given month.
