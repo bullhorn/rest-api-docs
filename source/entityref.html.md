@@ -76,6 +76,8 @@ includes:
   - entityref/paybill/accountingperiod
   - entityref/paybill/batchgroup
   - entityref/paybill/billablecharge
+  - entityref/paybill/billingprofile
+  - entityref/paybill/billingprofileversion
   - entityref/paybill/billingsyncbatch
   - entityref/paybill/billingsyncbatchfileattachment
   - entityref/paybill/billingsyncerror
