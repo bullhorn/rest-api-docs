@@ -4,6 +4,8 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 ## May 2026 Release (2026.5)
 
+| ADDED ```|``` [CorporateUserDelegation service DELETE](http://bullhorn.github.io/rest-api-docs/index.html#delete-services-corporateuser-corporateuserid-delegation-delegateid) |
+
 | ADDED ```|``` [Pay and Bill - AccountingPeriodSetting entity reference page](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiodsetting) |
 
 | UPDATED ```|``` [AccountingPeriod entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiod) |
