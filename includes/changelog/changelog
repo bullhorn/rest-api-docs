@@ -4,6 +4,8 @@
 
 <h2 id="may-2026-release-2026-5">May 2026 Release (2026.5)</h2>
 
+<p>| ADDED <code class="prettyprint">|</code> <a href="http://bullhorn.github.io/rest-api-docs/index.html#delete-services-corporateuser-corporateuserid-delegation-delegateid">CorporateUserDelegation service DELETE</a> |</p>
+
 <p>| ADDED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiodsetting">Pay and Bill - AccountingPeriodSetting entity reference page</a> |</p>
 
 <p>| UPDATED <code class="prettyprint">|</code> <a href="https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiod">AccountingPeriod entity</a> |</p>

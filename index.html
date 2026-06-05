@@ -4661,6 +4661,43 @@ curl <span class="nt">-X</span> POST <span class="se">\</span>
 
 <p>BhRestToken | yes      | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</p>
 
+<h2 id="delete-services-corporateuser-corporateuserid-delegation-delegateid">DELETE /services/CorporateUser/{corporateUserID}/delegation/{delegateID}</h2>
+
+<p>With appropriate access, you can remove a delegate from a user. The endpoint disassociates the delegate so they can no longer act on behalf of the user.</p>
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+      https://rest<span class="o">{</span>swimlane#<span class="o">}</span>.bullhornstaffing.com/rest-services/e999/services/CorporateUser/<span class="o">{</span>corporateUserID<span class="o">}</span>/delegation/<span class="o">{</span>delegateID<span class="o">}</span>
+
+<span class="c"># Example Response</span>
+<span class="o">{}</span>
+</code></pre></div>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">{corpToken}/services/CorporateUser/{corporateUserID}/delegation/{delegateID}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>corporateUserID</td>
+<td>yes</td>
+<td>ID of the user whose delegate is being removed.</td>
+</tr>
+<tr>
+<td>delegateID</td>
+<td>yes</td>
+<td>ID of the delegate to remove.</td>
+</tr>
+<tr>
+<td>BhRestToken</td>
+<td>yes</td>
+<td>Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.</td>
+</tr>
+</tbody></table>
+
 <h2 id="post-put-services-directdepositaccount">POST / PUT /services/DirectDepositAccount</h2>
 
 <p>The Direct Deposit Account service allows for the creation of direct deposit accounts attached to a single candidate.</p>
