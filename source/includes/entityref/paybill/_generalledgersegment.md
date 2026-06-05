@@ -44,7 +44,7 @@ Represents a general ledger segment for assignment to [Placement](https://bullho
 <tr class="even">
 <td>generalLedgerSegmentType</td>
 <td><p>To-one association</p></td>
-<td>GeneralLedger.</td>
+<td>GeneralLedgerSegmentType - the type classification for this segment (for example, Class, Division, Department).</td>
 <td>X</td>
 <td>X</td>
 </tr>

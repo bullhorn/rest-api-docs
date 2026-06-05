@@ -74,8 +74,11 @@ includes:
   - entityref/opportunity
   - entityref/opportunityhistory
   - entityref/paybill/accountingperiod
+  - entityref/paybill/accountingperiodsetting
   - entityref/paybill/batchgroup
   - entityref/paybill/billablecharge
+  - entityref/paybill/billingprofile
+  - entityref/paybill/billingprofileversion
   - entityref/paybill/billingsyncbatch
   - entityref/paybill/billingsyncbatchfileattachment
   - entityref/paybill/billingsyncerror
@@ -124,6 +127,8 @@ includes:
   - entityref/paybill/holiday
   - entityref/paybill/holidaycategorylookup
   - entityref/paybill/holidayinstance
+  - entityref/paybill/invoicepayment
+  - entityref/paybill/invoicestatement
   - entityref/paybill/invoicestatementdiscountrate
   - entityref/paybill/invoicestatementlineitem
   - entityref/paybill/invoicestatementlineitemdiscountrate

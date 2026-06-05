@@ -113,7 +113,7 @@ Read-only entity that represents a BillMasterTransaction.
         <tr class="even">
             <td>editHistories</td>
             <td>To-many association</td>
-            <td>BillMasterTransactionEditHistory.</td>
+            <td>BillMasterTransactionEditHistory - list of edit history records for this transaction. Note: BillMasterTransactionEditHistory does not have a standalone documentation page.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -258,7 +258,7 @@ Read-only entity that represents a BillMasterTransaction.
             <td>transactionType</td>
             <td>To-one association</td>
             <td>
-                <p>Associated TransactionOrigin.</p>
+                <p>TransactionType - the type of transaction (for example, Regular, Overtime, Holiday).</p>
                 <p>Default fields:</p>
                 <ul>
                     <li>id</li>
@@ -271,7 +271,7 @@ Read-only entity that represents a BillMasterTransaction.
         <tr class="even">
             <td>unbilledRevenueDistributions</td>
             <td>To-many association</td>
-            <td>UnbilledRevenueDistribution.</td>
+            <td>UnbilledRevenueDistribution - list of unbilled revenue distribution line items for this transaction. Note: UnbilledRevenueDistribution does not have a standalone documentation page; only UnbilledRevenueDistributionBatch is documented.</td>
             <td></td>
             <td></td>
         </tr>

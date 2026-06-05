@@ -96,7 +96,7 @@ CRUD Access - READ
         <tr class="even">
             <td>editHistories</td>
             <td>To-many association</td>
-            <td>PayMasterTransactionEditHistory.</td>
+            <td>PayMasterTransactionEditHistory - list of edit history records for this transaction. Note: PayMasterTransactionEditHistory does not have a standalone documentation page.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -144,7 +144,7 @@ CRUD Access - READ
         <tr class="even">
             <td>payExportBatches</td>
             <td>To-many association</td>
-            <td>PayExportBatches.</td>
+            <td>PayExportBatch - list of pay export batches associated with this transaction. Note: PayExportBatch does not have a standalone documentation page.</td>
             <td></td>
             <td></td>
         </tr>

@@ -6,6 +6,26 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [CorporateUserDelegation service DELETE](http://bullhorn.github.io/rest-api-docs/index.html#delete-services-corporateuser-corporateuserid-delegation-delegateid) |
 
+| ADDED ```|``` [Pay and Bill - AccountingPeriodSetting entity reference page](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiodsetting) |
+
+| UPDATED ```|``` [AccountingPeriod entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiod) |
+
+| ADDED ```|``` [Pay and Bill - InvoiceStatement entity reference page](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement finalizedSubtotal field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement finalizedTotal field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement invoiceStatementExportsBatches field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement isDeleted field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement rawInvoiceStatementNumber field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| UPDATED ```|``` [Resume parsedResumeFile workflow documentation](https://bullhorn.github.io/rest-api-docs/index.html#resume) |
+
+| FIXED ```|``` Corrected phantom entity names and broken association references in Pay and Bill entity reference pages |
+
 ## December 2025 Release (2025.12)
 
 | ADDED ```|``` [Candidate lastEmailReceivedDate field](https://bullhorn.github.io/rest-api-docs/entityref.html#candidate) |
@@ -152,9 +172,9 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [PayableCharge minAccountingPeriod, maxAccountingPeriod, transactionAccountingPeriods fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-payablecharge) |
 
-| ADDED ```|``` [BillMasterTransaction accountingPeriod and editHistories fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransaction) |
+| ADDED ```|``` [BillMasterTransaction accountingPeriod, editHistories, and isCustomRate fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-billmastertransaction) |
 
-| ADDED ```|``` [PayMasterTransaction accountingPeriod and editHistories fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-paymastertransaction) |
+| ADDED ```|``` [PayMasterTransaction accountingPeriod, editHistories, and isCustomRate fields](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-paymastertransaction) |
 
 ## May 2024 Release (2024.5)
 

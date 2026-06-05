@@ -148,7 +148,7 @@ CRUD Access - READ
         <tr class="odd">
             <td>exportedTransactions</td>
             <td>To-many association</td>
-            <td>PayableChargeExportedTransactions.</td>
+            <td>PayExportBatch - list of pay export batches that include this payable charge. Note: PayExportBatch does not have a standalone documentation page.</td>
             <td></td>
             <td>X</td>
         </tr>
@@ -320,7 +320,7 @@ CRUD Access - READ
         <tr class="even">
             <td>payableTransactions</td>
             <td>To-many association</td>
-            <td>PayableChargePayableTransactions.</td>
+            <td>PayMasterTransaction - list of pay master transactions associated with this payable charge.</td>
             <td></td>
             <td>X</td>
         </tr>
