@@ -3,7 +3,7 @@
 User authorization and session management use the following flow:
 
 1. An OAuth 2.0 access token is returned though the OAuth 2.0 authorization flow. For more information about the OAuth flow, see [Getting Started with REST](/Getting-Started-with-REST)
-2. A REST API login call that contains the access token as a query parameter is made. If this call is sucessful, a token named BHRestToken is returned. This token represents a session established by the login process; it must be sent along with all subsequent requests to the REST API. The BhRestToken can be provided in a URL query string, a cookie, or an HTTP header.
+2. A REST API login call that contains the access token is made. This call should be issued as a `POST` rather than a `GET`. If this call is sucessful, a token named BHRestToken is returned. This token represents a session established by the login process; it must be sent along with all subsequent requests to the REST API. The BhRestToken should be sent as an HTTP header (preferred); it may also be provided in a URL query string or a cookie.
 3. The login call also returns a base URL with which all subsequent API requests must be prefixed.
 
 ## Unauthorized requests
@@ -16,6 +16,6 @@ The REST API has the concept of a client "session". This is essentially a method
 
 This key must be provided in HTTP requests in at least one of the following places:
 
-1. A query parameter named `BhRestToken` on the request URL.
-2. An HTTP header named `BhRestToken` or `BHRestToken`.
+1. An HTTP header named `BhRestToken` or `BHRestToken`. This is the recommended approach.
+2. A query parameter named `BhRestToken` on the request URL.
 3. A cookie named `BhRestToken`. This cookie is set by the API at login time as a convenience for browser-based clients.

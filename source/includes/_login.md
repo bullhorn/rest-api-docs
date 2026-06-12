@@ -3,16 +3,24 @@
 ## Partner login using OAuth
 
 ``` shell
-curl https://rest.bullhornstaffing.com/login?access_token=xxx&version=*
+# Recommended: issue the login request as a POST. access_token and version remain query parameters.
+curl -X POST "https://rest.bullhornstaffing.com/login?access_token=xxx&version=*"
 
 # Example Response
 {
   "BhRestToken" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
   "restUrl" : "https://rest{swimlane#}.bullhornstaffing.com/rest-services/{corpToken}/"
 }
+
+# Send the returned BhRestToken as an HTTP header on all subsequent requests (preferred over the URL):
+curl -H "BhRestToken: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" \
+  "https://rest{swimlane#}.bullhornstaffing.com/rest-services/{corpToken}/ping"
 ```
 
-Log in and get a REST session. This is the only supported login process in a production environment.
+Log in and get a REST session. This is the primary, supported login process in a production environment.
+
+- Issue the login request as a `POST` rather than a `GET`.
+- Send the returned `BhRestToken` as an HTTP header on subsequent requests rather than as a URL query parameter (see [Authorization](#authorization)).
 
 - Never assume that a REST session will not expire.
 - Perform a [ping](#ping) request to return the timestamp of the REST session expiration.
