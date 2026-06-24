@@ -2,6 +2,16 @@
 
 These docs use [Slate](https://github.com/slatedocs/slate) to convert markdown files into the [Bullhorn Rest API Docs Site](http://bullhorn.github.io/rest-api-docs).
 
+## Updating the docs with Claude
+
+Entity and operation reference pages can be created and updated with the **`rest-api-docs`** Claude plugin (in the `claude-resources` repo / Bullhorn Claude marketplace). It verifies fields, types, and required/read-only flags against the entity code and `/meta`, preserves the load-bearing table format, and drafts the CHANGELOG entry for you:
+
+```
+/rest-api-docs:update-api-doc <Entity or operation>
+```
+
+The plugin's README documents the full end-to-end workflow — run the skill, branch, open a PR into `dev`, merge once approved, then run the Jenkins publisher job. See the [`rest-api-docs` plugin README](https://bhsource.bullhorn.com/DEV_WORKSPACE/claude-resources/-/blob/main/plugins/general/rest-api-docs/README.md) for details.
+
 ## Prerequisites
 
 You're going to need:
