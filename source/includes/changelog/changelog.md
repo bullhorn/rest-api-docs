@@ -32,6 +32,10 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | ADDED ```|``` [Timesheet amount field](https://bullhorn.github.io/rest-api-docs/entityref.html#timesheet) |
 
+| UPDATED ```|``` [PayBillCycle entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-paybillcycle) |
+
+| FIXED ```|``` [PayBillCycle dateLastModified field marked not null to match the entity contract](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-paybillcycle) |
+
 
 ## May 2026 Release (2026.5)
 
