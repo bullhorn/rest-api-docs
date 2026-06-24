@@ -26,6 +26,39 @@ This is where you can find a list of changes to the Bullhorn REST API. This chan
 
 | FIXED ```|``` Corrected phantom entity names and broken association references in Pay and Bill entity reference pages |
 
+## June 2026 Release (2026.6)
+
+| UPDATED ```|``` [Timesheet units field changed from Boolean to BigDecimal](https://bullhorn.github.io/rest-api-docs/entityref.html#timesheet) |
+
+| ADDED ```|``` [Timesheet amount field](https://bullhorn.github.io/rest-api-docs/entityref.html#timesheet) |
+
+
+## May 2026 Release (2026.5)
+
+| ADDED ```|``` [Pay and Bill - AccountingPeriodSetting entity reference page](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiodsetting) |
+
+| UPDATED ```|``` [AccountingPeriod entity](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-accountingperiod) |
+
+| ADDED ```|``` [Pay and Bill - InvoiceStatement entity reference page](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement finalizedSubtotal field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement finalizedTotal field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement invoiceStatementExportsBatches field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement isDeleted field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| ADDED ```|``` [InvoiceStatement rawInvoiceStatementNumber field](https://bullhorn.github.io/rest-api-docs/entityref.html#pay-and-bill-invoicestatement) |
+
+| UPDATED ```|``` [Timesheet units field changed from Boolean to BigDecimal](https://bullhorn.github.io/rest-api-docs/entityref.html#timesheet) |
+
+| ADDED ```|``` [Timesheet amount field](https://bullhorn.github.io/rest-api-docs/entityref.html#timesheet) |
+
+| UPDATED ```|``` [Resume parsedResumeFile workflow documentation](https://bullhorn.github.io/rest-api-docs/index.html#resume) |
+
+| FIXED ```|``` Corrected phantom entity names and broken association references in Pay and Bill entity reference pages |
+
 ## December 2025 Release (2025.12)
 
 | ADDED ```|``` [Candidate lastEmailReceivedDate field](https://bullhorn.github.io/rest-api-docs/entityref.html#candidate) |
