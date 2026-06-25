@@ -2,6 +2,58 @@
 
 These docs use [Slate](https://github.com/slatedocs/slate) to convert markdown files into the [Bullhorn Rest API Docs Site](http://bullhorn.github.io/rest-api-docs).
 
+## Updating the docs with Claude
+
+Entity and operation reference pages can be created and updated with the **`rest-api-docs`** Claude plugin (in the [`claude-resources`](https://bhsource.bullhorn.com/DEV_WORKSPACE/claude-resources/-/blob/main/plugins/general/rest-api-docs/README.md) repo / Bullhorn Claude marketplace). It verifies fields, types, and required/read-only flags against the entity code and `/meta`, preserves the load-bearing table format, and drafts the CHANGELOG entry for you.
+
+The full path from a code change to the live site at [bullhorn.github.io/rest-api-docs](http://bullhorn.github.io/rest-api-docs) is five steps:
+
+### 1. Update documentation
+
+#### A. Manually update
+
+Make required changes in the repo
+
+#### B. Run the skill
+
+In Claude Code / Cowork (with this repo and the entity-source repo available):
+
+```
+/rest-api-docs:update-api-doc <Entity or operation>   # e.g. Timesheet, or "search"
+```
+
+The skill edits the entity or operation page under `source/includes/`, registers any brand-new page in `source/entityref.html.md`, and drafts the CHANGELOG entry. It stops there — branching, the PR, and publishing are manual. Review the diff and the skill's handoff summary before continuing.
+
+### 2. Create a branch
+
+Branch off `dev` (PRs target `dev` — never `master`, per `CONTRIBUTING.md`). Name the branch after the Jira ticket:
+
+```bash
+git checkout dev && git pull
+git checkout -b f/BH-XXXXX          # e.g. f/BH-101708
+git add source/includes/...
+git commit -m "<entity>: <change>"  # e.g. "timesheet: units BigDecimal + amount field"
+git push -u origin f/BH-XXXXX
+```
+
+### 3. Open the pull request
+
+Open a PR on GitHub from your branch **into `dev`**. Use the same `<entity>: <change>` title, link the Jira ticket, and paste the skill's handoff summary (source citations + breaking notes) into the description so reviewers can verify against code.
+
+### 4. Merge once approved
+
+After review approval, merge the PR into `dev`. Resolve any CHANGELOG conflicts by keeping both entries under the current release section.
+
+### 5. Publish via Jenkins
+
+Trigger the publisher job — it builds the Slate site and deploys it to the `gh-pages` branch that serves the public docs site:
+
+**[API_Documentation_publisher](https://bosjenkins.bullhorn.com/job/Dev-Practice/job/API_Documentation_publisher/)** (`bosjenkins.bullhorn.com` → `Dev-Practice` → `API_Documentation_publisher`)
+
+Run "Build Now", wait for the job to go green, then confirm the change is live. The published site lags the merge until this job runs — **merging alone does not publish.**
+
+> Local preview (optional): `bundle install && bundle exec middleman server` serves the site at `localhost:4567` so you can eyeball tables and anchors before opening the PR.
+
 ## Prerequisites
 
 You're going to need:

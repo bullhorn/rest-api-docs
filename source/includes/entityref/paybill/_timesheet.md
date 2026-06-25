@@ -60,6 +60,13 @@ Acts as a master record that aggregates multiple time entries, tracking an indiv
             <td>X</td>
         </tr>
         <tr class="odd">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>Total monetary amount for the Timesheet, calculated according to the associated earn code type.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>approvedBy</td>
             <td>String (255)</td>
             <td>User the Timesheet was approved by.</td>
@@ -299,8 +306,8 @@ Acts as a master record that aggregates multiple time entries, tracking an indiv
         </tr>
         <tr class="even">
             <td>units</td>
-            <td>Boolean</td>
-            <td>Whether or not this Timesheet is measured in units.</td>
+            <td>BigDecimal</td>
+            <td>Total number of units for the Timesheet, calculated according to the associated earn code type.</td>
             <td></td>
             <td>X</td>
         </tr>
