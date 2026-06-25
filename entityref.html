@@ -22282,7 +22282,11 @@ Dynamically inserted and updated via billing-sync-services.</p>
 
           <h1 id="pay-and-bill-paybillcycle">Pay and Bill - PayBillCycle</h1>
 
-<p>Defines a recurring time period or schedule over which payroll or payable transactions are processed, establishing the cycle for calculating and disbursing payments.</p>
+<p>Defines a recurring time period or schedule over which time, pay, bill, and invoice transactions are processed, establishing the cadence on which placements are evaluated and money is calculated and disbursed.</p>
+
+<p>CRUD Access - CREATE, READ, UPDATE</p>
+
+<p>Entitlements - Add Pay &amp; Bill Cycle, View Pay &amp; Bill Cycle, Edit Pay &amp; Bill Cycle</p>
 
 <table>
     <colgroup>
@@ -22312,68 +22316,74 @@ Dynamically inserted and updated via billing-sync-services.</p>
         <tr class="odd">
             <td>billEvalEnabled</td>
             <td>Boolean</td>
-            <td>Enabled for billing cycle.</td>
+            <td>Controls whether bill (client charge) evaluation runs on this cycle. When true, billable charges are generated for placements assigned to the cycle. Defaults to false.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>billingCalendar</td>
             <td>To-one association</td>
-            <td>Calendar.</td>
+            <td>The Calendar that supplies the billing period boundaries (start and end dates) for this cycle. Set when the cycle is created and cannot be changed afterward.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>billingCalendarFrequencyLookup</td>
             <td>To-one association</td>
-            <td>CalendarFrequencyLookup.</td>
+            <td>The CalendarFrequencyLookup describing how often the billing calendar recurs, such as weekly, bi-weekly, semi-monthly, or monthly.</td>
             <td></td>
             <td></td>
         </tr>
         <tr class="even">
             <td>dateAdded</td>
             <td>Timestamp</td>
-            <td>Date the entity was added.</td>
+            <td>Date on which this cycle was created in the Bullhorn system.</td>
             <td>X</td>
             <td>X</td>
         </tr>
         <tr class="odd">
             <td>dateLastModified</td>
             <td>Timestamp</td>
-            <td>Date the entity was last modified.</td>
-            <td></td>
+            <td>Date on which this cycle was last updated.</td>
+            <td>X</td>
             <td>X</td>
         </tr>
         <tr class="even">
             <td>invoiceCycleEnabled</td>
             <td>Boolean</td>
-            <td>Enabled for invoice cycle.</td>
+            <td>Controls whether invoice generation runs on this cycle. Defaults to true.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>label</td>
             <td>String (100)</td>
-            <td>Label</td>
+            <td>Human-readable name that identifies the cycle to back-office users, for example &ldquo;Weekly&rdquo; or &ldquo;Bi-Weekly Salaried&rdquo;.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="even">
             <td>payEvalEnabled</td>
             <td>Boolean</td>
-            <td>Enabled for pay cycle.</td>
+            <td>Controls whether pay evaluation runs on this cycle. When true, payable charges are generated for workers assigned to the cycle. Defaults to false.</td>
             <td>X</td>
             <td></td>
         </tr>
         <tr class="odd">
             <td>timesheetEnabled</td>
             <td>Boolean</td>
-            <td>Enabled for timesheet cycle.</td>
+            <td>Controls whether timesheets are generated and collected on this cycle. Defaults to false.</td>
             <td>X</td>
             <td></td>
         </tr>
     </tbody>
 </table>
+
+<p>PayBillCycle is back-office configuration. It is set up by payroll and billing administrators and attached to placements to determine the cadence at which time, pay, bill, and invoice processing run. It sits upstream of the transactional records in the Pay and Bill lifecycle: the cycle&rsquo;s calendar and toggles govern when timesheets are collected and when those approved hours flow into BillMaster and PayMaster records, which in turn drive InvoiceStatements and payroll exports.</p>
+
+<p>The four <code class="prettyprint">*Enabled</code> toggles are independent. A single cycle can drive any combination of timesheet collection, pay evaluation, bill evaluation, and invoicing — for example, a pay-only cycle would have <code class="prettyprint">payEvalEnabled</code> true while <code class="prettyprint">billEvalEnabled</code> and <code class="prettyprint">invoiceCycleEnabled</code> are false.</p>
+
+<p>Common gotchas for integrators: <code class="prettyprint">billingCalendar</code> is immutable after creation, so the billing schedule must be correct on the initial CREATE. The entity supports CREATE, READ, and UPDATE only — there is no REST DELETE operation and no <code class="prettyprint">isDeleted</code> soft-delete field, so cycles are not removed through the API.</p>
 
           <h1 id="pay-and-bill-paymaster">Pay and Bill - PayMaster</h1>
 
@@ -25172,6 +25182,13 @@ For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-
             <td>X</td>
         </tr>
         <tr class="odd">
+            <td>amount</td>
+            <td>BigDecimal</td>
+            <td>Total monetary amount for the Timesheet, calculated according to the associated earn code type.</td>
+            <td></td>
+            <td>X</td>
+        </tr>
+        <tr class="odd">
             <td>approvedBy</td>
             <td>String (255)</td>
             <td>User the Timesheet was approved by.</td>
@@ -25411,8 +25428,8 @@ For more information see <a href="https://bullhorn.github.io/Rate-Card-Entities-
         </tr>
         <tr class="even">
             <td>units</td>
-            <td>Boolean</td>
-            <td>Whether or not this Timesheet is measured in units.</td>
+            <td>BigDecimal</td>
+            <td>Total number of units for the Timesheet, calculated according to the associated earn code type.</td>
             <td></td>
             <td>X</td>
         </tr>
