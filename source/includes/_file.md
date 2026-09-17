@@ -138,11 +138,13 @@ Files can be attached to the following types of entities:
 
 ### HTTP Request
 
-`{corpToken}/entityFiles/{entityType}/{entityId}`
+`{corpToken}/entity/{entityType}/{entityId}/fileAttachments`
 
 Param | Required | Description
 ------ | -------- | -----
 BhRestToken | no | Token that represents a session established by the login process. Must be sent with all subsequent requests to the API. The session key can be provided in the BhRestToken query string, a cookie, or an HTTP header.
+fields | yes* | Comma-separated list of field names. Use fields or layout, but not both.
+layout | yes* | Name of a configured layout. Use fields or layout, but not both.
 
 
 ## <span class="tag">PUT</span> /file
